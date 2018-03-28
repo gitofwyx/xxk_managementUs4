@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.offices.dao.OfficesDao">
-    <sql id="columns">id,dev_class,dev_max,type_max,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,belong_to_id,office_name,leading_official,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
-    <select id="listDeviceClass" parameterType="string" resultType="com.xxk.management.device.entity.DeviceClass">
+    <select id="listOffices" parameterType="string" resultType="com.xxk.management.offices.entity.Offices">
         select
         <include refid="columns"></include>
-        from xxk_dev_class where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
-    </select>
-
-    <select id="listAllDeviceName" resultMap="deviceClassMap">
-        select id,dev_class,class_ident,type_max,updateDate
-        from xxk_dev_class WHERE deleteFlag='0';
+        from xxk_offices where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
     </select>
 
     <!--添加用户信息 -->
-    <insert id="addDeviceClass" parameterType="com.xxk.management.device.entity.DeviceClass">
-        insert into xxk_dev_class(<include refid="columns"></include>) values(
-        #{id},#{dev_class},#{dev_max},#{type_max},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+    <insert id="addOffices" parameterType="com.xxk.management.device.entity.DeviceClass">
+        insert into xxk_offices(<include refid="columns"></include>) values(
+        #{id},#{belong_to_id},#{office_name},#{leading_official},,#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <select id="getDeviceClassById" parameterType="string" resultType="com.xxk.management.device.entity.DeviceClass">
