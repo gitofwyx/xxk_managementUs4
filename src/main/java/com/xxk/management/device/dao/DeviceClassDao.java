@@ -1,0 +1,30 @@
+package com.xxk.management.device.dao;
+
+import com.xxk.management.device.entity.Device;
+import com.xxk.management.device.entity.DeviceClass;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by Administrator on 2017/3/15.
+ */
+@Repository
+public interface DeviceClassDao {
+
+    public List<Device> listDeviceClass(int pageStart, int pageSize);
+
+    public List<Map<String, Object>> listAllDeviceName();
+
+    public int addDeviceClass(DeviceClass deviceClass);
+
+    public DeviceClass getDeviceClassById(String id);
+
+    public List<Map<String, Object>> getClassClassById(String id);
+
+    public int updateDevMax(DeviceClass deviceClass);
+
+    public int updateDev_typeMax(DeviceClass deviceClass);
+
+}
