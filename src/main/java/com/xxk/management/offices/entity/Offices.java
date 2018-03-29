@@ -8,6 +8,7 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Offices extends BaseInfoEntity {
     private String id;
+    private int office_ident;
     private String belong_to_id;     //所属科室id
     private String office_name;      //科室名
     private String leading_official;      //科室负责人
@@ -21,6 +22,14 @@ public class Offices extends BaseInfoEntity {
     @Override
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getOffice_ident() {
+        return office_ident;
+    }
+
+    public void setOffice_ident(int office_ident) {
+        this.office_ident = office_ident;
     }
 
     public String getBelong_to_id() {

@@ -23,52 +23,12 @@ public class OfficesServiceImpl implements OfficesService {
 
 
     @Override
-    public List<Offices> listDevice(int pageStart, int pageSize) {
-        return dao.listDevice((pageStart-1)*pageSize, pageSize);
+    public List<Offices> listOffices(int pageStart, int pageSize) {
+        return dao.listOffices((pageStart-1)*pageSize, pageSize);
     }
 
     @Override
-    public List<Offices> listDeviceById(List<String> listDevId) {
-        return dao.listDeviceById(listDevId);
+    public boolean addOffices(Offices office) {
+        return dao.addOffices(office)==1?true:false;
     }
-
-    @Override
-    public boolean addDevice(Offices device) {
-        return dao.addDevice(device)==1?true:false;
-    }
-
-    @Override
-    public List<Map<String, Object>> getDeviceNumber(String deviceId) {
-        return dao.getDeviceNumber(deviceId);
-    }
-
-    @Override
-    public  List<Map<String, Object>> getDeviceSelect() {
-        return dao.getDeviceSelect();
-    }
-
-    @Override
-    public List<Map<String, Object>> getStoreDeviceById(List<String> listDevId) {
-        return dao.getStoreDeviceById(listDevId);
-    }
-
-    @Override
-    public List<Map<String, Object>> getDeviceIdent() {
-        if(dao.getDeviceIdent().size()!=1){
-            log.error("getDeviceIdent:获取设备编号错误");
-            return null;
-        }
-        return dao.getDeviceIdent();
-    }
-
-    @Override
-    public boolean plusDeviceNumber(int dev_no,String deviceId) {
-        return dao.plusDeviceNumber(dev_no,deviceId)==1?true:false;
-    }
-
-    @Override
-    public boolean minusDeviceNumber(int dev_no, String deviceId) {
-        return dao.minusDeviceNumber(dev_no,deviceId)==1?true:false;
-    }
-
 }
