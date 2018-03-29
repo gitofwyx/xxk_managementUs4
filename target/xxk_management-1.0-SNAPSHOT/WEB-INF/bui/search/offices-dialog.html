@@ -25,13 +25,13 @@
                 <div class="control-group span8">
                     <label class="control-label">科室名称：</label>
                     <div class="controls">
-                        <input type="text" class="control-text" name="id">
+                        <input type="text" class="control-text" name="office_name">
                     </div>
                 </div>
                 <div class="control-group span8">
                     <label class="control-label">科室编号：</label>
                     <div class="controls">
-                        <input type="text" class="control-text" name="stuName">
+                        <input type="text" class="control-text" name="office_ident">
                     </div>
                 </div>
             </div>
@@ -106,10 +106,8 @@
                 }),
                 columns = [
                     {title: '科室编号', dataIndex: 'name', width: 100},
-                    {title: '科室名称', dataIndex: 'birthday', width: 100, renderer: BUI.Grid.Format.dateRenderer},
-                    {title: '所属科室', dataIndex: 'sex', width: 60, renderer: BUI.Grid.Format.enumRenderer(enumObj)},
-                    {title: '学生班级', dataIndex: 'grade', width: 100},
-                    {title: '学生家庭住址', dataIndex: 'address', width: 300},
+                    {title: '科室名称', dataIndex: 'birthday', width: 100},
+                    {title: '所属科室', dataIndex: 'sex', width: 60},
                     {
                         title: '操作', dataIndex: '', width: 200, renderer: function (value, obj) {
                         var editStr = Search.createLink({ //链接使用 此方式
@@ -124,14 +122,15 @@
                     }
                     }
                 ],
-                store = Search.createStore('../data/student.json', {
+                store = Search.createStore('/listOffices', {
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                             addUrl: '../data/add.json',
                             updateUrl: '../data/edit.json',
                             removeUrl: '../data/del.php'
-                        }/*,
-                         method : 'POST'*/
+                        },
+                        pageSize: 6,
+                        autoSync: true //保存数据后，自动更新
                     },
                     autoSync: true //保存数据后，自动更新
                 }),

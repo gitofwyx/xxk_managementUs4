@@ -3,7 +3,6 @@ package com.xxk.management.offices.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
-import com.xxk.core.util.device_ident.IdentUtil;
 import com.xxk.management.offices.entity.Offices;
 import com.xxk.management.offices.service.OfficesService;
 import org.apache.log4j.Logger;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,21 +21,22 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("")
-public class OfficeController extends BaseController {
+public class OfficesController extends BaseController {
 
-    private static Logger log = Logger.getLogger(OfficeController.class);
+    private static Logger log = Logger.getLogger(OfficesController.class);
 
     @Autowired
     private OfficesService officesService;
 
 
     @ResponseBody
-    @RequestMapping("/listDevice")
-    public Map<String, Object> listDevice(@RequestParam(value = "pageIndex") String pageIndex,
-                                          @RequestParam(value = "limit") String limit,
-                                          @RequestParam(value = "dev_name") String dev_name,
-                                          @RequestParam(value = "dev_type") String dev_type,
-                                          @RequestParam(value = "startDate") String startDate) {
+    @RequestMapping("/listOffices")
+    public Map<String, Object> listOffices(@RequestParam(value = "pageIndex") String pageIndex,
+                                           @RequestParam(value = "limit") String limit,
+                                           @RequestParam(value = "office_name") String office_name,
+                                           @RequestParam(value = "office_ident") String office_ident,
+                                           @RequestParam(value = "startDate") String startDate,
+                                           @RequestParam(value = "endDate") String endDate) {
         Map<String, Object> result = new HashMap<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
@@ -60,8 +59,8 @@ public class OfficeController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/addDevice")
-    public Map<String, Boolean> addDevice(Offices offices) {
+    @RequestMapping("/addOffices")
+    public Map<String, Boolean> addOffices(Offices offices) {
         Map<String, Boolean> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
