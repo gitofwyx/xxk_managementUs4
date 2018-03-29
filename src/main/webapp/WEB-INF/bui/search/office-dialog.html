@@ -105,19 +105,9 @@
                     triggerCls: 'btn-edit'
                 }),
                 columns = [
-                    {
-                        title: '学生编号', dataIndex: 'id', width: 80, renderer: function (v) {
-                        return Search.createLink({
-                            id: 'detail' + v,
-                            title: '学生信息',
-                            text: v,
-                            href: 'detail/example.html'
-                        });
-                    }
-                    },
-                    {title: '学生姓名', dataIndex: 'name', width: 100},
-                    {title: '生日', dataIndex: 'birthday', width: 100, renderer: BUI.Grid.Format.dateRenderer},
-                    {title: '学生性别', dataIndex: 'sex', width: 60, renderer: BUI.Grid.Format.enumRenderer(enumObj)},
+                    {title: '科室编号', dataIndex: 'name', width: 100},
+                    {title: '科室名称', dataIndex: 'birthday', width: 100, renderer: BUI.Grid.Format.dateRenderer},
+                    {title: '所属科室', dataIndex: 'sex', width: 60, renderer: BUI.Grid.Format.enumRenderer(enumObj)},
                     {title: '学生班级', dataIndex: 'grade', width: 100},
                     {title: '学生家庭住址', dataIndex: 'address', width: 300},
                     {
