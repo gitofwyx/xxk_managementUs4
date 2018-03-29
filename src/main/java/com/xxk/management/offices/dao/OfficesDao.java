@@ -12,9 +12,9 @@ import java.util.Map;
 @Repository
 public interface OfficesDao {
 
-    public List<Offices> listDeviceClass(int pageStart, int pageSize);
+    public List<Offices> listOffices(int pageStart, int pageSize);
 
-    public List<Map<String, Object>> listAllDeviceName();
+    public int addOffices(Offices office);
 
 
 
