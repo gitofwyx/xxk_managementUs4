@@ -14,4 +14,6 @@ public interface OfficesService {
 
     public boolean addOffices(Offices office);
 
+    public List<Map<String, Object>> getOfficeSelect();
+
 }

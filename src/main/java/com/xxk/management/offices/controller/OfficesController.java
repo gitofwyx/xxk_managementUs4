@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,6 +83,27 @@ public class OfficesController extends BaseController {
         }
         return result;
         //return "system/index";
+    }
+
+    @ResponseBody
+    @RequestMapping("/getOfficeSelect")
+    public Map<String, Object> getOfficeSelect() {
+        int id = 0;
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> listOffice = new ArrayList<>();
+        try {
+            listOffice = officesService.getOfficeSelect();
+            if (listOffice == null) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("office_name", listOffice);
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
     }
 
 }

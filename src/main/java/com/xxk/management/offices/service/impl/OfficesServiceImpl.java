@@ -31,4 +31,9 @@ public class OfficesServiceImpl implements OfficesService {
     public boolean addOffices(Offices office) {
         return dao.addOffices(office)==1?true:false;
     }
+
+    @Override
+    public List<Map<String, Object>> getOfficeSelect() {
+        return dao.getOfficeSelect();
+    }
 }

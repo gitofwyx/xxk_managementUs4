@@ -4,24 +4,23 @@
     <sql id="columns">id,dev_class_id,dev_name,dev_ident,related_flag,related_id,dev_type,dev_type_ident,dev_no,dev_flag,remark,
                         keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
-    <resultMap id="DeviceSelectMap" type="java.util.HashMap">
+    <resultMap id="deviceSelectMap" type="java.util.HashMap">
         <id column="dev_class_id" property="dev_class_id" jdbcType="VARCHAR"/>
         <result column="id" property="value" jdbcType="VARCHAR"/>
         <result column="dev_type" property="text" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="DeviceStoreMap" type="java.util.HashMap">
+    <resultMap id="deviceStoreMap" type="java.util.HashMap">
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="dev_name" property="dev_name" jdbcType="VARCHAR"/>
         <result column="dev_type" property="dev_type" jdbcType="VARCHAR"/>
         <result column="dev_no" property="dev_no" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="DeviceNumberMap" type="java.util.HashMap">
+    <resultMap id="deviceNumberMap" type="java.util.HashMap">
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="dev_ident" property="dev_ident" jdbcType="VARCHAR"/>
         <result column="dev_no" property="dev_no" jdbcType="VARCHAR"/>
-
     </resultMap>
 
     <!--获取分页 -->
@@ -43,8 +42,8 @@
         and deleteFlag='0';
     </select>
 
-    <!--获取入库设备的部分信息列表-->
-    <select id="getStoreDeviceById" resultMap="DeviceStoreMap" parameterType="java.util.List">
+    <!--根据id获取入库设备的部分信息列表-->
+    <select id="getStoreDeviceById" resultMap="deviceStoreMap" parameterType="java.util.List">
         select id,dev_name,dev_type,dev_no
         from xxk_device
         where id in
@@ -62,12 +61,12 @@
     </insert>
 
     <!--获取设备库存数量-->
-    <select id="getDeviceNumber" parameterType="string" resultMap="DeviceNumberMap">
+    <select id="getDeviceNumber" parameterType="string" resultMap="deviceNumberMap">
         select id,dev_ident,dev_no
         from xxk_device where id=#{0} and deleteFlag='0';
     </select>
 
-    <select id="getDeviceSelect" resultMap="DeviceSelectMap">
+    <select id="getDeviceSelect" resultMap="deviceSelectMap">
         select dev_class_id,id,dev_type
         from xxk_device where deleteFlag='0';
     </select>

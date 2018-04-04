@@ -16,6 +16,6 @@ public interface OfficesDao {
 
     public int addOffices(Offices office);
 
-
+    public List<Map<String, Object>> getOfficeSelect();
 
 }

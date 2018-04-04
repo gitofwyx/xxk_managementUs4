@@ -148,7 +148,7 @@
     BUI.use(['common/search', 'bui/form', 'bui/select'], function (Search, Form, Select) {
 
         var enumObj = {"0": "未出库", "1": "已出库"},
-                select_data = '',
+                select_data = [],
                 select_type = [],
                 editing = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'content', //设置隐藏的Dialog内容
@@ -260,7 +260,7 @@
                 K_Form = editing_t.get('form');
 
         function addFunction() {
-            if ('' == select_data || undefined == select_data) {
+            if ($.isEmptyObject(select_data)) {
                 $.ajax({
                     url: '/getStoreSelect',
                     type: 'POST', //GET

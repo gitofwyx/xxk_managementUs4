@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.offices.dao.OfficesDao">
-    <sql id="columns">id,belong_to_id,office_name,leading_official,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,office_ident,belong_to_id,office_name,leading_official,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+
+    <resultMap id="office_nameMap" type="java.util.HashMap">
+        <id column="id" property="value" jdbcType="VARCHAR"/>
+        <result column="office_name" property="text" jdbcType="VARCHAR"/>
+    </resultMap>
 
     <!--获取分页 -->
     <select id="listOffices" parameterType="string" resultType="com.xxk.management.offices.entity.Offices">
@@ -10,10 +15,15 @@
         from xxk_offices where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
     </select>
 
+    <select id="getOfficeSelect" resultMap="office_nameMap">
+        select id,office_name
+        from xxk_offices where deleteFlag='0';
+    </select>
+
     <!--添加信息 -->
     <insert id="addOffices" parameterType="com.xxk.management.offices.entity.Offices">
         insert into xxk_offices(<include refid="columns"></include>) values(
-        #{id},#{belong_to_id},#{office_name},#{leading_official},,#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{id},#{office_ident},#{belong_to_id},#{office_name},#{leading_official},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--修改信息 -->
@@ -24,8 +34,8 @@
 
     <!--批量修改（批量逻辑删除） -->
     <!--以下的批量方法只能删除数据表的一样数据-->
-    <update id="deleteListRegUser" parameterType="java.util.List">
-        UPDATE xxk_reg_user SET deleteFlag ='1' WHERE id IN
+    <update id="deleteListOffices" parameterType="java.util.List">
+        UPDATE xxk_offices SET deleteFlag ='1' WHERE id IN
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
             #{item}
         </foreach>
