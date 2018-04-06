@@ -57,7 +57,7 @@
 </div>
 <div id="content" class="hide">
     <form id="J_Form" class="form-horizontal" action="">
-        <input type="hidden" name="a" value="3">
+        <input type="hidden" name="belong_to_office" id="belong_to_office">
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>科室名称</label>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>所属科室</label>
+                <label class="control-label">所属科室</label>
                 <div class="controls" id="belong_to_select">
                     <input name="belong_to_id" id="belong_to_id" type="hidden" class="input-normal control-text">
                 </div>
@@ -114,9 +114,9 @@
                     items: []
                 }).render(),
                 columns = [
-                    {title: '科室编号', dataIndex: 'office_ident', width: 100},
+                    {title: '编号', dataIndex: 'office_ident', width: 40},
                     {title: '科室名称', dataIndex: 'office_name', width: 100},
-                    {title: '所属科室', dataIndex: 'sex', width: 100},
+                    {title: '所属科室', dataIndex: 'belong_to_office', width: 100},
                     {title: '备注', dataIndex: '', width: 350},
                     {
                         title: '操作', dataIndex: '', width: 200, renderer: function (value, obj) {
@@ -159,7 +159,8 @@
                     store: store,
                     gridCfg: gridCfg
                 }),
-                grid = search.get('grid');
+                grid = search.get('grid'),
+                J_Form = editing.get('form');
 
         function addFunction() {
             if ($.isEmptyObject(select_data)) {
@@ -213,6 +214,11 @@
                 var record = ev.record;
                 delItems([record]);
             }
+        });
+
+        belong_to_select.on('change', function (ev) {
+            var text=belong_to_select.getSelectedText();
+            J_Form.getField('belong_to_office').set('value', text);
         });
     });
 </script>

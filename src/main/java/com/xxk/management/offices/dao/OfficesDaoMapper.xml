@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.offices.dao.OfficesDao">
-    <sql id="columns">id,office_ident,belong_to_id,office_name,leading_official,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,office_ident,belong_to_id,belong_to_office,office_name,leading_official,keyWord,
+     createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <resultMap id="office_nameMap" type="java.util.HashMap">
         <id column="id" property="value" jdbcType="VARCHAR"/>
@@ -23,7 +24,8 @@
     <!--添加信息 -->
     <insert id="addOffices" parameterType="com.xxk.management.offices.entity.Offices">
         insert into xxk_offices(<include refid="columns"></include>) values(
-        #{id},#{office_ident},#{belong_to_id},#{office_name},#{leading_official},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{id},#{office_ident},#{belong_to_id},#{belong_to_office},#{office_name},#{leading_official},#{keyWord},
+        #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--修改信息 -->

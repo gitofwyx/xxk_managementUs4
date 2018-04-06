@@ -10,6 +10,7 @@ public class Offices extends BaseInfoEntity {
     private String id;
     private int office_ident;
     private String belong_to_id;     //所属科室id
+    private String belong_to_office;     //所属科室
     private String office_name;      //科室名
     private String leading_official;      //科室负责人
     private String keyWord;
@@ -38,6 +39,14 @@ public class Offices extends BaseInfoEntity {
 
     public void setBelong_to_id(String belong_to_id) {
         this.belong_to_id = belong_to_id;
+    }
+
+    public String getBelong_to_office() {
+        return belong_to_office;
+    }
+
+    public void setBelong_to_office(String belong_to_office) {
+        this.belong_to_office = belong_to_office;
     }
 
     public String getOffice_name() {

@@ -3,7 +3,7 @@ package com.xxk.management.storage.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
-import com.xxk.core.util.device_ident.IdentUtil;
+import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;

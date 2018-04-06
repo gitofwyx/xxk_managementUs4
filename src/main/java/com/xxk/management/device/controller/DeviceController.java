@@ -3,7 +3,7 @@ package com.xxk.management.device.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
-import com.xxk.core.util.device_ident.IdentUtil;
+import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.entity.DeviceClass;
 import com.xxk.management.device.service.DeviceClassService;
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 /**
  * Created by Administrator on 2017/3/15.
