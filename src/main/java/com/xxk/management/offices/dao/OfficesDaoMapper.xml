@@ -6,7 +6,9 @@
 
     <resultMap id="office_nameMap" type="java.util.HashMap">
         <id column="id" property="value" jdbcType="VARCHAR"/>
+        <result column="belong_to_id" property="belong_to_id" jdbcType="VARCHAR"/>
         <result column="office_name" property="text" jdbcType="VARCHAR"/>
+        <result column="office_ident" property="id" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--获取分页 -->
@@ -17,8 +19,18 @@
     </select>
 
     <select id="getOfficeSelect" resultMap="office_nameMap">
-        select id,office_name
+        select id,belong_to_id,office_name,office_ident
         from xxk_offices where deleteFlag='0';
+    </select>
+
+    <select id="getUnderlingCount" parameterType="string" resultType="int">
+        select count(belong_to_id)
+        from xxk_offices where belong_to_id=#{0} and deleteFlag='0';
+    </select>
+
+    <select id="geRootCount" parameterType="string" resultType="int">
+        select count(belong_to_id)
+        from xxk_offices where belong_to_id='root' and deleteFlag='0';
     </select>
 
     <!--添加信息 -->

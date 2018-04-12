@@ -18,4 +18,8 @@ public interface OfficesDao {
 
     public List<Map<String, Object>> getOfficeSelect();
 
+    public int getUnderlingCount(String belong_to_id);
+
+    public int geRootCount(String belong_to_id);
+
 }

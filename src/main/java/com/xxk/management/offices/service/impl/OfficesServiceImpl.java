@@ -36,4 +36,14 @@ public class OfficesServiceImpl implements OfficesService {
     public List<Map<String, Object>> getOfficeSelect() {
         return dao.getOfficeSelect();
     }
+
+    @Override
+    public int getUnderlingCount(String belong_to_id) {
+        return dao.getUnderlingCount(belong_to_id);
+    }
+
+    @Override
+    public int geRootCount(String belong_to_id) {
+        return dao.geRootCount(belong_to_id);
+    }
 }

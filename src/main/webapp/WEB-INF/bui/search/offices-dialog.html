@@ -57,7 +57,8 @@
 </div>
 <div id="content" class="hide">
     <form id="J_Form" class="form-horizontal" action="">
-        <input type="hidden" name="belong_to_office" id="belong_to_office">
+        <input type="hidden" name="belong_to_id" id="belong_to_id">
+        <input type="hidden" name="office_ident" id="office_ident">
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>科室名称</label>
@@ -69,7 +70,7 @@
             <div class="control-group span8">
                 <label class="control-label">所属科室</label>
                 <div class="controls" id="belong_to_select">
-                    <input name="belong_to_id" id="belong_to_id" type="hidden" class="input-normal control-text">
+                    <input name="belong_to_office" id="belong_to_office" type="text" class="input-normal control-text">
                 </div>
             </div>
         </div>
@@ -87,6 +88,7 @@
 <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/bui-min.js"></script>
 <script type="text/javascript" src="/assets/js/config-min.js"></script>
+<script type="text/javascript" src="/assets/js/tree/tree_build.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -98,7 +100,7 @@
     });
 </script>
 <script type="text/javascript">
-    BUI.use(['common/search', 'bui/form', 'bui/select'], function (Search, Form, Select) {
+    BUI.use(['common/search', 'bui/form', 'bui/select', 'bui/extensions/treepicker', 'bui/tree'], function (Search, Form, Select, TreePicker, Tree) {
 
         var enumObj = {"1": "男", "0": "女"},
                 select_data = [],
@@ -107,11 +109,34 @@
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit'
                 }),
-                belong_to_select = new Select.Select({
-                    render: '#belong_to_select',
-                    valueField: '#belong_to_id',
-                    multipleSelect: false,
-                    items: []
+        /*belong_to_select = new Select.Select({
+         render: '#belong_to_select',
+         valueField: '#belong_to_id',
+         multipleSelect: false,
+         items: []
+         }).render(),*/
+                test_data = [
+                    {text: '1', id: '1', children: [{text: '11', id: '11'}]},
+                    {
+                        text: '2', id: '2', expanded: true, children: [
+                        {text: '21', id: '21', children: [{text: '211', id: '211'}, {text: '212', id: '212'}]},
+                        {text: '22', id: '22'}
+                    ]
+                    },
+                    {text: '3', id: '3'},
+                    {text: '4', id: '4'}
+                ],
+                belong_to_tree = new Tree.TreeList({
+                    nodes: [],
+                    //store: store,
+                    //dirSelectable : false,//阻止树节点选中
+                    showLine: true //显示连接线
+                }),
+                belong_to_picker = new TreePicker({
+                    trigger: '#belong_to_office',
+                    valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                    width: 150,  //指定宽度
+                    children: [belong_to_tree] //配置picker内的列表
                 }).render(),
                 columns = [
                     {title: '编号', dataIndex: 'office_ident', width: 40},
@@ -172,8 +197,20 @@
                     dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                     success: function (data, textStatus, jqXHR) {
                         if (data != null && data != undefined) {
-                            select_data = data.office_name;
-                            belong_to_select.set('items', select_data);
+                            select_data = data.offices_select;
+                            var menuArry = [
+                                { id: 1, name: "办公管理", pid: 0 },
+                                { id: 2, name: "请假申请", pid: 1 },
+                                { id: 3, name: "出差申请", pid: 1 },
+                                { id: 4, name: "请假记录", pid: 2 },
+                                { id: 5, name: "系统设置", pid: 0 },
+                                { id: 6, name: "权限管理", pid: 5 },
+                                { id: 7, name: "用户角色", pid: 6 },
+                                { id: 8, name: "菜单设置", pid: 6 },
+                            ];
+                            var menus = GetMenus(0, menuArry);
+                            belong_to_tree.set('nodes', select_data);
+                            //belong_to_select.set('items', select_data);
                         }
                     },
                     error: function (xhr, textStatus) {
@@ -183,9 +220,10 @@
                     }
                 })
             }
-            belong_to_select.set('items', select_data);
+            //belong_to_select.set('items', select_data);
             var newData = {isNew: true}; //标志是新增加的记录
             editing.add(newData, 'name'); //添加记录后，直接编辑
+            J_Form.getField('office_ident').set('value', 0);
         }
 
         //删除操作
@@ -216,10 +254,16 @@
             }
         });
 
-        belong_to_select.on('change', function (ev) {
-            var text=belong_to_select.getSelectedText();
-            J_Form.getField('belong_to_office').set('value', text);
+        /* belong_to_select.on('change', function (ev) {
+         var text = belong_to_select.getSelectedText();
+         var value = belong_to_select.getSelectedValue();
+         J_Form.getField('belong_to_office').set('value', text);
+         J_Form.getField('office_ident').set('value', ev.item.office_ident);
+         });*/
+        belong_to_tree.on('itemclick', function (ev) {
+            alert(ev);
         });
+
     });
 </script>
 

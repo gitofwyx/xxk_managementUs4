@@ -65,7 +65,21 @@ public class OfficesController extends BaseController {
         Map<String, Boolean> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
+        String belong_to_id = offices.getBelong_to_id();
+        int office_ident = offices.getOffice_ident();
         try {
+            if (!"".equals(belong_to_id) && !"undefined".equals(belong_to_id) && belong_to_id != null) {
+                int count = officesService.getUnderlingCount(belong_to_id);
+                count++;
+                office_ident =Integer.parseInt( ""+office_ident + count);
+                offices.setOffice_ident(office_ident);
+            }else{
+                int count = officesService.geRootCount("root");
+                count++;
+                office_ident =count;
+                offices.setBelong_to_id("root");
+                offices.setOffice_ident(office_ident);
+            }
             offices.setId(id);
             offices.setCreateUserId("admin");
             offices.setCreateDate(Date);
@@ -97,7 +111,7 @@ public class OfficesController extends BaseController {
                 log.error("获取出错");
                 return null;
             }
-            result.put("office_name", listOffice);
+            result.put("offices_select", listOffice);
             /*result.put("dev_count", dev_count);*/
         } catch (Exception e) {
             log.error(e);
