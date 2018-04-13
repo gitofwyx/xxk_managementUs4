@@ -208,8 +208,8 @@
                                 { id: 7, name: "用户角色", pid: 6 },
                                 { id: 8, name: "菜单设置", pid: 6 },
                             ];
-                            var menus = GetMenus(0, menuArry);
-                            belong_to_tree.set('nodes', select_data);
+                            var mObj = GetMenus('root', select_data);
+                            belong_to_tree.set('nodes', mObj);
                             //belong_to_select.set('items', select_data);
                         }
                     },
@@ -261,7 +261,7 @@
          J_Form.getField('office_ident').set('value', ev.item.office_ident);
          });*/
         belong_to_tree.on('itemclick', function (ev) {
-            alert(ev);
+            //alert(ev);
         });
 
     });

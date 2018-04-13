@@ -50,24 +50,36 @@ function sonsTree(arr, id) {
 
 function GetMenus(id, arry) {
     //菜单列表html
-    var menus =[];
+    var rootId = id;
+    var menus = '';
 //根据菜单主键id生成菜单列表html
 //id：菜单主键id
 //arry：菜单数组信息
+    menus += '[';
     function GetData(id, arry) {
         var childArry = GetParentArry(id, arry);
         if (childArry.length > 0) {
-           /* menus += '<ul>';*/
-            for (var i in childArry) {
-                menus.push( childArry[i]);
-                GetData(childArry[i].id, arry);
-                menus += '</li>';
+            if (id != rootId) {
+                menus += ',"children":[';
             }
-            menus += '</ul>';
+            for (var i in childArry) {
+                var cMap = JSON.stringify(childArry[i]);
+                //cMap=cMap.replace("{","");
+                cMap = cMap.replace("}", "");
+                menus += cMap;
+                GetData(childArry[i].value, arry);
+                menus += '}';
+                if (i < childArry.length - 1) {
+                    menus += ',';
+                }
+            }
+            menus += ']';
         }
     }
+
     GetData(id, arry);
-    return menus;
+    var mObj = JSON.parse(menus);
+    return mObj;
 }
 
 
@@ -77,7 +89,7 @@ function GetMenus(id, arry) {
 function GetParentArry(id, arry) {
     var newArry = new Array();
     for (var i in arry) {
-        if (arry[i].pid == id)
+        if (arry[i].belong_to_id == id)
             newArry.push(arry[i]);
     }
     return newArry;
