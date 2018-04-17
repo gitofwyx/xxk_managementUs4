@@ -19,6 +19,11 @@ public class MenuController extends BaseController {
 
     private static Logger log = Logger.getLogger(MenuController.class);
 
+    @RequestMapping("/index")
+    public ModelAndView  index() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/index", "result", result);
+    }
 
     @RequestMapping("/user_tab")
     public ModelAndView  listUser() {

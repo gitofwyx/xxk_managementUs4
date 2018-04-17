@@ -41,6 +41,16 @@ public class RebUserServiceImpl implements RebUserService {
     }
 
     @Override
+    public RegUser getUserByAccount(String account) {
+        return dao.getUserByAccount(account);
+    }
+
+    @Override
+    public String getRoleByAccount(String account) {
+        return dao.getRoleByAccount(account);
+    }
+
+    @Override
     public boolean updateRegUser(RegUser user) {
         return dao.updateRegUser(user)==1?true:false;
     }

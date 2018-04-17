@@ -8,6 +8,7 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class RegUser extends BaseInfoEntity {
     private String id;
+    private String roleId;
     private String account;
     private String password;
     private String name;
@@ -29,6 +30,14 @@ public class RegUser extends BaseInfoEntity {
     @Override
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     public String getAccount() {

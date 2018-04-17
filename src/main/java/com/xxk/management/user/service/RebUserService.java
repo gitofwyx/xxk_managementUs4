@@ -11,11 +11,16 @@ public interface RebUserService {
 
     public boolean login(String account, String password);
 
-    List<RegUser> listRegUser(int pageStart, int pageSize);
+    public List<RegUser> listRegUser(int pageStart, int pageSize);
 
     public boolean addRegUser(RegUser user);
 
     public RegUser getRegUser(String id);
+
+    public RegUser getUserByAccount(String account);
+
+    //根据账号获取角色信息
+    public String getRoleByAccount(String account);
 
     public boolean updateRegUser(RegUser user);
 
