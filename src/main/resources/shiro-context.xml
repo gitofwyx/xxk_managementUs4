@@ -83,6 +83,8 @@
         <property name="filterChainDefinitions">
             <value>
                 / = anon
+                /index/**=anon  <!--登录页面的js和css不拦截-->
+                /favicon.ico=anon
                 /logout = logout
 
                 /login=authc
