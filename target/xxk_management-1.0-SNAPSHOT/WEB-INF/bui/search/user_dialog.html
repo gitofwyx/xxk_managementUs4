@@ -123,17 +123,15 @@
                     triggerCls: 'btn-edit'
                 }),
                 columns = [
-                    {
-                        title: '员工编号', dataIndex: 'account', width: 80, renderer: function (v) {
+                    {title:'员工编号',dataIndex:'account',width:80,renderer:function(v){
                         return Search.createLink({
-                            id: 'detail' + v,
-                            title: '员工信息',
-                            text: v,
-                            href: '/playUser'
-                        },'<span class="page-action grid-command" data-id="{id}" data-href="{href}" title="{title}">{text}</span>');
-                    }
-                    },
-                    {title: '员工姓名', dataIndex: 'name', width: 100, align: 'center'},
+                            id : 'detail' + v,
+                            title : '员工信息',
+                            text : v,
+                            href : '/playUser'
+                        });
+                    }},
+                    {title: '员工姓名', dataIndex: 'name', width: 100},
                     {title: '员工性别', dataIndex: 'sex', width: 60, renderer: BUI.Grid.Format.enumRenderer(enumObj)},
                     {title: '联系方式', dataIndex: 'phone', width: 170},
                     {title: '归属科室', dataIndex: 'createUnit', width: 150},

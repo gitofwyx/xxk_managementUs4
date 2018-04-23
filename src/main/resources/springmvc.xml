@@ -42,12 +42,13 @@
 
 	<!--样式资源目录 -->
 	<!-- <mvc:resources mapping="/res/**" location="/WEB-INF/res/"/> -->
-
 	<mvc:resources mapping="/assets/js/**" location="/WEB-INF/res/assets/js/" cache-period="31556926"/>
 	<mvc:resources mapping="/assets/css/**" location="/WEB-INF/res/assets/css/" cache-period="31556926"/>
 	<mvc:resources mapping="/assets/img/**" location="/WEB-INF/res/assets/img/" cache-period="31556926"/>
+	<!--首页样式资源-->
 	<mvc:resources mapping="/index/js/**" location="/WEB-INF/res/index/js/" cache-period="31556926"/>
 	<mvc:resources mapping="/index/css/**" location="/WEB-INF/res/index/css/" cache-period="31556926"/>
+	<mvc:resources mapping="/index/img/**" location="/WEB-INF/res/index/img/" cache-period="31556926"/>
 	<!--<mvc:resources mapping="assets/tools/**" location="/WEB-INF/res/assets/tools/" cache-period="31556926"/>-->
 
 	<mvc:view-controller path="/" view-name="index" />

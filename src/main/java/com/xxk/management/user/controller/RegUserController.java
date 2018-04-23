@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -50,8 +51,9 @@ public class RegUserController extends BaseController {
 
             List<RegUser> listRegUser = rebUserService.listRegUser(pageNumber, pageSize);
             if (listRegUser == null) {
-                log.error("获取分页出错");
-                result.put("error", false);
+                log.error("数据为空");
+                result.put("hasError", true);
+                result.put("error", "数据为空");
                 return result;
             } else {
                 result.put("rows", listRegUser);
@@ -59,7 +61,8 @@ public class RegUserController extends BaseController {
             }
         } catch (Exception e) {
             log.error(e);
-            result.put("error", false);
+            result.put("hasError", true);
+            result.put("error", "获取数据出错");
         }
         return result;
     }
@@ -193,6 +196,12 @@ public class RegUserController extends BaseController {
             return result;
         }
         return result;
+    }
+
+    @RequestMapping("/playUser")
+    public ModelAndView  userView() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/detail/example", "result", result);
     }
 
 }

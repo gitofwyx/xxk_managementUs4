@@ -21,7 +21,7 @@ body{
 	height:150px;
 	margin-left:auto;
 	margin-right:auto;
-	background:url(/assets/img/index/bg4.gif);
+	background:url(/index/img/bg4.gif);
 	position:absolute; top:20%;
 	border:1px solid #ddd;
 }
@@ -55,7 +55,7 @@ h2{
 	width:40px; 
 	height:30px;
 	margin:5px auto 5px auto; 
-	background:url(/assets/img/index/icon-user.gif) no-repeat center center;
+	background:url(/index/img/icon-user.gif) no-repeat center center;
 	border-right:1px solid #a9a9a9
 }
 .login-info span.pwd{
@@ -63,7 +63,7 @@ h2{
 	width:40px; 
 	height:30px;
 	margin:5px auto 5px auto; 
-	background:url(/assets/img/index/icon-pwd.png) no-repeat center center;
+	background:url(/index/img/icon-pwd.png) no-repeat center center;
 	border-right:1px solid #a9a9a9
 }
 .login-input{

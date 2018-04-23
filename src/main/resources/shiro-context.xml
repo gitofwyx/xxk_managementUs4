@@ -40,8 +40,8 @@
 
     <bean id="sessionManager"
           class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-        <!-- <property name="globalSessionTimeout" value="1000"/> -->
-        <!-- <property name="deleteInvalidSessions" value="false"/> -->
+        <property name="globalSessionTimeout" value="3600000"/>  <!--不设置默认超时时间是1800000毫秒(30分钟)-->
+        <property name="deleteInvalidSessions" value="true"/>   <!-- 删除失效的session -->
         <property name="sessionListeners" ref="sessionListener"/>
         <!-- <property name="sessionFactory" ref="sessionFactory" /> -->
     </bean>

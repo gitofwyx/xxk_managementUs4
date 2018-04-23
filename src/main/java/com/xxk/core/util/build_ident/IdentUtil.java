@@ -26,6 +26,7 @@ public class IdentUtil {
         return result;
     }
 
+    //用于生成的编号：出库/入库编号（设备编号解释：）
     public static String getIdentNo(String ident, int maxNo, int amount) { //编号，最大值， 数量
         String Orderno = null;
         //maxOrderno = "NO20180315001-01"; // 从数据库查询出的最大编号
@@ -36,7 +37,7 @@ public class IdentUtil {
         }
         String ident_end = ident.substring(10, 14);
         int beginNum = maxNo; // 最大值加数量
-        int tmpNum = 100 + beginNum;//生成倍数
+        int tmpNum = 100 + beginNum;
         if (amount > 0) {
             Orderno = uid_pfix + ident_end + IdentUtil.subStr("" + tmpNum, 1) + "-" + amount;// 把10002首位的1去掉，再拼成NO201601260002字符串
         } else {
@@ -46,12 +47,11 @@ public class IdentUtil {
         return Orderno;
     }
 
+    //用于生成的编号：设备编号（设备编号从左到右解释：年月日种类编号型号编号）
     public static String getIdent(int No_O, int No_T, String Date) {
         String Orderno = null;
-        //maxOrderno = "NO20180315001-01"; // 从数据库查询出的最大编号
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd"); // 时间字符串产生方式
-        String uid_pfix = "NO" + format.format(new Date()); // 组合流水号前一部分，NO+时间字符串，如：NO20160126
-
+        String uid_pfix = "" + format.format(new Date()); // 组合流水号前一部分，NO+时间字符串，如：NO20160126
         if (No_O >= 0 && No_T == 0) {
             int Num_first = 100 + No_O + 1;
             int Num_sec = 100 + 1;
