@@ -23,13 +23,13 @@ public class OperationServiceImpl implements OperationService {
 
 
     @Override
-    public List<Operation> listOffices(int pageStart, int pageSize) {
-        return dao.listOffices((pageStart-1)*pageSize, pageSize);
+    public List<Operation> listOperation(int pageStart, int pageSize) {
+        return dao.listOperation((pageStart-1)*pageSize, pageSize);
     }
 
     @Override
-    public boolean addOffices(Operation office) {
-        return dao.addOffices(office)==1?true:false;
+    public boolean regOperation(Operation operation) {
+        return dao.regOperation(operation)==1?true:false;
     }
 
     @Override

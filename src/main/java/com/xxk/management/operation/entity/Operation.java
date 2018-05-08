@@ -13,7 +13,10 @@ public class Operation extends BaseInfoEntity {
     private String ope_office_id;     //运维科室ID
     private String ope_device_id;      //运维设备ID
     private String ope_Auditing_id;    //审核ID
-    private String ope_register_date;  //登记时间
+    private String ope_reg_date;       //登记时间
+    private String ope_reg_content;   //登记内容
+    private String ope_type;            //运维类型
+    private String ope_confirm_date;  //运维确认时间
     private String ope_content;         //运维内容
     private String ope_flag;            //运维状态
     private String ope_result;          //运维结果
@@ -69,12 +72,36 @@ public class Operation extends BaseInfoEntity {
         this.ope_Auditing_id = ope_Auditing_id;
     }
 
-    public String getOpe_register_date() {
-        return ope_register_date;
+    public String getOpe_reg_date() {
+        return ope_reg_date;
     }
 
-    public void setOpe_register_date(String ope_register_date) {
-        this.ope_register_date = ope_register_date;
+    public void setOpe_reg_date(String ope_reg_date) {
+        this.ope_reg_date = ope_reg_date;
+    }
+
+    public String getOpe_reg_content() {
+        return ope_reg_content;
+    }
+
+    public void setOpe_reg_content(String ope_reg_content) {
+        this.ope_reg_content = ope_reg_content;
+    }
+
+    public String getOpe_type() {
+        return ope_type;
+    }
+
+    public void setOpe_type(String ope_type) {
+        this.ope_type = ope_type;
+    }
+
+    public String getOpe_confirm_date() {
+        return ope_confirm_date;
+    }
+
+    public void setOpe_confirm_date(String ope_confirm_date) {
+        this.ope_confirm_date = ope_confirm_date;
     }
 
     public String getOpe_content() {

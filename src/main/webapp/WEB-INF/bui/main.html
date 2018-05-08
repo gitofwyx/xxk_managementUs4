@@ -3,9 +3,9 @@
 <head>
     <title>信息管理系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/bui-min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/main-min.css" rel="stylesheet" type="text/css"/>
+    <link href="menu/css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="menu/css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="menu/css/main-min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
@@ -43,9 +43,9 @@
 
     </ul>
 </div>
-<script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="assets/js/bui.js"></script>
-<script type="text/javascript" src="assets/js/config.js"></script>
+<script type="text/javascript" src="menu/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="menu/js/bui.js"></script>
+<script type="text/javascript" src="menu/js/config.js"></script>
 
 <script>
     BUI.use('common/main', function () {
@@ -55,10 +55,11 @@
             menu: [{
                 text: '首页内容',
                 items: [
-                    {id: 'user-menu', text: '人员信息', href: '/user_tab', closeable: false},
-                    {id: 'main-menu', text: '科室信息', href: '/offices_tab'},
-                    {id: 'device-menu', text: '设备信息', href: '/device_tab'},
-                    {id: 'second-menu', text: '出入库信息', href: '/storage_tab'},
+                    {id: 'user-menu', text: '人员信息', href: '/menu/user_tab', closeable: false},
+                    {id: 'main-menu', text: '科室信息', href: '/menu/offices_tab'},
+                    {id: 'device-menu', text: '设备信息', href: '/menu/device_tab'},
+                    {id: 'storage-menu', text: '出入库信息', href: '/menu/storage_tab'},
+                    {id: 'second-menu', text: '运维信息', href: '/menu/operation_tab'},
                     {id: 'dyna-menu', text: '动态菜单', href: 'main/dyna-menu.html'}
                 ]
             }, {

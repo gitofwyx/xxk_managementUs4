@@ -34,8 +34,8 @@ public class OperationController extends BaseController {
     @RequestMapping("/listOperation")
     public Map<String, Object> listOffices(@RequestParam(value = "pageIndex") String pageIndex,
                                            @RequestParam(value = "limit") String limit,
-                                           @RequestParam(value = "office_name") String office_name,
-                                           @RequestParam(value = "office_ident") String office_ident,
+                                           @RequestParam(value = "account") String office_name,
+                                           @RequestParam(value = "name") String office_ident,
                                            @RequestParam(value = "startDate") String startDate,
                                            @RequestParam(value = "endDate") String endDate) {
         Map<String, Object> result = new HashMap<>();
@@ -43,7 +43,7 @@ public class OperationController extends BaseController {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
-            List<Operation> listDevice = operationService.listOffices(pageNumber, pageSize);
+            List<Operation> listDevice = operationService.listOperation(pageNumber, pageSize);
             if (listDevice == null) {
                 log.error("获取分页出错");
                 result.put("success", false);
@@ -60,21 +60,20 @@ public class OperationController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/addOperation")
-    public Map<String, Boolean> addOffices(Operation offices) {
+    @RequestMapping("/regOperation")
+    public Map<String, Boolean> regOperation(Operation operation) {
         Map<String, Boolean> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
 
         try {
-
-            offices.setId(id);
-            offices.setCreateUserId("admin");
-            offices.setCreateDate(Date);
-            offices.setUpdateUserId("admin");
-            offices.setUpdateDate(Date);
-            offices.setDeleteFlag("0");
-            Boolean resultBl = operationService.addOffices(offices);
+            operation.setId(id);
+            operation.setCreateUserId("admin");
+            operation.setCreateDate(Date);
+            operation.setUpdateUserId("admin");
+            operation.setUpdateDate(Date);
+            operation.setDeleteFlag("0");
+            Boolean resultBl = operationService.regOperation(operation);
             if (!(resultBl)) {
                 result.put("error", false);
                 return result;

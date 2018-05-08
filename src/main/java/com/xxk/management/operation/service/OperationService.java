@@ -10,9 +10,9 @@ import java.util.Map;
  */
 public interface OperationService {
 
-    public List<Operation> listOffices(int pageStart, int pageSize);
+    public List<Operation> listOperation(int pageStart, int pageSize);
 
-    public boolean addOffices(Operation office);
+    public boolean regOperation(Operation operation);
 
     public List<Map<String, Object>> getOfficeSelect();
 

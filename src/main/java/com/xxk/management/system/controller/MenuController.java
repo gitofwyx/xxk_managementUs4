@@ -14,16 +14,16 @@ import java.util.Map;
  * Created by Administrator on 2017/3/15.
  */
 @Controller
-@RequestMapping("")
+@RequestMapping("/menu")
 public class MenuController extends BaseController {
 
     private static Logger log = Logger.getLogger(MenuController.class);
 
-    @RequestMapping("/index")
+    /*@RequestMapping("/index")
     public ModelAndView  index() {
         Map<String, Object> result = new HashMap<>();
         return new ModelAndView("/index", "result", result);
-    }
+    }*/
 
     @RequestMapping("/user_tab")
     public ModelAndView  listUser() {
@@ -53,6 +53,12 @@ public class MenuController extends BaseController {
     public ModelAndView  device_tab() {
         Map<String, Object> result = new HashMap<>();
         return new ModelAndView("/search/device_dialog", "result", result);
+    }
+
+    @RequestMapping("/operation_tab")
+    public ModelAndView  operation_tab() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/search/operation-dialog", "result", result);
     }
 
     @ResponseBody

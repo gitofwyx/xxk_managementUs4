@@ -12,9 +12,9 @@ import java.util.Map;
 @Repository
 public interface OperationDao {
 
-    public List<Operation> listOffices(int pageStart, int pageSize);
+    public List<Operation> listOperation(int pageStart, int pageSize);
 
-    public int addOffices(Operation office);
+    public int regOperation(Operation operation);
 
     public List<Map<String, Object>> getOfficeSelect();
 
