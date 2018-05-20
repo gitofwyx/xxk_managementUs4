@@ -1,11 +1,8 @@
-package com.xxk.management.operation.controller;
+package com.xxk.management.registration.controller;
 
 import com.xxk.core.file.BaseController;
-import com.xxk.core.util.DateUtil;
-import com.xxk.core.util.UUIdUtil;
-import com.xxk.management.operation.entity.Operation;
-import com.xxk.management.operation.service.OpeRecordService;
-import com.xxk.management.operation.service.OperationService;
+import com.xxk.management.registration.entity.Registration;
+import com.xxk.management.registration.service.RegistrationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,20 +20,20 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("")
-public class OperationController extends BaseController {
+public class RegistrationController extends BaseController {
 
-    private static Logger log = Logger.getLogger(OperationController.class);
-
-    @Autowired
-    private OperationService operationService;
+    private static Logger log = Logger.getLogger(RegistrationController.class);
 
     @Autowired
-    private OpeRecordService opeRecordService;
+    private RegistrationService registrationService;
+
+//    @Autowired
+//    private OpeRecordService opeRecordService;
 
 
     @ResponseBody
-    @RequestMapping("/listOperation")
-    public Map<String, Object> listOperation(@RequestParam(value = "pageIndex") String pageIndex,
+    @RequestMapping("/listRegistration")
+    public Map<String, Object> listRegistration(@RequestParam(value = "pageIndex") String pageIndex,
                                            @RequestParam(value = "limit") String limit,
                                            @RequestParam(value = "account") String office_name,
                                            @RequestParam(value = "name") String office_ident,
@@ -47,7 +44,7 @@ public class OperationController extends BaseController {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
-            List<Operation> listOperation = operationService.listOperation(pageNumber, pageSize);
+            List<Registration> listOperation = registrationService.listRegistration(pageNumber, pageSize);
             if (listOperation == null) {
                 log.error("获取分页出错");
                 result.put("success", false);
@@ -63,53 +60,25 @@ public class OperationController extends BaseController {
         return result;
     }
 
-    @ResponseBody
-    @RequestMapping("/regOperation")
-    public Map<String, Boolean> regOperation(Operation operation) {
-        Map<String, Boolean> result = new HashMap<>();
-        String Date = DateUtil.getFullTime();
-        String id = UUIdUtil.getUUID();
-
-        try {
-            operation.setId(id);
-            operation.setCreateUserId("admin");
-            operation.setCreateDate(Date);
-            operation.setUpdateUserId("admin");
-            operation.setUpdateDate(Date);
-            operation.setDeleteFlag("0");
-            Boolean resultOpe = operationService.regOperation(operation);
-            if (!(resultOpe)) {
-                result.put("error", false);
-                return result;
-            }
-            //Boolean resultOpe = opeRecordService.plusOpeRecord(operation.getOpe_office_id());
-        } catch (Exception e) {
-            result.put("success", false);
-            log.error(e);
-        }
-        return result;
-        //return "system/index";
-    }
-
-    @ResponseBody
+    /*@ResponseBody
     @RequestMapping("/getOperation")
-    public Map<String, Object> getOperation() {
+    public Map<String, Object> getOfficeSelect() {
         int id = 0;
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listOffice = new ArrayList<>();
         try {
-            listOffice = operationService.getOfficeSelect();
+            listOffice = registrationService.getOfficeSelect();
             if (listOffice == null) {
                 log.error("获取出错");
                 return null;
             }
             result.put("offices_select", listOffice);
-            /*result.put("dev_count", dev_count);*/
+            *//*result.put("dev_count", dev_count);*//*
         } catch (Exception e) {
             log.error(e);
             return null;
         }
         return result;
-    }
+    }*/
 
 }

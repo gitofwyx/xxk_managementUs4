@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.operation.dao.OperationDao">
-    <sql id="columns">id,ope_ident,ope_staff_id,ope_office_id,ope_device_id,ope_Auditing_id,ope_reg_date,ope_reg_content,ope_type,
+    <sql id="columns">id,ope_ident,ope_registration_id,ope_staff_id,ope_office_id,ope_device_id,ope_auditing_id,ope_type,
           ope_confirm_date,ope_content,ope_flag,ope_result,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
-
-    <sql id="reg_columns">id,ope_ident,ope_office_id,ope_reg_date,ope_reg_content,ope_type,ope_flag,keyWord,createUserId,createDate,
-          updateUserId,updateDate,deleteFlag</sql>
-
-    <resultMap id="office_nameMap" type="java.util.HashMap">
-        <id column="id" property="value" jdbcType="VARCHAR"/>
-        <result column="belong_to_id" property="belong_to_id" jdbcType="VARCHAR"/>
-        <result column="office_name" property="text" jdbcType="VARCHAR"/>
-        <result column="office_ident" property="id" jdbcType="VARCHAR"/>
-    </resultMap>
 
     <!--获取分页 -->
     <select id="listOperation" parameterType="string" resultType="com.xxk.management.operation.entity.Operation">
@@ -21,22 +11,22 @@
         from xxk_operation where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
     </select>
 
-    <!--登记信息 -->
-    <insert id="regOperation" parameterType="com.xxk.management.operation.entity.Operation">
-        insert into xxk_operation(<include refid="reg_columns"></include>) values(
-        #{id},#{ope_ident},#{ope_office_id},#{ope_reg_date},#{ope_reg_content},#{ope_type},#{ope_flag},
-        #{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+    <!--添加信息 -->
+    <insert id="addOperation" parameterType="com.xxk.management.operation.entity.Operation">
+        insert into xxk_operation(<include refid="columns"></include>) values(
+        #{id},#{ope_ident},#{ope_registration_id},#{ope_staff_id},#{ope_office_id},#{ope_device_id},#{ope_auditing_id},#{ope_type},#{ope_confirm_date},
+        #{ope_content},#{ope_flag},#{ope_result},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--修改信息 -->
-    <update id="updateOffices" parameterType="com.xxk.management.offices.entity.Offices">
+    <update id="updateOperation" parameterType="com.xxk.management.operation.entity.Operation">
         update xxk_operation set office_name=#{office_name},leading_official=#{leading_official},keyWord=#{keyWord},
         updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->
     <!--以下的批量方法只能删除数据表的一样数据-->
-    <update id="" parameterType="java.util.List">
+    <update id="deleteOperation" parameterType="java.util.List">
         UPDATE xxk_operation SET deleteFlag ='1' WHERE id IN
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
             #{item}

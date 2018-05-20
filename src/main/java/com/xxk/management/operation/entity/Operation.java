@@ -9,12 +9,11 @@ import com.xxk.core.entity.BaseInfoEntity;
 public class Operation extends BaseInfoEntity {
     private String id;
     private int ope_ident;             //运维编号
+    private int ope_registration_id; //登记ID
     private String ope_staff_id;      //运维人员ID
     private String ope_office_id;     //运维科室ID
-    private String ope_device_id;      //运维设备ID
-    private String ope_Auditing_id;    //审核ID
-    private String ope_reg_date;       //登记时间
-    private String ope_reg_content;   //登记内容
+    private String ope_device_id;     //运维设备ID
+    private String ope_auditing_id;    //审核ID
     private String ope_type;            //运维类型
     private String ope_confirm_date;  //运维确认时间
     private String ope_content;         //运维内容
@@ -38,6 +37,14 @@ public class Operation extends BaseInfoEntity {
 
     public void setOpe_ident(int ope_ident) {
         this.ope_ident = ope_ident;
+    }
+
+    public int getOpe_registration_id() {
+        return ope_registration_id;
+    }
+
+    public void setOpe_registration_id(int ope_registration_id) {
+        this.ope_registration_id = ope_registration_id;
     }
 
     public String getOpe_staff_id() {
@@ -64,28 +71,12 @@ public class Operation extends BaseInfoEntity {
         this.ope_device_id = ope_device_id;
     }
 
-    public String getOpe_Auditing_id() {
-        return ope_Auditing_id;
+    public String getOpe_auditing_id() {
+        return ope_auditing_id;
     }
 
-    public void setOpe_Auditing_id(String ope_Auditing_id) {
-        this.ope_Auditing_id = ope_Auditing_id;
-    }
-
-    public String getOpe_reg_date() {
-        return ope_reg_date;
-    }
-
-    public void setOpe_reg_date(String ope_reg_date) {
-        this.ope_reg_date = ope_reg_date;
-    }
-
-    public String getOpe_reg_content() {
-        return ope_reg_content;
-    }
-
-    public void setOpe_reg_content(String ope_reg_content) {
-        this.ope_reg_content = ope_reg_content;
+    public void setOpe_auditing_id(String ope_auditing_id) {
+        this.ope_auditing_id = ope_auditing_id;
     }
 
     public String getOpe_type() {
