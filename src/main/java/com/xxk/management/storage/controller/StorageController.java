@@ -168,8 +168,8 @@ public class StorageController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addStorage")
-    public Map<String, Boolean> addStorage(Storage storage, @RequestParam(value = "dev_type") String deviceId) {
-        Map<String, Boolean> result = new HashMap<>();
+    public Map<String, Object> addStorage(Storage storage, @RequestParam(value = "dev_type") String deviceId) {
+        Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String storageId = UUIdUtil.getUUID();
         try {
@@ -187,6 +187,11 @@ public class StorageController extends BaseController {
             String dev_ident=(String) resultList.get(0).get("dev_ident");//提取设备编号
             int dev_no=(int)resultList.get(0).get("dev_no");//提取设备数量
             String in_confirmed_ident= IdentUtil.getIdentNo(dev_ident,dev_no,storage.getIn_confirmed_no());
+            if("".equals(in_confirmed_ident)||in_confirmed_ident==null){
+                result.put("hasError", true);
+                result.put("error", "添加出错,无法生成入库编号！");
+                return result;
+            }
             //入库记录
             storage.setId(storageId);
             storage.setDevice_id(deviceId);
@@ -200,17 +205,24 @@ public class StorageController extends BaseController {
             storage.setDeleteFlag("0");
 
             boolean storageResult = storageService.addStorage(storage);
-            boolean udNmbResult = deviceService.plusDeviceNumber(storage.getIn_confirmed_no(), deviceId);
-            if (!(storageResult) || !(udNmbResult)) {
-                result.put("error", false);
-                log.error("addstorage:" + storageResult + "udNmbResult:" + udNmbResult);
+            if (!(storageResult)) {
+                log.error("addstorage:" + storageResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
             } else {
-                log.info(">>>>保存成功");
+                //log.info(">>>>保存成功");
+                boolean udNmbResult = deviceService.plusDeviceNumber(storage.getIn_confirmed_no(), deviceId);
+                if(!(udNmbResult)){
+                    log.error("udNmbResult:" + udNmbResult);
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
+                }
                 result.put("success", true);
             }
         } catch (Exception e) {
-            result.put("success", false);
-            log.info(e);
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
         }
         return result;
         //return "system/index";

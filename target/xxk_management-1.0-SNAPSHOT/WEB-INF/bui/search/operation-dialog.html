@@ -118,7 +118,8 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>开始维护时间：</label>
                 <div class="controls">
-                    <input name="ope_confirm_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
+                    <input name="ope_confirm_date" type="text" data-rules="{required:true}"
+                           class="calendar calendar-time">
                 </div>
             </div>
             <div class="control-group span8">
@@ -150,11 +151,6 @@
         var enumObj = {"0": "未出库", "1": "已出库"},
                 select_data = [],
                 select_type = [],
-                Editing_R = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'Content_R', //设置隐藏的Dialog内容
-                    autoSave: true, //添加数据或者修改数据时，自动保存
-                    triggerCls: 'btn-edit'
-                }),
                 Editing_P = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'Content_P', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
@@ -170,22 +166,23 @@
                     valueField: '#ope_type',
                     multipleSelect: false,
                     items: [
-                        {text:'1、设备故障',value:'1'},
-                        {text:'2、系统故障',value:'2'},
-                        {text:'3、日常维护',value:'3'}
+                        {text: '1、设备故障', value: '1'},
+                        {text: '2、系统故障', value: '2'},
+                        {text: '3、日常维护', value: '3'}
                     ]
                 }).render(),
                 columns = [
                     {title: '运维编号', dataIndex: 'ope_ident', elCls: 'center', width: 110},
                     {title: '运维设备', dataIndex: 'dev_name', elCls: 'center', width: 100},
-                    {title: '登记时间', dataIndex: 'dev_type', elCls: 'center', width: 100},
-                    {title: '运维人员', dataIndex: 'in_confirmed_by', elCls: 'center', width: 70},
-                    {title: '运维类型', dataIndex: 'in_confirmed_date', elCls: 'center', width: 100},
-                    {title: '运维时间', dataIndex: 'in_confirmed_date', elCls: 'center', width: 100},
+                    {title: '运维人员', dataIndex: 'in_confirmed_by', elCls: 'center', width: 100},
+                    {title: '运维类型', dataIndex: 'in_confirmed_date', elCls: 'center', width: 70},
+                    {title: '运维时间', dataIndex: 'ope_confirm_date', elCls: 'center', width: 100},
+                    {title: '运维内容', dataIndex: 'ope_content', elCls: 'center', width: 100},
                     {title: '运维状态', dataIndex: 'out_flag', width: 60, renderer: BUI.Grid.Format.enumRenderer(enumObj)},
+                    {title: '运维结果', dataIndex: 'ope_result', elCls: 'center', width: 100},
                     {
                         title: '备注',
-                        dataIndex: '',
+                        dataIndex: 'remark',
                         elCls: 'center',
                         width: 150,
                         renderer: BUI.Grid.Format.enumRenderer(enumObj)
@@ -202,7 +199,7 @@
                 store = Search.createStore('/listOperation', {
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
-                            addUrl: '/regOperation',
+                            addUrl: '/addOperation',
                             updateUrl: '/updateStorage',
                             removeUrl: '../data/del.php'
                         },
@@ -215,9 +212,9 @@
                     tbar: {
                         items: [
                             {
-                                text: '<i class="icon-pencil"></i>维护登记',
+                                text: '<i class="icon-list"></i>登记信息',
                                 btnCls: 'button button-small',
-                                handler: addFunction
+                                handler: regFunction
                             },
                             {
                                 text: '<i class="icon-hand-right"></i>维护执行',
@@ -227,7 +224,7 @@
 
                         ]
                     },
-                    plugins: [Editing_R, Editing_P, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
+                    plugins: [Editing_P, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
 
                 });
 
@@ -236,33 +233,14 @@
                     gridCfg: gridCfg
                 }),
                 grid = search.get('grid'),
-                R_Form = Editing_R.get('form'),
                 P_Form = Editing_P.get('form');
 
-        function addFunction() {
-            if ($.isEmptyObject(select_data)) {
-                $.ajax({
-                    url: '/getStoreSelect',
-                    type: 'POST', //GET
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            select_data = data;
-                            dev_name_select.set('items', select_data.dev_name);
-                        }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus)
-                    }
-                })
+        function regFunction() {
+            if (top.topManager) {  //打开左侧菜单中配置过的页面
+                top.topManager.openPage({
+                    id: 'registration-menu',
+                });
             }
-            dev_name_select.set('items', select_data.dev_name);
-            var newData = {isNew: true}; //标志是新增加的记录
-            Editing_R.add(newData, 'name'); //添加记录后，直接编辑
         }
 
         //编辑操作

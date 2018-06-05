@@ -14,7 +14,7 @@ public interface OperationDao {
 
     public List<Operation> listOperation(int pageStart, int pageSize);
 
-    public int regOperation(Operation operation);
+    public int addOperation(Operation operation);
 
     public List<Map<String, Object>> getOfficeSelect();
 

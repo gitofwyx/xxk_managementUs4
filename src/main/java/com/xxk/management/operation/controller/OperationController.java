@@ -3,8 +3,9 @@ package com.xxk.management.operation.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
+import com.xxk.management.offices.record.entity.Record;
+import com.xxk.management.offices.record.service.RecordService;
 import com.xxk.management.operation.entity.Operation;
-import com.xxk.management.operation.service.OpeRecordService;
 import com.xxk.management.operation.service.OperationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class OperationController extends BaseController {
     private OperationService operationService;
 
     @Autowired
-    private OpeRecordService opeRecordService;
+    private RecordService recordService;
 
 
     @ResponseBody
@@ -57,19 +58,20 @@ public class OperationController extends BaseController {
                 result.put("results", 7);
             }
         } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "获取列表出错");
             log.error(e);
-            result.put("success", false);
         }
         return result;
     }
 
     @ResponseBody
-    @RequestMapping("/regOperation")
-    public Map<String, Boolean> regOperation(Operation operation) {
-        Map<String, Boolean> result = new HashMap<>();
+    @RequestMapping("/addOperation")
+    public Map<String, Object> addOperation(Operation operation,Record record) {
+        Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
-
+        String recId = UUIdUtil.getUUID();
         try {
             operation.setId(id);
             operation.setCreateUserId("admin");
@@ -77,12 +79,33 @@ public class OperationController extends BaseController {
             operation.setUpdateUserId("admin");
             operation.setUpdateDate(Date);
             operation.setDeleteFlag("0");
-            Boolean resultOpe = operationService.regOperation(operation);
+            Boolean resultOpe = operationService.addOperation(operation);
             if (!(resultOpe)) {
-                result.put("error", false);
-                return result;
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                log.error("resultOpe:"+resultOpe);
+            }else{
+                record.setRec_office_id(operation.getOpe_office_id());
+                record.setRec_starting_date(DateUtil.getStrYearM(Date));
+                record.setUpdateUserId("admin");
+                record.setUpdateDate(Date);
+                Boolean resultRec = recordService.plusOpeCount(record);
+                if(!(resultRec)){
+                    record.setId(recId);
+                    record.setRec_office_id(operation.getOpe_office_id());
+                    record.setReg_count(0);
+                    record.setOpe_count(1);
+                    record.setRec_cycle("M");
+                    record.setCreateUserId("admin");
+                    record.setCreateDate(Date);
+                    resultRec = recordService.addRecord(record);
+                    if(!(resultRec)){
+                        result.put("hasError", true);
+                        result.put("error", "添加出错");
+                        log.error("resultRec:"+resultRec);
+                    }
+                }
             }
-            //Boolean resultOpe = opeRecordService.plusOpeRecord(operation.getOpe_office_id());
         } catch (Exception e) {
             result.put("success", false);
             log.error(e);

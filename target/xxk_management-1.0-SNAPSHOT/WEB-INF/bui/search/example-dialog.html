@@ -276,6 +276,8 @@
             dev_name_select.set('items', select_data.dev_name);
             var newData = {isNew: true}; //标志是新增加的记录
             Editing_I.add(newData, 'name'); //添加记录后，直接编辑
+            I_Form.getField('in_confirmed_no').addRule('max',9, '入库限制 不能大于{0}');
+            I_Form.getField('in_confirmed_no').addRule('min',1, '入库限制 不能小于{0}');
         }
 
         //编辑操作

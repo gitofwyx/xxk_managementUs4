@@ -12,7 +12,7 @@ public interface OperationService {
 
     public List<Operation> listOperation(int pageStart, int pageSize);
 
-    public boolean regOperation(Operation operation);
+    public boolean addOperation(Operation operation);
 
     public List<Map<String, Object>> getOfficeSelect();
 

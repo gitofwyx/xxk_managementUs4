@@ -28,8 +28,8 @@ public class OperationServiceImpl implements OperationService {
     }
 
     @Override
-    public boolean regOperation(Operation operation) {
-        return dao.regOperation(operation)==1?true:false;
+    public boolean addOperation(Operation operation) {
+        return dao.addOperation(operation)==1?true:false;
     }
 
     @Override

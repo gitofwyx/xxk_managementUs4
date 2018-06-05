@@ -1,6 +1,10 @@
 package com.xxk.management.registration.controller;
 
 import com.xxk.core.file.BaseController;
+import com.xxk.core.util.DateUtil;
+import com.xxk.core.util.UUIdUtil;
+import com.xxk.management.offices.record.entity.Record;
+import com.xxk.management.offices.record.service.RecordService;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationService;
 import org.apache.log4j.Logger;
@@ -10,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +30,8 @@ public class RegistrationController extends BaseController {
     @Autowired
     private RegistrationService registrationService;
 
-//    @Autowired
-//    private OpeRecordService opeRecordService;
+    @Autowired
+    private RecordService recordService;
 
 
     @ResponseBody
@@ -44,20 +47,72 @@ public class RegistrationController extends BaseController {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
-            List<Registration> listOperation = registrationService.listRegistration(pageNumber, pageSize);
-            if (listOperation == null) {
+            List<Registration> listRegistration = registrationService.listRegistration(pageNumber, pageSize);
+            if (listRegistration == null) {
                 log.error("获取分页出错");
-                result.put("success", false);
+                result.put("hasError", true);
+                result.put("error", "获取数据出错");
                 return result;
             } else {
-                result.put("rows", listOperation);
+                result.put("rows", listRegistration);
                 result.put("results", 7);
             }
         } catch (Exception e) {
             log.error(e);
-            result.put("success", false);
+            result.put("hasError", true);
+            result.put("error", "获取数据出错");
         }
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/addRegistration")
+    public Map<String, Object> addRegistration(Registration registration,Record record) {
+        Map<String, Object> result = new HashMap<>();
+        String Date = DateUtil.getFullTime();
+        String id = UUIdUtil.getUUID();
+        String recId = UUIdUtil.getUUID();
+        try {
+            registration.setId(id);
+            registration.setCreateUserId("admin");
+            registration.setCreateDate(Date);
+            registration.setUpdateUserId("admin");
+            registration.setUpdateDate(Date);
+            registration.setDeleteFlag("0");
+            Boolean resultReg = registrationService.addRegistration(registration);
+            if (!(resultReg)) {
+                result.put("hasError", true);
+                result.put("error", "更新数据出错");
+                return result;
+            }else{
+                record.setRec_office_id(registration.getReg_office_id());
+                record.setRec_starting_date(DateUtil.getStrYearM(Date));
+                record.setUpdateUserId("admin");
+                record.setUpdateDate(Date);
+                Boolean resultRec = recordService.plusRegCount(record);
+                if(!(resultRec)){
+                    record.setId(recId);
+                    record.setRec_office_id(registration.getReg_office_id());
+                    record.setReg_count(1);
+                    record.setOpe_count(0);
+                    record.setRec_cycle("M");
+                    record.setCreateUserId("admin");
+                    record.setCreateDate(Date);
+                    resultRec = recordService.addRecord(record);
+                    if(!(resultRec)){
+                        result.put("hasError", true);
+                        result.put("error", "添加出错");
+                        log.error("resultRec:"+resultRec);
+                    }
+                }
+            }
+            //Boolean resultOpe = opeRecordService.plusOpeRecord(operation.getOpe_office_id());
+        } catch (Exception e) {
+            result.put("success", false);
+            log.error(e);
+        }
+        return result;
+        //return "system/index";
     }
 
     /*@ResponseBody

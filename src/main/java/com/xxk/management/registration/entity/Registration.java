@@ -8,10 +8,13 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Registration extends BaseInfoEntity {
     private String id;
-    private String reg_office_id;      //运维人员ID
-    private String reg_date;     //运维科室ID
-    private String reg_type;      //运维设备ID
-    private String reg_content;    //审核ID
+    private String reg_office_id;      //登记科室ID
+    private String exe_office_id;      //登记科室ID
+    private String execute_id;      //登记ID
+    private String reg_flag;      //登记状态
+    private String reg_date;     //登记时间
+    private String reg_type;      //登记类型
+    private String reg_content;    //登记内容
 
     @Override
     public String getId() {
@@ -29,6 +32,30 @@ public class Registration extends BaseInfoEntity {
 
     public void setReg_office_id(String reg_office_id) {
         this.reg_office_id = reg_office_id;
+    }
+
+    public String getExe_office_id() {
+        return exe_office_id;
+    }
+
+    public void setExe_office_id(String exe_office_id) {
+        this.exe_office_id = exe_office_id;
+    }
+
+    public String getExecute_id() {
+        return execute_id;
+    }
+
+    public void setExecute_id(String execute_id) {
+        this.execute_id = execute_id;
+    }
+
+    public String getReg_flag() {
+        return reg_flag;
+    }
+
+    public void setReg_flag(String reg_flag) {
+        this.reg_flag = reg_flag;
     }
 
     public String getReg_date() {

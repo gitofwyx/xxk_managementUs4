@@ -308,6 +308,20 @@ public class DateUtil {
 	}
 
 	/**
+	 * 返回YYYYMM
+	 *
+	 * @param date
+	 * @return
+	 */
+	public static String getStrYearM(String date) {
+		String y = date.substring(0, 4);
+		String m = date.substring(5, 7);
+		StringBuffer newDate = new StringBuffer();
+		newDate.append(y).append("").append(m);
+		return newDate.toString();
+	}
+
+	/**
 	 * 返回YYYY-MM-dd
 	 *
 	 * @param date

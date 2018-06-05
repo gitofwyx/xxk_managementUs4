@@ -22,13 +22,13 @@
         <form id="searchForm" class="form-horizontal span32">
             <div class="row">
                 <div class="control-group span7">
-                    <label class="control-label">设备名称：</label>
+                    <label class="control-label">登记科室：</label>
                     <div class="controls">
                         <input type="text" class="control-text" name="account">
                     </div>
                 </div>
                 <div class="control-group span7">
-                    <label class="control-label">设备型号：</label>
+                    <label class="control-label">执行科室：</label>
                     <div class="controls">
                         <input type="text" class="control-text" name="name">
                     </div>
@@ -37,13 +37,14 @@
             </div>
             <div class="row">
                 <div class="control-group span9">
-                    <label class="control-label">入库时间：</label>
+                    <label class="control-label">登记时间：</label>
                     <div class="controls">
-                        <input type="text" class=" calendar" name="in_confirmed_date">
+                        <input type="text" class=" calendar" name="startDate"><span> - </span><input name="endDate"
+                                                                                                     type="text"
+                                                                                                     class=" calendar">
                     </div>
                 </div>
                 <div class="control-group span9">
-
                 </div>
                 <div class="span3 offset2">
                     <button type="button" id="btnSearch" class="button button-primary">搜索</button>
@@ -56,17 +57,17 @@
     </div>
 
 </div>
-<div id="Content_I" class="hide">
-    <form id="I_Form" class="form-horizontal" action="">
+<div id="Content_R" class="hide">
+    <form id="R_Form" class="form-horizontal" action="">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备名称：</label>
+                <label class="control-label"><s>*</s>登记科室：</label>
                 <div class="controls" id="dev_name_select">
                     <input name="dev_name" type="hidden" id="dev_name" data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
+                <label class="control-label"><s>*</s>执行科室：</label>
                 <div class="controls" id="dev_type_select">
                     <input name="dev_type" type="hidden" id="dev_type" data-rules="{required:true}">
                 </div>
@@ -74,25 +75,24 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库确认人：</label>
+                <label class="control-label"><s>*</s>登记时间：</label>
                 <div class="controls">
-                    <input name="in_confirmed_by" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
+                    <input name="reg_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库时间：</label>
+                <label class="control-label"><s>*</s>登记类型：</label>
                 <div class="controls">
-                    <input name="in_confirmed_date" type="text" data-rules="{required:true}" class="calendar">
+                    <input name="reg_type" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库数量：</label>
-                <div class="controls">
-                    <input name="in_confirmed_no" type="number" data-rules="{required:true}"
-                           class="input-normal control-text">
+            <div class="control-group span15">
+                <label class="control-label">登记内容：</label>
+                <div class="controls control-row4">
+                    <textarea name="reg_content" class="input-large" type="text"></textarea>
                 </div>
             </div>
         </div>
@@ -102,13 +102,13 @@
     <form id="O_Form" class="form-horizontal" action="">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>领用科室：</label>
+                <label class="control-label"><s>*</s>维护人员：</label>
                 <div class="controls">
                     <input name="use_offices" type="text" id="use_offices" data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>领用人：</label>
+                <label class="control-label"><s>*</s>维护类型：</label>
                 <div class="controls">
                     <input name="used_name" type="text" class="input-normal control-text">
                 </div>
@@ -116,15 +116,24 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>领用数量：</label>
+                <label class="control-label"><s>*</s>开始维护时间：</label>
                 <div class="controls">
-                    <input name="used_no" type="number" id="used_no" value="1" data-rules="{required:true}">
+                    <input name="ope_confirm_date" type="text" data-rules="{required:true}"
+                           class="calendar calendar-time">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>领用时间：</label>
+                <label class="control-label"><s>*</s>维护状态：</label>
                 <div class="controls">
-                    <input name="used_date" type="text" data-rules="{required:true}" class="calendar">
+                    <input name="ope_flag" type="number" id="used_no" value="1" data-rules="{required:true}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">维护情况描述：</label>
+                <div class="controls control-row4">
+                    <textarea name="ope_content" class="input-large" type="text"></textarea>
                 </div>
             </div>
         </div>
@@ -142,15 +151,13 @@
         var enumObj = {"0": "未出库", "1": "已出库"},
                 select_data = [],
                 select_type = [],
-                Editing_I = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'Content_I', //设置隐藏的Dialog内容
+                Editing_R = new BUI.Grid.Plugins.DialogEditing({
+                    contentId: 'Content_R', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
-                    triggerCls: 'btn-edit'
                 }),
                 Editing_O = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'Content_O', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
-                    triggerCls: 'btn-out_dev'
                 }),
                 dev_name_select = new Select.Select({
                     render: '#dev_name_select',
@@ -164,40 +171,12 @@
                     items: []
                 }).render(),
                 columns = [
-                    {title: '入库编号', dataIndex: 'in_confirmed_ident', elCls: 'center', width: 110},
-                    {title: '设备名称', dataIndex: 'dev_name', elCls: 'center', width: 100},
-                    {title: '设备型号', dataIndex: 'dev_type', elCls: 'center', width: 100},
-                    {title: '入库确认人', dataIndex: 'in_confirmed_by', elCls: 'center', width: 70, align: 'center'},
-                    {title: '入库时间', dataIndex: 'in_confirmed_date', elCls: 'center', width: 100},
-                    {
-                        title: '入库数量',
-                        dataIndex: 'in_confirmed_no',
-                        elCls: 'center',
-                        width: 60,
-                        editor: {xtype: 'number', rules: {required: true}}
-                    },
-                    {
-                        title: '上期余库存',
-                        dataIndex: 'last_rest_no',
-                        elCls: 'center',
-                        width: 70,
-                        editor: {xtype: 'in_confirmed_no', rules: {required: true}}
-                    },
-                    {
-                        title: '实际库存',
-                        dataIndex: 'address',
-                        elCls: 'center',
-                        width: 60,
-                        editor: {xtype: 'fact_dev_no', rules: {required: true}}
-                    },
-                    {title: '出库状态', dataIndex: 'out_flag', width: 60, renderer: BUI.Grid.Format.enumRenderer(enumObj)},
-                    {
-                        title: '备注',
-                        dataIndex: '',
-                        elCls: 'center',
-                        width: 150,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj)
-                    },
+                    {title: '登记编号', dataIndex: 'ope_ident', elCls: 'center', width: 140},
+                    {title: '登记科室', dataIndex: 'reg_office_id', elCls: 'center', width: 110},
+                    {title: '执行科室', dataIndex: 'dev_name', elCls: 'center', width: 110},
+                    {title: '登记时间', dataIndex: 'reg_date', elCls: 'center', width: 150},
+                    {title: '登记类型', dataIndex: 'reg_type', elCls: 'center', width: 110},
+                    {title: '登记内容', dataIndex: 'reg_content', elCls: 'center', width: 250},
                     {
                         title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
 
@@ -207,12 +186,9 @@
                     }
                     }
                 ],
-                store = Search.createStore('/listStorage', {
+                store = Search.createStore('/listRegistration', {
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
-                            addUrl: '/addStorage',
-                            updateUrl: '/updateStorage',
-                            removeUrl: '../data/del.php'
                         },
                         method: 'POST'
                     },
@@ -223,23 +199,18 @@
                     tbar: {
                         items: [
                             {
-                                text: '<i class="icon-plus"></i>新增入库',
+                                text: '<i class="icon-edit"></i>登记',
                                 btnCls: 'button button-small',
-                                handler: addFunction
+                                handler: regFunction
                             },
                             {
-                                text: '<i class="icon-hand-right"></i>设备出库',
+                                text: '<i class="icon-hand-right"></i>执行',
                                 btnCls: 'button button-small',
-                                handler: outDevFunction
-                            },
-                            {
-                                text: '<a class="page-action" data-href="/menu/delivery_tab" methods="post" title="出库记录" data-id="outSwitch">出库记录</a>',
-                                btnCls: 'button button-small',
-//                                handler: ioSwitch
+                                handler: opeFunction
                             }
                         ]
                     },
-                    plugins: [Editing_I, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
+                    plugins: [Editing_R, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
 
                 });
 
@@ -248,10 +219,14 @@
                     gridCfg: gridCfg
                 }),
                 grid = search.get('grid'),
-                I_Form = Editing_I.get('form'),
+                R_Form = Editing_R.get('form'),
                 O_Form = Editing_O.get('form');
 
-        function addFunction() {
+        //登记操作
+        function regFunction() {
+            var save = {
+                addUrl: '/addRegistration',
+            };
             if ($.isEmptyObject(select_data)) {
                 $.ajax({
                     url: '/getStoreSelect',
@@ -272,10 +247,11 @@
                     }
                 })
             }
+            store.get('proxy').set('save', save);
             dev_type_select.set('items', []);
             dev_name_select.set('items', select_data.dev_name);
             var newData = {isNew: true}; //标志是新增加的记录
-            Editing_I.add(newData, 'name'); //添加记录后，直接编辑
+            Editing_R.add(newData, 'name'); //添加记录后，直接编辑
         }
 
         //编辑操作
@@ -288,22 +264,35 @@
                 return;
             } else {
                 var eData = selections[0];
-                Editing_I.edit(eData);
             }
         }
 
-        //出库操作
-        function outDevFunction() {
-            var selections = grid.getSelection();
+        //执行操作
+        function opeFunction() {
+            var selections = grid.getSelection(),
+                    save = {
+                        addUrl: '/addOperation',
+                    };
             if (selections.length == 0) {
+                BUI.Message.Show({
+                    msg: '请选择执行项目',
+                    icon: 'warning',
+                    buttons: [],
+                    autoHide: true,
+                    autoHideDelay: 1000
+                });
                 return;
             } else if (selections.length != 1) {
-                BUI.Message.Alert('一次只能选择单个设备出库！！');
+                BUI.Message.Alert('一次只能选择单个项目执行！');
                 return;
             } else {
+                store.get('proxy').set('save', save);
                 var eData = selections[0];
-                Editing_O.edit(eData);
-                O_Form.getField('used_no').addRule('max', selections[0].dev_no, '库存不足，不能大于{0}');
+                var newData = {
+                    ope_registration_id: eData.id,
+                    ope_office_id: eData.reg_office_id,
+                };
+                Editing_O.add(newData);
             }
         }
 
@@ -344,6 +333,11 @@
             }
             dev_type_select.set('items', select_type);
         });
+
+        store.on('beforeload', function (ev) {
+            store.get('proxy').set('save', {});
+        })
+
     });
 </script>
 

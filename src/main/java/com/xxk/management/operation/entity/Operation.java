@@ -8,42 +8,34 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Operation extends BaseInfoEntity {
     private String id;
-    private int ope_ident;             //运维编号
-    private int ope_registration_id; //登记ID
-    private String ope_staff_id;      //运维人员ID
-    private String ope_office_id;     //运维科室ID
-    private String ope_device_id;     //运维设备ID
-    private String ope_auditing_id;    //审核ID
-    private String ope_type;            //运维类型
-    private String ope_confirm_date;  //运维确认时间
-    private String ope_content;         //运维内容
-    private String ope_flag;            //运维状态
-    private String ope_result;          //运维结果
-    private String keyWord;
+    private String ope_ident;              //运维编号
+    private String ope_registration_id;  //登记ID
+    private String ope_staff_id;          //运维人员ID
+    private String ope_office_id;         //运维科室ID
+    private String ope_device_id;         //运维设备ID
+    private String ope_auditing_id;       //审核ID
+    private String ope_source;             //运维来源
+    private String ope_type;                //运维类型
+    private String ope_confirm_date;      //运维确认时间
+    private String ope_content;            //运维内容
+    private String ope_flag;               //运维状态
+    private String ope_result;             //运维结果
+    private String remark;                 //备注
+    private String keyWord;                //关键字
 
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getOpe_ident() {
+    public String getOpe_ident() {
         return ope_ident;
     }
 
-    public void setOpe_ident(int ope_ident) {
+    public void setOpe_ident(String ope_ident) {
         this.ope_ident = ope_ident;
     }
 
-    public int getOpe_registration_id() {
+    public String getOpe_registration_id() {
         return ope_registration_id;
     }
 
-    public void setOpe_registration_id(int ope_registration_id) {
+    public void setOpe_registration_id(String ope_registration_id) {
         this.ope_registration_id = ope_registration_id;
     }
 
@@ -77,6 +69,14 @@ public class Operation extends BaseInfoEntity {
 
     public void setOpe_auditing_id(String ope_auditing_id) {
         this.ope_auditing_id = ope_auditing_id;
+    }
+
+    public String getOpe_source() {
+        return ope_source;
+    }
+
+    public void setOpe_source(String ope_source) {
+        this.ope_source = ope_source;
     }
 
     public String getOpe_type() {
@@ -119,11 +119,29 @@ public class Operation extends BaseInfoEntity {
         this.ope_result = ope_result;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public String getKeyWord() {
         return keyWord;
     }
 
     public void setKeyWord(String keyWord) {
         this.keyWord = keyWord;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 }
