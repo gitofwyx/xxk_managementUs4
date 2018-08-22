@@ -11,6 +11,7 @@ import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.storage.service.StorageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,7 +61,7 @@ public class StorageController extends BaseController {
             } else {
                 List<String> listDevId = new ArrayList<>();
                 for (Storage storage : listStorage) {
-                    listDevId.add(storage.getDevice_id());
+                    listDevId.add(storage.getEntity_id());
                 }
                /* Set setDevId = new  HashSet();
                 setDevId.addAll(listDevId);
@@ -75,13 +76,13 @@ public class StorageController extends BaseController {
                     for (Storage storage : listStorage) {
                         Map<String, Object> resultMap = new HashMap<>();
                         for (Map<String, Object> deviceMap : deviceList) {
-                            if (storage.getDevice_id().equals(deviceMap.get("id"))) {
+                            if (storage.getEntity_id().equals(deviceMap.get("id"))) {
                                 resultMap.put("dev_name", deviceMap.get("dev_name"));
                                 resultMap.put("dev_type", deviceMap.get("dev_type"));
                                 resultMap.put("dev_no", deviceMap.get("dev_no"));
                             }
                         }
-                        resultMap.put("device_id", storage.getDevice_id());
+                        resultMap.put("device_id", storage.getEntity_id());
                         resultMap.put("in_confirmed_ident", storage.getIn_confirmed_ident());
                         resultMap.put("in_confirmed_by", storage.getIn_confirmed_by());
                         resultMap.put("in_confirmed_date", storage.getIn_confirmed_date());
@@ -168,17 +169,17 @@ public class StorageController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addStorage")
-    public Map<String, Object> addStorage(Storage storage, @RequestParam(value = "dev_type") String deviceId) {
+    public Map<String, Object> addStorage(Storage storage, @RequestParam(value = "dev_type") String entityId) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String storageId = UUIdUtil.getUUID();
         try {
-            if ("".equals(deviceId) || deviceId == null) {
+            if ("".equals(entityId) || entityId == null) {
                 log.info("出错！无法获取设备ID");
                 result.put("error", false);
                 return result;
             }
-            List<Map<String, Object>> resultList = deviceService.getDeviceNumber(deviceId);////获取设备数量
+            List<Map<String, Object>> resultList = deviceService.getDeviceNumber(entityId);////获取设备数量
             if (resultList.size() != 1 || resultList == null) {
                 log.info("出错！无法获取设备ID对应的库存量！");
                 result.put("error", false);
@@ -186,7 +187,7 @@ public class StorageController extends BaseController {
             }
             String dev_ident=(String) resultList.get(0).get("dev_ident");//提取设备编号
             int dev_no=(int)resultList.get(0).get("dev_no");//提取设备数量
-            String in_confirmed_ident= IdentUtil.getIdentNo(dev_ident,dev_no,storage.getIn_confirmed_no());
+            String in_confirmed_ident= IdentUtil.getIdentNo(dev_ident,dev_no,storage.getIn_confirmed_no(),createDate);
             if("".equals(in_confirmed_ident)||in_confirmed_ident==null){
                 result.put("hasError", true);
                 result.put("error", "添加出错,无法生成入库编号！");
@@ -194,7 +195,7 @@ public class StorageController extends BaseController {
             }
             //入库记录
             storage.setId(storageId);
-            storage.setDevice_id(deviceId);
+            storage.setEntity_id(entityId);
             storage.setIn_confirmed_ident(in_confirmed_ident);
             storage.setFact_dev_no(storage.getIn_confirmed_no());
             storage.setOut_flag("0");
@@ -211,7 +212,7 @@ public class StorageController extends BaseController {
                 result.put("error", "添加出错");
             } else {
                 //log.info(">>>>保存成功");
-                boolean udNmbResult = deviceService.plusDeviceNumber(storage.getIn_confirmed_no(), deviceId);
+                boolean udNmbResult = deviceService.plusDeviceNumber(storage.getIn_confirmed_no(), entityId);
                 if(!(udNmbResult)){
                     log.error("udNmbResult:" + udNmbResult);
                     result.put("hasError", true);
@@ -219,6 +220,10 @@ public class StorageController extends BaseController {
                 }
                 result.put("success", true);
             }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
         } catch (Exception e) {
             result.put("hasError", true);
             result.put("error", "添加出错");
@@ -230,8 +235,8 @@ public class StorageController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/updateStorage")
-    public Map<String, Boolean> updateStorage(Storage storage,Delivery delivery) {
-        Map<String, Boolean> result = new HashMap<>();
+    public Map<String, Object> updateStorage(Storage storage,Delivery delivery) {
+        Map<String, Object> result = new HashMap<>();
         //String phone=(String)request.getAttribute("phone");
         //String phone = request.getParameter("phone");
         String deliveryId = UUIdUtil.getUUID();
@@ -246,7 +251,7 @@ public class StorageController extends BaseController {
                 }
                 String dev_ident=(String) resultList.get(0).get("dev_ident");//提取设备编号
                 int dev_no=(int)resultList.get(0).get("dev_no");//提取设备数量
-                String out_confirmed_ident= IdentUtil.getIdentNo(dev_ident,dev_no,storage.getIn_confirmed_no());
+                String out_confirmed_ident= IdentUtil.getIdentNo(dev_ident,dev_no,storage.getIn_confirmed_no(),updateDate);
                 //出库记录
                 delivery.setId(deliveryId);
                 delivery.setOut_confirmed_ident(out_confirmed_ident);
@@ -258,7 +263,8 @@ public class StorageController extends BaseController {
                 boolean deliveryResult = deliveryService.addDelivery(delivery);
                 boolean udNmbResult = deviceService.minusDeviceNumber(delivery.getUsed_no(), delivery.getDevice_id());
                 if (!(deliveryResult) || !(udNmbResult)) {
-                    result.put("error", false);
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
                     log.error("deliveryResult:" + deliveryResult + "udNmbResult:" + udNmbResult);
                 } else {
                     log.info(">>>>保存成功");
@@ -266,6 +272,10 @@ public class StorageController extends BaseController {
                 }
             }
             result.put("success",true);
+        }catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
         }catch (Exception e){
             log.error(e);
             result.put("error",false);

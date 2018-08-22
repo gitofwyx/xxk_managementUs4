@@ -146,7 +146,7 @@
     BUI.use('common/page');
 </script>
 <script type="text/javascript">
-    BUI.use(['common/search', 'bui/form', 'bui/select'], function (Search, Form, Select) {
+    BUI.use(['common/search', 'bui/select'], function (Search,Select) {
 
         var enumObj = {"0": "未出库", "1": "已出库"},
                 select_data = [],
@@ -220,7 +220,7 @@
                                 text: '<i class="icon-hand-right"></i>维护执行',
                                 btnCls: 'button button-small',
                                 handler: opeFunction
-                            },
+                            }
 
                         ]
                     },

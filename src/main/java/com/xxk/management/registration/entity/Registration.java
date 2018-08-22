@@ -8,6 +8,7 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Registration extends BaseInfoEntity {
     private String id;
+    private String reg_ident;           //登记编号
     private String reg_office_id;      //登记科室ID
     private String exe_office_id;      //登记科室ID
     private String execute_id;      //登记ID
@@ -24,6 +25,14 @@ public class Registration extends BaseInfoEntity {
     @Override
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getReg_ident() {
+        return reg_ident;
+    }
+
+    public void setReg_ident(String reg_ident) {
+        this.reg_ident = reg_ident;
     }
 
     public String getReg_office_id() {

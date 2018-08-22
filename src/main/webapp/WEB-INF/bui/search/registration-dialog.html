@@ -58,18 +58,20 @@
 
 </div>
 <div id="Content_R" class="hide">
-    <form id="R_Form" class="form-horizontal" action="">
+    <form id="R_Form" class="form-horizontal" action="" autocomplete="off">
+        <input type="hidden" name="reg_office_id" id="reg_office_id">
+        <input type="hidden" name="exe_office_id" id="exe_office_id">
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>登记科室：</label>
-                <div class="controls" id="dev_name_select">
-                    <input name="dev_name" type="hidden" id="dev_name" data-rules="{required:true}">
+                <div class="controls">
+                    <input name="reg_office_ident" id="reg_office_ident" type="text" data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>执行科室：</label>
-                <div class="controls" id="dev_type_select">
-                    <input name="dev_type" type="hidden" id="dev_type" data-rules="{required:true}">
+                <div class="controls">
+                    <input name="exe_office_ident" id="exe_office_ident" type="text" data-rules="{required:true}">
                 </div>
             </div>
         </div>
@@ -142,14 +144,20 @@
 <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="js/bui-min.js"></script>
 <script type="text/javascript" src="js/config-min.js"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="js/tree/json2.js"></script>
+<![endif]-->
+<script type="text/javascript" src="js/tree/tree_build.js"></script>
+<script type="text/javascript" src="js/localstorageIO.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
 <script type="text/javascript">
-    BUI.use(['common/search', 'bui/form', 'bui/select'], function (Search, Form, Select) {
+    BUI.use(['common/search', 'bui/form', 'bui/select', 'bui/extensions/treepicker', 'bui/tree'], function (Search, Form, Select, TreePicker, Tree) {
 
-        var enumObj = {"0": "未出库", "1": "已出库"},
-                select_data = [],
+        var offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
+                officesEnum = getOfficesEnum(offices_select),
+                enumObj = {"0": "未出库", "1": "已出库"},
                 select_type = [],
                 Editing_R = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'Content_R', //设置隐藏的Dialog内容
@@ -159,24 +167,37 @@
                     contentId: 'Content_O', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
                 }),
-                dev_name_select = new Select.Select({
-                    render: '#dev_name_select',
-                    valueField: '#dev_name',
-                    multipleSelect: false,
+                reg_office_tree = new Tree.TreeList({
+                    nodes: [],
+                    //store: store,
+                    //dirSelectable : false,//阻止树节点选中
+                    showLine: true //显示连接线
+                }),
+                exe_office_tree = new Tree.TreeList({
+                    nodes: [],
+                    //store: store,
+                    //dirSelectable : false,//阻止树节点选中
+                    showLine: true //显示连接线
+                }),
+                belong_to_picker = new TreePicker({
+                    trigger: '#reg_office_ident',
+                    //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                    width: 150,  //指定宽度
+                    children: [reg_office_tree] //配置picker内的列表
                 }).render(),
-                dev_type_select = new Select.Select({
-                    render: '#dev_type_select',
-                    valueField: '#dev_type',
-                    multipleSelect: false,
-                    items: []
+                belong_to_picker = new TreePicker({
+                    trigger: '#exe_office_ident',
+                    //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                    width: 150,  //指定宽度
+                    children: [exe_office_tree] //配置picker内的列表
                 }).render(),
                 columns = [
-                    {title: '登记编号', dataIndex: 'ope_ident', elCls: 'center', width: 140},
-                    {title: '登记科室', dataIndex: 'reg_office_id', elCls: 'center', width: 110},
-                    {title: '执行科室', dataIndex: 'dev_name', elCls: 'center', width: 110},
-                    {title: '登记时间', dataIndex: 'reg_date', elCls: 'center', width: 150},
-                    {title: '登记类型', dataIndex: 'reg_type', elCls: 'center', width: 110},
-                    {title: '登记内容', dataIndex: 'reg_content', elCls: 'center', width: 250},
+                    {title: '&nbsp登记编号', dataIndex: 'reg_ident', elCls: 'center', width: 110},
+                    {title: '&nbsp登记科室', dataIndex: 'reg_office_id', elCls: 'center', width: 110, renderer: BUI.Grid.Format.enumRenderer(officesEnum)},
+                    {title: '&nbsp执行科室', dataIndex: 'exe_office_id', elCls: 'center', width: 110,renderer: BUI.Grid.Format.enumRenderer(officesEnum)},
+                    {title: '&nbsp登记时间', dataIndex: 'reg_date', elCls: 'center', width: 150},
+                    {title: '&nbsp登记类型', dataIndex: 'reg_type', elCls: 'center', width: 110},
+                    {title: '&nbsp登记内容', dataIndex: 'reg_content', elCls: 'center', width: 250},
                     {
                         title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
 
@@ -227,29 +248,37 @@
             var save = {
                 addUrl: '/addRegistration',
             };
-            if ($.isEmptyObject(select_data)) {
-                $.ajax({
-                    url: '/getStoreSelect',
-                    type: 'POST', //GET
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            select_data = data;
-                            dev_name_select.set('items', select_data.dev_name);
+            if (offices_select == undefined || offices_select == null) {
+                offices_select = localstorageIO("offices_select", "/getOfficeSelect");
+                if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
+                    alert("浏览器不支持localstorage！");
+                    $.ajax({
+                        url: '/getOfficeSelect',
+                        type: 'POST', //GET
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            if (data != null && data != undefined) {
+                                offices_select = data.result;
+                                var mObj = GetMenus('root', offices_select);
+                                reg_office_tree.set('nodes', mObj);
+                                exe_office_tree.set('nodes', mObj);
+                                //belong_to_select.set('items', offices_select);
+                            }
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus)
                         }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus)
-                    }
-                })
+                    })
+                }
             }
+            var mObj = GetMenus('root', offices_select);
+            reg_office_tree.set('nodes', mObj);
+            exe_office_tree.set('nodes', mObj);
             store.get('proxy').set('save', save);
-            dev_type_select.set('items', []);
-            dev_name_select.set('items', select_data.dev_name);
             var newData = {isNew: true}; //标志是新增加的记录
             Editing_R.add(newData, 'name'); //添加记录后，直接编辑
         }
@@ -323,21 +352,17 @@
                 delItems([record]);
             }
         });
-        dev_name_select.on('change', function (ev) {
-            select_type = [];
-            var dev_type = select_data.dev_type;
-            for (var j = 0, len = dev_type.length; j < len; j++) {
-                if (dev_type[j].dev_class_id == dev_name_select.getSelectedValue()) {
-                    select_type.push(dev_type[j]);
-                }
-            }
-            dev_type_select.set('items', select_type);
-        });
 
         store.on('beforeload', function (ev) {
             store.get('proxy').set('save', {});
-        })
+        });
 
+        reg_office_tree.on('itemclick', function (ev) {
+            R_Form.getField('reg_office_id').set('value', ev.item.value);
+        });
+        exe_office_tree.on('itemclick', function (ev) {
+            R_Form.getField('exe_office_id').set('value', ev.item.value);
+        });
     });
 </script>
 

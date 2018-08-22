@@ -86,7 +86,7 @@ public class OperationController extends BaseController {
                 log.error("resultOpe:"+resultOpe);
             }else{
                 record.setRec_office_id(operation.getOpe_office_id());
-                record.setRec_starting_date(DateUtil.getStrYearM(Date));
+                record.setRec_starting_date(DateUtil.getStrYM(Date));
                 record.setUpdateUserId("admin");
                 record.setUpdateDate(Date);
                 Boolean resultRec = recordService.plusOpeCount(record);

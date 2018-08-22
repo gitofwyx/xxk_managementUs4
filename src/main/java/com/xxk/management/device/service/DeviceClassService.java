@@ -21,6 +21,8 @@ public interface DeviceClassService {
 
     public List<Map<String, Object>> getDeviceClassById(String id);
 
+    public String updateEntityClass(DeviceClass entityClass,String Date);
+
     public boolean updateDevMax(DeviceClass deviceClass);
 
     public boolean updateDev_typeMax(DeviceClass deviceClass);

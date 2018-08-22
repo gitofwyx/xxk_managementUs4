@@ -35,4 +35,9 @@ public class StorageServiceImpl implements StorageService {
     public boolean deleteListRegUser(List<String> listStr) {
         return false;
     }
+
+    @Override
+    public List<String> getStorageIdByIdent(String ident) {
+        return dao.getStorageIdByIdent(ident);
+    }
 }

@@ -33,8 +33,8 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Map<String, Object> getRecordByOffices(String rec_office_id) {
-        return dao.getRecordByOffices(rec_office_id);
+    public Map<String, Object> getRecordByOffices(String rec_office_id,String date) {
+        return dao.getRecordByOffices(rec_office_id,date);
     }
 
     @Override

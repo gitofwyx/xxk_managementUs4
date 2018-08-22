@@ -8,7 +8,7 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Storage extends BaseInfoEntity {
     private String id;
-    private String device_id;           //设备id
+    private String entity_id;           //设备id
     private String in_confirmed_ident; //库存编号
     private String in_confirmed_by;    //确认人
     private String in_confirmed_date;  //入库时间
@@ -27,12 +27,12 @@ public class Storage extends BaseInfoEntity {
         this.id = id;
     }
 
-    public String getDevice_id() {
-        return device_id;
+    public String getEntity_id() {
+        return entity_id;
     }
 
-    public void setDevice_id(String device_id) {
-        this.device_id = device_id;
+    public void setEntity_id(String entity_id) {
+        this.entity_id = entity_id;
     }
 
     public String getIn_confirmed_ident() {

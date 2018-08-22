@@ -313,11 +313,26 @@ public class DateUtil {
 	 * @param date
 	 * @return
 	 */
-	public static String getStrYearM(String date) {
+	public static String getStrYM(String date) {
 		String y = date.substring(0, 4);
 		String m = date.substring(5, 7);
 		StringBuffer newDate = new StringBuffer();
 		newDate.append(y).append("").append(m);
+		return newDate.toString();
+	}
+
+	/**
+	 * 返回YYYYMMdd
+	 *
+	 * @param date
+	 * @return
+	 */
+	public static String getStrYMd(String date) {
+		String y = date.substring(0, 4);
+		String m = date.substring(5, 7);
+		String d = date.substring(8, 10);
+		StringBuffer newDate = new StringBuffer();
+		newDate.append(y).append(m).append(d).append("");
 		return newDate.toString();
 	}
 

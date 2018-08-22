@@ -111,7 +111,6 @@ public class DeviceController extends BaseController {
             }
             device.setId(deviceId);
             device.setDev_ident(dev_ident);
-            device.setRelated_flag("0");
             device.setCreateDate(Date);
             device.setCreateUserId("admin");
             device.setUpdateDate(Date);

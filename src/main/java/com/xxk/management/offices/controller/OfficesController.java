@@ -111,7 +111,7 @@ public class OfficesController extends BaseController {
                 log.error("获取出错");
                 return null;
             }
-            result.put("offices_select", listOffice);
+            result.put("result", listOffice);
             /*result.put("dev_count", dev_count);*/
         } catch (Exception e) {
             log.error(e);

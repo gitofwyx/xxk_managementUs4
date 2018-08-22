@@ -17,5 +17,6 @@ public interface StorageDao {
 
     public int deleteListRegUser(List<String> listStr);
 
+    public List<String> getStorageIdByIdent(String ident);
 
 }

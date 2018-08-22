@@ -11,6 +11,18 @@
 
 	default-lazy-init="true">
 
+	<!-- 缓存配置  -->
+	<bean id="ehCacheManager"
+		  class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+	</bean>
+
+	<!-- spring 封装ehcache缓存管理器  -->
+	<bean id="springCacheManager"
+		  class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehCacheManager" />
+	</bean>
+
 	<!-- 自动扫描且只扫描@Controller -->
 	<context:component-scan base-package="com.xxk.management" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />

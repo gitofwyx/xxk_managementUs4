@@ -15,4 +15,6 @@ public interface StorageService {
 
     public boolean deleteListRegUser(List<String> listStr);
 
+    public List<String> getStorageIdByIdent(String ident);
+
 }

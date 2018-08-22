@@ -20,7 +20,7 @@
 
     <select id="getRecordByOffices" parameterType="string" resultMap="RecordMap">
         select id,rec_office_id,reg_count,ope_count
-        from xxk_offices_record where rec_office_id=#{0} and deleteFlag='0';
+        from xxk_offices_record where rec_office_id=#{0} and rec_starting_date=#{1} and deleteFlag='0';
     </select>
 
 

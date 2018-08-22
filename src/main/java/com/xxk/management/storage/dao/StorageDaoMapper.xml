@@ -19,11 +19,10 @@
     </insert>
 
     <!--根据id获取信息 -->
-    <select id="getRegUser" parameterType="string" resultType="com.xxk.management.user.entity.RegUser">
-        select
-        <include refid="columns"></include>
-        from xxk_reg_user
-        where id=#{id}
+    <select id="getStorageIdByIdent" parameterType="string" resultType="string">
+        select id
+        from xxk_in_storage
+        where in_confirmed_ident=#{0}
         and deleteFlag='0';
     </select>
 

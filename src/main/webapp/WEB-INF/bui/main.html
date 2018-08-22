@@ -49,22 +49,6 @@
 
 <script>
     BUI.use('common/main', function () {
-        var officeCode=[];
-        $.ajax({
-            url: '/getOfficeSelect',
-            type: 'POST', //GET
-            async: true,    //或false,是否异步
-            /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-            success: function (data, textStatus, jqXHR) {
-                officeCode=data.offices_select;
-            },
-            error: function (xhr, textStatus) {
-                console.log('错误')
-                console.log(xhr)
-                console.log(textStatus)
-            }
-        });
         var config = [{
             id: 'menu',
             homePage: 'user-menu',
@@ -74,7 +58,8 @@
                     {id: 'user-menu', text: '人员信息', href: '/menu/user_tab', closeable: false},
                     {id: 'main-menu', text: '科室信息', href: '/menu/offices_tab'},
                     {id: 'device-menu', text: '设备信息', href: '/menu/device_tab'},
-                    {id: 'storage-menu', text: '出入库信息', href: '/menu/storage_tab'},
+                    {id: 'material-menu', text: '耗材&#92;配件信息', href: '/menu/material_tab'},
+                    {id: 'storage-menu', text: '库存信息', href: '/menu/storage_tab'},
                     {id: 'registration-menu', text: '登记信息', href: 'menu/registration_tab'},
                     {id: 'operation-menu', text: '运维信息', href: '/menu/operation_tab'},
                 ]

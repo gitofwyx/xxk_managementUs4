@@ -1,5 +1,6 @@
 package com.xxk.management.device.service.impl;
 
+import com.xxk.core.util.UUIdUtil;
 import com.xxk.management.device.dao.DeviceClassDao;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.entity.DeviceClass;
@@ -49,6 +50,35 @@ public class DeviceClassServiceImpl implements DeviceClassService {
     }
 
     @Override
+    public String updateEntityClass(DeviceClass entityClass,String Date) {
+        String deviceClassId = UUIdUtil.getUUID();
+        if (!"".equals(entityClass.getId()) && entityClass.getId() != null) {
+
+            entityClass.setId(entityClass.getId());
+            entityClass.setUpdateUserId("admin");
+            entityClass.setUpdateDate(Date);
+            Boolean resultBl = updateDev_typeMax(entityClass);
+            if (!(resultBl)) {
+               return null;
+            }
+        } else {
+            entityClass.setId(deviceClassId);
+            entityClass.setDev_max(1);
+            entityClass.setType_max(1);
+            entityClass.setCreateUserId("admin");
+            entityClass.setCreateDate(Date);
+            entityClass.setUpdateUserId("admin");
+            entityClass.setUpdateDate(Date);
+            entityClass.setDeleteFlag("0");
+            Boolean resultBl = addDeviceClass(entityClass);
+            if (!(resultBl)) {
+                return null;
+            }
+        }
+        return deviceClassId;
+    }
+
+    @Override
     public boolean updateDevMax(DeviceClass deviceClass) {
         return dao.updateDevMax(deviceClass)==1?true:false;
     }
@@ -57,4 +87,5 @@ public class DeviceClassServiceImpl implements DeviceClassService {
     public boolean updateDev_typeMax(DeviceClass deviceClass) {
         return dao.updateDev_typeMax(deviceClass)==1?true:false;
     }
+
 }
