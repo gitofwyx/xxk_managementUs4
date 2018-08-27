@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.material.dao.MaterialDao">
-    <sql id="columns">id,mat_class_id,mat_name,mat_ident,mat_type,mat_type_ident,single_unit,genre_tags,mat_flag,
+    <sql id="columns">id,dev_class_id,mat_name,mat_ident,mat_type,mat_type_ident,single_unit,genre_tags,mat_flag,
                 remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <resultMap id="materialSelectMap" type="java.util.HashMap">
-        <id column="mat_class_id" property="dev_class_id" jdbcType="VARCHAR"/>
+        <id column="dev_class_id" property="dev_class_id" jdbcType="VARCHAR"/>
         <result column="id" property="value" jdbcType="VARCHAR"/>
         <result column="mat_type" property="text" jdbcType="VARCHAR"/>
     </resultMap>
-
-
 
     <!--获取分页 -->
     <select id="listMaterial" parameterType="string" resultType="com.xxk.management.material.entity.Material">
@@ -35,12 +33,12 @@
     <!--添加信息 -->
     <insert id="addMaterial" parameterType="com.xxk.management.material.entity.Material">
         insert into xxk_material(<include refid="columns"></include>) values(
-        #{id},#{mat_class_id},#{mat_name},#{mat_ident}#{mat_type},#{mat_type_ident},#{single_unit},#{genre_tags},#{mat_flag},
+        #{id},#{dev_class_id},#{mat_name},#{mat_ident},#{mat_type},#{mat_type_ident},#{single_unit},#{genre_tags},#{mat_flag},
         #{remark},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <select id="getMaterialSelect" resultMap="materialSelectMap">
-        select mat_class_id,id,mat_type
+        select dev_class_id,id,mat_type
         from xxk_material where deleteFlag='0';
     </select>
 

@@ -55,7 +55,8 @@
 
 </div>
 <div id="content" class="hide">
-    <form id="P_Form" class="form-horizontal" action="" autocomplete="off">
+    <form id="M_Form" class="form-horizontal" action="" autocomplete="off">
+       <!-- <input type="hidden" name="mat_name" id="mat_name">-->
         <input type="hidden" name="dev_class_id" id="dev_class_id">
         <input type="hidden" name="class_ident" id="class_ident">
         <input type="hidden" name="type_max" id="type_max">
@@ -73,7 +74,7 @@
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>配件型号：</label>
                     <div class="controls">
-                        <input name="matP_dev_type" type="text" data-rules="{required:true}"
+                        <input id="matP_mat_type" name="mat_type" type="text" data-rules="{required:true}"
                                class="input-normal control-text">
                     </div>
                 </div>
@@ -87,7 +88,7 @@
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>耗材型号：</label>
                     <div class="controls">
-                        <input name="matH_dev_type" type="text" data-rules="{required:true}"
+                        <input id="matH_mat_type" name="mat_type" type="text" data-rules="{required:true}"
                                class="input-normal control-text">
                     </div>
                 </div>
@@ -129,6 +130,7 @@
                 class_count = 0,//material种类最大值
                 class_ident = [],//material编号list
                 class_Date = {},//material更改时间map
+                FNames = [],//tab
 
         /*form = new Form.HForm({
          srcNode: '#J_Form'
@@ -145,19 +147,19 @@
                     //selectedEvent : 'mouseenter',//默认为click,可以更改事件
 
                     children: [
-                        {title: '配件', value: '1', selected: true},
-                        {title: '耗材', value: '2',},
+                        {id:'matP_row',title: '配件', value: '1', selected: true},
+                        {id:'matH_row',title: '耗材', value: '2',},
                     ]
                 }).render(),
                 suggest_P = new Select.Suggest({
                     render: '#matP_name_div',
-                    name: 'dev_name',
+                    name: 'matP_name',
                     valueField: '#dev_class_id',
                     data: []
                 }).render(),
                 suggest_H = new Select.Suggest({
                     render: '#matH_name_div',
-                    name: 'dev_name',
+                    name: 'matH_name',
                     valueField: '#dev_class_id',
                     data: []
                 }).render(),
@@ -223,7 +225,7 @@
                     gridCfg: gridCfg
                 }),
                 grid = search.get('grid'),
-                P_Form = editing.get('form');
+                M_Form = editing.get('form');
 
         //新增操作
         function addFunction() {
@@ -258,7 +260,7 @@
                                     mat_count_map[mat_name_data[c].value] = c;
                                 }
                                 class_count = Math.max.apply(null, class_ident);//获取数组中的最大值
-                                P_Form.getField('dev_class_count').set('value', class_count);
+                                M_Form.getField('dev_class_count').set('value', class_count);
                             }
                         }
                     },
@@ -271,11 +273,15 @@
             }
             var newData = {}; //标志是新增加的记录
             editing.add(newData, 'name'); //添加记录后，直接编辑
-            P_Form.getField('class_ident').set('value', 0);
-            P_Form.getField('type_max').set('value', 0);
+            M_Form.getField('matP_name').addRule('required',true);
+            M_Form.getField('matH_name').addRule('required',true);
+            M_Form.getField('class_ident').set('value', 0);
+            M_Form.getField('type_max').set('value', 0);
             if (!$.isEmptyObject(class_Date) && class_count != 0) {
-                P_Form.getField('dev_class_count').set('value', class_count);
+                M_Form.getField('dev_class_count').set('value', class_count);
             }
+
+            selectedChange(tab.getSelected());
         }
 
         //编辑操作
@@ -319,56 +325,74 @@
                 items([record]);
             }
         });
-        suggest_H.on('change', function (ev) {
-            if (mat_name_data != undefined || mat_name_data != null) {
-                var dev_class_id = P_Form.getField('dev_class_id').get("value");
-                var c = mat_count_map[dev_class_id];
-                P_Form.getField('class_ident').set('value', mat_name_data[c].class_ident);
-                P_Form.getField('type_max').set('value', mat_name_data[c].type_max);
-            }
+        suggest_P.on('change', function (ev) {
+            setClass_ident();
+            var mat_name = M_Form.getField('matP_name').get("value");
+            M_Form.getField('mat_name').set('value', mat_name);
         });
+        suggest_H.on('change', function (ev) {
+            setClass_ident();
+            var mat_name = M_Form.getField('matH_name').get("value");
+            M_Form.getField('mat_name').set('value', mat_name);
+        });
+        function setClass_ident(){
+            if (mat_name_data != undefined || mat_name_data != null) {
+                var dev_class_id = M_Form.getField('dev_class_id').get("value");
+                var c = mat_count_map[dev_class_id];
+                M_Form.getField('class_ident').set('value', mat_name_data[c].class_ident);
+                M_Form.getField('type_max').set('value', mat_name_data[c].type_max);
+            }
+        }
 
         /*J_Form.on('beforesubmit', function (ev) {
          alert('beforesubmit');
          return false;
          })*/
 
-        editing.on('accept', function (ev) {
-            mat_name_data = [];
-        })
-
         tab.on('selectedchange', function (ev) {
-           if(FNames.length!=0){
-               for(j = FNames.length-1; j>=0; j--) {
-                   Field=P_Form.getField(FNames[j]);
-                   if(Field!=null){
-                       Field.enable( );
-                   }
-               }
-           }
-            var FNames=[];
-            var Field='';
-            //P_Form.clearFields();
-            tab.getItems();
-            P_Form.getField('genre_tags').set('value', ev.item.__attrVals.value);
-            if (ev.item.__attrVals.value == '1') {
+            M_Form.clearFields();
+            selectedChange(tab.getSelected());
+        });
+        function selectedChange(ev) {
+            // M_Form.clearFields();
+            var Field = '';
+            var Fields =[];
+            var items=tab.getItems( );
+            if (FNames.length != 0) {
+                for (j = FNames.length - 1; j >= 0; j--) {
+                    Field = M_Form.getField(FNames[j]);
+                    if (Field != null) {
+                        Field.enable();
+                    }
+                }
+            }
+            FNames = [];
+            M_Form.getField('genre_tags').set('value', ev.__attrVals.value);
+            for (var i = items.length - 1; i >= 0; i--) {
+                if(items[i].__attrVals.panel.id!=ev.__attrVals.id){
+                    $("#"+items[i].__attrVals.panel.id+" input[type='text']").each(function () {
+                        FNames.push($(this).attr('name'));
+                    })
+                }
+            }
+           /* if (ev.__attrVals.value == '1') {
                 $("#matH_row input[type='text']").each(function () {
                     FNames.push($(this).attr('name'));
                 })
 
-            } else if (ev.item.__attrVals.value == '2') {
-                $("#matP_row input[type='text']").each(function () {
-                    FNames.push($(this).attr('name'));
-                })
-            }
-            for(j = FNames.length-1; j>=0; j--) {
-                Field=P_Form.getField(FNames[j]);
-                if(Field!=null){
-                    Field.disable( );
+            }*/
+            for (var j = FNames.length - 1; j >= 0; j--) {
+                Field = M_Form.getFields(FNames[j]);
+                Fields.push(Field);
+                if (Field != null) {
+                    Field.disable();
                 }
             }
-           // Fields.clearErrors();
-        });
+            // Fields.clearErrors();
+        }
+        editing.on('accept', function (ev) {
+            mat_name_data = [];
+        })
     });
 </script>
 

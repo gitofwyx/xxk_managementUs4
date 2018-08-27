@@ -8,7 +8,7 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Material extends BaseInfoEntity {
     private String id;
-    private String mat_class_id;     //设备种类
+    private String dev_class_id;     //设备种类
     private String mat_name;      //设备名
     private String mat_ident;      //设备编号
     private String mat_type;    //设备型号
@@ -29,12 +29,12 @@ public class Material extends BaseInfoEntity {
         this.id = id;
     }
 
-    public String getMat_class_id() {
-        return mat_class_id;
+    public String getDev_class_id() {
+        return dev_class_id;
     }
 
-    public void setMat_class_id(String mat_class_id) {
-        this.mat_class_id = mat_class_id;
+    public void setDev_class_id(String dev_class_id) {
+        this.dev_class_id = dev_class_id;
     }
 
     public String getMat_name() {

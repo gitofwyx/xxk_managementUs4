@@ -65,26 +65,40 @@ public class MaterialController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addMaterial")
-    public Map<String, Boolean> addMaterial(Material material, DeviceClass materialClass,
+    public Map<String, Object> addMaterial(Material material, DeviceClass deviceClass,
                                             @RequestParam(value = "dev_class_count") String dev_class_count) {
-        Map<String, Boolean> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String deviceId = UUIdUtil.getUUID();
         String mat_ident = "";
+        Boolean resultBl = true;
         try {
-            if (materialClass.getClass_ident() > 0 && materialClass.getType_max() > 0) {  //生成编号
-                mat_ident = IdentUtil.getIdent(materialClass.getClass_ident(), materialClass.getType_max(), Date);
+            if (deviceClass.getClass_ident() > 0 && deviceClass.getType_max() > 0) {  //生成编号
+                mat_ident = IdentUtil.getIdent(deviceClass.getClass_ident(), deviceClass.getType_max(), Date);
 
             } else if (!"".equals(dev_class_count) && dev_class_count != null) {
-                mat_ident = IdentUtil.getIdent(Integer.parseInt(dev_class_count), materialClass.getType_max(), Date);
+                mat_ident = IdentUtil.getIdent(Integer.parseInt(dev_class_count), deviceClass.getType_max(), Date);
             } else if (("".equals(dev_class_count) || dev_class_count == null)) {
-                mat_ident = IdentUtil.getIdent(0, materialClass.getType_max(), Date);
+                mat_ident = IdentUtil.getIdent(0, deviceClass.getType_max(), Date);
             }
-            materialClass.setId(material.getMat_class_id());
-            materialClass.setDev_class(material.getMat_name());
-            String materialClassId=deviceClassService.updateEntityClass(materialClass, Date);
-            if(materialClassId!=null&&!"".equals(materialClassId)){
-                material.setMat_class_id(materialClassId);
+            if (!"".equals(material.getDev_class_id()) && material.getDev_class_id() != null) {
+                deviceClass.setId(material.getDev_class_id());
+                deviceClass.setUpdateUserId("admin");
+                deviceClass.setUpdateDate(Date);
+                resultBl = deviceClassService.updateDev_typeMax(deviceClass);
+                if (!(resultBl)) {
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
+                    return result;
+                }
+            }
+            if (!resultBl || "".equals(material.getDev_class_id()) && material.getDev_class_id() == null) {
+                deviceClass.setId(material.getDev_class_id());
+                deviceClass.setDev_class(material.getMat_name());
+                String materialClassId = deviceClassService.updateEntityClass(deviceClass, Date);
+                if (materialClassId != null && !"".equals(materialClassId)) {
+                    material.setDev_class_id(materialClassId);
+                }
             }
             material.setId(deviceId);
             material.setMat_ident(mat_ident);

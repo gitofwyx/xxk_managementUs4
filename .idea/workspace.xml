@@ -2,110 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63b74f90-df92-4e5e-b802-da69f9814ecb" name="Default" comment="wyx">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/dao/materialDaoMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/entity/material.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/service/MaterialService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/service/impl/MaterialServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/material_dialog.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/index/js/localstorageIO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/menu/js/localstorageIO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/menu/js/tree/json2.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/endorsed/javaee-endorsed-api-6.0.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/core/util/DateUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/core/util/DateUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/core/util/NumberUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/core/util/NumberUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/core/util/build_ident/IdentUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/core/util/build_ident/IdentUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/device/controller/DeviceController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/device/controller/DeviceController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/device/entity/Device.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/device/entity/Device.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/device/service/DeviceClassService.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/device/service/DeviceClassService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/device/service/impl/DeviceClassServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/device/service/impl/DeviceClassServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/controller/OfficesController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/controller/OfficesController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/dao/RecordDao.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/dao/RecordDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/service/RecordService.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/service/RecordService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/service/impl/RecordServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/service/impl/RecordServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/service/impl/OfficesServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/service/impl/OfficesServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/operation/controller/OperationController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/operation/controller/OperationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/controller/RegistrationController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/controller/RegistrationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/entity/Registration.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/entity/Registration.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/controller/StorageController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/controller/StorageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/StorageDao.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/StorageDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/entity/Storage.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/entity/Storage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/StorageService.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/StorageService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/system/controller/MenuController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/system/controller/MenuController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/util/DateUtil.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/util/DateUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/util/NumberUtil.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/util/NumberUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/util/build_ident/IdentUtil.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/util/build_ident/IdentUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/controller/DeviceController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/controller/DeviceController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/entity/Device.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/entity/Device.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/service/DeviceClassService.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/service/DeviceClassService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/service/impl/DeviceClassServiceImpl.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/service/impl/DeviceClassServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/controller/OfficesController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/controller/OfficesController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/dao/RecordDao.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/dao/RecordDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/service/RecordService.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/service/RecordService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/service/impl/RecordServiceImpl.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/service/impl/RecordServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/service/impl/OfficesServiceImpl.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/service/impl/OfficesServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/operation/controller/OperationController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/operation/controller/OperationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/registration/controller/RegistrationController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/registration/controller/RegistrationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/registration/entity/Registration.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/registration/entity/Registration.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/StorageController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/StorageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/StorageDao.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/StorageDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/entity/Storage.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/entity/Storage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/StorageService.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/StorageService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/system/controller/MenuController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/system/controller/MenuController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/material/controller/MaterialController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/material/controller/MaterialController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/material/entity/Material.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/material/entity/Material.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/material/controller/MaterialController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/material/controller/MaterialController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/material/entity/Material.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/material/entity/Material.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/NumberUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/NumberUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/build_ident/IdentUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/build_ident/IdentUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/controller/DeviceController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/controller/DeviceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/entity/Device.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/entity/Device.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/DeviceClassService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/DeviceClassService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceClassServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceClassServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/controller/OfficesController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/controller/OfficesController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/dao/RecordDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/dao/RecordDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/service/RecordService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/service/RecordService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/service/impl/RecordServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/service/impl/RecordServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/service/OfficesService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/service/OfficesService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/service/impl/OfficesServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/service/impl/OfficesServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/StorageDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/StorageDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/StorageDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/StorageDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/entity/Storage.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/entity/Storage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/StorageService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/StorageService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/MenuController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/MenuController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/ehcache.xml" afterPath="$PROJECT_DIR$/src/main/resources/ehcache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/springmvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/springmvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/device_dialog.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/device_dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/offices-dialog.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/offices-dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/operation-dialog.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/operation-dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration-dialog.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration-dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/device/dao/DeviceDaoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/device/dao/DeviceDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/StorageDaoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/StorageDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ehcache.xml" afterPath="$PROJECT_DIR$/target/classes/ehcache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/springmvc.xml" afterPath="$PROJECT_DIR$/target/classes/springmvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/main.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/device_dialog.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/device_dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/offices-dialog.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/offices-dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/operation-dialog.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/operation-dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/registration-dialog.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/registration-dialog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/dao/DeviceDaoMapper.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/device/dao/DeviceDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/StorageDaoMapper.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/StorageDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/ehcache.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/ehcache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/springmvc.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/springmvc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/dao/materialDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/dao/materialDaoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/entity/material.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/entity/material.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/material_dialog.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/material_dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/material/dao/MaterialDaoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/material/dao/MaterialDaoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/material_dialog.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/material_dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/material/dao/MaterialDaoMapper.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/material/dao/MaterialDaoMapper.xml" />
     </list>
     <list id="ba1571a0-3780-42a6-a56c-eb717060f504" name="Rejected commit: Default" comment="wyx" />
     <ignored path="xxk_management.iws" />
@@ -135,8 +43,8 @@
       <file leaf-file-name="material_dialog.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/material_dialog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67951804">
-              <caret line="368" column="13" selection-start-line="368" selection-start-column="13" selection-end-line="368" selection-end-column="13" />
+            <state vertical-scroll-proportion="-0.9514768">
+              <caret line="335" column="63" selection-start-line="335" selection-start-column="63" selection-end-line="335" selection-end-column="63" />
               <folding>
                 <element signature="n#style#0;n#hr#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -148,8 +56,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-              <folding />
+              <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -220,13 +130,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/material/service/MaterialService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/MenuController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/material/entity/Material.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/material/dao/MaterialDaoMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceClassServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/DeviceClassService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/offices-dialog.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/device_dialog.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/material/entity/Material.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/material/dao/MaterialDaoMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/material_dialog.html" />
       </list>
     </option>
@@ -576,6 +486,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -865,154 +777,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="material" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="material" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="device" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="device" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1045,8 +809,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1854,6 +1616,14 @@
       <workItem from="1534854394576" duration="1360000" />
       <workItem from="1534859750715" duration="6157000" />
       <workItem from="1534936687439" duration="12680000" />
+      <workItem from="1534990048489" duration="3695000" />
+      <workItem from="1535068145440" duration="598000" />
+      <workItem from="1535074197157" duration="5805000" />
+      <workItem from="1535093728165" duration="7786000" />
+      <workItem from="1535161984205" duration="1076000" />
+      <workItem from="1535287873090" duration="9586000" />
+      <workItem from="1535336538302" duration="4314000" />
+      <workItem from="1535351923614" duration="1548000" />
     </task>
     <task id="LOCAL-00001" summary="wyx">
       <created>1522285912171</created>
@@ -1889,7 +1659,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1284097000" />
+    <option name="totallyTimeSpent" value="1318505000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1901,24 +1671,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29575163" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2944882" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2777778" sideWeight="0.5181543" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16398244" sideWeight="0.48973608" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17246597" sideWeight="0.48973608" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251634" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31535947" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25475842" sideWeight="0.48734176" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2624811" sideWeight="0.48734176" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2753404" sideWeight="0.50803214" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1927,7 +1697,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25869894" sideWeight="0.51265824" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25669292" sideWeight="0.48184568" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13235295" sideWeight="0.48184568" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2014,7 +1784,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="186" />
+      <option name="time" value="187" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2023,16 +1793,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/material_dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#hr#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33254156">
@@ -2203,13 +1963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="171" column="111" selection-start-line="171" selection-start-column="111" selection-end-line="171" selection-end-column="111" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/entity/DeviceClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33128834">
@@ -2221,13 +1974,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5245399">
           <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceClassDaoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25503355">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2281,13 +2027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/dao/MaterialDaoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5882353">
-          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
@@ -2302,32 +2041,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceClassServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="74" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/menu/js/bui.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33182845">
           <caret line="21339" column="4" selection-start-line="21339" selection-start-column="4" selection-end-line="21339" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/offices/controller/OfficesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.986456">
-          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/entity/Material.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30022573">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2349,14 +2066,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45783132">
           <caret line="61" column="73" selection-start-line="61" selection-start-column="73" selection-end-line="61" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/service/impl/MaterialServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="75" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
         </state>
       </provider>
     </entry>
@@ -2364,30 +2073,87 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32289156">
           <caret line="104" column="32" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/entity/Material.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0316026">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/service/impl/MaterialServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.81475127">
+          <caret line="40" column="75" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceClassDaoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.17117117">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/offices/controller/OfficesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.6295025">
+          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6843911">
+          <caret line="218" column="48" selection-start-line="218" selection-start-column="48" selection-end-line="218" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/dao/MaterialDaoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.42964825">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/controller/DeviceController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08577878">
-          <caret line="67" column="52" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
+        <state vertical-scroll-proportion="1.044601">
+          <caret line="95" column="54" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceClassServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2042253">
+          <caret line="72" column="59" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
+          <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/material_dialog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67951804">
-          <caret line="368" column="13" selection-start-line="368" selection-start-column="13" selection-end-line="368" selection-end-column="13" />
+        <state vertical-scroll-proportion="-0.9514768">
+          <caret line="335" column="63" selection-start-line="335" selection-start-column="63" selection-end-line="335" selection-end-column="63" />
           <folding>
             <element signature="n#style#0;n#hr#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
