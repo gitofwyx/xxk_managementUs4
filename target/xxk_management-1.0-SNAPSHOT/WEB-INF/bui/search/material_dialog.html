@@ -55,8 +55,8 @@
 
 </div>
 <div id="content" class="hide">
-    <form id="M_Form" class="form-horizontal" action="" autocomplete="off">
-       <!-- <input type="hidden" name="mat_name" id="mat_name">-->
+    <form id="M_Form" method="post" class="form-horizontal" action="" autocomplete="off">
+        <!-- <input type="hidden" name="mat_name" id="mat_name">-->
         <input type="hidden" name="dev_class_id" id="dev_class_id">
         <input type="hidden" name="class_ident" id="class_ident">
         <input type="hidden" name="type_max" id="type_max">
@@ -65,7 +65,7 @@
         <div id="tab"></div>
         <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
         <div id="panel" class="">
-            <div class="row" id="matP_row">
+            <div class="row matP_class" id="matP_row">
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>配件名称：</label>
                     <div class="controls" id="matP_name_div">
@@ -130,7 +130,7 @@
                 class_count = 0,//material种类最大值
                 class_ident = [],//material编号list
                 class_Date = {},//material更改时间map
-                FNames = [],//tab
+                FNames = {},//tab
 
         /*form = new Form.HForm({
          srcNode: '#J_Form'
@@ -147,19 +147,21 @@
                     //selectedEvent : 'mouseenter',//默认为click,可以更改事件
 
                     children: [
-                        {id:'matP_row',title: '配件', value: '1', selected: true},
-                        {id:'matH_row',title: '耗材', value: '2',},
+                        {id: 'matP_row', title: '配件', value: '1', selected: true},
+                        {id: 'matH_row', title: '耗材', value: '2',},
                     ]
                 }).render(),
                 suggest_P = new Select.Suggest({
+                    id : 'matP_name',
                     render: '#matP_name_div',
-                    name: 'matP_name',
+                    name: 'mat_name',
                     valueField: '#dev_class_id',
                     data: []
                 }).render(),
                 suggest_H = new Select.Suggest({
+                    id : 'matH_name',
                     render: '#matH_name_div',
-                    name: 'matH_name',
+                    name: 'mat_name',
                     valueField: '#dev_class_id',
                     data: []
                 }).render(),
@@ -238,6 +240,7 @@
              {text: '选项2', value: 'b'},
              {text: '选项3', value: 'c'}
              ]*/
+            FNames = {};
             if ($.isEmptyObject(mat_name_data)) {
                 $.ajax({
                     url: '/getDeviceName',
@@ -265,22 +268,22 @@
                         }
                     },
                     error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus)
+                        console.log('错误');
+                        console.log(xhr);
+                        console.log(textStatus);
                     }
                 })
             }
             var newData = {}; //标志是新增加的记录
             editing.add(newData, 'name'); //添加记录后，直接编辑
-            M_Form.getField('matP_name').addRule('required',true);
-            M_Form.getField('matH_name').addRule('required',true);
+            for (var i in  M_Form.getFields('mat_name')) {  //通过定义一个局部变量FName遍历获取到了map中所有的key值
+                M_Form.getFields('mat_name')[i].addRule('required', true);
+            }
             M_Form.getField('class_ident').set('value', 0);
             M_Form.getField('type_max').set('value', 0);
             if (!$.isEmptyObject(class_Date) && class_count != 0) {
                 M_Form.getField('dev_class_count').set('value', class_count);
             }
-
             selectedChange(tab.getSelected());
         }
 
@@ -325,17 +328,21 @@
                 items([record]);
             }
         });
+        grid.on('itemsshow', function (ev) {
+            var iName=0;
+            $("#M_Form input[type='text']").each(function () {
+                if ($(this).attr('id') == undefined || $(this).attr('id') == null || $(this).attr('id') == '') {
+                    $(this).attr('id', $(this).attr('name')+iName++);
+                }
+            })
+        });
         suggest_P.on('change', function (ev) {
             setClass_ident();
-            var mat_name = M_Form.getField('matP_name').get("value");
-            M_Form.getField('mat_name').set('value', mat_name);
         });
         suggest_H.on('change', function (ev) {
             setClass_ident();
-            var mat_name = M_Form.getField('matH_name').get("value");
-            M_Form.getField('mat_name').set('value', mat_name);
         });
-        function setClass_ident(){
+        function setClass_ident() {
             if (mat_name_data != undefined || mat_name_data != null) {
                 var dev_class_id = M_Form.getField('dev_class_id').get("value");
                 var c = mat_count_map[dev_class_id];
@@ -344,52 +351,50 @@
             }
         }
 
-        /*J_Form.on('beforesubmit', function (ev) {
-         alert('beforesubmit');
-         return false;
-         })*/
-
         tab.on('selectedchange', function (ev) {
             M_Form.clearFields();
             selectedChange(tab.getSelected());
         });
         function selectedChange(ev) {
+            ev.__attrVals.panel.getElementsByTagName("input");
             // M_Form.clearFields();
-            var Field = '';
-            var Fields =[];
-            var items=tab.getItems( );
-            if (FNames.length != 0) {
-                for (j = FNames.length - 1; j >= 0; j--) {
-                    Field = M_Form.getField(FNames[j]);
-                    if (Field != null) {
-                        Field.enable();
+            var Fields = [];
+            var items = tab.getItems();
+            if (!$.isEmptyObject(FNames)&&FNames != undefined&&FNames != null) {
+                for (var k in FNames) {  //通过定义一个局部变量FName遍历获取到了map中所有的key值
+                    Fields = M_Form.getFields(k);
+                    for (var i = Fields.length - 1; i >= 0; i--) {
+                        if (FNames[k] == Fields[i].get('id')) {
+                            Fields[i].enable();
+                        }
                     }
                 }
             }
-            FNames = [];
+            FNames = {};
             M_Form.getField('genre_tags').set('value', ev.__attrVals.value);
             for (var i = items.length - 1; i >= 0; i--) {
-                if(items[i].__attrVals.panel.id!=ev.__attrVals.id){
-                    $("#"+items[i].__attrVals.panel.id+" input[type='text']").each(function () {
-                        FNames.push($(this).attr('name'));
+                if (items[i].__attrVals.panel.id != ev.__attrVals.id) {
+                    $("#" + items[i].__attrVals.panel.id + " input[type='text']").each(function () {
+                        FNames[$(this).attr('name')] = $(this).attr('id');
                     })
                 }
             }
-           /* if (ev.__attrVals.value == '1') {
-                $("#matH_row input[type='text']").each(function () {
-                    FNames.push($(this).attr('name'));
-                })
-
-            }*/
-            for (var j = FNames.length - 1; j >= 0; j--) {
-                Field = M_Form.getFields(FNames[j]);
-                Fields.push(Field);
-                if (Field != null) {
-                    Field.disable();
+            /* if (ev.__attrVals.value == '1') {
+             $("#matH_row input[type='text']").each(function () {
+             FNames.push($(this).attr('name'));
+             })
+             }*/
+            for (var k in FNames) {  //通过定义一个局部变量FName遍历获取到了map中所有的key值
+                Fields = M_Form.getFields(k);
+                for (var i = Fields.length - 1; i >= 0; i--) {
+                    if (FNames[k] == Fields[i].get('id')) {
+                        Fields[i].disable();
+                    }
                 }
             }
             // Fields.clearErrors();
         }
+
         editing.on('accept', function (ev) {
             mat_name_data = [];
         })

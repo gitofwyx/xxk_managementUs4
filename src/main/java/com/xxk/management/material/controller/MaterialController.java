@@ -123,28 +123,6 @@ public class MaterialController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/getDeviceClass")
-    public Map<String, Object> getDeviceName() {
-        Map<String, Object> result = new HashMap<>();
-        List<Map<String, Object>> listResult = new ArrayList<>();
-        //List<Map<String, Object>> dev_count = new ArrayList<>();
-        try {
-            listResult = deviceClassService.listAllDeviceName();
-            //dev_count = deviceClassService.getCountClassById("1fa2614d-4a55-1234-a79a-5546319b9123");
-            if (listResult == null) {
-                log.error("获取出错");
-                return null;
-            }
-            result.put("dev_class", listResult);
-            /*result.put("dev_count", dev_count);*/
-        } catch (Exception e) {
-            log.error(e);
-            return null;
-        }
-        return result;
-    }
-
-    @ResponseBody
     @RequestMapping("/getMaterialName")
     public Map<String, Object> getMaterialName() {
         Map<String, Object> result = new HashMap<>();
