@@ -38,6 +38,11 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
+    public Device getDeviceById(String deviceId) {
+        return dao.getDeviceById(deviceId);
+    }
+
+    @Override
     public List<Map<String, Object>> getDeviceNumber(String deviceId) {
         return dao.getDeviceNumber(deviceId);
     }
@@ -59,16 +64,6 @@ public class DeviceServiceImpl implements DeviceService {
             return null;
         }
         return dao.getDeviceIdent();
-    }
-
-    @Override
-    public boolean plusDeviceNumber(int dev_no,String deviceId) {
-        return dao.plusDeviceNumber(dev_no,deviceId)==1?true:false;
-    }
-
-    @Override
-    public boolean minusDeviceNumber(int dev_no, String deviceId) {
-        return dao.minusDeviceNumber(dev_no,deviceId)==1?true:false;
     }
 
 }

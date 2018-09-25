@@ -17,6 +17,8 @@ public interface DeviceClassDao {
 
     public List<Map<String, Object>> listAllDeviceName();
 
+    public List<Map<String, Object>> listDeviceOfTab(String tab);
+
     public int addDeviceClass(DeviceClass deviceClass);
 
     public DeviceClass getDeviceClassById(String id);

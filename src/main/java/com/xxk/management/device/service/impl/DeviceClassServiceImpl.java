@@ -35,6 +35,11 @@ public class DeviceClassServiceImpl implements DeviceClassService {
     }
 
     @Override
+    public List<Map<String, Object>> listDeviceOfTab(String tab) {
+        return dao.listDeviceOfTab(tab);
+    }
+
+    @Override
     public boolean addDeviceClass(DeviceClass deviceClass) {
         return dao.addDeviceClass(deviceClass)==1?true:false;
     }

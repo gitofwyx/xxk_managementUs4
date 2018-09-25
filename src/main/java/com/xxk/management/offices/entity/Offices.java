@@ -12,6 +12,8 @@ public class Offices extends BaseInfoEntity {
     private String belong_to_id;     //所属科室id
     private String belong_to_office;     //所属科室
     private String office_name;      //科室名
+    private String office_property;      //科室性质
+    private String office_function;      //科室性质
     private String leading_official;      //科室负责人
     private String keyWord;
 
@@ -55,6 +57,22 @@ public class Offices extends BaseInfoEntity {
 
     public void setOffice_name(String office_name) {
         this.office_name = office_name;
+    }
+
+    public String getOffice_property() {
+        return office_property;
+    }
+
+    public void setOffice_property(String office_property) {
+        this.office_property = office_property;
+    }
+
+    public String getOffice_function() {
+        return office_function;
+    }
+
+    public void setOffice_function(String office_function) {
+        this.office_function = office_function;
     }
 
     public String getLeading_official() {

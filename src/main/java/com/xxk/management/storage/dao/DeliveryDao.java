@@ -1,7 +1,6 @@
 package com.xxk.management.storage.dao;
 
 import com.xxk.management.storage.entity.Delivery;
-import com.xxk.management.storage.entity.Storage;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -18,7 +18,7 @@ public interface MaterialService {
 
     public List<Map<String, Object>> getMaterialNumber(String materialId);
 
-    public List<Map<String, Object>> getMaterialSelect();
+    public List<Map<String, Object>> getMaterialSelect(String tab);
 
     public List<Map<String, Object>> getMaterialByIdent(List<String> listMatId);
 

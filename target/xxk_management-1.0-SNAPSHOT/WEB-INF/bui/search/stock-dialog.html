@@ -1,0 +1,496 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> 搜索表单</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/page-min.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        code {
+            padding: 0px 4px;
+            color: #d14;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <form id="searchForm" class="form-horizontal span32">
+            <div class="row">
+                <div class="control-group span7">
+                    <label class="control-label">设备名称：</label>
+                    <div class="controls">
+                        <input type="text" class="control-text" name="account">
+                    </div>
+                </div>
+                <div class="control-group span7">
+                    <label class="control-label">设备型号：</label>
+                    <div class="controls">
+                        <input type="text" class="control-text" name="name">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span9">
+                    <label class="control-label">入库时间：</label>
+                    <div class="controls">
+                        <input type="text" class=" calendar" name="in_confirmed_date">
+                    </div>
+                </div>
+                <div class="control-group span9">
+
+                </div>
+                <div class="span3 offset2">
+                    <button type="button" id="btnSearch" class="button button-primary">搜索</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="search-grid-container">
+        <div id="grid"></div>
+    </div>
+
+</div>
+<div id="Content_I" class="hide">
+    <form id="I_Form" class="form-horizontal" action="">
+        <input id="io_Console" name="io_Console" type="hidden" value="" data-rules="{required:true}">
+        <div id="tab_I"></div>
+        <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备名称：</label>
+                <div class="controls" id="dev_name_select">
+                    <input name="dev_name" type="hidden" id="dev_name" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备型号：</label>
+                <div class="controls" id="dev_type_select">
+                    <input name="dev_type" type="hidden" id="dev_type" data-rules="{required:true}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>入库科室：</label>
+                <div class="controls" id="stock_office_select">
+                    <input name="stock_office_no" id="stock_office_no" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>入库确认人：</label>
+                <div class="controls">
+                    <input name="in_confirmed_by" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div id="input_Console">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>材料单位：</label>
+                    <div class="controls">
+                        <input name="in_confirmed_by" type="text" data-rules="{required:true}"
+                               class="input-normal control-text">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>单位/个体比例：</label>
+                    <div class="controls">
+                        <input name="stock_proportion" type="number"
+                               class="span1 control-text"> ：
+                        <input name="in_confirmed_by" type="number" data-rules="{required:true}"
+                               data-tip="{text:'注:数字有效，不能输入小数'}" class="span2 control-text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>入库数量：</label>
+                    <div class="controls">
+                        <input name="in_confirmed_no" type="number" data-rules="{required:true}"
+                               data-tip="{text:'注:数量以单位数量为基准'}" class="input-normal control-text">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>入库时间：</label>
+                    <div class="controls">
+                        <input name="in_confirmed_date" type="text" data-rules="{required:true}" class="calendar">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存总量：</label>
+                    <div class="controls">
+                        <input name="in_confirmed_by" type="number" data-rules="{required:true}"
+                               class="input-normal control-text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span15">
+                    <label class="control-label">备注：</label>
+                    <div class="controls control-row3">
+                        <textarea name="remark" class="span11" type="text"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="Content_O" class="hide">
+    <form id="O_Form" class="form-horizontal" action="">
+        <div id="tab"></div>
+        <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>领用科室：</label>
+                <div class="controls">
+                    <input name="use_offices" type="text" id="use_offices" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>领用人：</label>
+                <div class="controls">
+                    <input name="used_name" type="text" class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>领用数量：</label>
+                <div class="controls">
+                    <input name="used_no" type="number" id="used_no" value="1" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>领用时间：</label>
+                <div class="controls">
+                    <input name="used_date" type="text" data-rules="{required:true}" class="calendar">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="js/bui-min.js"></script>
+<script type="text/javascript" src="js/config-min.js"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="js/tree/json2.js"></script>
+<![endif]-->
+<script type="text/javascript" src="js/tree/tree_build.js"></script>
+<script type="text/javascript" src="js/localstorageIO.js"></script>
+<script type="text/javascript">
+    BUI.use('common/page');
+</script>
+<script type="text/javascript">
+    BUI.use(['common/search', 'bui/form', 'bui/tab', 'bui/select', 'bui/extensions/treepicker', 'bui/tree'], function (Search, Form, Tab, Select, TreePicker, Tree) {
+        var offices_select = localstorageIO("offices_select", "/getOfficeSelect");
+        var enumObj = {"0": "未出库", "1": "已出库"},
+                select_data = [],
+                select_type = [],
+                stock_office = {},
+                Editing_I = new BUI.Grid.Plugins.DialogEditing({
+                    contentId: 'Content_I', //设置隐藏的Dialog内容
+                    autoSave: true, //添加数据或者修改数据时，自动保存
+                    triggerCls: 'btn-edit'
+                }),
+                Editing_O = new BUI.Grid.Plugins.DialogEditing({
+                    contentId: 'Content_O', //设置隐藏的Dialog内容
+                    autoSave: true, //添加数据或者修改数据时，自动保存
+                    triggerCls: 'btn-out_dev'
+                }),
+                tab_I = new Tab.TabPanel({
+                    render: '#tab_I',
+                    elCls: 'button-tabs',
+                    panelContainer: '#panel',//如果内部有容器，那么会跟标签项一一对应，如果没有会自动生成
+                    //selectedEvent : 'mouseenter',//默认为click,可以更改事件
+                    children: [
+                        {id: 'dev_row', title: '设备', name: 'DeviceSelect', value: '1', selected: true},
+                        {id: 'matP_row', title: '配件', name: 'MaterialSelect', value: '2',},
+                        {id: 'matH_row', title: '耗材', name: 'MaterialSelect', value: '3',},
+                    ]
+                }).render(),
+        /*Sto_rec_grid = new Grid.SimpleGrid({
+         render: '#Sto_rec_grid',
+         columns: [
+         {title: '库存编号', dataIndex: 'stock_ident', elCls: 'center',width: '30%'},
+         {title: '数量', dataIndex: 'stock_no', elCls: 'center',width: '20%'},
+         {title: '单位', dataIndex: 'stock_unit',elCls: 'center', width: '20%'},
+         {title: '总量', dataIndex: 'stock_total',elCls: 'center', width: '30%'},
+         ],
+         items: [],
+
+         }).render(),*/
+                dev_name_select = new Select.Select({
+                    render: '#dev_name_select',
+                    valueField: '#dev_name',
+                    multipleSelect: false,
+                }).render(),
+                dev_type_select = new Select.Select({
+                    render: '#dev_type_select',
+                    valueField: '#dev_type',
+                    multipleSelect: false,
+                    items: []
+                }).render(),
+                stock_office_select = new Select.Select({
+                    render: '#stock_office_select',
+                    valueField: '#stock_office_no',
+                    multipleSelect: false,
+                    items: []
+                }).render(),
+                stock_office_tree = new Tree.TreeList({
+                    nodes: [],
+                    //store: store,
+                    //dirSelectable : false,//阻止树节点选中
+                    showLine: true //显示连接线
+                }),
+                stock_office_picker = new TreePicker({
+                    trigger: '#',
+                    //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                    width: 150,  //指定宽度
+                    children: [stock_office_tree] //配置picker内的列表
+                }).render(),
+                columns = [
+                    {title: '&nbsp库存编号', dataIndex: 'stock_ident', elCls: 'center', width: 110},
+                    {title: '&nbsp库存名称', dataIndex: 'dev_name', elCls: 'center', width: 100},
+                    {title: '&nbsp库存型号', dataIndex: 'dev_type', elCls: 'center', width: 100},
+                    {title: '&nbsp库存类别', dataIndex: 'stock_type', elCls: 'center', width: 100},
+                    {title: '&nbsp库存数量', dataIndex: 'stock_no', elCls: 'center', width: 70},
+                    {title: '&nbsp库存单位', dataIndex: 'stock_unit', elCls: 'center', width: 100},
+                    {title: '&nbsp库存总量', dataIndex: 'stock_total', elCls: 'center', width: 100},
+                    {title: '&nbsp库存状态', dataIndex: 'stock_flag', elCls: 'center', width: 100},
+                    {title: '&nbsp备注', dataIndex: 'remark', elCls: 'center', width: 100},
+
+                    {
+                        title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
+
+                        var editStr1 = '<span class="grid-command btn-edit" title="编辑信息">编辑</span>',
+                                delStr = '<span class="grid-command btn-del" title="删除信息">删除</span>';//页面操作不需要使用Search.createLink
+                        return editStr1 + delStr;
+                    }
+                    }
+                ],
+                store = Search.createStore('/listStock', {
+                    proxy: {
+                        save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
+                            addUrl: '/addStorage',
+                            updateUrl: '/updateStorage',
+                            removeUrl: '../data/del.php'
+                        },
+                        method: 'POST'
+                    },
+                    pageSize: 6,
+                    autoSync: true //保存数据后，自动更新
+                }),
+                gridCfg = Search.createGridCfg(columns, {
+                    tbar: {
+                        items: [
+                            {
+                                text: '<i class="icon-plus"></i>设备入库',
+                                btnCls: 'button button-small',
+                                handler: in_storageFunction
+                            },
+                            {
+                                text: '<i class="icon-hand-right"></i>设备出库',
+                                btnCls: 'button button-small',
+                                handler: outDevFunction
+                            },
+                            {
+                                text: '<a class="page-action" data-href="/menu/delivery_tab" methods="post" title="出库记录" data-id="outSwitch">出库记录</a>',
+                                btnCls: 'button button-small',
+//                                handler: ioSwitch
+                            }
+                        ]
+                    },
+                    plugins: [Editing_I, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
+                    emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
+                });
+
+        var search = new Search({
+                    store: store,
+                    gridCfg: gridCfg
+                }),
+                grid = search.get('grid'),
+                I_Form = Editing_I.get('form'),
+                O_Form = Editing_O.get('form');
+
+        grid.on('itemsshow', function (ev) {
+            $("#input_Console input").each(function () {
+                $(this).attr('disabled',true);
+            })
+        });
+
+        //入库操作
+        function in_storageFunction() {
+            entity_selectAjax();
+            office_selectAjax();
+            dev_type_select.set('items', []);
+            dev_name_select.set('items', select_data.Class_data);
+            stock_office_select.set('items', stock_officeSelect());
+            var newData = {isNew: true}; //标志是新增加的记录
+            Editing_I.add(newData, 'name'); //添加记录后，直接编辑
+            I_Form.getField('io_Console').set('value', '1');
+            I_Form.getField('in_confirmed_no').addRule('max', 9, '入库限制 不能大于{0}');
+            I_Form.getField('in_confirmed_no').addRule('min', 1, '入库限制 不能小于{0}');
+            I_Form.getField('stock_proportion').set('value', '1');
+        }
+
+        //编辑操作
+        function updateFunction() {
+            var selections = grid.getSelection();
+            if (selections.length == 0) {
+                return;
+            } else if (selections.length != 1) {
+                BUI.Message.Alert('一次只能编辑一条记录！！');
+                return;
+            } else {
+                var eData = selections[0];
+                Editing_I.edit(eData);
+            }
+        }
+
+        //出库操作
+        function outDevFunction() {
+            var selections = grid.getSelection();
+            if (selections.length == 0) {
+                return;
+            } else if (selections.length != 1) {
+                BUI.Message.Alert('一次只能选择单个设备出库！！');
+                return;
+            } else {
+                var eData = selections[0];
+                Editing_O.edit(eData);
+                O_Form.getField('used_no').addRule('max', selections[0].dev_no, '库存不足，不能大于{0}');
+            }
+        }
+
+        //删除操作
+        function delFunction() {
+            var selections = grid.getSelection();
+            delItems(selections);
+        }
+
+        function delItems(items) {
+            var ids = [];
+            BUI.each(items, function (item) {
+                ids.push(item.id);
+            });
+            if (ids.length) {
+                BUI.Message.Confirm('确认要删除选中的记录么？', function () {
+                    store.save('remove', {ids: ids});
+                }, 'question');
+            }
+        }
+
+        //监听事件，删除一条记录
+        grid.on('cellclick', function (ev) {
+            var sender = $(ev.domTarget); //点击的Dom
+            if (sender.hasClass('btn-del')) {
+                var record = ev.record;
+                delItems([record]);
+            }
+        });
+        //下拉框ajax请求entity_selectAjax
+        function entity_selectAjax() {
+            var url = '/get' + tab_I.getSelected().__attrVals.name;
+            if ($.isEmptyObject(select_data)) {
+                $.ajax({
+                    url: url,
+                    data: {tab: tab_I.getSelected().__attrVals.value},
+                    type: 'POST', //GET
+                    async: true,    //或false,是否异步
+                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success: function (data, textStatus, jqXHR) {
+                        if (data != null && data != undefined) {
+                            select_data = data;
+                            dev_name_select.set('items', select_data.Class_data);
+                        }
+                    },
+                    error: function (xhr, textStatus) {
+                        console.log('错误')
+                        console.log(xhr)
+                        console.log(textStatus)
+                    }
+                })
+            }
+        }
+
+        //下拉框ajax请求office_selectAjax
+        function office_selectAjax() {
+            if (offices_select == undefined || offices_select == null) {
+                offices_select = localstorageIO("offices_select", "/getOfficeSelect");
+                if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
+                    alert("浏览器不支持localstorage！");
+                    $.ajax({
+                        url: '/getOfficeSelect',
+                        type: 'POST', //GET
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            if (data != null && data != undefined) {
+                                offices_select = data.result;
+                                stock_office_select.set('items', stock_officeSelect());
+                                /*var mObj = GetMenus('root', offices_select);
+                                 stock_office_tree.set('nodes', mObj);*/
+                            }
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus)
+                        }
+                    })
+                }
+            }
+        }
+
+        //库存科室下拉框数据生成
+        function stock_officeSelect() {
+            if (stock_office == undefined || $.isEmptyObject(stock_office)) {
+                for (var i in offices_select) {
+                    if (offices_select[i].office_function == '1') {
+                        stock_office[offices_select[i].value] = offices_select[i].text;
+                    }
+                }
+            }
+            return stock_office;
+        }
+
+        //监听事件，tab类别切换
+        tab_I.on('selectedchange', function (ev) {
+            select_data = [];
+            entity_selectAjax();
+        });
+
+        //监听事件，下拉框选中
+        dev_name_select.on('change', function (ev) {
+            select_type = [];
+            var Entity_data = select_data.Entity_data;
+            for (var j = 0, len = Entity_data.length; j < len; j++) {
+                if (Entity_data[j].dev_class_id == dev_name_select.getSelectedValue()) {
+                    select_type.push(Entity_data[j]);
+                }
+            }
+            dev_type_select.set('items', select_type);
+        });
+
+        //监听事件，下拉框选中
+        stock_office_tree.on('change', function (ev) {
+
+            
+
+        });
+
+    });
+</script>
+
+</body>
+</html>  

@@ -123,8 +123,8 @@
 <script type="text/javascript">
     BUI.use(['common/search', 'bui/tab', 'bui/form', 'bui/select'], function (Search, Tab, Form, Select) {
 
-        var enumObj_dev_flag = {"1": "好", "0": "坏"},
-                enumObj_related_flag = {"1": "关联", "0": "不关联"},
+        var enumObj_mat_flag = {"1": "启用", "0": "禁用"},
+                enumObj_genre_tags = {"2": "配件", "3": "耗材"},
                 mat_name_data = [],
                 mat_count_map = {},//material种类id对应的mat_name_data键
                 class_count = 0,//material种类最大值
@@ -147,41 +147,44 @@
                     //selectedEvent : 'mouseenter',//默认为click,可以更改事件
 
                     children: [
-                        {id: 'matP_row', title: '配件', value: '1', selected: true},
-                        {id: 'matH_row', title: '耗材', value: '2',},
+                        {id: 'matP_row', title: '配件', value: '2', selected: true},
+                        {id: 'matH_row', title: '耗材', value: '3',},
                     ]
                 }).render(),
                 suggest_P = new Select.Suggest({
-                    id : 'matP_name',
+                    id: 'matP_name',
                     render: '#matP_name_div',
                     name: 'mat_name',
                     valueField: '#dev_class_id',
                     data: []
                 }).render(),
                 suggest_H = new Select.Suggest({
-                    id : 'matH_name',
+                    id: 'matH_name',
                     render: '#matH_name_div',
                     name: 'mat_name',
                     valueField: '#dev_class_id',
                     data: []
                 }).render(),
                 columns = [
-                    {title: '耗材&#92;配件编号', dataIndex: 'dev_ident', width: 150, align: 'center'},
-                    {title: '耗材&#92;配件名称', dataIndex: 'dev_name', width: 150, align: 'center'},
-                    {title: '耗材&#92;配件型号', dataIndex: 'dev_type', width: 100},
+                    {title: '&nbsp耗材&#92;配件编号', dataIndex: 'mat_ident', elCls: 'center', width: 150, align: 'center'},
+                    {title: '&nbsp耗材&#92;配件名称', dataIndex: 'mat_name', elCls: 'center', width: 150, align: 'center'},
+                    {title: '&nbsp耗材&#92;配件型号', dataIndex: 'mat_type', elCls: 'center', width: 150},
+                    {title: '&nbsp单位', dataIndex: 'single_unit', elCls: 'center', width: 70},
                     {
-                        title: '耗材&#92;配件状态',
-                        dataIndex: 'dev_flag',
+                        title: '&nbsp类型',
+                        dataIndex: 'genre_tags',
+                        elCls: 'center',
                         width: 100,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj_dev_flag)
+                        renderer: BUI.Grid.Format.enumRenderer(enumObj_genre_tags)
                     },
                     {
-                        title: '关联状态',
-                        dataIndex: 'related_flag',
+                        title: '&nbsp状态',
+                        dataIndex: 'mat_flag',
+                        elCls: 'center',
                         width: 70,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj_related_flag)
+                        renderer: BUI.Grid.Format.enumRenderer(enumObj_mat_flag)
                     },
-                    {title: '备注', dataIndex: 'remark', width: 250},
+                    {title: '&nbsp备注', dataIndex: 'remark', elCls: 'center', width: 250},
                     {
                         title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
 
@@ -219,6 +222,7 @@
                             {text: '<i class="icon-remove"></i>删除', btnCls: 'button button-small', handler: delFunction}
                         ]
                     },
+                    emptyDataTpl : '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
                     plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
 
@@ -228,6 +232,15 @@
                 }),
                 grid = search.get('grid'),
                 M_Form = editing.get('form');
+
+        grid.on('itemsshow', function (ev) {
+            var iName = 0;
+            $("#M_Form input[type='text']").each(function () {
+                if ($(this).attr('id') == undefined || $(this).attr('id') == null || $(this).attr('id') == '') {
+                    $(this).attr('id', $(this).attr('name') + iName++);
+                }
+            })
+        });
 
         //新增操作
         function addFunction() {
@@ -241,39 +254,7 @@
              {text: '选项3', value: 'c'}
              ]*/
             FNames = {};
-            if ($.isEmptyObject(mat_name_data)) {
-                $.ajax({
-                    url: '/getDeviceName',
-                    type: 'POST', //GET
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            mat_name_data = data.dev_class;
-                            if (!$.isEmptyObject(mat_name_data)) {
-                                suggest_P.setInternal('data', mat_name_data);
-                                suggest_P.render();
-                                suggest_H.setInternal('data', mat_name_data);
-                                suggest_H.render();
-                                //alert(JSON.stringify(mat_name_data));//json对象转字符串
-                                for (var c in mat_name_data) {
-                                    class_ident.push(mat_name_data[c].class_ident);
-                                    class_Date[mat_name_data[c].class_ident] = mat_name_data[c].updateDate;
-                                    mat_count_map[mat_name_data[c].value] = c;
-                                }
-                                class_count = Math.max.apply(null, class_ident);//获取数组中的最大值
-                                M_Form.getField('dev_class_count').set('value', class_count);
-                            }
-                        }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误');
-                        console.log(xhr);
-                        console.log(textStatus);
-                    }
-                })
-            }
+            mat_selecteAjax();
             var newData = {}; //标志是新增加的记录
             editing.add(newData, 'name'); //添加记录后，直接编辑
             for (var i in  M_Form.getFields('mat_name')) {  //通过定义一个局部变量FName遍历获取到了map中所有的key值
@@ -328,13 +309,12 @@
                 items([record]);
             }
         });
-        grid.on('itemsshow', function (ev) {
-            var iName=0;
-            $("#M_Form input[type='text']").each(function () {
-                if ($(this).attr('id') == undefined || $(this).attr('id') == null || $(this).attr('id') == '') {
-                    $(this).attr('id', $(this).attr('name')+iName++);
-                }
-            })
+
+        tab.on('selectedchange', function (ev) {
+            //M_Form.clearFields();
+            mat_name_data = [];
+            mat_selecteAjax();
+            selectedChange(tab.getSelected());
         });
         suggest_P.on('change', function (ev) {
             setClass_ident();
@@ -342,6 +322,7 @@
         suggest_H.on('change', function (ev) {
             setClass_ident();
         });
+
         function setClass_ident() {
             if (mat_name_data != undefined || mat_name_data != null) {
                 var dev_class_id = M_Form.getField('dev_class_id').get("value");
@@ -351,16 +332,49 @@
             }
         }
 
-        tab.on('selectedchange', function (ev) {
-            M_Form.clearFields();
-            selectedChange(tab.getSelected());
-        });
+        function mat_selecteAjax() {
+            if ($.isEmptyObject(mat_name_data)) {
+                $.ajax({
+                    url: '/getMaterialName',
+                    data: {tab: tab.getSelected().__attrVals.value},
+                    type: 'POST', //GET
+                    async: true,    //或false,是否异步
+                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success: function (data, textStatus, jqXHR) {
+                        if (data != null && data != undefined) {
+                            mat_name_data = data.dev_class;
+                            if (!$.isEmptyObject(mat_name_data)) {
+                                suggest_P.setInternal('data', mat_name_data);
+                                suggest_P.render();
+                                suggest_H.setInternal('data', mat_name_data);
+                                suggest_H.render();
+                                //alert(JSON.stringify(mat_name_data));//json对象转字符串
+                                for (var c in mat_name_data) {
+                                    class_ident.push(mat_name_data[c].class_ident);
+                                    class_Date[mat_name_data[c].class_ident] = mat_name_data[c].updateDate;
+                                    mat_count_map[mat_name_data[c].value] = c;
+                                }
+                                class_count = Math.max.apply(null, class_ident);//获取数组中的最大值
+                                M_Form.getField('dev_class_count').set('value', class_count);
+                            }
+                        }
+                    },
+                    error: function (xhr, textStatus) {
+                        console.log('错误');
+                        console.log(xhr);
+                        console.log(textStatus);
+                    }
+                })
+            }
+        }
+
         function selectedChange(ev) {
-            ev.__attrVals.panel.getElementsByTagName("input");
+            //ev.__attrVals.panel.getElementsByTagName("input");
             // M_Form.clearFields();
             var Fields = [];
             var items = tab.getItems();
-            if (!$.isEmptyObject(FNames)&&FNames != undefined&&FNames != null) {
+            if (!$.isEmptyObject(FNames) && FNames != undefined && FNames != null) {
                 for (var k in FNames) {  //通过定义一个局部变量FName遍历获取到了map中所有的key值
                     Fields = M_Form.getFields(k);
                     for (var i = Fields.length - 1; i >= 0; i--) {

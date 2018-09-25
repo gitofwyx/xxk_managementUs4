@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xxk.management.storage.dao.StorageDao">
+<mapper namespace="com.xxk.management.storage.dao.StockDao">
     <sql id="columns">id,device_id,in_confirmed_ident,in_confirmed_by,in_confirmed_date,in_confirmed_no,fact_dev_no,
        out_flag,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 

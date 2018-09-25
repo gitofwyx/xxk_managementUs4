@@ -10,8 +10,9 @@ public class DeviceClass extends BaseInfoEntity {
     private String id;
     private String dev_class;     //设备种类
     private int class_ident;     //设备种类编号
-    private int dev_max;      //
-    private int type_max;      //
+    private String class_tab;     //大类标识
+    private int dev_max;      //设备最大值
+    private int type_max;      //种类最大值
 
     @Override
     public String getId() {
@@ -37,6 +38,14 @@ public class DeviceClass extends BaseInfoEntity {
 
     public void setClass_ident(int class_ident) {
         this.class_ident = class_ident;
+    }
+
+    public String getClass_tab() {
+        return class_tab;
+    }
+
+    public void setClass_tab(String class_tab) {
+        this.class_tab = class_tab;
     }
 
     public int getDev_max() {

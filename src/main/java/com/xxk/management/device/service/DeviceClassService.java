@@ -15,6 +15,8 @@ public interface DeviceClassService {
 
     public List<Map<String, Object>> listAllDeviceName();
 
+    public List<Map<String, Object>> listDeviceOfTab(String tab);
+
     public boolean addDeviceClass(DeviceClass deviceClass);
 
    // public DeviceClass getDeviceClassById(String id);

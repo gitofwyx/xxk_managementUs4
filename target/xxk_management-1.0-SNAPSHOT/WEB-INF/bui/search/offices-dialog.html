@@ -136,10 +136,11 @@
                     children: [belong_to_tree] //配置picker内的列表
                 }).render(),
                 columns = [
-                    {title: '编号', dataIndex: 'office_ident', width: 40},
-                    {title: '科室名称', dataIndex: 'office_name', width: 100},
-                    {title: '所属科室', dataIndex: 'belong_to_office', width: 100},
-                    {title: '备注', dataIndex: '', width: 350},
+                    {title: '编号', dataIndex: 'office_ident',elCls: 'center', width: 40},
+                    {title: '&nbsp科室名称', dataIndex: 'office_name',elCls: 'center', width: 100},
+                    {title: '&nbsp科室职能', dataIndex: 'office_property',elCls: 'center', width: 100},
+                    {title: '&nbsp所属科室', dataIndex: 'belong_to_office', elCls: 'center',width: 100},
+                    {title: '&nbsp备注', dataIndex: '', width: 350},
                     {
                         title: '操作', dataIndex: '', width: 200, renderer: function (value, obj) {
                         var editStr1 = '<span class="grid-command btn-edit" title="编辑设备信息">编辑</span>',
@@ -174,6 +175,7 @@
                             {text: '<i class="icon-remove"></i>删除', btnCls: 'button button-small', handler: delFunction}
                         ]
                     },
+                    emptyDataTpl : '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
                     plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
 
@@ -258,7 +260,7 @@
 
         editing.on('accept', function (ev) {
             alert("更新localstorage");
-            offices_select = localstorageIO("offices_select", true);
+            offices_select = localstorageIO("offices_select","/getOfficeSelect", true);
         });
 
     });

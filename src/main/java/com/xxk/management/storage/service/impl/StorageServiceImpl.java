@@ -1,8 +1,7 @@
 package com.xxk.management.storage.service.impl;
-
+import com.xxk.management.storage.service.StorageService;
 import com.xxk.management.storage.dao.StorageDao;
 import com.xxk.management.storage.entity.Storage;
-import com.xxk.management.storage.service.StorageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

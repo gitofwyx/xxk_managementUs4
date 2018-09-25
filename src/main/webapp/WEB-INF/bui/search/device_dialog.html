@@ -95,8 +95,8 @@
 <script type="text/javascript">
     BUI.use(['common/search', 'bui/form', 'bui/select'], function (Search, Form, Select) {
 
-        var enumObj_dev_flag = {"1": "好", "0": "坏"},
-                enumObj_related_flag = {"1": "关联", "0": "不关联"},
+        var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
+                enumObj_genre_tags = {"1": "设备"},
                 dev_name_data = [],
                 dev_count_map = {},//设备种类id对应的dev_name_data键
                 class_count = 0,//设备种类最大值
@@ -119,22 +119,24 @@
                     data: []
                 }).render(),
                 columns = [
-                    {title: '设备编号', dataIndex: 'dev_ident', width: 150, align: 'center'},
-                    {title: '设备名称', dataIndex: 'dev_name', width: 150, align: 'center'},
-                    {title: '设备型号', dataIndex: 'dev_type', width: 100},
+                    {title: '&nbsp设备编号', dataIndex: 'dev_ident',elCls: 'center', width: 150},
+                    {title: '&nbsp设备名称', dataIndex: 'dev_name',elCls: 'center', width: 150},
+                    {title: '&nbsp设备型号', dataIndex: 'dev_type', elCls: 'center',width: 150},
                     {
-                        title: '设备状态',
+                        title: '&nbsp类型',
+                        dataIndex: 'genre_tags',
+                        elCls: 'center',
+                        width: 100,
+                        renderer: BUI.Grid.Format.enumRenderer(enumObj_genre_tags)
+                    },
+                    {
+                        title: '&nbsp状态',
                         dataIndex: 'dev_flag',
+                        elCls: 'center',
                         width: 70,
                         renderer: BUI.Grid.Format.enumRenderer(enumObj_dev_flag)
                     },
-                    {
-                        title: '关联状态',
-                        dataIndex: 'related_flag',
-                        width: 70,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj_related_flag)
-                    },
-                    {title: '备注', dataIndex: 'remark', width: 250},
+                    {title: '备注', dataIndex: 'remark',elCls: 'center', width: 250},
                     {
                         title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
 
@@ -172,6 +174,7 @@
                             {text: '<i class="icon-remove"></i>删除', btnCls: 'button button-small', handler: delFunction}
                         ]
                     },
+                    emptyDataTpl : '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
                     plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
 
@@ -196,6 +199,7 @@
             if ($.isEmptyObject(dev_name_data)) {
                 $.ajax({
                     url: '/getDeviceName',
+                    data: {tab:1},
                     type: 'POST', //GET
                     async: true,    //或false,是否异步
                     /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)

@@ -18,6 +18,8 @@ public interface DeviceDao {
 
     public int addDevice(Device device);
 
+    public Device getDeviceById(String deviceId);
+
     public List<Map<String, Object>> getDeviceNumber(String deviceId);
 
     public List<Map<String, Object>> getDeviceSelect();
@@ -25,9 +27,5 @@ public interface DeviceDao {
     public List<Map<String, Object>> getStoreDeviceById(List<String> listDevId);
 
     public List<Map<String, Object>> getDeviceIdent();   //获取编号
-
-    public int plusDeviceNumber(int dev_no,String deviceId);   //更新设备数量 （增加）
-
-    public int minusDeviceNumber(int dev_no,String deviceId);   //更新设备数量 （减少）
 
 }

@@ -16,6 +16,8 @@ public class Material extends BaseInfoEntity {
     private String single_unit;       //个体单位
     private String genre_tags;    //类型标识
     private String mat_flag;         //设备状态 -> 1:停用；0：正常
+    private String isStock;        //是否库存标记
+    private String stock_office;  //库存科室标记
     private String remark;         //备注
     private String keyWord;
 
@@ -91,6 +93,22 @@ public class Material extends BaseInfoEntity {
 
     public void setMat_flag(String mat_flag) {
         this.mat_flag = mat_flag;
+    }
+
+    public String getIsStock() {
+        return isStock;
+    }
+
+    public void setIsStock(String isStock) {
+        this.isStock = isStock;
+    }
+
+    public String getStock_office() {
+        return stock_office;
+    }
+
+    public void setStock_office(String stock_office) {
+        this.stock_office = stock_office;
     }
 
     public String getRemark() {

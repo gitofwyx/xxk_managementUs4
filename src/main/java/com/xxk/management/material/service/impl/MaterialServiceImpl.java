@@ -43,8 +43,8 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public  List<Map<String, Object>> getMaterialSelect() {
-        return dao.getMaterialSelect();
+    public  List<Map<String, Object>> getMaterialSelect(String tab) {
+        return dao.getMaterialSelect(tab);
     }
 
     @Override

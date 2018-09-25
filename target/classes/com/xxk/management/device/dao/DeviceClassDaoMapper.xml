@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.device.dao.DeviceClassDao">
-    <sql id="columns">id,dev_class,dev_max,type_max,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,dev_class,class_ident,class_tab,dev_max,type_max,
+       createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <resultMap id="deviceClassMap" type="java.util.HashMap">
         <id column="id" property="value" jdbcType="VARCHAR"/>
@@ -23,10 +24,15 @@
         from xxk_dev_class WHERE deleteFlag='0';
     </select>
 
-    <!--添加用户信息 -->
+    <select id="listDeviceOfTab" resultMap="deviceClassMap">
+        select id,dev_class,class_ident,type_max,updateDate
+        from xxk_dev_class WHERE class_tab=#{0} and deleteFlag='0';
+    </select>
+
     <insert id="addDeviceClass" parameterType="com.xxk.management.device.entity.DeviceClass">
         insert into xxk_dev_class(<include refid="columns"></include>) values(
-        #{id},#{dev_class},#{dev_max},#{type_max},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{id},#{dev_class},#{class_ident},#{class_tab},#{dev_max},#{type_max},
+        #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <select id="getDeviceClassById" parameterType="string" resultType="com.xxk.management.device.entity.DeviceClass">

@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -92,8 +93,9 @@ public class MaterialController extends BaseController {
                     return result;
                 }
             }
-            if (!resultBl || "".equals(material.getDev_class_id()) && material.getDev_class_id() == null) {
+            else if ("".equals(material.getDev_class_id()) || material.getDev_class_id() == null) {
                 deviceClass.setId(material.getDev_class_id());
+                deviceClass.setClass_tab(material.getGenre_tags());
                 deviceClass.setDev_class(material.getMat_name());
                 String materialClassId = deviceClassService.updateEntityClass(deviceClass, Date);
                 if (materialClassId != null && !"".equals(materialClassId)) {
@@ -110,12 +112,14 @@ public class MaterialController extends BaseController {
 
             boolean Result = materialService.addMaterial(material);
             if (!(Result)) {
-                result.put("success", false);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
             } else {
                 result.put("success", true);
             }
         } catch (Exception e) {
-            result.put("success", false);
+            result.put("hasError", true);
+            result.put("error", "添加出错");
             log.error(e);
         }
         return result;
@@ -123,13 +127,13 @@ public class MaterialController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/getMaterialName")
-    public Map<String, Object> getMaterialName() {
+    @RequestMapping(value = "/getMaterialName",method = RequestMethod.POST)
+    public Map<String, Object> getMaterialName(@RequestParam(value = "tab") String tab) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listResult = new ArrayList<>();
         //List<Map<String, Object>> dev_count = new ArrayList<>();
         try {
-            listResult = deviceClassService.listAllDeviceName();
+            listResult = deviceClassService.listDeviceOfTab(tab);
             //dev_count = deviceClassService.getCountClassById("1fa2614d-4a55-1234-a79a-5546319b9123");
             if (listResult == null) {
                 log.error("获取出错");
@@ -143,5 +147,27 @@ public class MaterialController extends BaseController {
         }
         return result;
     }
-
+    @ResponseBody
+    @RequestMapping(value = "/getMaterialSelect",method = RequestMethod.POST)
+    public Map<String, Object> getMaterialSelect(@RequestParam(value = "tab") String tab) {
+        int id = 0;
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> listClass = new ArrayList<>();
+        List<Map<String, Object>> listMaterial = new ArrayList<>();
+        try {
+            listClass = deviceClassService.listDeviceOfTab(tab);
+            listMaterial = materialService.getMaterialSelect(tab);
+            if (listClass == null || listMaterial == null) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("Class_data", listClass);
+            result.put("Entity_data", listMaterial);
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+    }
 }

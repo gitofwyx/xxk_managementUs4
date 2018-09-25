@@ -5,9 +5,11 @@ import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.device.service.DeviceService;
+import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
+
 import com.xxk.management.storage.service.StorageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class StorageController extends BaseController {
 
     @Autowired
     private DeviceService deviceService;
+
+    @Autowired
+    private StockService stockService;
 
     @ResponseBody
     @RequestMapping("/listStorage")
@@ -212,12 +217,6 @@ public class StorageController extends BaseController {
                 result.put("error", "添加出错");
             } else {
                 //log.info(">>>>保存成功");
-                boolean udNmbResult = deviceService.plusDeviceNumber(storage.getIn_confirmed_no(), entityId);
-                if(!(udNmbResult)){
-                    log.error("udNmbResult:" + udNmbResult);
-                    result.put("hasError", true);
-                    result.put("error", "添加出错");
-                }
                 result.put("success", true);
             }
         } catch (DuplicateKeyException e) {
@@ -261,11 +260,10 @@ public class StorageController extends BaseController {
                 delivery.setUpdateUserId("admin");
                 delivery.setDeleteFlag("0");
                 boolean deliveryResult = deliveryService.addDelivery(delivery);
-                boolean udNmbResult = deviceService.minusDeviceNumber(delivery.getUsed_no(), delivery.getDevice_id());
-                if (!(deliveryResult) || !(udNmbResult)) {
+                if (!(deliveryResult)) {
                     result.put("hasError", true);
                     result.put("error", "添加出错");
-                    log.error("deliveryResult:" + deliveryResult + "udNmbResult:" + udNmbResult);
+
                 } else {
                     log.info(">>>>保存成功");
                     result.put("success", true);
