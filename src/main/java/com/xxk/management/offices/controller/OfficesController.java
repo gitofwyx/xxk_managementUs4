@@ -61,8 +61,8 @@ public class OfficesController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addOffices")
-    public Map<String, Boolean> addOffices(Offices offices) {
-        Map<String, Boolean> result = new HashMap<>();
+    public Map<String, Object> addOffices(Offices offices) {
+        Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String belong_to_id = offices.getBelong_to_id();
@@ -88,11 +88,13 @@ public class OfficesController extends BaseController {
             offices.setDeleteFlag("0");
             Boolean resultBl = officesService.addOffices(offices);
             if (!(resultBl)) {
-                result.put("error", false);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
                 return result;
             }
         } catch (Exception e) {
-            result.put("success", false);
+            result.put("hasError", true);
+            result.put("error", "添加出错");
             log.error(e);
         }
         return result;

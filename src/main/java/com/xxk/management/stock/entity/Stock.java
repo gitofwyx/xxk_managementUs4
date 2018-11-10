@@ -12,11 +12,11 @@ public class Stock extends BaseInfoEntity {
     private String entity_id;             //设备\耗材ID
     private String stock_type;            //库存类别
     private String stock_office_no;            //库存科室编号
-    private float stock_no;              //库存数量（按库存单位计）
+    private double stock_no;              //库存数量（按库存单位计）
     private String stock_unit;           //库存单位
-    private float stock_proportion;   //个体/单位比例
-    private float stock_total;       //库存总量
-    private float stock_total_unit;  //总量单位
+    private int stock_proportion;   //个体/单位比例
+    private double stock_total;       //库存总量
+    private String stock_total_unit;  //总量单位
     private String stock_flag;          //库存状态
     private String remark;          //备注
     private String keyWord;           //关键字
@@ -63,11 +63,11 @@ public class Stock extends BaseInfoEntity {
         this.stock_office_no = stock_office_no;
     }
 
-    public float getStock_no() {
+    public double getStock_no() {
         return stock_no;
     }
 
-    public void setStock_no(float stock_no) {
+    public void setStock_no(double stock_no) {
         this.stock_no = stock_no;
     }
 
@@ -79,27 +79,27 @@ public class Stock extends BaseInfoEntity {
         this.stock_unit = stock_unit;
     }
 
-    public float getStock_proportion() {
+    public int getStock_proportion() {
         return stock_proportion;
     }
 
-    public void setStock_proportion(float stock_proportion) {
+    public void setStock_proportion(int stock_proportion) {
         this.stock_proportion = stock_proportion;
     }
 
-    public float getStock_total() {
+    public double getStock_total() {
         return stock_total;
     }
 
-    public void setStock_total(float stock_total) {
+    public void setStock_total(double stock_total) {
         this.stock_total = stock_total;
     }
 
-    public float getStock_total_unit() {
+    public String getStock_total_unit() {
         return stock_total_unit;
     }
 
-    public void setStock_total_unit(float stock_total_unit) {
+    public void setStock_total_unit(String stock_total_unit) {
         this.stock_total_unit = stock_total_unit;
     }
 

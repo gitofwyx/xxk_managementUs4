@@ -102,8 +102,14 @@ public class StockController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addStock")
-    public Map<String, Object> addStock(Stock stock, @RequestParam(value = "dev_type") String entityId) {
-        Map<String, Object> result = stockService.addStock(stock);
+    public Map<String, Object> addStock(Stock stock,Storage storage) {
+        Map<String, Object> result=new HashMap<>();
+        if(stock.getId()!=null&&!"".equals(stock.getId())){
+            result = stockService.updateStockWithStorage(stock,storage);
+        }else {
+            result = stockService.addStockWithStorage(stock,storage);
+        }
+
         return result;
         //return "system/index";
     }
@@ -154,16 +160,17 @@ public class StockController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "/listStockByEntityId",method = RequestMethod.POST)
-    public Map<String, Object> listStockByEntityId(@RequestParam(value = "dev_type") String entityId) {
+    public Map<String, Object> listStockByEntityId(@RequestParam(value = "dev_type") String entityId,
+                                                   @RequestParam(value = "stock_office") String officeId) {
         int id = 0;
         Map<String, Object> result = new HashMap<>();
         try {
-            List<Stock> listStock = stockService.listStockByEntityId(entityId);
+            List<Stock> listStock = stockService.listStockByEntityId(entityId,officeId);
             if (listStock == null) {
                 log.error("获取出错");
                 return null;
             }
-            result.put("Class_data", listStock);
+            result.put("entityData", listStock);
             /*result.put("dev_count", dev_count);*/
         } catch (Exception e) {
             log.error(e);

@@ -13,7 +13,7 @@ public interface StockDao {
 
     public List<Stock> listStock(int pageStart, int pageSize);
 
-    public List<Stock> listStockByEntityId(String entityId);
+    public List<Stock> listStockByEntityId(String entityId,String officeId);
 
     public int addStock(Stock stock);
 
@@ -22,6 +22,8 @@ public interface StockDao {
     public int deleteListRegUser(List<String> listStr);
 
     public List<String> getStockIdByIdent(String ident);
+
+    public Stock getStockIdById(String id);
 
     public int updateStock(Stock stock,String entityId);
 

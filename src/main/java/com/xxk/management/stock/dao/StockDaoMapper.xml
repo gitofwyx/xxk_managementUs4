@@ -17,6 +17,7 @@
         <include refid="columns"></include>
         from xxk_stock
         where entity_id=#{0}
+        and stock_office_no=#{1}
         and deleteFlag='0';
     </select>
 
@@ -32,6 +33,15 @@
         select id
         from xxk_stock
         where in_confirmed_ident=#{0}
+        and deleteFlag='0';
+    </select>
+
+    <!--根据id获取信息 -->
+    <select id="getStockIdById" parameterType="string" resultType="string">
+        select
+        <include refid="columns"></include>
+        from xxk_stock
+        where id=#{0}
         and deleteFlag='0';
     </select>
 

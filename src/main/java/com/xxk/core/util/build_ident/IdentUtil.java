@@ -29,8 +29,8 @@ public class IdentUtil {
         return result;
     }
 
-    //用于生成的编号：出库/入库编号（设备编号解释：年月日种类编号型号编号库存量-出/入库数量）
-    public static String getIdentNo(String ident, int maxNo, int amount, String Date) { //编号，最大值， 数量, 时间
+    //用于生成的编号：出库/入库编号（设备编号解释：年月日种类编号型号编号-出/入库数量）
+    public static String getIdentNo(String ident, int maxNo, int amount, String Date) { //设备编号，最大值， 数量, 时间
         String Orderno = null;
         int baseNum = 100;
         //maxOrderno = "20180315001-01"; // 从数据库查询出的最大编号

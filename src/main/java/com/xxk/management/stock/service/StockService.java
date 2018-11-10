@@ -13,14 +13,18 @@ public interface StockService {
 
     public List<Stock> listStock(int pageStart, int pageSize);
 
-    public List<Stock> listStockByEntityId(String entityId);
+    public List<Stock> listStockByEntityId(String entityId,String officeId);
 
-    public Map<String, Object> addStock(Stock stock);
+    public Map<String, Object> addStockWithStorage(Stock stock,Storage storage);
+
+    public Map<String, Object> updateStockWithStorage(Stock stock,Storage storage);
 
     public Map<String, Object> updateStock(Stock stock);
 
     public boolean deleteListRegUser(List<String> listStr);
 
     public List<String> getStorageIdByIdent(String ident);
+
+    public Stock getStockIdById(String id);
 
 }
