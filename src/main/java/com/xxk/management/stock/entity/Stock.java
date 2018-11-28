@@ -11,7 +11,7 @@ public class Stock extends BaseInfoEntity {
     private String stock_ident;           //库存编号
     private String entity_id;             //设备\耗材ID
     private String stock_type;            //库存类别
-    private String stock_office_no;            //库存科室编号
+    private String stock_office_id;            //库存科室编号
     private double stock_no;              //库存数量（按库存单位计）
     private String stock_unit;           //库存单位
     private int stock_proportion;   //个体/单位比例
@@ -20,6 +20,7 @@ public class Stock extends BaseInfoEntity {
     private String stock_flag;          //库存状态
     private String remark;          //备注
     private String keyWord;           //关键字
+    private int version;           //通过版本号控制并发，“乐观锁”
 
     @Override
     public String getId() {
@@ -55,12 +56,12 @@ public class Stock extends BaseInfoEntity {
         this.stock_type = stock_type;
     }
 
-    public String getStock_office_no() {
-        return stock_office_no;
+    public String getStock_office_id() {
+        return stock_office_id;
     }
 
-    public void setStock_office_no(String stock_office_no) {
-        this.stock_office_no = stock_office_no;
+    public void setStock_office_id(String stock_office_id) {
+        this.stock_office_id = stock_office_id;
     }
 
     public double getStock_no() {
@@ -125,5 +126,13 @@ public class Stock extends BaseInfoEntity {
 
     public void setKeyWord(String keyWord) {
         this.keyWord = keyWord;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

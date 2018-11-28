@@ -204,7 +204,7 @@ public class StorageController extends BaseController {
                 }
                 String dev_ident = (String) resultList.get(0).get("dev_ident");//提取设备编号
                 int dev_no = (int) resultList.get(0).get("dev_no");//提取设备数量
-                String out_confirmed_ident = IdentUtil.getIdentNo(dev_ident, dev_no, storage.getIn_confirmed_no(), updateDate);
+                String out_confirmed_ident = IdentUtil.getIdentNo(dev_ident, dev_no, (int)storage.getIn_confirmed_no(), updateDate);
                 //出库记录
                 delivery.setId(deliveryId);
                 delivery.setOut_confirmed_ident(out_confirmed_ident);

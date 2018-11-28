@@ -36,13 +36,13 @@ public class StockServiceImpl implements StockService {
     private StorageService storageService;
 
     @Override
-    public List<Stock> listStock(int pageStart, int pageSize) {
-        return dao.listStock((pageStart - 1) * pageSize, pageSize);
+    public List<Stock> listStock(int pageStart, int pageSize, int search_type) {
+        return dao.listStock((pageStart - 1) * pageSize, pageSize, search_type);
     }
 
     @Override
-    public List<Stock> listStockByEntityId(String entityId, String officeId) {
-        return dao.listStockByEntityId(entityId, officeId);
+    public List<Stock> listStockByEntityId(String entity_id, String office_id) {
+        return dao.listStockByEntityId(entity_id, office_id);
     }
 
     //新增库存记录
@@ -63,14 +63,14 @@ public class StockServiceImpl implements StockService {
                 stock.setId(stockId);
                 stock.setStock_ident(device.getDev_ident());
                 stock.setEntity_id(device.getId());
+                stock.setStock_no(storage.getIn_confirmed_no());
+                stock.setStock_flag("1");
                 stock.setCreateDate(createDate);
                 stock.setCreateUserId("admin");
                 stock.setUpdateDate(createDate);
                 stock.setUpdateUserId("admin");
                 stock.setDeleteFlag("0");
             }
-            //入库记录
-
             boolean stockResult = dao.addStock(stock) == 1 ? true : false;
             if (!(stockResult)) {
                 log.error("stockResult:" + stockResult);
@@ -78,7 +78,7 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
             } else {
                 storage.setEntity_id(device.getId());
-                storage.setIn_confirmed_no((int)stock.getStock_total());
+                storage.setIn_confirmed_no((int) stock.getStock_total());
                 result = storageService.addStorage(stock, storage);
             }
         } catch (DuplicateKeyException e) {
@@ -106,15 +106,12 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
                 return result;
             }
-            stock = dao.getStockIdById(stock.getId());
-            if (stock != null) {
 
-                stock.setCreateUserId("admin");
-                stock.setUpdateDate(createDate);
-                stock.setUpdateUserId("admin");
-                stock.setDeleteFlag("0");
-            }
-            boolean stockResult = dao.addStock(stock) == 1 ? true : false;
+            stock.setCreateUserId("admin");
+            stock.setUpdateDate(createDate);
+            stock.setUpdateUserId("admin");
+            stock.setDeleteFlag("0");
+            boolean stockResult = dao.plusStockNo(stock) == 1 ? true : false;
             if (!(stockResult)) {
                 log.error("stockResult:" + stockResult);
                 result.put("hasError", true);
@@ -179,6 +176,6 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public Stock getStockIdById(String id) {
-        return dao.getStockIdById(id);
+        return dao.getStockById(id);
     }
 }

@@ -11,9 +11,9 @@ import java.util.Map;
  */
 public interface StockService {
 
-    public List<Stock> listStock(int pageStart, int pageSize);
+    public List<Stock> listStock(int pageStart, int pageSize,int search_type);
 
-    public List<Stock> listStockByEntityId(String entityId,String officeId);
+    public List<Stock> listStockByEntityId(String entity_id,String office_id);
 
     public Map<String, Object> addStockWithStorage(Stock stock,Storage storage);
 

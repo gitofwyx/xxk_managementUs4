@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public interface StockDao {
 
-    public List<Stock> listStock(int pageStart, int pageSize);
+    public List<Stock> listStock(int pageStart, int pageSize,int search_type);
 
-    public List<Stock> listStockByEntityId(String entityId,String officeId);
+    public List<Stock> listStockByEntityId(String entity_id,String office_id);
 
     public int addStock(Stock stock);
 
@@ -23,8 +23,10 @@ public interface StockDao {
 
     public List<String> getStockIdByIdent(String ident);
 
-    public Stock getStockIdById(String id);
+    public Stock getStockById(String id);
 
     public int updateStock(Stock stock,String entityId);
+
+    public int plusStockNo(Stock stock);
 
 }
