@@ -47,8 +47,7 @@ public class StorageServiceImpl implements StorageService {
                 result.put("error", "添加出错");
                 return result;
             }
-            String in_confirmed_ident = IdentUtil.getIdentNo(stock.getStock_ident(), (int) stock.getStock_total(),
-                    (int)storage.getIn_confirmed_no(), createDate);
+            String in_confirmed_ident = IdentUtil.getIdentNo((int)storage.getIn_confirmed_no(), createDate);
             if ("".equals(in_confirmed_ident) || in_confirmed_ident == null) {
                 result.put("hasError", true);
                 result.put("error", "添加出错,无法生成入库编号！");

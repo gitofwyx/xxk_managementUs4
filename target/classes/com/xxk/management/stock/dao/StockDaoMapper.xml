@@ -51,7 +51,7 @@
         QCellCore=#{QCellCore},updateUserId=#{updateUserId},updateDate=#{updateDate} where entity_id=#{entity_id} and deleteFlag='0';
     </update>
 
-    <!--修改信息 -->
+    <!-- -->
     <update id="plusStockNo" parameterType="com.xxk.management.stock.entity.Stock">
         update xxk_stock set stock_no=stock_no+#{stock_no},stock_total=stock_total+#{stock_total},updateUserId=#{updateUserId},
         updateDate=#{updateDate} where id=#{id} and updateDate=#{updateDate} and deleteFlag='0';

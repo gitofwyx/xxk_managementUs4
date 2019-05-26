@@ -3,6 +3,7 @@ package com.xxk.core.util.build_ident;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.NumberUtil;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,25 +30,14 @@ public class IdentUtil {
         return result;
     }
 
-    //用于生成的编号：出库/入库编号（设备编号解释：年月日种类编号型号编号-出/入库数量）
-    public static String getIdentNo(String ident, int maxNo, int amount, String Date) { //设备编号，最大值， 数量, 时间
+    //用于生成的编号：出库/入库编号（设备编号解释：时间戳-出/入库数量）
+    public static String getIdentNo(int amount, String Date) { //设备编号，最大值， 数量, 时间
         String Orderno = null;
         int baseNum = 100;
-        //maxOrderno = "20180315001-01"; // 从数据库查询出的最大编号
-        String uid_pfix = "" + DateUtil.getStrYMd(Date); // 组合流水号前一部分，NO+时间字符串，如：NO20160126
-        if ("".equals(ident) || ident == null) {
-            return null;
-        }
-        if (amount >= 100) {
-            int sizeOfNo_O = NumberUtil.sizeNumOfInt(maxNo);
-            baseNum = NumberUtil.getNumBySize(sizeOfNo_O) * 10;
-        }
-        String ident_end = ident.substring(10);
-        int beginNum = maxNo; // 最大值
-        int tmpNum = baseNum + beginNum;
-        if (amount > 0) {
-            Orderno = uid_pfix + ident_end + IdentUtil.subStr("" + tmpNum, 1) + "-" + amount;// 把10002首位的1去掉，再拼成NO201601260002字符串
-        } else {
+        try {
+            String uid_pfix = "" + DateUtil.dateToStamp(Date);
+            Orderno = uid_pfix + "-" + amount;
+        }catch (ParseException  e){
             return null;
         }
         System.out.println("Orderno=" + Orderno);
