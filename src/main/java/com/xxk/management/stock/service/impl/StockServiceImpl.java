@@ -45,7 +45,7 @@ public class StockServiceImpl implements StockService {
         return dao.listStockByEntityId(entity_id, office_id);
     }
 
-    //新增库存记录
+    //新增库存
     @Override
     public Map<String, Object> addStockWithStorage(Stock stock, Storage storage) {
         Map<String, Object> result = new HashMap<>();
@@ -64,6 +64,7 @@ public class StockServiceImpl implements StockService {
                 stock.setStock_ident(device.getDev_ident());
                 stock.setEntity_id(device.getId());
                 stock.setStock_no(storage.getIn_confirmed_no());
+                stock.setStock_no(storage.getIn_confirmed_total());
                 stock.setStock_flag("1");
                 stock.setCreateDate(createDate);
                 stock.setCreateUserId("admin");
@@ -93,24 +94,21 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
-    //入库更新
     @Override
     public Map<String, Object> updateStockWithStorage(Stock stock, Storage storage) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
-        String stockId = UUIdUtil.getUUID();
         try {
             if ("".equals(stock.getEntity_id()) || stock.getEntity_id() == null) {
                 log.info("出错！无法获取设备ID");
                 result.put("hasError", true);
-                result.put("error", "添加出错");
+                result.put("error", "添加出错！无法获取设备ID");
                 return result;
             }
-
-            stock.setCreateUserId("admin");
+            stock.setStock_total(storage.getIn_confirmed_total());
             stock.setUpdateDate(createDate);
             stock.setUpdateUserId("admin");
-            stock.setDeleteFlag("0");
+
             boolean stockResult = dao.plusStockNo(stock) == 1 ? true : false;
             if (!(stockResult)) {
                 log.error("stockResult:" + stockResult);
@@ -132,6 +130,7 @@ public class StockServiceImpl implements StockService {
         }
         return result;
     }
+
 
     //更新操作
     @Override

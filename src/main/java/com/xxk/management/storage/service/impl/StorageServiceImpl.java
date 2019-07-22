@@ -55,8 +55,8 @@ public class StorageServiceImpl implements StorageService {
             }
             //入库
             storage.setId(storageId);
+            storage.setStock_id(stock.getId());
             storage.setIn_confirmed_ident(in_confirmed_ident);
-            storage.setFact_dev_no(storage.getIn_confirmed_no());
             storage.setOut_flag("0");
             storage.setCreateDate(createDate);
             storage.setCreateUserId("admin");

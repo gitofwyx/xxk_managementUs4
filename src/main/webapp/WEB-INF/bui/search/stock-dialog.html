@@ -64,9 +64,6 @@
 </div>
 <div id="Content_I" class="hide">
     <form id="I_Form" class="form-horizontal" action="" autocomplete="off">
-        <input id="io_Console" name="io_Console" type="hidden">
-        <input id="stock_type" name="stock_type" type="hidden">
-        <input id="stock_total" name="stock_total" type="hidden">
         <div id="tab_I"></div>
         <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
         <div class="row">
@@ -149,7 +146,7 @@
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>库存总量：</label>
                     <div class="controls">
-                        <input id="I_Total" name="I_Total" type="number" data-rules="{required:true}"
+                        <input id="stock_total" name="stock_total" type="number" data-rules="{required:true}"
                                class="input-normal control-text">
                     </div>
                 </div>
@@ -161,6 +158,23 @@
                         <textarea name="remark" class="span11" type="text"></textarea>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="io_Console" name="io_Console" type="hidden"　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_type" name="stock_type" type="hidden"　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_no" name="stock_no" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="in_confirmed_total" name="in_confirmed_total" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_version" name="stock_version" type="hidden" data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -200,8 +214,9 @@
     </form>
 </div>
 <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="js/bui-min.js"></script>
+<script type="text/javascript" src="js/bui.js"></script>
 <script type="text/javascript" src="js/config-min.js"></script>
+<script type="text/javascript" src="js/sea.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/tree/json2.js"></script>
 <![endif]-->
@@ -266,7 +281,8 @@
                             multipleSelect: false,
                             items: []
                         }).render(),
-                        Sto_rec_grid = new Grid.SimpleGrid({
+
+                        Sto_rec_grid = new Grid.Grid({
                             idField: 'id',//选项的默认id字段
                             columns: [
                                 {title: '库存编号', dataIndex: 'stock_ident', elCls: 'center', width: '30%'},
@@ -276,6 +292,19 @@
                             ],
                             textGetter: function (item) { //返回选中的文本
                                 return item.stock_ident;
+                            },
+                            bbar:{
+                                //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
+                                items:[{
+                                    xclass:'bar-item-button',
+                                    btnCls : 'button button-small',
+                                    text:'新增'
+                                    },
+                                    {
+                                        xclass:'bar-item-text',
+                                        text:'<p style="color: #dd1144">注：新增多个库存记录可能会造成出库错误</p>'
+                                    },
+                                ]
                             },
                             items: [],
                         }),
@@ -292,6 +321,7 @@
                             width: 300,
                             items: []
                         }).render(),
+
                         stock_office_tree = new Tree.TreeList({
                             nodes: [],
                             //store: store,
@@ -304,6 +334,7 @@
                             width: 150,  //指定宽度
                             children: [stock_office_tree] //配置picker内的列表
                         }).render(),
+
                         columns = [
                             {title: '&nbsp库存编号', dataIndex: 'stock_ident', elCls: 'center', width: 110},
                             {title: '&nbsp库存名称', dataIndex: 'entity_name', elCls: 'center', width: 110},
@@ -360,7 +391,7 @@
                                     }
                                 ]
                             },
-                            plugins: [Editing_I, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
+                            plugins: [Editing_I, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit,BUI.Grid.Plugins.columnresize],// 插件形式引入多选表格
                             emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
                         });
 
@@ -375,9 +406,9 @@
                     trigger: '.grid-td-remark', //出现此样式的元素显示tip
                     alignType: 'bottom-left',
                     offset: 1,
-                    width: 100,
+                    width: 150,
                     title: '',
-                    elCls: 'tips tips-no-icon',
+                    elCls: 'tips',
                     titleTpl: '<p>{title}</p>'
                 }).render();
 
@@ -513,6 +544,16 @@
                     return num;
                 }
 
+                //根据库存总量生成库存数量
+                function makeInNum(total, stock_proportion) { //数量，比例数
+                    var num=total%stock_proportion;
+                    while (num>=1){
+                        num= num/10;
+                    }
+                    num=parseInt(total/stock_proportion)+num;
+                    return num;
+                }
+
                 //入库操作
                 function in_storageFunction() {
 
@@ -526,6 +567,7 @@
                     Editing_I.add(newData, 'name'); //添加记录后，直接编辑
                     I_Form.getField('io_Console').set('value', '1');
                     I_Form.getField('stock_type').set('value', tab_I.getSelected().__attrVals.value);
+                    $("#stock_version").val(0);
                     input_console(true);
                 }
 
@@ -653,9 +695,10 @@
                 stock_record_select.on('change', function (ev) {
                     $("#in_confirmed_no").attr('disabled', false);
                     $("#in_confirmed_date").attr('disabled', false);
+                    $("#stock_version").val(ev.item.stock_version);
                     $("#stock_unit").val(ev.item.stock_unit);
                     $("#stock_proportion").val(ev.item.stock_proportion);
-                    $("#I_Total").val(ev.item.stock_total);
+                    $("#stock_total").val(ev.item.stock_total);
                 });
 
                 //重置按钮
@@ -670,21 +713,25 @@
                 });
                 //个体/单位比例输入框光标移出事件
                 $("#stock_proportion").on('blur', function (ev) {
-                    var I_num = $("#in_confirmed_no").val();
-                    var stock_proportion = $("#stock_proportion").val();
-                    var I_stock_total=0;
+                    var I_num = $("#in_confirmed_no").val();//获取入库数量no
+                    var stock_proportion = $("#stock_proportion").val();//获取库存比例proportion
+                    var I_stock_total=0;//初始化入库总量值
                     if (stock_proportion != null && stock_proportion != '' && stock_proportion != undefined) {
                         if (I_num != null && I_num != '' && I_num != undefined) {
-                            //改变数量
-                            I_num = calculate_amount(I_num, stock_proportion);
-                            I_Form.getField('in_confirmed_no').set('value', I_num);
+                            //改变入库数量
+                            I_num = calculate_amount(I_num, stock_proportion);//生成新的入库数量
+                            I_Form.getField('in_confirmed_no').set('value', I_num);//重设入库数量值
                             //改变总量
-
-                            I_stock_total=reckon_stock_total(I_num, stock_proportion);
-                            I_Form.getField('stock_total').set('value', I_stock_total);
-                            I_num=stock_record_select.get('picker').get('children')[0].getSelected().stock_total;
-                            I_stock_total=I_stock_total+parseInt(I_num);
-                            $("#I_Total").val(I_stock_total);
+                            I_stock_total=reckon_stock_total(I_num, stock_proportion);//生成入库总量
+                            I_Form.getField('in_confirmed_total').set('value', I_stock_total);
+                            I_num=stock_record_select.get('picker').get('children')[0].getCount( );//获取Sto_rec_grid选项数量
+                            if (I_num >0) {
+                                I_num=stock_record_select.get('picker').get('children')[0].getSelected().stock_total;//获取选择的库存记录总量（此时I_num已赋值为记录总量）
+                            }
+                            I_stock_total=I_stock_total+parseInt(I_num);//记录总量+新输入的库存总量=新的库存总量（此时I_stock_total已赋值为新库存总量）
+                            $("#stock_total").val(I_stock_total);//重设库存总量值
+                            //改变总数量no
+                            $("#stock_no").val(makeInNum(I_stock_total,stock_proportion));//重设库存总数量值
                         }
                     }
                 });

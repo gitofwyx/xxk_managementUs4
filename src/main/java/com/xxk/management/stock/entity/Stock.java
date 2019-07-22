@@ -20,7 +20,8 @@ public class Stock extends BaseInfoEntity {
     private String stock_flag;          //库存状态
     private String remark;          //备注
     private String keyWord;           //关键字
-    private int version;           //通过版本号控制并发，“乐观锁”
+
+    private int stock_version;           //关键字
 
     @Override
     public String getId() {
@@ -128,11 +129,11 @@ public class Stock extends BaseInfoEntity {
         this.keyWord = keyWord;
     }
 
-    public int getVersion() {
-        return version;
+    public int getStock_version() {
+        return stock_version;
     }
 
-    public void setVersion(int version) {
-        this.version = version;
+    public void setStock_version(int stock_version) {
+        this.stock_version = stock_version;
     }
 }

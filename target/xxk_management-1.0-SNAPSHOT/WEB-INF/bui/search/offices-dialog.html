@@ -86,7 +86,7 @@
     </form>
 </div>
 <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="js/bui-min.js"></script>
+<script type="text/javascript" src="js/bui.js"></script>
 <script type="text/javascript" src="js/config-min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/tree/json2.js"></script>
@@ -133,7 +133,8 @@
                     trigger: '#belong_to_office',
                     valueField: '#office_ident', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                     width: 150,  //指定宽度
-                    children: [belong_to_tree] //配置picker内的列表
+                    children: [belong_to_tree], //配置picker内的列表
+                    autoHide : true
                 }).render(),
                 columns = [
                     {title: '编号', dataIndex: 'office_ident',elCls: 'center', width: 40},
@@ -176,7 +177,7 @@
                         ]
                     },
                     emptyDataTpl : '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
-                    plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                    plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit,BUI.Grid.Plugins.columnresize] // 插件形式引入多选表格
                 });
 
         var search = new Search({

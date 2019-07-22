@@ -9,11 +9,13 @@ import com.xxk.core.entity.BaseInfoEntity;
 public class Storage extends BaseInfoEntity {
     private String id;
     private String entity_id;           //设备id
+    private String stock_id;           //设备id
     private String in_confirmed_ident; //库存编号
     private String in_confirmed_by;    //确认人
     private String in_confirmed_date;  //入库时间
-    private double in_confirmed_no;      //入库数量
-    private double  fact_dev_no;         //实际库存
+    private double in_confirmed_no;      //入库数量（按库存单位计）
+    private double in_confirmed_total;  //入库总量
+    private int  fact_dev_no;         //实际库存
     private String out_flag;          //出库状态-> "0": "未出库", "1": "已出库"
     private String keyWord;           //关键字
 
@@ -33,6 +35,14 @@ public class Storage extends BaseInfoEntity {
 
     public void setEntity_id(String entity_id) {
         this.entity_id = entity_id;
+    }
+
+    public String getStock_id() {
+        return stock_id;
+    }
+
+    public void setStock_id(String stock_id) {
+        this.stock_id = stock_id;
     }
 
     public String getIn_confirmed_ident() {
@@ -67,11 +77,19 @@ public class Storage extends BaseInfoEntity {
         this.in_confirmed_no = in_confirmed_no;
     }
 
-    public double getFact_dev_no() {
+    public double getIn_confirmed_total() {
+        return in_confirmed_total;
+    }
+
+    public void setIn_confirmed_total(double in_confirmed_total) {
+        this.in_confirmed_total = in_confirmed_total;
+    }
+
+    public int getFact_dev_no() {
         return fact_dev_no;
     }
 
-    public void setFact_dev_no(double fact_dev_no) {
+    public void setFact_dev_no(int fact_dev_no) {
         this.fact_dev_no = fact_dev_no;
     }
 
