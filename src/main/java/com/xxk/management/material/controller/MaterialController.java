@@ -74,6 +74,11 @@ public class MaterialController extends BaseController {
         String mat_ident = "";
         Boolean resultBl = true;
         try {
+            if ("".equals(material.getMat_name()) ||"".equals(material.getMat_type())) {
+                result.put("hasError", true);
+                result.put("error", "配件、耗材名称或种类获取失败!");
+                return result;
+            }
             if (deviceClass.getClass_ident() > 0 && deviceClass.getType_max() > 0) {  //生成编号
                 mat_ident = IdentUtil.getIdent(deviceClass.getClass_ident(), deviceClass.getType_max(), Date);
 
@@ -94,7 +99,6 @@ public class MaterialController extends BaseController {
                 }
             }
             else if ("".equals(material.getDev_class_id()) || material.getDev_class_id() == null) {
-                deviceClass.setId(material.getDev_class_id());
                 deviceClass.setClass_tab(material.getGenre_tags());
                 deviceClass.setDev_class(material.getMat_name());
                 String materialClassId = deviceClassService.updateEntityClass(deviceClass, Date);

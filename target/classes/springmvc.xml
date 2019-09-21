@@ -52,12 +52,12 @@
 		</property>
 	</bean>
 
-	<!--目录 -->
+	<!---->
 	<!-- <mvc:resources mapping="/res/**" location="/WEB-INF/res/"/> -->
-	<mvc:resources mapping="/menu/js/**" location="/WEB-INF/res/menu/js/" cache-period="31556926"/>
-	<mvc:resources mapping="/menu/css/**" location="/WEB-INF/res/menu/css/" cache-period="31556926"/>
-	<mvc:resources mapping="/menu/img/**" location="/WEB-INF/res/menu/img/" cache-period="31556926"/>
-	<!--资源-->
+	<mvc:resources mapping="/js/**" location="/WEB-INF/res/assets/js/" cache-period="31556926"/>
+	<mvc:resources mapping="/css/**" location="/WEB-INF/res/assets/css/" cache-period="31556926"/>
+	<mvc:resources mapping="/img/**" location="/WEB-INF/res/assets/img/" cache-period="31556926"/>
+	<!---->
 	<mvc:resources mapping="/index/js/**" location="/WEB-INF/res/index/js/" cache-period="31556926"/>
 	<mvc:resources mapping="/index/css/**" location="/WEB-INF/res/index/css/" cache-period="31556926"/>
 	<mvc:resources mapping="/index/img/**" location="/WEB-INF/res/index/img/" cache-period="31556926"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.storage.dao.DeliveryDao">
-    <sql id="columns">id,device_id,out_confirmed_ident,use_offices,used_no,used_name,used_date,
-      keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,entity_id,stock_id,out_confirmed_ident,out_confirmed_by,out_confirmed_officeId,out_confirmed_date,
+out_confirmed_no,out_confirmed_total,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
     <select id="listDelivery" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
@@ -11,11 +11,18 @@
         from xxk_delivery where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
     </select>
 
+    <!--获取分页 -->
+    <select id="listDeliveryByStock" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
+        select
+        <include refid="columns"></include>
+        from xxk_delivery where deleteFlag='0' and stock_id=#{2} ORDER BY createDate desc limit #{0},#{1};
+    </select>
+
     <!--添加信息 -->
     <insert id="addDelivery" parameterType="com.xxk.management.storage.entity.Delivery">
         insert into xxk_delivery(<include refid="columns"></include>) values(
-        #{id},#{device_id},#{out_confirmed_ident},#{use_offices},#{used_no},#{used_name},#{used_date},
-        #{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{id},#{entity_id},#{stock_id},#{out_confirmed_ident},#{out_confirmed_by},#{out_confirmed_officeId},#{out_confirmed_date},
+        #{out_confirmed_no},#{out_confirmed_total},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--根据id获取信息 -->

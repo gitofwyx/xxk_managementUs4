@@ -58,7 +58,6 @@ public class DeviceClassServiceImpl implements DeviceClassService {
     public String updateEntityClass(DeviceClass entityClass,String Date) {
         String deviceClassId = UUIdUtil.getUUID();
         if (!"".equals(entityClass.getId()) && entityClass.getId() != null) {
-
             entityClass.setId(entityClass.getId());
             entityClass.setUpdateUserId("admin");
             entityClass.setUpdateDate(Date);

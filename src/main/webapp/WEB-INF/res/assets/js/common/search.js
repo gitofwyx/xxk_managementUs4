@@ -206,7 +206,7 @@ define('common/search',['bui/common','bui/grid','bui/form','bui/data','bui/overl
   };
 
   Search.createLink = function(cfg){
-    var temp = '<span class="page-action grid-command" data-id="{id}" data-href="{href}" title="{title}">{text}</span>';
+    var temp = '<span class="page-action grid-command" data-id="{id}" data-href="{href}" title="{title}" data-type="{type}" data-search="{search}">{text}</span>';
     return BUI.substitute(temp,cfg);
   }
   return Search;

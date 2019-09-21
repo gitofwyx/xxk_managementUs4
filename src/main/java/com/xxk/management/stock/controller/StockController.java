@@ -75,12 +75,9 @@ public class StockController extends BaseController {
                 listDevId.clear();
                 listDevId.addAll(setDevId);*/
                 List<Map<String, Object>> entityList=new ArrayList<>();
-                if(search_type==1){
+                if(search_type==1||search_type==2||search_type==3){
                      entityList = deviceService.getStoreDeviceById(listDevId);
-                }
-                else if(search_type==2||search_type==3){
-                    entityList = deviceService.getStoreDeviceById(listDevId);
-                }else {
+                } else {
                     entityList=null;
                 }
                 if (resultList == null||entityList==null) {
@@ -130,45 +127,19 @@ public class StockController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/updateStock")
-    public Map<String, Object> updateStock(Storage storage,Delivery delivery) {
-        Map<String, Object> result = new HashMap<>();
-        //String phone=(String)request.getAttribute("phone");
-        //String phone = request.getParameter("phone");
-        String deliveryId = UUIdUtil.getUUID();
-        String updateDate = DateUtil.getFullTime();
-        try{
-            if(!"".equals(delivery.getDevice_id())&&delivery.getDevice_id()!=null){
-                List<Map<String, Object>> resultList = deviceService.getDeviceNumber(delivery.getDevice_id());////获取设备数量
-                if (resultList.size() != 1 || resultList == null) {
-                    log.info("出错！无法获取设备ID对应的库存量！");
-                    result.put("error", false);
-                    return result;
-                }
-                String dev_ident=(String) resultList.get(0).get("dev_ident");//提取设备编号
-                int dev_no=(int)resultList.get(0).get("dev_no");//提取设备数量
-                String out_confirmed_ident= IdentUtil.getIdentNo((int)storage.getIn_confirmed_no(),updateDate);
-                //出库记录
-                delivery.setId(deliveryId);
-                delivery.setOut_confirmed_ident(out_confirmed_ident);
-                delivery.setCreateDate(updateDate);
-                delivery.setCreateUserId("admin");
-                delivery.setUpdateDate(updateDate);
-                delivery.setUpdateUserId("admin");
-                delivery.setDeleteFlag("0");
-                boolean deliveryResult = deliveryService.addDelivery(delivery);
-
-            }
-            result.put("success",true);
-        }catch (DuplicateKeyException e) {
+    public Map<String, Object> updateStock(Stock stock,Delivery delivery,
+                                           @RequestParam(value = "stock_record_id") String stock_record_id) {
+        Map<String, Object> result=new HashMap<>();
+        if(stock_record_id!=null&&!"".equals(stock_record_id)){
+            stock.setId(stock_record_id);//获取库存的id值
+            result = stockService.updateStockWithDelivery(stock,delivery);
+        }else {
             result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        }catch (Exception e){
-            log.error(e);
-            result.put("error",false);
-        }finally {
-            return result;
+            result.put("error", "updateStock:获取stock_record_id出错");
+            log.error("updateStock:" + result.get("error"));
         }
+
+        return result;
     }
 
     @ResponseBody

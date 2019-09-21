@@ -72,9 +72,14 @@ public class DeviceController extends BaseController {
         Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String deviceId = UUIdUtil.getUUID();
-        String deviceClassId = UUIdUtil.getUUID();
+        String deviceClassId = "";
         String dev_ident = "";
         try {
+            if ("".equals(device.getDev_name()) ||"".equals(device.getDev_type())) {
+                result.put("hasError", true);
+                result.put("error", "设备名称或种类获取失败!");
+                return result;
+            }
             if (deviceClass.getClass_ident() > 0 && deviceClass.getType_max() > 0) {
                 dev_ident = IdentUtil.getIdent(deviceClass.getClass_ident(), deviceClass.getType_max(), Date);
 
@@ -90,36 +95,39 @@ public class DeviceController extends BaseController {
                 Boolean resultBl = deviceClassService.updateDev_typeMax(deviceClass);
                 if (!(resultBl)) {
                     result.put("hasError", true);
-                    result.put("error", "添加出错");
+                    result.put("error", "设备种类数量更新出错!");
                     return result;
                 }
             }  else if ("".equals(device.getDev_class_id()) || device.getDev_class_id() == null) {
-                deviceClass.setId(device.getDev_class_id());
                 deviceClass.setClass_tab("1");
                 deviceClass.setDev_class(device.getDev_name());
-                String materialClassId = deviceClassService.updateEntityClass(deviceClass, Date);
-                if (materialClassId != null && !"".equals(materialClassId)) {
-                    device.setDev_class_id(materialClassId);
+                deviceClassId = deviceClassService.updateEntityClass(deviceClass, Date);
+                if (deviceClassId != null && !"".equals(deviceClassId)) {
+                    device.setDev_class_id(deviceClassId);
                 }
             }
             device.setId(deviceId);
             device.setDev_ident(dev_ident);
             device.setGenre_tags("1");//类型标识，设备始终为1
+            device.setDev_flag("1");
             device.setCreateDate(Date);
             device.setCreateUserId("admin");
             device.setUpdateDate(Date);
             device.setUpdateUserId("admin");
             device.setDeleteFlag("0");
-
             boolean Result = deviceService.addDevice(device);
             if (!(Result)) {
-                result.put("success", false);
+                result.put("hasError", true);
+                result.put("error", "设备添加出错!");
+                return result;
             } else {
                 result.put("success", true);
             }
         } catch (Exception e) {
-            result.put("success", false);
+            result.put("hasError", true);
+            result.put("error", e);
             log.error(e);
+            return result;
         }
         return result;
         //return "system/index";

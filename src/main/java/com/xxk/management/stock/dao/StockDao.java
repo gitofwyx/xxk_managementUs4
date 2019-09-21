@@ -29,4 +29,6 @@ public interface StockDao {
 
     public int plusStockNo(Stock stock);
 
+    public int reduceStockNo(Stock stock);
+
 }

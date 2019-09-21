@@ -13,6 +13,8 @@ public interface DeliveryDao {
 
     public List<Delivery> listDelivery(int pageStart, int pageSize);
 
+    public List<Delivery> listDeliveryByStock(int pageStart, int pageSize,String stock_id);
+
     public int addDelivery(Delivery delivery);
 
     public int deleteListRegUser(List<String> listStr);

@@ -3,6 +3,7 @@ package com.xxk.management.system.controller;
 import com.xxk.core.file.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,10 +32,10 @@ public class MenuController extends BaseController {
         return new ModelAndView("/search/user_dialog", "result", result);
     }
 
-    @RequestMapping("/delivery_tab")
-    public ModelAndView  delivery_tab() {
+    @RequestMapping("/delivery_tab/{stock_id}")
+    public ModelAndView  delivery_tab(@PathVariable("stock_id") String stock_id) {
         Map<String, Object> result = new HashMap<>();
-        return new ModelAndView("/search/delivery-dialog", "result", result);
+        return new ModelAndView("/search/delivery-dialog", "result", stock_id);
     }
 
     @RequestMapping("/offices_tab")
@@ -46,7 +47,7 @@ public class MenuController extends BaseController {
     @RequestMapping("/storage_tab")
     public ModelAndView  storage_tab() {
         Map<String, Object> result = new HashMap<>();
-        return new ModelAndView("/search/example-dialog", "result", result);
+        return new ModelAndView("/search/storage-dialog", "result", result);
     }
 
     @RequestMapping("/device_tab")

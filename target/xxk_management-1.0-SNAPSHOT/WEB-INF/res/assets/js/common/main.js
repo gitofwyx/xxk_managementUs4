@@ -52,7 +52,7 @@ define('common/main',['bui/menu','bui/tab'],function(require) {
     menu.on('menuclick',function(ev){
       var item = ev.item;
       if(item){
-        _self.tab.addTab({id: item.get('id'), title: item.get('text'), href: item.get('href'),closeable : item.get('closeable')},true);
+        _self.tab.addTab({id: item.get('id'), title: item.get('text'), href: item.get('href'),closeable : item.get('closeable')},false);
       }
       
     });

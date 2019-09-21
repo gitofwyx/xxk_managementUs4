@@ -1,6 +1,7 @@
 package com.xxk.management.stock.service;
 
 import com.xxk.management.stock.entity.Stock;
+import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface StockService {
     public Map<String, Object> addStockWithStorage(Stock stock,Storage storage);
 
     public Map<String, Object> updateStockWithStorage(Stock stock,Storage storage);
+
+    public Map<String, Object> updateStockWithDelivery(Stock stock, Delivery delivery);
 
     public Map<String, Object> updateStock(Stock stock);
 

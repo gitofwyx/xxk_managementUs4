@@ -6,8 +6,10 @@ import com.xxk.management.device.dao.DeviceDao;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.stock.dao.StockDao;
 import com.xxk.management.stock.entity.Stock;
+import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.stock.service.StockService;
+import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.storage.service.StorageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class StockServiceImpl implements StockService {
 
     @Autowired
     private StorageService storageService;
+
+    @Autowired
+    private DeliveryService deliveryService;
 
     @Override
     public List<Stock> listStock(int pageStart, int pageSize, int search_type) {
@@ -94,6 +99,8 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
+    //入库操作
+    // 2019年8月19日 13:44:05更新
     @Override
     public Map<String, Object> updateStockWithStorage(Stock stock, Storage storage) {
         Map<String, Object> result = new HashMap<>();
@@ -131,6 +138,44 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
+    //出库操作
+    // 2019年8月19日 13:43:42更新
+    @Override
+    public Map<String, Object> updateStockWithDelivery(Stock stock, Delivery delivery) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        try {
+            if ("".equals(stock.getEntity_id()) || stock.getEntity_id() == null) {
+                log.info("出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错！无法获取设备ID");
+                return result;
+            }
+            stock.setStock_total(delivery.getOut_confirmed_total());
+            stock.setUpdateDate(createDate);
+            stock.setUpdateUserId("admin");
+
+            boolean stockResult = dao.reduceStockNo(stock) == 1 ? true : false;
+            if (!(stockResult)) {
+                log.error("stockResult:" + stockResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+                //入库记录
+                delivery.setEntity_id(stock.getEntity_id());
+                result = deliveryService.addDelivery(stock, delivery);
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
+    }
 
     //更新操作
     @Override

@@ -3,9 +3,9 @@
 <head>
     <title> 设备表单</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="css/dpl-min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/bui-min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/page-min.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
         code {
             padding: 0px 4px;
@@ -56,7 +56,6 @@
 </div>
 <div id="content" class="hide">
     <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
-        <input type="hidden" name="dev_class_id" id="dev_class_id">
         <input type="hidden" name="class_ident" id="class_ident">
         <input type="hidden" name="type_max" id="type_max">
         <input type="hidden" name="dev_class_count" id="dev_class_count">
@@ -66,6 +65,7 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备名称：</label>
                 <div class="controls" id="dev_name_div">
+                    <input type="hidden" name="dev_class_id" id="dev_class_id" data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
@@ -86,9 +86,9 @@
         </div>
     </form>
 </div>
-<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="js/bui-min.js"></script>
-<script type="text/javascript" src="js/config-min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/js/bui-min.js"></script>
+<script type="text/javascript" src="/js/config-min.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>

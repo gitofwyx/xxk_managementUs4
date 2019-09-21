@@ -3,10 +3,10 @@
 <head>
     <title> 搜索表单</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="css/dpl-min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/dpl-supplement.css" rel="stylesheet" type="text/css"/>
-    <link href="css/bui-min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/dpl-supplement.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/page-min.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
         code {
             padding: 0px 4px;
@@ -131,7 +131,7 @@
                         <input id="unit_num" name="unit_num" type="number"
                                class="span1 control-text"> ：
                         <input id="stock_proportion" name="stock_proportion" type="number" min="1" max="999"
-                               data-rules="{required:true}" data-tip="{text:'注:数字有效'}" class="span2 control-text">
+                               data-rules="{required:true}" data-tip="{text:'数字有效'}" class="span2 control-text">
                     </div>
                 </div>
                 <div class="control-group span8">
@@ -181,47 +181,84 @@
 </div>
 <div id="Content_O" class="hide">
     <form id="O_Form" class="form-horizontal" action="">
+        <input type="hidden" name="office_ident" id="office_ident">
         <div id="tab"></div>
         <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>领用科室：</label>
-                <div class="controls">
-                    <input name="use_offices" type="text" id="use_offices" data-rules="{required:true}">
+                <label class="control-label"><s>*</s>出库科室：</label>
+                <div class="controls" id="out_offices_select">
+                    <input name="out_confirmed_offices" id="out_confirmed_offices" type="text" autocomplete="off"
+                           class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>领用人：</label>
+                <label class="control-label"><s>*</s>出库确认人：</label>
                 <div class="controls">
-                    <input name="used_name" type="text" class="input-normal control-text">
+                    <input name="out_confirmed_by" type="text" class="input-normal control-text">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>领用数量：</label>
+                <label class="control-label"><s>*</s>数量单位：</label>
                 <div class="controls">
-                    <input name="used_no" type="number" id="used_no" value="1" data-rules="{required:true}">
+                    <input name="out_confirmed_unit" type="text" id="out_confirmed_unit" readonly="readonly" data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>领用时间：</label>
+                <label class="control-label"><s>*</s>出库时间：</label>
                 <div class="controls">
-                    <input name="used_date" type="text" data-rules="{required:true}" class="calendar">
+                    <input name="used_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>库存总量：</label>
+                <div class="controls">
+                    <input id="stock_total2" name="stock_total" type="number" data-rules="{required:true}"
+                           readonly="readonly"  type="number" min="0" max="999" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>出库数量：</label>
+                <div class="controls">
+                    <input name="out_confirmed_no" type="number" id="out_confirmed_no" value="1" data-rules="{required:true}"
+                           min="1" max="999"   class="input-normal control-text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="out_confirmed_officeId" name="out_confirmed_officeId" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="out_confirmed_total" name="out_confirmed_total" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="stock_no2" name="stock_no" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="stock_record_id2" name="stock_record_id" type="hidden" data-rules="{required:true}">
                 </div>
             </div>
         </div>
     </form>
 </div>
-<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="js/bui.js"></script>
-<script type="text/javascript" src="js/config-min.js"></script>
-<script type="text/javascript" src="js/sea.js"></script>
+<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/js/bui.js" data-debug=true></script>
+<script type="text/javascript" src="/js/sea.js"></script>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="js/tree/json2.js"></script>
+<script type="text/javascript" src="/js/tree/json2.js"></script>
 <![endif]-->
-<script type="text/javascript" src="js/tree/tree_build.js"></script>
-<script type="text/javascript" src="js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tree/tree_build.js"></script>
+<script type="text/javascript" src="/js/localstorageIO.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -233,6 +270,7 @@
                         select_data = [],
                         select_type = [],
                         stock_office = {},
+                        office_tree=null,
                         search_type_select = new Select.Select({
                             render: '#search_type_select',
                             valueField: '#search_type',
@@ -329,8 +367,8 @@
                             showLine: true //显示连接线
                         }),
                         stock_office_picker = new TreePicker({
-                            trigger: '#',
-                            //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                            trigger: '#out_confirmed_offices',
+                            valueField: '#out_confirmed_officeId', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                             width: 150,  //指定宽度
                             children: [stock_office_tree] //配置picker内的列表
                         }).render(),
@@ -348,8 +386,13 @@
                             {
                                 title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
 
-                                var editStr1 = '<span class="grid-command btn-edit" title="编辑信息">编辑</span>',
-                                        delStr = '<span class="grid-command btn-del" title="删除信息">删除</span>';//页面操作不需要使用Search.createLink
+                                var editStr1 = Search.createLink({ //链接使用 此方式
+                                            id : 'delivery-menu',
+                                            title : '出库记录',
+                                            text : '出库记录',
+                                            href : 'menu/delivery_tab/'+obj.id,
+                                        }),
+                                        delStr = '<span class="grid-command" title="删除信息">删除</span>';//页面操作不需要使用Search.createLink
                                 return editStr1 + delStr;
                             }
                             }
@@ -358,7 +401,7 @@
                             proxy: {
                                 save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                                     addUrl: '/addStock',
-                                    updateUrl: '/updateStorage',
+                                    updateUrl: '/updateStock',
                                     removeUrl: '../data/del.php'
                                 },
                                 method: 'POST'
@@ -387,7 +430,7 @@
                                     {
                                         text: '<i class="icon-list"></i><a>出库记录</a>',
                                         btnCls: 'button button-small',
-                                        handler: storageFunction
+                                        handler: deliveryFunction
                                     }
                                 ]
                             },
@@ -402,6 +445,9 @@
                         grid = search.get('grid'),
                         I_Form = Editing_I.get('form'),
                         O_Form = Editing_O.get('form');
+
+                grid.set('multipleSelect',false);
+
                 var search_grid_tip = new Tooltip.Tip({
                     trigger: '.grid-td-remark', //出现此样式的元素显示tip
                     alignType: 'bottom-left',
@@ -413,11 +459,22 @@
                 }).render();
 
                 function storageFunction() {
-                    if (top.topManager) {  //打开左侧菜单中配置过的页面
-                        top.topManager.openPage({
+                    if (top.topManager) {
+                        top.topManager.openPage({ //打开左侧菜单中配置过的页面
                             id: 'storage-menu',
                             href: 'menu/storage_tab',
                             title: '入库记录'
+                        });
+                    }
+                }
+
+                function deliveryFunction() {
+                    if (top.topManager) {
+                        top.topManager.openPage({ //打开左侧菜单中配置过的页面
+                            id: 'storage-menu',
+                            href: 'menu/delivery_tab',
+                            title: '入库记录',
+                            search:'stock_id='+113,
                         });
                     }
                 }
@@ -467,7 +524,7 @@
                     }
                 }
 
-                //下拉框ajax请求office_selectAjax
+                //下拉框ajax请求office_selectAjax--科室信息数据获取
                 function office_selectAjax() {
                     if (offices_select == undefined || offices_select == null) {
                         offices_select = localstorageIO("offices_select", "/getOfficeSelect");
@@ -483,8 +540,6 @@
                                     if (data != null && data != undefined) {
                                         offices_select = data.result;
                                         stock_office_select.set('items', stock_officeSelect());
-                                        /*var mObj = GetMenus('root', offices_select);
-                                         stock_office_tree.set('nodes', mObj);*/
                                     }
                                 },
                                 error: function (xhr, textStatus) {
@@ -494,6 +549,9 @@
                                 }
                             })
                         }
+                    }
+                    if(office_tree==null){
+                        office_tree=GetMenus('root', offices_select);
                     }
                 }
 
@@ -545,7 +603,7 @@
                 }
 
                 //根据库存总量生成库存数量
-                function makeInNum(total, stock_proportion) { //数量，比例数
+                function makeInNum(total, stock_proportion) { //总量，比例数
                     var num=total%stock_proportion;
                     while (num>=1){
                         num= num/10;
@@ -587,6 +645,8 @@
 
                 //出库操作
                 function outDevFunction() {
+                    office_selectAjax();
+                    stock_office_tree.set('nodes', office_tree);
                     var selections = grid.getSelection();
                     if (selections.length == 0) {
                         return;
@@ -596,7 +656,9 @@
                     } else {
                         var eData = selections[0];
                         Editing_O.edit(eData);
-                        O_Form.getField('used_no').addRule('max', selections[0].dev_no, '库存不足，不能大于{0}');
+                        O_Form.getField('stock_record_id').set('value',eData.id);
+                        O_Form.getField('out_confirmed_unit').set('value',eData.stock_unit);
+                        O_Form.getField('out_confirmed_officeId').addRule('max', selections[0].dev_no, '库存不足，不能大于{0}');
                     }
                 }
 
@@ -651,7 +713,7 @@
 
                 });
 
-                //提示框显示
+                //监听事件,提示框显示
                 search_grid_tip.on('show', function (ev) {
                     var innerText = ev.target.__attrVals.curTrigger.context.innerText;
                     search_grid_tip.set('title', innerText);
@@ -729,7 +791,7 @@
                                 I_num=stock_record_select.get('picker').get('children')[0].getSelected().stock_total;//获取选择的库存记录总量（此时I_num已赋值为记录总量）
                             }
                             I_stock_total=I_stock_total+parseInt(I_num);//记录总量+新输入的库存总量=新的库存总量（此时I_stock_total已赋值为新库存总量）
-                            $("#stock_total").val(I_stock_total);//重设库存总量值
+                            $("#stock_total").val(parseFloat(I_stock_total));//重设库存总量值
                             //改变总数量no
                             $("#stock_no").val(makeInNum(I_stock_total,stock_proportion));//重设库存总数量值
                         }
@@ -738,6 +800,17 @@
                 //数量输入框光标移出事件
                 $("#in_confirmed_no").on('blur', function () {
                     $("#stock_proportion").trigger('blur');
+                });
+
+                //数量输入框光标移出事件
+                $("#out_confirmed_no").on('blur', function () {
+                    var O_num = $("#out_confirmed_no").val();//获取入库数量no
+                    var proportion = parseInt(grid.getSelection()[0].stock_proportion);
+                    var out_stock_total=reckon_stock_total(O_num,proportion);
+                    $("#out_confirmed_total").val(out_stock_total);
+                    O_num=grid.getSelection()[0].stock_total-out_stock_total;
+                    O_Form.getField('stock_total').set('value',O_num);
+                    O_Form.getField('stock_no').set('value',makeInNum(O_num,proportion));
                 });
 
             });

@@ -1,7 +1,7 @@
 (function ($) {
 
   var baseUrl = '',         //网站的根目录地址，发布到线上时使用
-    jsBase = '/menu/js';
+    jsBase = '/js';
   
   function isRelative(url){
     if(!/:/.test(url)){
@@ -45,11 +45,11 @@
     alias : {
       'common' : baseUrl + jsBase + '/common',
       'module' : baseUrl + jsBase + '/module'
-    }/*,
+    },
     map : [ //调试环境下使用'*.js'，如果发布上线前，使用*-min.js去掉下面的map
-      [/common\/(.*)-min.js/,'common/$1.js'],
-      [/module\/(.*)-min.js/,'module/$1.js']
-    ]*/
+      [/common\/(.*).js/,'common/$1.js'],
+      [/module\/(.*).js/,'module/$1.js']
+    ]
     
   });
 
