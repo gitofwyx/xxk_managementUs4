@@ -15,6 +15,8 @@ public class Delivery extends BaseInfoEntity {
     private String out_confirmed_officeId;//出库科室
     private String out_confirmed_date;    //出库时间
     private double out_confirmed_no;  //出库数量
+    private String out_confirmed_unit;  //出库单位
+    private int out_confirmed_proportion;  //个体/单位比例
     private double out_confirmed_total;      //出库人
     private String keyWord;           //关键字
 
@@ -82,6 +84,22 @@ public class Delivery extends BaseInfoEntity {
 
     public void setOut_confirmed_no(double out_confirmed_no) {
         this.out_confirmed_no = out_confirmed_no;
+    }
+
+    public String getOut_confirmed_unit() {
+        return out_confirmed_unit;
+    }
+
+    public void setOut_confirmed_unit(String out_confirmed_unit) {
+        this.out_confirmed_unit = out_confirmed_unit;
+    }
+
+    public int getOut_confirmed_proportion() {
+        return out_confirmed_proportion;
+    }
+
+    public void setOut_confirmed_proportion(int out_confirmed_proportion) {
+        this.out_confirmed_proportion = out_confirmed_proportion;
     }
 
     public double getOut_confirmed_total() {

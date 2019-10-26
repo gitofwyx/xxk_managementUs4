@@ -51,6 +51,7 @@ public class StockServiceImpl implements StockService {
     }
 
     //新增库存
+    // 2019年8月12日 13:44:05更新
     @Override
     public Map<String, Object> addStockWithStorage(Stock stock, Storage storage) {
         Map<String, Object> result = new HashMap<>();
@@ -161,7 +162,7 @@ public class StockServiceImpl implements StockService {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
-                //入库记录
+                //出库记录
                 delivery.setEntity_id(stock.getEntity_id());
                 result = deliveryService.addDelivery(stock, delivery);
             }

@@ -58,8 +58,7 @@ public class StorageController extends BaseController {
                 result.put("hasError", true);
                 result.put("error", "获取分页出错");
                 return result;
-            }
-            else {
+            }else {
                 for (Storage storage : listStorage) {
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.putAll(JsonUtils.toMap(storage));

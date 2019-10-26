@@ -49,7 +49,8 @@ public class StockController extends BaseController {
                                               @RequestParam(value = "limit") String limit,
                                               @RequestParam(value = "account") String account,
                                               @RequestParam(value = "name") String name,
-                                              @RequestParam(value = "in_confirmed_date") String in_confirmed_date,
+                                              @RequestParam(value = "startDate") String startDate,
+                                              @RequestParam(value = "startDate") String endDate,
                                               @RequestParam(value = "search_type") int search_type) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();

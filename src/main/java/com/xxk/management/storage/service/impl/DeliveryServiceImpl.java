@@ -59,6 +59,8 @@ public class DeliveryServiceImpl implements DeliveryService {
             delivery.setId(deliveryId);
             delivery.setStock_id(stock.getId());
             delivery.setOut_confirmed_ident(out_confirmed_ident);
+            delivery.setOut_confirmed_unit(stock.getStock_unit());
+            delivery.setOut_confirmed_proportion(stock.getStock_proportion());
             delivery.setCreateDate(createDate);
             delivery.setCreateUserId("admin");
             delivery.setUpdateDate(createDate);

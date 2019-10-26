@@ -598,4 +598,18 @@ public class DateUtil {
         return res;
     }
 
+    /*
+         *
+         */
+    public static String makeDateTime(String date,String time,int t) {
+        if(date==null&&t==0){
+            date="2000-01-01";
+        }else{
+            date=getFullDate_();
+        }
+        date=date+" "+time;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        simpleDateFormat.format(date);
+        return date;
+    }
 }

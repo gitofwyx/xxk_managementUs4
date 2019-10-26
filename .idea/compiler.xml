@@ -25,7 +25,7 @@
         <module name="xxk_management" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.7">
+    <bytecodeTargetLevel>
       <module name="xxk_management" target="1.7" />
     </bytecodeTargetLevel>
   </component>

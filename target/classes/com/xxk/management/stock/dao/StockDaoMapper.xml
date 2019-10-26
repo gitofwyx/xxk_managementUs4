@@ -8,7 +8,7 @@
     <select id="listStock" parameterType="string" resultType="com.xxk.management.stock.entity.Stock">
         select
         <include refid="columns"></include>
-        from xxk_stock where deleteFlag='0'and stock_type=#{2} ORDER BY createDate desc limit #{0},#{1};
+        from xxk_stock where  deleteFlag='0' and stock_type=#{2} and ORDER BY createDate desc limit #{0},#{1};
     </select>
 
     <!--根据id获取信息 -->

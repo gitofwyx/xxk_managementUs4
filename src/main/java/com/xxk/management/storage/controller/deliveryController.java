@@ -2,6 +2,7 @@ package com.xxk.management.storage.controller;
 
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
+import com.xxk.core.util.JsonUtils;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.device.service.DeviceService;
@@ -80,13 +81,6 @@ public class deliveryController extends BaseController {
                 } else {
                     for (Delivery delivery : listDelivery) {
                         Map<String, Object> resultMap = new HashMap<>();
-                        for (Map<String, Object> deviceMap : deviceList) {
-                            if (delivery.getEntity_id().equals(deviceMap.get("id"))) {
-                                resultMap.put("dev_name", deviceMap.get("dev_name"));
-                                resultMap.put("dev_type", deviceMap.get("dev_type"));
-                                resultMap.put("dev_no", deviceMap.get("dev_no"));
-                            }
-                        }
                         // resultMap.put("out_flag", delivery.getOut_flag());
                         resultList.add(resultMap);
                     }
@@ -109,6 +103,7 @@ public class deliveryController extends BaseController {
                                             @RequestParam(value = "dev_ident") String dev_ident,
                                             @RequestParam(value = "out_confirmed_date") String out_confirmed_date) {
         Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> resultList = new ArrayList<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
             int pageSize = Integer.parseInt(limit);         //单页记录数
@@ -117,8 +112,14 @@ public class deliveryController extends BaseController {
                 log.error("listStorage:获取分页出错");
                 result.put("error", false);
                 return result;
+            }else {
+                for (Delivery delivery : listDelivery) {
+                    Map<String, Object> resultMap = new HashMap<>();
+                    resultMap.putAll(JsonUtils.toMap(delivery));
+                    resultList.add(resultMap);
+                }
             }
-            result.put("rows", listDelivery);
+            result.put("rows", resultList);
             result.put("results", 7);
 
         } catch (Exception e) {
