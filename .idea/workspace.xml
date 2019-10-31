@@ -2,49 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0eeb4fea-8e77-4f92-bc25-81a0a82d44db" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/WYX.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/webContexts.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.project" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management.war" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/xxk_management.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/core/util/DateUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/core/util/DateUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/controller/StorageController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/controller/StorageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/controller/deliveryController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/controller/deliveryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/entity/Delivery.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/entity/Delivery.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/util/DateUtil.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/util/DateUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/controller/StockController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/controller/StockController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/StorageController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/StorageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/deliveryController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/deliveryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/entity/Delivery.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/entity/Delivery.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/deliveryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/deliveryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/entity/Delivery.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/entity/Delivery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock-dialog.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock-dialog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" />
     </list>
     <ignored path="xxk_management.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,20 +37,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="93" selection-start-line="59" selection-start-column="93" selection-end-line="59" selection-end-column="93" />
+              <caret line="52" column="86" selection-start-line="52" selection-start-column="83" selection-end-line="52" selection-end-column="86" />
               <folding>
                 <element signature="imports" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StockServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="82" selection-start-line="55" selection-start-column="82" selection-end-line="55" selection-end-column="82" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -94,7 +50,33 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="607" column="32" selection-start-line="607" selection-start-column="32" selection-end-line="607" selection-end-column="32" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#5939#5940#0" expanded="false" />
+                <element signature="e#5990#5991#0" expanded="false" />
+                <element signature="e#6101#6102#0" expanded="false" />
+                <element signature="e#6154#6155#0" expanded="false" />
+                <element signature="e#6257#6258#0" expanded="false" />
+                <element signature="e#6310#6311#0" expanded="false" />
+                <element signature="e#6353#6354#0" expanded="false" />
+                <element signature="e#6404#6405#0" expanded="false" />
+                <element signature="e#6510#6511#0" expanded="false" />
+                <element signature="e#6565#6566#0" expanded="false" />
+                <element signature="e#11665#11666#0" expanded="false" />
+                <element signature="e#11729#11730#0" expanded="false" />
+                <element signature="e#11772#11773#0" expanded="false" />
+                <element signature="e#11829#11830#0" expanded="false" />
+                <element signature="e#11872#11873#0" expanded="false" />
+                <element signature="e#11933#11934#0" expanded="false" />
+                <element signature="e#12024#12025#0" expanded="false" />
+                <element signature="e#12076#12077#0" expanded="false" />
+                <element signature="e#12170#12171#0" expanded="false" />
+                <element signature="e#12221#12222#0" expanded="false" />
+                <element signature="e#12260#12261#0" expanded="false" />
+                <element signature="e#12307#12308#0" expanded="false" />
+                <element signature="e#12345#12346#0" expanded="false" />
+                <element signature="e#12394#12395#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,11 +84,21 @@
       <file leaf-file-name="stock-dialog.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0208955">
-              <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.45714286">
+              <caret line="766" column="73" selection-start-line="766" selection-start-column="73" selection-end-line="766" selection-end-column="73" />
               <folding>
-                <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+                <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="124" selection-start-line="46" selection-start-column="124" selection-end-line="46" selection-end-column="124" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,10 +117,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/demo1.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/demo.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/css/demo.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html" />
       </list>
     </option>
   </component>
@@ -230,6 +226,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -293,6 +290,92 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -354,87 +437,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="stock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stock" />
+              <option name="myItemId" value="material" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -466,7 +469,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -474,12 +476,17 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33333334" />
-    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\css" />
+    </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.T8">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
@@ -929,7 +936,7 @@
       <option name="OPEN_IN_BROWSER" value="false" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="xxk_management:war exploded">
           <settings>
@@ -1031,27 +1038,39 @@
       <workItem from="1571895095048" duration="596000" />
       <workItem from="1571918024656" duration="1196000" />
       <workItem from="1572049842137" duration="3798000" />
+      <workItem from="1572072686118" duration="12745000" />
+      <workItem from="1572133200133" duration="6233000" />
+      <workItem from="1572168404572" duration="5417000" />
+      <workItem from="1572239083979" duration="1788000" />
+      <workItem from="1572261590302" duration="5426000" />
+      <workItem from="1572325027837" duration="2472000" />
+      <workItem from="1572354199889" duration="597000" />
+      <workItem from="1572395936043" duration="2348000" />
+      <workItem from="1572399683099" duration="11581000" />
+      <workItem from="1572499172664" duration="9317000" />
+      <workItem from="1572523034082" duration="10499000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53420000" />
+    <option name="totallyTimeSpent" value="121843000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5030257" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44607842" sideWeight="0.5075643" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12102874" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.4969743" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25718608" sideWeight="0.4914842" order="3" side_tool="false" content_ui="combo" />
@@ -1063,13 +1082,12 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35947713" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1633987" sideWeight="0.4924357" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1093,73 +1111,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="93" selection-start-line="59" selection-start-column="93" selection-end-line="59" selection-end-column="93" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="607" column="32" selection-start-line="607" selection-start-column="32" selection-end-line="607" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1572068463378" expanded="true" signature="571:731" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="889:1051" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1188:1511" placeholder="insert into xxk_stock... " />
-            <marker date="1572068463378" expanded="true" signature="1636:1733" placeholder="select id fr... xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1884:2006" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="2132:2379" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2505:2747" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2875:3117" placeholder="update xxk_s... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="76" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="76" />
-          <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="93" selection-start-line="59" selection-start-column="93" selection-end-line="59" selection-end-column="93" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="46" column="124" selection-start-line="46" selection-start-column="124" selection-end-line="46" selection-end-column="124" />
           <folding />
         </state>
       </provider>
@@ -1168,16 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding>
-            <marker date="1572068463378" expanded="true" signature="571:731" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="889:1051" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1188:1511" placeholder="insert into xxk_stock... " />
-            <marker date="1572068463378" expanded="true" signature="1636:1733" placeholder="select id fr... xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1884:2006" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="2132:2379" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2505:2747" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2875:3117" placeholder="update xxk_s... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1186,7 +1131,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="76" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="76" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1205,7 +1150,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="603" column="70" selection-start-line="603" selection-start-column="70" selection-end-line="603" selection-end-column="70" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5939#5940#0" expanded="false" />
+            <element signature="e#5990#5991#0" expanded="false" />
+            <element signature="e#6101#6102#0" expanded="false" />
+            <element signature="e#6154#6155#0" expanded="false" />
+            <element signature="e#6257#6258#0" expanded="false" />
+            <element signature="e#6310#6311#0" expanded="false" />
+            <element signature="e#6353#6354#0" expanded="false" />
+            <element signature="e#6404#6405#0" expanded="false" />
+            <element signature="e#6510#6511#0" expanded="false" />
+            <element signature="e#6565#6566#0" expanded="false" />
+            <element signature="e#11665#11666#0" expanded="false" />
+            <element signature="e#11729#11730#0" expanded="false" />
+            <element signature="e#11772#11773#0" expanded="false" />
+            <element signature="e#11829#11830#0" expanded="false" />
+            <element signature="e#11872#11873#0" expanded="false" />
+            <element signature="e#11933#11934#0" expanded="false" />
+            <element signature="e#12024#12025#0" expanded="false" />
+            <element signature="e#12076#12077#0" expanded="false" />
+            <element signature="e#12170#12171#0" expanded="false" />
+            <element signature="e#12221#12222#0" expanded="false" />
+            <element signature="e#12260#12261#0" expanded="false" />
+            <element signature="e#12307#12308#0" expanded="false" />
+            <element signature="e#12345#12346#0" expanded="false" />
+            <element signature="e#12394#12395#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1213,16 +1184,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding>
-            <marker date="1572068463378" expanded="true" signature="571:731" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="889:1051" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1188:1511" placeholder="insert into xxk_stock... " />
-            <marker date="1572068463378" expanded="true" signature="1636:1733" placeholder="select id fr... xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1884:2006" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="2132:2379" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2505:2747" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2875:3117" placeholder="update xxk_s... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1231,7 +1192,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="76" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="76" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1250,7 +1211,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5939#5940#0" expanded="false" />
+            <element signature="e#5990#5991#0" expanded="false" />
+            <element signature="e#6101#6102#0" expanded="false" />
+            <element signature="e#6154#6155#0" expanded="false" />
+            <element signature="e#6257#6258#0" expanded="false" />
+            <element signature="e#6310#6311#0" expanded="false" />
+            <element signature="e#6353#6354#0" expanded="false" />
+            <element signature="e#6404#6405#0" expanded="false" />
+            <element signature="e#6510#6511#0" expanded="false" />
+            <element signature="e#6565#6566#0" expanded="false" />
+            <element signature="e#11665#11666#0" expanded="false" />
+            <element signature="e#11729#11730#0" expanded="false" />
+            <element signature="e#11772#11773#0" expanded="false" />
+            <element signature="e#11829#11830#0" expanded="false" />
+            <element signature="e#11872#11873#0" expanded="false" />
+            <element signature="e#11933#11934#0" expanded="false" />
+            <element signature="e#12024#12025#0" expanded="false" />
+            <element signature="e#12076#12077#0" expanded="false" />
+            <element signature="e#12170#12171#0" expanded="false" />
+            <element signature="e#12221#12222#0" expanded="false" />
+            <element signature="e#12260#12261#0" expanded="false" />
+            <element signature="e#12307#12308#0" expanded="false" />
+            <element signature="e#12345#12346#0" expanded="false" />
+            <element signature="e#12394#12395#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1258,16 +1245,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding>
-            <marker date="1572068463378" expanded="true" signature="571:731" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="889:1051" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1188:1511" placeholder="insert into xxk_stock... " />
-            <marker date="1572068463378" expanded="true" signature="1636:1733" placeholder="select id fr... xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1884:2006" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="2132:2379" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2505:2747" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2875:3117" placeholder="update xxk_s... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1276,7 +1253,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="76" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="76" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1295,7 +1272,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5939#5940#0" expanded="false" />
+            <element signature="e#5990#5991#0" expanded="false" />
+            <element signature="e#6101#6102#0" expanded="false" />
+            <element signature="e#6154#6155#0" expanded="false" />
+            <element signature="e#6257#6258#0" expanded="false" />
+            <element signature="e#6310#6311#0" expanded="false" />
+            <element signature="e#6353#6354#0" expanded="false" />
+            <element signature="e#6404#6405#0" expanded="false" />
+            <element signature="e#6510#6511#0" expanded="false" />
+            <element signature="e#6565#6566#0" expanded="false" />
+            <element signature="e#11665#11666#0" expanded="false" />
+            <element signature="e#11729#11730#0" expanded="false" />
+            <element signature="e#11772#11773#0" expanded="false" />
+            <element signature="e#11829#11830#0" expanded="false" />
+            <element signature="e#11872#11873#0" expanded="false" />
+            <element signature="e#11933#11934#0" expanded="false" />
+            <element signature="e#12024#12025#0" expanded="false" />
+            <element signature="e#12076#12077#0" expanded="false" />
+            <element signature="e#12170#12171#0" expanded="false" />
+            <element signature="e#12221#12222#0" expanded="false" />
+            <element signature="e#12260#12261#0" expanded="false" />
+            <element signature="e#12307#12308#0" expanded="false" />
+            <element signature="e#12345#12346#0" expanded="false" />
+            <element signature="e#12394#12395#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1303,16 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding>
-            <marker date="1572068463378" expanded="true" signature="571:731" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="889:1051" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1188:1511" placeholder="insert into xxk_stock... " />
-            <marker date="1572068463378" expanded="true" signature="1636:1733" placeholder="select id fr... xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1884:2006" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="2132:2379" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2505:2747" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2875:3117" placeholder="update xxk_s... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1321,7 +1314,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="76" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="76" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1340,7 +1333,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5939#5940#0" expanded="false" />
+            <element signature="e#5990#5991#0" expanded="false" />
+            <element signature="e#6101#6102#0" expanded="false" />
+            <element signature="e#6154#6155#0" expanded="false" />
+            <element signature="e#6257#6258#0" expanded="false" />
+            <element signature="e#6310#6311#0" expanded="false" />
+            <element signature="e#6353#6354#0" expanded="false" />
+            <element signature="e#6404#6405#0" expanded="false" />
+            <element signature="e#6510#6511#0" expanded="false" />
+            <element signature="e#6565#6566#0" expanded="false" />
+            <element signature="e#11665#11666#0" expanded="false" />
+            <element signature="e#11729#11730#0" expanded="false" />
+            <element signature="e#11772#11773#0" expanded="false" />
+            <element signature="e#11829#11830#0" expanded="false" />
+            <element signature="e#11872#11873#0" expanded="false" />
+            <element signature="e#11933#11934#0" expanded="false" />
+            <element signature="e#12024#12025#0" expanded="false" />
+            <element signature="e#12076#12077#0" expanded="false" />
+            <element signature="e#12170#12171#0" expanded="false" />
+            <element signature="e#12221#12222#0" expanded="false" />
+            <element signature="e#12260#12261#0" expanded="false" />
+            <element signature="e#12307#12308#0" expanded="false" />
+            <element signature="e#12345#12346#0" expanded="false" />
+            <element signature="e#12394#12395#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1348,16 +1367,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding>
-            <marker date="1572068463378" expanded="true" signature="571:731" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="889:1051" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1188:1511" placeholder="insert into xxk_stock... " />
-            <marker date="1572068463378" expanded="true" signature="1636:1733" placeholder="select id fr... xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1884:2006" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="2132:2379" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2505:2747" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2875:3117" placeholder="update xxk_s... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1366,7 +1375,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="76" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="76" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1385,16 +1394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1572068463378" expanded="true" signature="571:731" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="889:1051" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1188:1511" placeholder="insert into xxk_stock... " />
-            <marker date="1572068463378" expanded="true" signature="1636:1733" placeholder="select id fr... xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1884:2006" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="2132:2379" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2505:2747" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2875:3117" placeholder="update xxk_s... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1403,7 +1402,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="44" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="44" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1423,7 +1422,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="44" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="44" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1443,7 +1442,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="44" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="44" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1546,30 +1545,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/search.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="93" selection-start-line="59" selection-start-column="93" selection-end-line="59" selection-end-column="93" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.35849056">
+          <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3402985">
-          <caret line="10" column="69" selection-start-line="10" selection-start-column="69" selection-end-line="10" selection-end-column="69" />
-          <folding>
-            <marker date="1572068463378" expanded="true" signature="571:731" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="889:1051" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1188:1511" placeholder="insert into xxk_stock... " />
-            <marker date="1572068463378" expanded="true" signature="1636:1733" placeholder="select id fr... xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="1884:2006" placeholder="select from xxk_stock" />
-            <marker date="1572068463378" expanded="true" signature="2132:2379" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2505:2747" placeholder="update xxk_s... " />
-            <marker date="1572068463378" expanded="true" signature="2875:3117" placeholder="update xxk_s... " />
-          </folding>
+        <state vertical-scroll-proportion="0.37026238">
+          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5107527">
+          <caret line="55" column="82" selection-start-line="55" selection-start-column="82" selection-end-line="55" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="124" selection-start-line="46" selection-start-column="124" selection-end-line="46" selection-end-column="124" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/dpl-min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/page.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1577,24 +1599,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="607" column="32" selection-start-line="607" selection-start-column="32" selection-end-line="607" selection-end-column="32" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#5939#5940#0" expanded="false" />
+            <element signature="e#5990#5991#0" expanded="false" />
+            <element signature="e#6101#6102#0" expanded="false" />
+            <element signature="e#6154#6155#0" expanded="false" />
+            <element signature="e#6257#6258#0" expanded="false" />
+            <element signature="e#6310#6311#0" expanded="false" />
+            <element signature="e#6353#6354#0" expanded="false" />
+            <element signature="e#6404#6405#0" expanded="false" />
+            <element signature="e#6510#6511#0" expanded="false" />
+            <element signature="e#6565#6566#0" expanded="false" />
+            <element signature="e#11665#11666#0" expanded="false" />
+            <element signature="e#11729#11730#0" expanded="false" />
+            <element signature="e#11772#11773#0" expanded="false" />
+            <element signature="e#11829#11830#0" expanded="false" />
+            <element signature="e#11872#11873#0" expanded="false" />
+            <element signature="e#11933#11934#0" expanded="false" />
+            <element signature="e#12024#12025#0" expanded="false" />
+            <element signature="e#12076#12077#0" expanded="false" />
+            <element signature="e#12170#12171#0" expanded="false" />
+            <element signature="e#12221#12222#0" expanded="false" />
+            <element signature="e#12260#12261#0" expanded="false" />
+            <element signature="e#12307#12308#0" expanded="false" />
+            <element signature="e#12345#12346#0" expanded="false" />
+            <element signature="e#12394#12395#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="82" selection-start-line="55" selection-start-column="82" selection-end-line="55" selection-end-column="82" />
+          <caret line="52" column="86" selection-start-line="52" selection-start-column="83" selection-end-line="52" selection-end-column="86" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/index/js/jquery-1.8.1.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35384616">
+          <caret line="1" column="13062" selection-start-line="1" selection-start-column="13062" selection-end-line="1" selection-end-column="13062" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0208955">
-          <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.45714286">
+          <caret line="766" column="73" selection-start-line="766" selection-start-column="73" selection-end-line="766" selection-end-column="73" />
           <folding>
-            <marker date="1572066680726" expanded="true" signature="16936:16950" placeholder="..." />
+            <marker date="1572535581915" expanded="true" signature="18326:18340" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1602,6 +1660,17 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArquillianSettingsConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.33333334" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
@@ -1609,7 +1678,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.43218392" />
+                <option value="0.33333334" />
                 <option value="0.5" />
               </list>
             </option>
@@ -1618,7 +1687,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Web</last-edited>
+          <last-edited>Spring (xxk_management)|Spring</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1682,7 +1751,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.43218392" />
+                <option value="0.33333334" />
               </list>
             </option>
           </splitter-proportions>

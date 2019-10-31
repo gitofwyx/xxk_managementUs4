@@ -47,10 +47,9 @@ public class StockController extends BaseController {
     @RequestMapping("/listStock")
     public Map<String, Object> listStock(@RequestParam(value = "pageIndex") String pageIndex,
                                               @RequestParam(value = "limit") String limit,
-                                              @RequestParam(value = "account") String account,
-                                              @RequestParam(value = "name") String name,
-                                              @RequestParam(value = "startDate") String startDate,
-                                              @RequestParam(value = "startDate") String endDate,
+                                              @RequestParam(value = "search_class_id") String search_class_id,
+                                              @RequestParam(value = "search_device_id") String search_device_id,
+                                              @RequestParam(value = "search_office_id") String search_office_id,
                                               @RequestParam(value = "search_type") int search_type) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();

@@ -23,15 +23,15 @@
         <form id="searchForm" class="form-horizontal span32" autocomplete="off">
             <div class="row">
                 <div class="control-group span7">
-                    <label class="control-label">库存名称：</label>
-                    <div class="controls">
-                        <input type="text" class="control-text" name="account">
+                    <label class="control-label">设备类别：</label>
+                    <div class="controls search_select" id="search_class_select">
+                        <input name="search_class_id" type="hidden" id="search_class_id">
                     </div>
                 </div>
                 <div class="control-group span7">
-                    <label class="control-label">库存型号：</label>
-                    <div class="controls">
-                        <input type="text" class="control-text" name="name">
+                    <label class="control-label">设备型号：</label>
+                    <div class="controls search_select" id="search_entity_select">
+                        <input name="search_device_id" type="hidden" id="search_device_id">
                     </div>
                 </div>
                 <div class="control-group span8">
@@ -44,8 +44,8 @@
             <div class="row">
                 <div class="control-group span9">
                     <label class="control-label">库存科室：</label>
-                    <div class="controls" id="search_stock_office">
-                        <input name="stock_office_id" id="search_office_id" type="hidden" data-rules="{required:true}">
+                    <div class="controls" id="search_office_select">
+                        <input name="search_office_id" id="search_office_id" type="hidden">
                     </div>
                 </div>
                 <div class="control-group span9">
@@ -180,7 +180,7 @@
     </form>
 </div>
 <div id="Content_O" class="hide">
-    <form id="O_Form" class="form-horizontal" action="">
+    <form id="O_Form" class="form-horizontal" action="" autocomplete="off">
         <input type="hidden" name="office_ident" id="office_ident">
         <div id="tab"></div>
         <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
@@ -263,29 +263,53 @@
     BUI.use('common/page');
 </script>
 <script type="text/javascript">
-    BUI.use(['common/search', 'bui/tab', 'bui/tooltip', 'bui/grid', 'bui/select', 'bui/picker', 'bui/extensions/treepicker', 'bui/tree'],
-            function (Search, Tab, Tooltip, Grid, Select, Picker, TreePicker, Tree) {
+    BUI.use(['common/search', 'bui/tab', 'bui/tooltip', 'bui/grid', 'bui/select', 'bui/picker','bui/list', 'bui/extensions/treepicker', 'bui/tree'],
+            function (Search, Tab, Tooltip, Grid,Select, Picker,List, TreePicker, Tree) {
                 var offices_select = localstorageIO("offices_select", "/getOfficeSelect");
                 var enumObj = {"0": "未出库", "1": "已出库"},
                         select_data = [],
                         select_type = [],
                         stock_office = {},
                         office_tree=null,
+                        //库存类别选择框
                         search_type_select = new Select.Select({
                             render: '#search_type_select',
                             valueField: '#search_type',
                             multipleSelect: false,
                             items: [
-                                {text: '设备', value: '1'},
-                                {text: '配件', value: '2'},
-                                {text: '耗材', value: '3'}
+                                {text: '设备', value: '1',name: 'DeviceSelect'},
+                                {text: '配件', value: '2',name: 'MaterialSelect'},
+                                {text: '耗材', value: '3',name: 'MaterialSelect'}
                             ],
                         }).render(),
-                        Editing_I = new BUI.Grid.Plugins.DialogEditing({
+                        //搜索设备选择框
+                        search_class_select = new Select.Select({
+                            render: '#search_class_select',
+                            valueField: '#search_class_id',
+                            multipleSelect: false,
+                        }).render(),
+                        //搜索型号选择框
+                        search_entity_select = new Select.Select({
+                            render: '#search_entity_select',
+                            valueField: '#search_device_id',
+                            multipleSelect: false,
+                            items: []
+                        }).render(),
+                        //搜索栏科室下拉框
+                        search_office_select = new Select.Select({
+                            render: '#search_office_select',
+                            valueField: '#search_office_id',
+                            multipleSelect: false,
+                            items: []
+                        }).render();
+
+                        //入库弹出框
+                        var Editing_I = new BUI.Grid.Plugins.DialogEditing({
                             contentId: 'Content_I', //设置隐藏的Dialog内容
                             autoSave: true, //添加数据或者修改数据时，自动保存
                             triggerCls: 'btn-edit'
                         }),
+                        //出库弹出框
                         Editing_O = new BUI.Grid.Plugins.DialogEditing({
                             contentId: 'Content_O', //设置隐藏的Dialog内容
                             autoSave: true, //添加数据或者修改数据时，自动保存
@@ -302,17 +326,20 @@
                                 {id: 'matH_row', title: '耗材', name: 'MaterialSelect', value: '3',},
                             ]
                         }).render(),
+                        //设备种类选择框
                         dev_name_select = new Select.Select({
                             render: '#dev_name_select',
                             valueField: '#dev_name',
                             multipleSelect: false,
                         }).render(),
+                        //设备型号选择框
                         dev_type_select = new Select.Select({
                             render: '#dev_type_select',
                             valueField: '#entity_id',
                             multipleSelect: false,
                             items: []
                         }).render(),
+                        //库存科室选择框
                         stock_office_select = new Select.Select({
                             render: '#stock_office_select',
                             valueField: '#stock_office_id',
@@ -443,10 +470,12 @@
                             gridCfg: gridCfg
                         }),
                         grid = search.get('grid'),
+                        C_Form=search.get('form'),
                         I_Form = Editing_I.get('form'),
                         O_Form = Editing_O.get('form');
 
                 grid.set('multipleSelect',false);
+                search_office_select.set('items', stock_officeSelect());
 
                 var search_grid_tip = new Tooltip.Tip({
                     trigger: '.grid-td-remark', //出现此样式的元素显示tip
@@ -499,12 +528,12 @@
                 }
 
                 //下拉框ajax请求entity_selectAjax
-                function entity_selectAjax() {
-                    var url = '/get' + tab_I.getSelected().__attrVals.name;
+                function entity_selectAjax(n,v) {
+                    var url = '/get' + n;
                     if ($.isEmptyObject(select_data)) {
                         $.ajax({
                             url: url,
-                            data: {tab: tab_I.getSelected().__attrVals.value},
+                            data: {tab: v},
                             type: 'POST', //GET
                             async: true,    //或false,是否异步
                             /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
@@ -512,6 +541,7 @@
                             success: function (data, textStatus, jqXHR) {
                                 if (data != null && data != undefined) {
                                     select_data = data;
+                                    search_class_select.set('items', select_data.Class_data);
                                     dev_name_select.set('items', select_data.Class_data);
                                 }
                             },
@@ -615,7 +645,7 @@
                 //入库操作
                 function in_storageFunction() {
 
-                    entity_selectAjax();
+                    entity_selectAjax(tab_I.getSelected().__attrVals.name,tab_I.getSelected().__attrVals.value);
                     office_selectAjax();
                     Sto_rec_grid.set('items', []);
                     dev_type_select.set('items', []);
@@ -680,6 +710,35 @@
                     }
                 }
 
+                //选择种类下拉框选中
+                function changeEntClass(ev,i) {
+                    select_type = [];
+                    var Entity_data = select_data.Entity_data;
+                    for (var j = 0, len = Entity_data.length; j < len; j++) {
+                        if (Entity_data[j].dev_class_id == i) {
+                            select_type.push(Entity_data[j]);
+                        }
+                    }
+                };
+             /*事件*/
+                //监听事件，搜索设备种类下拉框选中
+                search_class_select.on('change', function (ev) {
+                    search_entity_select.setSelectedValue( '');//初始化型号
+                    if(!$.isEmptyObject(search_class_select.getSelectedValue())){
+                        changeEntClass(ev,search_class_select.getSelectedValue());
+                        search_entity_select.set('items', select_type);
+                    }
+                });
+
+                //监听事件，搜索设备类别下拉框选中
+                search_type_select.on('change', function (ev) {
+                    select_data = [];//初始化
+                    search_class_select.setSelectedValue( '');//初始化种类
+                    search_entity_select.setSelectedValue( '');//初始化型号
+                    search_office_select.setSelectedValue( '');//初始化科室
+                    entity_selectAjax(ev.item.name,ev.item.value);
+                });
+
                 //监听事件，删除一条记录
                 grid.on('cellclick', function (ev) {
                     var sender = $(ev.domTarget); //点击的Dom
@@ -693,24 +752,19 @@
                 tab_I.on('selectedchange', function (ev) {
                     I_Reset();
                     select_data = [];
-                    entity_selectAjax();
+                    entity_selectAjax(tab_I.getSelected().__attrVals.name,tab_I.getSelected().__attrVals.value);
                 });
 
                 //监听事件，选择设备种类下拉框选中
                 dev_name_select.on('change', function (ev) {
-                    select_type = [];
-                    var Entity_data = select_data.Entity_data;
-                    for (var j = 0, len = Entity_data.length; j < len; j++) {
-                        if (Entity_data[j].dev_class_id == dev_name_select.getSelectedValue()) {
-                            select_type.push(Entity_data[j]);
-                        }
-                    }
+                    dev_type_select.setSelectedValue( '');//初始化型号
+                    changeEntClass(ev,dev_name_select.getSelectedValue());
                     dev_type_select.set('items', select_type);
                 });
 
                 //监听事件，选择设备型号下拉框选中
                 dev_type_select.on('change', function (ev) {
-
+                    stock_office_select.setSelectedValue( '');//初始化入库科室！！
                 });
 
                 //监听事件,提示框显示
