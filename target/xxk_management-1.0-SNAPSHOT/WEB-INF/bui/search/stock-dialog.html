@@ -271,17 +271,6 @@
                         select_type = [],
                         stock_office = {},
                         office_tree=null,
-                        //库存类别选择框
-                        search_type_select = new Select.Select({
-                            render: '#search_type_select',
-                            valueField: '#search_type',
-                            multipleSelect: false,
-                            items: [
-                                {text: '设备', value: '1',name: 'DeviceSelect'},
-                                {text: '配件', value: '2',name: 'MaterialSelect'},
-                                {text: '耗材', value: '3',name: 'MaterialSelect'}
-                            ],
-                        }).render(),
                         //搜索设备选择框
                         search_class_select = new Select.Select({
                             render: '#search_class_select',
@@ -294,6 +283,17 @@
                             valueField: '#search_device_id',
                             multipleSelect: false,
                             items: []
+                        }).render(),
+                        //库存类别选择框
+                        search_type_select = new Select.Select({
+                            render: '#search_type_select',
+                            valueField: '#search_type',
+                            multipleSelect: false,
+                            items: [
+                                {text: '设备', value: '1',name: 'DeviceSelect'},
+                                {text: '配件', value: '2',name: 'MaterialSelect'},
+                                {text: '耗材', value: '3',name: 'MaterialSelect'}
+                            ],
                         }).render(),
                         //搜索栏科室下拉框
                         search_office_select = new Select.Select({
@@ -719,8 +719,10 @@
                             select_type.push(Entity_data[j]);
                         }
                     }
-                };
-             /*事件*/
+                }
+                /*事件绑定
+                * 2019年11月1日 21:26:36 更新
+                * */
                 //监听事件，搜索设备种类下拉框选中
                 search_class_select.on('change', function (ev) {
                     search_entity_select.setSelectedValue( '');//初始化型号
@@ -733,10 +735,21 @@
                 //监听事件，搜索设备类别下拉框选中
                 search_type_select.on('change', function (ev) {
                     select_data = [];//初始化
-                    search_class_select.setSelectedValue( '');//初始化种类
-                    search_entity_select.setSelectedValue( '');//初始化型号
-                    search_office_select.setSelectedValue( '');//初始化科室
+                    search_class_select.setSelectedValue('');//初始化种类
+                    search_entity_select.setSelectedValue('');//初始化型号
+                    search_office_select.setSelectedValue('');//初始化科室
                     entity_selectAjax(ev.item.name,ev.item.value);
+                });
+
+                //监听事件，搜索设备类别下拉框选中
+                search_type_select.on('click', function selectClick(ev) {
+                    ev.item = {
+                        name:search_type_select.get('items')[0].name,
+                        value:search_type_select.get('items')[0].value,
+                    };
+                    search_type_select.fire('change',ev);//触发change事件
+                    search_type_select.off('click',selectClick);
+
                 });
 
                 //监听事件，删除一条记录
