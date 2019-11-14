@@ -6,6 +6,8 @@
     <link href="/css/dpl-min.css" rel="stylesheet" type="text/css"/>
     <link href="/css/bui-min.css" rel="stylesheet" type="text/css"/>
     <link href="/css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/suggest-style.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
         code {
             padding: 0px 4px;
@@ -19,7 +21,7 @@
 
 <div class="container">
     <div class="row">
-        <form id="searchForm" class="form-horizontal span32">
+        <form id="searchForm" class="form-horizontal span32" autocomplete="off">
             <input type="hidden">
             <div class="row">
                 <div class="control-group span7">
@@ -57,18 +59,23 @@
 <div id="content" class="hide">
     <form id="M_Form" method="post" class="form-horizontal" action="" autocomplete="off">
         <!-- <input type="hidden" name="mat_name" id="mat_name">-->
-        <input type="hidden" name="dev_class_id" id="dev_class_id">
         <input type="hidden" name="class_ident" id="class_ident">
         <input type="hidden" name="type_max" id="type_max">
         <input type="hidden" name="dev_class_count" id="dev_class_count">
         <input type="hidden" name="genre_tags" id="genre_tags" value="1">
         <div id="tab"></div>
         <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
-        <div id="panel" class="">
+        <div id="panel" class="device_group">
             <div class="row matP_class" id="matP_row">
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>配件名称：</label>
-                    <div class="controls" id="matP_name_div">
+                    <div class="controls">
+                    <div class="input-group" style="width: 300px;">
+                        <input type="text" id="test">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                        <!-- /btn-group -->
+                    </div>
                     </div>
                 </div>
                 <div class="control-group span8">
@@ -117,11 +124,18 @@
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/js/bui-min.js"></script>
 <script type="text/javascript" src="/js/config-min.js"></script>
+<script type="text/javascript" src="/js/suggest/bootstrap-suggest.js"></script>
+<script type="text/javascript" src="/js/suggest/dropdown.js"></script>
 <script type="text/javascript">
+    function initTest() {
+
+    }
+    initTest();
+
     BUI.use('common/page');
 </script>
 <script type="text/javascript">
-    BUI.use(['common/search', 'bui/tab', 'bui/form', 'bui/select'], function (Search, Tab, Form, Select) {
+    BUI.use(['common/search', 'bui/tab', 'bui/form', 'bui/select','bui/picker','bui/grid'], function (Search, Tab, Form, Select,Picker,Grid) {
 
         var enumObj_mat_flag = {"1": "启用", "0": "禁用"},
                 enumObj_genre_tags = {"2": "配件", "3": "耗材"},
@@ -151,13 +165,13 @@
                         {id: 'matH_row', title: '耗材', value: '3',},
                     ]
                 }).render(),
-                suggest_P = new Select.Suggest({
-                    id: 'matP_name',
-                    render: '#matP_name_div',
+                /*suggest_P = new Select.Suggest({
+                    //id: 'matP_name',
+                    //render: '#matP_name_div',
                     name: 'mat_name',
                     valueField: '#dev_class_id',
                     data: []
-                }).render(),
+                }).render(),*/
                 suggest_H = new Select.Suggest({
                     id: 'matH_name',
                     render: '#matH_name_div',
@@ -301,7 +315,62 @@
             }
         }
 
-        //监听事件，删除一条记录
+        /*
+         * //监听事件
+         * 更新时间 2019年11月12日 21:47:46
+         * */
+        $("#test").bsSuggest('init', {
+            /*url: "/rest/sys/getuserlist?keyword=",
+             effectiveFields: ["userName", "email"],
+             searchFields: [ "shortAccount"],
+             effectiveFieldsAlias:{userName: "姓名"},*/
+            data: {
+                value: [{
+                    "userName": "淳芸",
+                    "shortAccount": "chunyun",
+                    "userId": 20001
+                }, {
+                    "userName": "orion-01",
+                    "shortAccount": "orion-01",
+                    "userId": 20000
+                }, {
+                    "userName": "唐宏禹14",
+                    "shortAccount": "TANGHONGYU",
+                    "userId": 20011
+                }, {
+                    "userName": "唐宏禹13",
+                    "shortAccount": "tanghongyu",
+                    "userId": 20011
+                }, {
+                    "userName": "穆晓晨",
+                    "shortAccount": "mUXIAOCHEN",
+                    "userId": 20002
+                }, {
+                    "userName": "张欢引",
+                    "shortAccount": "zhanghuanyin",
+                    "userId": 20003
+                }, {
+                    "userName": "吴琼",
+                    "shortAccount": "wuqiong",
+                    "userId": 20004
+                }
+                ]
+            },
+            effectiveFields: ["userName","userId"],
+            searchFields: ["userName","shortAccount"],
+            listAlign: 'auto',
+            showBtn: false,
+            autoMinWidth: true,
+            getDataMethod: 'data',
+            idField: "userId",
+            keyField: "userName",
+            clearable: true,
+        }).on('onDataRequestSuccess', function (e, result) {
+            console.log('onDataRequestSuccess: ', result);
+        }).on('onSetSelectValue', function (e, keyword, data) {
+            console.log('onSetSelectValue: ', keyword, data);
+        });
+        // 删除一条记录
         grid.on('cellclick', function (ev) {
             var sender = $(ev.domTarget); //点击的Dom
             if (sender.hasClass('btn-del')) {
@@ -316,9 +385,9 @@
             mat_selecteAjax();
             selectedChange(tab.getSelected());
         });
-        suggest_P.on('change', function (ev) {
+     /*   suggest_P.on('change', function (ev) {
             setClass_ident();
-        });
+        });*/
         suggest_H.on('change', function (ev) {
             setClass_ident();
         });

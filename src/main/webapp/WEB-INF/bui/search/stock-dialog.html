@@ -31,7 +31,7 @@
                 <div class="control-group span7">
                     <label class="control-label">设备型号：</label>
                     <div class="controls search_select" id="search_entity_select">
-                        <input name="search_device_id" type="hidden" id="search_device_id">
+                        <input name="search_entity_id" type="hidden" id="search_entity_id">
                     </div>
                 </div>
                 <div class="control-group span8">
@@ -70,7 +70,7 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备名称：</label>
                 <div class="controls" id="dev_name_select">
-                    <input name="dev_name" type="hidden" id="dev_name" data-rules="{required:true}">
+                    <input name="class_id" type="hidden" id="class_id" data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
@@ -126,7 +126,7 @@
             </div>
             <div class="row">
                 <div class="control-group span8">
-                    <label class="control-label"><s>*</s>单位/个体比例：</label>
+                    <label class="control-label"><s>*</s>入库/个体比例：</label>
                     <div class="controls">
                         <input id="unit_num" name="unit_num" type="number"
                                class="span1 control-text"> ：
@@ -280,7 +280,7 @@
                         //搜索型号选择框
                         search_entity_select = new Select.Select({
                             render: '#search_entity_select',
-                            valueField: '#search_device_id',
+                            valueField: '#search_entity_id',
                             multipleSelect: false,
                             items: []
                         }).render(),
@@ -329,7 +329,7 @@
                         //设备种类选择框
                         dev_name_select = new Select.Select({
                             render: '#dev_name_select',
-                            valueField: '#dev_name',
+                            valueField: '#class_id',
                             multipleSelect: false,
                         }).render(),
                         //设备型号选择框

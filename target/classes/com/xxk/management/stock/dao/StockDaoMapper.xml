@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.stock.dao.StockDao">
-    <sql id="columns">id,stock_ident,entity_id,stock_type,stock_office_id,stock_no,stock_unit,stock_proportion,stock_total,
+    <sql id="columns">id,stock_ident,class_id,entity_id,stock_type,stock_office_id,stock_no,stock_unit,stock_proportion,stock_total,
         stock_flag,remark,keyWord,stock_version,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
-    <select id="listStock" parameterType="string" resultType="com.xxk.management.stock.entity.Stock">
+    <select id="listStock" resultType="com.xxk.management.stock.entity.Stock">
         select
         <include refid="columns"></include>
-        from xxk_stock where  deleteFlag='0' and stock_type=#{2} ORDER BY createDate desc limit #{0},#{1};
+        from xxk_stock where  deleteFlag='0' and stock_type=#{search_type}
+        <if test="class_id!=null and ''!= class_id">
+            and class_id = #{class_id}
+        </if>
+        <if test="entity_id!=null and ''!= entity_id">
+            and entity_id = #{entity_id}
+        </if>
+        <if test="stock_office_id!=null and ''!= stock_office_id">
+            and stock_office_id = #{stock_office_id}
+        </if>
+        ORDER BY createDate desc limit #{pageStart},#{pageSize};
     </select>
 
     <!--根据id获取信息 -->
@@ -24,7 +34,7 @@
     <!--添加信息 --><!--设置版本号为1-->
     <insert id="addStock" parameterType="com.xxk.management.stock.entity.Stock">
         insert into xxk_stock(<include refid="columns"></include>) values(
-        #{id},#{stock_ident},#{entity_id},#{stock_type},#{stock_office_id},#{stock_no},#{stock_unit},#{stock_proportion},#{stock_total},
+        #{id},#{stock_ident},#{class_id},#{entity_id},#{stock_type},#{stock_office_id},#{stock_no},#{stock_unit},#{stock_proportion},#{stock_total},
         #{stock_flag},#{remark},#{keyWord},1,#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 

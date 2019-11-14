@@ -9,6 +9,7 @@ import com.xxk.core.entity.BaseInfoEntity;
 public class Stock extends BaseInfoEntity {
     private String id;
     private String stock_ident;           //库存编号
+    private String class_id;             //种类ID
     private String entity_id;             //设备\耗材ID
     private String stock_type;            //库存类别
     private String stock_office_id;            //库存科室编号
@@ -39,6 +40,14 @@ public class Stock extends BaseInfoEntity {
 
     public void setStock_ident(String stock_ident) {
         this.stock_ident = stock_ident;
+    }
+
+    public String getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
     }
 
     public String getEntity_id() {

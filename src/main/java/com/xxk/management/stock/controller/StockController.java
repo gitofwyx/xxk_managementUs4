@@ -47,16 +47,16 @@ public class StockController extends BaseController {
     @RequestMapping("/listStock")
     public Map<String, Object> listStock(@RequestParam(value = "pageIndex") String pageIndex,
                                               @RequestParam(value = "limit") String limit,
-                                              @RequestParam(value = "search_class_id") String search_class_id,
-                                              @RequestParam(value = "search_device_id") String search_device_id,
-                                              @RequestParam(value = "search_office_id") String search_office_id,
-                                              @RequestParam(value = "search_type") int search_type) {
+                                              @RequestParam(value = "search_class_id") String class_id,//型号id
+                                              @RequestParam(value = "search_entity_id") String entity_id,//型号id
+                                              @RequestParam(value = "search_office_id") String stock_office_id,//库存科室id
+                                              @RequestParam(value = "search_type") int search_type) {//类别
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
             int pageSize = Integer.parseInt(limit);         //单页记录数
-            List<Stock> listStock = stockService.listStock(pageNumber, pageSize,search_type);
+            List<Stock> listStock = stockService.listStock(pageNumber, pageSize,class_id,entity_id,stock_office_id,search_type);
             if (listStock == null) {
                 log.error("listStock:获取分页出错");
                 result.put("hasError", true);
