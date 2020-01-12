@@ -67,7 +67,7 @@ public class MaterialController extends BaseController {
     @ResponseBody
     @RequestMapping("/addMaterial")
     public Map<String, Object> addMaterial(Material material, DeviceClass deviceClass,
-                                            @RequestParam(value = "dev_class_count") String dev_class_count) {
+                                            @RequestParam(value = "dev_class_id") String dev_class_id) {
         Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String deviceId = UUIdUtil.getUUID();
@@ -79,19 +79,17 @@ public class MaterialController extends BaseController {
                 result.put("error", "配件、耗材名称或种类获取失败!");
                 return result;
             }
-            if (deviceClass.getClass_ident() > 0 && deviceClass.getType_max() > 0) {  //生成编号
-                mat_ident = IdentUtil.getIdent(deviceClass.getClass_ident(), deviceClass.getType_max(), Date);
-
-            } else if (!"".equals(dev_class_count) && dev_class_count != null) {
-                mat_ident = IdentUtil.getIdent(Integer.parseInt(dev_class_count), deviceClass.getType_max(), Date);
-            } else if (("".equals(dev_class_count) || dev_class_count == null)) {
-                mat_ident = IdentUtil.getIdent(0, deviceClass.getType_max(), Date);
+            if (("".equals(dev_class_id) || dev_class_id == null)) {  //生成编号
+                mat_ident=IdentUtil.makeEntNo(Date,deviceClass.getClass_ident(),deviceClass.getMat_max());
+            } else  {
+                mat_ident=IdentUtil.makeEntNo(Date,deviceClass.getClass_ident(),deviceClass.getMat_max());
             }
+            //判断种类id
             if (!"".equals(material.getDev_class_id()) && material.getDev_class_id() != null) {
                 deviceClass.setId(material.getDev_class_id());
                 deviceClass.setUpdateUserId("admin");
                 deviceClass.setUpdateDate(Date);
-                resultBl = deviceClassService.updateDev_typeMax(deviceClass);
+                resultBl = deviceClassService.updateMat_maxMax(deviceClass);
                 if (!(resultBl)) {
                     result.put("hasError", true);
                     result.put("error", "添加出错");
@@ -100,7 +98,7 @@ public class MaterialController extends BaseController {
             }
             else if ("".equals(material.getDev_class_id()) || material.getDev_class_id() == null) {
                 deviceClass.setClass_tab(material.getGenre_tags());
-                deviceClass.setDev_class(material.getMat_name());
+                deviceClass.setEnt_class(material.getMat_name());
                 String materialClassId = deviceClassService.updateEntityClass(deviceClass, Date);
                 if (materialClassId != null && !"".equals(materialClassId)) {
                     material.setDev_class_id(materialClassId);
@@ -131,19 +129,19 @@ public class MaterialController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getMaterialName",method = RequestMethod.POST)
+    @RequestMapping(value = "/getMaterialName",method = RequestMethod.GET)
     public Map<String, Object> getMaterialName(@RequestParam(value = "tab") String tab) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listResult = new ArrayList<>();
         //List<Map<String, Object>> dev_count = new ArrayList<>();
         try {
-            listResult = deviceClassService.listDeviceOfTab(tab);
+            listResult = deviceClassService.listMaterialOfTab(tab);
             //dev_count = deviceClassService.getCountClassById("1fa2614d-4a55-1234-a79a-5546319b9123");
             if (listResult == null) {
                 log.error("获取出错");
                 return null;
             }
-            result.put("dev_class", listResult);
+            result.put("value", listResult);
             /*result.put("dev_count", dev_count);*/
         } catch (Exception e) {
             log.error(e);

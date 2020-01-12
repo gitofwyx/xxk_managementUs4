@@ -80,19 +80,19 @@ public class DeviceController extends BaseController {
                 result.put("error", "设备名称或种类获取失败!");
                 return result;
             }
-            if (deviceClass.getClass_ident() > 0 && deviceClass.getType_max() > 0) {
-                dev_ident = IdentUtil.getIdent(deviceClass.getClass_ident(), deviceClass.getType_max(), Date);
+            if (deviceClass.getClass_ident() > 0 && deviceClass.getDev_max() > 0) {
+                dev_ident = IdentUtil.getIdent(deviceClass.getClass_ident(), deviceClass.getDev_max(), Date);
 
             } else if (!"".equals(dev_class_count) && dev_class_count != null) {
-                dev_ident = IdentUtil.getIdent(Integer.parseInt(dev_class_count), deviceClass.getType_max(), Date);
+                dev_ident = IdentUtil.getIdent(Integer.parseInt(dev_class_count), deviceClass.getDev_max(), Date);
             } else if (("".equals(dev_class_count) || dev_class_count == null)) {
-                dev_ident = IdentUtil.getIdent(0, deviceClass.getType_max(), Date);
+                dev_ident = IdentUtil.getIdent(0, deviceClass.getDev_max(), Date);
             }
             if (!"".equals(device.getDev_class_id()) && device.getDev_class_id() != null) {
                 deviceClass.setId(device.getDev_class_id());
                 deviceClass.setUpdateUserId("admin");
                 deviceClass.setUpdateDate(Date);
-                Boolean resultBl = deviceClassService.updateDev_typeMax(deviceClass);
+                Boolean resultBl = deviceClassService.updateDev_maxMax(deviceClass);
                 if (!(resultBl)) {
                     result.put("hasError", true);
                     result.put("error", "设备种类数量更新出错!");
@@ -100,7 +100,7 @@ public class DeviceController extends BaseController {
                 }
             }  else if ("".equals(device.getDev_class_id()) || device.getDev_class_id() == null) {
                 deviceClass.setClass_tab("1");
-                deviceClass.setDev_class(device.getDev_name());
+                deviceClass.setEnt_class(device.getDev_name());
                 deviceClassId = deviceClassService.updateEntityClass(deviceClass, Date);
                 if (deviceClassId != null && !"".equals(deviceClassId)) {
                     device.setDev_class_id(deviceClassId);

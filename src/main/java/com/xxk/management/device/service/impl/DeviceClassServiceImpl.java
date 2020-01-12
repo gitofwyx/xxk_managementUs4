@@ -40,6 +40,11 @@ public class DeviceClassServiceImpl implements DeviceClassService {
     }
 
     @Override
+    public List<Map<String, Object>> listMaterialOfTab(String tab) {
+        return dao.listMaterialOfTab(tab);
+    }
+
+    @Override
     public boolean addDeviceClass(DeviceClass deviceClass) {
         return dao.addDeviceClass(deviceClass)==1?true:false;
     }
@@ -61,14 +66,17 @@ public class DeviceClassServiceImpl implements DeviceClassService {
             entityClass.setId(entityClass.getId());
             entityClass.setUpdateUserId("admin");
             entityClass.setUpdateDate(Date);
-            Boolean resultBl = updateDev_typeMax(entityClass);
+            Boolean resultBl = updateDev_maxMax(entityClass);
             if (!(resultBl)) {
                return null;
             }
         } else {
+            if ("1".equals(entityClass.getClass_tab())) {
+                entityClass.setDev_max(1);
+            }else {
+                entityClass.setMat_max(1);
+            }
             entityClass.setId(deviceClassId);
-            entityClass.setDev_max(1);
-            entityClass.setType_max(1);
             entityClass.setCreateUserId("admin");
             entityClass.setCreateDate(Date);
             entityClass.setUpdateUserId("admin");
@@ -88,8 +96,13 @@ public class DeviceClassServiceImpl implements DeviceClassService {
     }
 
     @Override
-    public boolean updateDev_typeMax(DeviceClass deviceClass) {
-        return dao.updateDev_typeMax(deviceClass)==1?true:false;
+    public boolean updateDev_maxMax(DeviceClass deviceClass) {
+        return dao.updateDev_maxMax(deviceClass)==1?true:false;
+    }
+
+    @Override
+    public boolean updateMat_maxMax(DeviceClass deviceClass) {
+        return dao.updateMat_maxMax(deviceClass)==1?true:false;
     }
 
 }

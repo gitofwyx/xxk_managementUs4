@@ -17,6 +17,8 @@ public interface DeviceClassService {
 
     public List<Map<String, Object>> listDeviceOfTab(String tab);
 
+    public List<Map<String, Object>> listMaterialOfTab(String tab);
+
     public boolean addDeviceClass(DeviceClass deviceClass);
 
    // public DeviceClass getDeviceClassById(String id);
@@ -27,6 +29,8 @@ public interface DeviceClassService {
 
     public boolean updateDevMax(DeviceClass deviceClass);
 
-    public boolean updateDev_typeMax(DeviceClass deviceClass);
+    public boolean updateDev_maxMax(DeviceClass deviceClass);
+
+    public boolean updateMat_maxMax(DeviceClass deviceClass);
 
 }

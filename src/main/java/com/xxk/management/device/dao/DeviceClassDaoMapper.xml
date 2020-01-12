@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.device.dao.DeviceClassDao">
-    <sql id="columns">id,dev_class,class_ident,class_tab,dev_max,type_max,
+    <sql id="columns">id,ent_class,class_ident,class_tab,dev_max,mat_max,class_version,
        createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <resultMap id="deviceClassMap" type="java.util.HashMap">
         <id column="id" property="value" jdbcType="VARCHAR"/>
-        <result column="dev_class" property="text" jdbcType="VARCHAR"/>
+        <result column="ent_class" property="text" jdbcType="VARCHAR"/>
         <result column="class_ident" property="class_ident" jdbcType="VARCHAR"/>
-        <result column="type_max" property="type_max" jdbcType="VARCHAR"/>
+        <result column="dev_max" property="type_max" jdbcType="VARCHAR"/>
+        <result column="updateDate" property="updateDate" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="materialClassMap" type="java.util.HashMap">
+        <id column="id" property="value" jdbcType="VARCHAR"/>
+        <result column="ent_class" property="text" jdbcType="VARCHAR"/>
+        <result column="class_ident" property="class_ident" jdbcType="VARCHAR"/>
+        <result column="mat_max" property="mat_max" jdbcType="VARCHAR"/>
         <result column="updateDate" property="updateDate" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -24,14 +32,19 @@
         from xxk_dev_class WHERE deleteFlag='0';
     </select>
 
-    <select id="listDeviceOfTab" resultMap="deviceClassMap">
-        select id,dev_class,class_ident,type_max,updateDate
+    <select id="listMaterialOfTab" resultMap="materialClassMap">
+        select id,ent_class,class_ident,mat_max,class_version,updateDate
         from xxk_dev_class WHERE class_tab=#{0} and deleteFlag='0';
+    </select>
+
+    <select id="listDeviceOfTab" resultMap="deviceClassMap">
+         select id,ent_class,class_ident,dev_max,class_version,updateDate
+         from xxk_dev_class WHERE class_tab=#{0} and deleteFlag='0';
     </select>
 
     <insert id="addDeviceClass" parameterType="com.xxk.management.device.entity.DeviceClass">
         insert into xxk_dev_class(<include refid="columns"></include>) values(
-        #{id},#{dev_class},#{class_ident},#{class_tab},#{dev_max},#{type_max},
+        #{id},#{ent_class},#{class_ident},#{class_tab},#{dev_max},#{mat_max},1,
         #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
@@ -53,8 +66,15 @@
     </update>
 
     <!-- -->
-    <update id="updateDev_typeMax" parameterType="com.xxk.management.device.entity.DeviceClass">
-        update xxk_dev_class set type_max=type_max+1,updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
+    <update id="updateDev_maxMax" parameterType="com.xxk.management.device.entity.DeviceClass">
+        update xxk_dev_class set dev_max=dev_max+1,updateUserId=#{updateUserId},updateDate=#{updateDate},class_version=#{class_version}+1
+         where id=#{id} and class_version=#{class_version} and deleteFlag='0';
+    </update>
+
+    <!-- -->
+    <update id="updateMat_maxMax" parameterType="com.xxk.management.device.entity.DeviceClass">
+        update xxk_dev_class set mat_max=mat_max+1,updateUserId=#{updateUserId},updateDate=#{updateDate},class_version=#{class_version}+1
+        where id=#{id} and class_version=#{class_version} and deleteFlag='0';
     </update>
 
     <update id="updateDeviceMax" parameterType="int">

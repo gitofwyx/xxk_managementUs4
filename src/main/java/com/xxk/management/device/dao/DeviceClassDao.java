@@ -19,6 +19,8 @@ public interface DeviceClassDao {
 
     public List<Map<String, Object>> listDeviceOfTab(String tab);
 
+    public List<Map<String, Object>> listMaterialOfTab(String tab);
+
     public int addDeviceClass(DeviceClass deviceClass);
 
     public DeviceClass getDeviceClassById(String id);
@@ -27,6 +29,8 @@ public interface DeviceClassDao {
 
     public int updateDevMax(DeviceClass deviceClass);
 
-    public int updateDev_typeMax(DeviceClass deviceClass);
+    public int updateDev_maxMax(DeviceClass deviceClass);
+
+    public int updateMat_maxMax(DeviceClass deviceClass);
 
 }

@@ -45,10 +45,9 @@ public class IdentUtil {
     }
 
     //用于生成的编号：设备编号（设备编号从左到右解释：年月日种类编号型号编号）
-    public static String getIdent(int No_O, int No_T, String Date) {
+    public static String getIdent(int No_O, int No_T, String uid_pfix) {
         String Orderno = null;
         int baseNum = 100;
-        String uid_pfix = "" + DateUtil.getStrYMd(Date);
         if (No_O >= 100 || No_T >= 100) {
             int sizeOfNo_O = NumberUtil.sizeNumOfInt(No_O);
             int sizeOfNo_T = NumberUtil.sizeNumOfInt(No_T);
@@ -101,5 +100,11 @@ public class IdentUtil {
             return "";
         }
 
+    }
+
+    public static String makeEntNo(String Date, int No_O,int No_T) {
+        String DaTe = "" + DateUtil.getStrYMd(Date);
+        DaTe = DaTe.substring(2);//截取字符串，YYYYMMdd -> YYMMdd
+        return getIdent(No_O,No_T,DaTe);
     }
 }

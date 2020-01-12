@@ -1015,7 +1015,11 @@
         },
         version: function() {
             return VERSION;
-        }
+        },
+        refreshDropMenu:function(data,options){
+            var $input = $(this);
+            refreshDropMenu($input,data,options);
+        },
     };
 
     $.fn[BSSUGGEST] = function(options) {
