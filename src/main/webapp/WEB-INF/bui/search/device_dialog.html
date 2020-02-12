@@ -6,6 +6,8 @@
     <link href="/css/dpl-min.css" rel="stylesheet" type="text/css"/>
     <link href="/css/bui-min.css" rel="stylesheet" type="text/css"/>
     <link href="/css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/suggest-style.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
         code {
             padding: 0px 4px;
@@ -56,16 +58,23 @@
 </div>
 <div id="content" class="hide">
     <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
+        <input type="hidden" name="dev_class_id" id="dev_class_id">
         <input type="hidden" name="class_ident" id="class_ident">
-        <input type="hidden" name="type_max" id="type_max">
-        <input type="hidden" name="dev_class_count" id="dev_class_count">
-        <input type="hidden" name="lastUpDate" id="lastUpDate">
+        <input type="hidden" name="dev_max" id="dev_max">
+        <input type="hidden" name="genre_tags" id="genre_tags" value="1">
+        <input type="hidden" name="class_version" id="class_version">
+        <input type="hidden" name="updateDate" id="updateDate">
 
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备名称：</label>
-                <div class="controls" id="dev_name_div">
-                    <input type="hidden" name="dev_class_id" id="dev_class_id" data-rules="{required:true}">
+                <div class="controls">
+                    <div class="input-group">
+                        <input type="text" class="suggest-input" id="dev_name" name="dev_name">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
             <div class="control-group span8">
@@ -89,6 +98,8 @@
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/js/bui-min.js"></script>
 <script type="text/javascript" src="/js/config-min.js"></script>
+<script type="text/javascript" src="/js/suggest/bootstrap-suggest.js"></script>
+<script type="text/javascript" src="/js/suggest/dropdown.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -100,8 +111,6 @@
                 dev_name_data = [],
                 dev_count_map = {},//设备种类id对应的dev_name_data键
                 class_count = 0,//设备种类最大值
-                class_ident = [],//设备编号list
-                class_Date = {},//设备更改时间map
 
         /*form = new Form.HForm({
          srcNode: '#J_Form'
@@ -112,12 +121,12 @@
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit',
                 }),
-                suggest = new Select.Suggest({
+                /*suggest = new Select.Suggest({
                     render: '#dev_name_div',
                     name: 'dev_name',
                     valueField: '#dev_class_id',
                     data: []
-                }).render(),
+                }).render(),*/
                 columns = [
                     {title: '&nbsp设备编号', dataIndex: 'dev_ident',elCls: 'center', width: 150},
                     {title: '&nbsp设备名称', dataIndex: 'dev_name',elCls: 'center', width: 150},
@@ -200,25 +209,18 @@
                 $.ajax({
                     url: '/getDeviceName',
                     data: {tab:1},
-                    type: 'POST', //GET
+                    type: 'GET', //GET
                     async: true,    //或false,是否异步
                     /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
                     dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                     success: function (data, textStatus, jqXHR) {
                         if (data != null && data != undefined) {
-                            dev_name_data = data.dev_class;
+                            dev_name_data = data;
                             if (!$.isEmptyObject(dev_name_data)) {
-                                suggest.setInternal('data', dev_name_data);
-                                suggest.render();
-                                //alert(JSON.stringify(dev_name_data));//json对象转字符串
-                                for (var c in dev_name_data) {
-                                    class_ident.push(dev_name_data[c].class_ident);
-                                    class_Date[dev_name_data[c].class_ident] = dev_name_data[c].updateDate;
-                                    dev_count_map[dev_name_data[c].value] = c;
-                                }
-                                class_count = Math.max.apply(null, class_ident);//获取数组中的最大值
-                                J_Form.getField('lastUpDate').set('value', class_Date[class_count]);
-                                J_Form.getField('dev_class_count').set('value', class_count);
+                               /* suggest.setInternal('data', dev_name_data);
+                                suggest.render();*/
+                                /*class_count = Math.max.apply(null, class_ident);//获取数组中的最大值*/
+                                initBsSuggest("dev_name", dev_name_data);
                             }
                         }
                     },
@@ -232,12 +234,42 @@
             var newData = {}; //标志是新增加的记录
             editing.add(newData, 'name'); //添加记录后，直接编辑
             J_Form.getField('class_ident').set('value', 0);
-            J_Form.getField('type_max').set('value', 0);
-            if (!$.isEmptyObject(class_Date) && class_count != 0) {
+            J_Form.getField('dev_max').set('value', 0);
+            J_Form.getField('class_version').set('value', 0);
+            /*if (!$.isEmptyObject(class_Date) && class_count != 0) {
                 J_Form.getField('lastUpDate').set('value', class_Date[class_count]);
                 J_Form.getField('dev_class_count').set('value', class_count);
-            }
+            }*/
         }
+
+        //下拉提示框bsSuggest
+        function initBsSuggest(cla, v) {
+                $("#" + cla).bsSuggest('init', {
+                    /*url: "/getMaterialName?tab=" + v,*/
+                    data: v,
+                    effectiveFields: ["text", "class_ident"],
+                    searchFields: ["text", "class_ident"],
+                    effectiveFieldsAlias: {text: "种类", class_ident: "编号"},
+                    listAlign: 'auto',
+                    showBtn: false,
+                    autoMinWidth: true,
+                    getDataMethod: 'data',
+                    idField: "value",
+                    keyField: "text",
+                    clearable: true,
+                }).on('onDataRequestSuccess', function (e, result) {
+                    console.log('onDataRequestSuccess: ', result);
+                }).on('onSetSelectValue', function (e, keyword, data) {
+                    console.log('onSetSelectValue: ', keyword, data);
+                    editing.get('editor');
+                    J_Form.getField('dev_class_id').set('value', keyword.id);
+                    J_Form.getField('class_ident').set('value', data.class_ident);
+                    J_Form.getField('dev_max').set('value', data.dev_max);
+                    J_Form.getField('class_version').set('value', data.class_version);
+                    J_Form.getField('updateDate').set('value', data.updateDate);
+                    //$("input[name='dev_class_id']").val(keyword.id);
+                });
+        };
 
         //编辑操作
         function updateFunction() {
@@ -280,15 +312,15 @@
                 items([record]);
             }
         });
-        suggest.on('change', function (ev) {
-            if (dev_name_data != undefined || dev_name_data != null) {
-                var dev_class_id = J_Form.getField('dev_class_id').get("value");
-                var c = dev_count_map[dev_class_id];
-                J_Form.getField('class_ident').set('value', dev_name_data[c].class_ident);
-                J_Form.getField('type_max').set('value', dev_name_data[c].type_max);
-                J_Form.getField('lastUpDate').set('value', dev_name_data[c].updateDate);
-            }
-        });
+        /*suggest.on('change', function (ev) {
+         if (dev_name_data != undefined || dev_name_data != null) {
+         var dev_class_id = J_Form.getField('dev_class_id').get("value");
+         var c = dev_count_map[dev_class_id];
+         J_Form.getField('class_ident').set('value', dev_name_data[c].class_ident);
+         J_Form.getField('type_max').set('value', dev_name_data[c].type_max);
+         J_Form.getField('lastUpDate').set('value', dev_name_data[c].updateDate);
+         }
+         });*/
 
         /*J_Form.on('beforesubmit', function (ev) {
          alert('beforesubmit');

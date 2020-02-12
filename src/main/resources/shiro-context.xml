@@ -64,6 +64,10 @@
 
     <!-- <bean id="filterChainDefinitionsBuilder" class="com.kelan.riding.system.web.FilterChainDefinitionsBuilder"></bean> -->
 
+    <!--自定义退出过滤器-->
+    <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+        <property name="redirectUrl" value="/login"></property>
+    </bean>
 
     <!-- 配置 ShiroFilter！ -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -77,18 +81,20 @@
                     <bean class="com.xxk.core.shiro.CustomFormAuthenticationFilter"/>
                 </entry>
 
+                <entry key="logout" value-ref="logoutFilter" />
+
                 <!-- <entry key="kickout" value-ref="kickoutSessionControlFilter" /> -->
             </map>
         </property>
         <property name="filterChainDefinitions">
+            <!--记住一点，权限为金字塔状，先精确匹配或是权限稍小在前面，权限大（模糊匹配）的在后面。-->
             <value>
-                / = anon
                 /index/**=anon  <!--登录页面的js和css不拦截-->
                 /favicon.ico=anon
                 /logout = logout
 
                 /login=authc
-               <!-- /**=authc-->
+                /**=authc
             </value>
         </property>
         <!-- <property name="filterChainDefinitionMap"> <bean factory-bean="filterChainDefinitionsBuilder"

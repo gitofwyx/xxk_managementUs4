@@ -9,6 +9,7 @@ import com.xxk.management.device.entity.DeviceClass;
 import com.xxk.management.device.service.DeviceClassService;
 import com.xxk.management.device.service.DeviceService;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,8 +68,7 @@ public class DeviceController extends BaseController {
     @ResponseBody
     @RequestMapping("/addDevice")
     public Map<String, Object> addDevice(Device device, DeviceClass deviceClass,
-                                          @RequestParam(value = "dev_class_count") String dev_class_count,
-                                          @RequestParam(value = "lastUpDate") String lastUpDate) {
+                                         @RequestParam(value = "dev_class_id") String dev_class_id) {
         Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String deviceId = UUIdUtil.getUUID();
@@ -80,13 +80,10 @@ public class DeviceController extends BaseController {
                 result.put("error", "设备名称或种类获取失败!");
                 return result;
             }
-            if (deviceClass.getClass_ident() > 0 && deviceClass.getDev_max() > 0) {
-                dev_ident = IdentUtil.getIdent(deviceClass.getClass_ident(), deviceClass.getDev_max(), Date);
-
-            } else if (!"".equals(dev_class_count) && dev_class_count != null) {
-                dev_ident = IdentUtil.getIdent(Integer.parseInt(dev_class_count), deviceClass.getDev_max(), Date);
-            } else if (("".equals(dev_class_count) || dev_class_count == null)) {
-                dev_ident = IdentUtil.getIdent(0, deviceClass.getDev_max(), Date);
+            if (("".equals(dev_class_id) || dev_class_id == null)) {  //生成编号
+                dev_ident=IdentUtil.makeEntNo(Date,deviceClass.getClass_ident(),deviceClass.getDev_max());
+            } else  {
+                dev_ident=IdentUtil.makeEntNo(Date,deviceClass.getClass_ident(),deviceClass.getDev_max());
             }
             if (!"".equals(device.getDev_class_id()) && device.getDev_class_id() != null) {
                 deviceClass.setId(device.getDev_class_id());
@@ -134,11 +131,13 @@ public class DeviceController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getDeviceName",method = RequestMethod.POST)
+    @RequestMapping(value = "/getDeviceName",method = RequestMethod.GET)
     public Map<String, Object> getDeviceName(@RequestParam(value = "tab") String tab) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listResult = new ArrayList<>();
         //List<Map<String, Object>> dev_count = new ArrayList<>();
+        String userId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+        String name = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
         try {
             listResult = deviceClassService.listDeviceOfTab(tab);
             //dev_count = deviceClassService.getCountClassById("1fa2614d-4a55-1234-a79a-5546319b9123");
@@ -146,7 +145,7 @@ public class DeviceController extends BaseController {
                 log.error("获取出错");
                 return null;
             }
-            result.put("dev_class", listResult);
+            result.put("value", listResult);
             /*result.put("dev_count", dev_count);*/
         } catch (Exception e) {
             log.error(e);

@@ -45,7 +45,8 @@ public class KelanRealm extends AuthorizingRealm {
 			log.warn("用户没有登录");
 			throw new UnknownAccountException("用户不存在");
 		}
-		//session.setAttribute("userId", user.getId());
+		session.setAttribute("userId", user.getId());
+		session.setAttribute("userName", user.getName());
 		log.info("验证完成...");
 		return info;
 	}
