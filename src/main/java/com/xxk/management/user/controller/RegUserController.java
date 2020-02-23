@@ -8,6 +8,9 @@ import com.xxk.management.roles.service.RolesService;
 import com.xxk.management.user.entity.RegUser;
 import com.xxk.management.user.service.RebUserService;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -99,7 +102,12 @@ public class RegUserController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/getRegUser")
-    public Map<String, Object> getRegUser(String id) {
+    public Map<String, Object> getRegUser(@RequestParam(value = "id", required = false) String id) {
+        if(id==null||"".equals(id)||"null".equals(id)){
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            id = (String) session.getAttribute("userId");
+        }
         Map<String, Object> result = new HashMap<>();
         try {
             RegUser user = rebUserService.getRegUser(id);
@@ -162,7 +170,7 @@ public class RegUserController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/addRoles", method = RequestMethod.GET) // 添加角色信息
+    @RequestMapping(value = "/addRoles", method = RequestMethod.POST) // 添加角色信息
     public Map<String, String> addRoles(HttpServletRequest request) {
         // Subject currentUser = SecurityUtils.getSubject();
         Map<String, String> result = new HashMap<>();
@@ -189,10 +197,9 @@ public class RegUserController extends BaseController {
         // int x=Integer.parseInt(s); //把得到字符串转化为整型
         catch (Exception e) {
             System.out.println(e);
-            log.info(">>>>添加角色失败");
+            log.error(">>>>添加角色失败");
             result.put("isError", "1");
             result.put("1", "添加角色失败");
-            System.out.println(result);
             return result;
         }
         return result;
@@ -204,4 +211,32 @@ public class RegUserController extends BaseController {
         return new ModelAndView("/detail/example", "result", result);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/addRegUserTest",method = RequestMethod.GET)
+    public Map<String, Boolean> addRegUserTest(RegUser user) {
+        Map<String, Boolean> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String id = UUIdUtil.getUUID();
+        try {
+            user.setId(id);
+            user.setPassword("123");
+            user.setCreateDate(createDate);
+            user.setCreateUserId(id);
+            user.setUpdateDate(createDate);
+            user.setUpdateUserId(id);
+            user.setDeleteFlag("0");
+
+            boolean Result = rebUserService.addTest(user);
+            if (!(Result)) {
+                result.put("error", false);
+            } else {
+                result.put("success", true);
+            }
+        } catch (Exception e) {
+            result.put("error", false);
+            log.info(e);
+        }
+        return result;
+        //return "system/index";
+    }
 }

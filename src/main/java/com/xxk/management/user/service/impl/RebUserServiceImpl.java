@@ -6,6 +6,7 @@ import com.xxk.management.user.service.RebUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -58,5 +59,21 @@ public class RebUserServiceImpl implements RebUserService {
     @Override
     public boolean deleteListRegUser(List<String> listStr) {
         return dao.deleteListRegUser(listStr)>=1?true:false;
+    }
+
+    @Transactional
+    public Boolean addTest(RegUser user){
+        int count = dao.addRegUser(user);
+
+        if(count != 1){
+            log.error("数据库更新不为1");
+        }
+
+        log.error("添加角色成功");
+
+        if(1 == 1) {
+            log.error("测试事务是否回滚");
+        }
+        return true;
     }
 }
