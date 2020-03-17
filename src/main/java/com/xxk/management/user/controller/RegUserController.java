@@ -78,7 +78,6 @@ public class RegUserController extends BaseController {
         String id = UUIdUtil.getUUID();
         try {
             user.setId(id);
-            user.setAccount(id);
             user.setPassword("123");
             user.setCreateDate(createDate);
             user.setCreateUserId(id);

@@ -3,9 +3,9 @@
 <head>
     <title> 搜索表单</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="css/dpl-min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/bui-min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/page-min.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
         code {
             padding: 0px 4px;
@@ -84,9 +84,8 @@
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>登记类型：</label>
-                <div class="controls">
-                    <input name="reg_type" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
+                <div class="controls" id="reg_type_select">
+                    <input name="reg_type" id="reg_type" type="hidden" data-rules="{required:true}">
                 </div>
             </div>
         </div>
@@ -141,14 +140,14 @@
         </div>
     </form>
 </div>
-<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="js/bui-min.js"></script>
-<script type="text/javascript" src="js/config-min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/js/bui-min.js"></script>
+<script type="text/javascript" src="/js/config-min.js"></script>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="js/tree/json2.js"></script>
+<script type="text/javascript" src="/js/tree/json2.js"></script>
 <![endif]-->
-<script type="text/javascript" src="js/tree/tree_build.js"></script>
-<script type="text/javascript" src="js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tree/tree_build.js"></script>
+<script type="text/javascript" src="/js/localstorageIO.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -159,6 +158,11 @@
                 officesEnum = getOfficesEnum(offices_select),
                 enumObj = {"0": "未出库", "1": "已出库"},
                 select_type = [],
+                reg_type_items = [
+                    {text:'耗材申请',value:'a'},
+                    {text:'维护申请',value:'b'},
+
+                ],
                 Editing_R = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'Content_R', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
@@ -190,6 +194,12 @@
                     //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                     width: 150,  //指定宽度
                     children: [exe_office_tree] //配置picker内的列表
+                }).render(),
+                reg_type_select = new Select.Select({
+                    render: '#reg_type_select',
+                    valueField: '#reg_type',
+                    multipleSelect: false,
+                    items:reg_type_items,
                 }).render(),
                 columns = [
                     {title: '&nbsp登记编号', dataIndex: 'reg_ident', elCls: 'center', width: 110},

@@ -8,6 +8,9 @@ import com.xxk.management.offices.record.service.RecordService;
 import com.xxk.management.operation.entity.Operation;
 import com.xxk.management.operation.service.OperationService;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +48,11 @@ public class OperationController extends BaseController {
                                            @RequestParam(value = "endDate") String endDate) {
         Map<String, Object> result = new HashMap<>();
         try {
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            String CurrentUserId = (String) session.getAttribute("userId");
+            String CurrentUserName = (String) session.getAttribute("userName");
+
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
@@ -55,6 +63,8 @@ public class OperationController extends BaseController {
                 return result;
             } else {
                 result.put("rows", listOperation);
+                result.put("CurrentUserId", CurrentUserId);
+                result.put("CurrentUserName", CurrentUserName);
                 result.put("results", 7);
             }
         } catch (Exception e) {
@@ -73,10 +83,12 @@ public class OperationController extends BaseController {
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
         try {
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             operation.setId(id);
-            operation.setCreateUserId("admin");
+            operation.setOpe_staff_id(CurrentUserId);
+            operation.setCreateUserId(CurrentUserId);
             operation.setCreateDate(Date);
-            operation.setUpdateUserId("admin");
+            operation.setUpdateUserId(CurrentUserId);
             operation.setUpdateDate(Date);
             operation.setDeleteFlag("0");
             Boolean resultOpe = operationService.addOperation(operation);
@@ -107,7 +119,8 @@ public class OperationController extends BaseController {
                 }
             }
         } catch (Exception e) {
-            result.put("success", false);
+            result.put("hasError", true);
+            result.put("error", "添加出错");
             log.error(e);
         }
         return result;

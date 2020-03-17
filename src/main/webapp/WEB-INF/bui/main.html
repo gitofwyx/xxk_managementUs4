@@ -29,7 +29,7 @@
                 <div class="nav-item-inner nav-inventory">首页</div>
             </li>
             <li class="nav-item">
-                <div class="nav-item-inner nav-order">表单页</div>
+                <div class="nav-item-inner nav-order">科室工作站</div>
             </li>
             <li class="nav-item">
                 <div class="nav-item-inner nav-inventory">搜索页</div>
@@ -53,31 +53,27 @@
             id: 'menu',
             homePage: 'user-menu',
             menu: [{
-                text: '首页内容',
+                text: '人员科室管理',
                 items: [
                     {id: 'user-menu', text: '人员信息', href: '/userview/user_details', closeable: false},
                     {id: 'offices-menu', text: '科室信息', href: '/menu/offices_tab'},
+                ]
+            }, {
+                text: '设备耗材管理',
+                items: [
                     {id: 'device-menu', text: '设备信息', href: '/menu/device_tab'},
                     {id: 'material-menu', text: '耗材&#92;配件信息', href: '/menu/material_tab'},
                     {id: 'stock-menu', text: '库存信息', href: '/menu/stock_tab'},
+                ]
+            }, {
+                text: '登记执行管理',
+                items: [
                     {id: 'registration-menu', text: '登记信息', href: 'menu/registration_tab'},
                     {id: 'operation-menu', text: '运维信息', href: '/menu/operation_tab'},
                 ]
-            }, {
-                text: '页面操作',
-                items: [
-                    {id: 'operation', text: '页面常见操作', href: 'main/operation.html'},
-                    {id: 'quick', text: '页面操作快捷方式', href: 'main/quick.html'}
-                ]
-            }, {
-                text: '文件结构',
-                items: [
-                    {id: 'resource', text: '资源文件结构', href: 'main/resource.html'},
-                    {id: 'loader', text: '引入JS方式', href: 'main/loader.html'}
-                ]
             }]
         }, {
-            id: 'form',
+            id: 'office',
             homePage: 'code',
             menu: [{
                 text: '表单页面',

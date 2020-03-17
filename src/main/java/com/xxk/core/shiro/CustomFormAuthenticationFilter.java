@@ -37,7 +37,6 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 	protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response)
 	        throws Exception
 	    {
-			log.info("test");
 	        issueSuccessRedirect(request, response);
 	        return false;
 	    }

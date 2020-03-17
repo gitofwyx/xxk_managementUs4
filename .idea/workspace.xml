@@ -2,42 +2,71 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0eeb4fea-8e77-4f92-bc25-81a0a82d44db" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/xxk_management.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/jsGetAge.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/vue.min.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_kaptcha_2_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/123.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/lib/kaptcha-2.3.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/res/assets/js/common/123.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/res/assets/js/common/build.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_kaptcha_2_3_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/office_station/detail/device_dialog.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/dao/OfficesDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/dao/OfficesDaoMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/entity/Offices.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/dao/RecordDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/entity/Record.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/service/RecordService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/record/service/impl/RecordServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/service/OfficesService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/service/impl/OfficesServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/controller/OfficesController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/dao/OfficesDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/dao/OfficesDaoMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/entity/Offices.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/service/OfficesService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/offices/service/impl/OfficesServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/endorsed/javaee-endorsed-api-6.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/controller/OfficesController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/dao/OfficesDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/dao/OfficesDaoMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/entity/Offices.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/record/dao/RecordDaoMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/service/OfficesService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/offices/service/impl/OfficesServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/lib/commons-fileupload-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/lib/fastjson-1.1.37.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/core/shiro/CustomFormAuthenticationFilter.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/core/shiro/CustomFormAuthenticationFilter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/operation/controller/OperationController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/operation/controller/OperationController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/system/controller/AuthController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/system/controller/AuthController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/user/controller/RegUserController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/user/controller/RegUserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/user/controller/UserViewController.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/user/controller/UserViewController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/user/service/RebUserService.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/user/service/RebUserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/user/service/impl/RebUserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/user/service/impl/RebUserServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/shiro/CustomFormAuthenticationFilter.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/core/shiro/CustomFormAuthenticationFilter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/operation/controller/OperationController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/operation/controller/OperationController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/system/controller/AuthController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/system/controller/AuthController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/user/controller/RegUserController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/user/controller/RegUserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/user/controller/UserViewController.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/user/controller/UserViewController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/user/service/RebUserService.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/user/service/RebUserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/user/service/impl/RebUserServiceImpl.class" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/user/service/impl/RebUserServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management.war" afterPath="$PROJECT_DIR$/target/xxk_management.war" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/xxk_management_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/xxk_management_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomFormAuthenticationFilter.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomFormAuthenticationFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/AuthController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/AuthController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/UserViewController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/UserViewController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/RebUserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/RebUserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/impl/RebUserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/impl/RebUserServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application-context.xml" afterPath="$PROJECT_DIR$/src/main/resources/application-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/detail/user-details.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/detail/user-details.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/shiro-context.xml" afterPath="$PROJECT_DIR$/src/main/resources/shiro-context.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/operation-dialog.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/operation-dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration-dialog.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration-dialog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application-context.xml" afterPath="$PROJECT_DIR$/target/classes/application-context.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/shiro-context.xml" afterPath="$PROJECT_DIR$/target/classes/shiro-context.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/detail/user-details.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/detail/user-details.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/main.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/operation-dialog.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/operation-dialog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/registration-dialog.html" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/registration-dialog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/application-context.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/application-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/res/assets/js/common/page-min.js" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/res/assets/js/common/page-min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/shiro-context.xml" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/shiro-context.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xxk_management.iml" afterPath="$PROJECT_DIR$/xxk_management.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_1_37.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_25.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_3_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/offices/controller/OfficesController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java" />
     </list>
     <ignored path="xxk_management.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,88 +89,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user-details.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/detail/user-details.html">
+      <file leaf-file-name="registration-dialog.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration-dialog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-62.42857">
-              <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+            <state vertical-scroll-proportion="-212.39285">
+              <caret line="313" column="22" selection-start-line="313" selection-start-column="22" selection-end-line="313" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegUserController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3638743">
-              <caret line="222" column="43" selection-start-line="222" selection-start-column="43" selection-end-line="222" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/entity/RegUser.java">
+      <file leaf-file-name="operation-dialog.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/operation-dialog.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+              <caret line="146" column="9" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DevicesController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.77656674">
+              <caret line="78" column="45" selection-start-line="78" selection-start-column="45" selection-end-line="78" selection-end-column="45" />
               <folding>
-                <element signature="e#607#608#0" expanded="false" />
-                <element signature="e#632#633#0" expanded="false" />
-                <element signature="e#682#683#0" expanded="false" />
-                <element signature="e#710#711#0" expanded="false" />
-                <element signature="e#743#744#0" expanded="false" />
-                <element signature="e#772#773#0" expanded="false" />
-                <element signature="e#816#817#0" expanded="false" />
-                <element signature="e#852#853#0" expanded="false" />
-                <element signature="e#886#887#0" expanded="false" />
-                <element signature="e#916#917#0" expanded="false" />
-                <element signature="e#962#963#0" expanded="false" />
-                <element signature="e#1000#1001#0" expanded="false" />
-                <element signature="e#1035#1036#0" expanded="false" />
-                <element signature="e#1066#1067#0" expanded="false" />
-                <element signature="e#1114#1115#0" expanded="false" />
-                <element signature="e#1154#1155#0" expanded="false" />
-                <element signature="e#1185#1186#0" expanded="false" />
-                <element signature="e#1212#1213#0" expanded="false" />
-                <element signature="e#1252#1253#0" expanded="false" />
-                <element signature="e#1284#1285#0" expanded="false" />
-                <element signature="e#1316#1317#0" expanded="false" />
-                <element signature="e#1344#1345#0" expanded="false" />
-                <element signature="e#1386#1387#0" expanded="false" />
-                <element signature="e#1420#1421#0" expanded="false" />
-                <element signature="e#1450#1451#0" expanded="false" />
-                <element signature="e#1476#1477#0" expanded="false" />
-                <element signature="e#1514#1515#0" expanded="false" />
-                <element signature="e#1544#1545#0" expanded="false" />
-                <element signature="e#1576#1577#0" expanded="false" />
-                <element signature="e#1604#1605#0" expanded="false" />
-                <element signature="e#1646#1647#0" expanded="false" />
-                <element signature="e#1680#1681#0" expanded="false" />
-                <element signature="e#1716#1717#0" expanded="false" />
-                <element signature="e#1748#1749#0" expanded="false" />
-                <element signature="e#1798#1799#0" expanded="false" />
-                <element signature="e#1840#1841#0" expanded="false" />
-                <element signature="e#1875#1876#0" expanded="false" />
-                <element signature="e#1906#1907#0" expanded="false" />
-                <element signature="e#1954#1955#0" expanded="false" />
-                <element signature="e#1994#1995#0" expanded="false" />
-                <element signature="e#2031#2032#0" expanded="false" />
-                <element signature="e#2064#2065#0" expanded="false" />
-                <element signature="e#2116#2117#0" expanded="false" />
-                <element signature="e#2160#2161#0" expanded="false" />
-                <element signature="e#2196#2197#0" expanded="false" />
-                <element signature="e#2228#2229#0" expanded="false" />
-                <element signature="e#2278#2279#0" expanded="false" />
-                <element signature="e#2320#2321#0" expanded="false" />
-                <element signature="e#2354#2355#0" expanded="false" />
-                <element signature="e#2384#2385#0" expanded="false" />
-                <element signature="e#2430#2431#0" expanded="false" />
-                <element signature="e#2468#2469#0" expanded="false" />
-                <element signature="e#2502#2503#0" expanded="false" />
-                <element signature="e#2532#2533#0" expanded="false" />
-                <element signature="e#2578#2579#0" expanded="false" />
-                <element signature="e#2616#2617#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -160,23 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/core/util/DateUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/demo1.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/demo.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/css/demo.css" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/entity/Stock.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/springmvc.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/font-awesome.min.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/prettify.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/bootstrap-suggest.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/device/entity/DeviceClass.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/core/util/build_ident/IdentUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceClassDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/DeviceClassService.java" />
@@ -190,20 +147,44 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/device_dialog.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/system/web/KelanRealm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/device/controller/DeviceController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/AuthController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/shiro-context.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/detail/example.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/MenuController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/config.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/UserViewController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/jsGetAge.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/detail/user-details.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/application-context.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/RebUserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/impl/RebUserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="E:/apache-maven-3.3.9/conf/settings.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomFormAuthenticationFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/offices-dialog.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration-dialog.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/operation-dialog.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/AuthController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/entity/Offices.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/OfficesService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/impl/OfficesServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-context.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/entity/Devices.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/DevicesService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/shiro-context.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/dao/MaterialsDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/entity/Materials.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/service/impl/MaterialsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/service/MaterialsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/controller/MaterialsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/dao/MaterialsDaoMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" />
       </list>
     </option>
   </component>
@@ -253,6 +234,10 @@
           <option name="myItemId" value="Plugins" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginsNode" />
         </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="war" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginNode" />
+        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -267,16 +252,13 @@
           <option name="myItemId" value="Plugins" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginsNode" />
         </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="install" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginNode" />
-        </PATH_ELEMENT>
       </PATH>
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="width" value="1378" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -323,6 +305,36 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -352,6 +364,106 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="office_station" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -398,12 +510,34 @@
               <option name="myItemId" value="management" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
+              <option name="myItemId" value="xxk_management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk_management" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xxk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="management" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="office" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -433,15 +567,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
+              <option name="myItemId" value="office" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
+              <option name="myItemId" value="devices" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -471,67 +601,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
+              <option name="myItemId" value="office" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="devices" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="management" />
+              <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -559,36 +637,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xxk_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -606,21 +654,21 @@
     <property name="Repository.Attach.Sources" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\xxk\xxk_management\src\main\java\com\xxk\management\office\devices\dao" />
+      <recent name="E:\xxk\xxk_management\src\main\java\com\xxk\management\office\offices\dao" />
+      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\office_station\search" />
+      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\js" />
+      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\js\common" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.user.controller" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\fonts" />
       <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\css\fonts" />
       <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\css" />
       <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\js\suggest" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.xxk.management.user.controller" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\js" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\js\common" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\css" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\css\fonts" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.T8">
@@ -1147,6 +1195,11 @@
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructuralSearchPlugin">
+    <searchConfiguration name="user defined" created="1583559597764" text="xl-content" recursive="true" caseInsensitive="true" type="XML" history="1" />
+    <searchConfiguration name="user defined" created="1583559570190" text="xl-content" recursive="true" caseInsensitive="true" type="HTML" history="1" />
+    <searchConfiguration name="user defined" created="1583559513923" text="SourceMap" recursive="true" caseInsensitive="true" type="HTML" history="1" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -1302,11 +1355,43 @@
       <workItem from="1582452367141" duration="3612000" />
       <workItem from="1582469750844" duration="1305000" />
       <workItem from="1582474054682" duration="366000" />
+      <workItem from="1582524775516" duration="686000" />
+      <workItem from="1582628268073" duration="3469000" />
+      <workItem from="1582636074724" duration="1055000" />
+      <workItem from="1582726122686" duration="2329000" />
+      <workItem from="1582799062471" duration="8885000" />
+      <workItem from="1582895936315" duration="3764000" />
+      <workItem from="1582980618294" duration="2338000" />
+      <workItem from="1582983510405" duration="51000" />
+      <workItem from="1582983599792" duration="2110000" />
+      <workItem from="1583038507696" duration="9994000" />
+      <workItem from="1583145298591" duration="10419000" />
+      <workItem from="1583234736621" duration="7331000" />
+      <workItem from="1583332315946" duration="170000" />
+      <workItem from="1583332526950" duration="3203000" />
+      <workItem from="1583337784246" duration="795000" />
+      <workItem from="1583491203473" duration="3710000" />
+      <workItem from="1583558342555" duration="9333000" />
+      <workItem from="1583643941663" duration="2893000" />
+      <workItem from="1583753312154" duration="6386000" />
+      <workItem from="1583845287206" duration="3038000" />
+      <workItem from="1583903885174" duration="13725000" />
+      <workItem from="1584007381570" duration="1641000" />
+      <workItem from="1584017028940" duration="4765000" />
+      <workItem from="1584103445035" duration="4011000" />
+      <workItem from="1584189159642" duration="694000" />
+      <workItem from="1584269793973" duration="2785000" />
+      <workItem from="1584361521089" duration="2929000" />
+      <workItem from="1584365432267" duration="3576000" />
+      <workItem from="1584369065198" duration="1599000" />
+      <workItem from="1584371576090" duration="1598000" />
+      <workItem from="1584420055565" duration="2452000" />
+      <workItem from="1584424351535" duration="171000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="637514000" />
+    <option name="totallyTimeSpent" value="759419000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1318,23 +1403,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1378" height="744" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3204698" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29738563" sideWeight="0.5136157" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20561457" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20499243" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.4969743" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32663316" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.49394855" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30652505" sideWeight="0.4914842" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2624811" sideWeight="0.4914842" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.50851583" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1343,12 +1429,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30228758" sideWeight="0.48638427" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3529412" sideWeight="0.48638427" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1391,12 +1476,19 @@
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java</url>
+          <line>80</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="23" />
+      <option name="time" value="38" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="SecurityUtils.getSubject().getSession()" language="JAVA" custom="" />
+        <watch expression="!&quot;&quot;.equals(username) &amp;&amp; username != null" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -1405,429 +1497,390 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/entity/DeviceClass.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.2.3/shiro-core-1.2.3-sources.jar!/org/apache/shiro/mgt/AuthenticatingSecurityManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/DeviceClassService.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.2.3/shiro-core-1.2.3-sources.jar!/org/apache/shiro/mgt/DefaultSecurityManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45994833">
-          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="286" column="0" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.2.3/shiro-core-1.2.3-sources.jar!/org/apache/shiro/subject/support/DelegatingSubject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="284" column="30" selection-start-line="284" selection-start-column="30" selection-end-line="284" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/3.2.5.RELEASE/spring-webmvc-3.2.5.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8683386">
+          <caret line="685" column="0" selection-start-line="685" selection-start-column="0" selection-end-line="685" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/3.2.5.RELEASE/spring-webmvc-3.2.5.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39184952">
+          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/3.2.5.RELEASE/spring-web-3.2.5.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
+        <state vertical-scroll-proportion="0.40438873">
           <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceServiceImpl.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.2.3/shiro-core-1.2.3-sources.jar!/org/apache/shiro/authc/UnknownAccountException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.03259005">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceClassServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54373926">
-          <caret line="88" column="9" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/suggest-style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93153155">
-          <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/dpl-min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33199194">
-          <caret line="0" column="32169" selection-start-line="0" selection-start-column="32169" selection-end-line="0" selection-end-column="32169" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/dpl.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53521127">
-          <caret line="2420" column="33" selection-start-line="2420" selection-start-column="33" selection-end-line="2420" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceClassDaoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5045593">
-          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceClassDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73126614">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceDaoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26462397">
-          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.2.3/shiro-core-1.2.3-sources.jar!/org/apache/shiro/SecurityUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46238938">
-          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/system/web/KelanRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81672025">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-spring/1.2.3/shiro-spring-1.2.3-sources.jar!/org/apache/shiro/spring/LifecycleBeanPostProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33118972">
-          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/3.2.5.RELEASE/spring-aop-3.2.5.RELEASE-sources.jar!/org/springframework/aop/framework/autoproxy/DefaultAdvisorAutoProxyCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33118972">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomRolesAuthorizationFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42765275">
-          <caret line="23" column="70" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/ShiroSessionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.244373">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-web/1.2.3/shiro-web-1.2.3-sources.jar!/org/apache/shiro/web/filter/authc/AuthenticatingFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33118972">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/util/build_ident/IdentUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="67" selection-start-line="54" selection-start-column="67" selection-end-line="54" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/springmvc/MessageResolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33231708">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-spring/1.2.3/shiro-spring-1.2.3-sources.jar!/org/apache/shiro/spring/web/ShiroFilterFactoryBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05792683">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.3322884">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomFormAuthenticationFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23170732">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.5956113">
+          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-web/1.2.3/shiro-web-1.2.3-sources.jar!/org/apache/shiro/web/filter/authc/LogoutFilter.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-web/1.2.3/shiro-web-1.2.3-sources.jar!/org/apache/shiro/web/filter/authc/FormAuthenticationFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4908535">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.05956113">
+          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shiro-context.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8602941">
-          <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
-          <folding />
+        <state vertical-scroll-proportion="0.35736677">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/device_dialog.html">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/localstorageIO.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06333333">
-          <caret line="63" column="71" selection-start-line="63" selection-start-column="71" selection-end-line="63" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.29780564">
+          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/vue.min.js">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/AuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1585366">
-          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.013333334">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5981308">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/config-min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/page-min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/user_dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1569966">
-          <caret line="131" column="23" selection-start-line="131" selection-start-column="23" selection-end-line="131" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/UserViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88161993">
-          <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/MenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29595014">
-          <caret line="83" column="28" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25938568">
-          <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/material_dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.041758243">
-          <caret line="133" column="64" selection-start-line="133" selection-start-column="64" selection-end-line="133" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.4169279">
+          <caret line="37" column="45" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock-dialog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9186813">
-          <caret line="553" column="21" selection-start-line="553" selection-start-column="21" selection-end-line="553" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.67966574">
+          <caret line="303" column="36" selection-start-line="303" selection-start-column="36" selection-end-line="303" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/controller/DeviceController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/core/entity/BaseInfoEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.580402">
-          <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.2010582">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/operation/entity/Operation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2680776">
+          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/offices-dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3877551">
+          <caret line="112" column="18" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration-dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-212.39285">
+          <caret line="313" column="22" selection-start-line="313" selection-start-column="22" selection-end-line="313" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5728643">
-          <caret line="154" column="19" selection-start-line="154" selection-start-column="19" selection-end-line="154" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42713568">
-          <caret line="160" column="24" selection-start-line="160" selection-start-column="24" selection-end-line="160" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/offices/controller/OfficesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.19346733">
-          <caret line="106" column="19" selection-start-line="106" selection-start-column="19" selection-end-line="106" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/jsGetAge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.047738694">
-          <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/entity/RegUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-          <folding>
-            <element signature="e#607#608#0" expanded="false" />
-            <element signature="e#632#633#0" expanded="false" />
-            <element signature="e#682#683#0" expanded="false" />
-            <element signature="e#710#711#0" expanded="false" />
-            <element signature="e#743#744#0" expanded="false" />
-            <element signature="e#772#773#0" expanded="false" />
-            <element signature="e#816#817#0" expanded="false" />
-            <element signature="e#852#853#0" expanded="false" />
-            <element signature="e#886#887#0" expanded="false" />
-            <element signature="e#916#917#0" expanded="false" />
-            <element signature="e#962#963#0" expanded="false" />
-            <element signature="e#1000#1001#0" expanded="false" />
-            <element signature="e#1035#1036#0" expanded="false" />
-            <element signature="e#1066#1067#0" expanded="false" />
-            <element signature="e#1114#1115#0" expanded="false" />
-            <element signature="e#1154#1155#0" expanded="false" />
-            <element signature="e#1185#1186#0" expanded="false" />
-            <element signature="e#1212#1213#0" expanded="false" />
-            <element signature="e#1252#1253#0" expanded="false" />
-            <element signature="e#1284#1285#0" expanded="false" />
-            <element signature="e#1316#1317#0" expanded="false" />
-            <element signature="e#1344#1345#0" expanded="false" />
-            <element signature="e#1386#1387#0" expanded="false" />
-            <element signature="e#1420#1421#0" expanded="false" />
-            <element signature="e#1450#1451#0" expanded="false" />
-            <element signature="e#1476#1477#0" expanded="false" />
-            <element signature="e#1514#1515#0" expanded="false" />
-            <element signature="e#1544#1545#0" expanded="false" />
-            <element signature="e#1576#1577#0" expanded="false" />
-            <element signature="e#1604#1605#0" expanded="false" />
-            <element signature="e#1646#1647#0" expanded="false" />
-            <element signature="e#1680#1681#0" expanded="false" />
-            <element signature="e#1716#1717#0" expanded="false" />
-            <element signature="e#1748#1749#0" expanded="false" />
-            <element signature="e#1798#1799#0" expanded="false" />
-            <element signature="e#1840#1841#0" expanded="false" />
-            <element signature="e#1875#1876#0" expanded="false" />
-            <element signature="e#1906#1907#0" expanded="false" />
-            <element signature="e#1954#1955#0" expanded="false" />
-            <element signature="e#1994#1995#0" expanded="false" />
-            <element signature="e#2031#2032#0" expanded="false" />
-            <element signature="e#2064#2065#0" expanded="false" />
-            <element signature="e#2116#2117#0" expanded="false" />
-            <element signature="e#2160#2161#0" expanded="false" />
-            <element signature="e#2196#2197#0" expanded="false" />
-            <element signature="e#2228#2229#0" expanded="false" />
-            <element signature="e#2278#2279#0" expanded="false" />
-            <element signature="e#2320#2321#0" expanded="false" />
-            <element signature="e#2354#2355#0" expanded="false" />
-            <element signature="e#2384#2385#0" expanded="false" />
-            <element signature="e#2430#2431#0" expanded="false" />
-            <element signature="e#2468#2469#0" expanded="false" />
-            <element signature="e#2502#2503#0" expanded="false" />
-            <element signature="e#2532#2533#0" expanded="false" />
-            <element signature="e#2578#2579#0" expanded="false" />
-            <element signature="e#2616#2617#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37719297">
-          <caret line="97" column="64" selection-start-line="97" selection-start-column="64" selection-end-line="97" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/detail/user-details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-62.42857">
-          <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/RebUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6658291">
-          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3605313">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/impl/RebUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7222222">
-          <caret line="74" column="34" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4864865">
-          <caret line="362" column="0" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.27714285">
+          <caret line="90" column="53" selection-start-line="90" selection-start-column="53" selection-end-line="90" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3638743">
-          <caret line="222" column="43" selection-start-line="222" selection-start-column="43" selection-end-line="222" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.54285717">
+          <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/UserViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2857143">
+          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/office_station/detail/device_dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4925926">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/OfficesService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.105714284">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/impl/OfficesServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21714285">
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/springmvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71088433">
+          <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29192546">
+          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/3.2.5.RELEASE/spring-context-3.2.5.RELEASE-sources.jar!/org/springframework/stereotype/Repository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33142856">
+          <caret line="59" column="18" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45084745">
+          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.88235295">
+          <caret line="45" column="71" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/entity/Offices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6380697">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2546917">
+          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3324397">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3324468">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20212767">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38703704">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/operation-dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="9" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/DevicesService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33450705">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/RebUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.2.3/shiro-core-1.2.3-sources.jar!/org/apache/shiro/authc/AbstractAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/shiro-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5661017">
+          <caret line="95" column="29" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/dao/MaterialsDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21652421">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/entity/Materials.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/service/impl/MaterialsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6809118">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/service/MaterialsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.054131053">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/controller/MaterialsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4871795">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/system/web/KelanRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4017094">
+          <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/AuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6039886">
+          <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27920228">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceDaoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7058824">
+          <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
+          <folding>
+            <marker date="1565430219820" expanded="true" signature="1430:1566" placeholder="select from xxk_device" />
+            <marker date="1565430219820" expanded="true" signature="1735:1990" placeholder="select from xxk_device" />
+            <marker date="1565430219820" expanded="true" signature="2139:2371" placeholder="select id,de... xxk_device" />
+            <marker date="1565430219820" expanded="true" signature="2499:2818" placeholder="insert into xxk_device... " />
+            <marker date="1565430219820" expanded="true" signature="2905:2981" placeholder="select dev_c... xxk_device" />
+            <marker date="1565430219820" expanded="true" signature="3117:3231" placeholder="select from xxk_device" />
+            <marker date="1565430219820" expanded="true" signature="3364:3471" placeholder="select from xxk_device" />
+            <marker date="1565430219820" expanded="true" signature="3600:3826" placeholder="update xxk_d... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/entity/Devices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6932153">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding>
+            <marker date="1584424315064" expanded="true" signature="601:737" placeholder="select from xxk_device" />
+            <marker date="1584424315064" expanded="true" signature="875:1197" placeholder="insert into xxk_device... " />
+            <marker date="1584424315064" expanded="true" signature="1296:1369" placeholder="update xxk_d... " />
+            <marker date="1584424315064" expanded="true" signature="1469:1560" placeholder="update xxk_d... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77656674">
+          <caret line="78" column="45" selection-start-line="78" selection-start-column="45" selection-end-line="78" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
