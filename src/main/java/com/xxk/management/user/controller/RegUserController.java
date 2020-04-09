@@ -111,7 +111,7 @@ public class RegUserController extends BaseController {
         try {
             RegUser user = rebUserService.getRegUser(id);
             if (user == null) {
-                log.error("获取出错");
+                log.error("获取出错，对象为空！");
                 result.put("error", false);
                 return result;
             }

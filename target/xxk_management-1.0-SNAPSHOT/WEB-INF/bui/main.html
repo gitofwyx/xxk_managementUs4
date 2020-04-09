@@ -55,7 +55,7 @@
             menu: [{
                 text: '人员科室管理',
                 items: [
-                    {id: 'user-menu', text: '人员信息', href: '/userview/user_details', closeable: false},
+                    {id: 'user-menu', text: '人员信息', href: '/user_view/user_details', closeable: false},
                     {id: 'offices-menu', text: '科室信息', href: '/menu/offices_tab'},
                 ]
             }, {
@@ -74,18 +74,12 @@
             }]
         }, {
             id: 'office',
-            homePage: 'code',
+            homePage: 'office_devices',
             menu: [{
-                text: '表单页面',
+                text: '设备耗材管理',
                 items: [
-                    {id: 'code', text: '表单代码', href: 'form/code.html', closeable: false},
-                    {id: 'example', text: '表单示例', href: 'form/example.html'},
-                    {id: 'introduce', text: '表单简介', href: 'form/introduce.html'},
-                    {id: 'valid', text: '表单基本验证', href: 'form/basicValid.html'},
-                    {id: 'advalid', text: '表单复杂验证', href: 'form/advalid.html'},
-                    {id: 'remote', text: '远程调用', href: 'form/remote.html'},
-                    {id: 'group', text: '表单分组', href: 'form/group.html'},
-                    {id: 'depends', text: '表单联动', href: 'form/depends.html'}
+                    {id: 'office_devices', text: '科室设备信息', href: '/office_menu/devices_tab', closeable: false},
+                    {id: 'office_materials', text: '科室耗材&#92;配件信息', href: '/office_menu/devices_tab', closeable: false},
                 ]
             }, {
                 text: '成功失败页面',

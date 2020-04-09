@@ -18,6 +18,8 @@ public class Devices extends BaseInfoEntity {
     private String  device_name;
     private String device_location;
     private String  device_flag;
+    private String devices_auditing_mark;
+    private String reject_date;
     private String remark;
     private String keyWord;
 
@@ -101,6 +103,22 @@ public class Devices extends BaseInfoEntity {
 
     public void setDevice_flag(String device_flag) {
         this.device_flag = device_flag;
+    }
+
+    public String getDevices_auditing_mark() {
+        return devices_auditing_mark;
+    }
+
+    public void setDevices_auditing_mark(String devices_auditing_mark) {
+        this.devices_auditing_mark = devices_auditing_mark;
+    }
+
+    public String getReject_date() {
+        return reject_date;
+    }
+
+    public void setReject_date(String reject_date) {
+        this.reject_date = reject_date;
     }
 
     public String getRemark() {

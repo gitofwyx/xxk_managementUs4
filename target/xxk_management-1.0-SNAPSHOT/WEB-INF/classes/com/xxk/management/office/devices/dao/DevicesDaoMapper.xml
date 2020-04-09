@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.office.devices.dao.DevicesDao">
     <sql id="columns"> id,device_id,device_ident,office_id,mediaOfLANId,related_flag,related_id,device_name,device_location,
-                          device_flag,remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+                          device_flag,devices_auditing_mark,remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
     <select id="listDevices" parameterType="string" resultType="com.xxk.management.office.devices.entity.Devices">
@@ -15,7 +15,7 @@
     <insert id="addDevices" parameterType="com.xxk.management.office.devices.entity.Devices">
         insert into xxk_device(<include refid="columns"></include>) values(
         #{id},#{device_id},#{device_ident},#{office_id}#{mediaOfLANId},#{related_flag},#{related_id},#{device_name},#{device_location},
-        #{device_flag},#{remark},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{device_flag},#{devices_auditing_mark},#{remark},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--设备数量加 -->

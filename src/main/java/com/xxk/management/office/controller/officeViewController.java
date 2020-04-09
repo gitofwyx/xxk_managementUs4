@@ -1,11 +1,9 @@
-package com.xxk.management.user.controller;
+package com.xxk.management.office.controller;
 
 import com.xxk.core.file.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -15,10 +13,10 @@ import java.util.Map;
  * Created by Administrator on 2017/3/15.
  */
 @Controller
-@RequestMapping("user_view")
-public class UserViewController extends BaseController {
+@RequestMapping("office_view")
+public class officeViewController extends BaseController {
 
-    private static Logger log = Logger.getLogger(UserViewController.class);
+    private static Logger log = Logger.getLogger(officeViewController.class);
 
     /*@RequestMapping("/index")
     public ModelAndView  index() {
