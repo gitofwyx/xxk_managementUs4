@@ -62,7 +62,7 @@
                 text: '设备耗材管理',
                 items: [
                     {id: 'device-menu', text: '设备信息', href: '/menu/device_tab'},
-                    {id: 'material-menu', text: '耗材&#92;配件信息', href: '/menu/material_tab'},
+                    {id: 'material-menu', text: '耗材/配件信息', href: '/menu/material_tab'},
                     {id: 'stock-menu', text: '库存信息', href: '/menu/stock_tab'},
                 ]
             }, {
@@ -74,12 +74,13 @@
             }]
         }, {
             id: 'office',
-            homePage: 'office_devices',
+            homePage: 'office_depository',
             menu: [{
                 text: '设备耗材管理',
                 items: [
-                    {id: 'office_devices', text: '科室设备信息', href: '/office_menu/devices_tab', closeable: false},
-                    {id: 'office_materials', text: '科室耗材&#92;配件信息', href: '/office_menu/devices_tab', closeable: false},
+                    {id: 'office_depository', text: '科室库存信息', href: '/office_menu/depository_tab', closeable: false},
+                    {id: 'office_devices', text: '科室设备信息', href: '/office_menu/devices_tab'},
+                    {id: 'office_materials', text: '科室耗材/配件信息', href: '/office_menu/devices_tab'},
                 ]
             }, {
                 text: '成功失败页面',

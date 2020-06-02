@@ -22,7 +22,7 @@ public class Stock extends BaseInfoEntity {
     private String remark;          //备注
     private String keyWord;           //关键字
 
-    private int stock_version;           //关键字
+    private int stock_version;           //版本号
 
     @Override
     public String getId() {

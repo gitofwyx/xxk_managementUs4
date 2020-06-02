@@ -9,6 +9,8 @@ import com.xxk.core.entity.BaseInfoEntity;
 public class Delivery extends BaseInfoEntity {
     private String id;
     private String entity_id;           //设备id
+    private String entity_name;           //设备\耗材名
+    private String entity_type;           //设备\耗材型号
     private String stock_id;
     private String out_confirmed_ident; //出库编号
     private String out_confirmed_by;//确认人
@@ -17,7 +19,8 @@ public class Delivery extends BaseInfoEntity {
     private double out_confirmed_no;  //出库数量
     private String out_confirmed_unit;  //出库单位
     private int out_confirmed_proportion;  //个体/单位比例
-    private double out_confirmed_total;      //出库人
+    private double out_confirmed_total;      //出库总量
+    private String entity_entry_status;      //入科状态（1：待入科；2：部分待入科；3：已入科；4：部分已入科）
     private String keyWord;           //关键字
 
     @Override
@@ -36,6 +39,22 @@ public class Delivery extends BaseInfoEntity {
 
     public void setEntity_id(String entity_id) {
         this.entity_id = entity_id;
+    }
+
+    public String getEntity_name() {
+        return entity_name;
+    }
+
+    public void setEntity_name(String entity_name) {
+        this.entity_name = entity_name;
+    }
+
+    public String getEntity_type() {
+        return entity_type;
+    }
+
+    public void setEntity_type(String entity_type) {
+        this.entity_type = entity_type;
     }
 
     public String getStock_id() {
@@ -108,6 +127,14 @@ public class Delivery extends BaseInfoEntity {
 
     public void setOut_confirmed_total(double out_confirmed_total) {
         this.out_confirmed_total = out_confirmed_total;
+    }
+
+    public String getEntity_entry_status() {
+        return entity_entry_status;
+    }
+
+    public void setEntity_entry_status(String entity_entry_status) {
+        this.entity_entry_status = entity_entry_status;
     }
 
     public String getKeyWord() {

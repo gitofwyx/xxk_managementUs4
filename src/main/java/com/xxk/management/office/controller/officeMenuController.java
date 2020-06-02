@@ -26,10 +26,10 @@ public class officeMenuController extends BaseController {
         return new ModelAndView("/index", "result", result);
     }*/
 
-    @RequestMapping("/devices_tab")
-    public ModelAndView  devices_tab() {
+    @RequestMapping("/depository_tab")
+    public ModelAndView  depository_tab() {
         Map<String, Object> result = new HashMap<>();
-        return new ModelAndView("/office_station/search/devices_dialog", "result", result);
+        return new ModelAndView("/office_station/search/depository_dialog", "result", result);
     }
 
     @RequestMapping("/materials_tab")

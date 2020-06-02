@@ -38,9 +38,6 @@ public class StockController extends BaseController {
     private StockService stockService;
 
     @Autowired
-    private DeliveryService deliveryService;
-
-    @Autowired
     private DeviceService deviceService;
 
     @ResponseBody

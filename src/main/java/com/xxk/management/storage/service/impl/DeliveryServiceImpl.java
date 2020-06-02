@@ -38,7 +38,12 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Map<String, Object> addDelivery(Stock stock, Delivery delivery) {
+    public List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String stock_id) {
+        return dao.listDeliveryByOffice((pageStart - 1) * pageSize, pageSize,stock_id);
+    }
+
+    @Override
+    public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String status) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String deliveryId = UUIdUtil.getUUID();
@@ -46,9 +51,10 @@ public class DeliveryServiceImpl implements DeliveryService {
             if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
                 log.info("出错！无法获取设备ID");
                 result.put("hasError", true);
-                result.put("error", "添加出错");
+                result.put("error", "添加出错！无法获取设备ID");
                 return result;
             }
+            //库存编号生成
             String out_confirmed_ident = IdentUtil.getIdentNo((int)stock.getStock_no(), createDate);
             if ("".equals(out_confirmed_ident) || out_confirmed_ident == null) {
                 result.put("hasError", true);
@@ -61,6 +67,7 @@ public class DeliveryServiceImpl implements DeliveryService {
             delivery.setOut_confirmed_ident(out_confirmed_ident);
             delivery.setOut_confirmed_unit(stock.getStock_unit());
             delivery.setOut_confirmed_proportion(stock.getStock_proportion());
+            delivery.setEntity_entry_status(status);
             delivery.setCreateDate(createDate);
             delivery.setCreateUserId("admin");
             delivery.setUpdateDate(createDate);

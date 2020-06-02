@@ -187,9 +187,8 @@
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>出库科室：</label>
-                <div class="controls" id="out_offices_select">
-                    <input name="out_confirmed_offices" id="out_confirmed_offices" type="text" autocomplete="off"
-                           class="input-normal control-text">
+                <div class="controls">
+                    <input name="out_confirmed_offices" id="out_confirmed_offices" type="text" data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
@@ -247,6 +246,12 @@
                 <div class="control-group span2.5">
                     <input id="stock_record_id2" name="stock_record_id" type="hidden" data-rules="{required:true}">
                 </div>
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_name" name="entity_name" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -396,7 +401,6 @@
                         }),
                         stock_office_picker = new TreePicker({
                             trigger: '#out_confirmed_offices',
-                            valueField: '#out_confirmed_officeId', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                             width: 150,  //指定宽度
                             children: [stock_office_tree] //配置picker内的列表
                         }).render(),
@@ -690,6 +694,8 @@
                         O_Form.getField('stock_record_id').set('value',eData.id);
                         O_Form.getField('out_confirmed_unit').set('value',eData.stock_unit);
                         O_Form.getField('out_confirmed_officeId').addRule('max', selections[0].dev_no, '库存不足，不能大于{0}');
+                        O_Form.getField('entity_name').set('value',eData.entity_name);
+                        O_Form.getField('entity_type').set('value',eData.entity_type);
                     }
                 }
 
@@ -879,6 +885,10 @@
                     O_num=grid.getSelection()[0].stock_total-out_stock_total;
                     O_Form.getField('stock_total').set('value',O_num);
                     O_Form.getField('stock_no').set('value',makeInNum(O_num,proportion));
+                });
+
+                stock_office_tree.on('itemclick', function (ev) {
+                    O_Form.getField('out_confirmed_officeId').set('value', ev.item.value);
                 });
 
             });

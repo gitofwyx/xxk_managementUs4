@@ -25,13 +25,13 @@
             <input type="hidden">
             <div class="row">
                 <div class="control-group span7">
-                    <label class="control-label">设备名称：</label>
+                    <label class="control-label">设备/耗材名称：</label>
                     <div class="controls">
                         <input type="text" class="control-text" name="dev_name">
                     </div>
                 </div>
                 <div class="control-group span7">
-                    <label class="control-label">设备型号：</label>
+                    <label class="control-label">设备/耗材型号：</label>
                     <div class="controls">
                         <input type="text" class="control-text" name="dev_type">
                     </div>
@@ -66,15 +66,15 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>入科科室：</label>
                 <div class="controls">
-                    <input name="dev_office_ident" id="dev_office_ident" type="text" data-rules="{required:true}">
+                    <input name="dep_office_ident" id="dep_office_ident" type="text" data-rules="{required:true}">
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="control-group span16">
-                <label class="control-label"><s>*</s>科室出库记录：</label>
-                <div class="controls" id="office__dev_select">
+                <label class="control-label"><s>*</s>科室出库记录：(未入科登记)</label>
+                <div class="controls" id="office_dep_select">
                     <input id="stock_record_id" name="stock_record_id" type="hidden">
                 </div>
                 &nbsp;
@@ -83,23 +83,49 @@
             </div>
 
         </div>
-
+        <div id="I_Input_console">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备名称：</label>
+                <label class="control-label"><s>*</s>设备/耗材名称：</label>
                 <div class="controls">
-                    <div class="input-group">
-                        <input type="text" class="suggest-input" id="dev_name" name="dev_name">
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        </ul>
-                        <!-- /btn-group -->
-                    </div>
+                    <input name="entity_name" id="entity_name" type="text" data-rules="{required:true}" class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
+                <label class="control-label"><s>*</s>设备/耗材型号：</label>
                 <div class="controls">
-                    <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    <input name="entity_type" id="entity_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>未入科总量：</label>
+                <div class="controls">
+                    <input name="out_confirmed_no" id="out_confirmed_total" type="text" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备/耗材单位：</label>
+                <div class="controls">
+                    <input name="out_confirmed_unit" id="out_confirmed_unit" type="text" data-rules="{required:true}">
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>入科数量：</label>
+                <div class="controls">
+                    <input name="entity_entry_no" id="entity_entry_no" type="text" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>入科总量：</label>
+                <div class="controls">
+                    <input name="entity_entry_total" id="entity_entry_total" type="text" data-rules="{required:true}">
                 </div>
             </div>
         </div>
@@ -129,14 +155,14 @@
             function (Search, Form, Grid, TreePicker, Select, Picker, Tree) {
 
                 var offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
-                        enumObj_dev_flag = {"1": "启用", "0": "禁用"},
+                        enumObj_dep_flag = {"1": "启用", "0": "禁用"},
                         enumObj_genre_tags = {"1": "设备"},
-                //变量初始化
-                        dev_name_data = [],
-                        dev_count_map = {},//设备种类id对应的dev_name_data键
+                        //变量初始化
+                        dep_name_data = [],
+                        dep_count_map = {},//设备种类id对应的dep_name_data键
                         class_count = 0,//设备种类最大值
                         J_Form = '',
-                //入科设备编辑
+                        //入科设备编辑
                         editing_J = new BUI.Grid.Plugins.DialogEditing({
                             contentId: 'content_J', //设置隐藏的Dialog内容
                             autoSave: true, //添加数据或者修改数据时，自动保存
@@ -146,30 +172,30 @@
                  contentId: 'content', //设置隐藏的Dialog内容
                  autoSave: true, //添加数据或者修改数据时，自动保存
                  }),*/
-                //科室选择数框
-                        dev_office_tree = new Tree.TreeList({
+                        //科室选择数框
+                        dep_office_tree = new Tree.TreeList({
                             nodes: [],
                             //store: store,
                             //dirSelectable : false,//阻止树节点选中
                             showLine: true //显示连接线
                         }),
-                        dev_office_picker = new TreePicker({
-                            trigger: '#dev_office_ident',
+                        dep_office_picker = new TreePicker({
+                            trigger: '#dep_office_ident',
                             //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                             width: 150,  //指定宽度
-                            children: [dev_office_tree] //配置picker内的列表
+                            children: [dep_office_tree] //配置picker内的列表
                         }).render(),
-                //入库设备选择框
-                        office__dev_grid = new Grid.Grid({
+                        //入库设备选择框
+                        office_dep_grid = new Grid.Grid({
                             idField: 'id',//选项的默认id字段
                             columns: [
-                                {title: '库存编号', dataIndex: 'stock_ident', elCls: 'center', width: '30%'},
-                                {title: '数量', dataIndex: 'stock_no', elCls: 'center', width: '20%'},
-                                {title: '单位', dataIndex: 'stock_unit', elCls: 'center', width: '20%'},
-                                {title: '总量', dataIndex: 'stock_total', elCls: 'center', width: '30%'},
+                                {title: '设备编号', dataIndex: 'out_confirmed_ident', elCls: 'center', width: '40%'},
+                                {title: '数量', dataIndex: 'out_confirmed_no', elCls: 'center', width: '20%'},
+                                {title: '单位', dataIndex: 'out_confirmed_unit', elCls: 'center', width: '20%'},
+                                {title: '总量', dataIndex: 'out_confirmed_total', elCls: 'center', width: '20%'},
                             ],
                             textGetter: function (item) { //返回选中的文本
-                                return item.stock_ident;
+                                return item.out_confirmed_ident;
                             },
                             bbar: {
                                 //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
@@ -186,17 +212,17 @@
                             },
                             items: [],
                         }),
-                        office__dev_picker = new Picker.ListPicker({
-                            width: 300,  //指定宽度
-                            children: [office__dev_grid] //配置picker内的列表
+                        office_dep_picker = new Picker.ListPicker({
+                            width: 350,  //指定宽度
+                            children: [office_dep_grid] //配置picker内的列表
                         }),
-                        office__dev_select = new Select.Select({
-                            picker: office__dev_picker,
-                            render: '#office__dev_select',
+                        office_dep_select = new Select.Select({
+                            picker: office_dep_picker,
+                            render: '#office_dep_select',
                             valueField: '#stock_record_id',
                             forceFit: false,
                             multipleSelect: false,
-                            width: 300,
+                            width: 350,
                             items: []
                         }).render(),
 
@@ -216,7 +242,7 @@
                                 dataIndex: 'dev_flag',
                                 elCls: 'center',
                                 width: 70,
-                                renderer: BUI.Grid.Format.enumRenderer(enumObj_dev_flag)
+                                renderer: BUI.Grid.Format.enumRenderer(enumObj_dep_flag)
                             },
                             {title: '备注', dataIndex: 'remark', elCls: 'center', width: 250},
                             {
@@ -244,12 +270,12 @@
                             tbar: {
                                 items: [
                                     {
-                                        text: '<i class="icon-pencil"></i>入科设备登记',
+                                        text: '<i class="icon-pencil"></i>入科登记',
                                         btnCls: 'button button-small',
                                         handler: addFunction
                                     },
                                     {
-                                        text: '<i class="icon-edit"></i>原科设备登记',
+                                        text: '<i class="icon-edit"></i>原科登记',
                                         btnCls: 'button button-small',
                                         handler: updateFunction
                                     },
@@ -271,6 +297,14 @@
                         grid = search.get('grid'),
                         J_Form = editing_J.get('form');
 
+                //禁止输入框输入
+                function input_console(dis) {
+                    $("#I_Input_console input").each(function () {
+                        $(this).val('');
+                        $(this).attr('disabled', dis);
+                    })
+                };
+
                 //科室更新函数
                 function handle_office() {
                     if (offices_select == undefined || offices_select == null) {
@@ -287,7 +321,7 @@
                                     if (data != null && data != undefined) {
                                         offices_select = data.result;
                                         var mObj = GetMenus('root', offices_select);
-                                        dev_office_tree.set('nodes', mObj);
+                                        dep_office_tree.set('nodes', mObj);
                                         //belong_to_select.set('items', offices_select);
                                     }
                                 },
@@ -308,7 +342,7 @@
                     };
                     handle_office();
                     var mObj = GetMenus('root', offices_select);
-                    dev_office_tree.set('nodes', mObj);
+                    dep_office_tree.set('nodes', mObj);
                     store.get('proxy').set('save', save);
                     var newData = {isNew: true}; //标志是新增加的记录
                     editing_J.add(newData, 'name'); //添加记录后，直接编辑
@@ -333,7 +367,7 @@
                         console.log('onDataRequestSuccess: ', result);
                     }).on('onSetSelectValue', function (e, keyword, data) {
                         console.log('onSetSelectValue: ', keyword, data);
-                        editing.get('editor');
+                        editing_J.get('editor');
                         J_Form.getField('dev_class_id').set('value', keyword.id);
                         J_Form.getField('class_ident').set('value', data.class_ident);
                         J_Form.getField('dev_max').set('value', data.dev_max);
@@ -352,7 +386,7 @@
                         return;
                     } else {
                         var eData = selections[0];
-                        editing.edit(eData);
+                        editing_J.edit(eData);
                     }
                 }
 
@@ -385,22 +419,26 @@
                 });
 
                 editing_J.on('accept', function (ev) {
-                    dev_name_data = [];
+                    dep_name_data = [];
                 });
 
-                dev_office_tree.on('itemclick', function (ev) {
-                    J_Form.getField('office_id').set('value', ev.item.value);
+                //库存记录框选中
+                office_dep_select.on('change', function (ev) {
+                    input_console(true);
+                    $("#entity_name").val(ev.item.entity_name);
+                    $("#entity_type").val(ev.item.entity_type);
+                    $("#out_confirmed_total").val(ev.item.out_confirmed_total);
+                    $("#out_confirmed_unit").val(ev.item.out_confirmed_unit);
                 });
+
                 //监听事件，选择科室下拉框选中
-                office__dev_select.on('change', function (ev) {
-                    /*input_console(true);*/
-                    var edv = Editing_I.get('editor').getValue();
-                    if (edv.entity_id != null && edv.entity_id != '' && edv.entity_id != undefined) {
+                dep_office_tree.on('itemclick', function (ev) {
+
+                    if (ev.item.value != null && ev.item.value != '' && ev.item.value != undefined) {
                         $.ajax({
-                            url: '/listStockByEntityId',
+                            url: '/listDeliveryByOffice',
                             data: {
-                                entity_id: edv.entity_id,
-                                stock_office: edv.stock_office_id
+                                office_id: ev.item.value,
                             },
                             type: 'POST', //GET
                             async: true,    //或false,是否异步
@@ -408,13 +446,11 @@
                             dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                             success: function (data, textStatus, jqXHR) {
                                 if (!$.isEmptyObject(data.entityData)) {
-                                    Sto_rec_grid.set('items', data.entityData);
+                                    office_dep_grid.set('items', data.entityData);
                                     // input_console(false);
                                 } else {
-                                    Sto_rec_grid.set('items', []);
-                                    input_console(false);
+                                    office_dep_grid.set('items', []);
                                 }
-                                $("#unit_num").val(1);
                             },
                             error: function (xhr, textStatus) {
                                 console.log('错误')

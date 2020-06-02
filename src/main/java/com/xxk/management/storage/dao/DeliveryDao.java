@@ -15,6 +15,8 @@ public interface DeliveryDao {
 
     public List<Delivery> listDeliveryByStock(int pageStart, int pageSize,String stock_id);
 
+    public List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String office_id);
+
     public int addDelivery(Delivery delivery);
 
     public int deleteListRegUser(List<String> listStr);

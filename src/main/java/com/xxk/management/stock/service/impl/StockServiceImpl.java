@@ -162,9 +162,9 @@ public class StockServiceImpl implements StockService {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
-                //出库记录
+                //出库更新
                 delivery.setEntity_id(stock.getEntity_id());
-                result = deliveryService.addDelivery(stock, delivery);
+                result = deliveryService.addDelivery(stock, delivery,"1");
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);

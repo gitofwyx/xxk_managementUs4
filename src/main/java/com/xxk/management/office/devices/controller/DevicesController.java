@@ -8,6 +8,7 @@ import com.xxk.management.device.entity.DeviceClass;
 import com.xxk.management.device.service.DeviceClassService;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
+import com.xxk.management.storage.entity.Delivery;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,8 +64,7 @@ public class DevicesController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addDevices")
-    public Map<String, Boolean> addDevices(Devices devices, DeviceClass deviceClass,
-                                          @RequestParam(value = "dev_class_count") String dev_class_count,
+    public Map<String, Boolean> addDevices(Devices devices, Delivery Delivery,
                                           @RequestParam(value = "lastUpDate") String lastUpDate) {
         Map<String, Boolean> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
@@ -72,8 +72,7 @@ public class DevicesController extends BaseController {
         String deviceClassId = UUIdUtil.getUUID();
         String dev_ident = "";
         try {
-
-
+            devices.setDelivery_id(Delivery.getId());
             boolean Result = devicesService.addDevices(devices);
             if (!(Result)) {
                 result.put("success", false);

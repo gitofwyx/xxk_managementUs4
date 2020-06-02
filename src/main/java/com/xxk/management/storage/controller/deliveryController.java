@@ -129,4 +129,33 @@ public class deliveryController extends BaseController {
         }
         return result;
     }
+
+    @ResponseBody
+    @RequestMapping("/listDeliveryByOffice")
+    public Map<String, Object> listDeliveryByOffice(@RequestParam(value = "office_id") String office_id) {
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        try {
+            List<Delivery> listDelivery = deliveryService.listDeliveryByOffice(1, 9,office_id);
+            if (listDelivery == null) {
+                log.error("listDeliveryByOffice:获取分页出错");
+                result.put("error", false);
+                return result;
+            }else {
+                for (Delivery delivery : listDelivery) {
+                    Map<String, Object> resultMap = new HashMap<>();
+                    resultMap.putAll(JsonUtils.toMap(delivery));
+                    resultList.add(resultMap);
+                }
+            }
+            result.put("entityData", resultList);
+            result.put("results", 9);
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "查询出错");
+        }
+        return result;
+    }
 }

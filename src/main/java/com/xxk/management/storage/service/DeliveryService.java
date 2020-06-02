@@ -15,7 +15,9 @@ public interface DeliveryService {
 
     public  List<Delivery> listDeliveryByStock(int pageStart, int pageSize,String stock_id);
 
-    public Map<String, Object> addDelivery(Stock stock, Delivery delivery);
+    public  List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String stock_id);
+
+    public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String status);
 
     public boolean deleteListRegUser(List<String> listStr);
 

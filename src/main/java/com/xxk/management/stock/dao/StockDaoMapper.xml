@@ -68,7 +68,7 @@
         updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and stock_version=#{stock_version} and deleteFlag='0';
     </update>
 
-    <!--入库更新 -->
+    <!--出库更新 -->
     <update id="reduceStockNo" parameterType="com.xxk.management.stock.entity.Stock">
         update xxk_stock set stock_no=#{stock_no},stock_total=stock_total-#{stock_total},stock_version=stock_version+1,
         updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and stock_version=#{stock_version} and deleteFlag='0';

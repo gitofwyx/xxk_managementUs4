@@ -8,20 +8,26 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Devices extends BaseInfoEntity {
 
-    private String id;
-    private String device_id;
-    private String  device_ident;
-    private String office_id;
-    private String  mediaOfLANId;
-    private String  related_flag;
-    private String related_id;
-    private String  device_name;
-    private String device_location;
-    private String  device_flag;
-    private String devices_auditing_mark;
-    private String reject_date;
-    private String remark;
-    private String keyWord;
+    private String id;                            //
+    private String device_id;                   //设备id
+    private String  device_ident;               //设备编号
+    private String office_id;                   //科室id
+    private String  mediaOfLANId;              //通信介质id
+    private String  device_origin;             //设备来源（1入科2原科）
+    private String in_storage_id;             //入库ID
+    private String delivery_id;               //出库ID
+    private String device_entry_date;        //入科时间
+    private String device_deployment_status;  //部署状态
+    private String device_deployment_date;  //部署时间
+    private String related_flag;             //关联状态
+    private String related_id;               //关联设备id
+    private String  device_name;             //科室设备名
+    private String device_location;         //设备具体位置
+    private String  device_flag;            //设备状态
+    private String devices_auditing_mark;  //设备审核标志
+    private String reject_date;             //报废时间
+    private String remark;                   //备注
+    private String keyWord;                 //关键字
 
     @Override
     public String getId() {
@@ -63,6 +69,54 @@ public class Devices extends BaseInfoEntity {
 
     public void setMediaOfLANId(String mediaOfLANId) {
         this.mediaOfLANId = mediaOfLANId;
+    }
+
+    public String getDevice_origin() {
+        return device_origin;
+    }
+
+    public void setDevice_origin(String device_origin) {
+        this.device_origin = device_origin;
+    }
+
+    public String getIn_storage_id() {
+        return in_storage_id;
+    }
+
+    public void setIn_storage_id(String in_storage_id) {
+        this.in_storage_id = in_storage_id;
+    }
+
+    public String getDelivery_id() {
+        return delivery_id;
+    }
+
+    public void setDelivery_id(String delivery_id) {
+        this.delivery_id = delivery_id;
+    }
+
+    public String getDevice_entry_date() {
+        return device_entry_date;
+    }
+
+    public void setDevice_entry_date(String device_entry_date) {
+        this.device_entry_date = device_entry_date;
+    }
+
+    public String getDevice_deployment_status() {
+        return device_deployment_status;
+    }
+
+    public void setDevice_deployment_status(String device_deployment_status) {
+        this.device_deployment_status = device_deployment_status;
+    }
+
+    public String getDevice_deployment_date() {
+        return device_deployment_date;
+    }
+
+    public void setDevice_deployment_date(String device_deployment_date) {
+        this.device_deployment_date = device_deployment_date;
     }
 
     public String getRelated_flag() {

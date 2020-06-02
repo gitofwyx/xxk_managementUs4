@@ -93,7 +93,7 @@
                 /favicon.ico=anon
                 /logout = logout
 
-               <!-- /**=authc-->
+                /**=authc
             </value>
         </property>
         <!-- <property name="filterChainDefinitionMap"> <bean factory-bean="filterChainDefinitionsBuilder"
