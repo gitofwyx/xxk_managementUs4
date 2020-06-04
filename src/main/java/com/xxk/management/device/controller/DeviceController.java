@@ -122,7 +122,7 @@ public class DeviceController extends BaseController {
             }
         } catch (Exception e) {
             result.put("hasError", true);
-            result.put("error", e);
+            result.put("error", "设备更新出错！"+e.getCause().getLocalizedMessage());
             log.error(e);
             return result;
         }

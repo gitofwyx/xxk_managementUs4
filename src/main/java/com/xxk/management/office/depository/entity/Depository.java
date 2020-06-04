@@ -11,6 +11,7 @@ public class Depository extends BaseInfoEntity {
     private String id;
     private String depository_ident; //科室库存编号
     private String delivery_id;         //交付表id
+    private String class_id;           //设备id
     private String entity_id;           //设备id
     private String entity_name;           //设备\耗材名
     private String entity_type;           //设备\耗材型号
@@ -51,6 +52,14 @@ public class Depository extends BaseInfoEntity {
 
     public void setDelivery_id(String delivery_id) {
         this.delivery_id = delivery_id;
+    }
+
+    public String getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
     }
 
     public String getEntity_id() {

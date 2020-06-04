@@ -42,7 +42,7 @@ public class DepositoryController extends BaseController {
     public Map<String, Object> listDepository(@RequestParam(value = "pageIndex") String pageIndex,
                                               @RequestParam(value = "limit") String limit,
                                               @RequestParam(value = "search_class_id") String class_id,//型号id
-                                              @RequestParam(value = "search_entity_id") String entity_id,//型号id
+                                              @RequestParam(value = "search_entity_id") String entity_id,//设备、耗材id
                                               @RequestParam(value = "search_office_id") String stock_office_id,//库存科室id
                                               @RequestParam(value = "search_type") int search_type) {//类别
         Map<String, Object> result = new HashMap<>();

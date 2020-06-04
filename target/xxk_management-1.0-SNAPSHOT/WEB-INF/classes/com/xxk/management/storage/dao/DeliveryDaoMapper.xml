@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.storage.dao.DeliveryDao">
-    <sql id="columns">id,entity_id,entity_name,entity_type,stock_id,out_confirmed_ident,out_confirmed_by,out_confirmed_officeId,out_confirmed_date,out_confirmed_no,
+    <sql id="columns">id,class_id,entity_id,entity_name,entity_type,stock_id,out_confirmed_ident,out_confirmed_by,out_confirmed_officeId,out_confirmed_date,out_confirmed_no,
 out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
@@ -28,7 +28,7 @@ out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,entity_entry_sta
     <!--添加信息 -->
     <insert id="addDelivery" parameterType="com.xxk.management.storage.entity.Delivery">
         insert into xxk_delivery(<include refid="columns"></include>) values(
-        #{id},#{entity_id},#{entity_name},#{entity_type},#{stock_id},#{out_confirmed_ident},#{out_confirmed_by},#{out_confirmed_officeId},
+        #{id},#{class_id},#{entity_id},#{entity_name},#{entity_type},#{stock_id},#{out_confirmed_ident},#{out_confirmed_by},#{out_confirmed_officeId},
         #{out_confirmed_date}, #{out_confirmed_no},#{out_confirmed_unit},#{out_confirmed_proportion},#{out_confirmed_total},#{entity_entry_status},
         #{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>

@@ -36,13 +36,13 @@
                         <input type="text" class="control-text" name="dev_type">
                     </div>
                 </div>
+
             </div>
             <div class="row">
-                <div class="control-group span9">
-                    <label class="control-label">登记时间：</label>
-                    <div class="controls">
-                        <input type="text" class=" calendar" name="startDate"><span> - </span>
-                        <input name="endDate" type="text" class=" calendar">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存类别：</label>
+                    <div class="controls search_select" id="search_type_select">
+                        <input name="search_type" type="hidden" id="search_type" value="1" data-rules="{required:true}">
                     </div>
                 </div>
                 <div class="span3 offset2">
@@ -73,9 +73,9 @@
 
         <div class="row">
             <div class="control-group span16">
-                <label class="control-label"><s>*</s>科室出库记录：(未入科登记)</label>
+                <label class="control-label"><s>*</s>科室出库记录：(未入科登记记录)</label>
                 <div class="controls" id="office_dep_select">
-                    <input id="stock_record_id" name="stock_record_id" type="hidden">
+                    <input id="delivery_id" name="delivery_id" type="hidden">
                 </div>
                 &nbsp;
                 <input type="button" id="I_Reset" name="I_Reset" class=" icon-repeat"
@@ -156,12 +156,22 @@
 
                 var offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
                         enumObj_dep_flag = {"1": "启用", "0": "禁用"},
-                        enumObj_genre_tags = {"1": "设备"},
+                        enumObj_genre_tags = {"1": "设备","2": "配件","3": "耗材"},
                         //变量初始化
                         dep_name_data = [],
                         dep_count_map = {},//设备种类id对应的dep_name_data键
                         class_count = 0,//设备种类最大值
                         J_Form = '',
+                        search_type_select = new Select.Select({
+                            render: '#search_type_select',
+                            valueField: '#search_type',
+                            multipleSelect: false,
+                            items: [
+                                {text: '设备', value: '1',name: 'DeviceSelect'},
+                                {text: '配件', value: '2',name: 'MaterialSelect'},
+                                {text: '耗材', value: '3',name: 'MaterialSelect'}
+                            ],
+                        }).render(),
                         //入科设备编辑
                         editing_J = new BUI.Grid.Plugins.DialogEditing({
                             contentId: 'content_J', //设置隐藏的Dialog内容
@@ -219,7 +229,7 @@
                         office_dep_select = new Select.Select({
                             picker: office_dep_picker,
                             render: '#office_dep_select',
-                            valueField: '#stock_record_id',
+                            valueField: '#delivery_id',
                             forceFit: false,
                             multipleSelect: false,
                             width: 350,
@@ -227,24 +237,27 @@
                         }).render(),
 
                         columns = [
-                            {title: '&nbsp设备编号', dataIndex: 'dev_ident', elCls: 'center', width: 150},
-                            {title: '&nbsp设备名称', dataIndex: 'dev_name', elCls: 'center', width: 150},
-                            {title: '&nbsp设备型号', dataIndex: 'dev_type', elCls: 'center', width: 150},
+                            {title: '&nbsp库存编号', dataIndex: 'depository_ident', elCls: 'center', width: 150},
+                            {title: '&nbsp库存名称', dataIndex: 'entity_name', elCls: 'center', width: 120},
+                            {title: '&nbsp库存型号', dataIndex: 'entity_type', elCls: 'center', width: 120},
+                            {title: '&nbsp数量', dataIndex: 'depository_no', elCls: 'center', width: 70},
+                            {title: '&nbsp库存单位', dataIndex: 'depository_unit', elCls: 'center', width: 100},
+                            {title: '&nbsp总量', dataIndex: 'depository_total', elCls: 'center', width: 70},
                             {
                                 title: '&nbsp类型',
-                                dataIndex: 'genre_tags',
+                                dataIndex: 'depository_type',
                                 elCls: 'center',
                                 width: 100,
                                 renderer: BUI.Grid.Format.enumRenderer(enumObj_genre_tags)
                             },
                             {
                                 title: '&nbsp状态',
-                                dataIndex: 'dev_flag',
+                                dataIndex: 'depository_flag',
                                 elCls: 'center',
                                 width: 70,
                                 renderer: BUI.Grid.Format.enumRenderer(enumObj_dep_flag)
                             },
-                            {title: '备注', dataIndex: 'remark', elCls: 'center', width: 250},
+                            {id: 'remark', title: '&nbsp备注', dataIndex: 'remark', elCls: 'center', width: 150},
                             {
                                 title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
 

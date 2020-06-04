@@ -8,6 +8,7 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Delivery extends BaseInfoEntity {
     private String id;
+    private String class_id;           //设备id
     private String entity_id;           //设备id
     private String entity_name;           //设备\耗材名
     private String entity_type;           //设备\耗材型号
@@ -31,6 +32,14 @@ public class Delivery extends BaseInfoEntity {
     @Override
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
     }
 
     public String getEntity_id() {
