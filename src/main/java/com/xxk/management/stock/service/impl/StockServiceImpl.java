@@ -163,6 +163,7 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
             } else {
                 //出库更新
+                delivery.setClass_id(stock.getClass_id());
                 delivery.setEntity_id(stock.getEntity_id());
                 result = deliveryService.addDelivery(stock, delivery,"1");
             }
