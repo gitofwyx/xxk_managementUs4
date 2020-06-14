@@ -26,7 +26,7 @@ public class Depository extends BaseInfoEntity {
     private String depository_flag;      //科室库存状态
     private String keyWord;           //关键字
 
-    private int stock_version;           //版本号
+    private int depository_version;           //版本号
 
     @Override
     public String getId() {
@@ -166,11 +166,11 @@ public class Depository extends BaseInfoEntity {
         this.keyWord = keyWord;
     }
 
-    public int getStock_version() {
-        return stock_version;
+    public int getDepository_version() {
+        return depository_version;
     }
 
-    public void setStock_version(int stock_version) {
-        this.stock_version = stock_version;
+    public void setDepository_version(int depository_version) {
+        this.depository_version = depository_version;
     }
 }

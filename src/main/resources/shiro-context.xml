@@ -77,9 +77,9 @@
         <property name="successUrl" value="/main"/>
         <property name="filters">
             <map>
-                <!--<entry key="authc">
+                <entry key="authc">
                     <bean class="com.xxk.core.shiro.CustomFormAuthenticationFilter"/>
-                </entry>-->
+                </entry>
 
                 <entry key="logout" value-ref="logoutFilter" />
 

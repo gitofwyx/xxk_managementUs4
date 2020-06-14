@@ -50,12 +50,12 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
     public Map<String, Object> addOfficesStorage(Depository depository, OfficesStorage officesStorage, String status) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
-        String deliveryId = UUIdUtil.getUUID();
+        String officesStorageId = UUIdUtil.getUUID();
         try {
             if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
+                log.error("addOfficesStorage出错！无法获取设备ID");
                 result.put("hasError", true);
-                result.put("error", "添加出错！无法获取设备ID");
+                result.put("error", "入科记录出错！无法获取设备ID");
                 return result;
             }
             //库存编号生成
@@ -66,16 +66,18 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
                 return result;
             }
             //入库
-            officesStorage.setId(deliveryId);
+            officesStorage.setId(officesStorageId);
             officesStorage.setDepository_id(depository.getId());
             officesStorage.setOffices_storage_ident(out_confirmed_ident);
+            officesStorage.setOffices_storage_by(depository.getDepository_by());
+            officesStorage.setOffices_storage_officeId(depository.getDepository_officeId());
             officesStorage.setOffices_storage_unit(depository.getDepository_unit());
             officesStorage.setOffices_storage_proportion(depository.getDepository_proportion());
             officesStorage.setEntity_entry_status(status);
             officesStorage.setCreateDate(createDate);
-            officesStorage.setCreateUserId("admin");
+            officesStorage.setCreateUserId(depository.getDepository_by());
             officesStorage.setUpdateDate(createDate);
-            officesStorage.setUpdateUserId("admin");
+            officesStorage.setUpdateUserId(depository.getDepository_by());
             officesStorage.setDeleteFlag("0");
 
             boolean storageResult = dao.addOfficesStorage(officesStorage) == 1 ? true : false;

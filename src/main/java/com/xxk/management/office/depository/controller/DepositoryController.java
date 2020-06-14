@@ -43,13 +43,13 @@ public class DepositoryController extends BaseController {
                                               @RequestParam(value = "limit") String limit,
                                               @RequestParam(value = "search_class_id") String class_id,//型号id
                                               @RequestParam(value = "search_entity_id") String entity_id,//设备、耗材id
-                                              @RequestParam(value = "search_office_id") String stock_office_id,//库存科室id
+                                              @RequestParam(value = "search_office_id") String depository_officeId,//库存科室id
                                               @RequestParam(value = "search_type") int search_type) {//类别
         Map<String, Object> result = new HashMap<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
             int pageSize = Integer.parseInt(limit);         //单页记录数
-            List<Depository> listDepository = depositoryService.listDepository(pageNumber, pageSize,class_id,entity_id,stock_office_id,search_type);
+            List<Depository> listDepository = depositoryService.listDepository(pageNumber, pageSize,class_id,entity_id,depository_officeId,search_type);
             if (listDepository == null) {
                 log.error("listStock:获取分页出错");
                 result.put("hasError", true);
@@ -77,14 +77,35 @@ public class DepositoryController extends BaseController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/getDepositoryByEntId",method = RequestMethod.POST)
+    public Map<String, Object> getDepositoryByEntId(@RequestParam(value = "entity_record_id") String entity_record_id) {
+        Map<String, Object> result=new HashMap<>();
+        try {
+            Depository depository=depositoryService.getDepositoryByEntId(entity_record_id);
+            if (depository == null) {
+                return null;
+            }
+            result.put("Object", depository);
+            result.put("success", true);
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+        //return "system/index";
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/addDepository",method = RequestMethod.POST)
     public Map<String, Object> addDepository(Depository depository, OfficesStorage storage,
-                                             @RequestParam(value = "stock_record_id") String stock_record_id) {
+                                             @RequestParam(value = "entity_record_id") String entity_record_id,
+                                             @RequestParam(value = "depository_id") String depository_id) {
         Map<String, Object> result=new HashMap<>();
-        if(stock_record_id!=null&&!"".equals(stock_record_id)){
-            depository.setId(stock_record_id);//获取库存的id值
+        depository.setEntity_id(entity_record_id);//获取库存的id值
+        if (!"".equals(depository_id)&&depository_id!=null) {
+            depository.setId(depository_id);
             result = depositoryService.updateDepositoryWithStorage(depository,storage);
-        }else {
+        } else {
             result = depositoryService.addDepositoryWithStorage(depository,storage);
         }
 

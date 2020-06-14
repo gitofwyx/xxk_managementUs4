@@ -19,7 +19,7 @@ public interface DeliveryDao {
 
     public int addDelivery(Delivery delivery);
 
-    public int deleteListRegUser(List<String> listStr);
+    public int allEntryDepository(String id);
 
 
 }

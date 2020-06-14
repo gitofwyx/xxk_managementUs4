@@ -65,6 +65,7 @@ public class DeliveryServiceImpl implements DeliveryService {
             delivery.setId(deliveryId);
             delivery.setStock_id(stock.getId());
             delivery.setOut_confirmed_ident(out_confirmed_ident);
+            delivery.setOut_confirmed_type(stock.getStock_type());
             delivery.setOut_confirmed_unit(stock.getStock_unit());
             delivery.setOut_confirmed_proportion(stock.getStock_proportion());
             delivery.setEntity_entry_status(status);
@@ -98,7 +99,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 
     @Override
-    public boolean deleteListRegUser(List<String> listStr) {
-        return false;
+    public boolean allEntryDepository(String id) {
+        return dao.allEntryDepository(id) == 1 ? true : false;
     }
 }

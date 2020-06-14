@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.storage.dao.DeliveryDao">
-    <sql id="columns">id,class_id,entity_id,entity_name,entity_type,stock_id,out_confirmed_ident,out_confirmed_by,out_confirmed_officeId,out_confirmed_date,out_confirmed_no,
-out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,class_id,entity_id,entity_name,entity_type,stock_id,out_confirmed_ident,out_confirmed_type,out_confirmed_by,out_confirmed_officeId,
+     out_confirmed_date,out_confirmed_no,out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,entity_entry_status,keyWord,createUserId,createDate,
+     updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
     <select id="listDelivery" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
@@ -28,24 +29,17 @@ out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,entity_entry_sta
     <!--添加信息 -->
     <insert id="addDelivery" parameterType="com.xxk.management.storage.entity.Delivery">
         insert into xxk_delivery(<include refid="columns"></include>) values(
-        #{id},#{class_id},#{entity_id},#{entity_name},#{entity_type},#{stock_id},#{out_confirmed_ident},#{out_confirmed_by},#{out_confirmed_officeId},
-        #{out_confirmed_date}, #{out_confirmed_no},#{out_confirmed_unit},#{out_confirmed_proportion},#{out_confirmed_total},#{entity_entry_status},
-        #{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{id},#{class_id},#{entity_id},#{entity_name},#{entity_type},#{stock_id},#{out_confirmed_ident},#{out_confirmed_type},#{out_confirmed_by},#{out_confirmed_officeId},
+        #{out_confirmed_date}, #{out_confirmed_no},#{out_confirmed_unit},#{out_confirmed_proportion},#{out_confirmed_total},#{entity_entry_status},#{keyWord},#{createUserId},
+        #{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
-    <!--根据id获取信息 -->
-    <select id="getRegUser" parameterType="string" resultType="com.xxk.management.user.entity.RegUser">
-        select
-        <include refid="columns"></include>
-        from xxk_reg_user
-        where id=#{id}
-        and deleteFlag='0';
-    </select>
-
     <!--修改信息 -->
-    <update id="updateRegUser" parameterType="com.xxk.management.user.entity.RegUser">
-        update xxk_reg_user set account=#{account},birth=#{birth},sex=#{sex},phone=#{phone},createUnit=#{createUnit},
-        QCellCore=#{QCellCore},updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
+    <update id="allEntryDepository"  parameterType="string">
+        update xxk_delivery set entity_entry_status='3'
+         where (entity_entry_status='1' or entity_entry_status='2')
+         and id=#{0}
+         and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->

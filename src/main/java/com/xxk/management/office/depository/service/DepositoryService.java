@@ -12,9 +12,11 @@ import java.util.Map;
  */
 public interface DepositoryService {
 
-    public List<Depository> listDepository(int pageStart, int pageSize, String class_id, String entity_id, String stock_office_id, int search_type);
+    public List<Depository> listDepository(int pageStart, int pageSize, String class_id, String entity_id, String depository_officeId, int search_type);
 
     public List<Depository> listDepositoryByEntityId(String entity_id, String office_id);
+
+    public Depository getDepositoryByEntId(String entity_id);
 
     public Map<String, Object> addDepositoryWithStorage(Depository depository, OfficesStorage storage);
 

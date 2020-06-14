@@ -14,6 +14,7 @@ public class Delivery extends BaseInfoEntity {
     private String entity_type;           //设备\耗材型号
     private String stock_id;
     private String out_confirmed_ident; //出库编号
+    private String out_confirmed_type;//设备\耗材种类
     private String out_confirmed_by;//确认人
     private String out_confirmed_officeId;//出库科室
     private String out_confirmed_date;    //出库时间
@@ -21,6 +22,7 @@ public class Delivery extends BaseInfoEntity {
     private String out_confirmed_unit;  //出库单位
     private int out_confirmed_proportion;  //个体/单位比例
     private double out_confirmed_total;      //出库总量
+    private String out_confirmed_total_unit;  //总量单位
     private String entity_entry_status;      //入科状态（1：待入科；2：部分待入科；3：已入科；4：部分已入科）
     private String keyWord;           //关键字
 
@@ -82,6 +84,14 @@ public class Delivery extends BaseInfoEntity {
         this.out_confirmed_ident = out_confirmed_ident;
     }
 
+    public String getOut_confirmed_type() {
+        return out_confirmed_type;
+    }
+
+    public void setOut_confirmed_type(String out_confirmed_type) {
+        this.out_confirmed_type = out_confirmed_type;
+    }
+
     public String getOut_confirmed_by() {
         return out_confirmed_by;
     }
@@ -136,6 +146,14 @@ public class Delivery extends BaseInfoEntity {
 
     public void setOut_confirmed_total(double out_confirmed_total) {
         this.out_confirmed_total = out_confirmed_total;
+    }
+
+    public String getOut_confirmed_total_unit() {
+        return out_confirmed_total_unit;
+    }
+
+    public void setOut_confirmed_total_unit(String out_confirmed_total_unit) {
+        this.out_confirmed_total_unit = out_confirmed_total_unit;
     }
 
     public String getEntity_entry_status() {

@@ -77,6 +77,10 @@ public class StockServiceImpl implements StockService {
                 stock.setUpdateDate(createDate);
                 stock.setUpdateUserId("admin");
                 stock.setDeleteFlag("0");
+            }else {
+                log.error("addDepositoryWithStorage:无法获许设备或耗材ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错：无法获许设备或耗材ID");
             }
             boolean stockResult = dao.addStock(stock) == 1 ? true : false;
             if (!(stockResult)) {
@@ -85,7 +89,7 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
             } else {
                 storage.setEntity_id(device.getId());
-                storage.setIn_confirmed_no((int) stock.getStock_total());
+                storage.setIn_confirmed_no(stock.getStock_total());
                 result = storageService.addStorage(stock, storage);
             }
         } catch (DuplicateKeyException e) {

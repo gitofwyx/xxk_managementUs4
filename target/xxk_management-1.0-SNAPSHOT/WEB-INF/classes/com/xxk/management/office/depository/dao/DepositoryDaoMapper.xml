@@ -3,21 +3,21 @@
 <mapper namespace="com.xxk.management.office.depository.dao.DepositoryDao">
     <sql id="columns">id,depository_ident,delivery_id,class_id,entity_id,entity_name,entity_type,depository_type,depository_by,
         depository_officeId,depository_no,depository_unit,depository_proportion,depository_total,depository_total_unit,
-        depository_flag,keyWord,stock_version,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+        depository_flag,keyWord,depository_version,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
     <select id="listDepository" resultType="com.xxk.management.office.depository.entity.Depository">
         select
         <include refid="columns"></include>
-        from xxk_depository where  deleteFlag='0' and stock_type=#{search_type}
+        from xxk_depository where  deleteFlag='0' and depository_type=#{search_type}
         <if test="class_id!=null and ''!= class_id">
             and class_id = #{class_id}
         </if>
         <if test="entity_id!=null and ''!= entity_id">
             and entity_id = #{entity_id}
         </if>
-        <if test="stock_office_id!=null and ''!= stock_office_id">
-            and stock_office_id = #{stock_office_id}
+        <if test="depository_officeId!=null and ''!= depository_officeId and 'root'!=depository_officeId">
+            and depository_officeId = #{depository_officeId}
         </if>
         ORDER BY createDate desc limit #{pageStart},#{pageSize};
     </select>
@@ -47,6 +47,15 @@
         and deleteFlag='0';
     </select>
 
+    <!--根据id获取信息 -->
+    <select id="getDepositoryByEntId" parameterType="string" resultType="com.xxk.management.office.depository.entity.Depository">
+        select
+        <include refid="columns"></include>
+        from xxk_depository
+        where entity_id=#{0}
+        and deleteFlag='0';
+    </select>
+
     <!--更新记录 -->
     <update id="updateDepository" parameterType="com.xxk.management.office.depository.entity.Depository">
         update xxk_depository set account=#{account},birth=#{birth},sex=#{sex},phone=#{phone},createUnit=#{createUnit},
@@ -56,8 +65,8 @@
 
     <!--入库更新 -->
     <update id="plusDepositoryNo" parameterType="com.xxk.management.office.depository.entity.Depository">
-        update xxk_depository set stock_no=#{stock_no},stock_total=stock_total+#{stock_total},stock_version=stock_version+1,
-        updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and stock_version=#{stock_version} and deleteFlag='0';
+        update xxk_depository set depository_no=#{depository_no},depository_total=depository_total+#{depository_total},depository_version=depository_version+1,
+        updateUserId=#{updateUserId},updateDate=#{updateDate} where entity_id=#{entity_id} and depository_version=#{depository_version} and deleteFlag='0';
     </update>
 
     <!--入库更新 -->
