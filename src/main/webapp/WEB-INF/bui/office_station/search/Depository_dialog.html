@@ -68,7 +68,7 @@
         <input type="hidden" name="depository_id" id="depository_id">
         <input type="hidden" name="entity_record_id" id="entity_record_id" data-rules="{required:true}">
         <input type="hidden" name="depository_type" id="depository_type">
-        <input type="hidden" name="office_id" id="office_id">
+        <input type="hidden" name="depository_officeId" id="depository_officeId">
         <input type="hidden" name="depository_proportion" id="depository_proportion">
         <input type="hidden" name="offices_storage_total" id="offices_storage_total">
         <input type="hidden" name="depository_version" id="depository_version">
@@ -327,7 +327,7 @@
                             tbar: {
                                 items: [
                                     {
-                                        text: '<i class="icon-pencil"></i>入科登记',
+                                        text: '<i class="icon-indent-left"></i>入科登记',
                                         btnCls: 'button button-small',
                                         handler: addFunction
                                     },
@@ -335,6 +335,11 @@
                                         text: '<i class="icon-edit"></i>原科登记',
                                         btnCls: 'button button-small',
                                         handler: updateFunction
+                                    },
+                                    {
+                                        text: '<i class="icon-indent-right"></i>回收操作',
+                                        btnCls: 'button button-small',
+                                        handler: recoveryFunction
                                     },
                                     {
                                         text: '<i class="icon-remove"></i>删除',
@@ -448,6 +453,35 @@
                                 }
                             })
                 }
+                //
+                //根据设备、耗材ID获取科室库存
+                function recoveryDepository(recId) {
+                    $.ajax({
+                        url: '/getDepositoryByEntId',
+                        type: 'POST', //GET
+                        data: {
+                            entity_record_id:recId,
+                        },
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            if (data != null && data != undefined) {
+                                dep_entity_data = data.Object;
+                                $("#depository_version").val(dep_entity_data.depository_version);
+                            }else {
+                                $("#depository_version").val(0);
+                            }
+                            $("#depository_id").val(dep_entity_data.id);
+                            $("#entity_record_id").val(recId);
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus)
+                        }
+                    })
+                }
                 //新增操作
                 function addFunction() {
                     var save = {
@@ -499,6 +533,21 @@
                         return;
                     } else {
                         var eData = selections[0];
+                    }
+                }
+
+                //编辑操作
+                function recoveryFunction() {
+                    var selections = grid.getSelection();
+                    if (selections.length == 1) {
+                        var eData = selections[0];
+                        //eData.entity_name=selections[0]
+                    }
+                    if (selections.length != 1&&selections.length != 0) {
+                        BUI.Message.Alert('一次只能编辑一条记录！！');
+                        return;
+                    }else {
+
                         editing_J.edit(eData);
                     }
                 }
@@ -623,6 +672,14 @@
                             }
                         })
                     }//if语句判断是否获取到设备ID
+                });
+
+                dep_office_tree.on('itemclick', function (ev) {
+                    J_Form.getField('depository_officeId').set('value', ev.item.value);
+                });
+
+                search_office_tree.on('itemclick', function (ev) {
+                    $("#search_office_id").val(ev.item.value);
                 });
 
             });

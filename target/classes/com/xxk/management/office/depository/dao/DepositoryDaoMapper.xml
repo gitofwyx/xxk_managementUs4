@@ -16,7 +16,7 @@
         <if test="entity_id!=null and ''!= entity_id">
             and entity_id = #{entity_id}
         </if>
-        <if test="depository_officeId!=null and ''!= depository_officeId and 'root'!=depository_officeId">
+        <if test="depository_officeId!=null and ''!= depository_officeId and 'a5c7b9f5-1f3c-4308-86e9-148b21416b37'!=depository_officeId">
             and depository_officeId = #{depository_officeId}
         </if>
         ORDER BY createDate desc limit #{pageStart},#{pageSize};
