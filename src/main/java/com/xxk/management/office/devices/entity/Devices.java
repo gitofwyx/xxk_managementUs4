@@ -9,8 +9,11 @@ import com.xxk.core.entity.BaseInfoEntity;
 public class Devices extends BaseInfoEntity {
 
     private String id;                            //
-    private String device_id;                   //设备id
+    private String class_id;                     //种类ID
+    private String device_name;                  //科室设备名
     private String  device_ident;               //设备编号
+    private String device_id;                   //设备id
+    private String device_type;                   //设备型号
     private String office_id;                   //科室id
     private String  mediaOfLANId;              //通信介质id
     private String  device_origin;             //设备来源（1入科2原科）
@@ -21,7 +24,6 @@ public class Devices extends BaseInfoEntity {
     private String device_deployment_date;  //部署时间
     private String related_flag;             //关联状态
     private String related_id;               //关联设备id
-    private String  device_name;             //科室设备名
     private String device_location;         //设备具体位置
     private String  device_flag;            //设备状态
     private String devices_auditing_mark;  //设备审核标志
@@ -39,12 +41,20 @@ public class Devices extends BaseInfoEntity {
         this.id = id;
     }
 
-    public String getDevice_id() {
-        return device_id;
+    public String getClass_id() {
+        return class_id;
     }
 
-    public void setDevice_id(String device_id) {
-        this.device_id = device_id;
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
+    }
+
+    public String getDevice_name() {
+        return device_name;
+    }
+
+    public void setDevice_name(String device_name) {
+        this.device_name = device_name;
     }
 
     public String getDevice_ident() {
@@ -53,6 +63,22 @@ public class Devices extends BaseInfoEntity {
 
     public void setDevice_ident(String device_ident) {
         this.device_ident = device_ident;
+    }
+
+    public String getDevice_id() {
+        return device_id;
+    }
+
+    public void setDevice_id(String device_id) {
+        this.device_id = device_id;
+    }
+
+    public String getDevice_type() {
+        return device_type;
+    }
+
+    public void setDevice_type(String device_type) {
+        this.device_type = device_type;
     }
 
     public String getOffice_id() {
@@ -133,14 +159,6 @@ public class Devices extends BaseInfoEntity {
 
     public void setRelated_id(String related_id) {
         this.related_id = related_id;
-    }
-
-    public String getDevice_name() {
-        return device_name;
-    }
-
-    public void setDevice_name(String device_name) {
-        this.device_name = device_name;
     }
 
     public String getDevice_location() {

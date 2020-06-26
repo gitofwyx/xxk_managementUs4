@@ -97,52 +97,66 @@
 
         </div>
         <div id="I_Input_console">
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备/耗材名称：</label>
-                <div class="controls">
-                    <input name="delivery_entity_name" id="delivery_entity_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>设备/耗材名称：</label>
+                    <div class="controls">
+                        <div class="input-group">
+                            <input type="text" class="suggest-input" id="delivery_entity_name"
+                                   name="delivery_entity_name" data-rules="{required:true}">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                            <!-- /btn-group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>设备/耗材型号：</label>
+                    <div class="controls">
+                        <div class="input-group" id="delivery_entity_div">
+                            <input type="text" class="suggest-input" id="delivery_entity_type"
+                                   name="delivery_entity_type" data-rules="{required:true}">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                            <!-- /btn-group -->
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备/耗材型号：</label>
-                <div class="controls">
-                    <input name="delivery_entity_type" id="delivery_entity_type" type="text" data-rules="{required:true}" class="input-normal control-text">
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>未入科总量：</label>
-                <div class="controls">
-                    <input name="out_confirmed_no" id="out_confirmed_total" type="text" data-rules="{required:true}">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>未入科总量：</label>
+                    <div class="controls">
+                        <input name="out_confirmed_no" id="out_confirmed_total" type="text"
+                               data-rules="{required:true}">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存单位：</label>
+                    <div class="controls">
+                        <input name="out_confirmed_unit" id="out_confirmed_unit" type="text"
+                               data-rules="{required:true}">
+                    </div>
                 </div>
             </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>库存单位：</label>
-                <div class="controls">
-                    <input name="out_confirmed_unit" id="out_confirmed_unit" type="text" data-rules="{required:true}">
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>入科数量：</label>
-                <div class="controls">
-                    <input name="depository_no" id="depository_no" type="text" data-rules="{required:true}">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>入科数量：</label>
+                    <div class="controls">
+                        <input name="depository_no" id="depository_no" type="text" data-rules="{required:true}">
+                    </div>
+                    <input type="button" id="" name="" class="  icon-lock"
+                           style="width:19px;height:18px;margin-left:10px;background-color:#dddddd;">
                 </div>
-                <input type="button" id="" name="" class="  icon-lock"
-                       style="width:19px;height:18px;margin-left:10px;background-color:#dddddd;">
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>入科总量：</label>
-                <div class="controls">
-                    <input name="depository_total" id="depository_total" type="text" data-rules="{required:true}">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>入科总量：</label>
+                    <div class="controls">
+                        <input name="depository_total" id="depository_total" type="text" data-rules="{required:true}">
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
 
         <div class="row">
@@ -151,6 +165,102 @@
                 <div class="controls control-row4">
                     <textarea name="remark" class="input-large" type="text"></textarea>
                 </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="Content_I" class="hide">
+    <form id="I_Form" class="form-horizontal" action="" autocomplete="off">
+        <div id="tab_I"></div>
+        <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备名称：</label>
+                <div class="controls" id="dev_name_select">
+                    <input name="class_id" type="hidden" id="class_id" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备型号：</label>
+                <div class="controls" id="dev_type_select">
+                    <input name="entity_id" type="hidden" id="entity_id" data-rules="{required:true}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>科室选择：</label>
+                <div class="controls" id="stock_office_select">
+                    <input name="stock_office_id" id="stock_office_id" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>数量：</label>
+                <div class="controls">
+                    <input name="in_confirmed_no" id="in_confirmed_no" type="number" data-rules="{required:true}"
+                           min="1" data-tip="{text:'注:数量以单位数量为基准'}" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>单位：</label>
+                <div class="controls">
+                    <input id="stock_unit" name="stock_unit" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>比例：</label>
+                <div class="controls">
+                    <input id="unit_num" name="unit_num" type="number"
+                           class="span1 control-text"> ：
+                    <input id="stock_proportion" name="stock_proportion" type="number" min="1" max="999"
+                           data-rules="{required:true}" data-tip="{text:'数字有效'}" class="span2 control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>时间：</label>
+                <div class="controls">
+                    <input id="in_confirmed_date" name="in_confirmed_date" type="text"
+                           data-rules="{required:true}" class="calendar calendar-time">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>总量：</label>
+                <div class="controls">
+                    <input id="stock_total" name="stock_total" type="number" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">备注：</label>
+                <div class="controls control-row3">
+                    <textarea name="remark" class="span11" type="text"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="io_Console" name="io_Console" type="hidden" 　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_type" name="stock_type" type="hidden" 　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_no" name="stock_no" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="in_confirmed_total" name="in_confirmed_total" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_version" name="stock_version" type="hidden" data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -171,28 +281,28 @@
 
                 var offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
                         enumObj_dep_flag = {"1": "启用", "0": "禁用"},
-                        enumObj_genre_tags = {"1": "设备","2": "配件","3": "耗材"},
-                        //变量初始化
+                        enumObj_genre_tags = {"1": "设备", "2": "配件", "3": "耗材"},
+                //变量初始化
                         select_data = [],
                         select_type = [],
                         dep_entity_data = [],
                         dep_count_map = {},//设备种类id对应的dep_entity_data键
                         class_count = 0,//设备种类最大值
                         J_Form = '',
-                        //搜索设备选择框
+                //搜索设备选择框
                         search_class_select = new Select.Select({
                             render: '#search_class_select',
                             valueField: '#search_class_id',
                             multipleSelect: false,
                         }).render(),
-                        //搜索型号选择框
+                //搜索型号选择框
                         search_entity_select = new Select.Select({
                             render: '#search_entity_select',
                             valueField: '#search_entity_id',
                             multipleSelect: false,
                             items: []
                         }).render(),
-                        //搜索栏科室下拉框
+                //搜索栏科室下拉框
                         search_office_tree = new Tree.TreeList({
                             nodes: [],
                             //store: store,
@@ -205,18 +315,18 @@
                             width: 150,  //指定宽度
                             children: [search_office_tree] //配置picker内的列表
                         }).render(),
-                        //种类选择框
+                //种类选择框
                         search_type_select = new Select.Select({
                             render: '#search_type_select',
                             valueField: '#search_type',
                             multipleSelect: false,
                             items: [
-                                {text: '设备', value: '1',name: 'DeviceSelect'},
-                                {text: '配件', value: '2',name: 'MaterialSelect'},
-                                {text: '耗材', value: '3',name: 'MaterialSelect'}
+                                {text: '设备', value: '1', name: 'DeviceSelect'},
+                                {text: '配件', value: '2', name: 'MaterialSelect'},
+                                {text: '耗材', value: '3', name: 'MaterialSelect'}
                             ],
                         }).render(),
-                        //入科设备编辑
+                //入科设备编辑
                         editing_J = new BUI.Grid.Plugins.DialogEditing({
                             contentId: 'content_J', //设置隐藏的Dialog内容
                             autoSave: true, //添加数据或者修改数据时，自动保存
@@ -226,7 +336,7 @@
                  contentId: 'content', //设置隐藏的Dialog内容
                  autoSave: true, //添加数据或者修改数据时，自动保存
                  }),*/
-                        //科室选择数框
+                //科室选择数框
                         dep_office_tree = new Tree.TreeList({
                             nodes: [],
                             //store: store,
@@ -239,7 +349,7 @@
                             width: 150,  //指定宽度
                             children: [dep_office_tree] //配置picker内的列表
                         }).render(),
-                        //入库设备选择框
+                //入库设备选择框
                         office_dep_grid = new Grid.Grid({
                             idField: 'id',//选项的默认id字段
                             columns: [
@@ -329,12 +439,12 @@
                                     {
                                         text: '<i class="icon-indent-left"></i>入科登记',
                                         btnCls: 'button button-small',
-                                        handler: addFunction
+                                        handler: entryFunction
                                     },
                                     {
                                         text: '<i class="icon-edit"></i>原科登记',
                                         btnCls: 'button button-small',
-                                        handler: updateFunction
+                                        handler: originalFunction
                                     },
                                     {
                                         text: '<i class="icon-indent-right"></i>回收操作',
@@ -363,7 +473,7 @@
                 search_office_tree.set('nodes', GetMenus('root', offices_select));
 
                 //下拉框ajax请求entity_selectAjax
-                function entity_selectAjax(n,v) {
+                function entity_selectAjax(n, v, callback) {
                     var url = '/get' + n;
                     if ($.isEmptyObject(select_data)) {
                         $.ajax({
@@ -377,6 +487,11 @@
                                 if (data != null && data != undefined) {
                                     select_data = data;
                                     search_class_select.set('items', select_data.Class_data);
+                                }
+                                //回调函数
+                                if (typeof callback === "function") {
+                                    //调用它，既然我们已经确定了它是可调用的
+                                    callback();
                                 }
                             },
                             error: function (xhr, textStatus) {
@@ -425,42 +540,14 @@
                         }
                     }
                 }
+
                 //根据设备、耗材ID获取科室库存
                 function updateDepository(recId) {
-                            $.ajax({
-                                url: '/getDepositoryByEntId',
-                                type: 'POST', //GET
-                                data: {
-                                    entity_record_id:recId,
-                                },
-                                async: true,    //或false,是否异步
-                                /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                                success: function (data, textStatus, jqXHR) {
-                                    if (data != null && data != undefined) {
-                                        dep_entity_data = data.Object;
-                                        $("#depository_version").val(dep_entity_data.depository_version);
-                                    }else {
-                                        $("#depository_version").val(0);
-                                    }
-                                    $("#depository_id").val(dep_entity_data.id);
-                                    $("#entity_record_id").val(recId);
-                                },
-                                error: function (xhr, textStatus) {
-                                    console.log('错误')
-                                    console.log(xhr)
-                                    console.log(textStatus)
-                                }
-                            })
-                }
-                //
-                //根据设备、耗材ID获取科室库存
-                function recoveryDepository(recId) {
                     $.ajax({
                         url: '/getDepositoryByEntId',
                         type: 'POST', //GET
                         data: {
-                            entity_record_id:recId,
+                            entity_record_id: recId,
                         },
                         async: true,    //或false,是否异步
                         /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
@@ -469,7 +556,7 @@
                             if (data != null && data != undefined) {
                                 dep_entity_data = data.Object;
                                 $("#depository_version").val(dep_entity_data.depository_version);
-                            }else {
+                            } else {
                                 $("#depository_version").val(0);
                             }
                             $("#depository_id").val(dep_entity_data.id);
@@ -482,8 +569,9 @@
                         }
                     })
                 }
-                //新增操作
-                function addFunction() {
+
+                //入科登记
+                function entryFunction() {
                     var save = {
                         addUrl: '/addDepository',
                     };
@@ -496,8 +584,8 @@
                 }
 
                 //下拉提示框bsSuggest
-                function initBsSuggest(cla, v) {
-                    $("#" + cla).bsSuggest('init', {
+                function initBsSuggest(t, cla, v, callback) {
+                    var options = {
                         /*url: "/getMaterialName?tab=" + v,*/
                         data: v,
                         effectiveFields: ["text", "class_ident"],
@@ -510,43 +598,69 @@
                         idField: "value",
                         keyField: "text",
                         clearable: true,
-                    }).on('onDataRequestSuccess', function (e, result) {
-                        console.log('onDataRequestSuccess: ', result);
-                    }).on('onSetSelectValue', function (e, keyword, data) {
-                        console.log('onSetSelectValue: ', keyword, data);
-                        editing_J.get('editor');
-                        J_Form.getField('dev_class_id').set('value', keyword.id);
-                        J_Form.getField('class_ident').set('value', data.class_ident);
-                        J_Form.getField('dev_max').set('value', data.dev_max);
-                        J_Form.getField('class_version').set('value', data.class_version);
-                        J_Form.getField('updateDate').set('value', data.updateDate);
-                    });
+                    };
+                    if (t == 1) {
+                        $("#" + cla).bsSuggest('init', options).on('onDataRequestSuccess', function (e, result) {
+                            console.log('onDataRequestSuccess: ', result);
+                        }).on('onSetSelectValue', function (e, keyword, data) {
+                            console.log('onSetSelectValue: ', keyword, data);
+                            //回调函数
+                            if (typeof callback === "function") {
+                                //调用它，既然我们已经确定了它是可调用的
+                                callback(keyword, data);
+                            }
+
+                        });
+                    }
+                    else if (t == 0) {
+                        $("#" + cla).bsSuggest('destroy');
+                    }
+
                 };
 
-                //编辑操作
-                function updateFunction() {
-                    var selections = grid.getSelection();
-                    if (selections.length == 0) {
-                        return;
-                    } else if (selections.length != 1) {
-                        BUI.Message.Alert('一次只能编辑一条记录！！');
-                        return;
-                    } else {
-                        var eData = selections[0];
+                //原科登记
+                function originalFunction() {
+                    select_data = [];//列表初始化
+                    select_type = [];//初始化
+                    if ($.isEmptyObject(select_data) && search_type_select._events.indexOf('click') > -1) {
+                        var SType_f = search_type_select.__attrVals.items.find(function (ele, index) {
+                            return ele.value == search_type_select.getSelectedValue();
+                        });
+                        entity_selectAjax(SType_f.name, SType_f.value, function () {
+                            initBsSuggest(1, "delivery_entity_name", {value: select_data.Class_data}, function (K, data) {
+                                if (!$.isEmptyObject(select_type)) {
+                                    initBsSuggest(0, "delivery_entity_type");
+                                    $('#delivery_entity_div').html('<input type="text" class="suggest-input" ' +
+                                            'id="delivery_entity_type" name="delivery_entity_type" data-rules="{required:true}">' +
+                                            '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul>');
+                                }
+                                select_type = [];//初始化
+                                if (!$.isEmptyObject(data)) {
+                                    changeEntClass(K, data.value);
+                                    initBsSuggest(1, "delivery_entity_type", {value: select_type});
+                                    if ($.isEmptyObject(select_type)) {
+                                        select_type = ["NoN"];//设置select_type不为空以免选择种类下无数据判断出错
+                                    }
+                                }
+                            });
+                        });
                     }
+                    var selections = grid.getSelection();
+                    var newData = {isNew: true}; //标志是新增加的记录
+                    editing_J.add(newData, 'name'); //添加记录后，直接编辑
                 }
 
-                //编辑操作
+                //回收操作
                 function recoveryFunction() {
                     var selections = grid.getSelection();
                     if (selections.length == 1) {
                         var eData = selections[0];
                         //eData.entity_name=selections[0]
                     }
-                    if (selections.length != 1&&selections.length != 0) {
+                    if (selections.length != 1 && selections.length != 0) {
                         BUI.Message.Alert('一次只能编辑一条记录！！');
                         return;
-                    }else {
+                    } else {
 
                         editing_J.edit(eData);
                     }
@@ -572,7 +686,7 @@
                 }
 
                 //选择种类下拉框选中
-                function changeEntClass(ev,i) {
+                function changeEntClass(ev, i) {
                     select_type = [];
                     var Entity_data = select_data.Entity_data;
                     for (var j = 0, len = Entity_data.length; j < len; j++) {
@@ -584,9 +698,9 @@
 
                 //监听事件，搜索设备种类下拉框选中
                 search_class_select.on('change', function (ev) {
-                    search_entity_select.setSelectedValue( '');//初始化型号
-                    if(!$.isEmptyObject(search_class_select.getSelectedValue())){
-                        changeEntClass(ev,search_class_select.getSelectedValue());
+                    search_entity_select.setSelectedValue('');//初始化型号
+                    if (!$.isEmptyObject(search_class_select.getSelectedValue())) {
+                        changeEntClass(ev, search_class_select.getSelectedValue());
                         search_entity_select.set('items', select_type);
                     }
                 });
@@ -596,17 +710,17 @@
                     select_data = [];//初始化
                     search_class_select.setSelectedValue('');//初始化种类
                     search_entity_select.setSelectedValue('');//初始化型号
-                    entity_selectAjax(ev.item.name,ev.item.value);
+                    entity_selectAjax(ev.item.name, ev.item.value);
                 });
 
                 //监听事件，搜索设备类别下拉框选中
                 search_type_select.on('click', function selectClick(ev) {
                     ev.item = {
-                        name:search_type_select.get('items')[0].name,
-                        value:search_type_select.get('items')[0].value,
+                        name: search_type_select.get('items')[0].name,
+                        value: search_type_select.get('items')[0].value,
                     };
-                    search_type_select.fire('change',ev);//触发change事件
-                    search_type_select.off('click',selectClick); //移除click事件
+                    search_type_select.fire('change', ev);//触发change事件
+                    search_type_select.off('click', selectClick); //移除click事件
 
                 });
 
@@ -627,11 +741,11 @@
                 office_dep_select.on('change', function (ev) {
                     input_console(true);
                     updateDepository(ev.item.entity_id);
-                    editing_J.set('record',{
-                        entity_name:ev.item.entity_name,
-                        entity_type:ev.item.entity_type,
-                        offices_storage_no:ev.item.out_confirmed_no,
-                        depository_unit:ev.item.out_confirmed_unit,
+                    editing_J.set('record', {
+                        entity_name: ev.item.entity_name,
+                        entity_type: ev.item.entity_type,
+                        offices_storage_no: ev.item.out_confirmed_no,
+                        depository_unit: ev.item.out_confirmed_unit,
                     });
                     $("#delivery_entity_name").val(ev.item.entity_name);
                     $("#delivery_entity_type").val(ev.item.entity_type);
