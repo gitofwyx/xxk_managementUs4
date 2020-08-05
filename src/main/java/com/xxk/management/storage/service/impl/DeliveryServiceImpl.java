@@ -66,13 +66,14 @@ public class DeliveryServiceImpl implements DeliveryService {
             delivery.setStock_id(stock.getId());
             delivery.setOut_confirmed_ident(out_confirmed_ident);
             delivery.setOut_confirmed_type(stock.getStock_type());
+            delivery.setOut_confirmed_by(stock.getUpdateUserId());
             delivery.setOut_confirmed_unit(stock.getStock_unit());
             delivery.setOut_confirmed_proportion(stock.getStock_proportion());
             delivery.setEntity_entry_status(status);
             delivery.setCreateDate(createDate);
-            delivery.setCreateUserId("admin");
+            delivery.setCreateUserId(stock.getUpdateUserId());
             delivery.setUpdateDate(createDate);
-            delivery.setUpdateUserId("admin");
+            delivery.setUpdateUserId(stock.getUpdateUserId());
             delivery.setDeleteFlag("0");
 
             boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
@@ -99,7 +100,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 
     @Override
-    public boolean allEntryDepository(String id) {
-        return dao.allEntryDepository(id) == 1 ? true : false;
+    public boolean updateDeliveryStatus(String id) {
+        return dao.updateDeliveryStatus(id) == 1 ? true : false;
     }
 }

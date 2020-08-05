@@ -70,12 +70,12 @@ public class StockServiceImpl implements StockService {
                 stock.setStock_ident(device.getDev_ident());
                 stock.setEntity_id(device.getId());
                 stock.setStock_no(storage.getIn_confirmed_no());
-                stock.setStock_no(storage.getIn_confirmed_total());
+                stock.setStock_total(storage.getIn_confirmed_total());
                 stock.setStock_flag("1");
                 stock.setCreateDate(createDate);
-                stock.setCreateUserId("admin");
+                stock.setCreateUserId(stock.getUpdateUserId());
                 stock.setUpdateDate(createDate);
-                stock.setUpdateUserId("admin");
+                stock.setUpdateUserId(stock.getUpdateUserId());
                 stock.setDeleteFlag("0");
             }else {
                 log.error("addDepositoryWithStorage:无法获许设备或耗材ID");
@@ -89,7 +89,6 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
             } else {
                 storage.setEntity_id(device.getId());
-                storage.setIn_confirmed_no(stock.getStock_total());
                 result = storageService.addStorage(stock, storage);
             }
         } catch (DuplicateKeyException e) {
@@ -119,7 +118,7 @@ public class StockServiceImpl implements StockService {
             }
             stock.setStock_total(storage.getIn_confirmed_total());
             stock.setUpdateDate(createDate);
-            stock.setUpdateUserId("admin");
+            stock.setUpdateUserId(stock.getUpdateUserId());
 
             boolean stockResult = dao.plusStockNo(stock) == 1 ? true : false;
             if (!(stockResult)) {
@@ -158,7 +157,7 @@ public class StockServiceImpl implements StockService {
             }
             stock.setStock_total(delivery.getOut_confirmed_total());
             stock.setUpdateDate(createDate);
-            stock.setUpdateUserId("admin");
+            stock.setUpdateUserId(stock.getUpdateUserId());
 
             boolean stockResult = dao.reduceStockNo(stock) == 1 ? true : false;
             if (!(stockResult)) {

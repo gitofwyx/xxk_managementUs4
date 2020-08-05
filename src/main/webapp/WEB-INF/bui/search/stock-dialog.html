@@ -208,7 +208,7 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>出库时间：</label>
                 <div class="controls">
-                    <input name="used_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
+                    <input name="out_confirmed_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
                 </div>
             </div>
         </div>
@@ -871,12 +871,12 @@
                         }
                     }
                 });
-                //数量输入框光标移出事件
+                //入库数量输入框光标移出事件
                 $("#in_confirmed_no").on('blur', function () {
                     $("#stock_proportion").trigger('blur');
                 });
 
-                //数量输入框光标移出事件
+                //出库数量输入框光标移出事件
                 $("#out_confirmed_no").on('blur', function () {
                     var O_num = $("#out_confirmed_no").val();//获取入库数量no
                     var proportion = parseInt(grid.getSelection()[0].stock_proportion);

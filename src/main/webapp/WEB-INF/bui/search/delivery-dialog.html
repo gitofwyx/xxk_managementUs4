@@ -23,6 +23,7 @@
             <div class="row">
                 <div class="control-group span2.5">
                     <input id="stock_id" name="stock_id" type="hidden" data-rules="{required:true}">
+                    <input id="isGet" name="isGet" type="hidden" data-rules="{required:true}">
                 </div>
             </div>
             <div class="row">
@@ -136,13 +137,20 @@
 </div>
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/js/bui.js"></script>
+<script type="text/javascript" src="/js/callback_ajax.js"></script>
 <script type="text/javascript">
     BUI.use('common/page-self');
 </script>
 <script type="text/javascript">
     BUI.use(['common/search', 'bui/form', 'bui/select'], function (Search, Form, Select) {
-
+        var enumOffices = {};
+        CD_ajaxNoParam("/getOfficeMakeGrid", false, function (data) {
+            if (data != null && data != undefined) {
+                enumOffices = data;
+            }
+        });
         var enumObj = {"0": "未出库", "1": "已出库"},
+                enumUsers = {},
                 select_data = [],
                 select_type = [],
                 Editing_I = new BUI.Grid.Plugins.DialogEditing({
@@ -167,28 +175,33 @@
                     items: []
                 }).render(),
                 columns = [
-                    {title: '出库编号', dataIndex: 'out_confirmed_ident', elCls: 'center', width: 180},
-                    {title: '出库确认人', dataIndex: 'out_confirmed_by', elCls: 'center', width: 150, align: 'center'},
-                    {title: '出库时间', dataIndex: 'out_confirmed_date', elCls: 'center', width: 170},
+                    {title: '&nbsp出库编号', dataIndex: 'out_confirmed_ident', elCls: 'center', width: 150},
                     {
-                        title: '出库科室',
+                        title: '&nbsp出库确认人',
+                        dataIndex: 'out_confirmed_by',
+                        elCls: 'center',
+                        width: 150,
+                    },
+                    {title: '&nbsp出库时间', dataIndex: 'out_confirmed_date', elCls: 'center', width: 170},
+                    {
+                        title: '&nbsp出库科室',
                         dataIndex: 'out_confirmed_officeId',
                         elCls: 'center',
                         width: 130,
-                        editor: {xtype: 'number', rules: {required: true}}
+                        renderer: BUI.Grid.Format.enumRenderer(enumOffices),
                     },
                     {
-                        title: '出库数量',
+                        title: '&nbsp出库数量',
                         dataIndex: 'out_confirmed_no',
                         elCls: 'center',
-                        width: 80,
+                        width: 100,
                         editor: {xtype: 'number', rules: {required: true}}
                     },
                     {
-                        title: '出库总量',
+                        title: '&nbsp出库总量',
                         dataIndex: 'out_confirmed_total',
                         elCls: 'center',
-                        width: 80,
+                        width: 100,
                         editor: {xtype: 'number', rules: {required: true}}
                     },
                     {
@@ -248,9 +261,10 @@
                     gridCfg: gridCfg
                 }),
                 grid = search.get('grid'),
+                store = search.get('store'),
                 I_Form = Editing_I.get('form'),
                 O_Form = Editing_O.get('form');
-                grid.set('multipleSelect',true);
+        grid.set('multipleSelect', true);
 
         function addFunction() {
             if ($.isEmptyObject(select_data)) {
@@ -277,8 +291,8 @@
             dev_name_select.set('items', select_data.dev_name);
             var newData = {isNew: true}; //标志是新增加的记录
             Editing_I.add(newData, 'name'); //添加记录后，直接编辑
-            I_Form.getField('in_confirmed_no').addRule('max',9, '入库限制 不能大于{0}');
-            I_Form.getField('in_confirmed_no').addRule('min',1, '入库限制 不能小于{0}');
+            I_Form.getField('in_confirmed_no').addRule('max', 9, '入库限制 不能大于{0}');
+            I_Form.getField('in_confirmed_no').addRule('min', 1, '入库限制 不能小于{0}');
         }
 
         //编辑操作
@@ -346,6 +360,26 @@
                 }
             }
             dev_type_select.set('items', select_type);
+        });
+
+        store.on('beforeprocessload', function (ev) {
+            enumUsers = ev.data.userMapList;
+        });
+
+        store.on('load', function (ev) {
+            if ($.isEmptyObject(enumUsers)||enumUsers.length == 0) {
+                return;
+            }
+            var items = grid.getItems();
+            for (var i in items) {
+                for (var j = 0; j < enumUsers.length; j++) {
+                    if (enumUsers[j].id == items[i].out_confirmed_by) {
+                        items[i].out_confirmed_by = enumUsers[j].name;
+                        break;
+                    }
+                }
+            }
+            grid.setItems(items);
         });
     });
 </script>

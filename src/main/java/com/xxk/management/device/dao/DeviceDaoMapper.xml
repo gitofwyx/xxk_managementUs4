@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.device.dao.DeviceDao">
-    <sql id="columns">id,dev_class_id,dev_name,dev_ident,dev_type,dev_type_ident,genre_tags,dev_flag,
+    <sql id="columns">id,dev_class_id,dev_name,dev_ident,dev_type,dev_type_ident,genre_tags,single_unit,dev_flag,
            isStock,stock_office,remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <resultMap id="deviceSelectMap" type="java.util.HashMap">
         <id column="dev_class_id" property="dev_class_id" jdbcType="VARCHAR"/>
         <result column="id" property="value" jdbcType="VARCHAR"/>
         <result column="dev_type" property="text" jdbcType="VARCHAR"/>
+        <result column="single_unit" property="single_unit" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="deviceStoreMap" type="java.util.HashMap">
@@ -55,13 +56,13 @@
     <!--添加用户信息 -->
     <insert id="addDevice" parameterType="com.xxk.management.device.entity.Device">
         insert into xxk_device(<include refid="columns"></include>) values(
-        #{id},#{dev_class_id},#{dev_name},#{dev_ident},#{dev_type},#{dev_type_ident},#{genre_tags},
+        #{id},#{dev_class_id},#{dev_name},#{dev_ident},#{dev_type},#{dev_type_ident},#{genre_tags},#{single_unit},
         #{dev_flag},#{isStock},#{stock_office},#{remark},#{keyWord},#{createUserId},#{createDate},
         #{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <select id="getDeviceSelect" resultMap="deviceSelectMap">
-        select dev_class_id,id,dev_type
+        select dev_class_id,id,dev_type,single_unit
         from xxk_device where deleteFlag='0';
     </select>
 

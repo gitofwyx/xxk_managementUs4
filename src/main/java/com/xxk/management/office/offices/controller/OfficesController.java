@@ -122,4 +122,27 @@ public class OfficesController extends BaseController {
         return result;
     }
 
+    @ResponseBody
+    @RequestMapping("/getOfficeMakeGrid")
+    public Map<Object, Object> getOfficeMakeGrid() {
+        Map<Object, Object> result = new HashMap<>();
+        List<Map<String, Object>> listOffice = new ArrayList<>();
+        try {
+            listOffice = officesService.getOfficeSelect();
+            if (listOffice == null) {
+                log.error("获取出错");
+                return null;
+            }
+            for (Map<String, Object> office : listOffice) {
+                result.put(office.get("value"),office.get("text"));
+
+            }
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+    }
+
 }

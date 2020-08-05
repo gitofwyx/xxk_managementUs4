@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -29,6 +30,10 @@ public class RebUserServiceImpl implements RebUserService {
     @Override
     public List<RegUser> listRegUser(int pageStart, int pageSize) {
         return dao.listRegUser((pageStart-1)*pageSize, pageSize);
+    }
+
+    public  List<Map<String, Object>> listRegUserByIds(List<String> listStr){
+        return dao.listRegUserByIds(listStr);
     }
 
     @Override

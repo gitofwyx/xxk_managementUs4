@@ -14,6 +14,7 @@ public class Device extends BaseInfoEntity {
     private String dev_type;    //设备型号
     private int dev_type_ident;    //型号编号
     private String genre_tags;      //类型标识
+    private String single_unit;     //个体单位
     private String dev_flag;         //设备状态 -> 1:停用；0：正常
     private String isStock;        //是否库存标记
     private String stock_office;  //库存科室标记
@@ -76,6 +77,14 @@ public class Device extends BaseInfoEntity {
 
     public void setGenre_tags(String genre_tags) {
         this.genre_tags = genre_tags;
+    }
+
+    public String getSingle_unit() {
+        return single_unit;
+    }
+
+    public void setSingle_unit(String single_unit) {
+        this.single_unit = single_unit;
     }
 
     public String getDev_flag() {

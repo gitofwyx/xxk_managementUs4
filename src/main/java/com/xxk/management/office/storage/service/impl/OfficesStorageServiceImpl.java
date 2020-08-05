@@ -69,15 +69,14 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
             officesStorage.setId(officesStorageId);
             officesStorage.setDepository_id(depository.getId());
             officesStorage.setOffices_storage_ident(out_confirmed_ident);
-            officesStorage.setOffices_storage_by(depository.getDepository_by());
+            officesStorage.setOffices_storage_by(depository.getUpdateUserId());
             officesStorage.setOffices_storage_officeId(depository.getDepository_officeId());
-            officesStorage.setOffices_storage_unit(depository.getDepository_unit());
-            officesStorage.setOffices_storage_proportion(depository.getDepository_proportion());
+            officesStorage.setOffices_storage_date(createDate);
             officesStorage.setEntity_entry_status(status);
             officesStorage.setCreateDate(createDate);
-            officesStorage.setCreateUserId(depository.getDepository_by());
+            officesStorage.setCreateUserId(depository.getUpdateUserId());
             officesStorage.setUpdateDate(createDate);
-            officesStorage.setUpdateUserId(depository.getDepository_by());
+            officesStorage.setUpdateUserId(depository.getUpdateUserId());
             officesStorage.setDeleteFlag("0");
 
             boolean storageResult = dao.addOfficesStorage(officesStorage) == 1 ? true : false;

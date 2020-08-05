@@ -12,6 +12,7 @@ import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.storage.service.StorageService;
+import com.xxk.management.user.service.RebUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -41,6 +42,9 @@ public class deliveryController extends BaseController {
     private DeviceService deviceService;
 
     @Autowired
+    private RebUserService rebUserService;
+
+    @Autowired
     private StockService stockService;
 
     @ResponseBody
@@ -52,45 +56,27 @@ public class deliveryController extends BaseController {
                                             @RequestParam(value = "out_confirmed_date") String out_confirmed_date) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
+        List<String> userIdList = new ArrayList<>();
+        List<Map<String, Object>> userMapList = new ArrayList<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
             int pageSize = Integer.parseInt(limit);         //单页记录数
-
             List<Delivery> listDelivery = deliveryService.listDelivery(pageNumber, pageSize);
             if (listDelivery == null) {
                 log.error("listStorage:获取分页出错");
                 result.put("error", false);
                 return result;
-            } else if (listDelivery.isEmpty()) {
-                result.put("rows", resultList);
-                result.put("results", 7);
-            } else {
-                List<String> listDevId = new ArrayList<>();
-                for (Delivery delivery : listDelivery) {
-                    listDevId.add(delivery.getEntity_id());
-                }
-               /* Set setDevId = new  HashSet();
-                setDevId.addAll(listDevId);
-                listDevId.clear();
-                listDevId.addAll(setDevId);*/
-                List<Map<String, Object>> deviceList = deviceService.getStoreDeviceById(listDevId);
-                if (resultList == null) {
-                    log.error("获取分页出错");
-                    result.put("error", false);
-                    return result;
-                } else {
-                    for (Delivery delivery : listDelivery) {
-                        Map<String, Object> resultMap = new HashMap<>();
-                        // resultMap.put("out_flag", delivery.getOut_flag());
-                        resultList.add(resultMap);
-                    }
-                }
-                result.put("rows", resultList);
-                result.put("results", 7);
+            }else {
+
             }
+            result.put("rows", resultList);
+            result.put("results", 7);
+            result.put("userMapList", userMapList);
+
         } catch (Exception e) {
             log.error(e);
-            result.put("error", false);
+            result.put("hasError", true);
+            result.put("error", "查询出错");
         }
         return result;
     }
@@ -104,6 +90,8 @@ public class deliveryController extends BaseController {
                                             @RequestParam(value = "out_confirmed_date") String out_confirmed_date) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
+        List<String> userIdList = new ArrayList<>();
+        List<Map<String, Object>> userMapList = new ArrayList<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
             int pageSize = Integer.parseInt(limit);         //单页记录数
@@ -117,10 +105,15 @@ public class deliveryController extends BaseController {
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.putAll(JsonUtils.toMap(delivery));
                     resultList.add(resultMap);
+                    userIdList.add(delivery.getOut_confirmed_by());
+                }
+                if(!userIdList.isEmpty()){
+                    userMapList=rebUserService.listRegUserByIds(userIdList);
                 }
             }
             result.put("rows", resultList);
             result.put("results", 7);
+            result.put("userMapList", userMapList);
 
         } catch (Exception e) {
             log.error(e);

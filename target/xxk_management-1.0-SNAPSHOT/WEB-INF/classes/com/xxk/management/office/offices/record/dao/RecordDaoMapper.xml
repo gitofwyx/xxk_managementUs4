@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xxk.management.offices.record.dao.RecordDao">
+<mapper namespace="com.xxk.management.office.offices.record.dao.RecordDao">
     <sql id="columns">id,rec_office_id,reg_count,ope_count,rec_cycle,rec_starting_date,
         createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
@@ -12,7 +12,7 @@
     </resultMap>
 
     <!--获取分页 -->
-    <select id="listRecord" parameterType="string" resultType="com.xxk.management.offices.record.entity.Record">
+    <select id="listRecord" parameterType="string" resultType="com.xxk.management.office.offices.record.entity.Record">
         select
         <include refid="columns"></include>
         from xxk_offices_record where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
@@ -25,20 +25,20 @@
 
 
     <!--添加信息 -->
-    <insert id="addRecord" parameterType="com.xxk.management.offices.record.entity.Record">
+    <insert id="addRecord" parameterType="com.xxk.management.office.offices.record.entity.Record">
         insert into xxk_offices_record(<include refid="columns"></include>) values(
         #{id},#{rec_office_id},#{reg_count},#{ope_count},#{rec_cycle},#{rec_starting_date},
         #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!-- -->
-    <update id="plusRegCount" parameterType="com.xxk.management.offices.record.entity.Record">
+    <update id="plusRegCount" parameterType="com.xxk.management.office.offices.record.entity.Record">
         update xxk_offices_record set reg_count=reg_count+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
          where rec_office_id=#{rec_office_id} and rec_starting_date=#{rec_starting_date} and deleteFlag='0';
     </update>
 
     <!-- -->
-    <update id="plusOpeCount" parameterType="com.xxk.management.offices.record.entity.Record">
+    <update id="plusOpeCount" parameterType="com.xxk.management.office.offices.record.entity.Record">
         update xxk_offices_record set ope_count=ope_count+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
          where rec_office_id=#{rec_office_id} and rec_starting_date=#{rec_starting_date} and deleteFlag='0';
     </update>

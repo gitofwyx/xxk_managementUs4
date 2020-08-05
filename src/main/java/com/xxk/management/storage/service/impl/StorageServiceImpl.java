@@ -57,11 +57,12 @@ public class StorageServiceImpl implements StorageService {
             storage.setId(storageId);
             storage.setStock_id(stock.getId());
             storage.setIn_confirmed_ident(in_confirmed_ident);
+            storage.setIn_confirmed_by(stock.getUpdateUserId());
             storage.setOut_flag("0");
             storage.setCreateDate(createDate);
-            storage.setCreateUserId("admin");
+            storage.setCreateUserId(stock.getUpdateUserId());
             storage.setUpdateDate(createDate);
-            storage.setUpdateUserId("admin");
+            storage.setUpdateUserId(stock.getUpdateUserId());
             storage.setDeleteFlag("0");
 
             boolean storageResult = dao.addStorage(storage) == 1 ? true : false;

@@ -1,6 +1,6 @@
-package com.xxk.management.offices.record.dao;
+package com.xxk.management.office.offices.record.dao;
 
-import com.xxk.management.offices.record.entity.Record;
+import com.xxk.management.office.offices.record.entity.Record;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

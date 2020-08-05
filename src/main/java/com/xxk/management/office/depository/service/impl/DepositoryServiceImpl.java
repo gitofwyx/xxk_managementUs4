@@ -68,7 +68,7 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错");
                 return result;
             }*/
-            boolean Result =deliveryService.allEntryDepository(depository.getDelivery_id());
+            boolean Result =deliveryService.updateDeliveryStatus(depository.getDelivery_id());
             if(!Result){
                 log.error("addDepositoryWithStorage:deliveryService:allEntryDepository错误！");
                 result.put("hasError", true);
@@ -77,13 +77,13 @@ public class DepositoryServiceImpl implements DepositoryService {
             }
             depository.setId(depositoryId);
             depository.setDepository_ident("NO");
-            depository.setDepository_no(storage.getOffices_storage_no());
+            depository.setDepository_no(storage.getOffices_storage_total());
             depository.setDepository_total(storage.getOffices_storage_total());
             depository.setDepository_flag("1");
             depository.setCreateDate(createDate);
-            depository.setCreateUserId("admin");
+            depository.setCreateUserId(depository.getUpdateUserId());
             depository.setUpdateDate(createDate);
-            depository.setUpdateUserId("admin");
+            //depository.setUpdateUserId(depository.getUpdateUserId());
             depository.setDeleteFlag("0");
             boolean depositoryResult = dao.addDepository(depository) == 1 ? true : false;
             if (!(depositoryResult)) {
@@ -120,17 +120,18 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错！无法获取设备ID");
                 return result;
             }*/
-            boolean Result =deliveryService.allEntryDepository(depository.getDelivery_id());
-            if(!Result){
-                log.error("updateDepositoryWithStorage:deliveryService:allEntryDepository错误！");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
+            if (!"".equals(depository.getDelivery_id())&&depository.getDelivery_id()!=null) {
+                //不是原科登记更新出库记录的状态
+                boolean Result =deliveryService.updateDeliveryStatus(depository.getDelivery_id());
+                if(!Result){
+                    log.error("updateDepositoryWithStorage:deliveryService:allEntryDepository错误！");
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
+                    return result;
+                }
             }
-            depository.setDepository_no(storage.getOffices_storage_no());
             depository.setDepository_total(storage.getOffices_storage_total());
             depository.setUpdateDate(createDate);
-            depository.setUpdateUserId("admin");
 
             boolean stockResult = dao.plusDepositoryNo(depository) == 1 ? true : false;
             if (!(stockResult)) {

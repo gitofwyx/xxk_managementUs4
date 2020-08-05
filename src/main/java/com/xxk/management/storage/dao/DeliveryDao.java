@@ -19,7 +19,7 @@ public interface DeliveryDao {
 
     public int addDelivery(Delivery delivery);
 
-    public int allEntryDepository(String id);
+    public int updateDeliveryStatus(String id);
 
 
 }

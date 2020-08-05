@@ -1,6 +1,6 @@
-package com.xxk.management.offices.record.service;
+package com.xxk.management.office.offices.record.service;
 
-import com.xxk.management.offices.record.entity.Record;
+import com.xxk.management.office.offices.record.entity.Record;
 
 import java.util.List;
 import java.util.Map;

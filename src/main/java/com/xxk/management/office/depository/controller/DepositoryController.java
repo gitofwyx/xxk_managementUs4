@@ -10,6 +10,7 @@ import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +50,7 @@ public class DepositoryController extends BaseController {
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
             int pageSize = Integer.parseInt(limit);         //单页记录数
-            List<Depository> listDepository = depositoryService.listDepository(pageNumber, pageSize,class_id,entity_id,depository_officeId,search_type);
+            List<Depository> listDepository = depositoryService.listDepository(pageNumber, pageSize, class_id, entity_id, depository_officeId, search_type);
             if (listDepository == null) {
                 log.error("listStock:获取分页出错");
                 result.put("hasError", true);
@@ -77,36 +78,49 @@ public class DepositoryController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getDepositoryByEntId",method = RequestMethod.POST)
+    @RequestMapping(value = "/getDepositoryByEntId", method = RequestMethod.POST)
     public Map<String, Object> getDepositoryByEntId(@RequestParam(value = "entity_record_id") String entity_record_id) {
-        Map<String, Object> result=new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
         try {
-            Depository depository=depositoryService.getDepositoryByEntId(entity_record_id);
+            Depository depository = depositoryService.getDepositoryByEntId(entity_record_id);
             if (depository == null) {
                 return null;
             }
             result.put("Object", depository);
             result.put("success", true);
         } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
             log.error(e);
-            return null;
         }
         return result;
         //return "system/index";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/addDepository",method = RequestMethod.POST)
+    @RequestMapping(value = "/addDepository", method = RequestMethod.POST)
     public Map<String, Object> addDepository(Depository depository, OfficesStorage storage,
+                                             @RequestParam(value = "class_record_id") String class_record_id,
                                              @RequestParam(value = "entity_record_id") String entity_record_id,
                                              @RequestParam(value = "depository_id") String depository_id) {
-        Map<String, Object> result=new HashMap<>();
-        depository.setEntity_id(entity_record_id);//获取库存的id值
-        if (!"".equals(depository_id)&&depository_id!=null) {
-            depository.setId(depository_id);
-            result = depositoryService.updateDepositoryWithStorage(depository,storage);
-        } else {
-            result = depositoryService.addDepositoryWithStorage(depository,storage);
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            depository.setUpdateUserId(CurrentUserId);
+            depository.setClass_id(class_record_id);
+            depository.setEntity_id(entity_record_id);
+            if (!"".equals(depository_id) && depository_id != null) {
+                depository.setId(depository_id);
+                result = depositoryService.updateDepositoryWithStorage(depository, storage);
+            } else {
+                result = depositoryService.addDepositoryWithStorage(depository, storage);
+            }
+
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
+            log.error(e);
         }
 
         return result;
@@ -116,12 +130,12 @@ public class DepositoryController extends BaseController {
     @ResponseBody
     @RequestMapping("/updateDepository")
     public Map<String, Object> updateDepository(Depository depository, OfficesStorage storage,
-                                           @RequestParam(value = "stock_record_id") String stock_record_id) {
-        Map<String, Object> result=new HashMap<>();
-        if(stock_record_id!=null&&!"".equals(stock_record_id)){
+                                                @RequestParam(value = "stock_record_id") String stock_record_id) {
+        Map<String, Object> result = new HashMap<>();
+        if (stock_record_id != null && !"".equals(stock_record_id)) {
             depository.setId(stock_record_id);//获取库存的id值
-            result = depositoryService.updateDepositoryWithStorage(depository,storage);
-        }else {
+            result = depositoryService.updateDepositoryWithStorage(depository, storage);
+        } else {
             result.put("hasError", true);
             result.put("error", "updateDepository:获取stock_record_id出错");
             log.error("updateStock:" + result.get("error"));
@@ -131,13 +145,13 @@ public class DepositoryController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/listDepositoryByEntityId",method = RequestMethod.POST)
+    @RequestMapping(value = "/listDepositoryByEntityId", method = RequestMethod.POST)
     public Map<String, Object> listDepositoryByEntityId(@RequestParam(value = "entity_id") String entity_id,
-                                                   @RequestParam(value = "stock_office") String office_id) {
+                                                        @RequestParam(value = "stock_office") String office_id) {
         int id = 0;
         Map<String, Object> result = new HashMap<>();
         try {
-            List<Depository> listDepository = depositoryService.listDepositoryByEntityId(entity_id,office_id);
+            List<Depository> listDepository = depositoryService.listDepositoryByEntityId(entity_id, office_id);
             if (listDepository == null) {
                 log.error("获取出错");
                 return null;

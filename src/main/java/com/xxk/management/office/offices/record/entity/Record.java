@@ -1,4 +1,4 @@
-package com.xxk.management.offices.record.entity;
+package com.xxk.management.office.offices.record.entity;
 
 import com.xxk.core.entity.BaseInfoEntity;
 

@@ -3,12 +3,28 @@
 <mapper namespace="com.xxk.management.user.dao.RegUserDao">
     <sql id="columns">id,roleId,account,password,name,birth,sex,phone,education,marriage,createUnit,QCellCore,
         address,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+
+    <resultMap id="BaseResultMap" type="java.util.HashMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <!--根据id获取用户信息 -->
     <select id="getUserById" parameterType="string" resultType="com.xxk.management.user.entity.RegUser">
         select
         <include refid="columns"></include>
         from xxk_reg_user
         where id=#{id}
+        and deleteFlag='0';
+    </select>
+
+    <select id="listRegUserByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        SELECT id,name
+        from xxk_reg_user
+        WHERE id IN
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
         and deleteFlag='0';
     </select>
 

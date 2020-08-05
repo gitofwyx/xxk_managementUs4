@@ -1,8 +1,8 @@
-package com.xxk.management.offices.record.service.impl;
+package com.xxk.management.office.offices.record.service.impl;
 
-import com.xxk.management.offices.record.dao.RecordDao;
-import com.xxk.management.offices.record.entity.Record;
-import com.xxk.management.offices.record.service.RecordService;
+import com.xxk.management.office.offices.record.dao.RecordDao;
+import com.xxk.management.office.offices.record.entity.Record;
+import com.xxk.management.office.offices.record.service.RecordService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

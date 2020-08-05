@@ -40,5 +40,8 @@ function makeInNum(total, stock_proportion) { //总量，比例数
     num= num/10;
   }
   num=parseInt(total/stock_proportion)+num;
+  if(!num||num=='NaN'){
+    return 0;
+  }
   return num;
 }

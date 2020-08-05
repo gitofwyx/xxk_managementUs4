@@ -12,6 +12,7 @@ import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.stock.service.StockService;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -43,17 +44,17 @@ public class StockController extends BaseController {
     @ResponseBody
     @RequestMapping("/listStock")
     public Map<String, Object> listStock(@RequestParam(value = "pageIndex") String pageIndex,
-                                              @RequestParam(value = "limit") String limit,
-                                              @RequestParam(value = "search_class_id") String class_id,//型号id
-                                              @RequestParam(value = "search_entity_id") String entity_id,//型号id
-                                              @RequestParam(value = "search_office_id") String stock_office_id,//库存科室id
-                                              @RequestParam(value = "search_type") int search_type) {//类别
+                                         @RequestParam(value = "limit") String limit,
+                                         @RequestParam(value = "search_class_id") String class_id,//型号id
+                                         @RequestParam(value = "search_entity_id") String entity_id,//型号id
+                                         @RequestParam(value = "search_office_id") String stock_office_id,//库存科室id
+                                         @RequestParam(value = "search_type") int search_type) {//类别
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
             int pageSize = Integer.parseInt(limit);         //单页记录数
-            List<Stock> listStock = stockService.listStock(pageNumber, pageSize,class_id,entity_id,stock_office_id,search_type);
+            List<Stock> listStock = stockService.listStock(pageNumber, pageSize, class_id, entity_id, stock_office_id, search_type);
             if (listStock == null) {
                 log.error("listStock:获取分页出错");
                 result.put("hasError", true);
@@ -71,13 +72,13 @@ public class StockController extends BaseController {
                 setDevId.addAll(listDevId);
                 listDevId.clear();
                 listDevId.addAll(setDevId);*/
-                List<Map<String, Object>> entityList=new ArrayList<>();
-                if(search_type==1||search_type==2||search_type==3){
-                     entityList = deviceService.getStoreDeviceById(listDevId);
+                List<Map<String, Object>> entityList = new ArrayList<>();
+                if (search_type == 1 || search_type == 2 || search_type == 3) {
+                    entityList = deviceService.getStoreDeviceById(listDevId);
                 } else {
-                    entityList=null;
+                    entityList = null;
                 }
-                if (resultList == null||entityList==null) {
+                if (resultList == null || entityList == null) {
                     log.error("获取分页出错");
                     result.put("hasError", true);
                     result.put("error", "获取出错");
@@ -107,46 +108,63 @@ public class StockController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/addStock",method = RequestMethod.POST)
-    public Map<String, Object> addStock(Stock stock,Storage storage,
+    @RequestMapping(value = "/addStock", method = RequestMethod.POST)
+    public Map<String, Object> addStock(Stock stock, Storage storage,
                                         @RequestParam(value = "stock_record_id") String stock_record_id) {
-        Map<String, Object> result=new HashMap<>();
-        if(stock_record_id!=null&&!"".equals(stock_record_id)){
-            stock.setId(stock_record_id);//获取库存的id值
-            result = stockService.updateStockWithStorage(stock,storage);
-        }else {
-            result = stockService.addStockWithStorage(stock,storage);
-        }
+        Map<String, Object> result = new HashMap<>();
+        try {
 
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            stock.setUpdateUserId(CurrentUserId);
+            if (stock_record_id != null && !"".equals(stock_record_id)) {
+                stock.setId(stock_record_id);//获取库存的id值
+                result = stockService.updateStockWithStorage(stock, storage);
+            } else {
+                result = stockService.addStockWithStorage(stock, storage);
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
+        }
         return result;
         //return "system/index";
     }
 
     @ResponseBody
     @RequestMapping("/updateStock")
-    public Map<String, Object> updateStock(Stock stock,Delivery delivery,
+    public Map<String, Object> updateStock(Stock stock, Delivery delivery,
                                            @RequestParam(value = "stock_record_id") String stock_record_id) {
-        Map<String, Object> result=new HashMap<>();
-        if(stock_record_id!=null&&!"".equals(stock_record_id)){
-            stock.setId(stock_record_id);//获取库存的id值
-            result = stockService.updateStockWithDelivery(stock,delivery);
-        }else {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            stock.setUpdateUserId(CurrentUserId);
+            if (stock_record_id != null && !"".equals(stock_record_id)) {
+                stock.setId(stock_record_id);//获取库存的id值
+                result = stockService.updateStockWithDelivery(stock, delivery);
+            } else {
+                result.put("hasError", true);
+                result.put("error", "updateStock:获取stock_record_id出错");
+                log.error("updateStock:" + result.get("error"));
+            }
+        } catch (Exception e) {
             result.put("hasError", true);
-            result.put("error", "updateStock:获取stock_record_id出错");
-            log.error("updateStock:" + result.get("error"));
+            result.put("error", "设备更新出错！"+e.getCause().getLocalizedMessage());
+            log.error(e);
         }
 
         return result;
     }
 
     @ResponseBody
-    @RequestMapping(value = "/listStockByEntityId",method = RequestMethod.POST)
+    @RequestMapping(value = "/listStockByEntityId", method = RequestMethod.POST)
     public Map<String, Object> listStockByEntityId(@RequestParam(value = "entity_id") String entity_id,
                                                    @RequestParam(value = "stock_office") String office_id) {
         int id = 0;
         Map<String, Object> result = new HashMap<>();
         try {
-            List<Stock> listStock = stockService.listStockByEntityId(entity_id,office_id);
+            List<Stock> listStock = stockService.listStockByEntityId(entity_id, office_id);
             if (listStock == null) {
                 log.error("获取出错");
                 return null;
