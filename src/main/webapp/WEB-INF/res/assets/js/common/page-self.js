@@ -49,6 +49,10 @@ $(function () {
 
     var vars=window.location.pathname;
     vars = vars.substr(-36,36);
-    $("#stock_id").val(vars);
+    if(vars=='/menu/delivery_tab/EV'||vars.length!=36){
+        $("#stock_id").val('');
+    }else if(vars.length==36){
+        $("#stock_id").val(vars);
+    }
 
 });

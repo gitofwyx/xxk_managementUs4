@@ -39,13 +39,8 @@ public class deliveryController extends BaseController {
     private DeliveryService deliveryService;
 
     @Autowired
-    private DeviceService deviceService;
-
-    @Autowired
     private RebUserService rebUserService;
 
-    @Autowired
-    private StockService stockService;
 
     @ResponseBody
     @RequestMapping("/listDelivery")
@@ -63,10 +58,10 @@ public class deliveryController extends BaseController {
             int pageSize = Integer.parseInt(limit);         //单页记录数
             List<Delivery> listDelivery = deliveryService.listDelivery(pageNumber, pageSize);
             if (listDelivery == null) {
-                log.error("listStorage:获取分页出错");
+                log.error("listDelivery:获取分页出错");
                 result.put("error", false);
                 return result;
-            }else {
+            } else {
 
             }
             result.put("rows", resultList);
@@ -84,10 +79,10 @@ public class deliveryController extends BaseController {
     @ResponseBody
     @RequestMapping("/listDeliveryByStock")
     public Map<String, Object> listDeliveryByStock(@RequestParam(value = "stock_id") String stock_id,
-                                            @RequestParam(value = "pageIndex") String pageIndex,
-                                            @RequestParam(value = "limit") String limit,
-                                            @RequestParam(value = "dev_ident") String dev_ident,
-                                            @RequestParam(value = "out_confirmed_date") String out_confirmed_date) {
+                                                   @RequestParam(value = "pageIndex") String pageIndex,
+                                                   @RequestParam(value = "limit") String limit,
+                                                   @RequestParam(value = "dev_ident") String dev_ident,
+                                                   @RequestParam(value = "out_confirmed_date") String out_confirmed_date) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
         List<String> userIdList = new ArrayList<>();
@@ -95,20 +90,20 @@ public class deliveryController extends BaseController {
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
             int pageSize = Integer.parseInt(limit);         //单页记录数
-            List<Delivery> listDelivery = deliveryService.listDeliveryByStock(pageNumber, pageSize,stock_id);
+            List<Delivery> listDelivery = deliveryService.listDeliveryByStock(pageNumber, pageSize, null, null, stock_id,null);
             if (listDelivery == null) {
-                log.error("listStorage:获取分页出错");
+                log.error("listDeliveryByStock:获取分页出错");
                 result.put("error", false);
                 return result;
-            }else {
+            } else {
                 for (Delivery delivery : listDelivery) {
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.putAll(JsonUtils.toMap(delivery));
                     resultList.add(resultMap);
                     userIdList.add(delivery.getOut_confirmed_by());
                 }
-                if(!userIdList.isEmpty()){
-                    userMapList=rebUserService.listRegUserByIds(userIdList);
+                if (!userIdList.isEmpty()) {
+                    userMapList = rebUserService.listRegUserByIds(userIdList);
                 }
             }
             result.put("rows", resultList);
@@ -129,12 +124,12 @@ public class deliveryController extends BaseController {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
         try {
-            List<Delivery> listDelivery = deliveryService.listDeliveryByOffice(1, 9,office_id);
+            List<Delivery> listDelivery = deliveryService.listDeliveryByOffice(1, 9, office_id);
             if (listDelivery == null) {
                 log.error("listDeliveryByOffice:获取分页出错");
                 result.put("error", false);
                 return result;
-            }else {
+            } else {
                 for (Delivery delivery : listDelivery) {
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.putAll(JsonUtils.toMap(delivery));

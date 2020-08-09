@@ -10,6 +10,7 @@ import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
 
 import com.xxk.management.storage.service.StorageService;
+import com.xxk.management.user.service.RebUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,10 +35,7 @@ public class StorageController extends BaseController {
     private DeliveryService deliveryService;
 
     @Autowired
-    private DeviceService deviceService;
-
-    @Autowired
-    private StockService stockService;
+    private RebUserService rebUserService;
 
     @ResponseBody
     @RequestMapping("/listStorage")
@@ -67,6 +65,48 @@ public class StorageController extends BaseController {
             }
             result.put("rows", resultList);
             result.put("results", 7);
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "查询出错");
+        }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/listStorageByStock")
+    public Map<String, Object> listStorageByStock(@RequestParam(value = "stock_id") String stock_id,
+                                                   @RequestParam(value = "pageIndex") String pageIndex,
+                                                   @RequestParam(value = "limit") String limit,
+                                                   @RequestParam(value = "dev_ident") String dev_ident,
+                                                   @RequestParam(value = "in_confirmed_date") String out_confirmed_date) {
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<String> userIdList = new ArrayList<>();
+        List<Map<String, Object>> userMapList = new ArrayList<>();
+        try {
+            int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
+            int pageSize = Integer.parseInt(limit);         //单页记录数
+            List<Storage> listStorage  = storageService.listStorageByStock(pageNumber, pageSize, null, null, stock_id,null);
+            if (listStorage == null) {
+                log.error("listStorageByStock:获取分页出错");
+                result.put("error", false);
+                return result;
+            } else {
+                for (Storage storage : listStorage) {
+                    Map<String, Object> resultMap = new HashMap<>();
+                    resultMap.putAll(JsonUtils.toMap(storage));
+                    resultList.add(resultMap);
+                    userIdList.add(storage.getIn_confirmed_by());
+                }
+                if (!userIdList.isEmpty()) {
+                    userMapList = rebUserService.listRegUserByIds(userIdList);
+                }
+            }
+            result.put("rows", resultList);
+            result.put("results", 7);
+            result.put("userMapList", userMapList);
 
         } catch (Exception e) {
             log.error(e);

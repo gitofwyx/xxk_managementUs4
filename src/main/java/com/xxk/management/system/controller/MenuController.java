@@ -32,22 +32,22 @@ public class MenuController extends BaseController {
         return new ModelAndView("/search/user_dialog", "result", result);
     }
 
-    @RequestMapping("/delivery_tab/{stock_id}")
-    public ModelAndView  delivery_tab(@PathVariable("stock_id") String stock_id) {
-        Map<String, Object> result = new HashMap<>();
-        return new ModelAndView("/search/delivery-dialog", "result", stock_id);
-    }
-
     @RequestMapping("/offices_tab")
     public ModelAndView  offices_tab() {
         Map<String, Object> result = new HashMap<>();
         return new ModelAndView("/search/offices-dialog", "result", result);
     }
 
-    @RequestMapping("/storage_tab")
-    public ModelAndView  storage_tab() {
+    @RequestMapping("/storage_tab/{stock_id}")
+    public ModelAndView  storage_tab(@PathVariable("stock_id") String stock_id) {
         Map<String, Object> result = new HashMap<>();
         return new ModelAndView("/search/storage-dialog", "result", result);
+    }
+
+    @RequestMapping("/delivery_tab/{stock_id}")
+    public ModelAndView  delivery_tab(@PathVariable("stock_id") String stock_id) {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/search/delivery-dialog", "result", stock_id);
     }
 
     @RequestMapping("/device_tab")

@@ -1,6 +1,7 @@
 package com.xxk.management.storage.dao;
 
 import com.xxk.management.storage.entity.Delivery;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +14,12 @@ public interface DeliveryDao {
 
     public List<Delivery> listDelivery(int pageStart, int pageSize);
 
-    public List<Delivery> listDeliveryByStock(int pageStart, int pageSize,String stock_id);
+    public List<Delivery> listDeliveryByStock(@Param("pageStart") int pageStart,
+                                              @Param("pageSize") int pageSize,
+                                              @Param("class_id") String class_id,
+                                              @Param("entity_id") String entity_id,
+                                              @Param("stock_id") String stock_id,
+                                              @Param("officeId") String officeId);
 
     public List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String office_id);
 

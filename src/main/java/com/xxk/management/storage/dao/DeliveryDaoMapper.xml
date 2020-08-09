@@ -16,7 +16,20 @@
     <select id="listDeliveryByStock" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
         select
         <include refid="columns"></include>
-        from xxk_delivery where deleteFlag='0' and stock_id=#{2} ORDER BY createDate desc limit #{0},#{1};
+        from xxk_delivery where  deleteFlag='0'
+        <if test="class_id!=null and ''!= class_id">
+            and class_id = #{class_id}
+        </if>
+        <if test="entity_id!=null and ''!= entity_id">
+            and entity_id = #{entity_id}
+        </if>
+        <if test="stock_id!=null and ''!= stock_id">
+            and stock_id = #{stock_id}
+        </if>
+        <if test="officeId!=null and ''!= officeId and 'a5c7b9f5-1f3c-4308-86e9-148b21416b37'!=officeId">
+            and out_confirmed_officeId = #{officeId}
+        </if>
+        ORDER BY createDate desc limit #{pageStart},#{pageSize};
     </select>
 
     <!--获取分页 -->

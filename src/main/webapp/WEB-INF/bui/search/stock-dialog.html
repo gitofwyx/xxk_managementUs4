@@ -414,18 +414,24 @@
                             {title: '&nbsp库存单位', dataIndex: 'stock_unit', elCls: 'center', width: 100},
                             {title: '&nbsp总量', dataIndex: 'stock_total', elCls: 'center', width: 100},
                             {title: '&nbsp库存状态', dataIndex: 'stock_flag', elCls: 'center', width: 100},
-                            {id: 'remark', title: '&nbsp备注', dataIndex: 'remark', elCls: 'center', width: 150},
+                            {id: 'remark', title: '&nbsp备注', dataIndex: 'remark', elCls: 'center', width: 160},
                             {
-                                title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
+                                title: '操作', dataIndex: '', width: 150, renderer: function (value, obj) {
 
                                 var editStr1 = Search.createLink({ //链接使用 此方式
+                                            id : 'storage-menu',
+                                            title : '入库记录',
+                                            text : '入库记录',
+                                            href : 'menu/storage_tab/'+obj.id,
+                                        }),
+                                        editStr2 = Search.createLink({ //链接使用 此方式
                                             id : 'delivery-menu',
                                             title : '出库记录',
                                             text : '出库记录',
                                             href : 'menu/delivery_tab/'+obj.id,
                                         }),
                                         delStr = '<span class="grid-command" title="删除信息">删除</span>';//页面操作不需要使用Search.createLink
-                                return editStr1 + delStr;
+                                return editStr1 + editStr2+delStr;
                             }
                             }
                         ],
@@ -496,7 +502,7 @@
                     if (top.topManager) {
                         top.topManager.openPage({ //打开左侧菜单中配置过的页面
                             id: 'storage-menu',
-                            href: 'menu/storage_tab',
+                            href: 'menu/storage_tab/EV',
                             title: '入库记录'
                         });
                     }
@@ -505,10 +511,9 @@
                 function deliveryFunction() {
                     if (top.topManager) {
                         top.topManager.openPage({ //打开左侧菜单中配置过的页面
-                            id: 'storage-menu',
-                            href: 'menu/delivery_tab',
-                            title: '入库记录',
-                            search:'stock_id='+113,
+                            id: 'delivery-menu',
+                            href: 'menu/delivery_tab/EV',//传递空变量
+                            title: '出库记录',
                         });
                     }
                 }

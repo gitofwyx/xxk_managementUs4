@@ -34,6 +34,11 @@ public class StorageServiceImpl implements StorageService {
         return dao.listStorage((pageStart - 1) * pageSize, pageSize);
     }
 
+    @Override
+    public List<Storage> listStorageByStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_id, String officeId) {
+        return dao.listStorageByStock((pageStart - 1) * pageSize, pageSize, class_id, entity_id, stock_id, officeId);
+    }
+
     //入库记录
     @Override
     public Map<String, Object> addStorage(Stock stock, Storage storage) {

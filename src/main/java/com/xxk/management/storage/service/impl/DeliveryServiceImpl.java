@@ -1,4 +1,5 @@
 package com.xxk.management.storage.service.impl;
+
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
@@ -33,17 +34,17 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public List<Delivery> listDeliveryByStock(int pageStart, int pageSize,String stock_id) {
-        return dao.listDeliveryByStock((pageStart - 1) * pageSize, pageSize,stock_id);
+    public List<Delivery> listDeliveryByStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_id, String officeId) {
+        return dao.listDeliveryByStock((pageStart - 1) * pageSize, pageSize, class_id, entity_id, stock_id, officeId);
     }
 
     @Override
-    public List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String stock_id) {
-        return dao.listDeliveryByOffice((pageStart - 1) * pageSize, pageSize,stock_id);
+    public List<Delivery> listDeliveryByOffice(int pageStart, int pageSize, String stock_id) {
+        return dao.listDeliveryByOffice((pageStart - 1) * pageSize, pageSize, stock_id);
     }
 
     @Override
-    public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String status) {
+    public Map<String, Object> addDelivery(Stock stock, Delivery delivery, String status) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String deliveryId = UUIdUtil.getUUID();
@@ -55,7 +56,7 @@ public class DeliveryServiceImpl implements DeliveryService {
                 return result;
             }
             //库存编号生成
-            String out_confirmed_ident = IdentUtil.getIdentNo((int)stock.getStock_no(), createDate);
+            String out_confirmed_ident = IdentUtil.getIdentNo((int) stock.getStock_no(), createDate);
             if ("".equals(out_confirmed_ident) || out_confirmed_ident == null) {
                 result.put("hasError", true);
                 result.put("error", "添加出错,无法生成入库编号！");
