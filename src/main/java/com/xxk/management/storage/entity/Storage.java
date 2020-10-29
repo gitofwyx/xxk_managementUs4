@@ -8,13 +8,17 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Storage extends BaseInfoEntity {
     private String id;
+    private String class_id;           //种类id
     private String entity_id;           //设备id
     private String stock_id;           //设备id
     private String in_confirmed_ident; //库存编号
     private String in_confirmed_by;    //确认人
+    private String recovery_officeId;    //回收科室id
+    private String in_confirmed_officeId;    //入库科室id
     private String in_confirmed_date;  //入库时间
     private double in_confirmed_no;      //入库数量（按库存单位计）
     private double in_confirmed_total;  //入库总量
+    private double in_confirmed_type;  //入库类型，1：回收；2：新增
     private int  fact_dev_no;         //实际库存
     private String out_flag;          //出库状态-> "0": "未出库", "1": "已出库"
     private String keyWord;           //关键字
@@ -27,6 +31,14 @@ public class Storage extends BaseInfoEntity {
     @Override
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
     }
 
     public String getEntity_id() {
@@ -61,6 +73,22 @@ public class Storage extends BaseInfoEntity {
         this.in_confirmed_by = in_confirmed_by;
     }
 
+    public String getRecovery_officeId() {
+        return recovery_officeId;
+    }
+
+    public void setRecovery_officeId(String recovery_officeId) {
+        this.recovery_officeId = recovery_officeId;
+    }
+
+    public String getIn_confirmed_officeId() {
+        return in_confirmed_officeId;
+    }
+
+    public void setIn_confirmed_officeId(String in_confirmed_officeId) {
+        this.in_confirmed_officeId = in_confirmed_officeId;
+    }
+
     public String getIn_confirmed_date() {
         return in_confirmed_date;
     }
@@ -83,6 +111,14 @@ public class Storage extends BaseInfoEntity {
 
     public void setIn_confirmed_total(double in_confirmed_total) {
         this.in_confirmed_total = in_confirmed_total;
+    }
+
+    public double getIn_confirmed_type() {
+        return in_confirmed_type;
+    }
+
+    public void setIn_confirmed_type(double in_confirmed_type) {
+        this.in_confirmed_type = in_confirmed_type;
     }
 
     public int getFact_dev_no() {

@@ -160,7 +160,7 @@ public class StockController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/listStockByEntityId", method = RequestMethod.POST)
     public Map<String, Object> listStockByEntityId(@RequestParam(value = "entity_id") String entity_id,
-                                                   @RequestParam(value = "stock_office") String office_id) {
+                                                   @RequestParam(value = "office_id") String office_id) {
         int id = 0;
         Map<String, Object> result = new HashMap<>();
         try {

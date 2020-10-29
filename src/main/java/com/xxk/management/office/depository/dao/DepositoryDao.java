@@ -30,10 +30,8 @@ public interface DepositoryDao {
 
     public Depository getDepositoryById(String id);
 
-    public int updateDepository(Depository depository, String entityId);
+    public int recoveryDepository(Depository depository);
 
     public int plusDepositoryNo(Depository depository);
-
-    public int reduceStockNo(Depository depository);
 
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.storage.dao.StorageDao">
-    <sql id="columns">id,entity_id,stock_id,in_confirmed_ident,in_confirmed_by,in_confirmed_date,in_confirmed_no,
-       in_confirmed_total,fact_dev_no,out_flag,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,class_id,entity_id,stock_id,in_confirmed_ident,in_confirmed_by,recovery_officeId,in_confirmed_officeId,
+       in_confirmed_date,in_confirmed_no,in_confirmed_total,in_confirmed_type,fact_dev_no,out_flag,keyWord,createUserId,
+       createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
     <select id="listStorage" parameterType="string" resultType="com.xxk.management.storage.entity.Storage">
@@ -34,8 +35,8 @@
     <!--添加信息 -->
     <insert id="addStorage" parameterType="com.xxk.management.storage.entity.Storage">
         insert into xxk_in_storage(<include refid="columns"></include>) values(
-        #{id},#{entity_id},#{stock_id},#{in_confirmed_ident},#{in_confirmed_by},#{in_confirmed_date},
-        #{in_confirmed_no},#{in_confirmed_total},#{fact_dev_no}, #{out_flag},#{keyWord},
+        #{id},#{class_id},#{entity_id},#{stock_id},#{in_confirmed_ident},#{in_confirmed_by},#{recovery_officeId},#{in_confirmed_officeId},
+        #{in_confirmed_date},#{in_confirmed_no},#{in_confirmed_total},#{in_confirmed_type},#{fact_dev_no}, #{out_flag},#{keyWord},
         #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 

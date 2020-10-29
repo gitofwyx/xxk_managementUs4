@@ -113,7 +113,7 @@
                     <label class="control-label"><s>*</s>入库数量：</label>
                     <div class="controls">
                         <input name="in_confirmed_no" id="in_confirmed_no" type="number" data-rules="{required:true}"
-                               min="1" data-tip="{text:'注:数量以单位数量为基准'}" class="input-normal control-text">
+                               min="0.1" data-tip="{text:'注:数量以单位数量为基准'}" class="input-normal control-text">
                     </div>
                 </div>
                 <div class="control-group span8">
@@ -224,7 +224,7 @@
                 <label class="control-label"><s>*</s>出库数量：</label>
                 <div class="controls">
                     <input name="out_confirmed_no" type="number" id="out_confirmed_no" value="1" data-rules="{required:true}"
-                           min="1" max="999"   class="input-normal control-text">
+                           min="0.1" max="999"   class="input-normal control-text">
                 </div>
             </div>
             <div class="row">
@@ -610,6 +610,7 @@
                 //入库总量生成
                 function reckon_stock_total(num, stock_proportion) {  //（输入的库存数量 库存比例)
                     //I_Form.getField('in_confirmed_no').get('value');
+                    num=""+num;//防止输入数值造成replace函数报错；
                     var decimal =num.replace(/\d+\.(\d*)/,"$1");//获取小数部分
                     var unit = parseInt(num);//去除小数部分
                     stock_proportion = parseInt(stock_proportion);//防止比例数输入为小数
@@ -623,6 +624,7 @@
                 //根据比例调整库存数量
                 function calculate_amount(num, stock_proportion) { //数量，比例数
                     //I_Form.getField('in_confirmed_no').get('value');
+                    num=""+num;//防止输入数值造成replace函数报错；
                     var decimal =num.replace(/\d+\.(\d*)/,"$1");//获取小数部分
                     var unit = parseInt(num);//去除小数部分
                     stock_proportion = parseInt(stock_proportion);//防止比例数输入为小数
@@ -698,7 +700,6 @@
                         Editing_O.edit(eData);
                         O_Form.getField('stock_record_id').set('value',eData.id);
                         O_Form.getField('out_confirmed_unit').set('value',eData.stock_unit);
-                        O_Form.getField('out_confirmed_officeId').addRule('max', selections[0].dev_no, '库存不足，不能大于{0}');
                         O_Form.getField('entity_name').set('value',eData.entity_name);
                         O_Form.getField('entity_type').set('value',eData.entity_type);
                     }
@@ -807,7 +808,7 @@
                             url: '/listStockByEntityId',
                             data: {
                                 entity_id: edv.entity_id,
-                                stock_office: edv.stock_office_id
+                                office_id: edv.stock_office_id
                             },
                             type: 'POST', //GET
                             async: true,    //或false,是否异步
@@ -876,6 +877,13 @@
                         }
                     }
                 });
+
+                //入库数量输入框光标移入事件
+                $("#in_confirmed_no").on('focus', function () {
+                    $("#in_confirmed_total").val();
+                    $("#stock_total").val(0);
+                });
+
                 //入库数量输入框光标移出事件
                 $("#in_confirmed_no").on('blur', function () {
                     $("#stock_proportion").trigger('blur');

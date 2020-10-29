@@ -2,7 +2,9 @@ package com.xxk.management.office.depository.service;
 
 import com.xxk.management.office.depository.entity.Depository;
 import com.xxk.management.office.storage.entity.OfficesStorage;
+import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
+import com.xxk.management.storage.entity.Storage;
 
 import java.util.List;
 import java.util.Map;
@@ -22,9 +24,7 @@ public interface DepositoryService {
 
     public Map<String, Object> updateDepositoryWithStorage(Depository depository, OfficesStorage storage);
 
-    public Map<String, Object> updateDepositoryWithDelivery(Depository depository, Delivery delivery);
-
-    public Map<String, Object> updateDepository(Depository depository);
+    public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage);
 
     public boolean deleteListRegUser(List<String> listStr);
 

@@ -1,6 +1,7 @@
 //入库总量生成
 function reckon_stock_total(num, stock_proportion) {  //（输入的库存数量 库存比例)
   //I_Form.getField('in_confirmed_no').get('value');
+  num=""+num;//防止输入数值造成replace函数报错；
   var decimal =num.replace(/\d+\.(\d*)/,"$1");//获取小数部分
   var unit = parseInt(num);//去除小数部分
   stock_proportion = parseInt(stock_proportion);//防止比例数输入为小数
@@ -14,6 +15,7 @@ function reckon_stock_total(num, stock_proportion) {  //（输入的库存数量
 //根据比例调整库存数量
 function calculate_amount(num, stock_proportion) { //数量，比例数
   //I_Form.getField('in_confirmed_no').get('value');
+  num=""+num;//防止输入数值造成replace函数报错；
   var decimal =num.replace(/\d+\.(\d*)/,"$1");//获取小数部分
   var unit = parseInt(num);//去除小数部分
   stock_proportion = parseInt(stock_proportion);//防止比例数输入为小数
@@ -44,4 +46,16 @@ function makeInNum(total, stock_proportion) { //总量，比例数
     return 0;
   }
   return num;
+}
+
+//库存科室下拉框数据生成
+function stock_officeSelect(offices_select,stock_office) {
+  if (stock_office == undefined || $.isEmptyObject(stock_office)) {
+    for (var i in offices_select) {
+      if (offices_select[i].office_function == '1') {
+        stock_office[offices_select[i].value] = offices_select[i].text;
+      }
+    }
+  }
+  return stock_office;
 }

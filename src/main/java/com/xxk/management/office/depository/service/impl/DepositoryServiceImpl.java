@@ -7,7 +7,10 @@ import com.xxk.management.office.depository.entity.Depository;
 import com.xxk.management.office.depository.service.DepositoryService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.office.storage.service.OfficesStorageService;
+import com.xxk.management.stock.entity.Stock;
+import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.entity.Delivery;
+import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,9 @@ public class DepositoryServiceImpl implements DepositoryService {
 
     @Autowired
     private DeliveryService deliveryService;
+
+    @Autowired
+    private StockService stockService;
 
     @Override
     public List<Depository> listDepository(int pageStart, int pageSize, String class_id, String entity_id, String depository_officeId, int search_type) {
@@ -155,63 +161,33 @@ public class DepositoryServiceImpl implements DepositoryService {
         return result;
     }
 
-    //出库操作
-    // 2019年8月19日 13:43:42更新
+    //回收操作
     @Override
-    public Map<String, Object> updateDepositoryWithDelivery(Depository depository, Delivery delivery) {
-        Map<String, Object> result = new HashMap<>();
-        String createDate = DateUtil.getFullTime();
-        try {
-            if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错！无法获取设备ID");
-                return result;
-            }
-            depository.setDepository_total(delivery.getOut_confirmed_total());
-            depository.setUpdateDate(createDate);
-            depository.setUpdateUserId("admin");
-
-            boolean stockResult = dao.reduceStockNo(depository) == 1 ? true : false;
-            if (!(stockResult)) {
-                log.error("stockResult:" + stockResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //出库更新
-                delivery.setEntity_id(depository.getEntity_id());
-                //result = deliveryService.addDelivery(depository, delivery,"1");
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
-        }
-        return result;
-    }
-
-    //更新操作
-    @Override
-    public Map<String, Object> updateDepository(Depository depository) {
+    public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String stockId = UUIdUtil.getUUID();
         try {
             if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
+                log.info("recoveryDepository:出错！无法获取设备ID");
                 result.put("hasError", true);
                 result.put("error", "添加出错");
                 return result;
             }
-            boolean depositoryResult = dao.updateDepository(depository, depository.getEntity_id()) == 1 ? true : false;
+            boolean depositoryResult = dao.recoveryDepository(depository) == 1 ? true : false;
             if (!(depositoryResult)) {
                 log.error("stockResult:" + depositoryResult);
                 result.put("hasError", true);
                 result.put("error", "添加出错");
+                return result;
+            }
+            if ("".equals(stock.getId()) || stock.getId() == null) {
+                result = stockService.updateStockWithStorage(stock, storage);
+            } else {
+                result = stockService.addStockWithStorage(stock, storage);
+            }
+            if(result.get("hasError")==true){
+                throw new Exception("error");
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);

@@ -180,6 +180,90 @@
         </div>
     </form>
 </div>
+<div id="Content_R" class="hide">
+    <form id="R_Form" class="form-horizontal" action="" autocomplete="off">
+        <input type="hidden" name="office_ident" id="office_ident">
+        <input type="hidden" name="class_id" id="class_id" data-rules="{required:true}">
+        <input type="hidden" name="entity_id" id="entity_id" data-rules="{required:true}">
+        <div id="tab"></div>
+        <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
+        <div class="row">
+            <div class="control-group span9">
+                <label class="control-label">回收入库科室：</label>
+                <div class="controls" id="stock_office_select">
+                    <input name="in_confirmed_officeId" id="in_confirmed_officeId" type="hidden">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span16">
+                <label class="control-label"><s>*</s>库存记录：</label>
+                <div class="controls" id="office_rec_select">
+                    <input id="stock_record_id" name="stock_record_id" type="hidden">
+                </div>
+                &nbsp;
+                <input type="button" id="I_Reset2" name="I_Reset2" class=" icon-repeat"
+                       style="width:15px;height:18px;background-color:#ffffff;">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>回收数量：</label>
+                <div class="controls">
+                    <input name="in_confirmed_no" type="number" id="in_confirmed_no" value="1" data-rules="{required:true}"
+                           min="0.1" max="999"   class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>数量单位：</label>
+                <div class="controls">
+                    <input name="stock_unit" type="text" id="stock_unit" readonly="readonly" data-rules="{required:true}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>入库/个体比例：</label>
+                <div class="controls">
+                    <input id="unit_num" name="unit_num" type="number" readonly="readonly"
+                           class="span1 control-text"> ：
+                    <input id="stock_proportion" name="stock_proportion" type="number" min="1" max="999" readonly="readonly"
+                           data-rules="{required:true}" data-tip="{text:'数字有效'}" class="span2 control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>回收时间：</label>
+                <div class="controls">
+                    <input name="out_confirmed_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>库存总量：</label>
+                <div class="controls">
+                    <input id="stock_total" name="stock_total" type="number" data-rules="{required:true}"
+                           readonly="readonly"  type="number" min="0" max="999" class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="io_Console" name="io_Console" type="hidden"　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_no" name="stock_no" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="in_confirmed_total" name="in_confirmed_total" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_version" name="stock_version" type="hidden" data-rules="{required:true}">
+            </div>
+        </div>
+    </form>
+</div>
 
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/js/bui-min.js"></script>
@@ -199,27 +283,28 @@
                 var offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
                         enumObj_dep_flag = {"1": "启用", "0": "禁用"},
                         enumObj_genre_tags = {"1": "设备", "2": "配件", "3": "耗材"},
-                //变量初始化
+                        //变量初始化
                         select_data = [],
                         select_type = [],
                         dep_entity_data = [],
+                        stock_office = {},
                         dep_count_map = {},//设备种类id对应的dep_entity_data键
                         class_count = 0,//设备种类最大值
                         J_Form = '',
-                //搜索设备选择框
+                        //搜索设备选择框
                         search_class_select = new Select.Select({
                             render: '#search_class_select',
                             valueField: '#search_class_id',
                             multipleSelect: false,
                         }).render(),
-                //搜索型号选择框
+                        //搜索型号选择框
                         search_entity_select = new Select.Select({
                             render: '#search_entity_select',
                             valueField: '#search_entity_id',
                             multipleSelect: false,
                             items: []
                         }).render(),
-                //搜索栏科室下拉框
+                        //搜索栏科室下拉框
                         search_office_tree = new Tree.TreeList({
                             nodes: [],
                             //store: store,
@@ -232,7 +317,7 @@
                             width: 150,  //指定宽度
                             children: [search_office_tree] //配置picker内的列表
                         }).render(),
-                //种类选择框
+                        //种类选择框
                         search_type_select = new Select.Select({
                             render: '#search_type_select',
                             valueField: '#search_type',
@@ -243,17 +328,16 @@
                                 {text: '耗材', value: '3', name: 'MaterialSelect'}
                             ],
                         }).render(),
-                //入科设备编辑
+                        //入科设备编辑
                         editing_J = new BUI.Grid.Plugins.DialogEditing({
                             contentId: 'content_J', //设置隐藏的Dialog内容
                             autoSave: true, //添加数据或者修改数据时，自动保存
                         }),
-                //原科设备编辑
-                /* editing_F = new BUI.Grid.Plugins.DialogEditing({
-                 contentId: 'content', //设置隐藏的Dialog内容
-                 autoSave: true, //添加数据或者修改数据时，自动保存
-                 }),*/
-                //科室选择数框
+                        editing_R = new BUI.Grid.Plugins.DialogEditing({
+                            contentId: 'Content_R', //设置隐藏的Dialog内容
+                            autoSave: true, //添加数据或者修改数据时，自动保存
+                        }),
+                        //科室选择数框
                         dep_office_tree = new Tree.TreeList({
                             nodes: [],
                             //store: store,
@@ -266,7 +350,14 @@
                             width: 150,  //指定宽度
                             children: [dep_office_tree] //配置picker内的列表
                         }).render(),
-                //入库设备选择框
+                        //回收科室选择数框
+                        stock_office_select = new Select.Select({
+                            render: '#stock_office_select',
+                            valueField: '#in_confirmed_officeId',
+                            multipleSelect: false,
+                            items: []
+                        }).render(),
+                        //入库设备选择框
                         office_dep_grid = new Grid.Grid({
                             idField: 'id',//选项的默认id字段
                             columns: [
@@ -307,19 +398,59 @@
                             width: 380,
                             items: []
                         }).render(),
-
+                         //回收库存选择框
+                        office_rec_grid = new Grid.Grid({
+                            idField: 'id',//选项的默认id字段
+                            columns: [
+                                {title: '&nbsp库存编号', dataIndex: 'stock_ident', elCls: 'center', width: '30%'},
+                                {title: '&nbsp数量', dataIndex: 'stock_no', elCls: 'center', width: '20%'},
+                                {title: '&nbsp单位', dataIndex: 'stock_unit', elCls: 'center', width: '20%'},
+                                {title: '&nbsp总量', dataIndex: 'stock_total', elCls: 'center', width: '30%'},
+                            ],
+                            textGetter: function (item) { //返回选中的文本
+                                return item.stock_ident;
+                            },
+                            bbar: {
+                                //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
+                                items: [{
+                                    xclass: 'bar-item-button',
+                                    btnCls: 'button button-small',
+                                    text: '新增',
+                                    handler: addDepositoryBt,
+                                },
+                                    {
+                                        xclass: 'bar-item-text',
+                                        text: '<p style="color: #dd1144">注：新增多个库存记录可能会造成出库错误</p>'
+                                    },
+                                ]
+                            },
+                            items: [],
+                        }),
+                        office_rec_picker = new Picker.ListPicker({
+                            width: 380,  //指定宽度
+                            children: [office_rec_grid] //配置picker内的列表
+                        }),
+                        office_rec_select = new Select.Select({
+                            picker: office_rec_picker,
+                            render: '#office_rec_select',
+                            valueField: '#stock_record_id',
+                            forceFit: false,
+                            multipleSelect: false,
+                            width: 380,
+                            items: []
+                        }).render(),
                         columns = [
                             {title: '&nbsp库存编号', dataIndex: 'depository_ident', elCls: 'center', width: 150},
                             {title: '&nbsp库存名称', dataIndex: 'entity_name', elCls: 'center', width: 120},
                             {title: '&nbsp库存型号', dataIndex: 'entity_type', elCls: 'center', width: 120},
-                            {title: '&nbsp数量', dataIndex: 'depository_no', elCls: 'center', width: 70},
                             {title: '&nbsp库存单位', dataIndex: 'depository_unit', elCls: 'center', width: 100},
-                            {title: '&nbsp总量', dataIndex: 'depository_total', elCls: 'center', width: 70},
+                            {title: '&nbsp库存总量', dataIndex: 'depository_total', elCls: 'center', width: 90},
+                            {title: '&nbsp使用总量', dataIndex: 'dep_in_use_total', elCls: 'center', width: 90},
                             {
                                 title: '&nbsp类型',
                                 dataIndex: 'depository_type',
                                 elCls: 'center',
-                                width: 100,
+                                width: 70,
                                 renderer: BUI.Grid.Format.enumRenderer(enumObj_genre_tags)
                             },
                             {
@@ -377,7 +508,7 @@
                                 ]
                             },
                             emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
-                            plugins: [editing_J, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                            plugins: [editing_J,editing_R, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                         });
 
                 var search = new Search({
@@ -385,7 +516,8 @@
                             gridCfg: gridCfg
                         }),
                         grid = search.get('grid'),
-                        J_Form = editing_J.get('form');
+                        J_Form = editing_J.get('form'),
+                        R_Form = editing_R.get('form');
 
                 //初始化
                 search_office_tree.set('nodes', GetMenus('root', offices_select));
@@ -560,7 +692,7 @@
                     }
 
                 };
-                
+
                 //初始化原科登记BsSuggest
                function originalSel() {
                     if (!$.isEmptyObject(select_data) && $.isEmptyObject(select_type)) {
@@ -623,19 +755,19 @@
                     $("#depository_type").val(search_type_select.getSelectedValue());
                 }
 
-                //回收操作
+                //回收
                 function recoveryFunction() {
                     var selections = grid.getSelection();
-                    if (selections.length == 1) {
-                        var eData = selections[0];
-                        //eData.entity_name=selections[0]
-                    }
-                    if (selections.length != 1 && selections.length != 0) {
-                        BUI.Message.Alert('一次只能编辑一条记录！！');
+                    if (selections.length == 0) {
+                        return;
+                    } else if (selections.length != 1) {
+                        BUI.Message.Alert('一次只能选择单个记录！！');
                         return;
                     } else {
-
-                        editing_J.edit(eData);
+                        handle_office();
+                        stock_office_select.set('items', stock_officeSelect(offices_select,stock_office));
+                        var eData = selections[0];
+                        editing_R.edit(eData);
                     }
                 }
 
@@ -787,7 +919,7 @@
 
                 });
 
-                //出库数量输入框光标移出事件
+                //入科数量输入框光标移出事件
                 $("#offices_storage_no").on('blur', function () {
                     if(!$("#offices_storage_proportion").val()|| !$("#offices_storage_no").val()){
                         return;
@@ -809,6 +941,73 @@
                     if (!$("#delivery_id").val()) {
                         $("#offices_storage_no").val('');
                         $("#offices_storage_no").attr('readonly', false);
+                    }
+                });
+
+                //监听事件，回收入库科室下拉框选中
+                stock_office_select.on('change', function (ev) {
+                    input_console(true);
+                    var edv = editing_R.get('editor').getValue();
+                    if (edv.entity_id != null && edv.entity_id != '' && edv.entity_id != undefined) {
+                        $.ajax({
+                            url: '/listStockByEntityId',
+                            data: {
+                                entity_id: edv.entity_id,
+                                office_id: edv.in_confirmed_officeId
+                            },
+                            type: 'POST', //GET
+                            async: true,    //或false,是否异步
+                            /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                            success: function (data, textStatus, jqXHR) {
+                                if (!$.isEmptyObject(data.entityData)) {
+                                    office_rec_grid.set('items', data.entityData);
+                                    // input_console(false);
+                                } else {
+                                    office_rec_grid.set('items', []);
+                                    //input_console(false);
+                                }
+                            },
+                            error: function (xhr, textStatus) {
+                                console.log('错误')
+                                console.log(xhr)
+                                console.log(textStatus)
+                            }
+                        })
+                    }//if语句判断是否获取到设备ID
+                });
+
+                //库存记录框选中
+                office_rec_select.on('change', function (ev) {
+                    $("#stock_version").val(ev.item.stock_version);
+                    $("#stock_unit").val(ev.item.stock_unit);
+                    $("#stock_proportion").val(ev.item.stock_proportion);
+                    $("#stock_total").val(ev.item.stock_total);
+                    $("#unit_num").val(1);
+                });
+
+                //回收数量输入框光标移出事件
+                $("#in_confirmed_no").on('blur', function () {
+                    var I_num = $("#in_confirmed_no").val();//获取入库数量no
+                    var stock_proportion = $("#stock_proportion").val();//获取库存比例proportion
+                    var I_stock_total=0;//初始化入库总量值
+                    if (stock_proportion != null && stock_proportion != '' && stock_proportion != undefined) {
+                        if (I_num != null && I_num != '' && I_num != undefined) {
+                            //改变入库数量
+                            I_num = calculate_amount(I_num, stock_proportion);//生成新的入库数量
+                            R_Form.getField('in_confirmed_no').set('value', I_num);//重设入库数量值
+                            //改变总量
+                            I_stock_total=reckon_stock_total(I_num, stock_proportion);//生成入库总量
+                            R_Form.getField('in_confirmed_total').set('value', I_stock_total);
+                            I_num=office_rec_select.get('picker').get('children')[0].getCount( );//获取Sto_rec_grid选项数量
+                            if (I_num >0) {
+                                I_num=office_rec_select.get('picker').get('children')[0].getSelected().stock_total;//获取选择的库存记录总量（此时I_num已赋值为记录总量）
+                            }
+                            I_stock_total=I_stock_total+parseInt(I_num);//记录总量+新输入的库存总量=新的库存总量（此时I_stock_total已赋值为新库存总量）
+                            $("#stock_total").val(parseFloat(I_stock_total));//重设库存总量值
+                            //改变总数量no
+                            $("#stock_no").val(makeInNum(I_stock_total,stock_proportion));//重设库存总数量值
+                        }
                     }
                 });
 

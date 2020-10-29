@@ -128,19 +128,14 @@ public class DepositoryController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/updateDepository")
-    public Map<String, Object> updateDepository(Depository depository, OfficesStorage storage,
+    @RequestMapping("/recoveryDepository")
+    public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage,
                                                 @RequestParam(value = "stock_record_id") String stock_record_id) {
         Map<String, Object> result = new HashMap<>();
-        if (stock_record_id != null && !"".equals(stock_record_id)) {
-            depository.setId(stock_record_id);//获取库存的id值
-            result = depositoryService.updateDepositoryWithStorage(depository, storage);
-        } else {
-            result.put("hasError", true);
-            result.put("error", "updateDepository:获取stock_record_id出错");
-            log.error("updateStock:" + result.get("error"));
-        }
-
+        stock.setId(stock_record_id);
+        stock.setClass_id(depository.getClass_id());
+        stock.setEntity_id(depository.getEntity_id());
+        depositoryService.recoveryDepository( depository,stock,storage);
         return result;
     }
 

@@ -68,6 +68,7 @@ public class StockServiceImpl implements StockService {
             if (device != null) {
                 stock.setId(stockId);
                 stock.setStock_ident(device.getDev_ident());
+                stock.setClass_id(device.getDev_class_id());
                 stock.setEntity_id(device.getId());
                 stock.setStock_no(storage.getIn_confirmed_no());
                 stock.setStock_total(storage.getIn_confirmed_total());
@@ -89,6 +90,7 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
             } else {
                 storage.setEntity_id(device.getId());
+                storage.setClass_id(device.getDev_class_id());
                 result = storageService.addStorage(stock, storage);
             }
         } catch (DuplicateKeyException e) {
@@ -127,6 +129,7 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
             } else {
                 //入库记录
+                storage.setClass_id(stock.getClass_id());
                 storage.setEntity_id(stock.getEntity_id());
                 result = storageService.addStorage(stock, storage);
             }

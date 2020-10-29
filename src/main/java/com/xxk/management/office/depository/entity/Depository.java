@@ -18,10 +18,12 @@ public class Depository extends BaseInfoEntity {
     private String depository_type;//科室库存类别
     private String depository_by;//入科确认人
     private String depository_officeId;//库存科室
-    private double depository_no;  //科室库存数量
+    private double depository_no;  //科室库存数量（按库存单位计）
+    private double depository_idle_no;  //闲置库存数量
     private String depository_unit;  //科室库存单位
     private int depository_proportion;  //个体/单位比例
     private double depository_total;      //科室库存总量
+    private double depository_idle_total;      //闲置库存总量
     private String depository_total_unit;      //科室总量单位
     private String depository_flag;      //科室库存状态
     private String keyWord;           //关键字
@@ -118,6 +120,14 @@ public class Depository extends BaseInfoEntity {
         this.depository_no = depository_no;
     }
 
+    public double getDepository_idle_no() {
+        return depository_idle_no;
+    }
+
+    public void setDepository_idle_no(double depository_idle_no) {
+        this.depository_idle_no = depository_idle_no;
+    }
+
     public String getDepository_unit() {
         return depository_unit;
     }
@@ -140,6 +150,14 @@ public class Depository extends BaseInfoEntity {
 
     public void setDepository_total(double depository_total) {
         this.depository_total = depository_total;
+    }
+
+    public double getDepository_idle_total() {
+        return depository_idle_total;
+    }
+
+    public void setDepository_idle_total(double depository_idle_total) {
+        this.depository_idle_total = depository_idle_total;
     }
 
     public String getDepository_total_unit() {

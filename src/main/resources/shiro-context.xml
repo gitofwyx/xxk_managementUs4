@@ -89,6 +89,7 @@
         <property name="filterChainDefinitions">
             <!--记住一点，权限为金字塔状，先精确匹配或是权限稍小在前面，权限大（模糊匹配）的在后面。-->
             <value>
+                /test/**=anon
                 /index/**=anon  <!--登录页面的js和css不拦截-->
                 /favicon.ico=anon
                 /logout = logout
