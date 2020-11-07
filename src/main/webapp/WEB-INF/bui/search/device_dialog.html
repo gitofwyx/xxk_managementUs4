@@ -158,9 +158,9 @@
                 store = Search.createStore('/listDevice', {
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
-                            addUrl: '/addDevice',
-                            updateUrl: '/updateRegUser',
-                            removeUrl: '/delRegUserOfLogic'
+                            addUrl: '',
+                            updateUrl: '',
+                            removeUrl: ''
                         },
                         method: 'POST'
                     },
@@ -171,16 +171,10 @@
                     tbar: {
                         items: [
                             {
-                                text: '<i class="icon-pencil"></i>设备登记',
+                                text: '<i class="icon-list-alt"></i>设备信息',
                                 btnCls: 'button button-small',
-                                handler: addFunction
+                                handler: displayFunction
                             },
-                            {
-                                text: '<i class="icon-edit"></i>更改设备信息',
-                                btnCls: 'button button-small',
-                                handler: updateFunction
-                            },
-                            {text: '<i class="icon-remove"></i>删除', btnCls: 'button button-small', handler: delFunction}
                         ]
                     },
                     emptyDataTpl : '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
@@ -194,90 +188,13 @@
                 grid = search.get('grid'),
                 J_Form = editing.get('form');
 
-        //新增操作
-        function addFunction() {
-            /* var store = new Data.Store({
-             url: 'data.php',  //\u8bbe\u7f6e\u52a0\u8f7d\u6570\u636e\u7684URL
-             autoLoad: true    //\u521b\u5efaStore\u65f6\u81ea\u52a8\u52a0\u8f7d\u6570\u636e
-             });*/
-            /*var items = [
-             {text: '选项1', value: 'a'},
-             {text: '选项2', value: 'b'},
-             {text: '选项3', value: 'c'}
-             ]*/
-            if ($.isEmptyObject(dev_name_data)) {
-                $.ajax({
-                    url: '/getDeviceName',
-                    data: {tab:1},
-                    type: 'GET', //GET
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            dev_name_data = data;
-                            if (!$.isEmptyObject(dev_name_data)) {
-                               /* suggest.setInternal('data', dev_name_data);
-                                suggest.render();*/
-                                /*class_count = Math.max.apply(null, class_ident);//获取数组中的最大值*/
-                                initBsSuggest("dev_name", dev_name_data);
-                            }
-                        }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus)
-                    }
-                })
-            }
-            var newData = {}; //标志是新增加的记录
-            editing.add(newData, 'name'); //添加记录后，直接编辑
-            J_Form.getField('class_ident').set('value', 0);
-            J_Form.getField('dev_max').set('value', 0);
-            J_Form.getField('class_version').set('value', 0);
-            /*if (!$.isEmptyObject(class_Date) && class_count != 0) {
-                J_Form.getField('lastUpDate').set('value', class_Date[class_count]);
-                J_Form.getField('dev_class_count').set('value', class_count);
-            }*/
-        }
-
-        //下拉提示框bsSuggest
-        function initBsSuggest(cla, v) {
-                $("#" + cla).bsSuggest('init', {
-                    /*url: "/getMaterialName?tab=" + v,*/
-                    data: v,
-                    effectiveFields: ["text", "class_ident"],
-                    searchFields: ["text", "class_ident"],
-                    effectiveFieldsAlias: {text: "种类", class_ident: "编号"},
-                    listAlign: 'auto',
-                    showBtn: false,
-                    autoMinWidth: true,
-                    getDataMethod: 'data',
-                    idField: "value",
-                    keyField: "text",
-                    clearable: true,
-                }).on('onDataRequestSuccess', function (e, result) {
-                    console.log('onDataRequestSuccess: ', result);
-                }).on('onSetSelectValue', function (e, keyword, data) {
-                    console.log('onSetSelectValue: ', keyword, data);
-                    editing.get('editor');
-                    J_Form.getField('dev_class_id').set('value', keyword.id);
-                    J_Form.getField('class_ident').set('value', data.class_ident);
-                    J_Form.getField('dev_max').set('value', data.dev_max);
-                    J_Form.getField('class_version').set('value', data.class_version);
-                    J_Form.getField('updateDate').set('value', data.updateDate);
-                    //$("input[name='dev_class_id']").val(keyword.id);
-                });
-        };
-
         //编辑操作
-        function updateFunction() {
+        function displayFunction() {
             var selections = grid.getSelection();
             if (selections.length == 0) {
                 return;
             } else if (selections.length != 1) {
-                BUI.Message.Alert('一次只能编辑一条记录！！');
+                BUI.Message.Alert('一次只能查看一条记录！！');
                 return;
             } else {
                 var eData = selections[0];
@@ -312,20 +229,6 @@
                 items([record]);
             }
         });
-        /*suggest.on('change', function (ev) {
-         if (dev_name_data != undefined || dev_name_data != null) {
-         var dev_class_id = J_Form.getField('dev_class_id').get("value");
-         var c = dev_count_map[dev_class_id];
-         J_Form.getField('class_ident').set('value', dev_name_data[c].class_ident);
-         J_Form.getField('type_max').set('value', dev_name_data[c].type_max);
-         J_Form.getField('lastUpDate').set('value', dev_name_data[c].updateDate);
-         }
-         });*/
-
-        /*J_Form.on('beforesubmit', function (ev) {
-         alert('beforesubmit');
-         return false;
-         })*/
 
         editing.on('accept',function(ev){
             dev_name_data=[];

@@ -12,13 +12,14 @@ public class Storage extends BaseInfoEntity {
     private String entity_id;           //设备id
     private String stock_id;           //设备id
     private String in_confirmed_ident; //库存编号
+    private double in_confirmed_type;  //'设备\耗材种类
     private String in_confirmed_by;    //确认人
     private String recovery_officeId;    //回收科室id
     private String in_confirmed_officeId;    //入库科室id
     private String in_confirmed_date;  //入库时间
     private double in_confirmed_no;      //入库数量（按库存单位计）
     private double in_confirmed_total;  //入库总量
-    private double in_confirmed_type;  //入库类型，1：回收；2：新增
+    private double in_confirmed_origin;  //入库类型，1：回收；2：新增
     private int  fact_dev_no;         //实际库存
     private String out_flag;          //出库状态-> "0": "未出库", "1": "已出库"
     private String keyWord;           //关键字
@@ -63,6 +64,14 @@ public class Storage extends BaseInfoEntity {
 
     public void setIn_confirmed_ident(String in_confirmed_ident) {
         this.in_confirmed_ident = in_confirmed_ident;
+    }
+
+    public double getIn_confirmed_type() {
+        return in_confirmed_type;
+    }
+
+    public void setIn_confirmed_type(double in_confirmed_type) {
+        this.in_confirmed_type = in_confirmed_type;
     }
 
     public String getIn_confirmed_by() {
@@ -113,12 +122,12 @@ public class Storage extends BaseInfoEntity {
         this.in_confirmed_total = in_confirmed_total;
     }
 
-    public double getIn_confirmed_type() {
-        return in_confirmed_type;
+    public double getIn_confirmed_origin() {
+        return in_confirmed_origin;
     }
 
-    public void setIn_confirmed_type(double in_confirmed_type) {
-        this.in_confirmed_type = in_confirmed_type;
+    public void setIn_confirmed_origin(double in_confirmed_origin) {
+        this.in_confirmed_origin = in_confirmed_origin;
     }
 
     public int getFact_dev_no() {

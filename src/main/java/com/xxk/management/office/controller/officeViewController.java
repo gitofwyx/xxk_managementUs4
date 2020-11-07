@@ -24,10 +24,6 @@ public class officeViewController extends BaseController {
         return new ModelAndView("/index", "result", result);
     }*/
 
-    @RequestMapping("/user_details")
-    public ModelAndView  user_details() {
-        Map<String, Object> result = new HashMap<>();
-        return new ModelAndView("/detail/user-details", "result", result);
-    }
+
 
 }

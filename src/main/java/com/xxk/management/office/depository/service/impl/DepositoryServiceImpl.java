@@ -84,7 +84,9 @@ public class DepositoryServiceImpl implements DepositoryService {
             depository.setId(depositoryId);
             depository.setDepository_ident("NO");
             depository.setDepository_no(storage.getOffices_storage_total());
+            depository.setDepository_idle_no(storage.getOffices_storage_total());
             depository.setDepository_total(storage.getOffices_storage_total());
+            depository.setDepository_idle_total(storage.getOffices_storage_total());
             depository.setDepository_flag("1");
             depository.setCreateDate(createDate);
             depository.setCreateUserId(depository.getUpdateUserId());
@@ -137,6 +139,7 @@ public class DepositoryServiceImpl implements DepositoryService {
                 }
             }
             depository.setDepository_total(storage.getOffices_storage_total());
+            depository.setDepository_idle_total(storage.getOffices_storage_total());
             depository.setUpdateDate(createDate);
 
             boolean stockResult = dao.plusDepositoryNo(depository) == 1 ? true : false;

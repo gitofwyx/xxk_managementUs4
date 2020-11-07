@@ -71,6 +71,7 @@
         <input type="hidden" name="depository_type" id="depository_type">
         <input type="hidden" name="depository_officeId" id="depository_officeId">
         <input type="hidden" name="depository_no" id="depository_no" data-rules="{required:true}">
+        <input id="depository_idle_no" name="depository_idle_no" type="hidden" data-rules="{required:true}">
         <input type="hidden" name="depository_version" id="depository_version">
         <input type="hidden" name="updateDate" id="updateDate">
         <input type="hidden" name="TD" id="TD_J" value="logout">
@@ -241,9 +242,9 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>库存总量：</label>
+                <label class="control-label"><s>*</s>科室剩余总量：</label>
                 <div class="controls">
-                    <input id="stock_total" name="stock_total" type="number" data-rules="{required:true}"
+                    <input id="depository_idle_total" name="depository_idle_total" type="number" data-rules="{required:true}"
                            readonly="readonly"  type="number" min="0" max="999" class="input-normal control-text">
                 </div>
             </div>
@@ -251,6 +252,18 @@
         <div class="row">
             <div class="control-group span2.5">
                 <input id="io_Console" name="io_Console" type="hidden"　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="in_confirmed_type" name="in_confirmed_type" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="recovery_officeId" name="recovery_officeId" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="depository_no2" name="depository_no" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="depository_idle_no2" name="depository_idle_no" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input id="stock_no" name="stock_no" type="hidden" data-rules="{required:true}">
@@ -445,7 +458,7 @@
                             {title: '&nbsp库存型号', dataIndex: 'entity_type', elCls: 'center', width: 120},
                             {title: '&nbsp库存单位', dataIndex: 'depository_unit', elCls: 'center', width: 100},
                             {title: '&nbsp库存总量', dataIndex: 'depository_total', elCls: 'center', width: 90},
-                            {title: '&nbsp使用总量', dataIndex: 'dep_in_use_total', elCls: 'center', width: 90},
+                            {title: '&nbsp剩余总量', dataIndex: 'depository_idle_total', elCls: 'center', width: 90},
                             {
                                 title: '&nbsp类型',
                                 dataIndex: 'depository_type',
@@ -616,6 +629,7 @@
                                 $("#depository_version").val(dep_entity_data.depository_version);
                                 $("#depository_id").val(dep_entity_data.id);
                                 $("#depository_no").val(dep_entity_data.depository_no);
+                                $("#depository_idle_no").val(dep_entity_data.depository_idle_no);
                                 if (typeof callback === "function") {
                                     //调用它，既然我们已经确定了它是可调用的
                                     callback(data);
@@ -737,6 +751,7 @@
 
                 //原科登记
                 function originalFunction() {
+                    select_type=[],
                     $("#delivery_id").val('');
                     input_disabled(false);
                     var mObj = GetMenus('root', offices_select);
@@ -767,7 +782,13 @@
                         handle_office();
                         stock_office_select.set('items', stock_officeSelect(offices_select,stock_office));
                         var eData = selections[0];
-                        editing_R.edit(eData);
+                        editing_R.edit({
+                            class_id:eData.class_id,
+                            entity_id:eData.entity_id,
+                            depository_type:eData.in_confirmed_type,
+                            recovery_officeId:eData.depository_officeId,
+                            depository_idle_total:eData.depository_idle_total,
+                        });
                     }
                 }
 
@@ -869,7 +890,9 @@
                     $("#offices_storage_total").val(ev.item.out_confirmed_total);
                     $("#unit_num_1").val(1);
                     var depository_no=parseInt(dep_entity_data.depository_total)+ev.item.out_confirmed_total;
+                    var depository_idle_no=parseInt(dep_entity_data.depository_idle_no)+ev.item.out_confirmed_total;
                     $("#depository_no").val(makeInNum(depository_no,ev.item.out_confirmed_proportion));
+                    $("#depository_idle_no").val(makeInNum(depository_idle_no,ev.item.out_confirmed_proportion));
                 });
 
                 //监听事件，选择科室下拉框选中
@@ -933,8 +956,10 @@
                         return;
                     }
                     var depository_no=parseInt(dep_entity_data.depository_total)+offices_storage_total;
+                    var depository_idle_no=parseInt(dep_entity_data.depository_idle_no)+offices_storage_total;
                     //$("#depository_no").val(makeInNum(depository_no,proportion));//根据总量和比例得到数量
                     $("#depository_no").val(depository_no);//根据科室库存统一都是1:1比例省去生成数量
+                    $("#depository_idle_no").val(depository_idle_no);
                 });
 
                 $("#depository_no_lock").click(function () {
@@ -990,6 +1015,7 @@
                 $("#in_confirmed_no").on('blur', function () {
                     var I_num = $("#in_confirmed_no").val();//获取入库数量no
                     var stock_proportion = $("#stock_proportion").val();//获取库存比例proportion
+                    var dep_idle_total=grid.getSelection()[0].depository_idle_total;//获取剩余科室剩余总量
                     var I_stock_total=0;//初始化入库总量值
                     if (stock_proportion != null && stock_proportion != '' && stock_proportion != undefined) {
                         if (I_num != null && I_num != '' && I_num != undefined) {
@@ -999,6 +1025,7 @@
                             //改变总量
                             I_stock_total=reckon_stock_total(I_num, stock_proportion);//生成入库总量
                             R_Form.getField('in_confirmed_total').set('value', I_stock_total);
+                            R_Form.getField('depository_idle_total').set('value', dep_idle_total-I_stock_total);
                             I_num=office_rec_select.get('picker').get('children')[0].getCount( );//获取Sto_rec_grid选项数量
                             if (I_num >0) {
                                 I_num=office_rec_select.get('picker').get('children')[0].getSelected().stock_total;//获取选择的库存记录总量（此时I_num已赋值为记录总量）

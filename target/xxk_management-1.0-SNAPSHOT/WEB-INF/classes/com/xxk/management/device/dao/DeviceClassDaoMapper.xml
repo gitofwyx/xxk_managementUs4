@@ -8,7 +8,7 @@
         <id column="id" property="value" jdbcType="VARCHAR"/>
         <result column="ent_class" property="text" jdbcType="VARCHAR"/>
         <result column="class_ident" property="class_ident" jdbcType="VARCHAR"/>
-        <result column="dev_max" property="type_max" jdbcType="VARCHAR"/>
+        <result column="dev_max" property="dev_max" jdbcType="VARCHAR"/>
         <result column="updateDate" property="updateDate" jdbcType="VARCHAR"/>
     </resultMap>
 

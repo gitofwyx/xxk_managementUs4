@@ -29,7 +29,7 @@ public class UserViewController extends BaseController {
     @RequestMapping("/user_details")
     public ModelAndView  user_details() {
         Map<String, Object> result = new HashMap<>();
-        return new ModelAndView("/detail/user-details", "result", result);
+        return new ModelAndView("/detail/user_details", "result", result);
     }
 
 }
