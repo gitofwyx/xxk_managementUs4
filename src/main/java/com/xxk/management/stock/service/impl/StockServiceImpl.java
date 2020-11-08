@@ -82,6 +82,7 @@ public class StockServiceImpl implements StockService {
                 log.error("addDepositoryWithStorage:无法获许设备或耗材ID");
                 result.put("hasError", true);
                 result.put("error", "添加出错：无法获许设备或耗材ID");
+                return result;
             }
             boolean stockResult = dao.addStock(stock) == 1 ? true : false;
             if (!(stockResult)) {

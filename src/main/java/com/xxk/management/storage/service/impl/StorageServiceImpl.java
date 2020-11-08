@@ -62,6 +62,7 @@ public class StorageServiceImpl implements StorageService {
             storage.setId(storageId);
             storage.setStock_id(stock.getId());
             storage.setIn_confirmed_ident(in_confirmed_ident);
+            storage.setIn_confirmed_type(stock.getStock_type());
             storage.setIn_confirmed_by(stock.getUpdateUserId());
             storage.setOut_flag("0");
             storage.setCreateDate(createDate);
