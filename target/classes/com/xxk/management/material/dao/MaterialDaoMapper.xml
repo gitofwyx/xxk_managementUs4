@@ -12,6 +12,12 @@
 
     </resultMap>
 
+    <resultMap id="materialStoreMap" type="java.util.HashMap">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="mat_name" property="entity_name" jdbcType="VARCHAR"/>
+        <result column="mat_type" property="entity_type" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <!--获取分页 -->
     <select id="listMaterial" parameterType="string" resultType="com.xxk.management.material.entity.Material">
         select
@@ -31,6 +37,16 @@
         and deleteFlag='0';
     </select>
 
+    <!--根据id获取入库设备的部分信息列表-->
+    <select id="getStoreMaterialById" resultMap="materialStoreMap" parameterType="java.util.List">
+        select id,mat_name,mat_type
+        from xxk_material
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and deleteFlag='0';
+    </select>
 
     <!--添加信息 -->
     <insert id="addMaterial" parameterType="com.xxk.management.material.entity.Material">
@@ -43,6 +59,12 @@
     <select id="getMaterialSelect" resultMap="materialSelectMap">
         select dev_class_id,id,mat_type,single_unit
         from xxk_material where genre_tags=#{0} and deleteFlag='0';
+    </select>
+
+    <select id="getMaterialById" parameterType="string" resultType="com.xxk.management.material.entity.Material">
+        select
+        <include refid="columns"></include>
+        from xxk_material where id=#{0} and deleteFlag='0';
     </select>
 
     <!--修改信息 -->

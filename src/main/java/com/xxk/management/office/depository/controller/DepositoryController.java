@@ -132,10 +132,18 @@ public class DepositoryController extends BaseController {
     public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage,
                                                 @RequestParam(value = "stock_record_id") String stock_record_id) {
         Map<String, Object> result = new HashMap<>();
-        stock.setId(stock_record_id);
-        stock.setClass_id(depository.getClass_id());
-        stock.setEntity_id(depository.getEntity_id());
-        depositoryService.recoveryDepository( depository,stock,storage);
+        try{
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            stock.setUpdateUserId(CurrentUserId);
+            stock.setId(stock_record_id);
+            stock.setClass_id(depository.getClass_id());
+            stock.setEntity_id(depository.getEntity_id());
+            stock.setStock_type(storage.getIn_confirmed_type());
+            depository.setUpdateUserId(CurrentUserId);
+            depositoryService.recoveryDepository( depository,stock,storage);
+        }catch  (Exception e){
+
+        }
         return result;
     }
 

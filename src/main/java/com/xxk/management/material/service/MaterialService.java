@@ -1,6 +1,7 @@
 package com.xxk.management.material.service;
 
 import com.xxk.management.material.entity.Material;
+import com.xxk.management.stock.entity.Stock;
 
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,13 @@ public interface MaterialService {
 
     public boolean addMaterial(Material material);
 
+    public Material getMaterialById(String id);
+
     public List<Map<String, Object>> getMaterialNumber(String materialId);
 
     public List<Map<String, Object>> getMaterialSelect(String tab);
+
+    public List<Map<String, Object>> getStoreMaterialById(List<String> listMatId);
 
     public List<Map<String, Object>> getMaterialByIdent(List<String> listMatId);
 
@@ -27,5 +32,7 @@ public interface MaterialService {
     public boolean plusMaterialNumber(int dev_no, String materialId);
 
     public boolean minusMaterialNumber(int dev_no, String materialId);
+
+    public Stock makeStockByMaterial(Stock stock);
 
 }

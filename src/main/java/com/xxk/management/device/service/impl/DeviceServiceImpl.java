@@ -3,6 +3,7 @@ package com.xxk.management.device.service.impl;
 import com.xxk.management.device.dao.DeviceDao;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
+import com.xxk.management.stock.entity.Stock;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,22 @@ public class DeviceServiceImpl implements DeviceService {
             return null;
         }
         return dao.getDeviceIdent();
+    }
+
+    @Override
+    public Stock makeStockByDevice(Stock stock) {
+        if ("".equals(stock.getEntity_id()) || stock.getEntity_id() == null) {
+            return null;
+        }
+        Device device=dao.getDeviceById(stock.getEntity_id());
+        if (device != null) {
+            stock.setStock_ident(device.getDev_ident());
+            stock.setClass_id(device.getDev_class_id());
+            stock.setEntity_id(device.getId());
+            stock.setCreateUserId(stock.getUpdateUserId());
+            stock.setUpdateUserId(stock.getUpdateUserId());
+        }
+        return stock;
     }
 
 }

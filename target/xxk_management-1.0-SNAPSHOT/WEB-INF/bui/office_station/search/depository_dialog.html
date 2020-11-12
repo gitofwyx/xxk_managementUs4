@@ -63,6 +63,7 @@
     </div>
 
 </div>
+<!--入科-->
 <div id="content_J" class="hide">
     <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
         <input type="hidden" name="depository_id" id="depository_id">
@@ -198,7 +199,7 @@
         </div>
         <div class="row">
             <div class="control-group span16">
-                <label class="control-label"><s>*</s>库存记录：</label>
+                <label class="control-label"><s>&nbsp*</s>库存选择：(入库科室库存)</label>
                 <div class="controls" id="office_rec_select">
                     <input id="stock_record_id" name="stock_record_id" type="hidden">
                 </div>
@@ -236,7 +237,7 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>回收时间：</label>
                 <div class="controls">
-                    <input name="out_confirmed_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
+                    <input name="in_confirmed_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
                 </div>
             </div>
         </div>
@@ -270,6 +271,9 @@
             </div>
             <div class="control-group span2.5">
                 <input id="in_confirmed_total" name="in_confirmed_total" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="depository_version2" name="depository_version" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input id="stock_version" name="stock_version" type="hidden" data-rules="{required:true}">
@@ -487,7 +491,7 @@
                             proxy: {
                                 save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                                     addUrl: '/addDepository',
-                                    updateUrl: '/updateRegUser',
+                                    updateUrl: '/recoveryDepository',
                                     removeUrl: '/delRegUserOfLogic'
                                 },
                                 method: 'POST'
@@ -785,9 +789,10 @@
                         editing_R.edit({
                             class_id:eData.class_id,
                             entity_id:eData.entity_id,
-                            depository_type:eData.in_confirmed_type,
+                            in_confirmed_type:eData.depository_type,
                             recovery_officeId:eData.depository_officeId,
                             depository_idle_total:eData.depository_idle_total,
+                            depository_version:eData.depository_version,
                         });
                     }
                 }
@@ -1015,6 +1020,7 @@
                 $("#in_confirmed_no").on('blur', function () {
                     var I_num = $("#in_confirmed_no").val();//获取入库数量no
                     var stock_proportion = $("#stock_proportion").val();//获取库存比例proportion
+                    var dep_total=grid.getSelection()[0].depository_total;//获取总科室总量
                     var dep_idle_total=grid.getSelection()[0].depository_idle_total;//获取剩余科室剩余总量
                     var I_stock_total=0;//初始化入库总量值
                     if (stock_proportion != null && stock_proportion != '' && stock_proportion != undefined) {
@@ -1025,6 +1031,12 @@
                             //改变总量
                             I_stock_total=reckon_stock_total(I_num, stock_proportion);//生成入库总量
                             R_Form.getField('in_confirmed_total').set('value', I_stock_total);
+                            if(stock_proportion==1){
+                                R_Form.getField('depository_no').set('value', dep_total-I_stock_total);
+                                R_Form.getField('depository_idle_no').set('value', dep_idle_total-I_stock_total);
+                            }
+                            //剩余库存数量更新
+                            //dep_idle_total=dep_idle_total-I_stock_total;
                             R_Form.getField('depository_idle_total').set('value', dep_idle_total-I_stock_total);
                             I_num=office_rec_select.get('picker').get('children')[0].getCount( );//获取Sto_rec_grid选项数量
                             if (I_num >0) {

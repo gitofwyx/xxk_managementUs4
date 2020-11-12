@@ -3,6 +3,7 @@ package com.xxk.management.material.service.impl;
 import com.xxk.management.material.dao.MaterialDao;
 import com.xxk.management.material.entity.Material;
 import com.xxk.management.material.service.MaterialService;
+import com.xxk.management.stock.entity.Stock;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,11 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
+    public Material getMaterialById(String id){
+        return dao.getMaterialById(id);
+    }
+
+    @Override
     public List<Map<String, Object>> getMaterialNumber(String materialId) {
         return null;
     }
@@ -45,6 +51,11 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public  List<Map<String, Object>> getMaterialSelect(String tab) {
         return dao.getMaterialSelect(tab);
+    }
+
+    @Override
+    public List<Map<String, Object>> getStoreMaterialById(List<String> listMatId) {
+        return dao.getStoreMaterialById(listMatId);
     }
 
     @Override
@@ -66,6 +77,22 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public boolean minusMaterialNumber(int dev_no, String deviceId) {
         return dao.minusMaterialNumber(dev_no,deviceId)==1?true:false;
+    }
+
+    public Stock makeStockByMaterial(Stock stock){
+
+        if ("".equals(stock.getEntity_id()) || stock.getEntity_id() == null) {
+            return null;
+        }
+        Material material=dao.getMaterialById(stock.getEntity_id());
+        if (material != null) {
+            stock.setStock_ident(material.getMat_ident());
+            stock.setClass_id(material.getDev_class_id());
+            stock.setEntity_id(material.getId());
+            stock.setCreateUserId(stock.getUpdateUserId());
+            stock.setUpdateUserId(stock.getUpdateUserId());
+        }
+        return stock;
     }
 
 }

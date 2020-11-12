@@ -60,8 +60,9 @@
     <!--更新记录 -->
     <update id="recoveryDepository" parameterType="com.xxk.management.office.depository.entity.Depository">
         update xxk_depository set depository_no=#{depository_no},depository_idle_no=#{depository_idle_no},
-        depository_total=depository_total-#{depository_total},depository_idle_total=depository_idle_total-#{depository_idle_total}
-        where entity_id=#{entity_id} and depository_idle_total>=#{depository_total} and deleteFlag='0';
+        depository_total=depository_total-#{depository_total},depository_idle_total=depository_idle_total-#{depository_idle_total},
+        depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
+        where entity_id=#{entity_id} and depository_idle_total>=#{depository_total} and depository_version=#{depository_version} and deleteFlag='0';
     </update>
 
     <!--入库更新 -->

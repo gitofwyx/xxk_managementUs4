@@ -177,6 +177,9 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错");
                 return result;
             }
+            depository.setDepository_total(storage.getIn_confirmed_total());
+            depository.setDepository_idle_total(storage.getIn_confirmed_total());
+            depository.setUpdateDate(createDate);
             boolean depositoryResult = dao.recoveryDepository(depository) == 1 ? true : false;
             if (!(depositoryResult)) {
                 log.error("stockResult:" + depositoryResult);
@@ -185,9 +188,9 @@ public class DepositoryServiceImpl implements DepositoryService {
                 return result;
             }
             if ("".equals(stock.getId()) || stock.getId() == null) {
-                result = stockService.updateStockWithStorage(stock, storage);
-            } else {
                 result = stockService.addStockWithStorage(stock, storage);
+            } else {
+                result = stockService.updateStockWithStorage(stock, storage);
             }
             if(result.get("hasError")==true){
                 throw new Exception("error");

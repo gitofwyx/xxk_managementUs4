@@ -4,6 +4,8 @@ import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.management.device.dao.DeviceDao;
 import com.xxk.management.device.entity.Device;
+import com.xxk.management.device.service.DeviceService;
+import com.xxk.management.material.service.MaterialService;
 import com.xxk.management.stock.dao.StockDao;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
@@ -32,7 +34,10 @@ public class StockServiceImpl implements StockService {
     private StockDao dao;
 
     @Autowired
-    private DeviceDao devdao;
+    private MaterialService materialService;
+
+    @Autowired
+    private DeviceService deviceService;
 
     @Autowired
     private StorageService storageService;
@@ -64,12 +69,15 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
                 return result;
             }
-            Device device = devdao.getDeviceById(stock.getEntity_id());
-            if (device != null) {
+            if("1".equals(stock.getStock_type())){
+                stock = deviceService.makeStockByDevice(stock);
+            }else if("2".equals(stock.getStock_type())||("3".equals(stock.getStock_type()))){
+                stock = materialService.makeStockByMaterial(stock);
+            }else {
+                stock=null;
+            }
+            if (stock != null) {
                 stock.setId(stockId);
-                stock.setStock_ident(device.getDev_ident());
-                stock.setClass_id(device.getDev_class_id());
-                stock.setEntity_id(device.getId());
                 stock.setStock_no(storage.getIn_confirmed_no());
                 stock.setStock_total(storage.getIn_confirmed_total());
                 stock.setStock_flag("1");
@@ -90,8 +98,8 @@ public class StockServiceImpl implements StockService {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
-                storage.setEntity_id(device.getId());
-                storage.setClass_id(device.getDev_class_id());
+                storage.setEntity_id(stock.getEntity_id());
+                storage.setClass_id(stock.getClass_id());
                 result = storageService.addStorage(stock, storage);
             }
         } catch (DuplicateKeyException e) {

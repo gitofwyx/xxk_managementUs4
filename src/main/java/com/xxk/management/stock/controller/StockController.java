@@ -6,6 +6,7 @@ import com.xxk.core.util.JsonUtils;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.device.service.DeviceService;
+import com.xxk.management.material.service.MaterialService;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
@@ -41,6 +42,9 @@ public class StockController extends BaseController {
     @Autowired
     private DeviceService deviceService;
 
+    @Autowired
+    private MaterialService materialService;
+
     @ResponseBody
     @RequestMapping("/listStock")
     public Map<String, Object> listStock(@RequestParam(value = "pageIndex") String pageIndex,
@@ -64,18 +68,21 @@ public class StockController extends BaseController {
                 result.put("rows", resultList);
                 result.put("results", 7);
             } else {
-                List<String> listDevId = new ArrayList<>();
+                List<String> listEntId = new ArrayList<>();
                 for (Stock stock : listStock) {
-                    listDevId.add(stock.getEntity_id());
+                    listEntId.add(stock.getEntity_id());
                 }
                /* Set setDevId = new  HashSet();
                 setDevId.addAll(listDevId);
                 listDevId.clear();
                 listDevId.addAll(setDevId);*/
                 List<Map<String, Object>> entityList = new ArrayList<>();
-                if (search_type == 1 || search_type == 2 || search_type == 3) {
-                    entityList = deviceService.getStoreDeviceById(listDevId);
-                } else {
+                if (search_type == 1 ) {
+                    entityList = deviceService.getStoreDeviceById(listEntId);
+                }else if( search_type == 2 || search_type == 3){
+                    entityList = materialService.getStoreMaterialById(listEntId);
+                }
+                else {
                     entityList = null;
                 }
                 if (resultList == null || entityList == null) {
