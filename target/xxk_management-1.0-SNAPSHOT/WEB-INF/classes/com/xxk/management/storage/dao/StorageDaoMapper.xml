@@ -12,6 +12,11 @@
         from xxk_in_storage where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
     </select>
 
+    <!--获取记录数 -->
+    <select id="countStorage" resultType="java.lang.Integer">
+       select count(id) from xxk_in_storage;
+    </select>
+
     <!--获取分页 -->
     <select id="listStorageByStock" parameterType="string" resultType="com.xxk.management.storage.entity.Storage">
         select

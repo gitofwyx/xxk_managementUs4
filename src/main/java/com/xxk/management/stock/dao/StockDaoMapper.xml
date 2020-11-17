@@ -21,6 +21,11 @@
         ORDER BY createDate desc limit #{pageStart},#{pageSize};
     </select>
 
+    <!--获取记录数 -->
+    <select id="countStock" parameterType="string" resultType="java.lang.Integer">
+        select count(id) from xxk_stock where stock_type=#{0};
+    </select>
+
     <!--根据id获取信息 -->
     <select id="listStockByEntityId" parameterType="string" resultType="com.xxk.management.stock.entity.Stock">
         select

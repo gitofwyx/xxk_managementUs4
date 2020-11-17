@@ -64,7 +64,7 @@ public class StorageController extends BaseController {
                 }
             }
             result.put("rows", resultList);
-            result.put("results", 7);
+            result.put("results", storageService.countStorage());
 
         } catch (Exception e) {
             log.error(e);
@@ -105,7 +105,7 @@ public class StorageController extends BaseController {
                 }
             }
             result.put("rows", resultList);
-            result.put("results", 7);
+            result.put("results", storageService.countStorage());
             result.put("userMapList", userMapList);
 
         } catch (Exception e) {

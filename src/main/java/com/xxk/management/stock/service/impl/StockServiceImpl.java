@@ -51,6 +51,11 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
+    public int countStock(String search_type) {
+        return dao.countStock(search_type);
+    }
+
+    @Override
     public List<Stock> listStockByEntityId(String entity_id, String office_id) {
         return dao.listStockByEntityId(entity_id, office_id);
     }

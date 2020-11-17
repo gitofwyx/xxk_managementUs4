@@ -66,7 +66,7 @@ public class StockController extends BaseController {
                 return result;
             } else if (listStock.isEmpty()) {
                 result.put("rows", resultList);
-                result.put("results", 7);
+                result.put("results", 0);
             } else {
                 List<String> listEntId = new ArrayList<>();
                 for (Stock stock : listStock) {
@@ -104,7 +104,7 @@ public class StockController extends BaseController {
                     }
                 }
                 result.put("rows", resultList);
-                result.put("results", 7);
+                result.put("results", stockService.countStock(Integer.toString(search_type)));
             }
         } catch (Exception e) {
             log.error(e);

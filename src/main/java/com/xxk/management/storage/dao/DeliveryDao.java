@@ -14,6 +14,8 @@ public interface DeliveryDao {
 
     public List<Delivery> listDelivery(int pageStart, int pageSize);
 
+    public int countDelivery();
+
     public List<Delivery> listDeliveryByStock(@Param("pageStart") int pageStart,
                                               @Param("pageSize") int pageSize,
                                               @Param("class_id") String class_id,

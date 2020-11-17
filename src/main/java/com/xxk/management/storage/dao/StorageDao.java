@@ -14,6 +14,8 @@ public interface StorageDao {
 
     public List<Storage> listStorage(int pageStart, int pageSize);
 
+    public int countStorage();
+
     public List<Storage> listStorageByStock(@Param("pageStart") int pageStart,
                                               @Param("pageSize") int pageSize,
                                               @Param("class_id") String class_id,

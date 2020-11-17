@@ -58,7 +58,7 @@ public class DepositoryController extends BaseController {
                 return result;
             } else if (listDepository.isEmpty()) {
                 result.put("rows", listDepository);
-                result.put("results", 7);
+                result.put("results", 0);
             } else {
                 List<String> listDevId = new ArrayList<>();
 
@@ -67,7 +67,7 @@ public class DepositoryController extends BaseController {
                 listDevId.clear();
                 listDevId.addAll(setDevId);*/
                 result.put("rows", listDepository);
-                result.put("results", 7);
+                result.put("results", depositoryService.countDepository(Integer.toString(search_type)));
             }
         } catch (Exception e) {
             log.error(e);

@@ -34,6 +34,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
+    public int countDelivery() {
+        return dao.countDelivery();
+    }
+
+    @Override
     public List<Delivery> listDeliveryByStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_id, String officeId) {
         return dao.listDeliveryByStock((pageStart - 1) * pageSize, pageSize, class_id, entity_id, stock_id, officeId);
     }

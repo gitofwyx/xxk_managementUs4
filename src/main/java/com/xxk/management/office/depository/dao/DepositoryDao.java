@@ -16,6 +16,8 @@ public interface DepositoryDao {
     public List<Depository> listDepository(@Param("pageStart") int pageStart, @Param("pageSize") int pageSize, @Param("class_id") String class_id,
                                  @Param("entity_id") String entity_id, @Param("depository_officeId") String depository_officeId, @Param("search_type") int search_type);
 
+    public int countDepository(String search_type);
+
     public List<Depository> listDepositoryByEntityId(String entity_id, String office_id);
 
     public List<Depository> getDepositoryByEntId(String entity_id);

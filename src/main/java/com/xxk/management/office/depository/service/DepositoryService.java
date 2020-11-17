@@ -16,6 +16,8 @@ public interface DepositoryService {
 
     public List<Depository> listDepository(int pageStart, int pageSize, String class_id, String entity_id, String depository_officeId, int search_type);
 
+    public int countDepository(String search_type);
+
     public List<Depository> listDepositoryByEntityId(String entity_id, String office_id);
 
     public Depository getDepositoryByEntId(String entity_id);

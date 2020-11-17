@@ -14,6 +14,8 @@ public interface StorageService {
 
     public List<Storage> listStorage(int pageStart, int pageSize);
 
+    public int countStorage();
+
     public  List<Storage> listStorageByStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_id, String officeId);
 
     public Map<String, Object> addStorage(Stock stock, Storage storage);

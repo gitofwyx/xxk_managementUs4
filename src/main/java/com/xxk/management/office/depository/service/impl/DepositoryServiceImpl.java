@@ -47,6 +47,11 @@ public class DepositoryServiceImpl implements DepositoryService {
     }
 
     @Override
+    public int countDepository(String search_type) {
+        return dao.countDepository(search_type);
+    }
+
+    @Override
     public List<Depository> listDepositoryByEntityId(String entity_id, String office_id) {
         return dao.listDepositoryByEntityId(entity_id, office_id);
     }

@@ -444,7 +444,7 @@
                                 },
                                 method: 'POST'
                             },
-                            pageSize: 6,
+                            pageSize: 12,
                             autoSync: true //保存数据后，自动更新
                         }),
                         gridCfg = Search.createGridCfg(columns, {
@@ -902,6 +902,7 @@
                     O_Form.getField('stock_no').set('value',makeInNum(O_num,proportion));
                 });
 
+                //出库科室选择
                 stock_office_tree.on('itemclick', function (ev) {
                     O_Form.getField('out_confirmed_officeId').set('value', ev.item.value);
                 });

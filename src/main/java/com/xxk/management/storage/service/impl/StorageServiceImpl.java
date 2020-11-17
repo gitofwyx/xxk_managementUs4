@@ -35,6 +35,11 @@ public class StorageServiceImpl implements StorageService {
     }
 
     @Override
+    public int countStorage() {
+        return dao.countStorage();
+    }
+
+    @Override
     public List<Storage> listStorageByStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_id, String officeId) {
         return dao.listStorageByStock((pageStart - 1) * pageSize, pageSize, class_id, entity_id, stock_id, officeId);
     }

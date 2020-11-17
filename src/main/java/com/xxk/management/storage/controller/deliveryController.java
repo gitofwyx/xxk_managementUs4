@@ -65,7 +65,7 @@ public class deliveryController extends BaseController {
 
             }
             result.put("rows", resultList);
-            result.put("results", 7);
+            result.put("results", deliveryService.countDelivery());
             result.put("userMapList", userMapList);
 
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class deliveryController extends BaseController {
                 }
             }
             result.put("rows", resultList);
-            result.put("results", 7);
+            result.put("results", deliveryService.countDelivery());
             result.put("userMapList", userMapList);
 
         } catch (Exception e) {

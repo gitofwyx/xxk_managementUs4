@@ -14,6 +14,8 @@ public interface StockService {
 
     public List<Stock> listStock(int pageStart, int pageSize,String class_id,String entity_id,String stock_office_id,int search_type);
 
+    public int countStock(String search_type);
+
     public List<Stock> listStockByEntityId(String entity_id,String office_id);
 
     public Map<String, Object> addStockWithStorage(Stock stock,Storage storage);
