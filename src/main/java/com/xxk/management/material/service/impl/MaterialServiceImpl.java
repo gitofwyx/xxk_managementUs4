@@ -29,6 +29,11 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
+    public int countMaterial() {
+        return dao.countMaterial();
+    }
+
+    @Override
     public List<Material> listMaterialById(List<String> listMatId) {
         return dao.listMaterialById(listMatId);
     }

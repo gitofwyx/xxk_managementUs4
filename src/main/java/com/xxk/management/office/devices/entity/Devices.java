@@ -10,11 +10,12 @@ public class Devices extends BaseInfoEntity {
 
     private String id;                            //
     private String class_id;                     //种类ID
-    private String device_name;                  //科室设备名
     private String  device_ident;               //设备编号
     private String device_id;                   //设备id
-    private String device_type;                   //设备型号
-    private String office_id;                   //科室id
+    private String office_unique_name;                   //科室专有名称
+    private String  device_state;            //设备状态
+    private String inventory_office_id;                   //原始出库科室id
+    private String location_office_id;                   //现在科室id
     private String  mediaOfLANId;              //通信介质id
     private String  device_origin;             //设备来源（1入科2原科）
     private String in_storage_id;             //入库ID
@@ -25,7 +26,7 @@ public class Devices extends BaseInfoEntity {
     private String related_flag;             //关联状态
     private String related_id;               //关联设备id
     private String device_location;         //设备具体位置
-    private String  device_flag;            //设备状态
+    private String  device_flag;            //设备标识
     private String devices_auditing_mark;  //设备审核标志
     private String reject_date;             //报废时间
     private String remark;                   //备注
@@ -49,14 +50,6 @@ public class Devices extends BaseInfoEntity {
         this.class_id = class_id;
     }
 
-    public String getDevice_name() {
-        return device_name;
-    }
-
-    public void setDevice_name(String device_name) {
-        this.device_name = device_name;
-    }
-
     public String getDevice_ident() {
         return device_ident;
     }
@@ -73,20 +66,36 @@ public class Devices extends BaseInfoEntity {
         this.device_id = device_id;
     }
 
-    public String getDevice_type() {
-        return device_type;
+    public String getOffice_unique_name() {
+        return office_unique_name;
     }
 
-    public void setDevice_type(String device_type) {
-        this.device_type = device_type;
+    public void setOffice_unique_name(String office_unique_name) {
+        this.office_unique_name = office_unique_name;
     }
 
-    public String getOffice_id() {
-        return office_id;
+    public String getDevice_state() {
+        return device_state;
     }
 
-    public void setOffice_id(String office_id) {
-        this.office_id = office_id;
+    public void setDevice_state(String device_state) {
+        this.device_state = device_state;
+    }
+
+    public String getInventory_office_id() {
+        return inventory_office_id;
+    }
+
+    public void setInventory_office_id(String inventory_office_id) {
+        this.inventory_office_id = inventory_office_id;
+    }
+
+    public String getLocation_office_id() {
+        return location_office_id;
+    }
+
+    public void setLocation_office_id(String location_office_id) {
+        this.location_office_id = location_office_id;
     }
 
     public String getMediaOfLANId() {

@@ -23,8 +23,8 @@ public class DevicesServiceImpl implements DevicesService {
 
 
     @Override
-    public List<Devices> listDevices(int pageStart, int pageSize) {
-        return dao.listDevices((pageStart-1)*pageSize, pageSize);
+    public List<Devices> listDevices(int pageStart, int pageSize, String class_id, String entity_id, String location_office_id) {
+        return dao.listDevices((pageStart - 1) * pageSize,pageSize,class_id,entity_id,location_office_id);
     }
 
     @Override

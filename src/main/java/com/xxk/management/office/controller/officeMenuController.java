@@ -29,13 +29,13 @@ public class officeMenuController extends BaseController {
     @RequestMapping("/depository_tab")
     public ModelAndView  depository_tab() {
         Map<String, Object> result = new HashMap<>();
-        return new ModelAndView("/office_station/search/depository_dialog", "result", result);
+        return new ModelAndView("/offices/search/depository_dialog", "result", result);
     }
 
     @RequestMapping("/devices_tab")
     public ModelAndView  material_tab() {
         Map<String, Object> result = new HashMap<>();
-        return new ModelAndView("/office_station/detail/device_dialog", "result", result);
+        return new ModelAndView("/offices/search/devices_dialog", "result", result);
     }
 
 }

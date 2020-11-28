@@ -27,6 +27,8 @@ public interface RegUserDao {
 
     public int updateRegUser(RegUser user);
 
+    public int countRegUser();
+
     public int deleteListRegUser(List<String> listStr);
 
 

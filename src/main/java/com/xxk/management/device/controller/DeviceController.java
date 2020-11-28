@@ -56,7 +56,7 @@ public class DeviceController extends BaseController {
                 return result;
             } else {
                 result.put("rows", listDevice);
-                result.put("results", 7);
+                result.put("results", deviceService.countDevice());
             }
         } catch (Exception e) {
             log.error(e);

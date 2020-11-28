@@ -14,6 +14,8 @@ public interface DeviceDao {
 
     public List<Device> listDevice(int pageStart, int pageSize);
 
+    public int countDevice();
+
     public List<Device> listDeviceById(List<String> listDevId);
 
     public int addDevice(Device device);

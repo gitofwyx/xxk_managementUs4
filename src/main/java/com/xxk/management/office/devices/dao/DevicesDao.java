@@ -1,6 +1,7 @@
 package com.xxk.management.office.devices.dao;
 
 import com.xxk.management.office.devices.entity.Devices;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.Map;
 @Repository
 public interface DevicesDao {
 
-    public List<Devices> listDevices(int pageStart, int pageSize);
+    public List<Devices> listDevices(@Param("pageStart") int pageStart, @Param("pageSize") int pageSize, @Param("class_id") String class_id,
+                                           @Param("entity_id") String entity_id, @Param("location_office_id") String location_office_id);
 
     public List<Devices> listDevicesById(List<String> listDevId);
 

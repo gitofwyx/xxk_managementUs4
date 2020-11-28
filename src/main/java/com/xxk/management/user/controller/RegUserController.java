@@ -60,7 +60,7 @@ public class RegUserController extends BaseController {
                 return result;
             } else {
                 result.put("rows", listRegUser);
-                result.put("results", 7);
+                result.put("results", rebUserService.countRegUser());
             }
         } catch (Exception e) {
             log.error(e);

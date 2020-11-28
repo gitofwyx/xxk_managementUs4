@@ -302,7 +302,7 @@
                         enumObj_genre_tags = {"1": "设备", "2": "配件", "3": "耗材"},
                         //变量初始化
                         select_data = [],
-                        select_type = [],
+                        select_type = [],//型号初始化
                         dep_entity_data = [],
                         stock_office = {},
                         dep_count_map = {},//设备种类id对应的dep_entity_data键
@@ -681,9 +681,9 @@
                     var options = {
                         /*url: "/getMaterialName?tab=" + v,*/
                         data: v,
-                        effectiveFields: ["text", "class_ident"],
-                        searchFields: ["text", "class_ident"],
-                        effectiveFieldsAlias: {text: "种类", class_ident: "编号"},
+                        effectiveFields: ["class_ident","text" ],
+                        searchFields: ["class_ident","text"],
+                        effectiveFieldsAlias: {class_ident: "编号",text: "名称"},
                         listAlign: 'auto',
                         showBtn: false,
                         autoMinWidth: true,
@@ -816,7 +816,7 @@
                     }
                 }
 
-                //选择种类下拉框选中
+                //型号获取
                 function changeEntClass(ev, i) {
                     select_type = [];
                     var Entity_data = select_data.Entity_data;

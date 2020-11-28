@@ -62,6 +62,11 @@ public class RebUserServiceImpl implements RebUserService {
     }
 
     @Override
+    public int countRegUser() {
+        return dao.countRegUser();
+    }
+
+    @Override
     public boolean deleteListRegUser(List<String> listStr) {
         return dao.deleteListRegUser(listStr)>=1?true:false;
     }

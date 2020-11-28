@@ -14,6 +14,8 @@ public interface MaterialDao {
 
     public List<Material> listMaterial(int pageStart, int pageSize);
 
+    public int countMaterial();
+
     public List<Material> listMaterialById(List<String> listMatId);
 
     public int addMaterial(Material material);

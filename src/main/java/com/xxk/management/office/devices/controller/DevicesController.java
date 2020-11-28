@@ -37,16 +37,16 @@ public class DevicesController extends BaseController {
     @ResponseBody
     @RequestMapping("/listDevices")
     public Map<String, Object> listDevices(@RequestParam(value = "pageIndex") String pageIndex,
-                                          @RequestParam(value = "limit") String limit,
-                                          @RequestParam(value = "dev_name") String dev_name,
-                                          @RequestParam(value = "dev_type") String dev_type,
-                                          @RequestParam(value = "startDate") String startDate) {
+                                           @RequestParam(value = "limit") String limit,
+                                           @RequestParam(value = "search_class_id") String class_id,//型号id
+                                           @RequestParam(value = "search_entity_id") String entity_id,//设备、耗材id
+                                           @RequestParam(value = "location_office_id") String location_office_id) {//科室id
         Map<String, Object> result = new HashMap<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
-            List<Devices> listDevice = devicesService.listDevices(pageNumber, pageSize);
+            List<Devices> listDevice = devicesService.listDevices(pageNumber, pageSize, class_id, entity_id,location_office_id);
             if (listDevice == null) {
                 log.error("获取分页出错");
                 result.put("success", false);

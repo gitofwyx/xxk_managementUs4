@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public interface DevicesService {
 
-    public List<Devices> listDevices(int pageStart, int pageSize);
+    public List<Devices> listDevices(int pageStart, int pageSize, String class_id, String entity_id, String location_office_id);
 
     public List<Devices> listDevicesById(List<String> listDevId);
 

@@ -13,6 +13,8 @@ public interface DeviceService {
 
     public List<Device> listDevice(int pageStart, int pageSize);
 
+    public int countDevice();
+
     public List<Device> listDeviceById(List<String> listDevId);
 
     public boolean addDevice(Device device);

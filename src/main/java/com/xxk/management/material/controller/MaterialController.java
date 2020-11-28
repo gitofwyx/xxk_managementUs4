@@ -55,7 +55,7 @@ public class MaterialController extends BaseController {
                 return result;
             } else {
                 result.put("rows", listDevice);
-                result.put("results", 7);
+                result.put("results", materialService.countMaterial());
             }
         } catch (Exception e) {
             log.error(e);

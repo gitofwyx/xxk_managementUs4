@@ -13,6 +13,8 @@ public interface MaterialService {
 
     public List<Material> listMaterial(int pageStart, int pageSize);
 
+    public int countMaterial();
+
     public List<Material> listMaterialById(List<String> listMatId);
 
     public boolean addMaterial(Material material);

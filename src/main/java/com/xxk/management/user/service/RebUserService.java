@@ -27,6 +27,8 @@ public interface RebUserService {
 
     public boolean updateRegUser(RegUser user);
 
+    public int countRegUser();
+
     public boolean deleteListRegUser(List<String> listStr);
 
     public Boolean addTest(RegUser user);

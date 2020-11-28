@@ -29,6 +29,11 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
+    public int countDevice() {
+        return dao.countDevice();
+    }
+
+    @Override
     public List<Device> listDeviceById(List<String> listDevId) {
         return dao.listDeviceById(listDevId);
     }
