@@ -1,6 +1,7 @@
 package com.xxk.management.office.devices.service;
 
 import com.xxk.management.office.devices.entity.Devices;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 
 import java.util.List;
 import java.util.Map;
@@ -10,11 +11,11 @@ import java.util.Map;
  */
 public interface DevicesService {
 
-    public List<Devices> listDevices(int pageStart, int pageSize, String class_id, String entity_id, String location_office_id);
+    public List<Devices> listDevices(int pageStart, int pageSize, String class_id, String device_id, String location_office_id);
 
     public List<Devices> listDevicesById(List<String> listDevId);
 
-    public boolean addDevices(Devices device);
+    public boolean addDevices(Devices devices, OfficesStorage storage);
 
     public List<Map<String, Object>> getDevicesNumber(String deviceId);
 

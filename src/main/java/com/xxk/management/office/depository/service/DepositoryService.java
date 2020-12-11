@@ -16,6 +16,8 @@ public interface DepositoryService {
 
     public List<Depository> listDepository(int pageStart, int pageSize, String class_id, String entity_id, String depository_officeId, int search_type);
 
+    public List<Depository> selectDepository(String entity_id,String depository_officeId);
+
     public int countDepository(String search_type);
 
     public List<Depository> listDepositoryByEntityId(String entity_id, String office_id);
@@ -28,7 +30,9 @@ public interface DepositoryService {
 
     public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage);
 
-    public boolean deleteListRegUser(List<String> listStr);
+    public Map<String, Object> deploymentDepository(Depository depository);
+
+    public boolean deploymentDeviceWithSingle(String depository_id,String updateUserId,String updateDate);
 
     public List<String> getDepositoryIdByIdent(String ident);
 

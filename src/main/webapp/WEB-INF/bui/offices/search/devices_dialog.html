@@ -26,6 +26,7 @@
             <div class="row" id="E_Input_console">
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>设备/耗材名称：</label>
+                    <input type="hidden" name="search_class_id" id="search_class_id">
                     <div class="controls">
                         <div class="input-group" id="devices_class_div">
                             <input type="text" id="search_devices_class"
@@ -38,6 +39,7 @@
                 </div>
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>设备/耗材型号：</label>
+                    <input type="hidden" name="search_entity_id" id="search_entity_id">
                     <div class="controls">
                         <div class="input-group" id="devices_entity_div">
                             <input type="text" id="search_devices_entity"
@@ -50,14 +52,9 @@
                 </div>
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>部署科室：</label>
+                    <input type="hidden" name="location_office_id" id="location_office_id">
                     <div class="controls">
-                        <div class="input-group" id="location_office_div">
-                            <input type="text" id="search_location_office"
-                                   name="search_location_office">
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                            </ul>
-                            <!-- /btn-group -->
-                        </div>
+                        <input name="search_office_ident" id="search_office_ident" type="text">
                     </div>
                 </div>
             </div>
@@ -82,29 +79,69 @@
 </div>
 <div id="content" class="hide">
     <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
-        <input type="hidden" name="dev_class_id" id="dev_class_id">
-        <input type="hidden" name="class_ident" id="class_ident">
-        <input type="hidden" name="dev_max" id="dev_max">
-        <input type="hidden" name="genre_tags" id="genre_tags" value="1">
-        <input type="hidden" name="class_version" id="class_version">
-        <input type="hidden" name="updateDate" id="updateDate">
-
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备名称：</label>
+                <label class="control-label"><s>*</s>部署设备：</label>
                 <div class="controls">
-                    <div class="input-group">
-                        <input type="text" class="suggest-input" id="dev_name" name="dev_name">
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        </ul>
-                        <!-- /btn-group -->
-                    </div>
+                    <input name="dev_name" type="text" data-rules="{required:true}" class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备型号：</label>
                 <div class="controls">
                     <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span16">
+                <label class="control-label"><s>*</s>&nbsp;当前科室库存:（入科未使用）</label>
+                <div class="controls" id="ori_device_select">
+                    <input id="depository_id" name="depository_id" type="hidden">
+                </div>
+                &nbsp;
+                <input type="button" id="I_Reset" name="I_Reset" class=" icon-repeat"
+                       style="width:15px;height:18px;background-color:#ffffff;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>科室设备名称：</label>
+                <div class="controls">
+                    <input name="office_unique_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>现部署科室：</label>
+                <div class="controls">
+                    <input name="location_office" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备具体位置：</label>
+                <div class="controls">
+                    <input name="device_location" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>部署时间：</label>
+                <div class="controls">
+                    <input name="device_deployment_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="class_id" name="class_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="offices_storage_officeId" name="offices_storage_officeId" type="hidden" data-rules="{required:true}">
                 </div>
             </div>
         </div>
@@ -124,311 +161,414 @@
 <script type="text/javascript" src="/js/config-min.js"></script>
 <script type="text/javascript" src="/js/suggest/bootstrap-suggest.js"></script>
 <script type="text/javascript" src="/js/suggest/dropdown.js"></script>
+<script type="text/javascript" src="/js/tree/tree_build.js"></script>
+<script type="text/javascript" src="/js/localstorageIO.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
 <script type="text/javascript">
-    BUI.use(['common/search', 'bui/form', 'bui/select'], function (Search, Form, Select) {
+    BUI.use(['common/search', 'bui/form','bui/grid', 'bui/extensions/treepicker', 'bui/select', 'bui/picker', 'bui/tree'],
+            function (Search, Form,Grid, TreePicker, Select, Picker, Tree) {
 
-        var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
-                enumObj_genre_tags = {"1": "设备"},
-                devices_data = [],//全部dev初始化
-                entity_data = [],//型号初始化
-                device_select = {},//选中的设备json
-                dev_count_map = {},//设备种类id对应的dev_name_data键
-                class_count = 0,//设备种类最大值
+                var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
+                        enumObj_genre_tags = {"1": "设备"},
+                        offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
+                        devices_data = [],//全部dev初始化
+                        entity_data = [],//型号初始化
+                        device_select = {},//选中的设备json
+                        offices_select = {},//设备种类id对应的dev_name_data键
+                        enumObj_office={},
+                        class_count = 0,//设备种类最大值
 
-        /*form = new Form.HForm({
-         srcNode: '#J_Form'
-         }),*/
-                J_Form = '',
-                editing = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'content', //设置隐藏的Dialog内容
-                    autoSave: true, //添加数据或者修改数据时，自动保存
-                    triggerCls: 'btn-edit',
-                }),
-        /*suggest = new Select.Suggest({
-         render: '#dev_name_div',
-         name: 'dev_name',
-         valueField: '#dev_class_id',
-         data: []
-         }).render(),*/
-                columns = [
-                    {title: '&nbsp设备编号', dataIndex: 'dev_ident', elCls: 'center', width: 150},
-                    {title: '&nbsp设备名称', dataIndex: 'dev_name', elCls: 'center', width: 150},
-                    {title: '&nbsp设备型号', dataIndex: 'dev_type', elCls: 'center', width: 150},
-                    {
-                        title: '&nbsp类型',
-                        dataIndex: 'genre_tags',
-                        elCls: 'center',
-                        width: 100,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj_genre_tags)
-                    },
-                    {
-                        title: '&nbsp状态',
-                        dataIndex: 'dev_flag',
-                        elCls: 'center',
-                        width: 70,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj_dev_flag)
-                    },
-                    {title: '备注', dataIndex: 'remark', elCls: 'center', width: 250},
-                    {
-                        title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
+                /*form = new Form.HForm({
+                 srcNode: '#J_Form'
+                 }),*/
+                        J_Form = '',
+                        editing = new BUI.Grid.Plugins.DialogEditing({
+                            contentId: 'content', //设置隐藏的Dialog内容
+                            autoSave: true, //添加数据或者修改数据时，自动保存
+                            triggerCls: 'btn-edit',
+                        }),
+                        //科室选择数框
+                        loc_office_tree = new Tree.TreeList({
+                            nodes: [],
+                            //store: store,
+                            //dirSelectable : false,//阻止树节点选中
+                            showLine: true //显示连接线
+                        }),
+                        loc_office_picker = new TreePicker({
+                            trigger: '#search_office_ident',
+                            //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                            width: 150,  //指定宽度
+                            children: [loc_office_tree] //配置picker内的列表
+                        }).render(),
+                        //部署科室库存选择框
+                        ori_device_grid = new Grid.Grid({
+                            idField: 'id',//选项的默认id字段
+                            columns: [
+                                {title: '库存科室', dataIndex: 'depository_officeId', elCls: 'center', width: '40%',
+                                    renderer: BUI.Grid.Format.enumRenderer(enumObj_office)},
+                                {title: '库存总量', dataIndex: 'depository_total', elCls: 'center', width: '30%'},
+                                {title: '剩余库存总量', dataIndex: 'depository_idle_total', elCls: 'center', width: '30%'},
+                                {title: '库存单位', dataIndex: 'depository_total_unit', elCls: 'center', width: '30%'},
+                            ],
+                            textGetter: function (item) { //返回选中的文本
+                                return item.depository_ident;
+                            },
+                            bbar: {
+                                //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
+                                items: [{
+                                    xclass: 'bar-item-button',
+                                    btnCls: 'button button-small',
+                                    text: '新增',
+                                   /* handler: addDepositoryBt,*/
+                                },
+                                    {
+                                        xclass: 'bar-item-text',
+                                        text: '<p style="color: #dd1144">注：新增多个库存记录可能会造成出库错误</p>'
+                                    },
+                                ]
+                            },
+                            items: [],
+                        }),
+                        ori_device_picker = new Picker.ListPicker({
+                            width: 350,  //指定宽度
+                            children: [ori_device_grid] //配置picker内的列表
+                        }),
+                        ori_device_select = new Select.Select({
+                            picker: ori_device_picker,
+                            render: '#ori_device_select',
+                            valueField: '#delivery_id',
+                            forceFit: false,
+                            multipleSelect: false,
+                            width: 350,
+                            items: []
+                        }),
 
-                        var editStr1 = '<span class="grid-command btn-edit" title="编辑设备信息">编辑</span>',
-                                delStr = '<span class="grid-command btn-del" title="删除设备信息">删除</span>';//页面操作不需要使用Search.createLink
-                        return editStr1 + delStr;
-                    }
-                    }
-                ],
-                store = Search.createStore('/listDevices', {
-                    proxy: {
-                        save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
-                            addUrl: '/addDevice',
-                            updateUrl: '/updateRegUser',
-                            removeUrl: '/delRegUserOfLogic'
-                        },
-                        method: 'POST'
-                    },
-                    pageSize: 6,
-                    autoSync: true //保存数据后，自动更新
-                }),
-                gridCfg = Search.createGridCfg(columns, {
-                    tbar: {
-                        items: [
+                        columns = [
+                            {title: '&nbsp设备编号', dataIndex: 'dev_ident', elCls: 'center', width: 150},
+                            {title: '&nbsp设备名称', dataIndex: 'dev_name', elCls: 'center', width: 150},
+                            {title: '&nbsp设备型号', dataIndex: 'dev_type', elCls: 'center', width: 150},
                             {
-                                text: '<i class="icon-pencil"></i>部署',
-                                btnCls: 'button button-small',
-                                handler: addFunction
+                                title: '&nbsp类型',
+                                dataIndex: 'genre_tags',
+                                elCls: 'center',
+                                width: 100,
+                                renderer: BUI.Grid.Format.enumRenderer(enumObj_genre_tags)
                             },
                             {
-                                text: '<i class="icon-edit"></i>维护',
-                                btnCls: 'button button-small',
-                                handler: updateFunction
+                                title: '&nbsp状态',
+                                dataIndex: 'dev_flag',
+                                elCls: 'center',
+                                width: 70,
+                                renderer: BUI.Grid.Format.enumRenderer(enumObj_dev_flag)
                             },
+                            {title: '备注', dataIndex: 'remark', elCls: 'center', width: 250},
                             {
-                                text: '<i class="icon-remove"></i>回收与转移',
-                                btnCls: 'button button-small',
-                                handler: delFunction
-                            }
-                        ]
-                    },
-                    emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
-                    plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
-                });
+                                title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
 
-        var search = new Search({
-                    store: store,
-                    gridCfg: gridCfg
-                }),
-                grid = search.get('grid'),
-                J_Form = editing.get('form');
-
-        //新增操作
-        function addFunction() {
-            /* var store = new Data.Store({
-             url: 'data.php',  //\u8bbe\u7f6e\u52a0\u8f7d\u6570\u636e\u7684URL
-             autoLoad: true    //\u521b\u5efaStore\u65f6\u81ea\u52a8\u52a0\u8f7d\u6570\u636e
-             });*/
-            /*var items = [
-             {text: '选项1', value: 'a'},
-             {text: '选项2', value: 'b'},
-             {text: '选项3', value: 'c'}
-             ]*/
-            if ($.isEmptyObject(dev_name_data)) {
-                $.ajax({
-                    url: '/getDeviceName',
-                    data: {tab: 1},
-                    type: 'GET', //GET
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            dev_name_data = data;
-                            if (!$.isEmptyObject(dev_name_data)) {
-                                /* suggest.setInternal('data', dev_name_data);
-                                 suggest.render();*/
-                                /*class_count = Math.max.apply(null, class_ident);//获取数组中的最大值*/
-                                initBsSuggest("dev_name", dev_name_data);
+                                var editStr1 = '<span class="grid-command btn-edit" title="编辑设备信息">编辑</span>',
+                                        delStr = '<span class="grid-command btn-del" title="删除设备信息">删除</span>';//页面操作不需要使用Search.createLink
+                                return editStr1 + delStr;
                             }
-                        }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus)
+                            }
+                        ],
+                        store = Search.createStore('/listDevices', {
+                            proxy: {
+                                save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
+                                    addUrl: '/addDevices',
+                                    updateUrl: '/updateRegUser',
+                                    removeUrl: '/delRegUserOfLogic'
+                                },
+                                method: 'POST'
+                            },
+                            pageSize: 6,
+                            autoSync: true //保存数据后，自动更新
+                        }),
+                        gridCfg = Search.createGridCfg(columns, {
+                            tbar: {
+                                items: [
+                                    {
+                                        text: '<i class="icon-pencil"></i>部署',
+                                        btnCls: 'button button-small',
+                                        handler: deploymentFunction
+                                    },
+                                    {
+                                        text: '<i class="icon-edit"></i>维护',
+                                        btnCls: 'button button-small',
+                                        handler: updateFunction
+                                    },
+                                    {
+                                        text: '<i class="icon-remove"></i>回收与转移',
+                                        btnCls: 'button button-small',
+                                        handler: delFunction
+                                    }
+                                ]
+                            },
+                            emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
+                            plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                        });
+
+                var search = new Search({
+                            store: store,
+                            gridCfg: gridCfg
+                        }),
+                        grid = search.get('grid'),
+                        J_Form = editing.get('form');
+                entity_selectAjax(originalSeaEntity);
+                //科室选择框数据生成
+                loc_office_tree.set('nodes', GetMenus('root', offices_data));
+
+                //部署操作
+                function deploymentFunction() {
+                    var newData = {}; //标志是新增加的记录
+                    enumObj_office[offices_select.value]=offices_select.text;
+                    ori_device_select.render();
+                    editing.add(newData, 'name'); //添加记录后，直接编辑
+                    if (device_select != {} && !$.isEmptyObject(device_select)) {
+                        J_Form.getField('class_id').set('value', device_select.dev_class_id);
+                        J_Form.getField('entity_id').set('value', device_select.value);
+                        J_Form.getField('dev_name').set('value', device_select.dev_name);
+                        J_Form.getField('dev_type').set('value', device_select.text);
                     }
-                })
-            }
-            var newData = {}; //标志是新增加的记录
-            editing.add(newData, 'name'); //添加记录后，直接编辑
-            J_Form.getField('class_ident').set('value', 0);
-            J_Form.getField('dev_max').set('value', 0);
-            J_Form.getField('class_version').set('value', 0);
-            /*if (!$.isEmptyObject(class_Date) && class_count != 0) {
-             J_Form.getField('lastUpDate').set('value', class_Date[class_count]);
-             J_Form.getField('dev_class_count').set('value', class_count);
-             }*/
-        }
-
-        //型号生成
-        function changeEntClass(ev, i) {
-            entity_data = [];
-            var Entity_data = devices_data.Entity_data;
-            for (var j = 0, len = Entity_data.length; j < len; j++) {
-                if (Entity_data[j].dev_class_id == i) {
-                    entity_data.push(Entity_data[j]);
+                    if (offices_select != {} && !$.isEmptyObject(offices_select)) {
+                        J_Form.getField('offices_storage_officeId').set('value', offices_select.value);
+                        J_Form.getField('location_office').set('value', offices_select.text);
+                    }
+                    updateDepository({
+                        entity_id:device_select.value,
+                        depository_officeId:offices_select.value,
+                    },function(data){
+                        ori_device_grid.set('items',data);
+                    });
                 }
-            }
-        }
 
-        //下拉框ajax请求entity_selectAjax
-        function entity_selectAjax(n, v, callback) {
-            var url = '/get' + n;
-            if ($.isEmptyObject(devices_data)) {
-                $.ajax({
-                    url: url,
-                    data: {tab: v},
-                    type: 'POST', //GET
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            devices_data = data;
+                //型号生成
+                function changeEntClass(ev, i) {
+                    entity_data = [];
+                    var Entity_data = devices_data.Entity_data;
+                    for (var j = 0, len = Entity_data.length; j < len; j++) {
+                        if (Entity_data[j].dev_class_id == i) {
+                            entity_data.push(Entity_data[j]);
                         }
-                        //回调函数
-                        if (typeof callback === "function") {
-                            //调用它，既然我们已经确定了它是可调用的
-                            callback();
+                    }
+                }
+
+                //下拉框ajax请求entity_selectAjax
+                function entity_selectAjax(callback) {
+                    var url = '/getDeviceSelect';
+                    if ($.isEmptyObject(devices_data)) {
+                        $.ajax({
+                            url: url,
+                            data: {tab: 1},
+                            type: 'POST', //GET
+                            async: true,    //或false,是否异步
+                            /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                            success: function (data, textStatus, jqXHR) {
+                                if (data != null && data != undefined) {
+                                    devices_data = data;
+                                }
+                                //回调函数
+                                if (typeof callback === "function") {
+                                    //调用它，既然我们已经确定了它是可调用的
+                                    callback();
+                                }
+                            },
+                            error: function (xhr, textStatus) {
+                                console.log('错误')
+                                console.log(xhr)
+                                console.log(textStatus)
+                            }
+                        })
+                    }
+                }
+
+                //科室更新函数
+                function handle_office() {
+                    if (offices_select == undefined || offices_select == null) {
+                        offices_select = localstorageIO("offices_select", "/getOfficeSelect");
+                        if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
+                            alert("浏览器不支持localstorage！");
+                            $.ajax({
+                                url: '/getOfficeSelect',
+                                type: 'POST', //GET
+                                async: true,    //或false,是否异步
+                                /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                                success: function (data, textStatus, jqXHR) {
+                                    if (data != null && data != undefined) {
+                                        offices_select = data.result;
+                                        var mObj = GetMenus('root', offices_data);
+                                        loc_office_tree.set('nodes', mObj);
+                                        //belong_to_select.set('items', offices_select);
+                                    }
+                                },
+                                error: function (xhr, textStatus) {
+                                    console.log('错误')
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                }
+                            })
                         }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus)
                     }
-                })
-            }
-        }
+                }
 
-        //下拉提示框bsSuggest
-        function initBsSuggest(t, cla, v, callback) {
-            var options = {
-                /*url: "/getMaterialName?tab=" + v,*/
-                data: v,
-                effectiveFields: ["text", "class_ident"],
-                searchFields: ["text", "class_ident"],
-                effectiveFieldsAlias: {class_ident: "编号", text: "名称"},
-                listAlign: 'auto',
-                showBtn: false,
-                autoMinWidth: true,
-                getDataMethod: 'data',
-                idField: "value",
-                keyField: "text",
-                clearable: true,
-            };
-            if (t == 1) {
-                $("#" + cla).bsSuggest('init', options).on('onDataRequestSuccess', function (e, result) {
-                    console.log('onDataRequestSuccess: ', result);
-                }).on('onSetSelectValue', function (e, keyword, data) {
-                    console.log('onSetSelectValue: ', keyword, data);
-                    //回调函数
-                    if (typeof callback === "function") {
-                        //调用它，既然我们已经确定了它是可调用的
-                        callback(keyword, data);
+                //根据设备、耗材ID获取科室库存
+                function updateDepository(data,callback) {
+                    $.ajax({
+                        url: '/selectDepositoryForDeployment',
+                        type: 'POST', //GET
+                        data: data,
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            if (data != null && data != undefined) {
+                                if (typeof callback === "function") {
+                                    //调用它，既然我们已经确定了它是可调用的
+                                    callback(data.listDepository);
+                                }
+                            } else {
+                                $("#depository_version").val(0);
+                            }
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus);
+                            BUI.Message.Alert('参数不能为空','error');
+                        }
+                    })
+                }
+
+                //下拉提示框bsSuggest
+                function initBsSuggest(t, cla, v, callback) {
+                    var options = {
+                        /*url: "/getMaterialName?tab=" + v,*/
+                        data: v,
+                        effectiveFields: ["text", "class_ident"],
+                        searchFields: ["text", "class_ident"],
+                        effectiveFieldsAlias: {class_ident: "编号", text: "名称"},
+                        listAlign: 'auto',
+                        showBtn: false,
+                        autoMinWidth: true,
+                        getDataMethod: 'data',
+                        idField: "value",
+                        keyField: "text",
+                        clearable: true,
+                    };
+                    if (t == 1) {
+                        $("#" + cla).bsSuggest('init', options).on('onDataRequestSuccess', function (e, result) {
+                            console.log('onDataRequestSuccess: ', result);
+                        }).on('onSetSelectValue', function (e, keyword, data) {
+                            console.log('onSetSelectValue: ', keyword, data);
+                            //回调函数
+                            if (typeof callback === "function") {
+                                //调用它，既然我们已经确定了它是可调用的
+                                callback(keyword, data);
+                            }
+
+                        }).on('onUnsetSelectValue', function () {
+                            console.log('onUnsetSelectValue');
+                        });
+                    }
+                    else if (t == 0) {
+                        $("#" + cla).bsSuggest('destroy');
                     }
 
-                });
-            }
-            else if (t == 0) {
-                $("#" + cla).bsSuggest('destroy');
-            }
+                };
 
-        };
-
-        //初始化BsSuggest
-        function originalSeaEntity() {
-            if (!$.isEmptyObject(devices_data)) {
-                initBsSuggest(1, "search_devices_class", {value: devices_data.Class_data}, function (K, data) {
-                    initBsSuggest(0, "delivery_entity_type");
-                    $('#devices_entity_div').replaceWith('<div class="input-group" id="devices_entity_div"> ' +
-                            '<input type="text" id="search_devices_entity" name="search_devices_entity"> ' +
-                            '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
-                    if (!$.isEmptyObject(data)) {
-                        changeEntClass(K, data.value);
-                        initBsSuggest(1, "search_devices_entity", {value: entity_data}, function (K, data) {
-                            if (!$("#entity_record_id").val() && $("#entity_record_id").val() != undefined) {
-                                $("#entity_record_id").val(data.value);
+                //初始化BsSuggest
+                function originalSeaEntity(v) {
+                    if (!$.isEmptyObject(devices_data)) {
+                        initBsSuggest(1, "search_devices_class", {value: devices_data.Class_data}, function (K, data) {
+                            $("#search_class_id").val(data.value);
+                            initBsSuggest(0, "search_devices_entity");
+                            $('#devices_entity_div').replaceWith('<div class="input-group" id="devices_entity_div"> ' +
+                                    '<input type="text" id="search_devices_entity" name="search_devices_entity"> ' +
+                                    '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
+                            if (!$.isEmptyObject(data)) {
+                                changeEntClass(K, data.value);
+                                initBsSuggest(1, "search_devices_entity", {value: entity_data}, function (K, data) {
+                                    $("#search_entity_id").val(data.value);
+                                    device_select = data;
+                                });
                             }
                         });
                     }
+                };
+
+                //编辑操作
+                function updateFunction() {
+                    var selections = grid.getSelection();
+                    if (selections.length == 0) {
+                        return;
+                    } else if (selections.length != 1) {
+                        BUI.Message.Alert('一次只能编辑一条记录！！');
+                        return;
+                    } else {
+                        var eData = selections[0];
+                        editing.edit(eData);
+                    }
+                }
+
+                //删除操作
+                function delFunction() {
+                    var selections = grid.getSelection();
+                    items(selections);
+                }
+
+                function items(items) {
+                    var ids = [];
+                    BUI.each(items, function (item) {
+                        ids.push(item.id);
+                    });
+
+                    if (ids.length) {
+                        BUI.Message.Confirm('确认要删除选中的记录么？', function () {
+                            store.save('remove', {ids: ids});
+                        }, 'question');
+                    }
+                }
+
+                //监听事件，删除一条记录
+                grid.on('cellclick', function (ev) {
+                    var sender = $(ev.domTarget); //点击的Dom
+                    if (sender.hasClass('btn-del')) {
+                        var record = ev.record;
+                        items([record]);
+                    }
                 });
-            }
-        };
+                /*suggest.on('change', function (ev) {
+                 if (dev_name_data != undefined || dev_name_data != null) {
+                 var dev_class_id = J_Form.getField('dev_class_id').get("value");
+                 var c = dev_count_map[dev_class_id];
+                 J_Form.getField('class_ident').set('value', dev_name_data[c].class_ident);
+                 J_Form.getField('type_max').set('value', dev_name_data[c].type_max);
+                 J_Form.getField('lastUpDate').set('value', dev_name_data[c].updateDate);
+                 }
+                 });*/
 
-        //编辑操作
-        function updateFunction() {
-            var selections = grid.getSelection();
-            if (selections.length == 0) {
-                return;
-            } else if (selections.length != 1) {
-                BUI.Message.Alert('一次只能编辑一条记录！！');
-                return;
-            } else {
-                var eData = selections[0];
-                editing.edit(eData);
-            }
-        }
+                /*J_Form.on('beforesubmit', function (ev) {
+                 alert('beforesubmit');
+                 return false;
+                 })*/
 
-        //删除操作
-        function delFunction() {
-            var selections = grid.getSelection();
-            items(selections);
-        }
+                loc_office_tree.on('itemclick', function (ev) {
+                    $("#location_office_id").val(ev.item.value);
+                    offices_select=ev.item;
+                });
 
-        function items(items) {
-            var ids = [];
-            BUI.each(items, function (item) {
-                ids.push(item.id);
+                loc_office_picker.on('change',function(ev){
+                    alert("1");
+                });
+
+                editing.on('accept', function (ev) {
+                    dev_name_data = [];
+                })
+
             });
-
-            if (ids.length) {
-                BUI.Message.Confirm('确认要删除选中的记录么？', function () {
-                    store.save('remove', {ids: ids});
-                }, 'question');
-            }
-        }
-
-        //监听事件，删除一条记录
-        grid.on('cellclick', function (ev) {
-            var sender = $(ev.domTarget); //点击的Dom
-            if (sender.hasClass('btn-del')) {
-                var record = ev.record;
-                items([record]);
-            }
-        });
-        /*suggest.on('change', function (ev) {
-         if (dev_name_data != undefined || dev_name_data != null) {
-         var dev_class_id = J_Form.getField('dev_class_id').get("value");
-         var c = dev_count_map[dev_class_id];
-         J_Form.getField('class_ident').set('value', dev_name_data[c].class_ident);
-         J_Form.getField('type_max').set('value', dev_name_data[c].type_max);
-         J_Form.getField('lastUpDate').set('value', dev_name_data[c].updateDate);
-         }
-         });*/
-
-        /*J_Form.on('beforesubmit', function (ev) {
-         alert('beforesubmit');
-         return false;
-         })*/
-
-        editing.on('accept', function (ev) {
-            dev_name_data = [];
-        })
-
-    });
 </script>
 
 </body>

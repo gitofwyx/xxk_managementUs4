@@ -78,6 +78,25 @@ public class DepositoryController extends BaseController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/selectDepositoryForDeployment", method = RequestMethod.POST)
+    public Map<String, Object> selectDepositoryForDeployment(@RequestParam(value = "entity_id") String entity_id,//库存科室id
+                                                             @RequestParam(value = "depository_officeId") String depository_officeId) {//类别
+        Map<String, Object> result = new HashMap<>();
+        try {
+            List<Depository> listDepository = depositoryService.selectDepository(entity_id, depository_officeId);
+            if (listDepository == null) {
+                return null;
+            }
+            result.put("listDepository", listDepository);
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "获取出错");
+        }
+        return result;
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/getDepositoryByEntId", method = RequestMethod.POST)
     public Map<String, Object> getDepositoryByEntId(@RequestParam(value = "entity_record_id") String entity_record_id) {
         Map<String, Object> result = new HashMap<>();
@@ -90,7 +109,7 @@ public class DepositoryController extends BaseController {
             result.put("success", true);
         } catch (Exception e) {
             result.put("hasError", true);
-            result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
+            result.put("error", "设备获取出错！" + e.getCause().getLocalizedMessage());
             log.error(e);
         }
         return result;
@@ -122,7 +141,6 @@ public class DepositoryController extends BaseController {
             result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
             log.error(e);
         }
-
         return result;
         //return "system/index";
     }
@@ -130,9 +148,9 @@ public class DepositoryController extends BaseController {
     @ResponseBody
     @RequestMapping("/recoveryDepository")
     public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage,
-                                                @RequestParam(value = "stock_record_id") String stock_record_id) {
+                                                  @RequestParam(value = "stock_record_id") String stock_record_id) {
         Map<String, Object> result = new HashMap<>();
-        try{
+        try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             stock.setUpdateUserId(CurrentUserId);
             stock.setId(stock_record_id);
@@ -140,8 +158,8 @@ public class DepositoryController extends BaseController {
             stock.setEntity_id(depository.getEntity_id());
             stock.setStock_type(storage.getIn_confirmed_type());
             depository.setUpdateUserId(CurrentUserId);
-            depositoryService.recoveryDepository( depository,stock,storage);
-        }catch  (Exception e){
+            depositoryService.recoveryDepository(depository, stock, storage);
+        } catch (Exception e) {
 
         }
         return result;

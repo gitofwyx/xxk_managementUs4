@@ -14,7 +14,7 @@ import java.util.Map;
 public interface DevicesDao {
 
     public List<Devices> listDevices(@Param("pageStart") int pageStart, @Param("pageSize") int pageSize, @Param("class_id") String class_id,
-                                           @Param("entity_id") String entity_id, @Param("location_office_id") String location_office_id);
+                                           @Param("device_id") String device_id, @Param("location_office_id") String location_office_id);
 
     public List<Devices> listDevicesById(List<String> listDevId);
 

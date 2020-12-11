@@ -8,8 +8,10 @@ import com.xxk.management.device.entity.DeviceClass;
 import com.xxk.management.device.service.DeviceClassService;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.storage.entity.Delivery;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,16 +66,16 @@ public class DevicesController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addDevices")
-    public Map<String, Boolean> addDevices(Devices devices, Delivery Delivery,
-                                          @RequestParam(value = "lastUpDate") String lastUpDate) {
+    public Map<String, Boolean> addDevices(Devices devices, OfficesStorage officesStorage,
+                                           @RequestParam(value = "depository_id") String depository_id) {
         Map<String, Boolean> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
-        String deviceId = UUIdUtil.getUUID();
-        String deviceClassId = UUIdUtil.getUUID();
-        String dev_ident = "";
         try {
-            devices.setDelivery_id(Delivery.getId());
-            boolean Result = devicesService.addDevices(devices);
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            devices.setCreateUserId(CurrentUserId);
+            officesStorage.setDepository_id(depository_id);
+            officesStorage.setOffices_storage_type("1");
+            boolean Result = devicesService.addDevices(devices,officesStorage);
             if (!(Result)) {
                 result.put("success", false);
             } else {

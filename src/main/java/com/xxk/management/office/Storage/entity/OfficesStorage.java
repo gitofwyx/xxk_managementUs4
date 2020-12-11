@@ -8,12 +8,17 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class OfficesStorage extends BaseInfoEntity {
     private String id;
+    private String class_id;           //设备\耗材id
     private String entity_id;           //设备\耗材id
+    private String offices_entity_id;           //科室设备\耗材id
     private String entity_name;           //设备\耗材名
     private String entity_type;           //设备\耗材型号
     private String depository_id;         //科室库存id
     private String offices_storage_ident; //科室设备\耗材流动编号
+    private String offices_storage_type; //设备\耗材类别（1.设备2.配件3.耗材）
+    private String offices_storage_genre; //流动类别（1.入科2.部署3.回收4.调用5.借用）
     private String offices_storage_by;//科室设备\耗材流动确认人
+    private String original_storage_officeId;//原科室id
     private String offices_storage_officeId;//设备\耗材流动科室
     private String offices_storage_date;    //科室设备\耗材流动时间
     private double offices_storage_no;  //科室设备\耗材流动数量
@@ -33,12 +38,28 @@ public class OfficesStorage extends BaseInfoEntity {
         this.id = id;
     }
 
+    public String getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
+    }
+
     public String getEntity_id() {
         return entity_id;
     }
 
     public void setEntity_id(String entity_id) {
         this.entity_id = entity_id;
+    }
+
+    public String getOffices_entity_id() {
+        return offices_entity_id;
+    }
+
+    public void setOffices_entity_id(String offices_entity_id) {
+        this.offices_entity_id = offices_entity_id;
     }
 
     public String getEntity_name() {
@@ -73,12 +94,36 @@ public class OfficesStorage extends BaseInfoEntity {
         this.offices_storage_ident = offices_storage_ident;
     }
 
+    public String getOffices_storage_type() {
+        return offices_storage_type;
+    }
+
+    public void setOffices_storage_type(String offices_storage_type) {
+        this.offices_storage_type = offices_storage_type;
+    }
+
+    public String getOffices_storage_genre() {
+        return offices_storage_genre;
+    }
+
+    public void setOffices_storage_genre(String offices_storage_genre) {
+        this.offices_storage_genre = offices_storage_genre;
+    }
+
     public String getOffices_storage_by() {
         return offices_storage_by;
     }
 
     public void setOffices_storage_by(String offices_storage_by) {
         this.offices_storage_by = offices_storage_by;
+    }
+
+    public String getOriginal_storage_officeId() {
+        return original_storage_officeId;
+    }
+
+    public void setOriginal_storage_officeId(String original_storage_officeId) {
+        this.original_storage_officeId = original_storage_officeId;
     }
 
     public String getOffices_storage_officeId() {

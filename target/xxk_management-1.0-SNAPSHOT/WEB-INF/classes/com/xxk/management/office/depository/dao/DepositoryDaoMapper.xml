@@ -23,6 +23,13 @@
     </select>
 
     <!--获取记录数 -->
+    <select id="selectDepositoryWithOfficeEnt" resultType="com.xxk.management.office.depository.entity.Depository">
+        select
+        <include refid="columns"></include>
+        from xxk_depository where entity_id=#{0} and depository_officeId=#{1} and deleteFlag='0';
+    </select>
+
+    <!--获取记录数 -->
     <select id="countDepository" parameterType="string" resultType="java.lang.Integer">
         select count(id) from xxk_depository where depository_type=#{0};
     </select>
@@ -76,6 +83,28 @@
         depository_idle_no=#{depository_idle_no},depository_idle_total=depository_idle_total+#{depository_idle_total},
         depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
          where entity_id=#{entity_id} and depository_version=#{depository_version} and deleteFlag='0';
+    </update>
+
+    <!--入库更新 -->
+    <update id="reduceDepositoryIdleNo" parameterType="com.xxk.management.office.depository.entity.Depository">
+        update xxk_depository set depository_idle_no=#{depository_idle_no},
+        depository_idle_total=depository_idle_total-#{depository_idle_total},
+        depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
+        where entity_id=#{entity_id}
+         and #{depository_idle_total}>=1
+         and #{depository_idle_total}>=depository_idle_total
+         and depository_version=#{depository_version}
+         and deleteFlag='0';
+    </update>
+
+    <!--单个设备部署减一 -->
+    <update id="deploymentDeviceWithSingle">
+        update xxk_depository set depository_idle_no=depository_idle_no-1,
+        depository_idle_total=depository_idle_total-1,
+        depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
+        where id=#{depository_id}
+        and depository_idle_total>=1
+        and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->

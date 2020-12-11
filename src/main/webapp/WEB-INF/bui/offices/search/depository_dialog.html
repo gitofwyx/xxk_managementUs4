@@ -617,19 +617,18 @@
                 }
 
                 //根据设备、耗材ID获取科室库存
-                function updateDepository(recId,callback) {
+                function updateDepository(data,callback) {
+                    $("#entity_record_id").val(data.entity_id);
                     $.ajax({
-                        url: '/getDepositoryByEntId',
+                        url: '/selectDepositoryForDeployment',
                         type: 'POST', //GET
-                        data: {
-                            entity_record_id: recId,
-                        },
+                        data: data,
                         async: true,    //或false,是否异步
                         /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
                         dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                         success: function (data, textStatus, jqXHR) {
                             if (data != null && data != undefined) {
-                                dep_entity_data = data.Object;
+                                dep_entity_data = data.listDepository[0];
                                 $("#depository_version").val(dep_entity_data.depository_version);
                                 $("#depository_id").val(dep_entity_data.id);
                                 $("#depository_no").val(dep_entity_data.depository_no);
@@ -641,7 +640,6 @@
                             } else {
                                 $("#depository_version").val(0);
                             }
-                            $("#entity_record_id").val(recId);
                         },
                         error: function (xhr, textStatus) {
                             console.log('错误')
@@ -741,7 +739,10 @@
                                         $("#entity_record_id").val(data.value);
                                         $("#offices_storage_unit").val(data.single_unit);
                                         $("#offices_storage_proportion").val(1);
-                                        updateDepository(data.value);
+                                        updateDepository({
+                                            entity_id:data.value,
+                                            depository_officeId:$("#depository_officeId").val(),
+                                        });
                                         $("#unit_num_1").val(1);
                                     }
                                 });
@@ -873,7 +874,10 @@
                 office_dep_select.on('change', function (ev) {
                     input_disabled(true);
                     input_console(true);
-                    updateDepository(ev.item.entity_id);
+                    updateDepository({
+                        entity_id:ev.item.entity_id,
+                        depository_officeId:$("#depository_officeId").val(),
+                    });
                     var entity_select = select_data.Entity_data.find(function (ele, index) {
                         return ele.value == ev.item.entity_id;
                     });
@@ -921,6 +925,7 @@
                                 } else {
                                     office_dep_grid.set('items', []);
                                 }
+                                $("#depository_officeId").val( ev.item.value);
                             },
                             error: function (xhr, textStatus) {
                                 console.log('错误')
@@ -929,10 +934,6 @@
                             }
                         })
                     }//if语句判断是否获取到设备ID
-                });
-
-                dep_office_tree.on('itemclick', function (ev) {
-                    J_Form.getField('depository_officeId').set('value', ev.item.value);
                 });
 
                 search_office_tree.on('itemclick', function (ev) {

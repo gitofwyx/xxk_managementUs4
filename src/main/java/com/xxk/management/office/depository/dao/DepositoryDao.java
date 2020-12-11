@@ -16,6 +16,8 @@ public interface DepositoryDao {
     public List<Depository> listDepository(@Param("pageStart") int pageStart, @Param("pageSize") int pageSize, @Param("class_id") String class_id,
                                  @Param("entity_id") String entity_id, @Param("depository_officeId") String depository_officeId, @Param("search_type") int search_type);
 
+    public List<Depository> selectDepositoryWithOfficeEnt(String entity_id,String depository_officeId);
+
     public int countDepository(String search_type);
 
     public List<Depository> listDepositoryByEntityId(String entity_id, String office_id);
@@ -35,5 +37,11 @@ public interface DepositoryDao {
     public int recoveryDepository(Depository depository);
 
     public int plusDepositoryNo(Depository depository);
+
+    public int reduceDepositoryIdleNo(Depository depository);
+
+    public int deploymentDeviceWithSingle(@Param("depository_id") String depository_id,
+                                          @Param("updateUserId") String updateUserId,
+                                          @Param("updateDate") String updateDate);
 
 }

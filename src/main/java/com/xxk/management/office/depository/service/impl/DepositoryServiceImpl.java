@@ -47,6 +47,15 @@ public class DepositoryServiceImpl implements DepositoryService {
     }
 
     @Override
+    public List<Depository> selectDepository(String entity_id, String depository_officeId) {
+        List<Depository> res = dao.selectDepositoryWithOfficeEnt(entity_id,depository_officeId);
+        if(res.size() == 0) {
+            return null;
+        }
+        return res;
+    }
+
+    @Override
     public int countDepository(String search_type) {
         return dao.countDepository(search_type);
     }
@@ -106,7 +115,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             } else {
                 storage.setEntity_id(depository.getEntity_id());
                 storage.setOffices_storage_total(depository.getDepository_total());
-                result = storageService.addOfficesStorage(depository, storage,"1");
+                result = storageService.addOfficesStorage(depository, storage,"1");//“1”代表入科标记
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -155,7 +164,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             } else {
                 //入库记录
                 storage.setEntity_id(depository.getEntity_id());
-                result = storageService.addOfficesStorage(depository, storage,"1");
+                result = storageService.addOfficesStorage(depository, storage,"1");//“1”代表入科标记
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -187,7 +196,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             depository.setUpdateDate(createDate);
             boolean depositoryResult = dao.recoveryDepository(depository) == 1 ? true : false;
             if (!(depositoryResult)) {
-                log.error("stockResult:" + depositoryResult);
+                log.error("depositoryResult:" + depositoryResult);
                 result.put("hasError", true);
                 result.put("error", "添加出错");
                 return result;
@@ -212,10 +221,44 @@ public class DepositoryServiceImpl implements DepositoryService {
         return result;
     }
 
+    //部署操作（减未使用库存）
     @Override
-    public boolean deleteListRegUser(List<String> listStr) {
-        return false;
+    public Map<String, Object> deploymentDepository(Depository depository) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String stockId = UUIdUtil.getUUID();
+        try {
+            if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
+                log.info("recoveryDepository:出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                return result;
+            }
+            depository.setUpdateDate(createDate);
+            boolean depositoryResult = dao.reduceDepositoryIdleNo(depository) == 1 ? true : false;
+            if (!(depositoryResult)) {
+                log.error("depositoryResult:" + depositoryResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                return result;
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
     }
+
+    @Override
+    public boolean deploymentDeviceWithSingle(String depository_id, String updateUserId, String updateDate) {
+        return dao.deploymentDeviceWithSingle(depository_id,updateUserId,updateDate)==1 ? true : false;
+    }
+
 
     @Override
     public List<String> getDepositoryIdByIdent(String ident) {
