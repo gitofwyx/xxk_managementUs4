@@ -7,9 +7,11 @@ function reckon_stock_total(num, stock_proportion) {  //（输入的库存数量
   stock_proportion = parseInt(stock_proportion);//防止比例数输入为小数
   if(parseFloat(num)!=unit){
     unit=unit*stock_proportion;
-    return unit+parseInt(decimal);
+    num=unit+parseInt(decimal);
+    return parseFloat(num).toFixed(2);
   }
-  return unit*stock_proportion;
+  num=unit*stock_proportion;
+  return parseFloat(num).toFixed(2);
 }
 
 //根据比例调整库存数量
@@ -21,7 +23,7 @@ function calculate_amount(num, stock_proportion) { //数量，比例数
   stock_proportion = parseInt(stock_proportion);//防止比例数输入为小数
   decimal=parseInt(decimal);
   if(parseFloat(num)==unit){
-    return num;
+    return parseFloat(num).toFixed(2);
   }
   else if (decimal >= stock_proportion) {
     var mu = parseInt(decimal / stock_proportion);//求小数部分有多少单位数量
@@ -32,11 +34,12 @@ function calculate_amount(num, stock_proportion) { //数量，比例数
     }
     num = unit + decimal;
   }
-  return num;
+  return parseFloat(num).toFixed(2);
 }
 
 //根据库存总量生成库存数量
 function makeInNum(total, stock_proportion) { //总量，比例数
+  stock_proportion=parseInt(stock_proportion);
   var num=total%stock_proportion;
   while (num>=1){
     num= num/10;
@@ -45,7 +48,15 @@ function makeInNum(total, stock_proportion) { //总量，比例数
   if(!num||num=='NaN'){
     return 0;
   }
-  return num;
+  return parseFloat(num).toFixed(2);
+}
+
+//数量根据比例重置
+function conversion_Num(num, no_1,no_2){
+  no_1=parseInt(no_1);
+  no_2=parseInt(no_2);
+  no_1=reckon_stock_total(num,no_1);
+  return makeInNum(no_1,no_2);
 }
 
 //库存科室下拉框数据生成

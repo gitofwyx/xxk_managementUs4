@@ -69,6 +69,7 @@
         <input type="hidden" name="depository_id" id="depository_id">
         <input type="hidden" name="class_record_id" id="class_record_id" data-rules="{required:true}">
         <input type="hidden" name="entity_record_id" id="entity_record_id" data-rules="{required:true}">
+        <input type="hidden" name="offices_storage_genre" id="offices_storage_genre" data-rules="{required:true}">
         <input type="hidden" name="depository_type" id="depository_type">
         <input type="hidden" name="depository_officeId" id="depository_officeId">
         <input type="hidden" name="depository_no" id="depository_no" data-rules="{required:true}">
@@ -503,17 +504,17 @@
                             tbar: {
                                 items: [
                                     {
-                                        text: '<i class="icon-indent-left"></i>入科登记',
+                                        text: '<i class="icon-edit"></i>入科登记',
                                         btnCls: 'button button-small',
                                         handler: entryFunction
                                     },
                                     {
-                                        text: '<i class="icon-edit"></i>原科登记',
+                                        text: '<i class="icon-pencil"></i>原科登记',
                                         btnCls: 'button button-small',
                                         handler: originalFunction
                                     },
                                     {
-                                        text: '<i class="icon-indent-right"></i>回收操作',
+                                        text: '<i class="icon-shopping-cart"></i>回收操作',
                                         btnCls: 'button button-small',
                                         handler: recoveryFunction
                                     },
@@ -631,8 +632,6 @@
                                 dep_entity_data = data.listDepository[0];
                                 $("#depository_version").val(dep_entity_data.depository_version);
                                 $("#depository_id").val(dep_entity_data.id);
-                                $("#depository_no").val(dep_entity_data.depository_no);
-                                $("#depository_idle_no").val(dep_entity_data.depository_idle_no);
                                 if (typeof callback === "function") {
                                     //调用它，既然我们已经确定了它是可调用的
                                     callback(data);
@@ -668,6 +667,7 @@
                     var newData = {isNew: true}; //标志是新增加的记录
                     editing_J.add(newData, 'name'); //添加记录后，直接编辑
                     office_dep_grid.set('items', []);
+                    $("#offices_storage_genre").val('1');
                 }
 
                 function addDepositoryBt() {
@@ -773,6 +773,7 @@
                     editing_J.add(newData, 'name'); //添加记录后，直接编辑
                     office_dep_grid.set('items', []);
                     $("#depository_type").val(search_type_select.getSelectedValue());
+                    $("#offices_storage_genre").val('2');
                 }
 
                 //回收
@@ -877,6 +878,11 @@
                     updateDepository({
                         entity_id:ev.item.entity_id,
                         depository_officeId:$("#depository_officeId").val(),
+                    },function(){
+                        var depository_no=parseInt(dep_entity_data.depository_total)+parseInt(ev.item.out_confirmed_total);
+                        var depository_idle_no=parseInt(dep_entity_data.depository_idle_total)+parseInt(ev.item.out_confirmed_total);
+                        $("#depository_no").val(makeInNum(depository_no,1));
+                        $("#depository_idle_no").val(makeInNum(depository_idle_no,1));
                     });
                     var entity_select = select_data.Entity_data.find(function (ele, index) {
                         return ele.value == ev.item.entity_id;
@@ -894,14 +900,10 @@
                     $("#depository_type").val(ev.item.out_confirmed_type);
                     $("#out_confirmed_total").val(ev.item.out_confirmed_total);
                     $("#offices_storage_unit").val(ev.item.out_confirmed_unit);
-                    $("#offices_storage_no").val(ev.item.out_confirmed_no);
-                    $("#offices_storage_proportion").val(ev.item.out_confirmed_proportion);
+                    $("#offices_storage_no").val(conversion_Num(ev.item.out_confirmed_no,ev.item.out_confirmed_proportion,1));
+                    $("#offices_storage_proportion").val(1);
                     $("#offices_storage_total").val(ev.item.out_confirmed_total);
                     $("#unit_num_1").val(1);
-                    var depository_no=parseInt(dep_entity_data.depository_total)+ev.item.out_confirmed_total;
-                    var depository_idle_no=parseInt(dep_entity_data.depository_idle_no)+ev.item.out_confirmed_total;
-                    $("#depository_no").val(makeInNum(depository_no,ev.item.out_confirmed_proportion));
-                    $("#depository_idle_no").val(makeInNum(depository_idle_no,ev.item.out_confirmed_proportion));
                 });
 
                 //监听事件，选择科室下拉框选中
@@ -961,8 +963,9 @@
                     if(dep_entity_data.depository_total==undefined&&!dep_entity_data.depository_total){
                         return;
                     }
-                    var depository_no=parseInt(dep_entity_data.depository_total)+offices_storage_total;
-                    var depository_idle_no=parseInt(dep_entity_data.depository_idle_no)+offices_storage_total;
+                    //统一科室库存都是1:1比例省去生成重新数量，总量相加得数量
+                    var depository_no=parseInt(dep_entity_data.depository_total)+parseInt(offices_storage_total);
+                    var depository_idle_no=parseInt(dep_entity_data.depository_idle_total)+parseInt(offices_storage_total);
                     //$("#depository_no").val(makeInNum(depository_no,proportion));//根据总量和比例得到数量
                     $("#depository_no").val(depository_no);//根据科室库存统一都是1:1比例省去生成数量
                     $("#depository_idle_no").val(depository_idle_no);

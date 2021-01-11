@@ -126,6 +126,7 @@ public class DepositoryController extends BaseController {
         try {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            depository.setId(depository_id);
             depository.setUpdateUserId(CurrentUserId);
             depository.setClass_id(class_record_id);
             depository.setEntity_id(entity_record_id);

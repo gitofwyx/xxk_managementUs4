@@ -77,6 +77,84 @@
     </div>
 
 </div>
+<div id="Content_D" class="hide">
+    <form id="D_Form" class="form-horizontal" action="" autocomplete="off">
+        <input type="hidden" name="office_ident" id="office_ident">
+        <div id="tab"></div>
+        <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
+        <div class="row">
+            <div class="control-group span16">
+                <label class="control-label"><s>*</s>库存记录：</label>
+                <div class="controls" id="stock_record_select">
+                    <input id="stock_record_id" name="stock_record_id" type="hidden">
+                </div>
+                &nbsp;
+                <button type="button" id="depository_no_lock" name=""
+                        style="width:40px;height:23px;margin-left:5px;background-color:#dddddd;">新增</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备名称：</label>
+                <div class="controls">
+                    <input name="dev_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备型号：</label>
+                <div class="controls">
+                    <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>库存总量：</label>
+                <div class="controls">
+                    <input id="stock_total2" name="stock_total" type="number" data-rules="{required:true}"
+                           readonly="readonly" type="number" min="0" max="999" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>出库数量：</label>
+                <div class="controls">
+                    <input name="out_confirmed_no" type="number" id="out_confirmed_no" value="1"
+                           data-rules="{required:true}"
+                           min="0.1" max="999" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="out_confirmed_officeId" name="out_confirmed_officeId" type="hidden"
+                           data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="out_confirmed_total" name="out_confirmed_total" type="hidden"
+                           data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="stock_no2" name="stock_no" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="stock_record_id2" name="stock_record_id" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_name" name="entity_name" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
+            </div>
+        </div>
+    </form>
+</div>
 <div id="content" class="hide">
     <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
         <div class="row">
@@ -203,6 +281,11 @@
                  srcNode: '#J_Form'
                  }),*/
                         J_Form = '',
+                        editing_D = new BUI.Grid.Plugins.DialogEditing({
+                            contentId: 'Content_D', //设置隐藏的Dialog内容
+                            autoSave: true, //添加数据或者修改数据时，自动保存
+                            triggerCls: 'btn-edit',
+                        }),
                         editing = new BUI.Grid.Plugins.DialogEditing({
                             contentId: 'content', //设置隐藏的Dialog内容
                             autoSave: true, //添加数据或者修改数据时，自动保存
@@ -220,6 +303,46 @@
                             //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                             width: 150,  //指定宽度
                             children: [loc_office_tree] //配置picker内的列表
+                        }).render(),
+                //出库配置库存选择框
+                        Sto_rec_grid = new Grid.Grid({
+                            idField: 'id',//选项的默认id字段
+                            columns: [
+                                {title: '库存编号', dataIndex: 'stock_ident', elCls: 'center', width: '30%'},
+                                {title: '数量', dataIndex: 'stock_no', elCls: 'center', width: '20%'},
+                                {title: '单位', dataIndex: 'stock_unit', elCls: 'center', width: '20%'},
+                                {title: '总量', dataIndex: 'stock_total', elCls: 'center', width: '30%'},
+                            ],
+                            textGetter: function (item) { //返回选中的文本
+                                return item.stock_ident;
+                            },
+                            bbar: {
+                                //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
+                                items: [{
+                                    xclass: 'bar-item-button',
+                                    btnCls: 'button button-small',
+                                    text: '新增'
+                                },
+                                    {
+                                        xclass: 'bar-item-text',
+                                        text: '<p style="color: #dd1144">注：新增多个库存记录可能会造成出库错误</p>'
+                                    },
+                                ]
+                            },
+                            items: [],
+                        }),
+                        stock_record_picker = new Picker.ListPicker({
+                            width: 300,  //指定宽度
+                            children: [Sto_rec_grid] //配置picker内的列表
+                        }),
+                        stock_record_select = new Select.Select({
+                            picker: stock_record_picker,
+                            render: '#stock_record_select',
+                            valueField: '#stock_record_id',
+                            forceFit: false,
+                            multipleSelect: false,
+                            width: 300,
+                            items: []
                         }).render(),
                 //部署科室库存选择框
                         ori_device_grid = new Grid.Grid({
@@ -305,9 +428,9 @@
                             tbar: {
                                 items: [
                                     {
-                                        text: '<i class=" icon-map-marker"></i>部署',
+                                        text: '<i class="icon-cog"></i>设备配置',
                                         btnCls: 'button button-small',
-                                        handler: deploymentFunction
+                                        handler: outDealFunction
                                     },
                                     {
                                         text: '<i class=" icon-wrench"></i>维护',
@@ -315,14 +438,14 @@
                                         handler: updateFunction
                                     },
                                     {
-                                        text: '<i class="icon-shopping-cart"></i>回收与转移',
+                                        text: '<i class="icon-hand-right"></i>出库',
                                         btnCls: 'button button-small',
-                                        handler: delFunction
-                                    }
+                                        handler: ''
+                                    },
                                 ]
                             },
                             emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
-                            plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                            plugins: [editing, editing_D, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                         });
 
                 var search = new Search({
@@ -335,28 +458,9 @@
                 //科室选择框数据生成
                 loc_office_tree.set('nodes', GetMenus('root', offices_data));
 
-                //部署操作
-                function deploymentFunction() {
-                    var newData = {}; //标志是新增加的记录
-                    enumObj_office[offices_select.value] = offices_select.text;
-                    ori_device_select.render();
-                    editing.add(newData, 'name'); //添加记录后，直接编辑
-                    if (device_select != {} && !$.isEmptyObject(device_select)) {
-                        J_Form.getField('class_id').set('value', device_select.dev_class_id);
-                        J_Form.getField('entity_id').set('value', device_select.value);
-                        J_Form.getField('dev_name').set('value', device_select.dev_name);
-                        J_Form.getField('dev_type').set('value', device_select.text);
-                    }
-                    if (offices_select != {} && !$.isEmptyObject(offices_select)) {
-                        J_Form.getField('offices_storage_officeId').set('value', offices_select.value);
-                        J_Form.getField('location_office').set('value', offices_select.text);
-                    }
-                    updateDepository({
-                        entity_id: device_select.value,
-                        depository_officeId: offices_select.value,
-                    }, function (data) {
-                        ori_device_grid.set('items', data);
-                    });
+                //出库操作
+                function outDealFunction() {
+                    editing_D.add();
                 }
 
                 //型号生成
@@ -591,10 +695,6 @@
                 loc_office_tree.on('itemclick', function (ev) {
                     $("#location_office_id").val(ev.item.value);
                     offices_select = ev.item;
-                });
-
-                loc_office_picker.on('change', function (ev) {
-                    alert("1");
                 });
 
                 editing.on('accept', function (ev) {

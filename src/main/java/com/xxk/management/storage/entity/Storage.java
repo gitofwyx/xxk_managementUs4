@@ -11,6 +11,7 @@ public class Storage extends BaseInfoEntity {
     private String class_id;           //种类id
     private String entity_id;           //设备id
     private String stock_id;           //设备id
+    private String stock_entity_id;           //设备id
     private String in_confirmed_ident; //库存编号
     private String in_confirmed_type;  //'设备\耗材种类
     private String in_confirmed_by;    //确认人
@@ -56,6 +57,14 @@ public class Storage extends BaseInfoEntity {
 
     public void setStock_id(String stock_id) {
         this.stock_id = stock_id;
+    }
+
+    public String getStock_entity_id() {
+        return stock_entity_id;
+    }
+
+    public void setStock_entity_id(String stock_entity_id) {
+        this.stock_entity_id = stock_entity_id;
     }
 
     public String getIn_confirmed_ident() {

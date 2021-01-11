@@ -13,6 +13,7 @@ public class Delivery extends BaseInfoEntity {
     private String entity_name;           //设备\耗材名
     private String entity_type;           //设备\耗材型号
     private String stock_id;
+    private String stock_entity_id;
     private String out_confirmed_ident; //出库编号
     private String out_confirmed_type;//设备\耗材种类
     private String out_confirmed_by;//确认人
@@ -74,6 +75,14 @@ public class Delivery extends BaseInfoEntity {
 
     public void setStock_id(String stock_id) {
         this.stock_id = stock_id;
+    }
+
+    public String getStock_entity_id() {
+        return stock_entity_id;
+    }
+
+    public void setStock_entity_id(String stock_entity_id) {
+        this.stock_entity_id = stock_entity_id;
     }
 
     public String getOut_confirmed_ident() {

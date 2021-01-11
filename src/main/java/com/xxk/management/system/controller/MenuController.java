@@ -68,6 +68,12 @@ public class MenuController extends BaseController {
         return new ModelAndView("/search/material_dialog", "result", result);
     }
 
+    @RequestMapping("/stock_devices_tab")
+    public ModelAndView  stock_devices_tab() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/search/stock_devices_dialog", "result", result);
+    }
+
     @RequestMapping("/registration_tab")
     public ModelAndView  registration_tab() {
         Map<String, Object> result = new HashMap<>();

@@ -13,6 +13,8 @@ public interface DevicesService {
 
     public List<Devices> listDevices(int pageStart, int pageSize, String class_id, String device_id, String location_office_id);
 
+    public int countDevices();
+
     public List<Devices> listDevicesById(List<String> listDevId);
 
     public boolean addDevices(Devices devices, OfficesStorage storage);
@@ -24,6 +26,8 @@ public interface DevicesService {
     public List<Map<String, Object>> getStoreDevicesById(List<String> listDevId);
 
     public List<Map<String, Object>> getDevicesIdent();  //获取设备编号
+
+    public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status);
 
     public boolean plusDevicesNumber(int dev_no, String devicesId);
 

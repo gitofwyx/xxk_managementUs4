@@ -2,10 +2,12 @@ package com.xxk.management.office.devices.controller;
 
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
+import com.xxk.core.util.JsonUtils;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.device.entity.DeviceClass;
 import com.xxk.management.device.service.DeviceClassService;
+import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
@@ -33,6 +35,9 @@ public class DevicesController extends BaseController {
     private static Logger log = Logger.getLogger(DevicesController.class);
 
     @Autowired
+    private DeviceService deviceService;
+
+    @Autowired
     private DevicesService devicesService;
 
 
@@ -44,18 +49,50 @@ public class DevicesController extends BaseController {
                                            @RequestParam(value = "search_entity_id") String entity_id,//设备、耗材id
                                            @RequestParam(value = "location_office_id") String location_office_id) {//科室id
         Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> resultList = new ArrayList<>();
         try {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
-            List<Devices> listDevice = devicesService.listDevices(pageNumber, pageSize, class_id, entity_id,location_office_id);
+            List<Devices> listDevice = devicesService.listDevices(pageNumber, pageSize, class_id, entity_id, location_office_id);
             if (listDevice == null) {
                 log.error("获取分页出错");
                 result.put("success", false);
                 return result;
+            } else if (listDevice.isEmpty()) {
+                result.put("rows", resultList);
+                result.put("results", 0);
             } else {
-                result.put("rows", listDevice);
-                result.put("results", 7);
+                List<String> listEntId = new ArrayList<>();
+                for (Devices device : listDevice) {
+                    listEntId.add(device.getDevice_id());
+                }
+               /* Set setDevId = new  HashSet();
+                setDevId.addAll(listDevId);
+                listDevId.clear();
+                listDevId.addAll(setDevId);*/
+                List<Map<String, Object>> entityList = new ArrayList<>();
+                entityList = deviceService.getStoreDeviceById(listEntId);
+                if ( entityList == null) {
+                    log.error("获取分页出错");
+                    result.put("hasError", true);
+                    result.put("error", "获取出错");
+                    return result;
+                } else {
+                    for (Devices device : listDevice) {
+                        Map<String, Object> resultMap = new HashMap<>();
+                        for (Map<String, Object> entityMap : entityList) {
+                            if (device.getDevice_id().equals(entityMap.get("id"))) {
+                                resultMap.put("entity_name", entityMap.get("entity_name"));
+                                resultMap.put("entity_type", entityMap.get("entity_type"));
+                            }
+                        }
+                        resultMap.putAll(JsonUtils.toMap(device));
+                        resultList.add(resultMap);
+                    }
+                }
+                result.put("rows", resultList);
+                result.put("results", devicesService.countDevices());
             }
         } catch (Exception e) {
             log.error(e);
@@ -66,16 +103,21 @@ public class DevicesController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addDevices")
-    public Map<String, Boolean> addDevices(Devices devices, OfficesStorage officesStorage,
-                                           @RequestParam(value = "depository_id") String depository_id) {
-        Map<String, Boolean> result = new HashMap<>();
+    public Map<String, Object> addDevices(Devices devices, OfficesStorage officesStorage,
+                                          @RequestParam(value = "depository_id") String depository_id) {
+        Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         try {
+            if ("".equals(depository_id) || depository_id == null) {
+                result.put("hasError", true);
+                result.put("error", "设备更新出错！");
+                return result;
+            }
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             devices.setCreateUserId(CurrentUserId);
             officesStorage.setDepository_id(depository_id);
             officesStorage.setOffices_storage_type("1");
-            boolean Result = devicesService.addDevices(devices,officesStorage);
+            boolean Result = devicesService.addDevices(devices, officesStorage);
             if (!(Result)) {
                 result.put("success", false);
             } else {
@@ -107,6 +149,27 @@ public class DevicesController extends BaseController {
         } catch (Exception e) {
             log.error(e);
             return null;
+        }
+        return result;
+    }
+
+    //获取未部署的设备
+    @ResponseBody
+    @RequestMapping("/getDevicesDeployment")
+    public Map<String, Object> getDevicesDeployment(@RequestParam(value = "deviceId") String deviceId,
+                                                    @RequestParam(value = "officeId") String officeId) {
+        Map<String, Object> result = new HashMap<>();
+        //List<Map<String, Object>> dev_count = new ArrayList<>();
+        try {
+            List<Devices> listDevices=devicesService.getDevicesWithStatus(deviceId,officeId,"1");
+            if (listDevices == null) {
+                return null;
+            }
+            result.put("listDevices", listDevices);
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "获取出错");
         }
         return result;
     }

@@ -70,7 +70,6 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
             officesStorage.setId(officesStorageId);
             officesStorage.setDepository_id(depository.getId());
             officesStorage.setOffices_storage_ident(out_confirmed_ident);
-            officesStorage.setOffices_storage_genre("1");
             officesStorage.setOffices_storage_by(depository.getUpdateUserId());
             officesStorage.setOffices_storage_officeId(depository.getDepository_officeId());
             officesStorage.setOffices_storage_date(createDate);

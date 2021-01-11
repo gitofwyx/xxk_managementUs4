@@ -16,6 +16,8 @@ public interface DevicesDao {
     public List<Devices> listDevices(@Param("pageStart") int pageStart, @Param("pageSize") int pageSize, @Param("class_id") String class_id,
                                            @Param("device_id") String device_id, @Param("location_office_id") String location_office_id);
 
+    public int countDevices();
+
     public List<Devices> listDevicesById(List<String> listDevId);
 
     public int addDevices(Devices device);
@@ -27,6 +29,8 @@ public interface DevicesDao {
     public List<Map<String, Object>> getStoreDevicesById(List<String> listDevId);
 
     public List<Map<String, Object>> getDevicesIdent();   //获取编号
+
+    public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status);
 
     public int plusDevicesNumber(int dev_no, String deviceId);   //更新设备数量 （增加）
 

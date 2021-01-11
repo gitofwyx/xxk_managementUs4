@@ -6,9 +6,10 @@ import com.xxk.management.office.depository.service.DepositoryService;
 import com.xxk.management.office.devices.dao.DevicesDao;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
+import com.xxk.management.office.devices.service.StockDevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.office.storage.service.OfficesStorageService;
-import com.xxk.management.storage.service.StorageService;
+import com.xxk.management.storage.entity.Delivery;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -22,9 +23,9 @@ import java.util.Map;
  * Created by Administrator on 2017/3/15.
  */
 @Service
-public class DevicesServiceImpl implements DevicesService {
+public class StockDevicesServiceImpl implements StockDevicesService {
 
-    private static Logger log = Logger.getLogger(DevicesServiceImpl.class);
+    private static Logger log = Logger.getLogger(StockDevicesServiceImpl.class);
 
     @Autowired
     private DevicesDao dao;
@@ -38,37 +39,32 @@ public class DevicesServiceImpl implements DevicesService {
 
     @Override
     public List<Devices> listDevices(int pageStart, int pageSize, String class_id, String device_id, String location_office_id) {
-        return dao.listDevices((pageStart - 1) * pageSize,pageSize,class_id,device_id,location_office_id);
+        return dao.listDevices((pageStart - 1) * pageSize, pageSize, class_id, device_id, location_office_id);
     }
 
     @Override
     public int countDevices() {
-        return dao.countDevices();
+        return 0;
     }
 
     @Override
-    public List<Devices> listDevicesById(List<String> listDevId) {
-        return dao.listDevicesById(listDevId);
-    }
-
-    @Override
-    public boolean addDevices(Devices devices, OfficesStorage storage) {
+    public boolean addStockDevices(Devices devices, Delivery delivery) {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String devicesId = UUIdUtil.getUUID();
-        boolean devicesResult=false;
+        boolean devicesResult = false;
         try {
 
             devices.setId(devicesId);
-            devices.setClass_id(storage.getClass_id());
-            devices.setDevice_id(storage.getEntity_id());
+            devices.setClass_id(delivery.getClass_id());
+            devices.setDevice_id(delivery.getEntity_id());
             devices.setDevice_ident("NO");
             devices.setDevice_state("0");
-            devices.setLocation_office_id(storage.getOffices_storage_officeId());
-            devices.setInventory_office_id(storage.getOffices_storage_officeId());
+            devices.setLocation_office_id(delivery.getOut_confirmed_officeId());
+            devices.setInventory_office_id(delivery.getOut_confirmed_officeId());
             devices.setDevice_origin("1");
-            devices.setDevice_deployment_status("1");
+            devices.setDevice_deployment_status("0");
             devices.setCreateDate(createDate);
             devices.setUpdateUserId(devices.getCreateUserId());
             devices.setUpdateDate(createDate);
@@ -80,13 +76,10 @@ public class DevicesServiceImpl implements DevicesService {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
-                storage.setEntity_id(devices.getDevice_id());
-                storage.setOffices_entity_id(devicesId);
-                result = storageService.addOfficesStorage(devices,storage);
-                if("true".equals(result.get("hasError"))){
+                if ("true".equals(result.get("hasError"))) {
                     return false;
                 }
-                devicesResult=depositoryService.deploymentDeviceWithSingle(storage.getDepository_id(),storage.getUpdateUserId(),createDate);
+
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -100,45 +93,11 @@ public class DevicesServiceImpl implements DevicesService {
         return devicesResult;
     }
 
-    @Override
-    public List<Map<String, Object>> getDevicesNumber(String devicesId) {
-        return dao.getDevicesNumber(devicesId);
-    }
-
-    @Override
-    public  List<Map<String, Object>> getDevicesSelect() {
-        return dao.getDevicesSelect();
-    }
-
-    @Override
-    public List<Map<String, Object>> getStoreDevicesById(List<String> listDevId) {
-        return dao.getStoreDevicesById(listDevId);
-    }
-
-    @Override
-    public List<Map<String, Object>> getDevicesIdent() {
-        if(dao.getDevicesIdent().size()!=1){
-            log.error("getDeviceIdent:获取设备编号错误");
-            return null;
-        }
-        return dao.getDevicesIdent();
-    }
-
     //根据部署状态获取设备
     @Override
-    public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status) {
+    public List<Devices> getDevicesWithStatus(String deviceId, String officeId, String status) {
 
-        return dao.getDevicesWithStatus(deviceId,officeId,status);
-    }
-
-    @Override
-    public boolean plusDevicesNumber(int dev_no,String devicesId) {
-        return dao.plusDevicesNumber(dev_no,devicesId)==1?true:false;
-    }
-
-    @Override
-    public boolean minusDevicesNumber(int dev_no, String devicesId) {
-        return dao.minusDevicesNumber(dev_no,devicesId)==1?true:false;
+        return dao.getDevicesWithStatus(deviceId, officeId, status);
     }
 
 }
