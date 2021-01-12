@@ -430,7 +430,7 @@
                                     {
                                         text: '<i class="icon-cog"></i>设备配置',
                                         btnCls: 'button button-small',
-                                        handler: outDealFunction
+                                        handler: devDealFunction
                                     },
                                     {
                                         text: '<i class=" icon-wrench"></i>维护',
@@ -459,7 +459,7 @@
                 loc_office_tree.set('nodes', GetMenus('root', offices_data));
 
                 //出库操作
-                function outDealFunction() {
+                function devDealFunction() {
                     editing_D.add();
                 }
 

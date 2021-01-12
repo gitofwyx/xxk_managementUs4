@@ -48,7 +48,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
     }
 
     @Override
-    public boolean addStockDevices(Devices devices, Delivery delivery) {
+    public boolean addStockDevices(Devices devices, OfficesStorage storage) {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
@@ -57,12 +57,12 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         try {
 
             devices.setId(devicesId);
-            devices.setClass_id(delivery.getClass_id());
-            devices.setDevice_id(delivery.getEntity_id());
+            devices.setClass_id(storage.getClass_id());
+            devices.setDevice_id(storage.getEntity_id());
             devices.setDevice_ident("NO");
             devices.setDevice_state("0");
-            devices.setLocation_office_id(delivery.getOut_confirmed_officeId());
-            devices.setInventory_office_id(delivery.getOut_confirmed_officeId());
+            devices.setLocation_office_id(storage.getOffices_storage_officeId());
+            devices.setInventory_office_id(storage.getOffices_storage_officeId());
             devices.setDevice_origin("1");
             devices.setDevice_deployment_status("0");
             devices.setCreateDate(createDate);
@@ -76,10 +76,12 @@ public class StockDevicesServiceImpl implements StockDevicesService {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
-                if ("true".equals(result.get("hasError"))) {
+                storage.setEntity_id(devices.getDevice_id());
+                storage.setOffices_entity_id(devicesId);
+                result = storageService.addOfficesStorage(devices,storage);
+                if("true".equals(result.get("hasError"))){
                     return false;
                 }
-
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
