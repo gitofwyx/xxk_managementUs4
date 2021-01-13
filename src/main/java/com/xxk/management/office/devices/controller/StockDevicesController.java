@@ -4,6 +4,8 @@ import com.xxk.core.file.BaseController;
 import com.xxk.core.util.JsonUtils;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.material.service.MaterialService;
+import com.xxk.management.office.devices.entity.Devices;
+import com.xxk.management.office.devices.service.StockDevicesService;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.entity.Delivery;
@@ -35,76 +37,63 @@ public class StockDevicesController extends BaseController {
     private StockService stockService;
 
     @Autowired
-    private DeviceService deviceService;
+    private StockDevicesService stockDevicesService;
 
     @Autowired
-    private MaterialService materialService;
+    private DeviceService deviceService;
 
     @ResponseBody
     @RequestMapping("/listStockDevices")
     public Map<String, Object> listStockDevices(@RequestParam(value = "pageIndex") String pageIndex,
-                                         @RequestParam(value = "limit") String limit,
-                                         @RequestParam(value = "search_class_id") String class_id,//型号id
-                                         @RequestParam(value = "search_entity_id") String entity_id,//型号id
-                                         @RequestParam(value = "search_office_id") String stock_office_id,//库存科室id
-                                         @RequestParam(value = "search_type") int search_type) {//类别
+                                           @RequestParam(value = "limit") String limit,
+                                           @RequestParam(value = "search_class_id") String class_id,//型号id
+                                           @RequestParam(value = "search_entity_id") String entity_id,//设备、耗材id
+                                           @RequestParam(value = "location_office_id") String location_office_id) {//科室id
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
         try {
-            int pageNumber = Integer.parseInt(pageIndex) + 1;//页数，因为pageindex 从0开始要加1
-            int pageSize = Integer.parseInt(limit);         //单页记录数
-            List<Stock> listStock = stockService.listStock(pageNumber, pageSize, class_id, entity_id, stock_office_id, search_type);
-            if (listStock == null) {
-                log.error("listStock:获取分页出错");
-                result.put("hasError", true);
-                result.put("error", "获取出错");
+            int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
+            int pageSize = Integer.parseInt(limit);
+
+            List<Devices> listStockDevice = stockDevicesService.listDevices(pageNumber, pageSize, class_id, entity_id, location_office_id);
+            if (listStockDevice == null) {
+                log.error("获取分页出错");
+                result.put("success", false);
                 return result;
-            } else if (listStock.isEmpty()) {
+            } else if (listStockDevice.isEmpty()) {
                 result.put("rows", resultList);
                 result.put("results", 0);
             } else {
                 List<String> listEntId = new ArrayList<>();
-                for (Stock stock : listStock) {
-                    listEntId.add(stock.getEntity_id());
+                for (Devices device : listStockDevice) {
+                    listEntId.add(device.getDevice_id());
                 }
-               /* Set setDevId = new  HashSet();
-                setDevId.addAll(listDevId);
-                listDevId.clear();
-                listDevId.addAll(setDevId);*/
                 List<Map<String, Object>> entityList = new ArrayList<>();
-                if (search_type == 1 ) {
-                    entityList = deviceService.getStoreDeviceById(listEntId);
-                }else if( search_type == 2 || search_type == 3){
-                    entityList = materialService.getStoreMaterialById(listEntId);
-                }
-                else {
-                    entityList = null;
-                }
-                if (resultList == null || entityList == null) {
+                entityList = listStockDevice.getStoreDeviceById(listEntId);
+                if ( entityList == null) {
                     log.error("获取分页出错");
                     result.put("hasError", true);
                     result.put("error", "获取出错");
                     return result;
                 } else {
-                    for (Stock stock : listStock) {
+                    for (Devices device : listStockDevice) {
                         Map<String, Object> resultMap = new HashMap<>();
                         for (Map<String, Object> entityMap : entityList) {
-                            if (stock.getEntity_id().equals(entityMap.get("id"))) {
+                            if (device.getDevice_id().equals(entityMap.get("id"))) {
                                 resultMap.put("entity_name", entityMap.get("entity_name"));
                                 resultMap.put("entity_type", entityMap.get("entity_type"));
                             }
                         }
-                        resultMap.putAll(JsonUtils.toMap(stock));
+                        resultMap.putAll(JsonUtils.toMap(device));
                         resultList.add(resultMap);
                     }
                 }
                 result.put("rows", resultList);
-                result.put("results", stockService.countStock(Integer.toString(search_type)));
+                result.put("results", stockDevicesService.countDevices());
             }
         } catch (Exception e) {
             log.error(e);
-            result.put("hasError", true);
-            result.put("error", "获取出错");
+            result.put("success", false);
         }
         return result;
     }
@@ -112,7 +101,7 @@ public class StockDevicesController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/addStockDevices", method = RequestMethod.POST)
     public Map<String, Object> addStockDevices(Stock stock, Storage storage,
-                                        @RequestParam(value = "stock_record_id") String stock_record_id) {
+                                               @RequestParam(value = "stock_record_id") String stock_record_id) {
         Map<String, Object> result = new HashMap<>();
         try {
 

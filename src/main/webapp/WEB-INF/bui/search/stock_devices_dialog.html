@@ -50,11 +50,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="control-group span8">
-                    <label class="control-label"><s>*</s>部署科室：</label>
-                    <input type="hidden" name="location_office_id" id="location_office_id">
-                    <div class="controls">
-                        <input name="search_office_ident" id="search_office_ident" type="text">
+                <div class="control-group span9">
+                    <label class="control-label">库存科室：</label>
+                    <div class="controls" id="search_office_select">
+                        <input name="search_office_id" id="search_office_id" type="hidden">
                     </div>
                 </div>
             </div>
@@ -252,6 +251,7 @@
 <script type="text/javascript" src="/js/suggest/dropdown.js"></script>
 <script type="text/javascript" src="/js/tree/tree_build.js"></script>
 <script type="text/javascript" src="/js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tools/data_handling.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -291,19 +291,13 @@
                             autoSave: true, //添加数据或者修改数据时，自动保存
                             triggerCls: 'btn-edit',
                         }),
-                //科室选择数框
-                        loc_office_tree = new Tree.TreeList({
-                            nodes: [],
-                            //store: store,
-                            //dirSelectable : false,//阻止树节点选中
-                            showLine: true //显示连接线
-                        }),
-                        loc_office_picker = new TreePicker({
-                            trigger: '#search_office_ident',
-                            //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
-                            width: 150,  //指定宽度
-                            children: [loc_office_tree] //配置picker内的列表
-                        }).render(),
+                //搜索栏科室下拉框
+                        search_office_select = new Select.Select({
+                            render: '#search_office_select',
+                            valueField: '#search_office_id',
+                            multipleSelect: false,
+                            items: []
+                        }).render();
                 //出库配置库存选择框
                         Sto_rec_grid = new Grid.Grid({
                             idField: 'id',//选项的默认id字段
@@ -455,8 +449,7 @@
                         grid = search.get('grid'),
                         J_Form = editing.get('form');
                 entity_selectAjax(originalSeaEntity);
-                //科室选择框数据生成
-                loc_office_tree.set('nodes', GetMenus('root', offices_data));
+                search_office_select.set('items', stock_officeSelect());
 
                 //出库操作
                 function devDealFunction() {
@@ -692,7 +685,7 @@
                  return false;
                  })*/
 
-                loc_office_tree.on('itemclick', function (ev) {
+                stock_office_select.on('change', function (ev) {
                     $("#location_office_id").val(ev.item.value);
                     offices_select = ev.item;
                 });
