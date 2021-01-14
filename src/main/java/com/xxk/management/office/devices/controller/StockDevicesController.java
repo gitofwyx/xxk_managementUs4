@@ -69,7 +69,7 @@ public class StockDevicesController extends BaseController {
                     listEntId.add(device.getDevice_id());
                 }
                 List<Map<String, Object>> entityList = new ArrayList<>();
-                entityList = listStockDevice.getStoreDeviceById(listEntId);
+                entityList = deviceService.getStoreDeviceById(listEntId);
                 if ( entityList == null) {
                     log.error("获取分页出错");
                     result.put("hasError", true);
