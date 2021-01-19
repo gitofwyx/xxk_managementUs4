@@ -455,7 +455,17 @@
 
             //出库操作
             function devDealFunction() {
-                editing_D.add();
+                var newData = {}; //标志是新增加的记录
+                enumObj_office[offices_select.value] = offices_select.text;
+                ori_device_select.render();
+                editing_D.add(newData, 'name'); //添加记录后，直接编辑
+                if (device_select != {} && !$.isEmptyObject(device_select)) {
+                    J_Form.getField('class_id').set('value', device_select.dev_class_id);
+                    J_Form.getField('entity_id').set('value', device_select.value);
+                    J_Form.getField('dev_name').set('value', device_select.dev_name);
+                    J_Form.getField('dev_type').set('value', device_select.text);
+                }
+                getStockByEntity();
             }
 
             //型号生成
@@ -629,6 +639,30 @@
                     }
                 }
             };
+
+            function getStockByEntity(v) {
+                if (edv.entity_id != null && edv.entity_id != '' && edv.entity_id != undefined) {
+                    $.ajax({
+                        url: '/listStockByEntityId',
+                        data: {
+                            entity_id: v.entity_id,
+                            office_id: v.stock_office_id
+                        },
+                        type: 'POST', //GET
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus)
+                        }
+                    })
+                }//if语句判断是否获取到设备ID
+            }
 
             //编辑操作
             function updateFunction() {
