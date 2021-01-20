@@ -144,7 +144,14 @@
             </div>
             <div class="row">
                 <div class="control-group span2.5">
-                    <input id="stock_record_id2" name="stock_record_id" type="hidden" data-rules="{required:true}">
+                    <input id="class_id2" name="class_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="offices_storage_officeId2" name="offices_storage_officeId" type="hidden"
+                           data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span2.5">
@@ -156,7 +163,7 @@
         </div>
     </form>
 </div>
-<div id="content" class="hide">
+<div id="content_J" class="hide">
     <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
         <div class="row">
             <div class="control-group span8">
@@ -279,17 +286,13 @@
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
-                /*form = new Form.HForm({
-                 srcNode: '#J_Form'
-                 }),*/
-                J_Form = '',
                 editing_D = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'Content_D', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit',
                 }),
-                editing = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'content', //设置隐藏的Dialog内容
+                editing_J = new BUI.Grid.Plugins.DialogEditing({
+                    contentId: 'content_J', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit',
                 }),
@@ -299,34 +302,34 @@
                     valueField: '#search_office_id',
                     multipleSelect: false,
                     items: []
-                }).render();
-            //出库配置库存选择框
-            Sto_rec_grid = new Grid.Grid({
-                idField: 'id',//选项的默认id字段
-                columns: [
-                    {title: '库存编号', dataIndex: 'stock_ident', elCls: 'center', width: '30%'},
-                    {title: '数量', dataIndex: 'stock_no', elCls: 'center', width: '20%'},
-                    {title: '单位', dataIndex: 'stock_unit', elCls: 'center', width: '20%'},
-                    {title: '总量', dataIndex: 'stock_total', elCls: 'center', width: '30%'},
-                ],
-                textGetter: function (item) { //返回选中的文本
-                    return item.stock_ident;
-                },
-                bbar: {
-                    //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
-                    items: [{
-                        xclass: 'bar-item-button',
-                        btnCls: 'button button-small',
-                        text: '新增'
+                }).render(),
+                //出库配置库存选择框
+                Sto_rec_grid = new Grid.Grid({
+                    idField: 'id',//选项的默认id字段
+                    columns: [
+                        {title: '库存编号', dataIndex: 'stock_ident', elCls: 'center', width: '30%'},
+                        {title: '数量', dataIndex: 'stock_no', elCls: 'center', width: '20%'},
+                        {title: '单位', dataIndex: 'stock_unit', elCls: 'center', width: '20%'},
+                        {title: '总量', dataIndex: 'stock_total', elCls: 'center', width: '30%'},
+                    ],
+                    textGetter: function (item) { //返回选中的文本
+                        return item.stock_ident;
                     },
-                        {
-                            xclass: 'bar-item-text',
-                            text: '<p style="color: #dd1144">注：新增多个库存记录可能会造成出库错误</p>'
+                    bbar: {
+                        //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
+                        items: [{
+                            xclass: 'bar-item-button',
+                            btnCls: 'button button-small',
+                            text: '新增'
                         },
-                    ]
-                },
-                items: [],
-            }),
+                            {
+                                xclass: 'bar-item-text',
+                                text: '<p style="color: #dd1144">注：新增多个库存记录可能会造成出库错误</p>'
+                            },
+                        ]
+                    },
+                    items: [],
+                }),
                 stock_record_picker = new Picker.ListPicker({
                     width: 300,  //指定宽度
                     children: [Sto_rec_grid] //配置picker内的列表
@@ -441,7 +444,7 @@
                         ]
                     },
                     emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
-                    plugins: [editing, editing_D, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                    plugins: [editing_J, editing_D, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
 
             var search = new Search({
@@ -449,9 +452,9 @@
                     gridCfg: gridCfg
                 }),
                 grid = search.get('grid'),
-                J_Form = editing.get('form');
+                D_Form = editing_D.get('form');
             entity_selectAjax(originalSeaEntity);
-            search_office_select.set('items', stock_officeSelect());
+            search_office_select.set('items', stock_officeSelect(offices_data,{}));
 
             //出库操作
             function devDealFunction() {
@@ -460,12 +463,18 @@
                 ori_device_select.render();
                 editing_D.add(newData, 'name'); //添加记录后，直接编辑
                 if (device_select != {} && !$.isEmptyObject(device_select)) {
-                    J_Form.getField('class_id').set('value', device_select.dev_class_id);
-                    J_Form.getField('entity_id').set('value', device_select.value);
-                    J_Form.getField('dev_name').set('value', device_select.dev_name);
-                    J_Form.getField('dev_type').set('value', device_select.text);
+                    D_Form.getField('class_id').set('value', device_select.dev_class_id);
+                    D_Form.getField('entity_id').set('value', device_select.value);
+                    D_Form.getField('dev_name').set('value', device_select.dev_name);
+                    D_Form.getField('dev_type').set('value', device_select.text);
                 }
-                getStockByEntity();
+                if (offices_select != {} && !$.isEmptyObject(offices_select)) {
+                    D_Form.getField('offices_storage_officeId').set('value', offices_select.value);
+                }
+                getStockByEntity({
+                    entity_id: device_select.value,
+                    stock_office_id: offices_select.value,
+                });
             }
 
             //型号生成
@@ -640,8 +649,8 @@
                 }
             };
 
-            function getStockByEntity(v) {
-                if (edv.entity_id != null && edv.entity_id != '' && edv.entity_id != undefined) {
+            function getStockByEntity(v, callback) {
+                if (v.entity_id != null && v.entity_id != '' && v.entity_id != undefined) {
                     $.ajax({
                         url: '/listStockByEntityId',
                         data: {
@@ -653,6 +662,15 @@
                         /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
                         dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                         success: function (data, textStatus, jqXHR) {
+                            if (!$.isEmptyObject(data.entityData)) {
+                                Sto_rec_grid.set('items', data.entityData);
+                                if (typeof callback === "function") {
+                                    //调用它，既然我们已经确定了它是可调用的
+                                    callback();
+                                }
+                            } else {
+                                $("#depository_version").val(0);
+                            }
 
                         },
                         error: function (xhr, textStatus) {
@@ -674,7 +692,7 @@
                     return;
                 } else {
                     var eData = selections[0];
-                    editing.edit(eData);
+                    editing_J.edit(eData);
                 }
             }
 
@@ -705,27 +723,13 @@
                     items([record]);
                 }
             });
-            /*suggest.on('change', function (ev) {
-             if (dev_name_data != undefined || dev_name_data != null) {
-             var dev_class_id = J_Form.getField('dev_class_id').get("value");
-             var c = dev_count_map[dev_class_id];
-             J_Form.getField('class_ident').set('value', dev_name_data[c].class_ident);
-             J_Form.getField('type_max').set('value', dev_name_data[c].type_max);
-             J_Form.getField('lastUpDate').set('value', dev_name_data[c].updateDate);
-             }
-             });*/
-
-            /*J_Form.on('beforesubmit', function (ev) {
-             alert('beforesubmit');
-             return false;
-             })*/
 
             search_office_select.on('change', function (ev) {
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
             });
 
-            editing.on('accept', function (ev) {
+            editing_J.on('accept', function (ev) {
                 dev_name_data = [];
             })
 
