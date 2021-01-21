@@ -90,7 +90,7 @@
                 </div>
                 &nbsp;
                 <button type="button" id="depository_no_lock" name=""
-                        style="width:40px;height:23px;margin-left:5px;background-color:#dddddd;">新增
+                        style="width:40px;height:23px;margin-left:5px;background-color:#dddddd;">获取
                 </button>
             </div>
 
@@ -111,13 +111,6 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>库存总量：</label>
-                <div class="controls">
-                    <input id="stock_total2" name="stock_total" type="number" data-rules="{required:true}"
-                           readonly="readonly" type="number" min="0" max="999" class="input-normal control-text">
-                </div>
-            </div>
-            <div class="control-group span8">
                 <label class="control-label"><s>*</s>出库数量：</label>
                 <div class="controls">
                     <input name="out_confirmed_no" type="number" id="out_confirmed_no" value="1"
@@ -125,40 +118,24 @@
                            min="0.1" max="999" class="input-normal control-text">
                 </div>
             </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="out_confirmed_officeId" name="out_confirmed_officeId" type="hidden"
-                           data-rules="{required:true}">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>部署时间：</label>
+                <div class="controls">
+                    <input name="device_deployment_date" type="text" data-rules="{required:true}"
+                           class="calendar calendar-time">
                 </div>
             </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="out_confirmed_total" name="out_confirmed_total" type="hidden"
-                           data-rules="{required:true}">
-                </div>
-            </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="stock_no2" name="stock_no" type="hidden" data-rules="{required:true}">
-                </div>
-            </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="class_id2" name="class_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="offices_storage_officeId2" name="offices_storage_officeId" type="hidden"
-                           data-rules="{required:true}">
-                </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="class_id2" name="class_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input id="entity_name" name="entity_name" type="hidden" data-rules="{required:true}">
+                <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
+                <input id="offices_storage_officeId2" name="offices_storage_officeId" type="hidden"
+                       data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -314,19 +291,6 @@
                     ],
                     textGetter: function (item) { //返回选中的文本
                         return item.stock_ident;
-                    },
-                    bbar: {
-                        //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
-                        items: [{
-                            xclass: 'bar-item-button',
-                            btnCls: 'button button-small',
-                            text: '新增'
-                        },
-                            {
-                                xclass: 'bar-item-text',
-                                text: '<p style="color: #dd1144">注：新增多个库存记录可能会造成出库错误</p>'
-                            },
-                        ]
                     },
                     items: [],
                 }),
