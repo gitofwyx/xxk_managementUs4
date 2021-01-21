@@ -628,16 +628,16 @@
                         /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
                         dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                         success: function (data, textStatus, jqXHR) {
-                            if (data != null && data != undefined) {
+                            if (data != null && !$.isEmptyObject(data)) {
                                 dep_entity_data = data.listDepository[0];
                                 $("#depository_version").val(dep_entity_data.depository_version);
                                 $("#depository_id").val(dep_entity_data.id);
-                                if (typeof callback === "function") {
-                                    //调用它，既然我们已经确定了它是可调用的
-                                    callback(data);
-                                }
                             } else {
                                 $("#depository_version").val(0);
+                            }
+                            if (typeof callback === "function") {
+                                //调用它，既然我们已经确定了它是可调用的
+                                callback(dep_entity_data);
                             }
                         },
                         error: function (xhr, textStatus) {
@@ -878,9 +878,15 @@
                     updateDepository({
                         entity_id:ev.item.entity_id,
                         depository_officeId:$("#depository_officeId").val(),
-                    },function(){
-                        var depository_no=parseInt(dep_entity_data.depository_total)+parseInt(ev.item.out_confirmed_total);
-                        var depository_idle_no=parseInt(dep_entity_data.depository_idle_total)+parseInt(ev.item.out_confirmed_total);
+                    },function(data){
+                        var depository_no=0;
+                        var depository_idle_no=0;
+                        if (data != null && !$.isEmptyObject(data)) {
+                            depository_no=parseInt(data.depository_total);
+                            depository_idle_no=parseInt(data.depository_idle_total);
+                        }
+                        depository_no=depository_no+parseInt(ev.item.out_confirmed_total);
+                        depository_idle_no=depository_idle_no+parseInt(ev.item.out_confirmed_total);
                         $("#depository_no").val(makeInNum(depository_no,1));
                         $("#depository_idle_no").val(makeInNum(depository_idle_no,1));
                     });
