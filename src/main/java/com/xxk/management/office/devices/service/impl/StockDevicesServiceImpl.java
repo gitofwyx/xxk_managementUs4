@@ -59,7 +59,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             devices.setId(devicesId);
             devices.setClass_id(storage.getClass_id());
             devices.setDevice_id(storage.getEntity_id());
-            devices.setDevice_ident("NO");
+            devices.setDevices_ident("NO");
             devices.setDevice_state("0");
             devices.setLocation_office_id(storage.getOffices_storage_officeId());
             devices.setInventory_office_id(storage.getOffices_storage_officeId());

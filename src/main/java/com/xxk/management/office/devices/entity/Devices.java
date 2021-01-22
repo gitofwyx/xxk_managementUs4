@@ -10,7 +10,7 @@ public class Devices extends BaseInfoEntity {
 
     private String id;                            //
     private String class_id;                     //种类ID
-    private String  device_ident;               //设备编号
+    private String  devices_ident;               //设备编号
     private String device_id;                   //设备id
     private String office_unique_name;                   //科室专有名称
     private String  device_state;            //设备状态
@@ -50,12 +50,12 @@ public class Devices extends BaseInfoEntity {
         this.class_id = class_id;
     }
 
-    public String getDevice_ident() {
-        return device_ident;
+    public String getDevices_ident() {
+        return devices_ident;
     }
 
-    public void setDevice_ident(String device_ident) {
-        this.device_ident = device_ident;
+    public void setDevices_ident(String devices_ident) {
+        this.devices_ident = devices_ident;
     }
 
     public String getDevice_id() {

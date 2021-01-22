@@ -11,9 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年1月19日 00:12:43">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/entity/Devices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/entity/Devices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1027,7 +1032,7 @@
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33908045" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1582,7 +1587,8 @@
       <workItem from="1611063595696" duration="5134000" />
       <workItem from="1611145080260" duration="6356000" />
       <workItem from="1611231237060" duration="5032000" />
-      <workItem from="1611240780482" duration="3763000" />
+      <workItem from="1611240780482" duration="3841000" />
+      <workItem from="1611315154939" duration="2276000" />
     </task>
     <task id="LOCAL-00001" summary="2021年1月16日 17:34:35">
       <created>1610789691079</created>
@@ -1633,7 +1639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611240453698</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="2021年1月19日 00:12:43">
+      <created>1611246275991</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1611246275992</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
