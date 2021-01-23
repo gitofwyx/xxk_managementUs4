@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.office.devices.dao.DevicesDao">
-    <sql id="columns"> id,class_id,device_ident,device_id,office_unique_name,device_state,inventory_office_id,location_office_id,
+    <sql id="columns"> id,class_id,devices_ident,device_id,office_unique_name,device_state,inventory_office_id,location_office_id,
  mediaOfLANId,device_origin,in_storage_id,delivery_id,device_entry_date,device_deployment_status,device_deployment_date,related_flag,
  related_id,device_location,device_flag,devices_auditing_mark,reject_date,remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
@@ -41,7 +41,7 @@
     <!--添加信息 -->
     <insert id="addDevices" parameterType="com.xxk.management.office.devices.entity.Devices">
         insert into xxk_offices_devices(<include refid="columns"></include>) values(
-        #{id},#{class_id},#{device_ident},#{device_id},#{office_unique_name},#{device_state},#{inventory_office_id},#{location_office_id},
+        #{id},#{class_id},#{devices_ident},#{device_id},#{office_unique_name},#{device_state},#{inventory_office_id},#{location_office_id},
         #{mediaOfLANId},#{device_origin},#{in_storage_id},#{delivery_id},#{device_entry_date},#{device_deployment_status},#{device_deployment_date},
         #{related_flag},#{related_id},#{device_location},#{device_flag},#{devices_auditing_mark},#{reject_date},#{remark},#{keyWord},#{createUserId},
         #{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
