@@ -123,12 +123,10 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
             //
             officesStorage.setId(officesStorageId);
             officesStorage.setOffices_storage_ident(out_confirmed_ident);
-            officesStorage.setOffices_storage_genre("2");
             officesStorage.setOffices_storage_by(devices.getUpdateUserId());
             officesStorage.setOffices_storage_officeId(devices.getLocation_office_id());
             officesStorage.setOffices_storage_date(devices.getDevice_deployment_date());
             officesStorage.setOffices_storage_total(1.0);
-            officesStorage.setEntity_entry_status("2");
             officesStorage.setCreateDate(createDate);
             officesStorage.setCreateUserId(devices.getUpdateUserId());
             officesStorage.setUpdateDate(createDate);

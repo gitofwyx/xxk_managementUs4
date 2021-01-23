@@ -80,6 +80,8 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             } else {
                 storage.setEntity_id(devices.getDevice_id());
                 storage.setOffices_entity_id(devicesId);
+                storage.setOffices_storage_genre("0");
+                storage.setEntity_entry_status("0");
                 result = storageService.addOfficesStorage(devices,storage);
                 if("true".equals(result.get("hasError"))){
                     return false;

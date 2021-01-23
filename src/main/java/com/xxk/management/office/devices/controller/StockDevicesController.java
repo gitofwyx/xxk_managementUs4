@@ -107,6 +107,7 @@ public class StockDevicesController extends BaseController {
             devices.setCreateUserId(CurrentUserId);
             if (stock_record_id != null && !"".equals(stock_record_id)) {
                 storage.setStock_or_depository_id(stock_record_id);//获取库存的id值
+                storage.setOffices_storage_type("1");
                 boolean Result = stockDevicesService.addStockDevices(devices, storage);
                 if (!(Result)) {
                     result.put("success", false);
