@@ -65,6 +65,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             devices.setInventory_office_id(storage.getOffices_storage_officeId());
             devices.setDevice_origin("1");
             devices.setDevice_deployment_status("0");
+            devices.setRelated_flag("0");
             devices.setCreateDate(createDate);
             devices.setUpdateUserId(devices.getCreateUserId());
             devices.setUpdateDate(createDate);
