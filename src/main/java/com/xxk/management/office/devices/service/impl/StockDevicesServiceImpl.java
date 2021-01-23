@@ -4,6 +4,7 @@ import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.management.office.depository.service.DepositoryService;
 import com.xxk.management.office.devices.dao.DevicesDao;
+import com.xxk.management.office.devices.dao.StockDevicesDao;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
 import com.xxk.management.office.devices.service.StockDevicesService;
@@ -28,7 +29,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
     private static Logger log = Logger.getLogger(StockDevicesServiceImpl.class);
 
     @Autowired
-    private DevicesDao dao;
+    private StockDevicesDao dao;
 
     @Autowired
     private OfficesStorageService storageService;
@@ -39,7 +40,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
 
     @Override
     public List<Devices> listDevices(int pageStart, int pageSize, String class_id, String device_id, String location_office_id) {
-        return dao.listDevices((pageStart - 1) * pageSize, pageSize, class_id, device_id, location_office_id);
+        return dao.listStockDevices((pageStart - 1) * pageSize, pageSize, class_id, device_id, location_office_id);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             devices.setUpdateDate(createDate);
 
             devices.setDeleteFlag("0");
-            devicesResult = dao.addDevices(devices) == 1 ? true : false;
+            devicesResult = dao.addStockDevices(devices) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
                 result.put("hasError", true);

@@ -115,7 +115,7 @@ public class DevicesController extends BaseController {
             }
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             devices.setCreateUserId(CurrentUserId);
-            officesStorage.setDepository_id(depository_id);
+            officesStorage.setStock_or_depository_id(depository_id);
             officesStorage.setOffices_storage_type("1");
             boolean Result = devicesService.addDevices(devices, officesStorage);
             if (!(Result)) {

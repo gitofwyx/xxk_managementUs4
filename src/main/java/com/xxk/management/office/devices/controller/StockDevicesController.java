@@ -3,13 +3,11 @@ package com.xxk.management.office.devices.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.JsonUtils;
 import com.xxk.management.device.service.DeviceService;
-import com.xxk.management.material.service.MaterialService;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.StockDevicesService;
-import com.xxk.management.stock.entity.Stock;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.service.StockService;
-import com.xxk.management.storage.entity.Delivery;
-import com.xxk.management.storage.entity.Storage;
+
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,18 +98,21 @@ public class StockDevicesController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "/addStockDevices", method = RequestMethod.POST)
-    public Map<String, Object> addStockDevices(Stock stock, Storage storage,
+    public Map<String, Object> addStockDevices(Devices devices, OfficesStorage storage,
                                                @RequestParam(value = "stock_record_id") String stock_record_id) {
         Map<String, Object> result = new HashMap<>();
         try {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            stock.setUpdateUserId(CurrentUserId);
+            devices.setCreateUserId(CurrentUserId);
             if (stock_record_id != null && !"".equals(stock_record_id)) {
-                stock.setId(stock_record_id);//获取库存的id值
-                result = stockService.updateStockWithStorage(stock, storage);
-            } else {
-                result = stockService.addStockWithStorage(stock, storage);
+                storage.setStock_or_depository_id(stock_record_id);//获取库存的id值
+                boolean Result = stockDevicesService.addStockDevices(devices, storage);
+                if (!(Result)) {
+                    result.put("success", false);
+                } else {
+                    result.put("success", true);
+                }
             }
 
         } catch (Exception e) {

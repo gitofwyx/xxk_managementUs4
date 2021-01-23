@@ -87,7 +87,7 @@ public class DevicesServiceImpl implements DevicesService {
                 if("true".equals(result.get("hasError"))){
                     return false;
                 }
-                devicesResult=depositoryService.deploymentDeviceWithSingle(storage.getDepository_id(),storage.getUpdateUserId(),createDate);
+                devicesResult=depositoryService.deploymentDeviceWithSingle(storage.getStock_or_depository_id(),storage.getUpdateUserId(),createDate);
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);

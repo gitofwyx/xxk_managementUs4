@@ -13,7 +13,7 @@ public class OfficesStorage extends BaseInfoEntity {
     private String offices_entity_id;           //科室设备\耗材id
     private String entity_name;           //设备\耗材名
     private String entity_type;           //设备\耗材型号
-    private String depository_id;         //科室库存id
+    private String stock_or_depository_id;         //科室库存id
     private String offices_storage_ident; //科室设备\耗材流动编号
     private String offices_storage_type; //设备\耗材类别（1.设备2.配件3.耗材）
     private String offices_storage_genre; //流动类别（1.入科2.部署3.回收4.调用5.借用）
@@ -78,12 +78,12 @@ public class OfficesStorage extends BaseInfoEntity {
         this.entity_type = entity_type;
     }
 
-    public String getDepository_id() {
-        return depository_id;
+    public String getStock_or_depository_id() {
+        return stock_or_depository_id;
     }
 
-    public void setDepository_id(String depository_id) {
-        this.depository_id = depository_id;
+    public void setStock_or_depository_id(String stock_or_depository_id) {
+        this.stock_or_depository_id = stock_or_depository_id;
     }
 
     public String getOffices_storage_ident() {

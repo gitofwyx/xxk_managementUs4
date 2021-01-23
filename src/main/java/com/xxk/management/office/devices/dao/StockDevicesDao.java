@@ -20,7 +20,7 @@ public interface StockDevicesDao {
 
     public List<Devices> listDevicesById(List<String> listDevId);
 
-    public int addDevices(Devices device);
+    public int addStockDevices(Devices device);
 
     public List<Devices> getDevicesWithStatus(String deviceId, String officeId, String status);
 

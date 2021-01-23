@@ -39,7 +39,7 @@
     </select>
 
     <!--添加信息 -->
-    <insert id="addDevices" parameterType="com.xxk.management.office.devices.entity.Devices">
+    <insert id="addStockDevices" parameterType="com.xxk.management.office.devices.entity.Devices">
         insert into xxk_offices_devices(<include refid="columns"></include>) values(
         #{id},#{class_id},#{devices_ident},#{device_id},#{office_unique_name},#{device_state},#{inventory_office_id},#{location_office_id},
         #{mediaOfLANId},#{device_origin},#{in_storage_id},#{delivery_id},#{device_entry_date},#{device_deployment_status},#{device_deployment_date},
