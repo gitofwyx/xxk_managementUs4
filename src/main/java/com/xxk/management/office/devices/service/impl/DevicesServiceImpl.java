@@ -69,6 +69,7 @@ public class DevicesServiceImpl implements DevicesService {
             devices.setInventory_office_id(storage.getOffices_storage_officeId());
             devices.setDevice_origin("1");
             devices.setDevice_deployment_status("1");
+            devices.setRelated_flag("1");
             devices.setCreateDate(createDate);
             devices.setUpdateUserId(devices.getCreateUserId());
             devices.setUpdateDate(createDate);
