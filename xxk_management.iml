@@ -24,10 +24,10 @@
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/application-context.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/application-kaptcha.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/application-kaptcha.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/shiro-context.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/shiro-context.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/springmvc.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/shiro-context.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/springmvc.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/springmvc.xml</file>
         </fileset>
       </configuration>
     </facet>

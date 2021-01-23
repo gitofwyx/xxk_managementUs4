@@ -111,11 +111,10 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>出库数量：</label>
+                <label class="control-label"><s>*</s>位置信息：</label>
                 <div class="controls">
-                    <input name="out_confirmed_no" type="number" id="out_confirmed_no" value="1"
-                           data-rules="{required:true}"
-                           min="0.1" max="999" class="input-normal control-text">
+                    <input name="device_location" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
@@ -391,7 +390,7 @@
                     tbar: {
                         items: [
                             {
-                                text: '<i class="icon-cog"></i>设备配置',
+                                text: '<i class="icon-cog"></i>设备管理',
                                 btnCls: 'button button-small',
                                 handler: devDealFunction
                             },
