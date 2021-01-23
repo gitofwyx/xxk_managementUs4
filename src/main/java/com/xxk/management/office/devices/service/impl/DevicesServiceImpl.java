@@ -83,6 +83,7 @@ public class DevicesServiceImpl implements DevicesService {
             } else {
                 storage.setEntity_id(devices.getDevice_id());
                 storage.setOffices_entity_id(devicesId);
+                storage.setOriginal_storage_officeId(devices.getInventory_office_id());
                 storage.setOffices_storage_genre("2");
                 storage.setEntity_entry_status("2");
                 result = storageService.addOfficesStorage(devices,storage);
