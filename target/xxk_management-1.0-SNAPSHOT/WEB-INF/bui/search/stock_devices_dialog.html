@@ -139,91 +139,84 @@
         </div>
     </form>
 </div>
-<div id="content_J" class="hide">
-    <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
+<div id="Content_O" class="hide">
+    <form id="O_Form" class="form-horizontal" action="" autocomplete="off">
+        <input type="hidden" name="office_ident" id="office_ident2">
+        <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>部署设备：</label>
+                <label class="control-label"><s>*</s>出库科室：</label>
                 <div class="controls">
-                    <input name="dev_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    <input name="out_confirmed_offices" id="out_confirmed_offices" type="text"
+                           data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
+                <label class="control-label"><s>*</s>出库确认人：</label>
                 <div class="controls">
-                    <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    <input name="out_confirmed_by" type="text" class="input-normal control-text">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>&nbsp;当前科室库存:（入科未使用）</label>
-                <div class="controls" id="ori_device_select">
-                    <input id="depository_id" name="depository_id" type="hidden">
-                </div>
-                &nbsp;
-                <input type="button" id="I_Reset" name="I_Reset" class=" icon-repeat"
-                       style="width:15px;height:18px;background-color:#ffffff;">
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备编号：</label>
+                <label class="control-label"><s>*</s>数量单位：</label>
                 <div class="controls">
-                    <input name="office_unique_name" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>科室设备名称：</label>
-                <div class="controls">
-                    <input name="office_unique_name" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
+                    <input name="out_confirmed_unit" type="text" id="out_confirmed_unit" readonly="readonly"
+                           data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>现部署科室：</label>
+                <label class="control-label"><s>*</s>出库时间：</label>
                 <div class="controls">
-                    <input name="location_office" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备具体位置：</label>
-                <div class="controls">
-                    <input name="device_location" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
-                </div>
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>部署时间：</label>
-                <div class="controls">
-                    <input name="device_deployment_date" type="text" data-rules="{required:true}"
+                    <input name="out_confirmed_date" type="text" data-rules="{required:true}"
                            class="calendar calendar-time">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>库存总量：</label>
+                <div class="controls">
+                    <input id="stock_total2" name="stock_total" type="number" data-rules="{required:true}"
+                           readonly="readonly" type="number" min="0" max="999" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>出库数量：</label>
+                <div class="controls">
+                    <input name="out_confirmed_no" type="number" id="out_confirmed_no" value="1"
+                           data-rules="{required:true}"
+                           min="0.1" max="999" class="input-normal control-text">
                 </div>
             </div>
             <div class="row">
                 <div class="control-group span2.5">
-                    <input id="class_id" name="class_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="offices_storage_officeId" name="offices_storage_officeId" type="hidden"
+                    <input id="out_confirmed_officeId" name="out_confirmed_officeId" type="hidden"
                            data-rules="{required:true}">
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="control-group span15">
-                <label class="control-label">备注：</label>
-                <div class="controls control-row4">
-                    <textarea name="remark" class="input-large" type="text"></textarea>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="out_confirmed_total" name="out_confirmed_total" type="hidden"
+                           data-rules="{required:true}">
                 </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="stock_no2" name="stock_no" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="stock_record_id2" name="stock_record_id" type="hidden" data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_name" name="entity_name" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -253,12 +246,11 @@
             var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
                 enumObj_device_origin = {"1": "入科设备", "2": "原科设备"},
                 enumObj_deployment_status = {"1": "已完成", "2": "部署中"},
-                offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
+                offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
                 devices_data = [],//全部dev初始化
                 entity_data = [],//型号初始化
                 devices_data = {},//部署设备json
                 device_select = {},//选中的设备json
-                offices_select = {},//设备种类id对应的dev_name_data键
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
@@ -267,8 +259,8 @@
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit',
                 }),
-                editing_J = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'content_J', //设置隐藏的Dialog内容
+                editing_O = new BUI.Grid.Plugins.DialogEditing({
+                    contentId: 'content_O', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit',
                 }),
@@ -336,6 +328,18 @@
                     width: 150,
                     items: []
                 }),
+                //出库科室选择
+                dev_office_tree = new Tree.TreeList({
+                    nodes: [],
+                    //store: store,
+                    //dirSelectable : false,//阻止树节点选中
+                    showLine: true //显示连接线
+                }),
+                dev_office_picker = new TreePicker({
+                    trigger: '#out_confirmed_offices',
+                    width: 150,  //指定宽度
+                    children: [dev_office_tree] //配置picker内的列表
+                }).render(),
 
                 columns = [
                     {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
@@ -401,12 +405,12 @@
                             {
                                 text: '<i class="icon-hand-right"></i>出库',
                                 btnCls: 'button button-small',
-                                handler: ''
+                                handler: outDevFunction
                             },
                         ]
                     },
                     emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
-                    plugins: [editing_J, editing_D, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                    plugins: [editing_O, editing_D, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
 
             var search = new Search({
@@ -416,27 +420,26 @@
                 grid = search.get('grid'),
                 D_Form = editing_D.get('form');
             entity_selectAjax(originalSeaEntity);
-            search_office_select.set('items', stock_officeSelect(offices_data,{}));
+            search_office_select.set('items', stock_officeSelect(offices_data, {}));
 
             //出库操作
-            function devDealFunction() {
-                var newData = {}; //标志是新增加的记录
-                enumObj_office[offices_select.value] = offices_select.text;
-                ori_device_select.render();
-                editing_D.add(newData, 'name'); //添加记录后，直接编辑
-                if (device_select != {} && !$.isEmptyObject(device_select)) {
-                    D_Form.getField('class_id').set('value', device_select.dev_class_id);
-                    D_Form.getField('entity_id').set('value', device_select.value);
-                    D_Form.getField('dev_name').set('value', device_select.dev_name);
-                    D_Form.getField('dev_type').set('value', device_select.text);
+            function outDevFunction() {
+                office_selectAjax();
+                dev_office_tree.set('nodes', office_tree);
+                var selections = grid.getSelection();
+                if (selections.length == 0) {
+                    return;
+                } else if (selections.length != 1) {
+                    BUI.Message.Alert('一次只能选择单个设备出库！！');
+                    return;
+                } else {
+                    var eData = selections[0];
+                    Editing_O.edit(eData);
+                    O_Form.getField('stock_record_id').set('value', eData.id);
+                    O_Form.getField('out_confirmed_unit').set('value', eData.stock_unit);
+                    O_Form.getField('entity_name').set('value', eData.entity_name);
+                    O_Form.getField('entity_type').set('value', eData.entity_type);
                 }
-                if (offices_select != {} && !$.isEmptyObject(offices_select)) {
-                    D_Form.getField('offices_storage_officeId').set('value', offices_select.value);
-                }
-                getStockByEntity({
-                    entity_id: device_select.value,
-                    stock_office_id: offices_select.value,
-                });
             }
 
             //型号生成
@@ -594,56 +597,6 @@
                 }
             };
 
-            //初始化BsSuggest
-            function originalDeploymentDev(v) {
-                if (!$.isEmptyObject(devices_data)) {
-                    initBsSuggest(0, "search_devices_entity");
-                    $('#devices_entity_div').replaceWith('<div class="input-group" id="devices_entity_div"> ' +
-                        '<input type="text" id="search_devices_entity" name="search_devices_entity"> ' +
-                        '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
-                    if (!$.isEmptyObject(data)) {
-                        changeEntClass(K, data.value);
-                        initBsSuggest(1, "search_devices_entity", {value: entity_data}, function (K, data) {
-                            $("#search_entity_id").val(data.value);
-                            device_select = data;
-                        });
-                    }
-                }
-            };
-
-            function getStockByEntity(v, callback) {
-                if (v.entity_id != null && v.entity_id != '' && v.entity_id != undefined) {
-                    $.ajax({
-                        url: '/listStockByEntityId',
-                        data: {
-                            entity_id: v.entity_id,
-                            office_id: v.stock_office_id
-                        },
-                        type: 'POST', //GET
-                        async: true,    //或false,是否异步
-                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                        success: function (data, textStatus, jqXHR) {
-                            if (!$.isEmptyObject(data.entityData)) {
-                                Sto_rec_grid.set('items', data.entityData);
-                                if (typeof callback === "function") {
-                                    //调用它，既然我们已经确定了它是可调用的
-                                    callback();
-                                }
-                            } else {
-                                $("#depository_version").val(0);
-                            }
-
-                        },
-                        error: function (xhr, textStatus) {
-                            console.log('错误')
-                            console.log(xhr)
-                            console.log(textStatus)
-                        }
-                    })
-                }//if语句判断是否获取到设备ID
-            }
-
             //编辑操作
             function updateFunction() {
                 var selections = grid.getSelection();
@@ -690,10 +643,6 @@
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
             });
-
-            editing_J.on('accept', function (ev) {
-                dev_name_data = [];
-            })
 
         });
 </script>
