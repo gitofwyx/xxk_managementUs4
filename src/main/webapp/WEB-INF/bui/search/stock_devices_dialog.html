@@ -251,6 +251,7 @@
                 entity_data = [],//型号初始化
                 devices_data = {},//部署设备json
                 device_select = {},//选中的设备json
+                office_tree=null,
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
@@ -420,12 +421,14 @@
                 grid = search.get('grid'),
                 D_Form = editing_D.get('form');
             entity_selectAjax(originalSeaEntity);
-            search_office_select.set('items', stock_officeSelect(offices_data, {}));
+            search_office_select.set('items', stock_officeSelect(offices_select, {}));
 
             //出库操作
             function outDevFunction() {
-                office_selectAjax();
-                dev_office_tree.set('nodes', office_tree);
+                handle_office(function (){
+
+                    dev_office_tree.set('nodes', office_tree);
+                });
                 var selections = grid.getSelection();
                 if (selections.length == 0) {
                     return;
@@ -484,7 +487,7 @@
             }
 
             //科室更新函数
-            function handle_office() {
+            function handle_office(callback) {
                 if (offices_select == undefined || offices_select == null) {
                     offices_select = localstorageIO("offices_select", "/getOfficeSelect");
                     if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
@@ -498,9 +501,11 @@
                             success: function (data, textStatus, jqXHR) {
                                 if (data != null && data != undefined) {
                                     offices_select = data.result;
-                                    var mObj = GetMenus('root', offices_data);
-                                    loc_office_tree.set('nodes', mObj);
-                                    //belong_to_select.set('items', offices_select);
+                                    initOffice_tree();
+                                    if (typeof callback === "function") {
+                                        //调用它，既然我们已经确定了它是可调用的
+                                        callback();
+                                    }
                                 }
                             },
                             error: function (xhr, textStatus) {
@@ -510,6 +515,19 @@
                             }
                         })
                     }
+                }else {
+                    initOffice_tree();
+                    if (typeof callback === "function") {
+                        //调用它，既然我们已经确定了它是可调用的
+                        callback();
+                    }
+                }
+
+            }
+
+            function initOffice_tree() {
+                if(office_tree==null){
+                    office_tree=GetMenus('root', offices_select);
                 }
             }
 
@@ -614,6 +632,11 @@
             search_office_select.on('change', function (ev) {
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
+            });
+
+            //出库科室选择
+            dev_office_tree.on('itemclick', function (ev) {
+                O_Form.getField('out_confirmed_officeId').set('value', ev.item.value);
             });
 
         });

@@ -251,6 +251,7 @@
                 entity_data = [],//型号初始化
                 devices_data = {},//部署设备json
                 device_select = {},//选中的设备json
+                office_tree=null,
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
@@ -420,12 +421,16 @@
                 grid = search.get('grid'),
                 D_Form = editing_D.get('form');
             entity_selectAjax(originalSeaEntity);
-            search_office_select.set('items', stock_officeSelect(offices_data, {}));
+            search_office_select.set('items', stock_officeSelect(offices_select, {}));
 
             //出库操作
             function outDevFunction() {
-                office_selectAjax();
-                dev_office_tree.set('nodes', office_tree);
+                handle_office(function (){
+                    if(office_tree==null){
+                        office_tree=GetMenus('root', offices_select);
+                    }
+                    dev_office_tree.set('nodes', office_tree);
+                });
                 var selections = grid.getSelection();
                 if (selections.length == 0) {
                     return;
@@ -484,7 +489,7 @@
             }
 
             //科室更新函数
-            function handle_office() {
+            function handle_office(callback) {
                 if (offices_select == undefined || offices_select == null) {
                     offices_select = localstorageIO("offices_select", "/getOfficeSelect");
                     if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
@@ -498,9 +503,10 @@
                             success: function (data, textStatus, jqXHR) {
                                 if (data != null && data != undefined) {
                                     offices_select = data.result;
-                                    var mObj = GetMenus('root', offices_data);
-                                    loc_office_tree.set('nodes', mObj);
-                                    //belong_to_select.set('items', offices_select);
+                                    if (typeof callback === "function") {
+                                        //调用它，既然我们已经确定了它是可调用的
+                                        callback();
+                                    }
                                 }
                             },
                             error: function (xhr, textStatus) {
@@ -510,35 +516,13 @@
                             }
                         })
                     }
-                }
-            }
-
-            //根据设备、耗材ID获取科室库存
-            function updateDepository(data, callback) {
-                $.ajax({
-                    url: '/selectDepositoryForDeployment',
-                    type: 'POST', //GET
-                    data: data,
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            if (typeof callback === "function") {
-                                //调用它，既然我们已经确定了它是可调用的
-                                callback(data.listDepository);
-                            }
-                        } else {
-                            $("#depository_version").val(0);
-                        }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus);
-                        BUI.Message.Alert('参数不能为空', 'error');
+                }else {
+                    if (typeof callback === "function") {
+                        //调用它，既然我们已经确定了它是可调用的
+                        callback();
                     }
-                })
+                }
+
             }
 
             //下拉提示框bsSuggest
@@ -642,6 +626,11 @@
             search_office_select.on('change', function (ev) {
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
+            });
+
+            //出库科室选择
+            dev_office_tree.on('itemclick', function (ev) {
+                O_Form.getField('out_confirmed_officeId').set('value', ev.item.value);
             });
 
         });
