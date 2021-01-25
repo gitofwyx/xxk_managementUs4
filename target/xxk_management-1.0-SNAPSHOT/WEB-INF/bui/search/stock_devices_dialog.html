@@ -423,12 +423,31 @@
             entity_selectAjax(originalSeaEntity);
             search_office_select.set('items', stock_officeSelect(offices_select, {}));
 
+            //设备
+            function devDealFunction() {
+                var newData = {}; //标志是新增加的记录
+                enumObj_office[offices_select.value] = offices_select.text;
+                ori_device_select.render();
+                editing_D.add(newData, 'name'); //添加记录后，直接编辑
+                if (device_select != {} && !$.isEmptyObject(device_select)) {
+                    D_Form.getField('class_id').set('value', device_select.dev_class_id);
+                    D_Form.getField('entity_id').set('value', device_select.value);
+                    D_Form.getField('dev_name').set('value', device_select.dev_name);
+                    D_Form.getField('dev_type').set('value', device_select.text);
+                }
+                if (offices_select != {} && !$.isEmptyObject(offices_select)) {
+                    D_Form.getField('offices_storage_officeId').set('value', offices_select.value);
+                }
+                getStockByEntity({
+                    entity_id: device_select.value,
+                    stock_office_id: offices_select.value,
+                });
+            }
+
             //出库操作
             function outDevFunction() {
                 handle_office(function (){
-                    if(office_tree==null){
-                        office_tree=GetMenus('root', offices_select);
-                    }
+
                     dev_office_tree.set('nodes', office_tree);
                 });
                 var selections = grid.getSelection();
@@ -503,6 +522,7 @@
                             success: function (data, textStatus, jqXHR) {
                                 if (data != null && data != undefined) {
                                     offices_select = data.result;
+                                    initOffice_tree();
                                     if (typeof callback === "function") {
                                         //调用它，既然我们已经确定了它是可调用的
                                         callback();
@@ -517,12 +537,19 @@
                         })
                     }
                 }else {
+                    initOffice_tree();
                     if (typeof callback === "function") {
                         //调用它，既然我们已经确定了它是可调用的
                         callback();
                     }
                 }
 
+            }
+
+            function initOffice_tree() {
+                if(office_tree==null){
+                    office_tree=GetMenus('root', offices_select);
+                }
             }
 
             //下拉提示框bsSuggest
