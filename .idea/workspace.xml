@@ -1599,7 +1599,8 @@
       <workItem from="1611477491232" duration="4692000" />
       <workItem from="1611500708127" duration="2124000" />
       <workItem from="1611582115646" duration="4924000" />
-      <workItem from="1611588047135" duration="3392000" />
+      <workItem from="1611588047135" duration="3514000" />
+      <workItem from="1611591751571" duration="119000" />
     </task>
     <task id="LOCAL-00001" summary="2021年1月16日 17:34:35">
       <created>1610789691079</created>
@@ -1755,7 +1756,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611590637098</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="2021年1月23日 17:29:16">
+      <created>1611591616729</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1611591616729</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1839,6 +1847,7 @@
         <entry key="1" value="TOOL_WINDOW" />
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">

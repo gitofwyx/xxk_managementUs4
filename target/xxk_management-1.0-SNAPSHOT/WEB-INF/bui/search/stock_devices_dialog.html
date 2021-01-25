@@ -251,7 +251,7 @@
                 entity_data = [],//型号初始化
                 devices_data = {},//部署设备json
                 device_select = {},//选中的设备json
-                office_tree=null,
+                office_tree = null,
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
@@ -261,7 +261,7 @@
                     triggerCls: 'btn-edit',
                 }),
                 editing_O = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'content_O', //设置隐藏的Dialog内容
+                    contentId: 'Content_O', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit',
                 }),
@@ -419,11 +419,12 @@
                     gridCfg: gridCfg
                 }),
                 grid = search.get('grid'),
-                D_Form = editing_D.get('form');
+                D_Form = editing_D.get('form'),
+                O_Form = editing_O.get('form');
             entity_selectAjax(originalSeaEntity);
             search_office_select.set('items', stock_officeSelect(offices_select, {}));
 
-            //设备
+            //设备管理
             function devDealFunction() {
                 var newData = {}; //标志是新增加的记录
                 enumObj_office[offices_select.value] = offices_select.text;
@@ -446,8 +447,7 @@
 
             //出库操作
             function outDevFunction() {
-                handle_office(function (){
-
+                handle_office(function () {
                     dev_office_tree.set('nodes', office_tree);
                 });
                 var selections = grid.getSelection();
@@ -458,7 +458,7 @@
                     return;
                 } else {
                     var eData = selections[0];
-                    Editing_O.edit(eData);
+                    editing_O.edit(eData);
                     O_Form.getField('stock_record_id').set('value', eData.id);
                     O_Form.getField('out_confirmed_unit').set('value', eData.stock_unit);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
@@ -536,7 +536,7 @@
                             }
                         })
                     }
-                }else {
+                } else {
                     initOffice_tree();
                     if (typeof callback === "function") {
                         //调用它，既然我们已经确定了它是可调用的
@@ -547,8 +547,8 @@
             }
 
             function initOffice_tree() {
-                if(office_tree==null){
-                    office_tree=GetMenus('root', offices_select);
+                if (office_tree == null) {
+                    office_tree = GetMenus('root', offices_select);
                 }
             }
 
@@ -607,6 +607,39 @@
                     });
                 }
             };
+
+            function getStockByEntity(v, callback) {
+                if (v.entity_id != null && v.entity_id != '' && v.entity_id != undefined) {
+                    $.ajax({
+                        url: '/listStockByEntityId',
+                        data: {
+                            entity_id: v.entity_id,
+                            office_id: v.stock_office_id
+                        },
+                        type: 'POST', //GET
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            if (!$.isEmptyObject(data.entityData)) {
+                                Sto_rec_grid.set('items', data.entityData);
+                                if (typeof callback === "function") {
+                                    //调用它，既然我们已经确定了它是可调用的
+                                    callback();
+                                }
+                            } else {
+                                $("#depository_version").val(0);
+                            }
+
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus)
+                        }
+                    })
+                }//if语句判断是否获取到设备ID
+            }
 
             //编辑操作
             function updateFunction() {
