@@ -160,10 +160,9 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>数量单位：</label>
+                <label class="control-label"><s>*</s>设备型号：</label>
                 <div class="controls">
-                    <input name="out_confirmed_unit" type="text" id="out_confirmed_unit" readonly="readonly"
-                           data-rules="{required:true}">
+                    <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
@@ -176,18 +175,17 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>库存总量：</label>
+                <label class="control-label"><s>*</s>科室设备名称：</label>
                 <div class="controls">
-                    <input id="stock_total2" name="stock_total" type="number" data-rules="{required:true}"
-                           readonly="readonly" type="number" min="0" max="999" class="input-normal control-text">
+                    <input name="office_unique_name" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>出库数量：</label>
+                <label class="control-label"><s>*</s>设备具体位置：</label>
                 <div class="controls">
-                    <input name="out_confirmed_no" type="number" id="out_confirmed_no" value="1"
-                           data-rules="{required:true}"
-                           min="0.1" max="999" class="input-normal control-text">
+                    <input name="device_location" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
                 </div>
             </div>
             <div class="row">
@@ -424,7 +422,7 @@
             entity_selectAjax(originalSeaEntity);
             search_office_select.set('items', stock_officeSelect(offices_select, {}));
 
-            //设备管理
+            //管理操作
             function devDealFunction() {
                 var newData = {}; //标志是新增加的记录
                 enumObj_office[offices_select.value] = offices_select.text;
@@ -458,7 +456,7 @@
                     return;
                 } else {
                     var eData = selections[0];
-                    editing_O.edit(eData);
+                    editing_O.add(eData);
                     O_Form.getField('stock_record_id').set('value', eData.id);
                     O_Form.getField('out_confirmed_unit').set('value', eData.stock_unit);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
