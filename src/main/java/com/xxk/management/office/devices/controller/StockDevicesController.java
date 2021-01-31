@@ -98,15 +98,14 @@ public class StockDevicesController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "/addStockDevices", method = RequestMethod.POST)
-    public Map<String, Object> addStockDevices(Devices devices, OfficesStorage storage,
-                                               @RequestParam(value = "stock_record_id") String stock_record_id) {
+    public Map<String, Object> addStockDevices(Devices devices, OfficesStorage storage) {
         Map<String, Object> result = new HashMap<>();
         try {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             devices.setCreateUserId(CurrentUserId);
-            if (stock_record_id != null && !"".equals(stock_record_id)) {
-                storage.setStock_or_depository_id(stock_record_id);//获取库存的id值
+            if (devices.getPresent_stock_id() != null && !"".equals(devices.getPresent_stock_id())) {
+                storage.setStock_or_depository_id(devices.getPresent_stock_id());//获取库存的id值
                 storage.setOffices_storage_type("1");
                 boolean Result = stockDevicesService.addStockDevices(devices, storage);
                 if (!(Result)) {
