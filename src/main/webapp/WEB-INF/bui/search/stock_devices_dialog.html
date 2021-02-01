@@ -128,10 +128,16 @@
         </div>
         <div class="row">
             <div class="control-group span2.5">
-                <input id="class_id2" name="class_id" type="hidden" data-rules="{required:true}">
+                <input id="class_id" name="class_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
+                <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_name" name="entity_name" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input id="offices_storage_officeId2" name="offices_storage_officeId" type="hidden"
@@ -143,7 +149,6 @@
 <!--业务表单2-->
 <div id="Content_O" class="hide">
     <form id="O_Form" class="form-horizontal" action="" autocomplete="off">
-        <input type="hidden" name="office_ident" id="office_ident2">
         <hr style="margin-top:0.3px;height:1px;border:none;border-top:1px solid #b9b9b9;">
         <div class="row">
             <div class="control-group span8">
@@ -192,31 +197,24 @@
             </div>
             <div class="row">
                 <div class="control-group span2.5">
+                    <input id="class_id2" name="class_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="present_stock_id2" name="present_stock_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
                     <input id="out_confirmed_officeId" name="out_confirmed_officeId" type="hidden"
                            data-rules="{required:true}">
                 </div>
-            </div>
-            <div class="row">
                 <div class="control-group span2.5">
-                    <input id="out_confirmed_total" name="out_confirmed_total" type="hidden"
-                           data-rules="{required:true}">
+                    <input id="entity_name2" name="entity_name" type="hidden" data-rules="{required:true}">
                 </div>
-            </div>
-            <div class="row">
                 <div class="control-group span2.5">
-                    <input id="stock_no2" name="stock_no" type="hidden" data-rules="{required:true}">
+                    <input id="entity_type2" name="entity_type" type="hidden" data-rules="{required:true}">
                 </div>
-            </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="stock_record_id2" name="stock_record_id" type="hidden" data-rules="{required:true}">
-                </div>
-            </div>
-            <div class="control-group span2.5">
-                <input id="entity_name" name="entity_name" type="hidden" data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -458,9 +456,10 @@
                     return;
                 } else {
                     var eData = selections[0];
-                    editing_O.add(eData);
-                    O_Form.getField('stock_record_id').set('value', eData.id);
-                    O_Form.getField('out_confirmed_unit').set('value', eData.stock_unit);
+                    editing_O.edit({isNew: false});
+                    O_Form.getField('present_stock_id').set('value', eData.present_stock_id);
+                    O_Form.getField('class_id').set('value', eData.class_id);
+                    O_Form.getField('entity_id').set('value', eData.device_id);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
                     O_Form.getField('entity_type').set('value', eData.entity_type);
                 }
