@@ -8,6 +8,7 @@ import com.xxk.management.office.devices.service.StockDevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.service.StockService;
 
+import com.xxk.management.storage.entity.Delivery;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,6 +109,35 @@ public class StockDevicesController extends BaseController {
                 storage.setStock_or_depository_id(devices.getPresent_stock_id());//获取库存的id值
                 storage.setOffices_storage_type("1");
                 boolean Result = stockDevicesService.addStockDevices(devices, storage);
+                if (!(Result)) {
+                    result.put("success", false);
+                } else {
+                    result.put("success", true);
+                }
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
+        }
+        return result;
+        //return "system/index";
+    }
+
+    //出库
+    @ResponseBody
+    @RequestMapping(value = "/deliveryStockDevices", method = RequestMethod.POST)
+    public Map<String, Object> deliveryStockDevices(Devices devices, Delivery delivery) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            devices.setUpdateUserId(CurrentUserId);
+            if (devices.getPresent_stock_id() != null && !"".equals(devices.getPresent_stock_id())) {
+                delivery.setStock_id(devices.getPresent_stock_id());//获取库存的id值
+                delivery.setOut_confirmed_type("1");
+                boolean Result = stockDevicesService.deliveryStockDevices(devices, delivery);
                 if (!(Result)) {
                     result.put("success", false);
                 } else {

@@ -104,6 +104,46 @@ public class DeliveryServiceImpl implements DeliveryService {
         return result;
     }
 
+    @Override
+    public Map<String, Object> addDelivery(Delivery delivery, String status) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String deliveryId = UUIdUtil.getUUID();
+        try {
+            if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
+                log.info("出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错！无法获取设备ID");
+                return result;
+            }
+
+            //c库
+            delivery.setId(deliveryId);
+            delivery.setEntity_entry_status(status);
+            delivery.setDeleteFlag("0");
+
+            boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
+            ;
+            if (!(storageResult)) {
+                log.error("addstorage:" + storageResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+                //log.info(">>>>保存成功");
+                result.put("success", true);
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
+    }
+
 
     @Override
     public boolean updateDeliveryStatus(String id) {

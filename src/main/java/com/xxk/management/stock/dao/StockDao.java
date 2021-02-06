@@ -23,8 +23,6 @@ public interface StockDao {
 
     public int updateStock(Stock stock);
 
-    public int deleteListRegUser(List<String> listStr);
-
     public List<String> getStockIdByIdent(String ident);
 
     public Stock getStockById(String id);
@@ -34,5 +32,7 @@ public interface StockDao {
     public int plusStockNo(Stock stock);
 
     public int reduceStockNo(Stock stock);
+
+    public int reduceSingleStockNo(String stock_id,String userId,String date);
 
 }

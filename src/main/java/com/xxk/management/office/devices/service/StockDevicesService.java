@@ -18,6 +18,8 @@ public interface StockDevicesService {
 
     public boolean addStockDevices(Devices devices,OfficesStorage storage);
 
+    public boolean deliveryStockDevices(Devices devices, Delivery delivery) ;
+
     public List<Devices> getDevicesWithStatus(String deviceId, String officeId, String status);
 
 }

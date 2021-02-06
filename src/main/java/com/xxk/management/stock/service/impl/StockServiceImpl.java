@@ -199,6 +199,40 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
+    //出库操作
+    // 2019年8月19日 13:43:42更新
+    @Override
+    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        try {
+            if ("".equals(delivery.getStock_id()) || delivery.getStock_id() == null) {
+                log.info("出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错！无法获取设备ID");
+                return result;
+            }
+            boolean stockResult = dao.reduceSingleStockNo(delivery.getStock_id(),delivery.getCreateUserId(),createDate) == 1 ? true : false;
+            if (!(stockResult)) {
+                log.error("stockResult:" + stockResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+                //出库更新
+                result = deliveryService.addDelivery(delivery,"1");
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
+    }
+
     //更新操作
     @Override
     public Map<String, Object> updateStock(Stock stock) {

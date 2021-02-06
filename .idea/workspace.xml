@@ -11,9 +11,16 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年1月26日 00:27:11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/StockDevicesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/StockDevicesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/DeliveryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/controller/StockDevicesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/controller/StockDevicesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/controller/StockDevicesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/controller/StockDevicesController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -1612,7 +1619,7 @@
       <workItem from="1612106604519" duration="2566000" />
       <workItem from="1612109793840" duration="752000" />
       <workItem from="1612110559187" duration="5210000" />
-      <workItem from="1612187025296" duration="2187000" />
+      <workItem from="1612187025296" duration="26698000" />
     </task>
     <task id="LOCAL-00001" summary="2021年1月16日 17:34:35">
       <created>1610789691079</created>
@@ -1796,7 +1803,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612110577792</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="2021年1月26日 00:27:11">
+      <created>1612190619789</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1612190619789</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

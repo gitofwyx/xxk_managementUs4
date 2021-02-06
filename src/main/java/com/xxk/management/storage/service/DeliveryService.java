@@ -21,6 +21,8 @@ public interface DeliveryService {
 
     public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String status);
 
+    public Map<String, Object> addDelivery(Delivery delivery, String status);
+
     public boolean updateDeliveryStatus(String id);
 
 }
