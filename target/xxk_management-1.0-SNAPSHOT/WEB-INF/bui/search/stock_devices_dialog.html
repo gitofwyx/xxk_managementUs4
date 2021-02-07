@@ -434,6 +434,8 @@
                 if (device_select != {} && !$.isEmptyObject(device_select)) {
                     D_Form.getField('class_id').set('value', device_select.dev_class_id);
                     D_Form.getField('entity_id').set('value', device_select.value);
+                    D_Form.getField('entity_name').set('value', device_select.dev_name);
+                    D_Form.getField('entity_type').set('value', device_select.text);
                     D_Form.getField('dev_name').set('value', device_select.dev_name);
                     D_Form.getField('dev_type').set('value', device_select.text);
                 }

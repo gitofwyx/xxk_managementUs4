@@ -111,8 +111,6 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             devices.setDevice_origin("1");
             devices.setDevice_deployment_status("1");
             devices.setRelated_flag("0");
-            devices.setCreateDate(createDate);
-            devices.setUpdateUserId(devices.getCreateUserId());
             devices.setUpdateDate(createDate);
 
             devices.setDeleteFlag("0");
@@ -122,8 +120,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
-                delivery.setClass_id(devices.getClass_id());
-                delivery.setEntity_id(devices.getDevice_id());
+                delivery.setOut_confirmed_ident("NO");
                 delivery.setOut_confirmed_type("1");
                 delivery.setOut_confirmed_date(createDate);
                 delivery.setOut_confirmed_no(1);
