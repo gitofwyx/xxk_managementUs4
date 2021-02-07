@@ -203,6 +203,9 @@
                     <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
                 </div>
                 <div class="control-group span2.5">
+                    <input id="stock_entity_id" name="stock_entity_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
                     <input id="present_stock_id2" name="present_stock_id" type="hidden" data-rules="{required:true}">
                 </div>
                 <div class="control-group span2.5">
@@ -380,7 +383,7 @@
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                             addUrl: '/addStockDevices',
-                            updateUrl: '/updateRegUser',
+                            updateUrl: '/deliveryStockDevices',
                             removeUrl: '/delRegUserOfLogic'
                         },
                         method: 'POST'
@@ -460,6 +463,7 @@
                     O_Form.getField('present_stock_id').set('value', eData.present_stock_id);
                     O_Form.getField('class_id').set('value', eData.class_id);
                     O_Form.getField('entity_id').set('value', eData.device_id);
+                    O_Form.getField('stock_entity_id').set('value', eData.id);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
                     O_Form.getField('entity_type').set('value', eData.entity_type);
                 }

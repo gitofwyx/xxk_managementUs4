@@ -107,16 +107,16 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
         try {
-
+            devices.setId(delivery.getStock_entity_id());
             devices.setDevice_origin("1");
-            devices.setDevice_deployment_status("0");
+            devices.setDevice_deployment_status("1");
             devices.setRelated_flag("0");
             devices.setCreateDate(createDate);
             devices.setUpdateUserId(devices.getCreateUserId());
             devices.setUpdateDate(createDate);
 
             devices.setDeleteFlag("0");
-            devicesResult = dao.addStockDevices(devices) == 1 ? true : false;
+            devicesResult = dao.updateDeviceStatus(devices) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
                 result.put("hasError", true);
@@ -124,7 +124,6 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             } else {
                 delivery.setClass_id(devices.getClass_id());
                 delivery.setEntity_id(devices.getDevice_id());
-                delivery.setStock_entity_id(devices.getId());
                 delivery.setOut_confirmed_type("1");
                 delivery.setOut_confirmed_date(createDate);
                 delivery.setOut_confirmed_no(1);

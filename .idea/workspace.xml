@@ -11,17 +11,31 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年1月26日 00:27:11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/StockDevicesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/StockDevicesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/StockDevicesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/StockDevicesDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/DeliveryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/controller/StockDevicesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/controller/StockDevicesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/controller/StockDevicesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/controller/StockDevicesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/StockDevicesDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/StockDevicesDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/service/StockDevicesService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/service/StockDevicesService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/StockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/DeliveryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/DeliveryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/dao/StockDevicesDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/dao/StockDevicesDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/service/StockDevicesService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/service/StockDevicesService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/StockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/DeliveryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/DeliveryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1619,7 +1633,11 @@
       <workItem from="1612106604519" duration="2566000" />
       <workItem from="1612109793840" duration="752000" />
       <workItem from="1612110559187" duration="5210000" />
-      <workItem from="1612187025296" duration="26698000" />
+      <workItem from="1612187025296" duration="27680000" />
+      <workItem from="1612626308466" duration="5018000" />
+      <workItem from="1612703849048" duration="958000" />
+      <workItem from="1612704822288" duration="1342000" />
+      <workItem from="1612707526829" duration="379000" />
     </task>
     <task id="LOCAL-00001" summary="2021年1月16日 17:34:35">
       <created>1610789691079</created>
@@ -1810,7 +1828,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612190619789</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="2021年1月26日 00:27:11">
+      <created>1612624271450</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1612624271450</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1919,6 +1944,24 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java</url>
           <line>66</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
+          <line>205</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java</url>
+          <line>130</line>
+          <properties class="com.xxk.management.office.devices.controller.StockDevicesController" method="deliveryStockDevices">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
