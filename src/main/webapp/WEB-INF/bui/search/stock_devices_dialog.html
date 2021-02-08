@@ -247,7 +247,7 @@
             var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
                 enumObj_device_origin = {"1": "入科设备", "2": "原科设备"},
                 enumObj_deployment_status = {"1": "已完成", "2": "部署中"},
-                offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
+                offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
                 devices_data = [],//全部dev初始化
                 entity_data = [],//型号初始化
                 devices_data = {},//部署设备json
@@ -423,7 +423,7 @@
                 D_Form = editing_D.get('form'),
                 O_Form = editing_O.get('form');
             entity_selectAjax(originalSeaEntity);
-            search_office_select.set('items', stock_officeSelect(offices_select, {}));
+            search_office_select.set('items', stock_officeSelect(offices_data, {}));
 
             //管理操作
             function devDealFunction() {
@@ -514,9 +514,9 @@
 
             //科室更新函数
             function handle_office(callback) {
-                if (offices_select == undefined || offices_select == null) {
-                    offices_select = localstorageIO("offices_select", "/getOfficeSelect");
-                    if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
+                if (offices_data == undefined || offices_data == null) {
+                    offices_data = localstorageIO("offices_select", "/getOfficeSelect");
+                    if (offices_data == null) {   //offices_select为null表示浏览器不支持localstorage
                         alert("浏览器不支持localstorage！");
                         $.ajax({
                             url: '/getOfficeSelect',
@@ -526,7 +526,7 @@
                             dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                             success: function (data, textStatus, jqXHR) {
                                 if (data != null && data != undefined) {
-                                    offices_select = data.result;
+                                    offices_data = data.result;
                                     initOffice_tree();
                                     if (typeof callback === "function") {
                                         //调用它，既然我们已经确定了它是可调用的
@@ -553,7 +553,7 @@
 
             function initOffice_tree() {
                 if (office_tree == null) {
-                    office_tree = GetMenus('root', offices_select);
+                    office_tree = GetMenus('root', offices_data);
                 }
             }
 
