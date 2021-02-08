@@ -253,6 +253,7 @@
                 devices_data = {},//部署设备json
                 device_select = {},//选中的设备json
                 office_tree = null,
+                offices_select = {},
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
@@ -614,36 +615,36 @@
             };
 
             function getStockByEntity(v, callback) {
-                if (v.entity_id != null && v.entity_id != '' && v.entity_id != undefined) {
-                    $.ajax({
-                        url: '/listStockByEntityId',
-                        data: {
-                            entity_id: v.entity_id,
-                            office_id: v.stock_office_id
-                        },
-                        type: 'POST', //GET
-                        async: true,    //或false,是否异步
-                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                        success: function (data, textStatus, jqXHR) {
-                            if (!$.isEmptyObject(data.entityData)) {
-                                Sto_rec_grid.set('items', data.entityData);
-                                if (typeof callback === "function") {
-                                    //调用它，既然我们已经确定了它是可调用的
-                                    callback();
-                                }
-                            } else {
-                                $("#depository_version").val(0);
+                $.ajax({
+                    url: '/listStockByEntityId',
+                    data: {
+                        entity_id: v.entity_id,
+                        office_id: v.stock_office_id
+                    },
+                    type: 'POST', //GET
+                    async: true,    //或false,是否异步
+                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success: function (data, textStatus, jqXHR) {
+                        if (!$.isEmptyObject(data.entityData)) {
+                            Sto_rec_grid.set('items', data.entityData);
+                            if (typeof callback === "function") {
+                                //调用它，既然我们已经确定了它是可调用的
+                                callback();
                             }
-
-                        },
-                        error: function (xhr, textStatus) {
-                            console.log('错误')
-                            console.log(xhr)
-                            console.log(textStatus)
+                        } else {
+                            $("#depository_version").val(0);
                         }
-                    })
-                }//if语句判断是否获取到设备ID
+
+                    },
+                    error: function (xhr, textStatus) {
+                        console.log('错误')
+                        console.log(xhr)
+                        console.log(textStatus);
+                        BUI.Message.Alert('参数不能为空', 'error');
+                    }
+                })
+
             }
 
             //编辑操作
