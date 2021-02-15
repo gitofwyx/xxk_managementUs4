@@ -17,6 +17,7 @@ public class Stock extends BaseInfoEntity {
     private String stock_unit;           //库存单位
     private int stock_proportion;   //个体/单位比例
     private double stock_total;       //库存总量
+    private double stock_configured_total;       //已配置置库存总量（已设备总量单位计）
     private String stock_total_unit;  //总量单位
     private String stock_flag;          //库存状态
     private String remark;          //备注
@@ -104,6 +105,14 @@ public class Stock extends BaseInfoEntity {
 
     public void setStock_total(double stock_total) {
         this.stock_total = stock_total;
+    }
+
+    public double getStock_configured_total() {
+        return stock_configured_total;
+    }
+
+    public void setStock_configured_total(double stock_configured_total) {
+        this.stock_configured_total = stock_configured_total;
     }
 
     public String getStock_total_unit() {
