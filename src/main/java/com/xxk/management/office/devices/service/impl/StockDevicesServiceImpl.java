@@ -57,7 +57,11 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         String devicesId = UUIdUtil.getUUID();
         boolean devicesResult = false;
         try {
-
+            boolean Result =stockService.plusStockConfiguredTotal(devices.getPresent_stock_id(),devices.getCreateUserId(),createDate);
+            if(!Result){
+                log.error("addDepositoryWithStorage:deliveryService:allEntryDepository错误！");
+                return Result;
+            }
             devices.setId(devicesId);
             devices.setClass_id(storage.getClass_id());
             devices.setDevice_id(storage.getEntity_id());
