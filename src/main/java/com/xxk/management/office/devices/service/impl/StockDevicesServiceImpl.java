@@ -59,8 +59,8 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         try {
             boolean Result =stockService.plusStockConfiguredTotal(devices.getPresent_stock_id(),devices.getCreateUserId(),createDate);
             if(!Result){
-                log.error("addDepositoryWithStorage:deliveryService:allEntryDepository错误！");
-                return Result;
+                log.error("addStockDevices:plusStockConfiguredTotal错误！");
+                return false;
             }
             devices.setId(devicesId);
             devices.setClass_id(storage.getClass_id());
