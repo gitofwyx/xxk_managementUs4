@@ -222,6 +222,18 @@
                 <div class="control-group span2.5">
                     <input id="entity_type2" name="entity_type" type="hidden" data-rules="{required:true}">
                 </div>
+                <div class="control-group span2.5">
+                    <input id="stock_no" name="stock_no" type="hidden">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="out_confirmed_no" name="out_confirmed_no" type="hidden">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="out_confirmed_proportion" name="out_confirmed_proportion" type="hidden">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="stock_total_unit" name="stock_total_unit" type="hidden">
+                </div>
             </div>
         </div>
     </form>
@@ -473,8 +485,12 @@
                     O_Form.getField('stock_entity_id').set('value', eData.id);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
                     O_Form.getField('entity_type').set('value', eData.entity_type);
-                    getStockByStockId(eData.present_stock_id,function (){
-
+                    getStockByStockId(eData.present_stock_id,function (v){
+                        var no=parseInt(v.stock_total)-1;
+                        O_Form.getField('stock_no').set('value',makeInNum(no,v.stock_proportion));
+                        O_Form.getField('out_confirmed_no').set('value',makeInNum(1,v.stock_proportion));
+                        O_Form.getField('out_confirmed_proportion').set('value',v.stock_proportion);
+                        O_Form.getField('stock_total_unit').set('value',makeInNum(1,v.stock_total_unit));
                     });
                 }
             }
