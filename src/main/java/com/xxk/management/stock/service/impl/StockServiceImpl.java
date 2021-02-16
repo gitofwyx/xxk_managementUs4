@@ -199,7 +199,7 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
-    //出库操作
+    //配置出库操作
     // 2019年8月19日 13:43:42更新
     @Override
     public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery,double stock_no) {

@@ -270,7 +270,7 @@
                 device_select = {},//选中的设备json
                 office_tree = null,
                 offices_select = {},
-                select_stock_id = '',
+                select_devices_id = '',
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
@@ -486,7 +486,7 @@
                     O_Form.getField('stock_entity_id').set('value', eData.id);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
                     O_Form.getField('entity_type').set('value', eData.entity_type);
-                    if(select_stock_id!==eData.present_stock_id){
+                    if(select_devices_id!==eData.id){
                         getStockByStockId(eData.present_stock_id,function (v){
                             var no=parseInt(v.stock_total)-1;
                             O_Form.getField('stock_no').set('value',makeInNum(no,v.stock_proportion));
@@ -495,7 +495,7 @@
                             O_Form.getField('out_confirmed_unit').set('value',v.stock_total_unit);
                         });
                     }
-                    select_stock_id=eData.present_stock_id;
+                    select_devices_id=eData.id;
                 }
             }
 
@@ -683,7 +683,7 @@
                     /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
                     dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                     success: function (data, textStatus, jqXHR) {
-                        if (!$.isEmptyObject(data.Object)) {
+                        if (!$.isEmptyObject(data)) {
                             Sto_rec_grid.set('items', data.entityData);
                             if (typeof callback === "function") {
                                 //调用它，既然我们已经确定了它是可调用的

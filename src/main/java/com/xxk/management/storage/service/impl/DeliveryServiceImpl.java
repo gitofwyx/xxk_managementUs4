@@ -67,7 +67,7 @@ public class DeliveryServiceImpl implements DeliveryService {
                 result.put("error", "添加出错,无法生成入库编号！");
                 return result;
             }
-            //入库
+            //
             delivery.setId(deliveryId);
             delivery.setStock_id(stock.getId());
             delivery.setOut_confirmed_ident(out_confirmed_ident);
