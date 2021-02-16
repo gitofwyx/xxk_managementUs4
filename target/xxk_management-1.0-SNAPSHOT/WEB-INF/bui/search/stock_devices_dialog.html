@@ -143,6 +143,10 @@
                 <input id="offices_storage_officeId2" name="offices_storage_officeId" type="hidden"
                        data-rules="{required:true}">
             </div>
+            <div class="control-group span2.5">
+                <input id="stock_version" name="stock_version" type="hidden"
+                       data-rules="{required:true}">
+            </div>
         </div>
     </form>
 </div>
@@ -469,6 +473,9 @@
                     O_Form.getField('stock_entity_id').set('value', eData.id);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
                     O_Form.getField('entity_type').set('value', eData.entity_type);
+                    getStockByStockId(eData.present_stock_id,function (){
+
+                    });
                 }
             }
 
@@ -632,8 +639,36 @@
                                 //调用它，既然我们已经确定了它是可调用的
                                 callback();
                             }
-                        } else {
-                            $("#depository_version").val(0);
+                        }
+
+                    },
+                    error: function (xhr, textStatus) {
+                        console.log('错误')
+                        console.log(xhr)
+                        console.log(textStatus);
+                        BUI.Message.Alert('参数不能为空', 'error');
+                    }
+                })
+
+            }
+
+            function getStockByStockId(v, callback) {
+                $.ajax({
+                    url: '/getStockByStockId',
+                    data: {
+                        stockId: v,
+                    },
+                    type: 'POST', //GET
+                    async: true,    //或false,是否异步
+                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success: function (data, textStatus, jqXHR) {
+                        if (!$.isEmptyObject(data.Object)) {
+                            Sto_rec_grid.set('items', data.entityData);
+                            if (typeof callback === "function") {
+                                //调用它，既然我们已经确定了它是可调用的
+                                callback(data.Object);
+                            }
                         }
 
                     },
@@ -692,6 +727,12 @@
             search_office_select.on('change', function (ev) {
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
+            });
+
+            //库存记录框选中
+            stock_record_select.on('change', function (ev) {
+
+                $("#stock_version").val(ev.item.stock_version);
             });
 
             //出库科室选择

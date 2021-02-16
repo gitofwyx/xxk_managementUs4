@@ -104,6 +104,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         return devicesResult;
     }
 
+    //出库
     @Override
     public boolean deliveryStockDevices(Devices devices, Delivery delivery) {
 

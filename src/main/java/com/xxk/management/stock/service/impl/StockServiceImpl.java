@@ -280,7 +280,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Stock getStockIdById(String id) {
+    public Stock getStockById(String id) {
         return dao.getStockById(id);
     }
 }

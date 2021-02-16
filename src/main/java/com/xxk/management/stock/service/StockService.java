@@ -34,6 +34,6 @@ public interface StockService {
 
     public List<String> getStorageIdByIdent(String ident);
 
-    public Stock getStockIdById(String id);
+    public Stock getStockById(String id);
 
 }

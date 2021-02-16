@@ -168,7 +168,6 @@ public class StockController extends BaseController {
     @RequestMapping(value = "/listStockByEntityId", method = RequestMethod.POST)
     public Map<String, Object> listStockByEntityId(@RequestParam(value = "entity_id") String entity_id,
                                                    @RequestParam(value = "office_id") String office_id) {
-        int id = 0;
         Map<String, Object> result = new HashMap<>();
         try {
             List<Stock> listStock = stockService.listStockByEntityId(entity_id, office_id);
@@ -177,6 +176,26 @@ public class StockController extends BaseController {
                 return null;
             }
             result.put("entityData", listStock);
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getStockByStockId", method = RequestMethod.POST)
+    public Map<String, Object> listStockByStockId(@RequestParam(value = "stockId") String stockId) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            Stock stock = stockService.getStockById(stockId);
+            if (stock == null) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("Object", stock);
+            result.put("success", true);
             /*result.put("dev_count", dev_count);*/
         } catch (Exception e) {
             log.error(e);
