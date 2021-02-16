@@ -24,7 +24,7 @@ public interface StockService {
 
     public Map<String, Object> updateStockWithDelivery(Stock stock, Delivery delivery);
 
-    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery) ;
+    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery,double stock_no) ;
 
     public Map<String, Object> updateStock(Stock stock);
 

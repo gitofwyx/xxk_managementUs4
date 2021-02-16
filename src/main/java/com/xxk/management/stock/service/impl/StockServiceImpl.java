@@ -202,7 +202,7 @@ public class StockServiceImpl implements StockService {
     //出库操作
     // 2019年8月19日 13:43:42更新
     @Override
-    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery) {
+    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery,double stock_no) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         try {
@@ -212,7 +212,7 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错！无法获取设备ID");
                 return result;
             }
-            boolean stockResult = dao.reduceSingleStockNo(delivery.getStock_id(),delivery.getCreateUserId(),createDate) == 1 ? true : false;
+            boolean stockResult = dao.reduceSingleStockNo(delivery.getStock_id(),stock_no,delivery.getCreateUserId(),createDate) == 1 ? true : false;
             if (!(stockResult)) {
                 log.error("stockResult:" + stockResult);
                 result.put("hasError", true);

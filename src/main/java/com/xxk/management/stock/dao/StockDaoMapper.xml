@@ -88,7 +88,8 @@
 
     <!--出库更新（单个设备、耗材） -->
     <update id="reduceSingleStockNo" parameterType="string">
-        update xxk_stock set stock_no=stock_no-1,stock_total=stock_total-1,stock_version=stock_version+1,updateUserId=#{1},updateDate=#{2}
+        update xxk_stock set stock_no=#{1},stock_total=stock_total-1,stock_configured_total=stock_configured_total-1,stock_version=stock_version+1,
+        updateUserId=#{2},updateDate=#{3}
         where id=#{0} and stock_total&gt;0 and deleteFlag='0';
     </update>
 

@@ -35,6 +35,6 @@ public interface StockDao {
 
     public int reduceStockNo(Stock stock);
 
-    public int reduceSingleStockNo(String stock_id,String userId,String date);
+    public int reduceSingleStockNo(String stock_id,double stock_no,String userId,String date);
 
 }

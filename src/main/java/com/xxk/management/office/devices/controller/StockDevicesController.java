@@ -129,7 +129,8 @@ public class StockDevicesController extends BaseController {
     //出库
     @ResponseBody
     @RequestMapping(value = "/deliveryStockDevices", method = RequestMethod.POST)
-    public Map<String, Object> deliveryStockDevices(Devices devices, Delivery delivery) {
+    public Map<String, Object> deliveryStockDevices(Devices devices, Delivery delivery,
+                                                    @RequestParam(value = "stock_no") String stock_no) {
         Map<String, Object> result = new HashMap<>();
         try {
 
@@ -138,7 +139,7 @@ public class StockDevicesController extends BaseController {
             if (devices.getPresent_stock_id() != null && !"".equals(devices.getPresent_stock_id())) {
                 delivery.setStock_id(devices.getPresent_stock_id());//获取库存的id值
                 delivery.setOut_confirmed_type("1");
-                boolean Result = stockDevicesService.deliveryStockDevices(devices, delivery);
+                boolean Result = stockDevicesService.deliveryStockDevices(devices, delivery,Double.parseDouble(stock_no));
                 if (!(Result)) {
                     result.put("success", false);
                 } else {

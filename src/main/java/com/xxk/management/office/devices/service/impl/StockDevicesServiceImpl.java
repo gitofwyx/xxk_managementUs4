@@ -106,7 +106,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
 
     //出库
     @Override
-    public boolean deliveryStockDevices(Devices devices, Delivery delivery) {
+    public boolean deliveryStockDevices(Devices devices, Delivery delivery,double stock_no) {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
@@ -134,7 +134,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
                 delivery.setCreateDate(createDate);
                 delivery.setUpdateUserId(devices.getUpdateUserId());
                 delivery.setUpdateDate(createDate);
-                result = stockService.updateSingleStockWithDelivery(delivery);
+                result = stockService.updateSingleStockWithDelivery(delivery,stock_no);
                 if("true".equals(result.get("hasError"))){
                     return false;
                 }
