@@ -16,7 +16,7 @@ public interface StockDevicesService {
 
     public int countDevices();
 
-    public boolean addStockDevices(Devices devices,OfficesStorage storage);
+    public boolean addStockDevices(Devices devices,OfficesStorage storage,String stock_version);
 
     public boolean deliveryStockDevices(Devices devices, Delivery delivery) ;
 

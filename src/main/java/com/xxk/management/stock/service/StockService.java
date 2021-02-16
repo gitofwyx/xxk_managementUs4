@@ -28,7 +28,7 @@ public interface StockService {
 
     public Map<String, Object> updateStock(Stock stock);
 
-    public boolean plusStockConfiguredTotal(String stockId,String userId,String date);
+    public boolean plusStockConfiguredTotal(String stockId,String userId,String date,String stock_version);
 
     public boolean deleteListRegUser(List<String> listStr);
 

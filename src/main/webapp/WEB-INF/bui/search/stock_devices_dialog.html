@@ -143,6 +143,10 @@
                 <input id="offices_storage_officeId2" name="offices_storage_officeId" type="hidden"
                        data-rules="{required:true}">
             </div>
+            <div class="control-group span2.5">
+                <input id="stock_version" name="stock_version" type="hidden"
+                       data-rules="{required:true}">
+            </div>
         </div>
     </form>
 </div>
@@ -692,6 +696,12 @@
             search_office_select.on('change', function (ev) {
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
+            });
+
+            //库存记录框选中
+            stock_record_select.on('change', function (ev) {
+
+                $("#stock_version").val(ev.item.stock_version);
             });
 
             //出库科室选择

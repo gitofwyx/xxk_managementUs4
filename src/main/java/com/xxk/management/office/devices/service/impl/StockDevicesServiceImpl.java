@@ -50,14 +50,14 @@ public class StockDevicesServiceImpl implements StockDevicesService {
     }
 
     @Override
-    public boolean addStockDevices(Devices devices, OfficesStorage storage) {
+    public boolean addStockDevices(Devices devices, OfficesStorage storage,String stock_version) {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String devicesId = UUIdUtil.getUUID();
         boolean devicesResult = false;
         try {
-            boolean Result =stockService.plusStockConfiguredTotal(devices.getPresent_stock_id(),devices.getCreateUserId(),createDate);
+            boolean Result =stockService.plusStockConfiguredTotal(devices.getPresent_stock_id(),devices.getCreateUserId(),createDate,stock_version);
             if(!Result){
                 log.error("addStockDevices:plusStockConfiguredTotal错误！");
                 return false;

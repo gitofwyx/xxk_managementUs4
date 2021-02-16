@@ -265,8 +265,8 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public boolean plusStockConfiguredTotal(String stockId,String userId,String date) {
-        return dao.plusStockConfiguredTotal(stockId,userId,date) == 1 ? true : false;
+    public boolean plusStockConfiguredTotal(String stockId,String userId,String date,String stock_version) {
+        return dao.plusStockConfiguredTotal(stockId,userId,date,stock_version) == 1 ? true : false;
     }
 
     @Override
