@@ -219,7 +219,7 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
             } else {
                 //出库更新
-                result = deliveryService.addDelivery(delivery,"1");
+                result = deliveryService.addDelivery(delivery,"0");
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
