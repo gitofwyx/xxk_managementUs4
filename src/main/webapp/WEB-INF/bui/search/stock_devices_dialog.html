@@ -90,7 +90,7 @@
                     <input id="present_stock_id" name="present_stock_id" type="hidden" data-rules="{required:true}">
                 </div>
                 &nbsp;
-                <button type="button" id="depository_no_lock" name=""
+                <button type="button" id="achieve_stock" name=""
                         style="width:40px;height:23px;margin-left:5px;background-color:#dddddd;">获取
                 </button>
             </div>
@@ -296,9 +296,9 @@
                     idField: 'id',//选项的默认id字段
                     columns: [
                         {title: '库存编号', dataIndex: 'stock_ident', elCls: 'center', width: '30%'},
-                        {title: '数量', dataIndex: 'stock_no', elCls: 'center', width: '20%'},
+                        {title: '&nbsp总量', dataIndex: 'stock_total', elCls: 'center', width: '30%'},
                         {title: '单位', dataIndex: 'stock_unit', elCls: 'center', width: '20%'},
-                        {title: '总量', dataIndex: 'stock_total', elCls: 'center', width: '30%'},
+                        {title: '已配置总量', dataIndex: 'stock_configured_total', elCls: 'center', width: '30%'},
                     ],
                     textGetter: function (item) { //返回选中的文本
                         return item.stock_ident;
@@ -446,6 +446,9 @@
             //管理操作
             function devDealFunction() {
                 var newData = {}; //标志是新增加的记录
+                Sto_rec_grid.set('items', {});
+                $("#present_stock_id").val("");
+                $("#stock_version").val("");
                 enumObj_office[offices_select.value] = offices_select.text;
                 ori_device_select.render();
                 editing_D.add(newData, 'name'); //添加记录后，直接编辑
@@ -460,10 +463,7 @@
                 if (offices_select != {} && !$.isEmptyObject(offices_select)) {
                     D_Form.getField('offices_storage_officeId').set('value', offices_select.value);
                 }
-                getStockByEntity({
-                    entity_id: device_select.value,
-                    stock_office_id: offices_select.value,
-                });
+
             }
 
             //出库操作
@@ -486,16 +486,16 @@
                     O_Form.getField('stock_entity_id').set('value', eData.id);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
                     O_Form.getField('entity_type').set('value', eData.entity_type);
-                    if(select_devices_id!==eData.id){
-                        getStockByStockId(eData.present_stock_id,function (v){
-                            var no=parseInt(v.stock_total)-1;
-                            O_Form.getField('stock_no').set('value',makeInNum(no,v.stock_proportion));
-                            O_Form.getField('out_confirmed_no').set('value',makeInNum(1,v.stock_proportion));
-                            O_Form.getField('out_confirmed_proportion').set('value',v.stock_proportion);
-                            O_Form.getField('out_confirmed_unit').set('value',v.stock_total_unit);
+                    if (select_devices_id !== eData.id) {
+                        getStockByStockId(eData.present_stock_id, function (v) {
+                            var no = parseInt(v.stock_total) - 1;
+                            O_Form.getField('stock_no').set('value', makeInNum(no, v.stock_proportion));
+                            O_Form.getField('out_confirmed_no').set('value', makeInNum(1, v.stock_proportion));
+                            O_Form.getField('out_confirmed_proportion').set('value', v.stock_proportion);
+                            O_Form.getField('out_confirmed_unit').set('value', v.stock_total_unit);
                         });
                     }
-                    select_devices_id=eData.id;
+                    select_devices_id = eData.id;
                 }
             }
 
@@ -751,8 +751,22 @@
 
             //库存记录框选中
             stock_record_select.on('change', function (ev) {
-
+                if (parseInt(ev.item.stock_total) <= parseInt(ev.item.stock_configured_total)) {
+                    BUI.Message.Alert('库存不足，无法提交！', 'error');
+                    $("#present_stock_id").val("");
+                    $("#stock_version").val("");
+                    return;
+                }
                 $("#stock_version").val(ev.item.stock_version);
+            });
+
+            $("#achieve_stock").click(function () {
+                if ($.isEmptyObject(Sto_rec_grid.get('items'))) {
+                    getStockByEntity({
+                        entity_id: device_select.value,
+                        stock_office_id: offices_select.value,
+                    });
+                }
             });
 
             //出库科室选择

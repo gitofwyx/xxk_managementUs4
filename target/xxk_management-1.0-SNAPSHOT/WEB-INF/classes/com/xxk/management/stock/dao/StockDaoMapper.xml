@@ -40,7 +40,7 @@
     <insert id="addStock" parameterType="com.xxk.management.stock.entity.Stock">
         insert into xxk_stock(<include refid="columns"></include>) values(
         #{id},#{stock_ident},#{class_id},#{entity_id},#{stock_type},#{stock_office_id},#{stock_no},#{stock_unit},#{stock_proportion},#{stock_total},
-        #{stock_configured_total},#{stock_total_unit},#{stock_flag},#{remark},#{keyWord},1,#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        0,#{stock_total_unit},#{stock_flag},#{remark},#{keyWord},1,#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--根据id获取信息 -->
