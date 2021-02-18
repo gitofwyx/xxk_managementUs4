@@ -9,7 +9,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021-2-17 20:55:24" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021-2-18 20:31:58">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -1634,7 +1641,10 @@
       <workItem from="1613554440520" duration="1424000" />
       <workItem from="1613555881828" duration="1162000" />
       <workItem from="1613566140705" duration="3103000" />
-      <workItem from="1613575998256" duration="1141000" />
+      <workItem from="1613575998256" duration="4121000" />
+      <workItem from="1613655244623" duration="88000" />
+      <workItem from="1613659450889" duration="1659000" />
+      <workItem from="1613661125208" duration="870000" />
     </task>
     <task id="LOCAL-00001" summary="2021年1月16日 17:34:35">
       <created>1610789691079</created>
@@ -1951,7 +1961,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613650892186</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="2021-2-18 20:31:58">
+      <created>1613651522030</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1613651522030</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2054,7 +2071,8 @@
     <MESSAGE value="2021年1月26日 00:27:11" />
     <MESSAGE value="2021年2月17日 01:03:05" />
     <MESSAGE value="2021-2-17 20:55:24" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021-2-17 20:55:24" />
+    <MESSAGE value="2021-2-18 20:31:58" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021-2-18 20:31:58" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

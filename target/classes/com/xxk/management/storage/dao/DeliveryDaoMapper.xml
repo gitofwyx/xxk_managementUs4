@@ -42,7 +42,7 @@
         select
         <include refid="columns"></include>
         from xxk_delivery
-        where deleteFlag='0' and out_confirmed_officeId=#{2} and (entity_entry_status='1' or entity_entry_status='2')
+        where deleteFlag='0' and out_confirmed_officeId=#{2} and entity_entry_status in ('0','1','2')
         ORDER BY createDate desc limit #{0},#{1};
     </select>
 
