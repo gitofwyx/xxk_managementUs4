@@ -69,6 +69,7 @@
         <input type="hidden" name="depository_id" id="depository_id">
         <input type="hidden" name="class_record_id" id="class_record_id" data-rules="{required:true}">
         <input type="hidden" name="entity_record_id" id="entity_record_id" data-rules="{required:true}">
+        <input type="hidden" name="stock_or_depository_id" id="stock_or_depository_id" data-rules="{required:true}">
         <input type="hidden" name="offices_storage_genre" id="offices_storage_genre" data-rules="{required:true}">
         <input type="hidden" name="depository_type" id="depository_type">
         <input type="hidden" name="depository_officeId" id="depository_officeId">
@@ -466,8 +467,8 @@
                 }).render(),
                 columns = [
                     {title: '&nbsp库存编号', dataIndex: 'depository_ident', elCls: 'center', width: 150},
-                    {title: '&nbsp库存名称', dataIndex: 'entity_name', elCls: 'center', width: 120},
-                    {title: '&nbsp库存型号', dataIndex: 'entity_type', elCls: 'center', width: 120},
+                    {title: '&nbsp库存名称', dataIndex: 'entity_name', elCls: 'center', width: 150},
+                    {title: '&nbsp库存型号', dataIndex: 'entity_type', elCls: 'center', width: 180},
                     {title: '&nbsp库存单位', dataIndex: 'depository_unit', elCls: 'center', width: 100},
                     {title: '&nbsp库存总量', dataIndex: 'depository_total', elCls: 'center', width: 90},
                     {title: '&nbsp剩余总量', dataIndex: 'depository_idle_total', elCls: 'center', width: 90},
@@ -941,6 +942,7 @@
                 $("#class_record_id").val(ev.item.class_id);
                 $("#delivery_entity_name").val(ev.item.entity_name);
                 $("#delivery_entity_type").val(ev.item.entity_type);
+                $("#stock_or_depository_id").val(ev.item.stock_id);
                 $("#depository_type").val(ev.item.out_confirmed_type);
                 $("#out_confirmed_total").val(ev.item.out_confirmed_total);
                 $("#offices_storage_unit").val(ev.item.out_confirmed_unit);

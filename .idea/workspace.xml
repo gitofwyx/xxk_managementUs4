@@ -11,8 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021-2-18 20:31:58">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
@@ -1645,6 +1647,9 @@
       <workItem from="1613655244623" duration="88000" />
       <workItem from="1613659450889" duration="1659000" />
       <workItem from="1613661125208" duration="870000" />
+      <workItem from="1613662010920" duration="650000" />
+      <workItem from="1613662676454" duration="1491000" />
+      <workItem from="1613736401699" duration="629000" />
     </task>
     <task id="LOCAL-00001" summary="2021年1月16日 17:34:35">
       <created>1610789691079</created>
@@ -1968,7 +1973,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613651522030</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="2021-2-18 20:31:58">
+      <created>1613662018659</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1613662018659</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2085,6 +2097,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java</url>
           <line>133</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/controller/DepositoryController.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
