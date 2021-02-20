@@ -19,6 +19,8 @@ public interface DevicesService {
 
     public boolean addDevices(Devices devices, OfficesStorage storage);
 
+    public boolean updateStockDevices(Devices devices);
+
     public List<Map<String, Object>> getDevicesNumber(String deviceId);
 
     public List<Map<String, Object>> getDevicesSelect();

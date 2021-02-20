@@ -104,6 +104,34 @@ public class DevicesServiceImpl implements DevicesService {
         return devicesResult;
     }
 
+    //出库
+    @Override
+    public boolean updateStockDevices(Devices devices) {
+
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        boolean devicesResult = false;
+        try {
+            devices.setDevice_deployment_status("2");
+            devices.setUpdateDate(createDate);
+            devicesResult = dao.updateDeviceStatus(devices) == 1 ? true : false;
+            if (!(devicesResult)) {
+                log.error("depositoryResult:" + devicesResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return devicesResult;
+    }
+
     @Override
     public List<Map<String, Object>> getDevicesNumber(String devicesId) {
         return dao.getDevicesNumber(devicesId);

@@ -32,6 +32,8 @@ public interface DevicesDao {
 
     public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status);
 
+    public int updateDeviceStatus(Devices device);
+
     public int plusDevicesNumber(int dev_no, String deviceId);   //更新设备数量 （增加）
 
     public int minusDevicesNumber(int dev_no, String deviceId);   //更新设备数量 （减少）
