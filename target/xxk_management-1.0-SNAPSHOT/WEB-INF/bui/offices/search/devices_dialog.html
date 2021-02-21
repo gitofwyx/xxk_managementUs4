@@ -225,10 +225,6 @@
                         ori_device_grid = new Grid.Grid({
                             idField: 'id',//选项的默认id字段
                             columns: [
-                                {
-                                    title: '库存科室', dataIndex: 'depository_officeId', elCls: 'center', width: '40%',
-                                    renderer: BUI.Grid.Format.enumRenderer(enumObj_office)
-                                },
                                 {title: '科室总量', dataIndex: 'depository_idle_total', elCls: 'center', width: '30%'},
                                 {title: '剩余总量', dataIndex: 'depository_total', elCls: 'center', width: '30%'},
                                 {title: '单位', dataIndex: 'depository_total_unit', elCls: 'center', width: '25%'},
@@ -338,7 +334,7 @@
                 //部署操作
                 function deploymentFunction() {
                     var newData = {}; //标志是新增加的记录
-                    enumObj_office[offices_select.value] = offices_select.text;
+                    //enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新
                     ori_device_select.render();
                     editing.add(newData, 'name'); //添加记录后，直接编辑
                     if (device_select != {} && !$.isEmptyObject(device_select)) {

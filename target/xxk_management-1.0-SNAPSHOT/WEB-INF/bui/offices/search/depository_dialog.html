@@ -69,6 +69,7 @@
         <input type="hidden" name="depository_id" id="depository_id">
         <input type="hidden" name="class_record_id" id="class_record_id" data-rules="{required:true}">
         <input type="hidden" name="entity_record_id" id="entity_record_id" data-rules="{required:true}">
+        <input type="hidden" name="offices_entity_id" id="offices_entity_id" data-rules="{required:true}">
         <input type="hidden" name="stock_or_depository_id" id="stock_or_depository_id" data-rules="{required:true}">
         <input type="hidden" name="offices_storage_genre" id="offices_storage_genre" data-rules="{required:true}">
         <input type="hidden" name="depository_type" id="depository_type">
@@ -940,6 +941,7 @@
                     depository_total_unit: entity_select.single_unit,
                 });
                 $("#class_record_id").val(ev.item.class_id);
+                $("#offices_entity_id").val(ev.item.stock_entity_id);
                 $("#delivery_entity_name").val(ev.item.entity_name);
                 $("#delivery_entity_type").val(ev.item.entity_type);
                 $("#stock_or_depository_id").val(ev.item.stock_id);
