@@ -31,6 +31,8 @@ public interface DevicesService {
 
     public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status);
 
+    public List<Devices> getDevicesWithDepositoryId(String DepositoryId,String status) ;
+
     public boolean plusDevicesNumber(int dev_no, String devicesId);
 
     public boolean minusDevicesNumber(int dev_no, String devicesId);

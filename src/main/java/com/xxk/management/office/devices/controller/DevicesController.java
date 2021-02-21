@@ -174,4 +174,24 @@ public class DevicesController extends BaseController {
         return result;
     }
 
+    //获取未部署的设备
+    @ResponseBody
+    @RequestMapping("/getDevicesWithDepositoryId")
+    public Map<String, Object> getDevicesWithDepositoryId(@RequestParam(value = "depositoryId") String depositoryId) {
+        Map<String, Object> result = new HashMap<>();
+        //List<Map<String, Object>> dev_count = new ArrayList<>();
+        try {
+            List<Devices> listDevices=devicesService.getDevicesWithDepositoryId(depositoryId,"2");
+            if (listDevices == null) {
+                return null;
+            }
+            result.put("listDevices", listDevices);
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "获取出错");
+        }
+        return result;
+    }
+
 }

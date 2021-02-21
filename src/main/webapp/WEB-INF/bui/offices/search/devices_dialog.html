@@ -196,7 +196,7 @@
                         enumObj_device_origin = {"1": "入科设备", "2": "原科设备"},
                         enumObj_deployment_status = {"1": "已完成", "2": "部署中"},
                         offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
-                        devices_data = [],//全部dev初始化
+                        device_data = {},//全部dev初始化
                         entity_data = [],//型号初始化
                         devices_data = {},//部署设备json
                         device_select = {},//选中的设备json
@@ -367,7 +367,7 @@
                 //型号生成
                 function changeEntClass(ev, i) {
                     entity_data = [];
-                    var Entity_data = devices_data.Entity_data;
+                    var Entity_data = device_data.Entity_data;
                     for (var j = 0, len = Entity_data.length; j < len; j++) {
                         if (Entity_data[j].dev_class_id == i) {
                             entity_data.push(Entity_data[j]);
@@ -378,7 +378,7 @@
                 //下拉框ajax请求entity_selectAjax
                 function entity_selectAjax(callback) {
                     var url = '/getDeviceSelect';
-                    if ($.isEmptyObject(devices_data)) {
+                    if ($.isEmptyObject(device_data)) {
                         $.ajax({
                             url: url,
                             data: {tab: 1},
@@ -388,7 +388,7 @@
                             dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                             success: function (data, textStatus, jqXHR) {
                                 if (data != null && data != undefined) {
-                                    devices_data = data;
+                                    device_data = data;
                                 }
                                 //回调函数
                                 if (typeof callback === "function") {
@@ -463,6 +463,35 @@
                     })
                 }
 
+                //根据设备、耗材ID获取科室库存
+                function getDevicesWithDepository(data, callback) {
+                    $.ajax({
+                        url: '/getDevicesWithDepositoryId',
+                        type: 'POST', //GET
+                        data: data,
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            if (data != null && data != undefined) {
+                                if (typeof callback === "function") {
+                                    //调用它，既然我们已经确定了它是可调用的
+                                    devices_data=data.listDepository;
+                                    callback(data.listDepository);
+                                }
+                            } else {
+                                $("#depository_version").val(0);
+                            }
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus);
+                            /*BUI.Message.Alert('参数不能为空', 'error');*/
+                        }
+                    })
+                }
+
                 //下拉提示框bsSuggest
                 function initBsSuggest(t, cla, v, callback) {
                     var options = {
@@ -502,8 +531,8 @@
 
                 //初始化BsSuggest
                 function originalSeaEntity(v) {
-                    if (!$.isEmptyObject(devices_data)) {
-                        initBsSuggest(1, "search_devices_class", {value: devices_data.Class_data}, function (K, data) {
+                    if (!$.isEmptyObject(device_data)) {
+                        initBsSuggest(1, "search_devices_class", {value: device_data.Class_data}, function (K, data) {
                             $("#search_class_id").val(data.value);
                             initBsSuggest(0, "search_devices_entity");
                             $('#devices_entity_div').replaceWith('<div class="input-group" id="devices_entity_div"> ' +
@@ -522,7 +551,7 @@
 
                 /*//初始化BsSuggest
                 function originalDeploymentDev(v) {
-                    if (!$.isEmptyObject(devices_data)) {
+                    if (!$.isEmptyObject(device_data)) {
                         initBsSuggest(0, "search_devices_entity");
                         $('#devices_entity_div').replaceWith('<div class="input-group" id="devices_entity_div"> ' +
                                 '<input type="text" id="search_devices_entity" name="search_devices_entity"> ' +
@@ -594,20 +623,13 @@
                         items([record]);
                     }
                 });
-                /*suggest.on('change', function (ev) {
-                 if (dev_name_data != undefined || dev_name_data != null) {
-                 var dev_class_id = J_Form.getField('dev_class_id').get("value");
-                 var c = dev_count_map[dev_class_id];
-                 J_Form.getField('class_ident').set('value', dev_name_data[c].class_ident);
-                 J_Form.getField('type_max').set('value', dev_name_data[c].type_max);
-                 J_Form.getField('lastUpDate').set('value', dev_name_data[c].updateDate);
-                 }
-                 });*/
 
-                /*J_Form.on('beforesubmit', function (ev) {
-                 alert('beforesubmit');
-                 return false;
-                 })*/
+                //库存记录框选中
+                ori_device_select.on('change', function (ev) {
+                    getDevicesWithDepository({
+                        depositoryId:ev.item.id
+                    });
+                });
 
                 loc_office_tree.on('itemclick', function (ev) {
                     $("#location_office_id").val(ev.item.value);
