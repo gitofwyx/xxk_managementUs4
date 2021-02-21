@@ -5,6 +5,7 @@ import com.xxk.core.util.UUIdUtil;
 import com.xxk.management.office.depository.dao.DepositoryDao;
 import com.xxk.management.office.depository.entity.Depository;
 import com.xxk.management.office.depository.service.DepositoryService;
+import com.xxk.management.office.devices.service.DevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.office.storage.service.OfficesStorageService;
 import com.xxk.management.stock.entity.Stock;
@@ -40,6 +41,9 @@ public class DepositoryServiceImpl implements DepositoryService {
 
     @Autowired
     private StockService stockService;
+
+    @Autowired
+    private DevicesService devicesService;
 
     @Override
     public List<Depository> listDepository(int pageStart, int pageSize, String class_id, String entity_id, String depository_officeId, int search_type) {
@@ -153,7 +157,10 @@ public class DepositoryServiceImpl implements DepositoryService {
                 }
             }
             if("0".equals(storage.getEntity_entry_status())){
-                
+                devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
+                        "2",
+                        depository.getDelivery_id(),
+                        depository.getUpdateUserId(),createDate);
             }
             depository.setDepository_total(storage.getOffices_storage_total());
             depository.setDepository_idle_total(storage.getOffices_storage_total());

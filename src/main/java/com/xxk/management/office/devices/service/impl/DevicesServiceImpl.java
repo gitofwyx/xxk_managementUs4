@@ -106,13 +106,13 @@ public class DevicesServiceImpl implements DevicesService {
 
     //
     @Override
-    public boolean updateStockDevices(String devicesId,String status,String present_stock_id,String userId,String Date) {
+    public boolean updateDevicesStatus(String devicesId,String status,String present_stock_id,String userId,String Date) {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
         try {
-            devicesResult = dao.updateDeviceStatus(devicesId,status,present_stock_id,userId,Date) == 1 ? true : false;
+            devicesResult = dao.updateDevicesStatus(devicesId,status,present_stock_id,userId,Date) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
                 result.put("hasError", true);
