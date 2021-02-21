@@ -19,7 +19,7 @@ public interface DevicesService {
 
     public boolean addDevices(Devices devices, OfficesStorage storage);
 
-    public boolean updateStockDevices(Devices devices);
+    public boolean updateStockDevices(String devicesId,String status,String present_stock_id,String userId,String Date);
 
     public List<Map<String, Object>> getDevicesNumber(String deviceId);
 

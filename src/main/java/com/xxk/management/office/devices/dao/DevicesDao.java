@@ -32,7 +32,7 @@ public interface DevicesDao {
 
     public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status);
 
-    public int updateDeviceStatus(Devices device);
+    public int updateDeviceStatus(String devicesId,String status,String present_stock_id,String userId,String Date);
 
     public int plusDevicesNumber(int dev_no, String deviceId);   //更新设备数量 （增加）
 

@@ -50,9 +50,8 @@
     <!--更新操作 -->
     <update id="updateDevicesStatus" parameterType="com.xxk.management.office.devices.entity.Devices">
         update xxk_offices_devices
-        set device_deployment_status=#{device_deployment_status},present_stock_id=#{present_stock_id},
-            device_entry_date=#{device_entry_date},updateUserId=#{updateUserId},updateDate=#{updateDate}
-        where id=#{id} and deleteFlag='0';
+        set device_deployment_status=#{1},present_stock_id=#{2},updateUserId=#{3},updateDate=#{4}
+        where id=#{0} and deleteFlag='0';
     </update>
 
     <!--设备数量加 -->
