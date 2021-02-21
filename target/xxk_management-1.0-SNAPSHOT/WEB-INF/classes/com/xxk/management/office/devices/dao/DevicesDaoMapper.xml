@@ -47,6 +47,14 @@
         #{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
+    <!--更新操作 -->
+    <update id="updateDevicesStatus" parameterType="com.xxk.management.office.devices.entity.Devices">
+        update xxk_offices_devices
+        set device_deployment_status=#{device_deployment_status},present_stock_id=#{present_stock_id},
+            device_entry_date=#{device_entry_date},updateUserId=#{updateUserId},updateDate=#{updateDate}
+        where id=#{id} and deleteFlag='0';
+    </update>
+
     <!--设备数量加 -->
     <update id="plusDevicesNumber" parameterType="int">
         update xxk_device set dev_no=dev_no+#{0} where id=#{1} and deleteFlag='0';

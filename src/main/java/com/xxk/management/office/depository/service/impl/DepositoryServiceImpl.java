@@ -152,6 +152,9 @@ public class DepositoryServiceImpl implements DepositoryService {
                     return result;
                 }
             }
+            if("0".equals(storage.getEntity_entry_status())){
+                
+            }
             depository.setDepository_total(storage.getOffices_storage_total());
             depository.setDepository_idle_total(storage.getOffices_storage_total());
             depository.setUpdateDate(createDate);
