@@ -108,23 +108,16 @@ public class DevicesServiceImpl implements DevicesService {
     @Override
     public boolean updateDevicesStatus(String devicesId,String status,String present_stock_id,String userId,String Date) {
 
-        Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
         try {
             devicesResult = dao.updateDevicesStatus(devicesId,status,present_stock_id,userId,Date) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
             }
         } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
             log.error(e);
         } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
             log.error(e);
         }
         return devicesResult;

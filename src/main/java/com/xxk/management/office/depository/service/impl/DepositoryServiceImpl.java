@@ -99,6 +99,17 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错");
                 return result;
             }
+            if("0".equals(storage.getEntity_entry_status())){
+                boolean devicesResult=devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
+                        "2",
+                        depositoryId,
+                        depository.getUpdateUserId(),createDate);
+                if (!(devicesResult)) {
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
+                    return result;
+                }
+            }
             depository.setId(depositoryId);
             depository.setDepository_ident("NO");
             depository.setDepository_no(storage.getOffices_storage_total());
@@ -157,10 +168,15 @@ public class DepositoryServiceImpl implements DepositoryService {
                 }
             }
             if("0".equals(storage.getEntity_entry_status())){
-                devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
+                boolean devicesResult=devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
                         "2",
                         depository.getDelivery_id(),
                         depository.getUpdateUserId(),createDate);
+                if (!(devicesResult)) {
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
+                    return result;
+                }
             }
             depository.setDepository_total(storage.getOffices_storage_total());
             depository.setDepository_idle_total(storage.getOffices_storage_total());
