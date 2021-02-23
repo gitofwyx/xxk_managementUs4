@@ -32,7 +32,7 @@ public interface DevicesDao {
 
     public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status);
 
-    public List<Devices> getDevicesWithDepositoryId(String depositoryId,String status);
+    public List<Map<String, Object>> getDevicesWithDepositoryId(String depositoryId,String status);
 
     public int updateDevicesStatus(String devicesId,String status,String present_stock_id,String userId,String Date);
 

@@ -5,6 +5,14 @@
  mediaOfLANId,device_origin,present_stock_id,in_storage_id,delivery_id,device_entry_date,device_deployment_status,device_deployment_date,related_flag,
  related_id,device_location,device_flag,devices_auditing_mark,reject_date,remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
+    <resultMap id="devicesSelectMap" type="java.util.HashMap">
+        <id column="id" property="value" jdbcType="VARCHAR"/>
+        <result column="present_stock_id" property="present_stock_id" jdbcType="VARCHAR"/>
+        <result column="office_unique_name" property="office_unique_name" jdbcType="VARCHAR"/>
+        <result column="devices_ident" property="text" jdbcType="VARCHAR"/>
+        <result column="device_entry_date" property="device_entry_date" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <!--获取分页 -->
     <select id="listDevices" resultType="com.xxk.management.office.devices.entity.Devices">
         select
@@ -38,14 +46,12 @@
         and deleteFlag='0';
     </select>
 
-    <!--根据部署状态获取设备-->
-    <select id="getDevicesWithDepositoryId" resultType="com.xxk.management.office.devices.entity.Devices">
-        select
-        <include refid="columns"></include>
+    <select id="getDevicesWithDepositoryId" resultMap="devicesSelectMap">
+        select id,present_stock_id,office_unique_name,devices_ident,device_entry_date
         from xxk_offices_devices
         where present_stock_id=#{0}
-        and device_deployment_status=#{1}
-        and deleteFlag='0';
+          and device_deployment_status=#{1}
+          and deleteFlag='0';
     </select>
 
     <!--添加信息 -->

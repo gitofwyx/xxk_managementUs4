@@ -156,7 +156,7 @@ public class DevicesServiceImpl implements DevicesService {
 
     //根据部署状态获取设备
     @Override
-    public List<Devices> getDevicesWithDepositoryId(String depositoryId,String status) {
+    public List<Map<String, Object>> getDevicesWithDepositoryId(String depositoryId,String status) {
 
         return dao.getDevicesWithDepositoryId(depositoryId,status);
     }

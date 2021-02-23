@@ -179,9 +179,9 @@ public class DevicesController extends BaseController {
     @RequestMapping("/getDevicesWithDepositoryId")
     public Map<String, Object> getDevicesWithDepositoryId(@RequestParam(value = "depositoryId") String depositoryId) {
         Map<String, Object> result = new HashMap<>();
-        //List<Map<String, Object>> dev_count = new ArrayList<>();
+        List<Map<String, Object>> listDevices = new ArrayList<>();
         try {
-            List<Devices> listDevices=devicesService.getDevicesWithDepositoryId(depositoryId,"2");
+            listDevices=devicesService.getDevicesWithDepositoryId(depositoryId,"2");
             if (listDevices == null) {
                 return null;
             }
