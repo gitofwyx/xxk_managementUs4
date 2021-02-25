@@ -117,7 +117,7 @@ public class DevicesController extends BaseController {
             devices.setCreateUserId(CurrentUserId);
             officesStorage.setStock_or_depository_id(depository_id);
             officesStorage.setOffices_storage_type("1");
-            boolean Result = devicesService.deploymentDevices(devices, officesStorage);
+            boolean Result = devicesService.addDevices(devices, officesStorage);
             if (!(Result)) {
                 result.put("success", false);
             } else {
