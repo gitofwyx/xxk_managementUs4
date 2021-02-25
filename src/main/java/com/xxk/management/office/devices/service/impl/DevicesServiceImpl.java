@@ -52,7 +52,7 @@ public class DevicesServiceImpl implements DevicesService {
     }
 
     @Override
-    public boolean addDevices(Devices devices, OfficesStorage storage) {
+    public boolean deploymentDevices(Devices devices, OfficesStorage storage) {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();

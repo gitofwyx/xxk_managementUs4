@@ -11,6 +11,7 @@
         <result column="office_unique_name" property="office_unique_name" jdbcType="VARCHAR"/>
         <result column="devices_ident" property="text" jdbcType="VARCHAR"/>
         <result column="device_entry_date" property="device_entry_date" jdbcType="VARCHAR"/>
+        <result column="device_location" property="device_location" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--获取分页 -->
@@ -47,7 +48,7 @@
     </select>
 
     <select id="getDevicesWithDepositoryId" resultMap="devicesSelectMap">
-        select id,present_stock_id,office_unique_name,devices_ident,device_entry_date
+        select id,present_stock_id,office_unique_name,devices_ident,device_entry_date,device_location
         from xxk_offices_devices
         where present_stock_id=#{0}
           and device_deployment_status=#{1}

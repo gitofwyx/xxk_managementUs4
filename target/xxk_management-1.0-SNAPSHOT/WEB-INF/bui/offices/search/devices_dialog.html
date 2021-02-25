@@ -136,7 +136,7 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备具体位置：</label>
                 <div class="controls">
-                    <input name="device_location" type="text" data-rules="{required:true}"
+                    <input id="device_location" name="device_location" type="text" data-rules="{required:true}"
                            class="input-normal control-text">
                 </div>
             </div>
@@ -592,7 +592,7 @@
                         '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
                     initDepBsSuggest(1, "deployment_devices_ident", {value: v}, function (K, data) {
                         $("#office_unique_name").val(data.office_unique_name);
-                        $("#device_location").val(data.value);
+                        $("#device_location").val(data.device_location);
                     });
                 }
             };

@@ -17,7 +17,7 @@ public interface DevicesService {
 
     public List<Devices> listDevicesById(List<String> listDevId);
 
-    public boolean addDevices(Devices devices, OfficesStorage storage);
+    public boolean deploymentDevices(Devices devices, OfficesStorage storage);
 
     public boolean updateDevicesStatus(String devicesId,String status,String present_stock_id,String userId,String Date);
 
