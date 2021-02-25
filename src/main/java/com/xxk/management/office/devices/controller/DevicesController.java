@@ -104,7 +104,8 @@ public class DevicesController extends BaseController {
     @ResponseBody
     @RequestMapping("/addDevices")
     public Map<String, Object> addDevices(Devices devices, OfficesStorage officesStorage,
-                                          @RequestParam(value = "depository_id") String depository_id) {
+                                          @RequestParam(value = "depository_id") String depository_id,
+                                          @RequestParam(value = "devices_id") String devices_id) {
         Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         try {

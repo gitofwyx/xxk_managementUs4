@@ -117,13 +117,8 @@ public class DevicesServiceImpl implements DevicesService {
             devices.setClass_id(storage.getClass_id());
             devices.setDevice_id(storage.getEntity_id());
             devices.setDevices_ident("NO");
-            devices.setDevice_state("0");
-            devices.setLocation_office_id(storage.getOffices_storage_officeId());
-            devices.setInventory_office_id(storage.getOffices_storage_officeId());
-            devices.setDevice_origin("1");
             devices.setDevice_deployment_status("2");
             devices.setRelated_flag("0");
-            devices.setCreateDate(createDate);
             devices.setUpdateUserId(devices.getCreateUserId());
             devices.setUpdateDate(createDate);
 
