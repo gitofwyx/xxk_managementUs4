@@ -104,6 +104,59 @@ public class DevicesServiceImpl implements DevicesService {
         return devicesResult;
     }
 
+    @Override
+    public boolean updateDevicesForDeployment(Devices devices, OfficesStorage storage) {
+
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String devicesId = UUIdUtil.getUUID();
+        boolean devicesResult=false;
+        try {
+
+            devices.setId(devicesId);
+            devices.setClass_id(storage.getClass_id());
+            devices.setDevice_id(storage.getEntity_id());
+            devices.setDevices_ident("NO");
+            devices.setDevice_state("0");
+            devices.setLocation_office_id(storage.getOffices_storage_officeId());
+            devices.setInventory_office_id(storage.getOffices_storage_officeId());
+            devices.setDevice_origin("1");
+            devices.setDevice_deployment_status("2");
+            devices.setRelated_flag("0");
+            devices.setCreateDate(createDate);
+            devices.setUpdateUserId(devices.getCreateUserId());
+            devices.setUpdateDate(createDate);
+
+            devices.setDeleteFlag("0");
+            devicesResult = dao.addDevices(devices) == 1 ? true : false;
+            if (!(devicesResult)) {
+                log.error("depositoryResult:" + devicesResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+                storage.setEntity_id(devices.getDevice_id());
+                storage.setOffices_entity_id(devicesId);
+                storage.setOriginal_storage_officeId(devices.getInventory_office_id());
+                storage.setOffices_storage_genre("2");
+                storage.setEntity_entry_status("2");
+                result = storageService.addOfficesStorage(devices,storage);
+                if("true".equals(result.get("hasError"))){
+                    return false;
+                }
+                devicesResult=depositoryService.deploymentDeviceWithSingle(storage.getStock_or_depository_id(),storage.getUpdateUserId(),createDate);
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return devicesResult;
+    }
+
     //
     @Override
     public boolean updateDevicesStatus(String devicesId,String status,String present_stock_id,String userId,String Date) {

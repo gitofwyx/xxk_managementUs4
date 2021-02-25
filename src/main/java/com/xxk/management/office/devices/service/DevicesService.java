@@ -19,6 +19,8 @@ public interface DevicesService {
 
     public boolean addDevices(Devices devices, OfficesStorage storage);
 
+    public boolean updateDevicesForDeployment(Devices devices, OfficesStorage storage);
+
     public boolean updateDevicesStatus(String devicesId,String status,String present_stock_id,String userId,String Date);
 
     public List<Map<String, Object>> getDevicesNumber(String deviceId);
