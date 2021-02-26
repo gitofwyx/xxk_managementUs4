@@ -38,7 +38,7 @@
     </select>
 
     <!--获取分页 -->
-    <select id="listDeliveryByOffice" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
+    <select id="listDeliveryByOffice" resultType="com.xxk.management.storage.entity.Delivery">
         select
         <include refid="columns"></include>
         from xxk_delivery

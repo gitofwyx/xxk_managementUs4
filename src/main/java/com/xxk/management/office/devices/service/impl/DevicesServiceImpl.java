@@ -152,12 +152,12 @@ public class DevicesServiceImpl implements DevicesService {
 
     //
     @Override
-    public boolean updateDevicesStatus(String devicesId,String status,String present_stock_id,String userId,String Date) {
+    public boolean updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date) {
 
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
         try {
-            devicesResult = dao.updateDevicesStatus(devicesId,status,present_stock_id,userId,Date) == 1 ? true : false;
+            devicesResult = dao.updateDevicesStatus(devicesId,location_office_id,present_stock_id,status,userId,Date) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
             }

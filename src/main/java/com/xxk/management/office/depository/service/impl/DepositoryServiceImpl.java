@@ -101,6 +101,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             }
             if("0".equals(storage.getEntity_entry_status())){
                 boolean devicesResult=devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
+                        depository.getDepository_officeId(),
                         depositoryId,
                         "2",
                         depository.getUpdateUserId(),createDate);
@@ -169,8 +170,9 @@ public class DepositoryServiceImpl implements DepositoryService {
             }
             if("0".equals(storage.getEntity_entry_status())){
                 boolean devicesResult=devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
-                        "2",
+                        depository.getDepository_officeId(),
                         depository.getId(),
+                        "2",
                         depository.getUpdateUserId(),createDate);
                 if (!(devicesResult)) {
                     result.put("hasError", true);
