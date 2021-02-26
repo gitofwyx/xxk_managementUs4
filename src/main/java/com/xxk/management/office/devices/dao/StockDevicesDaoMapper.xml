@@ -51,7 +51,7 @@
     <update id="updateDeviceStatus" parameterType="com.xxk.management.office.devices.entity.Devices">
         update xxk_offices_devices
         set device_deployment_status=#{device_deployment_status},office_unique_name=#{office_unique_name}, office_unique_name=#{office_unique_name},
-            delivery_id=#{delivery_id},updateUserId=#{updateUserId},updateDate=#{updateDate}
+            delivery_id=#{delivery_id},device_location=#{device_location},updateUserId=#{updateUserId},updateDate=#{updateDate}
         where id=#{id} and deleteFlag='0';
     </update>
 
