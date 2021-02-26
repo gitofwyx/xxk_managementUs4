@@ -21,7 +21,7 @@
     </resultMap>
 
     <!--获取分页 -->
-    <select id="listDeviceClass" parameterType="string" resultType="com.xxk.management.device.entity.DeviceClass">
+    <select id="listDeviceClass" resultType="com.xxk.management.device.entity.DeviceClass">
         select
         <include refid="columns"></include>
         from xxk_dev_class where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
@@ -75,11 +75,6 @@
     <update id="updateMat_maxMax" parameterType="com.xxk.management.device.entity.DeviceClass">
         update xxk_dev_class set mat_max=mat_max+1,updateUserId=#{updateUserId},updateDate=#{updateDate},class_version=#{class_version}+1
         where id=#{id} and class_version=#{class_version} and deleteFlag='0';
-    </update>
-
-    <update id="updateDeviceMax" parameterType="int">
-        update xxk_dev_class set dev_max=#{0},type_max=#{1},
-        updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->

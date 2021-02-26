@@ -75,7 +75,7 @@
     <!--更新操作 -->
     <update id="updateDevicesStatus" parameterType="com.xxk.management.office.devices.entity.Devices">
         update xxk_offices_devices
-        set device_deployment_status=#{1},present_stock_id=#{2},updateUserId=#{3},updateDate=#{4}
+        set inventory_office_id=#{1},location_office_id=#{1},present_stock_id=#{2},device_deployment_status=#{3},updateUserId=#{4},updateDate=#{5}
         where id=#{0} and deleteFlag='0';
     </update>
 

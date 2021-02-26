@@ -18,7 +18,7 @@
     </select>
 
     <!--获取分页 -->
-    <select id="listStorageByStock" parameterType="string" resultType="com.xxk.management.storage.entity.Storage">
+    <select id="listStorageByStock" resultType="com.xxk.management.storage.entity.Storage">
         select
         <include refid="columns"></include>
         from xxk_in_storage where  deleteFlag='0'

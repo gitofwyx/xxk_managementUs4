@@ -101,8 +101,8 @@ public class DepositoryServiceImpl implements DepositoryService {
             }
             if("0".equals(storage.getEntity_entry_status())){
                 boolean devicesResult=devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
-                        "2",
                         depositoryId,
+                        "2",
                         depository.getUpdateUserId(),createDate);
                 if (!(devicesResult)) {
                     result.put("hasError", true);
