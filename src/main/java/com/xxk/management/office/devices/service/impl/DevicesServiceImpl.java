@@ -109,11 +109,9 @@ public class DevicesServiceImpl implements DevicesService {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
-        String devicesId = UUIdUtil.getUUID();
         boolean devicesResult=false;
         try {
 
-            devices.setId(devicesId);
             devices.setClass_id(storage.getClass_id());
             devices.setDevice_id(storage.getEntity_id());
             devices.setDevices_ident("NO");
@@ -123,14 +121,14 @@ public class DevicesServiceImpl implements DevicesService {
             devices.setUpdateDate(createDate);
 
             devices.setDeleteFlag("0");
-            devicesResult = dao.addDevices(devices) == 1 ? true : false;
+            devicesResult = dao.updateDevicesForDeployment(devices) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
                 storage.setEntity_id(devices.getDevice_id());
-                storage.setOffices_entity_id(devicesId);
+                storage.setOffices_entity_id(devices.getId());
                 storage.setOriginal_storage_officeId(devices.getInventory_office_id());
                 storage.setOffices_storage_genre("2");
                 storage.setEntity_entry_status("2");

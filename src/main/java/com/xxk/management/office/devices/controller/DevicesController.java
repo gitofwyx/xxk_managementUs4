@@ -108,6 +108,7 @@ public class DevicesController extends BaseController {
                                           @RequestParam(value = "devices_id") String devices_id) {
         Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
+        boolean Result=false;
         try {
             if ("".equals(depository_id) || depository_id == null) {
                 result.put("hasError", true);
@@ -118,7 +119,12 @@ public class DevicesController extends BaseController {
             devices.setCreateUserId(CurrentUserId);
             officesStorage.setStock_or_depository_id(depository_id);
             officesStorage.setOffices_storage_type("1");
-            boolean Result = devicesService.addDevices(devices, officesStorage);
+            if(!"".equals(devices_id) || devices_id != null){
+                devices.setId(devices_id);
+                Result = devicesService.updateDevicesForDeployment(devices, officesStorage);
+            }else {
+                Result = devicesService.addDevices(devices, officesStorage);
+            }
             if (!(Result)) {
                 result.put("success", false);
             } else {

@@ -69,7 +69,7 @@
         update xxk_offices_devices
         set devices_ident=#{devices_ident},device_deployment_status=#{device_deployment_status},device_deployment_date=#{device_deployment_date},
             office_unique_name=#{office_unique_name},device_location=#{device_location},updateUserId=#{updateUserId},updateDate=#{updateDate}
-        where id=#{0} and deleteFlag='0';
+        where id=#{id} and deleteFlag='0';
     </update>
 
     <!--更新操作 -->

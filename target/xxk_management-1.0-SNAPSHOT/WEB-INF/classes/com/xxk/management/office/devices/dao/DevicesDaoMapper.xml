@@ -65,6 +65,14 @@
     </insert>
 
     <!--更新操作 -->
+    <update id="updateDevicesForDeployment" parameterType="com.xxk.management.office.devices.entity.Devices">
+        update xxk_offices_devices
+        set devices_ident=#{devices_ident},device_deployment_status=#{device_deployment_status},device_deployment_date=#{device_deployment_date},
+            office_unique_name=#{office_unique_name},device_location=#{device_location},updateUserId=#{updateUserId},updateDate=#{updateDate}
+        where id=#{id} and deleteFlag='0';
+    </update>
+
+    <!--更新操作 -->
     <update id="updateDevicesStatus" parameterType="com.xxk.management.office.devices.entity.Devices">
         update xxk_offices_devices
         set device_deployment_status=#{1},present_stock_id=#{2},updateUserId=#{3},updateDate=#{4}

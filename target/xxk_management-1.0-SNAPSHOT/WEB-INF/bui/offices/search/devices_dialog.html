@@ -105,6 +105,7 @@
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备编号：</label>
+                <input type="hidden" name="devices_id" id="devices_id" data-rules="{required:true}">
                 <div class="controls">
                     <div class="input-group" id="devices_ident_div">
                         <input type="text" id="deployment_devices_ident"
@@ -591,6 +592,7 @@
                         '<input type="text" id="deployment_devices_ident" name="deployment_devices_ident"> ' +
                         '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
                     initDepBsSuggest(1, "deployment_devices_ident", {value: v}, function (K, data) {
+                        $("#devices_id").val(data.value);
                         $("#office_unique_name").val(data.office_unique_name);
                         $("#device_location").val(data.device_location);
                     });
