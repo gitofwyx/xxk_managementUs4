@@ -11,7 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年2月27日 01:02:14">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1674,14 +1677,19 @@
       <workItem from="1614351927284" duration="4554000" />
       <workItem from="1614357115186" duration="647000" />
       <workItem from="1614357776088" duration="399000" />
-      <workItem from="1614358189394" duration="1131000" />
-    </task>
-    <task id="LOCAL-00015" summary="2021年1月23日 17:29:16">
-      <created>1611412054690</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1611412054690</updated>
+      <workItem from="1614358189394" duration="1187000" />
+      <workItem from="1614398113959" duration="699000" />
+      <workItem from="1614408545437" duration="1248000" />
+      <workItem from="1614409882653" duration="1806000" />
+      <workItem from="1614433895963" duration="7926000" />
+      <workItem from="1614447992363" duration="1010000" />
+      <workItem from="1614491336388" duration="1346000" />
+      <workItem from="1614508326999" duration="1725000" />
+      <workItem from="1614510108891" duration="600000" />
+      <workItem from="1614520282350" duration="1667000" />
+      <workItem from="1614521968048" duration="672000" />
+      <workItem from="1614522661470" duration="343000" />
+      <workItem from="1614523018624" duration="1665000" />
     </task>
     <task id="LOCAL-00016" summary="2021年1月23日 17:29:16">
       <created>1611418102790</created>
@@ -2019,7 +2027,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614358941507</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="2021年2月27日 01:02:14">
+      <created>1614359334624</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1614359334624</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2153,16 +2168,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java</url>
           <line>109</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java</url>
-          <line>133</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

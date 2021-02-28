@@ -112,6 +112,21 @@
         </div>
         <div class="row">
             <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备编号：</label>
+                <div class="controls">
+                    <input name="devices_ident" type="text" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备识别名称：</label>
+                <div class="controls">
+                    <input name="office_unique_name" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
                 <label class="control-label"><s>*</s>位置信息：</label>
                 <div class="controls">
                     <input name="device_location" type="text" data-rules="{required:true}"
@@ -171,7 +186,7 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
+                <label class="control-label"><s>*</s>设备信息：</label>
                 <div class="controls">
                     <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
                 </div>
@@ -443,15 +458,13 @@
             entity_selectAjax(originalSeaEntity);
             search_office_select.set('items', stock_officeSelect(offices_data, {}));
 
-            //管理操作
-            function devDealFunction() {
-                var newData = {}; //标志是新增加的记录
+            //获取操作
+            function addDevFunction() {
                 Sto_rec_grid.set('items', {});
                 $("#present_stock_id").val("");
                 $("#stock_version").val("");
                 enumObj_office[offices_select.value] = offices_select.text;
                 ori_device_select.render();
-                editing_D.add(newData, 'name'); //添加记录后，直接编辑
                 if (device_select != {} && !$.isEmptyObject(device_select)) {
                     D_Form.getField('class_id').set('value', device_select.dev_class_id);
                     D_Form.getField('entity_id').set('value', device_select.value);
@@ -459,6 +472,8 @@
                     D_Form.getField('entity_type').set('value', device_select.text);
                     D_Form.getField('dev_name').set('value', device_select.dev_name);
                     D_Form.getField('dev_type').set('value', device_select.text);
+                    D_Form.getField('office_unique_name').set('value', '');
+                    D_Form.getField('device_location').set('value', '');
                 }
                 if (offices_select != {} && !$.isEmptyObject(offices_select)) {
                     D_Form.getField('offices_storage_officeId').set('value', offices_select.value);
@@ -466,11 +481,29 @@
 
             }
 
+            //管理操作
+            function devDealFunction() {
+                var selections = grid.getSelection();
+                $("#present_stock_id").val("");
+                select_devices_id = '';
+                if (selections.length > 1) {
+                    BUI.Message.Alert('一次只能选择单个设备！！');
+                    return;
+                }
+                var eData = selections[0];
+                editing_D.add({isNew: false});
+                if (selections.length == 1) {
+                    D_Form.getField('dev_name').set('value', eData.entity_name);
+                    D_Form.getField('dev_type').set('value', eData.entity_type);
+                    D_Form.getField('devices_ident').set('value', eData.devices_ident);
+                    D_Form.getField('office_unique_name').set('value', eData.office_unique_name);
+                    D_Form.getField('device_location').set('value', eData.device_location);
+                    select_devices_id = eData.id;
+                }
+            }
+
             //出库操作
             function outDevFunction() {
-                handle_office(function () {
-                    dev_office_tree.set('nodes', office_tree);
-                });
                 var selections = grid.getSelection();
                 if (selections.length == 0) {
                     return;
@@ -479,13 +512,16 @@
                     return;
                 } else {
                     var eData = selections[0];
+                    handle_office(function () {
+                        dev_office_tree.set('nodes', office_tree);
+                    });
                     editing_O.edit({isNew: false});
                     O_Form.getField('present_stock_id').set('value', eData.present_stock_id);
                     O_Form.getField('class_id').set('value', eData.class_id);
                     O_Form.getField('entity_id').set('value', eData.device_id);
                     O_Form.getField('stock_entity_id').set('value', eData.id);
-                    O_Form.getField('entity_name').set('value', eData.entity_name);
-                    O_Form.getField('entity_type').set('value', eData.entity_type);
+                    O_Form.getField('dev_type').set('value', eData.entity_type + "/" + eData.entity_name);
+                    O_Form.getField('device_location').set('value', eData.device_location);
                     if (select_devices_id !== eData.id) {
                         getStockByStockId(eData.present_stock_id, function (v) {
                             var no = parseInt(v.stock_total) - 1;
@@ -761,6 +797,7 @@
             });
 
             $("#achieve_stock").click(function () {
+                addDevFunction();
                 if ($.isEmptyObject(Sto_rec_grid.get('items'))) {
                     getStockByEntity({
                         entity_id: device_select.value,
