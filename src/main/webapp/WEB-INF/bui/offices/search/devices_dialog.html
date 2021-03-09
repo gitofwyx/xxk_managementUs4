@@ -77,6 +77,7 @@
     </div>
 </div>
 
+<!--部署设备-->
 <div id="content" class="hide">
     <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
         <div class="row">
@@ -172,6 +173,67 @@
         </div>
     </form>
 </div>
+<!--转移与回收设备-->
+<div id="content_T" class="hide">
+    <form id="T_Form" class="form-horizontal" action="" autocomplete="off">
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>科室选择：</label>
+                <input type="hidden" name="offices_storage_officeId" id="offices_storage_officeId2">
+                <div class="controls">
+                    <input name="storage_office_ident" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>变更时间：</label>
+                <div class="controls">
+                    <input name="offices_storage_date" type="text" data-rules="{required:true}"
+                           class="calendar calendar-time">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备名称：</label>
+                <div class="controls">
+                    <input name="entity_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备型号：</label>
+                <div class="controls">
+                    <input name="entity_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>科室设备名称：</label>
+                <div class="controls">
+                    <input id="office_unique_name2" name="office_unique_name" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备具体位置：</label>
+                <div class="controls">
+                    <input id="device_location2" name="device_location" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">备注：</label>
+                <div class="controls control-row4">
+                    <textarea name="remark" class="input-large" type="text"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/js/bui-min.js"></script>
 <script type="text/javascript" src="/js/callback_ajax.js"></script>
@@ -205,12 +267,13 @@
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
-                /*form = new Form.HForm({
-                 srcNode: '#J_Form'
-                 }),*/
-                J_Form = '',
                 editing = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'content', //设置隐藏的Dialog内容
+                    autoSave: true, //添加数据或者修改数据时，自动保存
+                    triggerCls: 'btn-edit',
+                }),
+                editing_T = new BUI.Grid.Plugins.DialogEditing({
+                    contentId: 'content_T', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit',
                 }),
@@ -321,14 +384,19 @@
                                 handler: updateFunction
                             },
                             {
-                                text: '<i class="icon-shopping-cart"></i>回收与转移',
+                                text: '<i class="  icon-road"></i>转移设备(转科)',
+                                btnCls: 'button button-small',
+                                handler: updateFunction
+                            },
+                            {
+                                text: '<i class="icon-shopping-cart"></i>回收',
                                 btnCls: 'button button-small',
                                 handler: delFunction
                             }
                         ]
                     },
                     emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
-                    plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                    plugins: [editing,editing_T, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
 
             var search = new Search({
@@ -363,6 +431,20 @@
                 }, function (data) {
                     ori_device_grid.set('items', data);
                 });
+            }
+
+            //编辑操作
+            function updateFunction() {
+                var selections = grid.getSelection();
+                if (selections.length == 0) {
+                    return;
+                } else if (selections.length != 1) {
+                    BUI.Message.Alert('一次只能选择一条记录！！');
+                    return;
+                } else {
+                    var eData = selections[0];
+                    editing_T.edit(eData);
+                }
             }
 
             //型号生成
@@ -598,20 +680,6 @@
                     });
                 }
             };
-
-            //编辑操作
-            function updateFunction() {
-                var selections = grid.getSelection();
-                if (selections.length == 0) {
-                    return;
-                } else if (selections.length != 1) {
-                    BUI.Message.Alert('一次只能编辑一条记录！！');
-                    return;
-                } else {
-                    var eData = selections[0];
-                    editing.edit(eData);
-                }
-            }
 
             //删除操作
             function delFunction() {

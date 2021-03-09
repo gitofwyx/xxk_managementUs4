@@ -11,10 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年2月27日 01:02:14">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/dao/StockDevicesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1689,14 +1688,19 @@
       <workItem from="1614520282350" duration="1667000" />
       <workItem from="1614521968048" duration="672000" />
       <workItem from="1614522661470" duration="343000" />
-      <workItem from="1614523018624" duration="1665000" />
-    </task>
-    <task id="LOCAL-00016" summary="2021年1月23日 17:29:16">
-      <created>1611418102790</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1611418102790</updated>
+      <workItem from="1614523018624" duration="1807000" />
+      <workItem from="1614524923141" duration="609000" />
+      <workItem from="1614691362648" duration="1804000" />
+      <workItem from="1614781423745" duration="2253000" />
+      <workItem from="1615010127134" duration="599000" />
+      <workItem from="1615110308885" duration="708000" />
+      <workItem from="1615111457538" duration="961000" />
+      <workItem from="1615115682480" duration="1762000" />
+      <workItem from="1615118477196" duration="3401000" />
+      <workItem from="1615206003816" duration="894000" />
+      <workItem from="1615214387767" duration="1963000" />
+      <workItem from="1615295107763" duration="1179000" />
+      <workItem from="1615300856442" duration="2465000" />
     </task>
     <task id="LOCAL-00017" summary="2021年1月23日 17:29:16">
       <created>1611419258445</created>
@@ -2034,7 +2038,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614359334624</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="2021年2月27日 01:02:14">
+      <created>1614524763017</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1614524763017</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
