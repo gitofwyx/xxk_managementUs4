@@ -150,7 +150,7 @@ public class DevicesController extends BaseController {
             devices.setUpdateUserId(CurrentUserId);
             if (devices.getPresent_stock_id() != null && !"".equals(devices.getPresent_stock_id())) {
                 officesStorage.setStock_or_depository_id(devices.getPresent_stock_id());//获取库存的id值
-                boolean Result = stockDevicesService.deliveryStockDevices(devices, delivery,Double.parseDouble(stock_no));
+                boolean Result = devicesService.transferDevices(devices, officesStorage);
                 if (!(Result)) {
                     result.put("success", false);
                 } else {

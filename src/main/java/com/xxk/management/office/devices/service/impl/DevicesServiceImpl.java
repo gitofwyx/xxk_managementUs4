@@ -175,7 +175,7 @@ public class DevicesServiceImpl implements DevicesService {
     }
 
     //转科
-    public Map<String, Object> transferDevices(Devices devices, OfficesStorage officesStorage) {
+    public boolean transferDevices(Devices devices, OfficesStorage officesStorage) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;

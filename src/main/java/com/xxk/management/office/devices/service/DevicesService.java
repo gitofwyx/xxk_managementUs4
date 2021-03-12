@@ -23,6 +23,8 @@ public interface DevicesService {
 
     public boolean updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
 
+    public boolean transferDevices(Devices devices, OfficesStorage officesStorage);
+
     public List<Map<String, Object>> getDevicesNumber(String deviceId);
 
     public List<Map<String, Object>> getDevicesSelect();
@@ -34,9 +36,5 @@ public interface DevicesService {
     public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status);
 
     public List<Map<String, Object>> getDevicesWithDepositoryId(String DepositoryId,String status) ;
-
-    public boolean plusDevicesNumber(int dev_no, String devicesId);
-
-    public boolean minusDevicesNumber(int dev_no, String devicesId);
 
 }
