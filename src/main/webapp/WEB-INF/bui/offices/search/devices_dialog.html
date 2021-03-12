@@ -362,7 +362,7 @@
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                             addUrl: '/addDevices',
-                            updateUrl: '/updateRegUser',
+                            updateUrl: '/transferDevices',
                             removeUrl: '/delRegUserOfLogic'
                         },
                         method: 'POST'
@@ -386,7 +386,7 @@
                             {
                                 text: '<i class="  icon-road"></i>转移设备(转科)',
                                 btnCls: 'button button-small',
-                                handler: updateFunction
+                                handler: transferFunction
                             },
                             {
                                 text: '<i class="icon-shopping-cart"></i>回收',
@@ -433,8 +433,8 @@
                 });
             }
 
-            //编辑操作
-            function updateFunction() {
+            //转科操作
+            function transferFunction() {
                 var selections = grid.getSelection();
                 if (selections.length == 0) {
                     return;

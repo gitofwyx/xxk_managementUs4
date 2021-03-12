@@ -1,6 +1,7 @@
 package com.xxk.management.office.devices.dao;
 
 import com.xxk.management.office.devices.entity.Devices;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -38,8 +39,6 @@ public interface DevicesDao {
 
     public int updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
 
-    public int plusDevicesNumber(int dev_no, String deviceId);   //更新设备数量 （增加）
-
-    public int minusDevicesNumber(int dev_no, String deviceId);   //更新设备数量 （减少）
+    public int transferDevices(Devices devices);
 
 }

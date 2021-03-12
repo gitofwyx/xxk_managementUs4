@@ -17,6 +17,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -133,6 +134,34 @@ public class DevicesController extends BaseController {
         } catch (Exception e) {
             result.put("success", false);
             log.error(e);
+        }
+        return result;
+        //return "system/index";
+    }
+
+    //转科
+    @ResponseBody
+    @RequestMapping(value = "/transferDevices", method = RequestMethod.POST)
+    public Map<String, Object> transferDevices(Devices devices, OfficesStorage officesStorage) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            devices.setUpdateUserId(CurrentUserId);
+            if (devices.getPresent_stock_id() != null && !"".equals(devices.getPresent_stock_id())) {
+                officesStorage.setStock_or_depository_id(devices.getPresent_stock_id());//获取库存的id值
+                boolean Result = stockDevicesService.deliveryStockDevices(devices, delivery,Double.parseDouble(stock_no));
+                if (!(Result)) {
+                    result.put("success", false);
+                } else {
+                    result.put("success", true);
+                }
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
         }
         return result;
         //return "system/index";

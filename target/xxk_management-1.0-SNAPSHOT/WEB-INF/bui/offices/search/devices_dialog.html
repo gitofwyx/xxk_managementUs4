@@ -179,8 +179,9 @@
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>科室选择：</label>
+                <input type="hidden" name="offices_storage_officeId" id="offices_storage_officeId2">
                 <div class="controls">
-                    <input name="location_office" type="text" data-rules="{required:true}"
+                    <input name="storage_office_ident" type="text" data-rules="{required:true}"
                            class="input-normal control-text">
                 </div>
             </div>
@@ -219,12 +220,6 @@
                 <div class="controls">
                     <input id="device_location2" name="device_location" type="text" data-rules="{required:true}"
                            class="input-normal control-text">
-                </div>
-            </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="offices_storage_officeId2" name="offices_storage_officeId" type="hidden"
-                           data-rules="{required:true}">
                 </div>
             </div>
         </div>
@@ -272,10 +267,6 @@
                 enumObj_office = {},
                 class_count = 0,//设备种类最大值
 
-                /*form = new Form.HForm({
-                 srcNode: '#J_Form'
-                 }),*/
-                J_Form = '',
                 editing = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'content', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
@@ -371,7 +362,7 @@
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                             addUrl: '/addDevices',
-                            updateUrl: '/updateRegUser',
+                            updateUrl: '/transferDevices',
                             removeUrl: '/delRegUserOfLogic'
                         },
                         method: 'POST'
@@ -395,7 +386,7 @@
                             {
                                 text: '<i class="  icon-road"></i>转移设备(转科)',
                                 btnCls: 'button button-small',
-                                handler: updateFunction
+                                handler: transferFunction
                             },
                             {
                                 text: '<i class="icon-shopping-cart"></i>回收',
@@ -443,7 +434,7 @@
             }
 
             //编辑操作
-            function updateFunction() {
+            function transferFunction() {
                 var selections = grid.getSelection();
                 if (selections.length == 0) {
                     return;

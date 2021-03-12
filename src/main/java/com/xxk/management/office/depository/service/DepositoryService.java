@@ -1,6 +1,7 @@
 package com.xxk.management.office.depository.service;
 
 import com.xxk.management.office.depository.entity.Depository;
+import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
@@ -31,6 +32,8 @@ public interface DepositoryService {
     public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage);
 
     public Map<String, Object> deploymentDepository(Depository depository);
+
+    public Map<String, Object> transferDepository(Devices devices, OfficesStorage storage);
 
     public boolean deploymentDeviceWithSingle(String depository_id,String updateUserId,String updateDate);
 

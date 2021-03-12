@@ -85,7 +85,7 @@
          where id=#{id} and depository_version=#{depository_version} and deleteFlag='0';
     </update>
 
-    <!--入库更新 -->
+    <!-- -->
     <update id="reduceDepositoryIdleNo" parameterType="com.xxk.management.office.depository.entity.Depository">
         update xxk_depository set depository_idle_no=#{depository_idle_no},
         depository_idle_total=depository_idle_total-#{depository_idle_total},

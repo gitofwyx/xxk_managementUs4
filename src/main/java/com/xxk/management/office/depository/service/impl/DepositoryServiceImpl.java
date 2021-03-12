@@ -5,6 +5,7 @@ import com.xxk.core.util.UUIdUtil;
 import com.xxk.management.office.depository.dao.DepositoryDao;
 import com.xxk.management.office.depository.entity.Depository;
 import com.xxk.management.office.depository.service.DepositoryService;
+import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.office.storage.service.OfficesStorageService;
@@ -270,6 +271,42 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错");
                 return result;
             }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
+    }
+
+    //转移库存
+    @Override
+    public Map<String, Object> transferDepository(Devices devices, OfficesStorage storage) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String stockId = UUIdUtil.getUUID();
+        try {
+            if ("".equals(devices.getDevice_id()) || devices.getDevice_id() == null) {
+                log.info("recoveryDepository:出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                return result;
+            }
+
+            boolean depositoryResult = dao.transferDepository(storage) == 1 ? true : false;
+            if (!(depositoryResult)) {
+                log.error("depositoryResult:" + depositoryResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                return result;
+            }
+            //入库记录
+            storage.setEntity_id(devices.getDevice_id());
+            result = storageService.addOfficesStorage(devices, storage);//“1”代表入科标记
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
             result.put("error", "重复值异常，可能编号值重复");

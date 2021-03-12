@@ -1,6 +1,7 @@
 package com.xxk.management.office.depository.dao;
 
 import com.xxk.management.office.depository.entity.Depository;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.entity.Stock;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -35,6 +36,8 @@ public interface DepositoryDao {
     public Depository getDepositoryById(String id);
 
     public int recoveryDepository(Depository depository);
+
+    public int transferDepository(OfficesStorage storage);
 
     public int plusDepositoryNo(Depository depository);
 

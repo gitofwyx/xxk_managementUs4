@@ -22,6 +22,7 @@ public class OfficesStorage extends BaseInfoEntity {
     private String offices_storage_officeId;//设备\耗材流动科室
     private String offices_storage_date;    //科室设备\耗材流动时间
     private double offices_storage_no;  //科室设备\耗材流动数量
+    private double offices_storage_no_2;  //科室设备\耗材流动数量2
     private String offices_storage_unit;  //设备流动单位
     private int offices_storage_proportion;  //个体/单位比例
     private double offices_storage_total;      //科室设备\耗材流动总量
@@ -148,6 +149,14 @@ public class OfficesStorage extends BaseInfoEntity {
 
     public void setOffices_storage_no(double offices_storage_no) {
         this.offices_storage_no = offices_storage_no;
+    }
+
+    public double getOffices_storage_no_2() {
+        return offices_storage_no_2;
+    }
+
+    public void setOffices_storage_no_2(double offices_storage_no_2) {
+        this.offices_storage_no_2 = offices_storage_no_2;
     }
 
     public String getOffices_storage_unit() {
