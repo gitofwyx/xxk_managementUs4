@@ -381,7 +381,7 @@
                             {
                                 text: '<i class=" icon-wrench"></i>维护',
                                 btnCls: 'button button-small',
-                                handler: updateFunction
+                                handler: ''
                             },
                             {
                                 text: '<i class="  icon-road"></i>转移设备(转科)',
@@ -433,7 +433,7 @@
                 });
             }
 
-            //编辑操作
+            //转科操作
             function transferFunction() {
                 var selections = grid.getSelection();
                 if (selections.length == 0) {

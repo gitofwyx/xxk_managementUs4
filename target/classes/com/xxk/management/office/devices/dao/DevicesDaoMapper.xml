@@ -79,14 +79,12 @@
         where id=#{0} and deleteFlag='0';
     </update>
 
-    <!--设备数量加 -->
-    <update id="plusDevicesNumber">
-        update xxk_device set dev_no=dev_no+#{0} where id=#{1} and deleteFlag='0';
-    </update>
-
-    <!--设备数量减 -->
-    <update id="minusDevicesNumber" >
-        update xxk_device set dev_no=dev_no-#{0} where id=#{1} and dev_no-#{0}>0 and deleteFlag='0';
+    <!--转科操作 -->
+    <update id="transferDevices" parameterType="com.xxk.management.office.devices.entity.Devices">
+        update xxk_offices_devices
+        set device_deployment_status=#{device_deployment_status},office_unique_name=#{office_unique_name}, location_office_id=#{location_office_id},
+            device_location=#{device_location},updateUserId=#{updateUserId},updateDate=#{updateDate}
+        where id=#{id} and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->
