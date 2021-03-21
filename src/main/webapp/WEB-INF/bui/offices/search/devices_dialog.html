@@ -181,7 +181,7 @@
                 <label class="control-label"><s>*</s>科室选择：</label>
                 <input type="hidden" name="offices_storage_officeId" id="offices_storage_officeId2">
                 <div class="controls">
-                    <input name="storage_office_ident" type="text" data-rules="{required:true}"
+                    <input id="storage_office_ident" name="storage_office_ident" type="text" data-rules="{required:true}"
                            class="input-normal control-text">
                 </div>
             </div>
@@ -197,13 +197,13 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备名称：</label>
                 <div class="controls">
-                    <input name="entity_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    <input name="dev_name" type="text" class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备型号：</label>
                 <div class="controls">
-                    <input name="entity_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    <input name="dev_type" type="text" class="input-normal control-text">
                 </div>
             </div>
         </div>
@@ -211,31 +211,37 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>科室设备名称：</label>
                 <div class="controls">
-                    <input id="office_unique_name2" name="office_unique_name" type="text" data-rules="{required:true}"
+                    <input name="office_unique_name" type="text" data-rules="{required:true}"
                            class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备具体位置：</label>
                 <div class="controls">
-                    <input id="device_location2" name="device_location" type="text" data-rules="{required:true}"
+                    <input name="device_location" type="text" data-rules="{required:true}"
                            class="input-normal control-text">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="control-group span2.5">
-                <input id="class_id2" name="class_id" type="hidden" data-rules="{required:true}">
+                <input name="class_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
+                <input name="entity_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input id="offices_storage_no" name="offices_storage_officeId" type="hidden"
+                <input name="entity_name" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input name="entity_type" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input name="offices_storage_no" type="hidden"
                        data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input id="offices_storage_no_2" name="offices_storage_officeId" type="hidden"
+                <input name="offices_storage_no_2" type="hidden"
                        data-rules="{required:true}">
             </div>
         </div>
@@ -258,6 +264,7 @@
 <script type="text/javascript" src="/js/suggest/dropdown.js"></script>
 <script type="text/javascript" src="/js/tree/tree_build.js"></script>
 <script type="text/javascript" src="/js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tools/data_handling.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -336,6 +343,19 @@
                     width: 150,
                     items: []
                 }),
+                //科室选择数框
+                transfer_office_tree = new Tree.TreeList({
+                    nodes: [],
+                    //store: store,
+                    //dirSelectable : false,//阻止树节点选中
+                    showLine: true //显示连接线
+                }),
+                transfer_office_picker = new TreePicker({
+                    trigger: '#storage_office_ident',
+                    //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                    width: 150,  //指定宽度
+                    children: [transfer_office_tree] //配置picker内的列表
+                }).render(),
 
                 columns = [
                     {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
@@ -420,17 +440,18 @@
                     gridCfg: gridCfg
                 }),
                 grid = search.get('grid'),
-                J_Form = editing.get('form');
+                J_Form = editing.get('form'),
+                T_Form = editing_T.get('form');
             entity_selectAjax(originalSeaEntity);
             //科室选择框数据生成
             loc_office_tree.set('nodes', GetMenus('root', offices_data));
 
             //部署操作
             function deploymentFunction() {
-                var newData = {}; //标志是新增加的记录
+                var newData = {isNew: true}; //标志是新增加的记录
                 enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新
                 ori_device_select.render();
-                editing.add(newData, 'name'); //添加记录后，直接编辑
+                editing.add(newData); //添加记录后，直接编辑
                 if (device_select != {} && !$.isEmptyObject(device_select)) {
                     J_Form.getField('class_id').set('value', device_select.dev_class_id);
                     J_Form.getField('entity_id').set('value', device_select.value);
@@ -459,7 +480,17 @@
                     return;
                 } else {
                     var eData = selections[0];
-                    editing_T.edit(eData);
+                    editing_T.edit({
+                        dev_name: eData.entity_name,
+                        dev_type: eData.entity_type,
+                    });
+                    transfer_office_tree.set('nodes', GetMenus('root', offices_data));
+                    T_Form.getField('class_id').set('value', eData.class_id);
+                    T_Form.getField('entity_id').set('value', eData.device_id);
+                    T_Form.getField('entity_name').set('value', eData.entity_name);
+                    T_Form.getField('entity_type').set('value', eData.entity_type);
+                    T_Form.getField('office_unique_name').set('value', eData.office_unique_name);
+                    T_Form.getField('device_location').set('value', eData.device_location);
                 }
             }
 
@@ -737,6 +768,12 @@
             loc_office_tree.on('itemclick', function (ev) {
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
+            });
+
+            transfer_office_tree.on('itemclick', function (ev) {
+                $("#offices_storage_officeId2").val(ev.item.value);
+                $("#offices_storage_no").val(ev.item.value);
+                $("#offices_storage_no").val(ev.item.value);
             });
 
             loc_office_picker.on('change', function (ev) {

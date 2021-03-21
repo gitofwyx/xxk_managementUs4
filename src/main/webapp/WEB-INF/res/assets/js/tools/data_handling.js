@@ -39,7 +39,7 @@ function calculate_amount(num, stock_proportion) { //数量，比例数
 //根据库存总量生成库存数量
 function makeInNum(total, stock_proportion) { //总量，比例数
     stock_proportion = parseInt(stock_proportion);
-    var num = total % stock_proportion;
+    var num = parseInt(total)% stock_proportion;
     while (num >= 1) {
         num = num / 10;
     }
