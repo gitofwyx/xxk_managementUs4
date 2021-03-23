@@ -21,8 +21,6 @@ public interface DepositoryDao {
 
     public int countDepository(String search_type);
 
-    public List<Depository> listDepositoryByEntityId(String entity_id, String office_id);
-
     public List<Depository> getDepositoryByEntId(String entity_id);
 
     public int addDepository(Depository depository);

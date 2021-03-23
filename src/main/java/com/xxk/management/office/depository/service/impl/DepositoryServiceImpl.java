@@ -66,11 +66,6 @@ public class DepositoryServiceImpl implements DepositoryService {
     }
 
     @Override
-    public List<Depository> listDepositoryByEntityId(String entity_id, String office_id) {
-        return dao.listDepositoryByEntityId(entity_id, office_id);
-    }
-
-    @Override
     public Depository getDepositoryByEntId(String entity_id) {
         List<Depository> res = dao.getDepositoryByEntId(entity_id);
         if(res.size() == 0) {

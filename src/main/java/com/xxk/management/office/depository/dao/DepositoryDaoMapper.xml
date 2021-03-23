@@ -60,7 +60,7 @@
         and deleteFlag='0';
     </select>
 
-    <!--根据id获取信息 -->
+    <!--根据entity_id获取信息 -->
     <select id="getDepositoryByEntId" parameterType="string" resultType="com.xxk.management.office.depository.entity.Depository">
         select
         <include refid="columns"></include>

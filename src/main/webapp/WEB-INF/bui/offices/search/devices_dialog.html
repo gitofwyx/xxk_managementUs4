@@ -462,7 +462,7 @@
                     J_Form.getField('offices_storage_officeId').set('value', offices_select.value);
                     J_Form.getField('location_office').set('value', offices_select.text);
                 }
-                updateDepository({
+                selectDepositoryForDeployment({
                     entity_id: device_select.value,
                     depository_officeId: offices_select.value,
                 }, function (data) {
@@ -491,6 +491,8 @@
                     T_Form.getField('entity_type').set('value', eData.entity_type);
                     T_Form.getField('office_unique_name').set('value', eData.office_unique_name);
                     T_Form.getField('device_location').set('value', eData.device_location);
+                    $("#offices_storage_no").val(makeInNum(eData,1));
+                    $("#offices_storage_no").val(ev.item.value);
                 }
             }
 
@@ -566,9 +568,9 @@
             }
 
             //根据设备、耗材ID获取科室库存
-            function updateDepository(data, callback) {
+            function selectDepositoryForDeployment(data, callback) {
                 $.ajax({
-                    url: '/selectDepositoryForDeployment',
+                    url: '/selectDepositoryForUpdateDevices',
                     type: 'POST', //GET
                     data: data,
                     async: true,    //或false,是否异步
@@ -772,8 +774,7 @@
 
             transfer_office_tree.on('itemclick', function (ev) {
                 $("#offices_storage_officeId2").val(ev.item.value);
-                $("#offices_storage_no").val(ev.item.value);
-                $("#offices_storage_no").val(ev.item.value);
+
             });
 
             loc_office_picker.on('change', function (ev) {

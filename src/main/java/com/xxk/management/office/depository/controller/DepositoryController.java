@@ -78,8 +78,8 @@ public class DepositoryController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/selectDepositoryForDeployment", method = RequestMethod.POST)
-    public Map<String, Object> selectDepositoryForDeployment(@RequestParam(value = "entity_id") String entity_id,//库存科室id
+    @RequestMapping(value = "/selectDepositoryForUpdateDevices", method = RequestMethod.POST)
+    public Map<String, Object> selectDepositoryForUpdateDevices(@RequestParam(value = "entity_id") String entity_id,//库存科室id
                                                              @RequestParam(value = "depository_officeId") String depository_officeId) {//类别
         Map<String, Object> result = new HashMap<>();
         try {
@@ -94,6 +94,26 @@ public class DepositoryController extends BaseController {
             result.put("error", "获取出错");
         }
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getDepositoryById", method = RequestMethod.POST)
+    public Map<String, Object> getDepositoryById(@RequestParam(value = "depository_id") String depository_id) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            Depository depository = depositoryService.getDepositoryById(depository_id);
+            if (depository == null) {
+                return null;
+            }
+            result.put("Object", depository);
+            result.put("success", true);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "设备获取出错！" + e.getCause().getLocalizedMessage());
+            log.error(e);
+        }
+        return result;
+        //return "system/index";
     }
 
     @ResponseBody
@@ -166,7 +186,7 @@ public class DepositoryController extends BaseController {
         return result;
     }
 
-    @ResponseBody
+   /* @ResponseBody
     @RequestMapping(value = "/listDepositoryByEntityId", method = RequestMethod.POST)
     public Map<String, Object> listDepositoryByEntityId(@RequestParam(value = "entity_id") String entity_id,
                                                         @RequestParam(value = "stock_office") String office_id) {
@@ -179,12 +199,12 @@ public class DepositoryController extends BaseController {
                 return null;
             }
             result.put("entityData", listDepository);
-            /*result.put("dev_count", dev_count);*/
+            *//*result.put("dev_count", dev_count);*//*
         } catch (Exception e) {
             log.error(e);
             return null;
         }
         return result;
-    }
+    }*/
 
 }
