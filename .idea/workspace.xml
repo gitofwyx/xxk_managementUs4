@@ -9,20 +9,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年3月23日 21:30:12">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年3月23日 23:11:33">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/controller/DepositoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/controller/DepositoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/controller/DepositoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/controller/DepositoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/dao/DepositoryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/dao/DepositoryDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/service/DepositoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/service/DepositoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/controller/DevicesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/controller/DevicesController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/controller/DepositoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/controller/DepositoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/dao/DepositoryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/dao/DepositoryDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/DepositoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/DepositoryService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/controller/DevicesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/controller/DevicesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1739,13 +1733,8 @@
       <workItem from="1616508155537" duration="43000" />
       <workItem from="1616508211925" duration="838000" />
       <workItem from="1616509067518" duration="2104000" />
-    </task>
-    <task id="LOCAL-00025" summary="2021年1月26日 00:27:11">
-      <created>1612107105415</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1612107105415</updated>
+      <workItem from="1616512279502" duration="961000" />
+      <workItem from="1616513258490" duration="318000" />
     </task>
     <task id="LOCAL-00026" summary="2021年1月26日 00:27:11">
       <created>1612110577792</created>
@@ -2083,7 +2072,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616506217302</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="2021年3月23日 23:11:33">
+      <created>1616512298682</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1616512298682</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2197,7 +2193,8 @@
     <MESSAGE value="2021年3月12日 23:52:08" />
     <MESSAGE value="2021年3月22日 00:06:06" />
     <MESSAGE value="2021年3月23日 21:30:12" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年3月23日 21:30:12" />
+    <MESSAGE value="2021年3月23日 23:11:33" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年3月23日 23:11:33" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2225,6 +2222,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java</url>
           <line>145</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java</url>
+          <line>178</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

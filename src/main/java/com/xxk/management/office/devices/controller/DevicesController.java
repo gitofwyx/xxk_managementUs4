@@ -148,8 +148,7 @@ public class DevicesController extends BaseController {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             devices.setUpdateUserId(CurrentUserId);
-            if (devices.getPresent_stock_id() != null && !"".equals(devices.getPresent_stock_id())) {
-                officesStorage.setStock_or_depository_id(devices.getPresent_stock_id());//获取库存的id值
+            if (officesStorage.getStock_or_depository_id() != null && !"".equals(officesStorage.getStock_or_depository_id())) {
                 boolean Result = devicesService.transferDevices(devices, officesStorage);
                 if (!(Result)) {
                     result.put("success", false);

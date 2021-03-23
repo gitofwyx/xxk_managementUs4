@@ -180,6 +180,9 @@ public class DevicesServiceImpl implements DevicesService {
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
         try {
+            devices.setPresent_stock_id(officesStorage.getStock_or_depository_id());//获取库存的id值
+            devices.setId(officesStorage.getOffices_entity_id());
+            devices.setLocation_office_id(officesStorage.getOffices_storage_officeId());
             devices.setDevice_deployment_status("1");
             devices.setUpdateDate(createDate);
 
