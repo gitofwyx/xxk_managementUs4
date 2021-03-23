@@ -78,8 +78,8 @@ public class DepositoryController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/selectDepositoryForUpdateDevices", method = RequestMethod.POST)
-    public Map<String, Object> selectDepositoryForUpdateDevices(@RequestParam(value = "entity_id") String entity_id,//库存科室id
+    @RequestMapping(value = "/selectDepositoryForOfficeEntitys", method = RequestMethod.POST)
+    public Map<String, Object> selectDepositoryForOfficeEntitys(@RequestParam(value = "entity_id") String entity_id,//库存科室id
                                                              @RequestParam(value = "depository_officeId") String depository_officeId) {//类别
         Map<String, Object> result = new HashMap<>();
         try {

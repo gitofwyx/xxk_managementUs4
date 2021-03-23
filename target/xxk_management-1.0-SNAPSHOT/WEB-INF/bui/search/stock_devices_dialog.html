@@ -232,10 +232,10 @@
                            data-rules="{required:true}">
                 </div>
                 <div class="control-group span2.5">
-                    <input id="entity_name2" name="entity_name" type="hidden" data-rules="{required:true}">
+                    <input name="entity_name" type="hidden" data-rules="{required:true}">
                 </div>
                 <div class="control-group span2.5">
-                    <input id="entity_type2" name="entity_type" type="hidden" data-rules="{required:true}">
+                    <input name="entity_type" type="hidden" data-rules="{required:true}">
                 </div>
                 <div class="control-group span2.5">
                     <input id="stock_no" name="stock_no" type="hidden">
@@ -498,7 +498,7 @@
                     D_Form.getField('devices_ident').set('value', eData.devices_ident);
                     D_Form.getField('office_unique_name').set('value', eData.office_unique_name);
                     D_Form.getField('device_location').set('value', eData.device_location);
-                    select_devices_id = eData.id;
+                   /* select_devices_id = eData.id;*/
                 }
             }
 
@@ -519,8 +519,11 @@
                     O_Form.getField('present_stock_id').set('value', eData.present_stock_id);
                     O_Form.getField('class_id').set('value', eData.class_id);
                     O_Form.getField('entity_id').set('value', eData.device_id);
+                    O_Form.getField('entity_name').set('value', eData.entity_name);
+                    O_Form.getField('entity_type').set('value', eData.entity_type);
                     O_Form.getField('stock_entity_id').set('value', eData.id);
                     O_Form.getField('dev_type').set('value', eData.entity_type + "/" + eData.entity_name);
+                    O_Form.getField('office_unique_name').set('value', eData.office_unique_name);
                     O_Form.getField('device_location').set('value', eData.device_location);
                     if (select_devices_id !== eData.id) {
                         getStockByStockId(eData.present_stock_id, function (v) {

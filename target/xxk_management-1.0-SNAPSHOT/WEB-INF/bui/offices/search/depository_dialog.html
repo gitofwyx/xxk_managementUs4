@@ -630,7 +630,7 @@
             function updateDepository(data, callback) {
                 $("#entity_record_id").val(data.entity_id);
                 $.ajax({
-                    url: '/selectDepositoryForDeployment',
+                    url: '/selectDepositoryForOfficeEntitys',
                     type: 'POST', //GET
                     data: data,
                     async: true,    //或false,是否异步

@@ -592,7 +592,7 @@
             //根据设备、耗材ID获取科室库存
             function selectDepositoryForDeployment(data, callback) {
                 $.ajax({
-                    url: '/selectDepositoryForUpdateDevices',
+                    url: '/selectDepositoryForOfficeEntitys',
                     type: 'POST', //GET
                     data: data,
                     async: true,    //或false,是否异步
