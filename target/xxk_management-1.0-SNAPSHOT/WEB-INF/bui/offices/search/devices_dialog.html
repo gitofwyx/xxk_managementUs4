@@ -231,17 +231,31 @@
                 <input name="entity_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
+                <input name="offices_entity_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input name="stock_or_depository_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
                 <input name="entity_name" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input name="entity_type" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input name="offices_storage_no" type="hidden"
+                <input id="offices_storage_no" name="offices_storage_no" type="hidden"
                        data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input name="offices_storage_no_2" type="hidden"
+                <input id="offices_storage_no_2" name="offices_storage_no_2" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="offices_storage_unit" name="offices_storage_unit" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="offices_storage_proportion" name="offices_storage_proportion" type="hidden"
                        data-rules="{required:true}">
             </div>
         </div>
@@ -487,12 +501,20 @@
                     transfer_office_tree.set('nodes', GetMenus('root', offices_data));
                     T_Form.getField('class_id').set('value', eData.class_id);
                     T_Form.getField('entity_id').set('value', eData.device_id);
+                    T_Form.getField('offices_entity_id').set('value', eData.id);
+                    T_Form.getField('stock_or_depository_id').set('value', eData.present_stock_id);
                     T_Form.getField('entity_name').set('value', eData.entity_name);
                     T_Form.getField('entity_type').set('value', eData.entity_type);
                     T_Form.getField('office_unique_name').set('value', eData.office_unique_name);
                     T_Form.getField('device_location').set('value', eData.device_location);
-                    $("#offices_storage_no").val(makeInNum(eData,1));
-                    $("#offices_storage_no").val(ev.item.value);
+                    getDepositoryById({
+                        depository_id: eData.present_stock_id
+                    }, function (v) {
+                        $("#offices_storage_no").val(makeInNum(parseInt(v.depository_total)-1,v.depository_proportion));
+                        $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_idle_total)-1,v.depository_proportion));
+                        $("#offices_storage_unit").val(v.depository_unit);
+                        $("#offices_storage_proportion").val(v.offices_storage_proportion);
+                    });
                 }
             }
 
@@ -607,9 +629,36 @@
                     success: function (data, textStatus, jqXHR) {
                         if (data != null && data != undefined) {
                             if (typeof callback === "function") {
-                                //调用它，既然我们已经确定了它是可调用的
                                 devices_data = data.listDevices;
                                 callback(data.listDevices);
+                            }
+                        } else {
+                            $("#depository_version").val(0);
+                        }
+                    },
+                    error: function (xhr, textStatus) {
+                        console.log('错误')
+                        console.log(xhr)
+                        console.log(textStatus);
+                        /*BUI.Message.Alert('参数不能为空', 'error');*/
+                    }
+                })
+            }
+
+            //根据设备、耗材ID获取科室库存
+            function getDepositoryById(data, callback) {
+                $.ajax({
+                    url: '/getDepositoryById',
+                    type: 'POST', //GET
+                    data: data,
+                    async: true,    //或false,是否异步
+                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success: function (data, textStatus, jqXHR) {
+                        if (data != null && data != undefined) {
+                            if (typeof callback === "function") {
+
+                                callback(data.depository);
                             }
                         } else {
                             $("#depository_version").val(0);

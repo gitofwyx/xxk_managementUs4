@@ -105,7 +105,7 @@ public class DepositoryController extends BaseController {
             if (depository == null) {
                 return null;
             }
-            result.put("Object", depository);
+            result.put("depository", depository);
             result.put("success", true);
         } catch (Exception e) {
             result.put("hasError", true);
