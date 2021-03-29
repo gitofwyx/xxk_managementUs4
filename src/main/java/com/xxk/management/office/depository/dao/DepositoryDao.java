@@ -35,7 +35,7 @@ public interface DepositoryDao {
 
     public int recoveryDepository(Depository depository);
 
-    public int transferDepository(OfficesStorage storage);
+    public int transferDepositoryForDelivery(OfficesStorage storage);
 
     public int plusDepositoryNo(Depository depository);
 

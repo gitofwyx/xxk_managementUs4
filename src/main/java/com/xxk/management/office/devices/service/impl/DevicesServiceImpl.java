@@ -202,7 +202,7 @@ public class DevicesServiceImpl implements DevicesService {
                 officesStorage.setCreateDate(createDate);
                 officesStorage.setUpdateUserId(devices.getUpdateUserId());
                 officesStorage.setUpdateDate(createDate);
-                result = depositoryService.transferDepository(devices,officesStorage);
+                result = depositoryService.transferDepositoryForDelivery(devices,officesStorage);
                 if("true".equals(result.get("hasError"))){
                     return false;
                 }

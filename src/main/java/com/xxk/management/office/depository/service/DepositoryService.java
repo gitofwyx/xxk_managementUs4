@@ -31,7 +31,9 @@ public interface DepositoryService {
 
     public Map<String, Object> deploymentDepository(Depository depository);
 
-    public Map<String, Object> transferDepository(Devices devices, OfficesStorage storage);
+    public Map<String, Object> transferDepositoryForStorage(Devices devices, OfficesStorage storage);
+
+    public Map<String, Object> transferDepositoryForDelivery(Devices devices, OfficesStorage storage);
 
     public boolean deploymentDeviceWithSingle(String depository_id,String updateUserId,String updateDate);
 
