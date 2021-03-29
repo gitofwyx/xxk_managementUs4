@@ -90,7 +90,7 @@
         update xxk_depository set depository_no=#{offices_storage_no},depository_idle_no=#{offices_storage_no_2},
         depository_total=depository_total-#{offices_storage_total},depository_idle_total=depository_idle_total-#{offices_storage_total},
         depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
-        where id=#{id} and depository_idle_total>=#{offices_storage_total} and deleteFlag='0';
+        where id=#{stock_or_depository_id} and depository_idle_total>=#{offices_storage_total} and deleteFlag='0';
     </update>
 
     <!--入库更新 -->

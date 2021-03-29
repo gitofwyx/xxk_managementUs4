@@ -9,12 +9,17 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年3月26日 00:57:23">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年3月29日 23:27:33">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/dao/DepositoryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1758,14 +1763,11 @@
       <workItem from="1617021801209" duration="2834000" />
       <workItem from="1617025051798" duration="33000" />
       <workItem from="1617025113198" duration="2554000" />
-      <workItem from="1617031090763" duration="553000" />
-    </task>
-    <task id="LOCAL-00030" summary="2021年1月26日 00:27:11">
-      <created>1612714846479</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1612714846479</updated>
+      <workItem from="1617031090763" duration="1166000" />
+      <workItem from="1617032272048" duration="559000" />
+      <workItem from="1617032844854" duration="733000" />
+      <workItem from="1617033649399" duration="695000" />
+      <workItem from="1617034511022" duration="1397000" />
     </task>
     <task id="LOCAL-00031" summary="2021年1月26日 00:27:11">
       <created>1612715932901</created>
@@ -2103,7 +2105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617024612158</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="2021年3月29日 23:27:33">
+      <created>1617031657215</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1617031657215</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2221,7 +2230,8 @@
     <MESSAGE value="2021年3月23日 23:33:11" />
     <MESSAGE value="2021年3月24日 00:21:49" />
     <MESSAGE value="2021年3月26日 00:57:23" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年3月26日 00:57:23" />
+    <MESSAGE value="2021年3月29日 23:27:33" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年3月29日 23:27:33" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2237,11 +2247,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java</url>
           <line>145</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -2249,6 +2254,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java</url>
           <line>178</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
+          <line>320</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

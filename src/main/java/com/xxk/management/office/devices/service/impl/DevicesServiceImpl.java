@@ -182,10 +182,10 @@ public class DevicesServiceImpl implements DevicesService {
         try {
             devices.setPresent_stock_id(officesStorage.getStock_or_depository_id());//获取库存的id值
             devices.setId(officesStorage.getOffices_entity_id());
+            devices.setDevice_id(officesStorage.getEntity_id());
             devices.setLocation_office_id(officesStorage.getOffices_storage_officeId());
             devices.setDevice_deployment_status("1");
             devices.setUpdateDate(createDate);
-
             devices.setDeleteFlag("0");
             devicesResult = dao.transferDevices(devices) == 1 ? true : false;
             if (!(devicesResult)) {
@@ -194,14 +194,12 @@ public class DevicesServiceImpl implements DevicesService {
                 result.put("error", "添加出错");
             } else {
                 officesStorage.setOffices_storage_ident("NO");
-                officesStorage.setOffices_storage_type("1");
+                officesStorage.setOffices_storage_type("1");//设备\耗材类别（1.设备2.配件3.耗材）
+                officesStorage.setOffices_storage_genre("4");//流动类别（0：配置1.入科2.部署3.回收4.调用5.借用）
                 officesStorage.setOffices_storage_date(createDate);
                 officesStorage.setOffices_storage_total(1);
                 officesStorage.setOffices_storage_by(devices.getUpdateUserId());
-                officesStorage.setCreateUserId(devices.getUpdateUserId());
-                officesStorage.setCreateDate(createDate);
-                officesStorage.setUpdateUserId(devices.getUpdateUserId());
-                officesStorage.setUpdateDate(createDate);
+                officesStorage.setEntity_entry_status("1");//入科状态（0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科）
                 result = depositoryService.transferDepositoryForDelivery(devices,officesStorage);
                 if("true".equals(result.get("hasError"))){
                     return false;
