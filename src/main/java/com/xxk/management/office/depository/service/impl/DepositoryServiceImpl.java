@@ -315,6 +315,7 @@ public class DepositoryServiceImpl implements DepositoryService {
     }
 
     //转移库存(出库)
+    //Delivery为出库的意思，跟方法形参没有关系
     @Override
     public Map<String, Object> transferDepositoryForDelivery(Devices devices, OfficesStorage storage) {
         Map<String, Object> result = new HashMap<>();

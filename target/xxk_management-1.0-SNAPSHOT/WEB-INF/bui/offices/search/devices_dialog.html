@@ -179,7 +179,7 @@
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>科室选择：</label>
-                <input type="hidden" name="location_office_id2" id="location_office_id2">
+                <input type="hidden" name="offices_storage_officeId" id="offices_storage_officeId2">
                 <div class="controls">
                     <input id="storage_office_ident" name="storage_office_ident" type="text"
                            data-rules="{required:true}"
@@ -194,18 +194,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="control-group span16">
-                <label class="control-label"><s>*</s>转移库存选择:（转移至科室库存）</label>
-                <div class="controls" id="transfer_device_select">
-                    <input id="present_stock_id" name="present_stock_id" type="hidden" data-rules="{required:true}">
-                </div>
-                &nbsp;
-                <input type="button" id="Reset_2" name="I_Reset" class=" icon-repeat"
-                       style="width:15px;height:18px;background-color:#ffffff;">
-            </div>
 
-        </div>
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备名称：</label>
@@ -388,36 +377,6 @@
                     width: 150,  //指定宽度
                     children: [transfer_office_tree] //配置picker内的列表
                 }).render(),
-                //转科、回收科室库存选择框
-                transfer_device_grid = new Grid.Grid({
-                    idField: 'id',//选项的默认id字段
-                    columns: [
-                        {
-                            title: '库存科室', dataIndex: 'depository_officeId', elCls: 'center', width: '40%',
-                            renderer: BUI.Grid.Format.enumRenderer(enumObj_office)
-                        },
-                        {title: '科室总量', dataIndex: 'depository_idle_total', elCls: 'center', width: '30%'},
-                        {title: '剩余总量', dataIndex: 'depository_total', elCls: 'center', width: '30%'},
-                        {title: '单位', dataIndex: 'depository_total_unit', elCls: 'center', width: '25%'},
-                    ],
-                    textGetter: function (item) { //返回选中的文本
-                        return item.depository_ident;
-                    },
-                    items: [],
-                }),
-                transfer_device_picker = new Picker.ListPicker({
-                    width: 350,  //指定宽度
-                    children: [transfer_device_grid] //配置picker内的列表
-                }),
-                transfer_device_select = new Select.Select({
-                    picker: transfer_device_picker,
-                    render: '#transfer_device_select',
-                    valueField: '#present_stock_id',
-                    forceFit: false,
-                    multipleSelect: false,
-                    width: 350,
-                    items: []
-                }),
 
                 columns = [
                     {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
@@ -543,7 +502,6 @@
                     return;
                 } else {
                     var eData = selections[0];
-                    transfer_device_select.render();
                     editing_T.edit({
                         dev_name: eData.entity_name,
                         dev_type: eData.entity_type,
@@ -552,7 +510,6 @@
                     T_Form.getField('class_id').set('value', eData.class_id);
                     T_Form.getField('entity_id').set('value', eData.device_id);
                     T_Form.getField('offices_entity_id').set('value', eData.id);
-                    T_Form.getField('offices_storage_officeId').set('value', eData.location_office_id);
                     T_Form.getField('stock_or_depository_id').set('value', eData.present_stock_id);
                     T_Form.getField('entity_name').set('value', eData.entity_name);
                     T_Form.getField('entity_type').set('value', eData.entity_type);
@@ -881,24 +838,11 @@
             });
 
             transfer_office_tree.on('itemclick', function (ev) {
-                transfer_device_grid.clearItems();
-                $("#location_office_id2").val(ev.item.value);
-                $("#present_stock_id").val('');
-                selectDepositoryForOfficeEntitys({
-                    entity_id: $("#entity_id2").val(),
-                    depository_officeId: ev.item.value,
-                }, function (data) {
-                    //transfer_device_grid.set('items', data);
-                    transfer_device_grid.addItems(data);
 
-                });
+                $("#offices_storage_officeId2").val(ev.item.value);
+
             });
 
-            //转科、回收库存记录框选中
-            transfer_device_grid.on('selectedchange', function (ev) {
-
-                $("#present_stock_id").val(transfer_device_grid.getSelected().id);
-            });
 
             editing.on('accept', function (ev) {
                 dev_name_data = [];
