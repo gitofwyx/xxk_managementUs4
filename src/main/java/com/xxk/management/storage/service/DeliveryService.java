@@ -19,6 +19,8 @@ public interface DeliveryService {
 
     public  List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String stock_id);
 
+    public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize, String stock_id);
+
     public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String status);
 
     public Map<String, Object> addDelivery(Delivery delivery, String status);

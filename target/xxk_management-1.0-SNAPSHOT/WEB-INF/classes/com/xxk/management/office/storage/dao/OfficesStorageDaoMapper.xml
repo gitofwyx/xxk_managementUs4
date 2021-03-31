@@ -9,20 +9,8 @@ updateDate,deleteFlag</sql>
     <sql id="storageForEntry">id,class_id,entity_id,entity_name,entity_type,stock_or_depository_id,offices_entity_id,offices_storage_ident,offices_storage_type,offices_storage_by,
 offices_storage_officeId,offices_storage_date,offices_storage_no,offices_storage_no_2,offices_storage_unit,offices_storage_proportion,offices_storage_total,entity_entry_status</sql>
 
-    <sql id="deliveryForEntry">id,class_id,entity_id,entity_name,entity_type,
-stock_id as stock_or_depository_id,
-stock_entity_id as offices_entity_id,
-out_confirmed_ident as offices_storage_ident,
-out_confirmed_type as offices_storage_type,
-out_confirmed_by as offices_storage_by,
-out_confirmed_officeId as offices_storage_officeId,
-out_confirmed_date as offices_storage_date,
-out_confirmed_no as offices_storage_no,
-out_confirmed_no as offices_storage_no_2,
-out_confirmed_unit as offices_storage_unit,
-out_confirmed_proportion as offices_storage_proportion,
-out_confirmed_total as offices_storage_total,
-entity_entry_status</sql>
+    <sql id="deliveryForEntry">id,class_id,entity_id,entity_name,entity_type,stock_id,stock_entity_id,out_confirmed_ident,out_confirmed_type,out_confirmed_by,out_confirmed_officeId,
+     out_confirmed_date,out_confirmed_no,out_confirmed_no_2,out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,entity_entry_status</sql>
 
     <resultMap id="entityEntryMap" type="java.util.HashMap">
         <result column="id" property="id" jdbcType="VARCHAR"/>

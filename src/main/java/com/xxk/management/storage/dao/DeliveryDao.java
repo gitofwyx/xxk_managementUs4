@@ -25,6 +25,8 @@ public interface DeliveryDao {
 
     public List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String office_id);
 
+    public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize,String office_id);
+
     public int addDelivery(Delivery delivery);
 
     public int updateDeliveryStatus(String id);

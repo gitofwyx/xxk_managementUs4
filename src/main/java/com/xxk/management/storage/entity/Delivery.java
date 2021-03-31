@@ -16,10 +16,12 @@ public class Delivery extends BaseInfoEntity {
     private String stock_entity_id;
     private String out_confirmed_ident; //出库编号
     private String out_confirmed_type;//设备\耗材种类
+    private String out_confirmed_genre;//出库类别（0：配置1.入科2.部署3.回收4.调用5.借用）
     private String out_confirmed_by;//确认人
     private String out_confirmed_officeId;//出库科室
     private String out_confirmed_date;    //出库时间
     private double out_confirmed_no;  //出库数量
+    private double out_confirmed_no_2;  //出库数量2
     private String out_confirmed_unit;  //出库单位
     private int out_confirmed_proportion;  //个体/单位比例
     private double out_confirmed_total;      //出库总量
@@ -101,6 +103,14 @@ public class Delivery extends BaseInfoEntity {
         this.out_confirmed_type = out_confirmed_type;
     }
 
+    public String getOut_confirmed_genre() {
+        return out_confirmed_genre;
+    }
+
+    public void setOut_confirmed_genre(String out_confirmed_genre) {
+        this.out_confirmed_genre = out_confirmed_genre;
+    }
+
     public String getOut_confirmed_by() {
         return out_confirmed_by;
     }
@@ -131,6 +141,14 @@ public class Delivery extends BaseInfoEntity {
 
     public void setOut_confirmed_no(double out_confirmed_no) {
         this.out_confirmed_no = out_confirmed_no;
+    }
+
+    public double getOut_confirmed_no_2() {
+        return out_confirmed_no_2;
+    }
+
+    public void setOut_confirmed_no_2(double out_confirmed_no_2) {
+        this.out_confirmed_no_2 = out_confirmed_no_2;
     }
 
     public String getOut_confirmed_unit() {

@@ -49,6 +49,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
+    public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize, String stock_id) {
+        return dao.listDeliveryUNIONStorageByOffice((pageStart - 1) * pageSize, pageSize, stock_id);
+    }
+
+    @Override
     public Map<String, Object> addDelivery(Stock stock, Delivery delivery, String status) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
