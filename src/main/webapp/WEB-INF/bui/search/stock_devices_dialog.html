@@ -159,6 +159,10 @@
                        data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
+                <input id="offices_storage_no" name="offices_storage_no" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
                 <input id="stock_version" name="stock_version" type="hidden"
                        data-rules="{required:true}">
             </div>
@@ -696,7 +700,7 @@
                             Sto_rec_grid.set('items', data.entityData);
                             if (typeof callback === "function") {
                                 //调用它，既然我们已经确定了它是可调用的
-                                callback();
+                                callback( data.entityData);
                             }
                         }
 
@@ -796,6 +800,7 @@
                     $("#stock_version").val("");
                     return;
                 }
+                $("#offices_storage_no").val(makeInNum(1, ev.item.stock_proportion));
                 $("#stock_version").val(ev.item.stock_version);
             });
 
