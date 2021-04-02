@@ -77,6 +77,7 @@ public class DeliveryServiceImpl implements DeliveryService {
             delivery.setStock_id(stock.getId());
             delivery.setOut_confirmed_ident(out_confirmed_ident);
             delivery.setOut_confirmed_type(stock.getStock_type());
+            delivery.setOut_confirmed_genre("1");
             delivery.setOut_confirmed_by(stock.getUpdateUserId());
             delivery.setOut_confirmed_unit(stock.getStock_unit());
             delivery.setOut_confirmed_proportion(stock.getStock_proportion());
@@ -124,6 +125,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
             //c库
             delivery.setId(deliveryId);
+            delivery.setOut_confirmed_genre("1");
             delivery.setEntity_entry_status(status);
             delivery.setDeleteFlag("0");
 

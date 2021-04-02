@@ -92,7 +92,7 @@
 
         <div class="row">
             <div class="control-group span16">
-                <label class="control-label"><s>*</s>出库记录：(未入科登记记录)</label>
+                <label class="control-label">&nbsp;&nbsp;<s>*</s>出库记录：(未入科登记记录)</label>
                 <div class="controls" id="office_dep_select">
                     <input id="delivery_id" name="delivery_id" type="hidden">
                 </div>
@@ -310,6 +310,7 @@
             var offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
                 enumObj_dep_flag = {"1": "启用", "0": "禁用"},
                 enumObj_genre_tags = {"1": "设备", "2": "配件", "3": "耗材"},
+                confirmed_genre_tags = {"0": "配置", "1": "入科", "2": "部署", "3": "回收", "4": "调用", "5": "借用"},
                 //变量初始化
                 select_data = [],
                 select_type = [],//型号初始化
@@ -389,9 +390,16 @@
                     idField: 'id',//选项的默认id字段
                     columns: [
                         {title: '&nbsp设备/耗材', dataIndex: 'entity_name', elCls: 'center', width: '30%'},
-                        {title: '&nbsp型号', dataIndex: 'entity_type', elCls: 'center', width: '30%'},
+                        {title: '&nbsp型号', dataIndex: 'entity_type', elCls: 'center', width: '40%'},
                         {title: '总量', dataIndex: 'out_confirmed_total', elCls: 'center', width: '20%'},
                         {title: '出库时间', dataIndex: 'out_confirmed_date', elCls: 'center', width: '40%'},
+                        {
+                            title: '&nbsp类别',
+                            dataIndex: 'out_confirmed_genre',
+                            elCls: 'center',
+                            width: '20%',
+                            renderer: BUI.Grid.Format.enumRenderer(confirmed_genre_tags)
+                        },
                     ],
                     textGetter: function (item) { //返回选中的文本
                         return item.out_confirmed_ident;
@@ -413,7 +421,7 @@
                     items: [],
                 }),
                 office_dep_picker = new Picker.ListPicker({
-                    width: 380,  //指定宽度
+                    width: 470,  //指定宽度
                     children: [office_dep_grid] //配置picker内的列表
                 }),
                 office_dep_select = new Select.Select({
@@ -422,7 +430,7 @@
                     valueField: '#delivery_id',
                     forceFit: false,
                     multipleSelect: false,
-                    width: 380,
+                    width: 470,
                     items: []
                 }).render(),
                 //回收库存选择框
