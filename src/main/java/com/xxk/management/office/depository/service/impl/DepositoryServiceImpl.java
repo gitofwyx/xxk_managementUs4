@@ -187,6 +187,7 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错");
             } else {
                 //入库记录
+                storage.setClass_id(depository.getClass_id());
                 storage.setEntity_id(depository.getEntity_id());
                 result = storageService.addOfficesStorage(depository, storage,"3");//“3”代表入科标记
             }
