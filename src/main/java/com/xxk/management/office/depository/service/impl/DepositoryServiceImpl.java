@@ -188,7 +188,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             } else {
                 //入库记录
                 storage.setEntity_id(depository.getEntity_id());
-                result = storageService.addOfficesStorage(depository, storage,"1");//“1”代表入科标记
+                result = storageService.addOfficesStorage(depository, storage,"3");//“3”代表入科标记
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
