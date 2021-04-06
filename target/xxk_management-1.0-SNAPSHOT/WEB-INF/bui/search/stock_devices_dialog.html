@@ -163,6 +163,12 @@
                        data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
+                <input id="offices_storage_unit" name="offices_storage_unit" type="hidden">
+            </div>
+            <div class="control-group span2.5">
+                <input id="offices_storage_proportion" name="offices_storage_proportion" type="hidden">
+            </div>
+            <div class="control-group span2.5">
                 <input id="stock_version" name="stock_version" type="hidden"
                        data-rules="{required:true}">
             </div>
@@ -490,20 +496,10 @@
                 var selections = grid.getSelection();
                 $("#present_stock_id").val("");
                 select_devices_id = '';
-                if (selections.length > 1) {
-                    BUI.Message.Alert('一次只能选择单个设备！！');
-                    return;
-                }
+
                 var eData = selections[0];
                 editing_D.add({isNew: false});
-                if (selections.length == 1) {
-                    D_Form.getField('dev_name').set('value', eData.entity_name);
-                    D_Form.getField('dev_type').set('value', eData.entity_type);
-                    D_Form.getField('devices_ident').set('value', eData.devices_ident);
-                    D_Form.getField('office_unique_name').set('value', eData.office_unique_name);
-                    D_Form.getField('device_location').set('value', eData.device_location);
-                   /* select_devices_id = eData.id;*/
-                }
+
             }
 
             //出库操作
@@ -801,6 +797,8 @@
                     return;
                 }
                 $("#offices_storage_no").val(makeInNum(1, ev.item.stock_proportion));
+                $("#offices_storage_unit").val(ev.item.stock_unit);
+                $("#offices_storage_proportion").val(ev.item.stock_proportion);
                 $("#stock_version").val(ev.item.stock_version);
             });
 

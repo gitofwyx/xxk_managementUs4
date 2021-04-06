@@ -150,6 +150,7 @@ public class DepositoryController extends BaseController {
             depository.setUpdateUserId(CurrentUserId);
             depository.setClass_id(class_record_id);
             depository.setEntity_id(entity_record_id);
+            storage.setOffices_storage_type(depository.getDepository_type());
             if (!"".equals(depository_id) && depository_id != null) {
                 depository.setId(depository_id);
                 result = depositoryService.updateDepositoryWithStorage(depository, storage);
