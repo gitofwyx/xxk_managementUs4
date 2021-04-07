@@ -254,7 +254,7 @@ public class DepositoryServiceImpl implements DepositoryService {
         String stockId = UUIdUtil.getUUID();
         try {
             if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
-                log.info("recoveryDepository:出错！无法获取设备ID");
+                log.info("deploymentDepository:出错！无法获取设备ID");
                 result.put("hasError", true);
                 result.put("error", "添加出错");
                 return result;
@@ -287,7 +287,7 @@ public class DepositoryServiceImpl implements DepositoryService {
         String stockId = UUIdUtil.getUUID();
         try {
             if ("".equals(devices.getDevice_id()) || devices.getDevice_id() == null) {
-                log.info("recoveryDepository:出错！无法获取设备ID");
+                log.info("transferDepositoryForStorage:出错！无法获取设备ID");
                 result.put("hasError", true);
                 result.put("error", "添加出错");
                 return result;
@@ -324,7 +324,7 @@ public class DepositoryServiceImpl implements DepositoryService {
         String stockId = UUIdUtil.getUUID();
         try {
             if ("".equals(devices.getDevice_id()) || devices.getDevice_id() == null) {
-                log.info("recoveryDepository:出错！无法获取设备ID");
+                log.info("transferDepositoryForDelivery:出错！无法获取设备ID");
                 result.put("hasError", true);
                 result.put("error", "添加出错");
                 return result;

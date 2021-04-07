@@ -982,9 +982,9 @@
                 }
                 var O_num = $("#offices_storage_no").val();//获取入科数量
                 var proportion = parseInt($("#offices_storage_proportion").val());
-                var offices_storage_total = reckon_stock_total(O_num, proportion);
+                var offices_storage_total = reckon_stock_total(O_num + '', proportion);
                 $("#offices_storage_total").val(offices_storage_total);
-                $("#offices_storage_no").val(calculate_amount(O_num, proportion));
+                $("#offices_storage_no").val(calculate_amount(O_num + '', proportion));
                 if (dep_entity_data.depository_total == undefined && !dep_entity_data.depository_total) {
                     return;
                 }
@@ -1060,19 +1060,19 @@
                         //改变总量
                         I_stock_total = reckon_stock_total(I_num, stock_proportion);//生成入库总量
                         R_Form.getField('in_confirmed_total').set('value', I_stock_total);
-                        if (stock_proportion == 1) {
-                            R_Form.getField('depository_no').set('value', dep_total - I_stock_total);
-                            R_Form.getField('depository_idle_no').set('value', dep_idle_total - I_stock_total);
-                        }
+                        //改变数量
+                        R_Form.getField('depository_no').set('value', makeInNum(parseInt(dep_total) - parseInt(I_stock_total),stock_proportion));
+                        R_Form.getField('depository_idle_no').set('value', makeInNum(parseInt(dep_idle_total) - parseInt(I_stock_total),stock_proportion));
+
                         //剩余库存数量更新
                         //dep_idle_total=dep_idle_total-I_stock_total;
-                        R_Form.getField('depository_idle_total').set('value', dep_idle_total - I_stock_total);
+                        R_Form.getField('depository_idle_total').set('value', parseInt(dep_idle_total) - parseInt(I_stock_total));
                         I_num = office_rec_select.get('picker').get('children')[0].getCount();//获取Sto_rec_grid选项数量
                         if (I_num > 0) {
                             I_num = office_rec_select.get('picker').get('children')[0].getSelected().stock_total;//获取选择的库存记录总量（此时I_num已赋值为记录总量）
                         }
                         I_stock_total = I_stock_total + parseInt(I_num);//记录总量+新输入的库存总量=新的库存总量（此时I_stock_total已赋值为新库存总量）
-                        $("#stock_total").val(parseFloat(I_stock_total));//重设库存总量值
+                        $("#stock_total").val(I_stock_total + "");//重设库存总量值
                         //改变总数量no
                         $("#stock_no").val(makeInNum(I_stock_total, stock_proportion));//重设库存总数量值
                     }
