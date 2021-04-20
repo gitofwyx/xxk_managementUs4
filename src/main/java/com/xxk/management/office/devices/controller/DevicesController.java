@@ -8,10 +8,13 @@ import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.device.entity.DeviceClass;
 import com.xxk.management.device.service.DeviceClassService;
 import com.xxk.management.device.service.DeviceService;
+import com.xxk.management.office.depository.entity.Depository;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
+import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
+import com.xxk.management.storage.entity.Storage;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,6 +167,20 @@ public class DevicesController extends BaseController {
         }
         return result;
         //return "system/index";
+    }
+
+    @ResponseBody
+    @RequestMapping("/recoveryDevices")
+    public Map<String, Object> recoveryDevices(Devices devices, OfficesStorage officesStorage,
+                                                  @RequestParam(value = "stock_record_id") String stock_record_id) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+
+        } catch (Exception e) {
+
+        }
+        return result;
     }
 
     @ResponseBody

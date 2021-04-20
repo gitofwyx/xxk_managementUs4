@@ -9,14 +9,18 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年4月6日 22:20:19">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年4月8日 01:03:06">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/controller/DepositoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/controller/DepositoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/controller/DepositoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/controller/DepositoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/controller/DevicesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/controller/DevicesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/controller/DevicesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/devices/controller/DevicesController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1031,21 +1035,21 @@
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33908045" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\xxk\xxk_management\src\main\java\com\xxk\management\office\devices\dao" />
+      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\search" />
+      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\offices\search" />
+      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\img" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.xxk.management.office.devices.dao" />
       <recent name="com.xxk.management.office.devices.service" />
       <recent name="com.xxk.management.office.devices.service.impl" />
       <recent name="com.xxk.management.office.devices.controller" />
       <recent name="com.xxk.management.stock.controller" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\xxk\xxk_management\src\main\java\com\xxk\management\office\devices\dao" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\search" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\offices\search" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\img" />
     </key>
   </component>
   <component name="RunManager">
@@ -1793,14 +1797,26 @@
       <workItem from="1617804599514" duration="118000" />
       <workItem from="1617804756897" duration="674000" />
       <workItem from="1617805606714" duration="3183000" />
-      <workItem from="1617810485268" duration="4390000" />
-    </task>
-    <task id="LOCAL-00039" summary="2021年1月26日 00:27:11">
-      <created>1613467364037</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1613467364037</updated>
+      <workItem from="1617810485268" duration="5007000" />
+      <workItem from="1617973865544" duration="4043000" />
+      <workItem from="1618065776387" duration="29000" />
+      <workItem from="1618321773124" duration="10051000" />
+      <workItem from="1618491776398" duration="1808000" />
+      <workItem from="1618498734452" duration="1445000" />
+      <workItem from="1618575415364" duration="1205000" />
+      <workItem from="1618579307122" duration="900000" />
+      <workItem from="1618623771281" duration="4592000" />
+      <workItem from="1618649201877" duration="2042000" />
+      <workItem from="1618661378001" duration="348000" />
+      <workItem from="1618661743656" duration="4639000" />
+      <workItem from="1618732877096" duration="38000" />
+      <workItem from="1618732944495" duration="1866000" />
+      <workItem from="1618734898900" duration="544000" />
+      <workItem from="1618735457394" duration="2121000" />
+      <workItem from="1618759672861" duration="268000" />
+      <workItem from="1618840317165" duration="1361000" />
+      <workItem from="1618929563687" duration="2552000" />
+      <workItem from="1618932326337" duration="2256000" />
     </task>
     <task id="LOCAL-00040" summary="2021年1月26日 00:27:11">
       <created>1613490258599</created>
@@ -2138,7 +2154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617718824874</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="2021年4月8日 01:03:06">
+      <created>1617814992390</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1617814992390</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2235,7 +2258,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年1月23日 17:29:16" />
     <MESSAGE value="2021年1月26日 00:27:11" />
     <MESSAGE value="2021年2月17日 01:03:05" />
     <MESSAGE value="2021-2-17 20:55:24" />
@@ -2260,7 +2282,8 @@
     <MESSAGE value="2021年4月3日 00:09:25" />
     <MESSAGE value="2021年4月6日 00:06:21" />
     <MESSAGE value="2021年4月6日 22:20:19" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年4月6日 22:20:19" />
+    <MESSAGE value="2021年4月8日 01:03:06" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年4月8日 01:03:06" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2276,7 +2299,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java</url>
-          <line>145</line>
+          <line>148</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -60,6 +60,11 @@ public class StockServiceImpl implements StockService {
         return dao.listStockByEntityId(entity_id, office_id);
     }
 
+    @Override
+    public List<Stock> getStocksByEntityId(String entity_id) {
+        return dao.getStocksByEntityId(entity_id);
+    }
+
     //新增库存
     // 2019年8月12日 13:44:05更新
     @Override

@@ -226,6 +226,18 @@
             </div>
         </div>
         <div class="row">
+            <div class="control-group span16">
+                <label class="control-label">&nbsp;<s>*</s>回收库存选择：(只供回收操作选择)</label>
+                <div class="controls" id="rec_device_select">
+                    <input id="stock_record_id" name="stock_record_id" type="hidden">
+                </div>
+                &nbsp;
+                <input type="button" id="rec_submit" name="rec_submit" class=" icon-repeat"
+                       style="width:15px;height:18px;background-color:#ffffff;">
+            </div>
+
+        </div>
+        <div class="row">
             <div class="control-group span2.5">
                 <input name="class_id" type="hidden" data-rules="{required:true}">
             </div>
@@ -234,6 +246,9 @@
             </div>
             <div class="control-group span2.5">
                 <input name="offices_entity_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input name="stock_record_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input name="stock_or_depository_id" type="hidden" data-rules="{required:true}">
@@ -289,7 +304,7 @@
 </script>
 <script type="text/javascript">
     BUI.use(['common/search', 'bui/form', 'bui/grid', 'bui/extensions/treepicker', 'bui/select', 'bui/picker', 'bui/tree'],
-        function (Search, Form, Grid, TreePicker, Select, Picker, Tree) {
+        function (Search, Form, Grid,TreePicker, Select, Picker, Tree) {
 
             var enumOffices = {};
             CD_ajaxNoParam("/getOfficeMakeGrid", false, function (data) {
@@ -375,6 +390,36 @@
                     width: 150,  //指定宽度
                     children: [transfer_office_tree] //配置picker内的列表
                 }).render(),
+                //回收库存选择框
+                rec_device_grid = new Grid.Grid({
+                    idField: 'id',//选项的默认id字段
+                    columns: [
+                        {
+                            title: '库存科室', dataIndex: 'depository_officeId', elCls: 'center', width: '40%',
+                            renderer: BUI.Grid.Format.enumRenderer(enumObj_office)
+                        },
+                        {title: '科室总量', dataIndex: 'depository_idle_total', elCls: 'center', width: '30%'},
+                        {title: '剩余总量', dataIndex: 'depository_total', elCls: 'center', width: '30%'},
+                        {title: '单位', dataIndex: 'depository_total_unit', elCls: 'center', width: '25%'},
+                    ],
+                    textGetter: function (item) { //返回选中的文本
+                        return item.depository_ident;
+                    },
+                    items: [],
+                }),
+                rec_device_picker = new Picker.ListPicker({
+                    width: 350,  //指定宽度
+                    children: [rec_device_grid] //配置picker内的列表
+                }),
+                rec_device_select = new Select.Select({
+                    picker: rec_device_picker,
+                    render: '#rec_device_select',
+                    valueField: '#depository_id',
+                    forceFit: false,
+                    multipleSelect: false,
+                    width: 350,
+                    items: []
+                }).render(),
 
                 columns = [
                     {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
@@ -446,7 +491,7 @@
                             {
                                 text: '<i class="icon-shopping-cart"></i>回收',
                                 btnCls: 'button button-small',
-                                handler: delFunction
+                                handler: recoveryFunction
                             }
                         ]
                     },
@@ -509,6 +554,40 @@
                     T_Form.getField('entity_id').set('value', eData.device_id);
                     T_Form.getField('offices_entity_id').set('value', eData.id);
                     T_Form.getField('stock_or_depository_id').set('value', eData.present_stock_id);
+                    T_Form.getField('entity_name').set('value', eData.entity_name);
+                    T_Form.getField('entity_type').set('value', eData.entity_type);
+                    T_Form.getField('office_unique_name').set('value', eData.office_unique_name);
+                    T_Form.getField('device_location').set('value', eData.device_location);
+                    getDepositoryById({
+                        depository_id: eData.present_stock_id
+                    }, function (v) {
+                        $("#offices_storage_no").val(makeInNum(parseInt(v.depository_total) - 1, v.depository_proportion));
+                        $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_idle_total) - 1, v.depository_proportion));
+                        $("#offices_storage_unit").val(v.depository_unit);
+                        $("#offices_storage_proportion").val(v.depository_proportion);
+                    });
+                }
+            }
+
+            //回收操作
+            function recoveryFunction() {
+                var selections = grid.getSelection();
+                if (selections.length == 0) {
+                    return;
+                } else if (selections.length != 1) {
+                    BUI.Message.Alert('一次只能选择一条记录！！');
+                    return;
+                } else {
+                    var eData = selections[0];
+                    editing_T.edit({
+                        dev_name: eData.entity_name,
+                        dev_type: eData.entity_type,
+                    });
+                    transfer_office_tree.set('nodes', GetMenus('root', offices_data));
+                    T_Form.getField('class_id').set('value', eData.class_id);
+                    T_Form.getField('entity_id').set('value', eData.device_id);
+                    T_Form.getField('offices_entity_id').set('value', eData.id);
+                    T_Form.getField('stock_record_id').set('value', eData.present_stock_id);
                     T_Form.getField('entity_name').set('value', eData.entity_name);
                     T_Form.getField('entity_type').set('value', eData.entity_type);
                     T_Form.getField('office_unique_name').set('value', eData.office_unique_name);
@@ -823,7 +902,7 @@
             });
 
             ori_device_grid.on('cellclick', function (ev) {
-                if($.isEmptyObject(ev.record)||ev.record==undefined){
+                if ($.isEmptyObject(ev.record) || ev.record == undefined) {
                     alert("无法解决的bug，联系管理员。")
                     return;
                 }

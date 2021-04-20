@@ -204,4 +204,23 @@ public class StockController extends BaseController {
         return result;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getStocksByEntityId", method = RequestMethod.POST)
+    public Map<String, Object> getStocksByEntityId(@RequestParam(value = "entity_id") String entity_id) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            List<Stock> listStock = stockService.getStocksByEntityId(entity_id);
+            if (listStock == null) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("entityData", listStock);
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+    }
+
 }

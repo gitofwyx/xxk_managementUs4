@@ -18,6 +18,8 @@ public interface StockService {
 
     public List<Stock> listStockByEntityId(String entity_id,String office_id);
 
+    public List<Stock> getStocksByEntityId(String entity_id);
+
     public Map<String, Object> addStockWithStorage(Stock stock,Storage storage);
 
     public Map<String, Object> updateStockWithStorage(Stock stock,Storage storage);

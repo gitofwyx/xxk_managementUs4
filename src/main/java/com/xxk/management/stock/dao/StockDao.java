@@ -19,6 +19,8 @@ public interface StockDao {
 
     public List<Stock> listStockByEntityId(String entity_id,String office_id);
 
+    public List<Stock> getStocksByEntityId(String entity_id);
+
     public int addStock(Stock stock);
 
     public int updateStock(Stock stock);
