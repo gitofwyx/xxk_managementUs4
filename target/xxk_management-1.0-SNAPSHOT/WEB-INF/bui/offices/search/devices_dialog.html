@@ -232,10 +232,29 @@
                     <input id="stock_record_id" name="stock_record_id" type="hidden">
                 </div>
                 &nbsp;
-                <input type="button" id="rec_submit" name="rec_submit" class=" icon-repeat"
-                       style="width:15px;height:18px;background-color:#ffffff;">
+                <button type="button" class="button button-danger"
+                        style="width:60px;height:25px;padding: 3px;"><span class="icon-shopping-cart"></span>回收
+                </button>
             </div>
 
+        </div>
+        <div id="R_Input_console">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存单位：</label>
+                    <div class="controls">
+                        <input id="stock_unit" name="stock_unit" type="text" class="input-normal control-text">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存比例：</label>
+                    <div class="controls">
+                        <input id="unit_num_1" name="unit_num" type="number" class="span1 control-text"> ：
+                        <input id="stock_proportion" name="stock_proportion" type="number" min="1"
+                               max="999" data-tip="{text:'数字有效'}" class="span2 control-text">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="control-group span2.5">
@@ -246,9 +265,6 @@
             </div>
             <div class="control-group span2.5">
                 <input name="offices_entity_id" type="hidden" data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input name="stock_record_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input name="stock_or_depository_id" type="hidden" data-rules="{required:true}">
@@ -278,6 +294,11 @@
                 <input id="offices_storage_proportion" name="offices_storage_proportion" type="hidden"
                        data-rules="{required:true}">
             </div>
+            <!--回收用-->
+            <div class="control-group span2.5">
+                <input id="stock_no" name="stock_no" type="hidden">
+            </div>
+
         </div>
 
         <div class="row">
@@ -304,7 +325,7 @@
 </script>
 <script type="text/javascript">
     BUI.use(['common/search', 'bui/form', 'bui/grid', 'bui/extensions/treepicker', 'bui/select', 'bui/picker', 'bui/tree'],
-        function (Search, Form, Grid,TreePicker, Select, Picker, Tree) {
+        function (Search, Form, Grid, TreePicker, Select, Picker, Tree) {
 
             var enumOffices = {};
             CD_ajaxNoParam("/getOfficeMakeGrid", false, function (data) {
@@ -322,6 +343,7 @@
                 device_select = {},//选中的设备json
                 offices_select = {},//设备种类id对应的dev_name_data键
                 enumObj_office = {},
+                stock_office = {},
                 class_count = 0,//设备种类最大值
 
                 editing = new BUI.Grid.Plugins.DialogEditing({
@@ -381,7 +403,7 @@
                 transfer_office_tree = new Tree.TreeList({
                     nodes: [],
                     //store: store,
-                    //dirSelectable : false,//阻止树节点选中
+                    /*dirSelectable : false,*///阻止树节点选中
                     showLine: true //显示连接线
                 }),
                 transfer_office_picker = new TreePicker({
@@ -394,30 +416,31 @@
                 rec_device_grid = new Grid.Grid({
                     idField: 'id',//选项的默认id字段
                     columns: [
+                        {title: '&nbsp库存编号', dataIndex: 'stock_ident', elCls: 'center', width: '30%'},
                         {
-                            title: '库存科室', dataIndex: 'depository_officeId', elCls: 'center', width: '40%',
-                            renderer: BUI.Grid.Format.enumRenderer(enumObj_office)
+                            title: '&nbsp库存科室', dataIndex: 'stock_office_id', elCls: 'center', width: '40%',
+                            renderer: BUI.Grid.Format.enumRenderer(stock_office)
                         },
-                        {title: '科室总量', dataIndex: 'depository_idle_total', elCls: 'center', width: '30%'},
-                        {title: '剩余总量', dataIndex: 'depository_total', elCls: 'center', width: '30%'},
-                        {title: '单位', dataIndex: 'depository_total_unit', elCls: 'center', width: '25%'},
+                        {title: '&nbsp数量', dataIndex: 'stock_no', elCls: 'center', width: '30%'},
+                        {title: '单位', dataIndex: 'stock_unit', elCls: 'center', width: '20%'},
+                        {title: '&nbsp总量', dataIndex: 'stock_total', elCls: 'center', width: '30%'},
                     ],
                     textGetter: function (item) { //返回选中的文本
-                        return item.depository_ident;
+                        return item.stock_ident;
                     },
                     items: [],
                 }),
                 rec_device_picker = new Picker.ListPicker({
-                    width: 350,  //指定宽度
+                    width: 380,  //指定宽度
                     children: [rec_device_grid] //配置picker内的列表
                 }),
                 rec_device_select = new Select.Select({
                     picker: rec_device_picker,
                     render: '#rec_device_select',
-                    valueField: '#depository_id',
+                    valueField: '#stock_record_id',
                     forceFit: false,
                     multipleSelect: false,
-                    width: 350,
+                    width: 380,
                     items: []
                 }).render(),
 
@@ -584,10 +607,12 @@
                         dev_type: eData.entity_type,
                     });
                     transfer_office_tree.set('nodes', GetMenus('root', offices_data));
+                    //rec_device_grid.clearSelection();
+                    T_Form.getField('stock_record_id').set('value', '');
+                    stock_office = stock_officeSelect(offices_data, stock_office);
                     T_Form.getField('class_id').set('value', eData.class_id);
                     T_Form.getField('entity_id').set('value', eData.device_id);
                     T_Form.getField('offices_entity_id').set('value', eData.id);
-                    T_Form.getField('stock_record_id').set('value', eData.present_stock_id);
                     T_Form.getField('entity_name').set('value', eData.entity_name);
                     T_Form.getField('entity_type').set('value', eData.entity_type);
                     T_Form.getField('office_unique_name').set('value', eData.office_unique_name);
@@ -599,6 +624,12 @@
                         $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_idle_total) - 1, v.depository_proportion));
                         $("#offices_storage_unit").val(v.depository_unit);
                         $("#offices_storage_proportion").val(v.depository_proportion);
+                    });
+                    getStocksByEntityId({
+                        entity_id: eData.device_id,
+                    }, function (v) {
+                        rec_device_grid.setItems(v);
+
                     });
                 }
             }
@@ -613,6 +644,14 @@
                     }
                 }
             }
+
+            //禁止输入框输入
+            function input_console(dis) {
+                $("#R_Input_console input").each(function () {
+                    $(this).val('');
+                    $(this).attr('readonly', dis);
+                })
+            };
 
             //下拉框ajax请求entity_selectAjax
             function entity_selectAjax(callback) {
@@ -747,6 +786,31 @@
                             }
                         } else {
                             $("#depository_version").val(0);
+                        }
+                    },
+                    error: function (xhr, textStatus) {
+                        console.log('错误')
+                        console.log(xhr)
+                        console.log(textStatus);
+                        /*BUI.Message.Alert('参数不能为空', 'error');*/
+                    }
+                })
+            }
+
+            //根据设备、耗材ID获取科室库存
+            function getStocksByEntityId(data, callback) {
+                $.ajax({
+                    url: '/getStocksByEntityId',
+                    type: 'POST', //GET
+                    data: data,
+                    async: true,    //或false,是否异步
+                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success: function (data, textStatus, jqXHR) {
+                        if (data != null && data != undefined) {
+                            if (typeof callback === "function") {
+                                callback(data.entityData);
+                            }
                         }
                     },
                     error: function (xhr, textStatus) {
@@ -917,6 +981,13 @@
             transfer_office_tree.on('itemclick', function (ev) {
 
                 $("#offices_storage_officeId2").val(ev.item.value);
+
+            });
+
+            rec_device_grid.on('selectedchange', function (ev) {
+                input_console(true);
+                $("#stock_unit").val(ev.item.stock_unit);
+                $("#unit_num_1").val(1);
 
             });
 

@@ -11,6 +11,7 @@
         <result column="office_function" property="office_function" jdbcType="VARCHAR"/>
         <result column="office_name" property="text" jdbcType="VARCHAR"/>
         <result column="office_ident" property="id" jdbcType="VARCHAR"/>
+        <result column="leaf" property="leaf" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--获取分页 -->
@@ -21,7 +22,7 @@
     </select>
 
     <select id="getOfficeSelect" resultMap="office_nameMap">
-        select id,belong_to_id,office_property,office_function,office_name,office_ident
+        select id,belong_to_id,office_property,office_function,office_name,office_ident,leaf
         from xxk_offices where deleteFlag='0';
     </select>
 

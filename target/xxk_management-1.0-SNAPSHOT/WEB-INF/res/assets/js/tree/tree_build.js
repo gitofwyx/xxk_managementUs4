@@ -82,6 +82,44 @@ function GetMenus(id, arry) {
     return mObj;
 }
 
+function GetMenusSetLeaf(id, arry) {
+    //菜单列表html
+    var rootId = id;
+    var tId = id;
+    var menus = '';
+//根据菜单主键id生成菜单列表html
+//id：菜单主键id
+//arry：菜单数组信息
+    menus += '[';
+    function GetData(id, arry) {
+        var childArry = GetParentArry(id, arry);
+        if (childArry.length > 0) {
+            if (id != rootId) {
+                menus += ',"children":[';
+            }
+            else {
+                tId=childArry[0].value;
+            }
+            for (var i in childArry) {
+                var cMap = JSON.stringify(childArry[i]);
+                //cMap=cMap.replace("{","");
+                cMap = cMap.replace("}", "");
+                menus += cMap;
+                GetData(childArry[i].value, arry);
+
+                menus += '}';
+                if (i < childArry.length - 1) {
+                    menus += ',';
+                }
+            }
+            menus += ']';
+        }
+    }
+
+    GetData(id, arry);
+    var mObj = JSON.parse(menus);
+    return mObj;
+}
 
 //根据菜单主键id获取下级菜单
 //id：菜单主键id

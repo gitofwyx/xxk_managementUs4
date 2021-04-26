@@ -36,6 +36,15 @@
         and deleteFlag='0';
     </select>
 
+    <!--根据EntityId获取信息 -->
+    <select id="getStocksByEntityId" parameterType="string" resultType="com.xxk.management.stock.entity.Stock">
+        select
+        <include refid="columns"></include>
+        from xxk_stock
+        where entity_id=#{0}
+        and deleteFlag='0';
+    </select>
+
     <!--添加信息 --><!--设置版本号为1-->
     <insert id="addStock" parameterType="com.xxk.management.stock.entity.Stock">
         insert into xxk_stock(<include refid="columns"></include>) values(
