@@ -69,3 +69,11 @@ function stock_officeSelect(offices_select, stock_office) {
     }
     return stock_office;
 }
+
+//判断数据是否为Null或者undefined或者为空字符串
+function CheckIsNullOrEmpty(value) {
+    //正则表达式用于判斷字符串是否全部由空格或换行符组成
+    var reg = /^\s*$/
+    //返回值为true表示不是空字符串
+    return (value != null && value != undefined && !reg.test(value))
+}

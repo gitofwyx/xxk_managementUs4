@@ -232,7 +232,7 @@
                     <input id="stock_record_id" name="stock_record_id" type="hidden">
                 </div>
                 &nbsp;
-                <button type="button" class="button button-danger"
+                <button type="button" class="button button-danger" id="recovery_button"
                         style="width:60px;height:25px;padding: 3px;"><span class="icon-shopping-cart"></span>回收
                 </button>
             </div>
@@ -988,7 +988,34 @@
                 input_console(true);
                 $("#stock_unit").val(ev.item.stock_unit);
                 $("#unit_num_1").val(1);
+                $("#stock_proportion").val(ev.item.stock_proportion);
+                $("#stock_no").val(makeInNum(parseInt(ev.stock_total) + 1, ev.stock_proportion));
+            });
 
+            $("#recovery_button").click(function () {
+                BUI.Message.Confirm('正在回收操作，确定将该设备回收吗？', function () {
+                    if (!CheckIsNullOrEmpty($("#stock_unit").val()) || !CheckIsNullOrEmpty($("#stock_proportion").val())) {
+                        setTimeout(function () {
+                            if (!CheckIsNullOrEmpty($("#stock_record_id").val())) {
+                                BUI.Message.Alert('设备没有选择库存记录，输入库存单位和比例新建？', function () {
+                                    input_console(false);
+                                }, 'question');
+                            }
+                        });
+                    }else {
+                        $("#stock_no").val(makeInNum(1, $("#stock_proportion").val()));
+                        T_Form.getRecord( );
+                        var postData = $("#T_Form").serialize();
+                        var tmpDic={};
+                        for(var i in postData.split("&")){
+                            var row=postData.split("&")[i];
+                            tmpDic[row.split("=")[0]]=decodeURIComponent(row.split("=")[1]);
+                        }
+                        console.log(tmpDic);
+                        console.log(postData);
+                    }
+
+                }, 'question');
             });
 
 
