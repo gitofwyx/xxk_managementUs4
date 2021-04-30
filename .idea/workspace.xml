@@ -9,13 +9,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年4月27日 00:41:34">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年4月28日 01:47:13">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/tools/data_handling.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/tools/data_handling.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1825,13 +1822,12 @@
       <workItem from="1619454904826" duration="412000" />
       <workItem from="1619535071883" duration="3492000" />
       <workItem from="1619538751593" duration="6610000" />
-    </task>
-    <task id="LOCAL-00042" summary="2021年1月26日 00:27:11">
-      <created>1613494903198</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1613494903198</updated>
+      <workItem from="1619545623426" duration="7273000" />
+      <workItem from="1619708953303" duration="1134000" />
+      <workItem from="1619710103313" duration="1119000" />
+      <workItem from="1619711237762" duration="6180000" />
+      <workItem from="1619718344876" duration="1167000" />
+      <workItem from="1619807832225" duration="8289000" />
     </task>
     <task id="LOCAL-00043" summary="2021年2月17日 01:03:05">
       <created>1613494988419</created>
@@ -2169,7 +2165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619455300254</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="2021年4月28日 01:47:13">
+      <created>1619545638275</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1619545638275</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2266,7 +2269,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021-2-17 20:55:24" />
     <MESSAGE value="2021-2-18 20:31:58" />
     <MESSAGE value="2021-2-19 21:54:37" />
     <MESSAGE value="2021-2-21 00:55:22" />
@@ -2291,7 +2293,8 @@
     <MESSAGE value="2021年4月8日 01:03:06" />
     <MESSAGE value="2021-4-21 00:03:19" />
     <MESSAGE value="2021年4月27日 00:41:34" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年4月27日 00:41:34" />
+    <MESSAGE value="2021年4月28日 01:47:13" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年4月28日 01:47:13" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

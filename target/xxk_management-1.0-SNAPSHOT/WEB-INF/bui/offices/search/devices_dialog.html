@@ -179,11 +179,11 @@
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>科室选择：</label>
-                <input type="hidden" name="offices_storage_officeId" id="offices_storage_officeId2">
                 <div class="controls">
                     <input id="storage_office_ident" name="storage_office_ident" type="text"
-                           data-rules="{required:true}"
                            class="input-normal control-text">
+                    <input type="hidden" name="offices_storage_officeId"  data-rules="{required:true}"
+                           id="offices_storage_officeId2">
                 </div>
             </div>
             <div class="control-group span8">
@@ -267,7 +267,7 @@
                 <input name="offices_entity_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
-                <input name="stock_or_depository_id" type="hidden" data-rules="{required:true}">
+                <input id="stock_or_depository_id" name="stock_or_depository_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input name="entity_name" type="hidden" data-rules="{required:true}">
@@ -572,6 +572,8 @@
                         dev_name: eData.entity_name,
                         dev_type: eData.entity_type,
                     });
+                    input_setPro(true);
+                    rec_device_grid.setItems({});
                     transfer_office_tree.set('nodes', GetMenus('root', offices_data));
                     T_Form.getField('class_id').set('value', eData.class_id);
                     T_Form.getField('entity_id').set('value', eData.device_id);
@@ -606,6 +608,7 @@
                         dev_name: eData.entity_name,
                         dev_type: eData.entity_type,
                     });
+                    input_setPro(false);
                     transfer_office_tree.set('nodes', GetMenus('root', offices_data));
                     //rec_device_grid.clearSelection();
                     T_Form.getField('stock_record_id').set('value', '');
@@ -613,18 +616,12 @@
                     T_Form.getField('class_id').set('value', eData.class_id);
                     T_Form.getField('entity_id').set('value', eData.device_id);
                     T_Form.getField('offices_entity_id').set('value', eData.id);
+                    T_Form.getField('stock_or_depository_id').set('value', eData.present_stock_id);
                     T_Form.getField('entity_name').set('value', eData.entity_name);
                     T_Form.getField('entity_type').set('value', eData.entity_type);
                     T_Form.getField('office_unique_name').set('value', eData.office_unique_name);
                     T_Form.getField('device_location').set('value', eData.device_location);
-                    getDepositoryById({
-                        depository_id: eData.present_stock_id
-                    }, function (v) {
-                        $("#offices_storage_no").val(makeInNum(parseInt(v.depository_total) - 1, v.depository_proportion));
-                        $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_idle_total) - 1, v.depository_proportion));
-                        $("#offices_storage_unit").val(v.depository_unit);
-                        $("#offices_storage_proportion").val(v.depository_proportion);
-                    });
+                    T_Form.getField('unit_num').set('value', 1);
                     getStocksByEntityId({
                         entity_id: eData.device_id,
                     }, function (v) {
@@ -650,6 +647,13 @@
                 $("#R_Input_console input").each(function () {
                     $(this).val('');
                     $(this).attr('readonly', dis);
+                })
+            };
+
+            function input_setPro(dis) {
+                $("#R_Input_console input").each(function () {
+                    $(this).val('');
+                    $(this).attr('disabled', dis);
                 })
             };
 
@@ -928,6 +932,24 @@
                 }
             };
 
+            function recoveryHandleFunction() {
+                if(rec_device_grid.getCount()>0){
+                    var officeId=$("#offices_storage_officeId2").val();
+                    var items=rec_device_grid.getItems();
+                    if(!CheckIsNullOrEmpty(officeId)){
+                        BUI.Message.Alert('请选择库存记录！No.1','error');
+                        return false;
+                    }
+                    for (var i in items){
+                        if(items[i].stock_office_id===officeId){
+                            alert("选择的科室已存在库存记录！请使用存在的记录!No.2");
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+
             //删除操作
             function delFunction() {
                 var selections = grid.getSelection();
@@ -979,13 +1001,16 @@
             });
 
             transfer_office_tree.on('itemclick', function (ev) {
-
+                $("#stock_record_id").val("");
+                $("#stock_unit").val("");
+                $("#stock_proportion").val("");
                 $("#offices_storage_officeId2").val(ev.item.value);
 
             });
 
             rec_device_grid.on('selectedchange', function (ev) {
                 input_console(true);
+                $("#offices_storage_officeId2").val(ev.item.stock_office_id);
                 $("#stock_unit").val(ev.item.stock_unit);
                 $("#unit_num_1").val(1);
                 $("#stock_proportion").val(ev.item.stock_proportion);
@@ -996,23 +1021,44 @@
                 BUI.Message.Confirm('正在回收操作，确定将该设备回收吗？', function () {
                     if (!CheckIsNullOrEmpty($("#stock_unit").val()) || !CheckIsNullOrEmpty($("#stock_proportion").val())) {
                         setTimeout(function () {
+                            if(!recoveryHandleFunction()){
+                                return;
+                            }
                             if (!CheckIsNullOrEmpty($("#stock_record_id").val())) {
-                                BUI.Message.Alert('设备没有选择库存记录，输入库存单位和比例新建？', function () {
+                                BUI.Message.Alert('设备没有选择库存记录！No.3', function () {
                                     input_console(false);
                                 }, 'question');
                             }
                         });
                     }else {
-                        $("#stock_no").val(makeInNum(1, $("#stock_proportion").val()));
-                        T_Form.getRecord( );
-                        var postData = $("#T_Form").serialize();
-                        var tmpDic={};
-                        for(var i in postData.split("&")){
-                            var row=postData.split("&")[i];
-                            tmpDic[row.split("=")[0]]=decodeURIComponent(row.split("=")[1]);
+                        if(CheckIsNullOrEmpty($("#storage_office_ident").val())){
+                            if(!recoveryHandleFunction()){
+                                return;
+                            }
                         }
-                        console.log(tmpDic);
-                        console.log(postData);
+                        if(!CheckIsNullOrEmpty($("#offices_storage_officeId2").val())){
+                            alert("请选择库存记录!No.4");
+                            return;
+                        }
+                        $("#stock_no").val(makeInNum(1, $("#stock_proportion").val()));
+                       /* console.log(tmpDic);
+                        console.log(postData);*/
+                        getDepositoryById({
+                            depository_id: $("#stock_or_depository_id").val()
+                        }, function (v) {
+                            $("#offices_storage_no").val(makeInNum(parseInt(v.depository_total) - 1, v.depository_proportion));
+                            $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_idle_total) - 1, v.depository_proportion));
+                            $("#offices_storage_unit").val(v.depository_unit);
+                            $("#offices_storage_proportion").val(v.depository_proportion);
+                            var postData = $("#T_Form").serialize();
+                            var tmpDic={};
+                            for(var i in postData.split("&")){
+                                var row=postData.split("&")[i];
+                                tmpDic[row.split("=")[0]]=decodeURIComponent(row.split("=")[1]);
+                            }
+                            store.save('remove', tmpDic);
+                            editing_T.cancel( );
+                        });
                     }
 
                 }, 'question');
