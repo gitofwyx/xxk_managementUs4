@@ -172,7 +172,9 @@ public class DevicesController extends BaseController {
     @ResponseBody
     @RequestMapping("/recoveryDevices")
     public Map<String, Object> recoveryDevices(Devices devices, OfficesStorage officesStorage,
-                                                  @RequestParam(value = "stock_record_id") String stock_record_id) {
+                                               @RequestParam(value = "stock_no") String stock_no,
+                                               @RequestParam(value = "stock_unit") String stock_unit,
+                                               @RequestParam(value = "stock_proportion") String stock_proportion) {
         Map<String, Object> result = new HashMap<>();
         try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
