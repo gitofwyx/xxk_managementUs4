@@ -9,6 +9,7 @@ import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.office.storage.service.OfficesStorageService;
+import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.service.StorageService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -38,12 +39,15 @@ public class DevicesServiceImpl implements DevicesService {
     private OfficesStorageService storageService;
 
     @Autowired
+    private StockService stockService;
+
+    @Autowired
     private DepositoryService depositoryService;
 
 
     @Override
     public List<Devices> listDevices(int pageStart, int pageSize, String class_id, String device_id, String location_office_id) {
-        return dao.listDevices((pageStart - 1) * pageSize,pageSize,class_id,device_id,location_office_id);
+        return dao.listDevices((pageStart - 1) * pageSize, pageSize, class_id, device_id, location_office_id);
     }
 
     @Override
@@ -62,7 +66,7 @@ public class DevicesServiceImpl implements DevicesService {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String devicesId = UUIdUtil.getUUID();
-        boolean devicesResult=false;
+        boolean devicesResult = false;
         try {
 
             devices.setId(devicesId);
@@ -91,11 +95,11 @@ public class DevicesServiceImpl implements DevicesService {
                 storage.setOriginal_storage_officeId(devices.getInventory_office_id());
                 storage.setOffices_storage_genre("2");
                 storage.setEntity_entry_status("2");
-                result = storageService.addOfficesStorage(devices,storage);
-                if("true".equals(result.get("hasError"))){
+                result = storageService.addOfficesStorage(devices, storage);
+                if ("true".equals(result.get("hasError"))) {
                     return false;
                 }
-                devicesResult=depositoryService.deploymentDeviceWithSingle(storage.getStock_or_depository_id(),storage.getUpdateUserId(),createDate);
+                devicesResult = depositoryService.deploymentDeviceWithSingle(storage.getStock_or_depository_id(), storage.getUpdateUserId(), createDate);
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -114,7 +118,7 @@ public class DevicesServiceImpl implements DevicesService {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
-        boolean devicesResult=false;
+        boolean devicesResult = false;
         try {
 
             devices.setClass_id(storage.getClass_id());
@@ -137,11 +141,11 @@ public class DevicesServiceImpl implements DevicesService {
                 storage.setOriginal_storage_officeId(devices.getInventory_office_id());
                 storage.setOffices_storage_genre("2");
                 storage.setEntity_entry_status("2");
-                result = storageService.addOfficesStorage(devices,storage);
-                if("true".equals(result.get("hasError"))){
+                result = storageService.addOfficesStorage(devices, storage);
+                if ("true".equals(result.get("hasError"))) {
                     return false;
                 }
-                devicesResult=depositoryService.deploymentDeviceWithSingle(storage.getStock_or_depository_id(),storage.getUpdateUserId(),createDate);
+                devicesResult = depositoryService.deploymentDeviceWithSingle(storage.getStock_or_depository_id(), storage.getUpdateUserId(), createDate);
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -157,12 +161,12 @@ public class DevicesServiceImpl implements DevicesService {
 
     //
     @Override
-    public boolean updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date) {
+    public boolean updateDevicesStatus(String devicesId, String location_office_id, String present_stock_id, String status, String userId, String Date) {
 
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
         try {
-            devicesResult = dao.updateDevicesStatus(devicesId,location_office_id,present_stock_id,status,userId,Date) == 1 ? true : false;
+            devicesResult = dao.updateDevicesStatus(devicesId, location_office_id, present_stock_id, status, userId, Date) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
             }
@@ -200,9 +204,69 @@ public class DevicesServiceImpl implements DevicesService {
                 officesStorage.setOffices_storage_total(1);
                 officesStorage.setOffices_storage_by(devices.getUpdateUserId());
                 officesStorage.setEntity_entry_status("1");//入科状态（0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科）
-                result = depositoryService.transferDepositoryForDelivery(devices,officesStorage);
-                if("true".equals(result.get("hasError"))){
+                result = depositoryService.transferDepositoryForDelivery(devices, officesStorage);
+                if ("true".equals(result.get("hasError"))) {
                     return false;
+                }
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return devicesResult;
+    }
+
+    //回收
+    public boolean recoveryDevices(Devices devices, OfficesStorage officesStorage, String stock_no, String stock_unit, String stock_proportion) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        boolean devicesResult = false;
+        try {
+            devices.setId(officesStorage.getOffices_entity_id());
+            devices.setDevice_id(officesStorage.getEntity_id());
+            devices.setLocation_office_id(officesStorage.getOffices_storage_officeId());
+            devices.setDevice_deployment_status("0");
+            devices.setUpdateDate(createDate);
+            devicesResult = dao.transferDevices(devices) == 1 ? true : false;
+            if (!(devicesResult)) {
+                log.error("depositoryResult:" + devicesResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+                officesStorage.setOffices_storage_ident("NO");
+                officesStorage.setOffices_storage_type("1");//设备\耗材类别（1.设备2.配件3.耗材）
+                officesStorage.setOffices_storage_genre("3");//流动类别（0：配置1.入科2.部署3.回收4.调用5.借用）
+                officesStorage.setOffices_storage_date(createDate);
+                officesStorage.setOffices_storage_total(1);
+                officesStorage.setOffices_storage_by(devices.getUpdateUserId());
+                officesStorage.setEntity_entry_status("0");//入科状态（0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科）
+                result = depositoryService.transferDepositoryForDelivery(devices, officesStorage);
+                if ("true".equals(result.get("hasError"))) {
+                    return false;
+                }
+                officesStorage.setStock_or_depository_id(devices.getPresent_stock_id());
+                officesStorage.setOffices_storage_no(Float.parseFloat(stock_no));
+                officesStorage.setOffices_storage_total(1);
+                officesStorage.setOffices_storage_unit(stock_unit);
+                officesStorage.setOffices_storage_proportion(Integer.parseInt(stock_proportion));
+                officesStorage.setCreateUserId(devices.getUpdateUserId());
+                officesStorage.setCreateDate(createDate);
+                officesStorage.setUpdateUserId(devices.getUpdateUserId());
+                officesStorage.setUpdateDate(createDate);
+                if ("".equals(devices.getPresent_stock_id()) || devices.getPresent_stock_id() == null) {
+                    result = stockService.addStockForRecovery(officesStorage);
+                } else {
+                    result = stockService.updateStockForRecovery(officesStorage);
+                }
+                if (!(devicesResult)) {
+                    log.error("depositoryResult:" + devicesResult);
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
                 }
             }
         } catch (DuplicateKeyException e) {
@@ -223,7 +287,7 @@ public class DevicesServiceImpl implements DevicesService {
     }
 
     @Override
-    public  List<Map<String, Object>> getDevicesSelect() {
+    public List<Map<String, Object>> getDevicesSelect() {
         return dao.getDevicesSelect();
     }
 
@@ -234,7 +298,7 @@ public class DevicesServiceImpl implements DevicesService {
 
     @Override
     public List<Map<String, Object>> getDevicesIdent() {
-        if(dao.getDevicesIdent().size()!=1){
+        if (dao.getDevicesIdent().size() != 1) {
             log.error("getDeviceIdent:获取设备编号错误");
             return null;
         }
@@ -243,16 +307,16 @@ public class DevicesServiceImpl implements DevicesService {
 
     //根据部署状态获取设备
     @Override
-    public List<Devices> getDevicesWithStatus(String deviceId,String officeId,String status) {
+    public List<Devices> getDevicesWithStatus(String deviceId, String officeId, String status) {
 
-        return dao.getDevicesWithStatus(deviceId,officeId,status);
+        return dao.getDevicesWithStatus(deviceId, officeId, status);
     }
 
     //根据部署状态获取设备
     @Override
-    public List<Map<String, Object>> getDevicesWithDepositoryId(String depositoryId,String status) {
+    public List<Map<String, Object>> getDevicesWithDepositoryId(String depositoryId, String status) {
 
-        return dao.getDevicesWithDepositoryId(depositoryId,status);
+        return dao.getDevicesWithDepositoryId(depositoryId, status);
     }
 
 }

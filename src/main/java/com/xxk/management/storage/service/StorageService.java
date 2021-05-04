@@ -1,6 +1,8 @@
 package com.xxk.management.storage.service;
 
 import com.xxk.management.device.entity.Device;
+import com.xxk.management.office.devices.entity.Devices;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Storage;
 
@@ -19,6 +21,8 @@ public interface StorageService {
     public  List<Storage> listStorageByStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_id, String officeId);
 
     public Map<String, Object> addStorage(Stock stock, Storage storage);
+
+    public Map<String, Object> addStorageForOfficesStorage(OfficesStorage storage);
 
     public boolean deleteListRegUser(List<String> listStr);
 

@@ -1,5 +1,7 @@
 package com.xxk.management.stock.service;
 
+import com.xxk.management.office.devices.entity.Devices;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
@@ -29,6 +31,10 @@ public interface StockService {
     public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery,double stock_no) ;
 
     public Map<String, Object> updateStock(Stock stock);
+
+    public Map<String, Object> addStockForRecovery(OfficesStorage officesStorage);
+
+    public Map<String, Object> updateStockForRecovery(OfficesStorage officesStorage);
 
     public boolean plusStockConfiguredTotal(String stockId,String userId,String date,String stock_version);
 

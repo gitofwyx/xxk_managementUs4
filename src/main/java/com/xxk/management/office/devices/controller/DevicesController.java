@@ -178,6 +178,7 @@ public class DevicesController extends BaseController {
         Map<String, Object> result = new HashMap<>();
         try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            devices.setUpdateUserId(CurrentUserId);
 
         } catch (Exception e) {
 

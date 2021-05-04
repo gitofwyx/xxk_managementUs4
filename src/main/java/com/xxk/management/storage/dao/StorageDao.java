@@ -1,10 +1,13 @@
 package com.xxk.management.storage.dao;
 
+import com.xxk.management.office.devices.entity.Devices;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.storage.entity.Storage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -24,6 +27,8 @@ public interface StorageDao {
                                               @Param("officeId") String officeId);
 
     public int addStorage(Storage storage);
+
+    public int addStorageForOfficesStorage(OfficesStorage storage);
 
     public int deleteListRegUser(List<String> listStr);
 

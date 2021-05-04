@@ -1,5 +1,6 @@
 package com.xxk.management.stock.dao;
 
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.entity.Stock;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,10 @@ public interface StockDao {
     public List<Stock> getStocksByEntityId(String entity_id);
 
     public int addStock(Stock stock);
+
+    public int addStockForOfficesStorage(OfficesStorage storage);
+
+    public int updateStockForOfficesStorage(OfficesStorage storage);
 
     public int updateStock(Stock stock);
 

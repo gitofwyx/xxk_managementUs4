@@ -6,6 +6,8 @@ import com.xxk.management.device.dao.DeviceDao;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.material.service.MaterialService;
+import com.xxk.management.office.devices.entity.Devices;
+import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.dao.StockDao;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
@@ -46,8 +48,8 @@ public class StockServiceImpl implements StockService {
     private DeliveryService deliveryService;
 
     @Override
-    public List<Stock> listStock(int pageStart, int pageSize,String class_id,String entity_id,String stock_office_id,int search_type) {
-        return dao.listStock((pageStart - 1) * pageSize,pageSize,class_id,entity_id,stock_office_id,search_type);
+    public List<Stock> listStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_office_id, int search_type) {
+        return dao.listStock((pageStart - 1) * pageSize, pageSize, class_id, entity_id, stock_office_id, search_type);
     }
 
     @Override
@@ -79,12 +81,12 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
                 return result;
             }
-            if("1".equals(stock.getStock_type())){
+            if ("1".equals(stock.getStock_type())) {
                 stock = deviceService.makeStockByDevice(stock);
-            }else if("2".equals(stock.getStock_type())||("3".equals(stock.getStock_type()))){
+            } else if ("2".equals(stock.getStock_type()) || ("3".equals(stock.getStock_type()))) {
                 stock = materialService.makeStockByMaterial(stock);
-            }else {
-                stock=null;
+            } else {
+                stock = null;
             }
             if (stock != null) {
                 stock.setId(stockId);
@@ -96,7 +98,7 @@ public class StockServiceImpl implements StockService {
                 stock.setUpdateDate(createDate);
                 stock.setUpdateUserId(stock.getUpdateUserId());
                 stock.setDeleteFlag("0");
-            }else {
+            } else {
                 log.error("addDepositoryWithStorage:无法获许设备或耗材ID");
                 result.put("hasError", true);
                 result.put("error", "添加出错：无法获许设备或耗材ID");
@@ -190,7 +192,7 @@ public class StockServiceImpl implements StockService {
                 //出库更新
                 delivery.setClass_id(stock.getClass_id());
                 delivery.setEntity_id(stock.getEntity_id());
-                result = deliveryService.addDelivery(stock, delivery,"1");
+                result = deliveryService.addDelivery(stock, delivery, "1");
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -207,7 +209,7 @@ public class StockServiceImpl implements StockService {
     //配置出库操作
     // 2019年8月19日 13:43:42更新
     @Override
-    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery,double stock_no) {
+    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery, double stock_no) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         try {
@@ -217,14 +219,14 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错！无法获取设备ID");
                 return result;
             }
-            boolean stockResult = dao.reduceSingleStockNo(delivery.getStock_id(),stock_no,delivery.getCreateUserId(),createDate) == 1 ? true : false;
+            boolean stockResult = dao.reduceSingleStockNo(delivery.getStock_id(), stock_no, delivery.getCreateUserId(), createDate) == 1 ? true : false;
             if (!(stockResult)) {
                 log.error("stockResult:" + stockResult);
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
                 //出库更新
-                result = deliveryService.addDelivery(delivery,"0");
+                result = deliveryService.addDelivery(delivery, "0");
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -269,9 +271,87 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
+    //回收（新增库存）
+    // 2019年8月12日 13:44:05更新
     @Override
-    public boolean plusStockConfiguredTotal(String stockId,String userId,String date,String stock_version) {
-        return dao.plusStockConfiguredTotal(stockId,userId,date,stock_version) == 1 ? true : false;
+    public Map<String, Object> addStockForRecovery(OfficesStorage officesStorage) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String stockId = UUIdUtil.getUUID();
+        try {
+            if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
+                log.info("recoveryStockWithStorage:出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                return result;
+            }
+            officesStorage.setId(stockId);
+            officesStorage.setOffices_storage_ident("NO");
+            officesStorage.setOffices_storage_total(1);
+            officesStorage.setEntity_entry_status("1");
+            officesStorage.setCreateDate(createDate);
+            officesStorage.setUpdateDate(createDate);
+            officesStorage.setDeleteFlag("0");
+
+            boolean stockResult = dao.addStockForOfficesStorage(officesStorage) == 1 ? true : false;
+            if (!(stockResult)) {
+                log.error("stockResult:" + stockResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+
+                result = storageService.addStorageForOfficesStorage(officesStorage);
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
+    }
+
+    //入库操作
+    // 2019年8月19日 13:44:05更新
+    @Override
+    public Map<String, Object> updateStockForRecovery(OfficesStorage officesStorage) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        try {
+            if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
+                log.info("出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错！无法获取设备ID");
+                return result;
+            }
+
+            boolean stockResult = dao.updateStockForOfficesStorage(officesStorage) == 1 ? true : false;
+            if (!(stockResult)) {
+                log.error("stockResult:" + stockResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+                //入库记录
+                result = storageService.addStorageForOfficesStorage(officesStorage);
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean plusStockConfiguredTotal(String stockId, String userId, String date, String stock_version) {
+        return dao.plusStockConfiguredTotal(stockId, userId, date, stock_version) == 1 ? true : false;
     }
 
     @Override

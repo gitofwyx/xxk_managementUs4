@@ -229,7 +229,7 @@
             <div class="control-group span16">
                 <label class="control-label">&nbsp;<s>*</s>回收库存选择：(只供回收操作选择)</label>
                 <div class="controls" id="rec_device_select">
-                    <input id="stock_record_id" name="stock_record_id" type="hidden">
+                    <input id="present_stock_id" name="present_stock_id" type="hidden">
                 </div>
                 &nbsp;
                 <button type="button" class="button button-danger" id="recovery_button"
@@ -437,7 +437,7 @@
                 rec_device_select = new Select.Select({
                     picker: rec_device_picker,
                     render: '#rec_device_select',
-                    valueField: '#stock_record_id',
+                    valueField: '#present_stock_id',
                     forceFit: false,
                     multipleSelect: false,
                     width: 380,
@@ -611,7 +611,7 @@
                     input_setPro(false);
                     transfer_office_tree.set('nodes', GetMenus('root', offices_data));
                     //rec_device_grid.clearSelection();
-                    T_Form.getField('stock_record_id').set('value', '');
+                    T_Form.getField('present_stock_id').set('value', '');
                     stock_office = stock_officeSelect(offices_data, stock_office);
                     T_Form.getField('class_id').set('value', eData.class_id);
                     T_Form.getField('entity_id').set('value', eData.device_id);
@@ -1001,7 +1001,7 @@
             });
 
             transfer_office_tree.on('itemclick', function (ev) {
-                $("#stock_record_id").val("");
+                $("#present_stock_id").val("");
                 $("#stock_unit").val("");
                 $("#stock_proportion").val("");
                 $("#offices_storage_officeId2").val(ev.item.value);
@@ -1024,7 +1024,7 @@
                             if(!recoveryHandleFunction()){
                                 return;
                             }
-                            if (!CheckIsNullOrEmpty($("#stock_record_id").val())) {
+                            if (!CheckIsNullOrEmpty($("#present_stock_id").val())) {
                                 BUI.Message.Alert('设备没有选择库存记录！No.3', function () {
                                     input_console(false);
                                 }, 'question');
