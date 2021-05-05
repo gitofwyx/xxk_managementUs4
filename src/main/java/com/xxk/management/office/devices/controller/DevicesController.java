@@ -189,7 +189,9 @@ public class DevicesController extends BaseController {
             }
 
         } catch (Exception e) {
-
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
         }
         return result;
     }
