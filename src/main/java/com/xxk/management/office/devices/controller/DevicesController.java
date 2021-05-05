@@ -179,6 +179,14 @@ public class DevicesController extends BaseController {
         try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             devices.setUpdateUserId(CurrentUserId);
+            if (officesStorage.getStock_or_depository_id() != null && !"".equals(officesStorage.getStock_or_depository_id())) {
+                boolean Result = devicesService.recoveryDevices(devices, officesStorage,stock_no,stock_unit,stock_proportion);
+                if (!(Result)) {
+                    result.put("success", false);
+                } else {
+                    result.put("success", true);
+                }
+            }
 
         } catch (Exception e) {
 

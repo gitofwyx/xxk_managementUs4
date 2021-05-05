@@ -25,6 +25,8 @@ public interface DevicesService {
 
     public boolean transferDevices(Devices devices, OfficesStorage officesStorage);
 
+    public boolean recoveryDevices(Devices devices, OfficesStorage officesStorage, String stock_no, String stock_unit, String stock_proportion);
+
     public List<Map<String, Object>> getDevicesNumber(String deviceId);
 
     public List<Map<String, Object>> getDevicesSelect();

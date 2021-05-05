@@ -52,6 +52,14 @@
         0,#{stock_total_unit},#{stock_flag},#{remark},#{keyWord},1,#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
+    <!--添加信息 --><!--设置版本号为1-->
+    <insert id="addStockForOfficesStorage" parameterType="com.xxk.management.office.storage.entity.OfficesStorage">
+        insert into xxk_stock(<include refid="columns"></include>) values(
+        #{id},#{offices_storage_ident},#{class_id},#{entity_id},#{offices_storage_type},#{offices_storage_officeId},#{offices_storage_no},#{offices_storage_unit},
+        #{offices_storage_proportion},#{offices_storage_total},0,#{offices_storage_unit},#{entity_entry_status},#{keyWord},1,#{createUserId},#{createDate},
+        #{updateUserId},#{updateDate},#{deleteFlag});
+    </insert>
+
     <!--根据id获取信息 -->
     <select id="getStockIdByIdent" parameterType="string" resultType="string">
         select id
@@ -80,6 +88,12 @@
     <update id="plusStockNo" parameterType="com.xxk.management.stock.entity.Stock">
         update xxk_stock set stock_no=#{stock_no},stock_total=stock_total+#{stock_total},stock_version=stock_version+1,
         updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and stock_version=#{stock_version} and deleteFlag='0';
+    </update>
+
+    <!--入库更新 -->
+    <update id="updateStockForOfficesStorage" parameterType="com.xxk.management.office.storage.entity.OfficesStorage">
+        update xxk_stock set stock_no=#{offices_storage_no},stock_total=stock_total+#{offices_storage_total},stock_version=stock_version+1,
+                             updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
     </update>
 
     <!--配置库存增加1 -->

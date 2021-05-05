@@ -2,7 +2,6 @@ package com.xxk.management.office.devices.service.impl;
 
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
-import com.xxk.management.office.depository.entity.Depository;
 import com.xxk.management.office.depository.service.DepositoryService;
 import com.xxk.management.office.devices.dao.DevicesDao;
 import com.xxk.management.office.devices.entity.Devices;
@@ -10,15 +9,10 @@ import com.xxk.management.office.devices.service.DevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.office.storage.service.OfficesStorageService;
 import com.xxk.management.stock.service.StockService;
-import com.xxk.management.storage.service.StorageService;
 import org.apache.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -179,6 +173,7 @@ public class DevicesServiceImpl implements DevicesService {
     }
 
     //转科
+    @Override
     public boolean transferDevices(Devices devices, OfficesStorage officesStorage) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
@@ -222,6 +217,7 @@ public class DevicesServiceImpl implements DevicesService {
     }
 
     //回收
+    @Override
     public boolean recoveryDevices(Devices devices, OfficesStorage officesStorage, String stock_no, String stock_unit, String stock_proportion) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
