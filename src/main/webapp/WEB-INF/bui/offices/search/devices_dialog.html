@@ -1001,11 +1001,6 @@
             });
 
             transfer_office_tree.on('itemclick', function (ev) {
-                if(ev.item.office_function!=="1"){
-                    input_console(true);
-                    BUI.Message.Alert('选择科室无法回收', 'error');
-                    return;
-                }
                 $("#present_stock_id").val("");
                 $("#stock_unit").val("");
                 $("#stock_proportion").val("");
