@@ -1001,6 +1001,10 @@
             });
 
             transfer_office_tree.on('itemclick', function (ev) {
+                if(ev.office_function!=="1"){
+                    input_console(true);
+                    return;
+                }
                 $("#present_stock_id").val("");
                 $("#stock_unit").val("");
                 $("#stock_proportion").val("");
