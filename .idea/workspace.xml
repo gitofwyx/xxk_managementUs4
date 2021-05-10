@@ -12,8 +12,8 @@
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年5月9日 23:58:34">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1840,21 +1840,8 @@
       <workItem from="1620227033862" duration="1675000" />
       <workItem from="1620228727234" duration="2115000" />
       <workItem from="1620230971006" duration="2482000" />
-      <workItem from="1620560495262" duration="4189000" />
-    </task>
-    <task id="LOCAL-00049" summary="2021-2-21 00:55:22">
-      <created>1613840127810</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1613840127810</updated>
-    </task>
-    <task id="LOCAL-00050" summary="2021-2-21 00:55:22">
-      <created>1613881057232</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1613881057232</updated>
+      <workItem from="1620560495262" duration="4884000" />
+      <workItem from="1620660768727" duration="4121000" />
     </task>
     <task id="LOCAL-00051" summary="2021-2-21 00:55:22">
       <created>1613881367310</created>
@@ -2185,7 +2172,21 @@
       <option name="project" value="LOCAL" />
       <updated>1620575922437</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="2021年5月9日 23:58:34">
+      <created>1620576929324</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1620576929324</updated>
+    </task>
+    <task id="LOCAL-00099" summary="2021年5月9日 23:58:34">
+      <created>1620576962107</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1620576962107</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

@@ -1018,6 +1018,20 @@
             });
 
             $("#recovery_button").click(function () {
+                var P=false;
+                $(offices_data).each(function(index,element){
+                    if(element.value===$("#offices_storage_officeId2").val()&&element.office_function!=="1"){
+                        $("#offices_storage_officeId2").val('');
+                        P=true;
+                        alert('选择的科室无法回收！');
+                        return;
+                    }
+                })
+                if(P){
+                    editing_T.cancel( );
+                    return;
+                }
+
                 BUI.Message.Confirm('正在回收操作，确定将该设备回收吗？', function () {
                     if (!CheckIsNullOrEmpty($("#stock_unit").val()) || !CheckIsNullOrEmpty($("#stock_proportion").val())) {
                         setTimeout(function () {
