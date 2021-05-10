@@ -9,11 +9,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年5月9日 23:58:34">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年5月11日 00:45:45">
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1841,14 +1838,7 @@
       <workItem from="1620228727234" duration="2115000" />
       <workItem from="1620230971006" duration="2482000" />
       <workItem from="1620560495262" duration="4884000" />
-      <workItem from="1620660768727" duration="4121000" />
-    </task>
-    <task id="LOCAL-00051" summary="2021-2-21 00:55:22">
-      <created>1613881367310</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1613881367310</updated>
+      <workItem from="1620660768727" duration="4284000" />
     </task>
     <task id="LOCAL-00052" summary="2021-2-21 12:32:58">
       <created>1613881983309</created>
@@ -2186,7 +2176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620576962107</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="2021年5月11日 00:45:45">
+      <created>1620665150369</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1620665150369</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2283,7 +2280,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年2月25日 21:48:01" />
     <MESSAGE value="2021年2月26日 23:31:50" />
     <MESSAGE value="2021年2月27日 01:02:14" />
     <MESSAGE value="2021年3月12日 23:52:08" />
@@ -2308,7 +2304,8 @@
     <MESSAGE value="2021年5月5日 23:04:09" />
     <MESSAGE value="2021-5-6 00:09:58" />
     <MESSAGE value="2021年5月9日 23:58:34" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年5月9日 23:58:34" />
+    <MESSAGE value="2021年5月11日 00:45:45" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年5月11日 00:45:45" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
