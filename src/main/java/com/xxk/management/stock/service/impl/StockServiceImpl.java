@@ -314,7 +314,7 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
-    //入库操作
+    //回收操作
     // 2019年8月19日 13:44:05更新
     @Override
     public Map<String, Object> updateStockForRecovery(OfficesStorage officesStorage) {

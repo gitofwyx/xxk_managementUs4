@@ -5,6 +5,7 @@ import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.JsonUtils;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
+import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.material.service.MaterialService;
 import com.xxk.management.stock.entity.Stock;
@@ -145,6 +146,42 @@ public class StockController extends BaseController {
                                            @RequestParam(value = "stock_record_id") String stock_record_id) {
         Map<String, Object> result = new HashMap<>();
         try {
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            stock.setUpdateUserId(CurrentUserId);
+            if (stock_record_id != null && !"".equals(stock_record_id)) {
+                stock.setId(stock_record_id);//获取库存的id值
+                result = stockService.updateStockWithDelivery(stock, delivery);
+            } else {
+                result.put("hasError", true);
+                result.put("error", "updateStock:获取stock_record_id出错");
+                log.error("updateStock:" + result.get("error"));
+            }
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "设备更新出错！"+e.getCause().getLocalizedMessage());
+            log.error(e);
+        }
+
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/updateStockForMaterial")
+    public Map<String, Object> updateStockForMaterial(Stock stock, Delivery delivery,
+                                           @RequestParam(value = "stock_record_id") String stock_record_id) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            if("1".equals(stock.getStock_type())||"".equals(stock.getStock_type())){
+                result.put("hasError", true);
+                result.put("error", "出错！设备类型获取不能为"+stock.getStock_type());
+                return result;
+            }
+            Device device=deviceService.getDeviceById(delivery.getEntity_id());
+            if(null!=device.getId()||stock_record_id.equals(device.getId())){
+                result.put("hasError", true);
+                result.put("error", "出错！设备设为配置出库！");
+                return result;
+            }
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             stock.setUpdateUserId(CurrentUserId);
             if (stock_record_id != null && !"".equals(stock_record_id)) {

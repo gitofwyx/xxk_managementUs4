@@ -327,9 +327,9 @@
                             panelContainer: '#panel',//如果内部有容器，那么会跟标签项一一对应，如果没有会自动生成
                             //selectedEvent : 'mouseenter',//默认为click,可以更改事件
                             children: [
-                                {id: 'matH_row', title: '耗材', name: 'MaterialSelect', value: '3',selected: true},
+                                {id: 'dev_row', title: '设备', name: 'DeviceSelect', value: '1', selected: true},
                                 {id: 'matP_row', title: '配件', name: 'MaterialSelect', value: '2',},
-                                {id: 'dev_row', title: '设备', name: 'DeviceSelect', value: '1', },
+                                {id: 'matH_row', title: '耗材', name: 'MaterialSelect', value: '3',},
                             ]
                         }).render(),
                         //设备种类选择框
@@ -439,7 +439,7 @@
                             proxy: {
                                 save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                                     addUrl: '/addStock',
-                                    updateUrl: '/updateStockForMaterial',
+                                    updateUrl: '/updateStock',
                                     removeUrl: '../data/del.php'
                                 },
                                 method: 'POST'
@@ -777,11 +777,6 @@
 
                 //监听事件，tab类别切换
                 tab_I.on('selectedchange', function (ev) {
-                    if(tab_I.getSelected().__attrVals.name,tab_I.getSelected().__attrVals.value==="1"){
-                        I_Form.getField('stock_type').set('1');
-                        BUI.Message.Alert('设备暂不能多批量出库!请前往设备库存信息配置出库！');
-                        return;
-                    }
                     I_Reset();
                     select_data = [];
                     entity_selectAjax(tab_I.getSelected().__attrVals.name,tab_I.getSelected().__attrVals.value);

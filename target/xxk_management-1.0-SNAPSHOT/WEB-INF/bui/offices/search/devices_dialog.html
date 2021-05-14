@@ -1025,6 +1025,8 @@
                         P=true;
                         alert('选择的科室无法回收！');
                         return;
+                    }else if(element.value===$("#offices_storage_officeId2").val()&&element.office_function=="1"){
+                        return;
                     }
                 })
                 if(P){
