@@ -9,16 +9,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年5月11日 00:45:45">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog_v01.html" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年5月14日 18:00:55">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/controller/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/controller/StockController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1853,14 +1847,13 @@
       <workItem from="1620903033564" duration="2557000" />
       <workItem from="1620921292051" duration="2503000" />
       <workItem from="1620923818433" duration="3289000" />
-      <workItem from="1620974339719" duration="1722000" />
-    </task>
-    <task id="LOCAL-00052" summary="2021-2-21 12:32:58">
-      <created>1613881983309</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1613881983309</updated>
+      <workItem from="1620974339719" duration="1750000" />
+      <workItem from="1621349207706" duration="2463000" />
+      <workItem from="1621445079160" duration="609000" />
+      <workItem from="1621516891059" duration="902000" />
+      <workItem from="1621866551106" duration="3267000" />
+      <workItem from="1621947169267" duration="3747000" />
+      <workItem from="1621956194697" duration="1067000" />
     </task>
     <task id="LOCAL-00053" summary="2021-2-21 12:32:58">
       <created>1613894899737</created>
@@ -2198,7 +2191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620665150369</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="2021年5月14日 18:00:55">
+      <created>1620986461010</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1620986461010</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2295,7 +2295,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年2月26日 23:31:50" />
     <MESSAGE value="2021年2月27日 01:02:14" />
     <MESSAGE value="2021年3月12日 23:52:08" />
     <MESSAGE value="2021年3月22日 00:06:06" />
@@ -2320,7 +2319,8 @@
     <MESSAGE value="2021-5-6 00:09:58" />
     <MESSAGE value="2021年5月9日 23:58:34" />
     <MESSAGE value="2021年5月11日 00:45:45" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年5月11日 00:45:45" />
+    <MESSAGE value="2021年5月14日 18:00:55" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年5月14日 18:00:55" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

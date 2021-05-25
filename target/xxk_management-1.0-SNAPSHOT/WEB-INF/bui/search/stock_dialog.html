@@ -487,6 +487,7 @@
 
                 grid.set('multipleSelect',false);
                 search_office_select.set('items', stock_officeSelect());
+                search_type_select.setSelectedValue('3');
 
                 var search_grid_tip = new Tooltip.Tip({
                     trigger: '.grid-td-remark', //出现此样式的元素显示tip
@@ -657,12 +658,12 @@
 
                 //入库操作
                 function in_storageFunction() {
-
+                    dev_name_select.set('items', []);
+                    select_data = [];
                     entity_selectAjax(tab_I.getSelected().__attrVals.name,tab_I.getSelected().__attrVals.value);
                     office_selectAjax();
                     Sto_rec_grid.set('items', []);
                     dev_type_select.set('items', []);
-                    dev_name_select.set('items', select_data.Class_data);
                     stock_office_select.set('items', stock_officeSelect());
                     var newData = {isNew: true}; //标志是新增加的记录
                     Editing_I.add(newData, 'name'); //添加记录后，直接编辑
