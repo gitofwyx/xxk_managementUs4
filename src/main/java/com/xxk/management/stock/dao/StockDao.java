@@ -14,7 +14,7 @@ import java.util.List;
 public interface StockDao {
 
     public List<Stock> listStock(@Param("pageStart")int pageStart, @Param("pageSize")int pageSize, @Param("class_id")String class_id,
-                                 @Param("entity_id")String entity_id,@Param("stock_office_id") String stock_office_id, @Param("search_type")int search_type);
+                                 @Param("entity_id")String entity_id,@Param("stock_office_id") String stock_office_id, @Param("search_type")String search_type);
 
     public int countStock(String search_type);
 

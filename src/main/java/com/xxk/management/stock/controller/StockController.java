@@ -53,7 +53,7 @@ public class StockController extends BaseController {
                                          @RequestParam(value = "search_class_id") String class_id,//型号id
                                          @RequestParam(value = "search_entity_id") String entity_id,//型号id
                                          @RequestParam(value = "search_office_id") String stock_office_id,//库存科室id
-                                         @RequestParam(value = "search_type") int search_type) {//类别
+                                         @RequestParam(value = "search_type") String search_type) {//类别
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
         try {
@@ -78,9 +78,9 @@ public class StockController extends BaseController {
                 listDevId.clear();
                 listDevId.addAll(setDevId);*/
                 List<Map<String, Object>> entityList = new ArrayList<>();
-                if (search_type == 1 ) {
+                if ("1".equals(search_type)) {
                     entityList = deviceService.getStoreDeviceById(listEntId);
-                }else if( search_type == 2 || search_type == 3){
+                }else if("2".equals(search_type)|| "3".equals(search_type)){
                     entityList = materialService.getStoreMaterialById(listEntId);
                 }
                 else {
@@ -105,7 +105,7 @@ public class StockController extends BaseController {
                     }
                 }
                 result.put("rows", resultList);
-                result.put("results", stockService.countStock(Integer.toString(search_type)));
+                result.put("results", stockService.countStock(search_type));
             }
         } catch (Exception e) {
             log.error(e);

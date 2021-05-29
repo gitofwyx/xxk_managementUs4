@@ -48,7 +48,7 @@ public class StockServiceImpl implements StockService {
     private DeliveryService deliveryService;
 
     @Override
-    public List<Stock> listStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_office_id, int search_type) {
+    public List<Stock> listStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_office_id, String search_type) {
         return dao.listStock((pageStart - 1) * pageSize, pageSize, class_id, entity_id, stock_office_id, search_type);
     }
 
