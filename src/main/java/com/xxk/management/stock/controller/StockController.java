@@ -177,7 +177,7 @@ public class StockController extends BaseController {
                 return result;
             }
             Device device=deviceService.getDeviceById(delivery.getEntity_id());
-            if(null!=device.getId()||stock_record_id.equals(device.getId())){
+            if(null!=device||"1".equals(stock.getStock_type())){
                 result.put("hasError", true);
                 result.put("error", "出错！设备设为配置出库！");
                 return result;

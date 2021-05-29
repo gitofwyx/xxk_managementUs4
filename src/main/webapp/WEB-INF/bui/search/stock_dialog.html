@@ -37,7 +37,7 @@
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>库存类别：</label>
                     <div class="controls search_select" id="search_type_select">
-                        <input name="search_type" type="hidden" id="search_type" data-rules="{required:true}">
+                        <input name="search_type" type="hidden" id="search_type" value="3" data-rules="{required:true}">
                     </div>
                 </div>
             </div>
@@ -700,6 +700,10 @@
 
             //出库操作
             function outDevFunction() {
+                if ("1"===search_type_select.getSelectedValue()) {
+                    BUI.Message.Alert('设备设为配置出库！！');
+                    return;
+                }
                 office_selectAjax();
                 stock_office_tree.set('nodes', office_tree);
                 var selections = grid.getSelection();
@@ -710,6 +714,10 @@
                     return;
                 } else {
                     var eData = selections[0];
+                    if ("1"===eData.stock_type) {
+                        BUI.Message.Alert('设备设为配置出库！！');
+                        return;
+                    }
                     Editing_O.edit(eData);
                     O_Form.getField('stock_record_id').set('value', eData.id);
                     O_Form.getField('out_confirmed_unit').set('value', eData.stock_unit);
@@ -790,11 +798,7 @@
 
             //监听事件，tab类别切换
             tab_I.on('selectedchange', function (ev) {
-                if (tab_I.getSelected().__attrVals.name, tab_I.getSelected().__attrVals.value === "1") {
-                    I_Form.getField('stock_type').set('1');
-                    BUI.Message.Alert('设备暂不能多批量出库!请前往设备库存信息配置出库！');
-                    return;
-                }
+                
                 I_Reset();
                 select_data = [];
                 entity_selectAjax(tab_I.getSelected().__attrVals.name, tab_I.getSelected().__attrVals.value);
