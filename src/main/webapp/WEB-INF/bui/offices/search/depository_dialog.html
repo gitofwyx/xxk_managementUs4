@@ -964,6 +964,10 @@
                 $("#offices_storage_total").val(ev.item.out_confirmed_total);
                 $("#entity_entry_status").val(ev.item.entity_entry_status);
                 $("#unit_num_1").val(1);
+                //耗材不是配置出库导致offices_entity_id报空！当前先处理为不为空，后期调整
+                if(ev.item.out_confirmed_type==="3"&&CheckIsNullOrEmpty(offices_entity_id)){
+                    $("#offices_entity_id").val("3");
+                }
             });
 
             search_office_tree.on('itemclick', function (ev) {
