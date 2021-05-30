@@ -941,6 +941,9 @@
                 var entity_select = select_data.Entity_data.find(function (ele, index) {
                     return ele.value == ev.item.entity_id;
                 });
+                if(!CheckIsNullOrEmpty(entity_select)){
+                    return;
+                }
                 editing_J.set('record', {
                     entity_name: ev.item.entity_name,
                     entity_type: ev.item.entity_type,
