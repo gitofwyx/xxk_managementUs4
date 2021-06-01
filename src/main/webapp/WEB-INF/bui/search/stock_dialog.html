@@ -425,7 +425,22 @@
                     {title: '&nbsp数量', dataIndex: 'stock_no', elCls: 'center', width: 70},
                     {title: '&nbsp库存单位', dataIndex: 'stock_unit', elCls: 'center', width: 100},
                     {title: '&nbsp总量', dataIndex: 'stock_total', elCls: 'center', width: 100},
-                    {title: '&nbsp库存状态', dataIndex: 'stock_flag', elCls: 'center', width: 100},
+                    {
+                        title: '&nbsp库存状态', dataIndex: 'stock_flag', elCls: 'center', width: 100,
+                        renderer: function (value, obj) {
+                            var Str;
+                            if(parseInt(obj.stock_total)<3&&parseInt(obj.stock_total)>0){
+                                Str = '<span style="color: firebrick;text-decoration: underline">备货</span><span class="icon-shopping-cart"></span>';
+                            }
+                            if(parseInt(obj.stock_total)==0){
+                                Str = '<span style="color: red">缺货</span><span class="icon-ban-circle">';
+                            }
+                            if(parseInt(obj.stock_total)>2){
+                                Str = '<span style="color: green">正常</span>';
+                            }
+                            return Str;
+                        }
+                    },
                     {id: 'remark', title: '&nbsp备注', dataIndex: 'remark', elCls: 'center', width: 160},
                     {
                         title: '操作', dataIndex: '', width: 150, renderer: function (value, obj) {
@@ -575,7 +590,7 @@
                         console.log(textStatus)
                     }
                 })
-                   
+
             }
 
             //下拉框ajax请求office_selectAjax--科室信息数据获取
@@ -700,7 +715,7 @@
 
             //出库操作
             function outDevFunction() {
-                if ("1"===search_type_select.getSelectedValue()) {
+                if ("1" === search_type_select.getSelectedValue()) {
                     BUI.Message.Alert('设备设为配置出库！！');
                     return;
                 }
@@ -714,7 +729,7 @@
                     return;
                 } else {
                     var eData = selections[0];
-                    if ("1"===eData.stock_type) {
+                    if ("1" === eData.stock_type) {
                         BUI.Message.Alert('设备设为配置出库！！');
                         return;
                     }
@@ -798,7 +813,7 @@
 
             //监听事件，tab类别切换
             tab_I.on('selectedchange', function (ev) {
-                
+
                 I_Reset();
                 select_data = [];
                 entity_selectAjax(tab_I.getSelected().__attrVals.name, tab_I.getSelected().__attrVals.value);

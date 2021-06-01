@@ -9,9 +9,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年5月31日 01:04:54">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年5月31日 01:11:59">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1861,14 +1862,10 @@
       <workItem from="1622282048660" duration="952000" />
       <workItem from="1622375853925" duration="2107000" />
       <workItem from="1622379173874" duration="2293000" />
-      <workItem from="1622393735723" duration="885000" />
-    </task>
-    <task id="LOCAL-00057" summary="2021年2月25日 21:48:01">
-      <created>1614260887164</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1614260887164</updated>
+      <workItem from="1622393735723" duration="1068000" />
+      <workItem from="1622468815610" duration="515000" />
+      <workItem from="1622475253006" duration="5057000" />
+      <workItem from="1622557859633" duration="2928000" />
     </task>
     <task id="LOCAL-00058" summary="2021年2月25日 21:48:01">
       <created>1614263677489</created>
@@ -2206,7 +2203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622394298213</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="2021年5月31日 01:11:59">
+      <created>1622394722816</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1622394722816</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2313,7 +2317,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年3月23日 21:30:12" />
     <MESSAGE value="2021年3月23日 23:11:33" />
     <MESSAGE value="2021年3月23日 23:33:11" />
     <MESSAGE value="2021年3月24日 00:21:49" />
@@ -2338,7 +2341,8 @@
     <MESSAGE value="2021年5月29日 14:45:38" />
     <MESSAGE value="2021年5月29日 17:50:53" />
     <MESSAGE value="2021年5月31日 01:04:54" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年5月31日 01:04:54" />
+    <MESSAGE value="2021年5月31日 01:11:59" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年5月31日 01:11:59" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2348,19 +2352,9 @@
           <line>66</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java</url>
           <line>148</line>
           <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/controller/DepositoryController.java</url>
-          <line>144</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
