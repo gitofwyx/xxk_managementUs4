@@ -125,9 +125,10 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
             } else {
+                storage.setClass_id(depository.getClass_id());
                 storage.setEntity_id(depository.getEntity_id());
                 storage.setOffices_storage_total(depository.getDepository_total());
-                result = storageService.addOfficesStorage(depository, storage,"1");//“1”代表入科标记
+                result = storageService.addOfficesStorage(depository, storage,"3");//“1”代表入科标记
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
