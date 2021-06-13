@@ -18,18 +18,11 @@ public interface TestDao {
 
     public  List<Map<String, Object>> listRegUserByIds(List<String> listStr);
 
-    public int addRegUser(RegUser user);
+    public int addRegUserTest(RegUser user);
 
-    public RegUser getRegUser(String id);
+    public int updateRegUserTest(RegUser user);
 
-    public RegUser getUserByAccount(String account);
-
-    //根据账号获取角色信息
-    public String getRoleByAccount(String account);
-
-    public int updateRegUser(RegUser user);
-
-    public int deleteListRegUser(List<String> listStr);
+    public int deleteListRegUserTest(List<String> listStr);
 
 
 }

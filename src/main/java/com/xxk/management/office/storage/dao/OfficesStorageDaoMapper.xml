@@ -3,7 +3,7 @@
 <mapper namespace="com.xxk.management.office.storage.dao.OfficesStorageDao">
     <sql id="columns">id,class_id,entity_id,entity_name,entity_type,stock_or_depository_id,offices_entity_id,offices_storage_ident,offices_storage_type,
 offices_storage_genre,offices_storage_by,original_storage_officeId,offices_storage_officeId,offices_storage_date,offices_storage_no,offices_storage_no_2,
-offices_storage_unit,offices_storage_proportion,offices_storage_total,entity_entry_status,keyWord,createUserId,createDate,updateUserId,
+offices_storage_unit,offices_storage_total_unit,offices_storage_proportion,offices_storage_total,entity_entry_status,keyWord,createUserId,createDate,updateUserId,
 updateDate,deleteFlag</sql>
 
     <sql id="storageForEntry">id,class_id,entity_id,entity_name,entity_type,stock_or_depository_id,offices_entity_id,offices_storage_ident,offices_storage_type,offices_storage_by,
@@ -61,7 +61,7 @@ offices_storage_officeId,offices_storage_date,offices_storage_no,offices_storage
         insert into xxk_offices_storage(<include refid="columns"></include>) values(
         #{id},#{class_id},#{entity_id},#{entity_name},#{entity_type},#{stock_or_depository_id},#{offices_entity_id},#{offices_storage_ident},#{offices_storage_type},
         #{offices_storage_genre},#{offices_storage_by},#{original_storage_officeId},#{offices_storage_officeId},#{offices_storage_date},#{offices_storage_no},
-        #{offices_storage_no_2},#{offices_storage_unit},#{offices_storage_proportion},#{offices_storage_total},#{entity_entry_status},
+        #{offices_storage_no_2},#{offices_storage_unit},#{offices_storage_proportion},#{offices_storage_total},#{offices_storage_total_unit},#{entity_entry_status},
         #{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 

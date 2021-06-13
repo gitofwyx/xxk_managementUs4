@@ -1,11 +1,11 @@
-package com.xxk.xxk.system.entity;
+package com.xxk.management.system.entity;
 
 import com.xxk.core.entity.BaseInfoEntity;
 
 /**
  * Created by Administrator on 2017/3/15.
  */
-public class CobUser extends BaseInfoEntity {
+public class Sysadmin extends BaseInfoEntity {
     private String id;
     private String account;
     private String password;

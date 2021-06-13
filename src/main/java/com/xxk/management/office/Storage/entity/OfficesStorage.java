@@ -26,6 +26,7 @@ public class OfficesStorage extends BaseInfoEntity {
     private String offices_storage_unit;  //设备流动单位
     private int offices_storage_proportion;  //个体/单位比例
     private double offices_storage_total;      //科室设备\耗材流动总量
+    private String offices_storage_total_unit;      //总量单位
     private String entity_entry_status;      //入科状态（1：待入科；2：部分待入科；3：已入科；4：部分已入科）
     private String keyWord;           //关键字
 
@@ -181,6 +182,14 @@ public class OfficesStorage extends BaseInfoEntity {
 
     public void setOffices_storage_total(double offices_storage_total) {
         this.offices_storage_total = offices_storage_total;
+    }
+
+    public String getOffices_storage_total_unit() {
+        return offices_storage_total_unit;
+    }
+
+    public void setOffices_storage_total_unit(String offices_storage_total_unit) {
+        this.offices_storage_total_unit = offices_storage_total_unit;
     }
 
     public String getEntity_entry_status() {

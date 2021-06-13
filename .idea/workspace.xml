@@ -9,10 +9,30 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年6月2日 14:25:12 重编译">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021-6-4 00:48:20">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/dao/Test2Dao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/dao/Test2DaoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/Test2Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/Test2ServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/test-dialog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xxk_management.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/Storage/entity/OfficesStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/Storage/entity/OfficesStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/dao/OfficesStorageDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/dao/OfficesStorageDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/entity/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/entity/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/entity/CobUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/entity/Sysadmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/dao/TestDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/dao/TestDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/dao/TestDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/dao/TestDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/TestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +180,9 @@
         </PATH_ELEMENT>
       </PATH>
     </treeState>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -1019,12 +1042,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/xxk/management/system/entity" />
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33908045" />
@@ -1032,18 +1056,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\XXK\WYX\xxk_management\src\main\java\com\xxk\management\system\entity" />
+      <recent name="G:\XXK\WYX\xxk_management\src\main\java\com\xxk\management\test\dao" />
       <recent name="G:\XXK\WYX\xxk_management\src\main\webapp\WEB-INF\bui\search" />
       <recent name="E:\xxk\xxk_management\src\main\java\com\xxk\management\office\devices\dao" />
       <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\search" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\offices\search" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\res\assets\img" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.test.dao" />
+      <recent name="com.xxk.management.test.service.impl" />
+      <recent name="com.xxk.management.test.controller" />
       <recent name="com.xxk.management.office.devices.dao" />
       <recent name="com.xxk.management.office.devices.service" />
-      <recent name="com.xxk.management.office.devices.service.impl" />
-      <recent name="com.xxk.management.office.devices.controller" />
-      <recent name="com.xxk.management.stock.controller" />
     </key>
   </component>
   <component name="RunManager">
@@ -1880,13 +1904,32 @@
       <workItem from="1622732484680" duration="584000" />
       <workItem from="1622733084535" duration="4953000" />
       <workItem from="1622738383440" duration="476000" />
-    </task>
-    <task id="LOCAL-00060" summary="2021年2月25日 21:48:01">
-      <created>1614267638364</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1614267638365</updated>
+      <workItem from="1622738877563" duration="333000" />
+      <workItem from="1622739225347" duration="75000" />
+      <workItem from="1622739443482" duration="690000" />
+      <workItem from="1622809143224" duration="2000" />
+      <workItem from="1622809368911" duration="2205000" />
+      <workItem from="1622825411584" duration="13980000" />
+      <workItem from="1622912219900" duration="206000" />
+      <workItem from="1622912442029" duration="4355000" />
+      <workItem from="1622992195556" duration="4314000" />
+      <workItem from="1622996542303" duration="271000" />
+      <workItem from="1622996830035" duration="947000" />
+      <workItem from="1622997792485" duration="44000" />
+      <workItem from="1622997855427" duration="715000" />
+      <workItem from="1623315076863" duration="636000" />
+      <workItem from="1623474433906" duration="709000" />
+      <workItem from="1623487969319" duration="222000" />
+      <workItem from="1623488472746" duration="298000" />
+      <workItem from="1623488786189" duration="2556000" />
+      <workItem from="1623504295291" duration="4788000" />
+      <workItem from="1623510645206" duration="2116000" />
+      <workItem from="1623579810487" duration="1330000" />
+      <workItem from="1623581693110" duration="616000" />
+      <workItem from="1623582324257" duration="598000" />
+      <workItem from="1623582941599" duration="568000" />
+      <workItem from="1623583526842" duration="102000" />
+      <workItem from="1623583642988" duration="98000" />
     </task>
     <task id="LOCAL-00061" summary="2021年2月26日 23:31:50">
       <created>1614353516122</created>
@@ -2224,7 +2267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622615125452</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="2021-6-4 00:48:20">
+      <created>1622738904259</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1622738904259</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2331,7 +2381,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年3月24日 00:21:49" />
     <MESSAGE value="2021年3月26日 00:57:23" />
     <MESSAGE value="2021年3月29日 23:27:33" />
     <MESSAGE value="2021年3月30日 00:39:24" />
@@ -2356,7 +2405,8 @@
     <MESSAGE value="2021年5月31日 01:11:59" />
     <MESSAGE value="2021年6月1日 23:20:58" />
     <MESSAGE value="2021年6月2日 14:25:12 重编译" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年6月2日 14:25:12 重编译" />
+    <MESSAGE value="2021-6-4 00:48:20" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021-6-4 00:48:20" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2381,14 +2431,44 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="23" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/Test2ServiceImpl.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java</url>
+          <line>99</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java</url>
+          <line>136</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

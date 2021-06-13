@@ -12,4 +12,10 @@ public interface TestService {
 
     public String test1(String v1);
 
+    public boolean addRegUserTest(RegUser user) throws Exception;
+
+    public boolean updateRegUserTest(RegUser user);
+
+    public boolean deleteListRegUserTest(List<String> listStr);
+
 }

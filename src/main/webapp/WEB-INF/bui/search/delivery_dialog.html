@@ -246,7 +246,7 @@
                                 handler: addFunction
                             },
                             {
-                                text: '<i class="icon-hand-right"></i>设备出库',
+                                text: '<i class="icon-backward"></i>反出库',
                                 btnCls: 'button button-small',
                                 handler: outDevFunction
                             },
@@ -273,32 +273,8 @@
         grid.set('multipleSelect', true);
 
         function addFunction() {
-            if ($.isEmptyObject(select_data)) {
-                $.ajax({
-                    url: '/getStoreSelect',
-                    type: 'POST', //GET
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            select_data = data;
-                            dev_name_select.set('items', select_data.dev_name);
-                        }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus)
-                    }
-                })
-            }
-            dev_type_select.set('items', []);
-            dev_name_select.set('items', select_data.dev_name);
-            var newData = {isNew: true}; //标志是新增加的记录
-            Editing_I.add(newData, 'name'); //添加记录后，直接编辑
-            I_Form.getField('in_confirmed_no').addRule('max', 9, '入库限制 不能大于{0}');
-            I_Form.getField('in_confirmed_no').addRule('min', 1, '入库限制 不能小于{0}');
+
+
         }
 
         //编辑操作

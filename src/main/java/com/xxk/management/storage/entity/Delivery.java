@@ -12,8 +12,8 @@ public class Delivery extends BaseInfoEntity {
     private String entity_id;           //设备id
     private String entity_name;           //设备\耗材名
     private String entity_type;           //设备\耗材型号
-    private String stock_id;
-    private String stock_entity_id;
+    private String stock_id;              //库存ID
+    private String stock_entity_id;//库存设备ID
     private String out_confirmed_ident; //出库编号
     private String out_confirmed_type;//设备\耗材种类
     private String out_confirmed_genre;//出库类别（0：配置1.入科2.部署3.回收4.调用5.借用）
