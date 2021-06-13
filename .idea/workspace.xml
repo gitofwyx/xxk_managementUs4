@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年6月13日 19:29:14">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年6月13日 21:10:31">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1910,13 +1910,9 @@
       <workItem from="1623583526842" duration="102000" />
       <workItem from="1623583642988" duration="3646000" />
       <workItem from="1623589042392" duration="741000" />
-    </task>
-    <task id="LOCAL-00062" summary="2021年2月26日 23:31:50">
-      <created>1614356490012</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1614356490012</updated>
+      <workItem from="1623589799118" duration="602000" />
+      <workItem from="1623590434089" duration="37000" />
+      <workItem from="1623594041746" duration="303000" />
     </task>
     <task id="LOCAL-00063" summary="2021年2月27日 01:02:14">
       <created>1614358941506</created>
@@ -2254,7 +2250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623583760540</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="2021年6月13日 21:10:31">
+      <created>1623589834873</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1623589834874</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2361,7 +2364,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年3月29日 23:27:33" />
     <MESSAGE value="2021年3月30日 00:39:24" />
     <MESSAGE value="2021年4月1日 00:01:54" />
     <MESSAGE value="2021年4月3日 00:09:25" />
@@ -2386,7 +2388,8 @@
     <MESSAGE value="2021年6月2日 14:25:12 重编译" />
     <MESSAGE value="2021-6-4 00:48:20" />
     <MESSAGE value="2021年6月13日 19:29:14" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年6月13日 19:29:14" />
+    <MESSAGE value="2021年6月13日 21:10:31" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年6月13日 21:10:31" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
