@@ -169,6 +169,9 @@
                 <input id="offices_storage_proportion" name="offices_storage_proportion" type="hidden">
             </div>
             <div class="control-group span2.5">
+                <input id="offices_storage_total_unit" name="offices_storage_total_unit" type="hidden">
+            </div>
+            <div class="control-group span2.5">
                 <input id="stock_version" name="stock_version" type="hidden"
                        data-rules="{required:true}">
             </div>
@@ -254,10 +257,13 @@
                     <input id="out_confirmed_no" name="out_confirmed_no" type="hidden">
                 </div>
                 <div class="control-group span2.5">
+                    <input id="out_confirmed_unit" name="out_confirmed_unit" type="hidden">
+                </div>
+                <div class="control-group span2.5">
                     <input id="out_confirmed_proportion" name="out_confirmed_proportion" type="hidden">
                 </div>
                 <div class="control-group span2.5">
-                    <input id="out_confirmed_unit" name="out_confirmed_unit" type="hidden">
+                    <input id="out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden">
                 </div>
             </div>
         </div>
@@ -530,8 +536,9 @@
                             var no = parseInt(v.stock_total) - 1;
                             O_Form.getField('stock_no').set('value', makeInNum(no, v.stock_proportion));
                             O_Form.getField('out_confirmed_no').set('value', makeInNum(1, v.stock_proportion));
+                            O_Form.getField('out_confirmed_unit').set('value', v.stock_unit);
                             O_Form.getField('out_confirmed_proportion').set('value', v.stock_proportion);
-                            O_Form.getField('out_confirmed_unit').set('value', v.stock_total_unit);
+                            O_Form.getField('out_confirmed_total_unit').set('value', v.stock_total_unit);
                         });
                     }
                     select_devices_id = eData.id;
@@ -796,8 +803,9 @@
                     $("#stock_version").val("");
                     return;
                 }
-                $("#offices_storage_no").val(makeInNum(1, ev.item.stock_proportion));
                 $("#offices_storage_unit").val(ev.item.stock_unit);
+                $("#offices_storage_no").val(makeInNum(1, ev.item.stock_proportion));
+                $("#offices_storage_total_unit").val(ev.item.stock_total_unit);
                 $("#offices_storage_proportion").val(ev.item.stock_proportion);
                 $("#stock_version").val(ev.item.stock_version);
             });
