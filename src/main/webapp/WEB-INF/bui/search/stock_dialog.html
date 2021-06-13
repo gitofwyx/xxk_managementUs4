@@ -248,6 +248,12 @@
             </div>
             <div class="row">
                 <div class="control-group span2.5">
+                    <input id="out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden"
+                           data-rules="{required:true}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
                     <input id="stock_no2" name="stock_no" type="hidden" data-rules="{required:true}">
                 </div>
             </div>
@@ -739,6 +745,7 @@
                     Editing_O.edit(eData);
                     O_Form.getField('stock_record_id').set('value', eData.id);
                     O_Form.getField('out_confirmed_unit').set('value', eData.stock_unit);
+                    O_Form.getField('out_confirmed_total_unit').set('value', eData.stock_total_unit);
                     O_Form.getField('entity_name').set('value', eData.entity_name);
                     O_Form.getField('entity_type').set('value', eData.entity_type);
                 }
