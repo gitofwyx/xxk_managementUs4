@@ -248,7 +248,7 @@
                             {
                                 text: '<i class="icon-backward"></i>反出库',
                                 btnCls: 'button button-small',
-                                handler: outDevFunction
+                                handler: backwardFunction
                             },
                             {
                                 text: '<a class="page-action" data-href="/menu/delivery_tab" methods="post" title="出库记录" data-id="outSwitch">出库记录</a>',
@@ -292,12 +292,12 @@
         }
 
         //出库操作
-        function outDevFunction() {
+        function backwardFunction() {
             var selections = grid.getSelection();
             if (selections.length == 0) {
                 return;
             } else if (selections.length != 1) {
-                BUI.Message.Alert('一次只能选择单个设备出库！！');
+                BUI.Message.Alert('一次只能选择单个记录！！');
                 return;
             } else {
                 var eData = selections[0];

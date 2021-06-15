@@ -934,6 +934,9 @@
 
             function recoveryHandleFunction() {
                 if(rec_device_grid.getCount()>0){
+                    if(rec_device_grid.getSelection().length > 0){
+                        return true;
+                    }
                     var officeId=$("#offices_storage_officeId2").val();
                     var items=rec_device_grid.getItems();
                     if(!CheckIsNullOrEmpty(officeId)){

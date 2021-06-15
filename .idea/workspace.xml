@@ -9,9 +9,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年6月13日 22:51:52">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年6月13日 23:49:18">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1914,14 +1915,10 @@
       <workItem from="1623590434089" duration="37000" />
       <workItem from="1623594041746" duration="1661000" />
       <workItem from="1623595900364" duration="1884000" />
-      <workItem from="1623598100696" duration="601000" />
-    </task>
-    <task id="LOCAL-00065" summary="2021年2月27日 01:02:14">
-      <created>1614524763017</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1614524763017</updated>
+      <workItem from="1623598100696" duration="1220000" />
+      <workItem from="1623655593728" duration="1305000" />
+      <workItem from="1623660279301" duration="3795000" />
+      <workItem from="1623759999331" duration="4722000" />
     </task>
     <task id="LOCAL-00066" summary="2021年2月27日 01:02:14">
       <created>1615332246501</created>
@@ -2259,7 +2256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623595916190</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="2021年6月13日 23:49:18">
+      <created>1623599361666</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1623599361666</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2366,7 +2370,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年4月3日 00:09:25" />
     <MESSAGE value="2021年4月6日 00:06:21" />
     <MESSAGE value="2021年4月6日 22:20:19" />
     <MESSAGE value="2021年4月8日 01:03:06" />
@@ -2391,7 +2394,8 @@
     <MESSAGE value="2021年6月13日 21:10:31" />
     <MESSAGE value="2021年6月13日 22:25:51" />
     <MESSAGE value="2021年6月13日 22:51:52" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年6月13日 22:51:52" />
+    <MESSAGE value="2021年6月13日 23:49:18" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年6月13日 23:49:18" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2449,11 +2453,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java</url>
           <line>97</line>
           <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java</url>
-          <line>136</line>
-          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
