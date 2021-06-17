@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.office.depository.dao.DepositoryDao">
-    <sql id="columns">id,depository_ident,delivery_id,class_id,entity_id,entity_name,entity_type,depository_type,depository_by,
-        depository_officeId,depository_no,depository_idle_no,depository_unit,depository_proportion,depository_total,depository_idle_total,
-        depository_total_unit,depository_flag,keyWord,depository_version,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,depository_ident,delivery_id,class_id,entity_id,entity_name,entity_type,depository_type,depository_by,depository_officeId,
+                      depository_no,depository_idle_no,depository_unit,depository_proportion,depository_total,depository_idle_total,depository_used_total,
+                      depository_total_unit,depository_flag,keyWord,depository_version,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
     <select id="listDepository" resultType="com.xxk.management.office.depository.entity.Depository">
@@ -39,8 +39,8 @@
         insert into xxk_depository(<include refid="columns"></include>) values(
         #{id},#{depository_ident},#{delivery_id},#{class_id},#{entity_id},#{entity_name},#{entity_type},#{depository_type},#{depository_by},
         #{depository_officeId},#{depository_no},#{depository_idle_no},#{depository_unit},#{depository_proportion},#{depository_total},
-        #{depository_idle_total},#{depository_total_unit},#{depository_flag},#{keyWord},1,#{createUserId},#{createDate},#{updateUserId},
-        #{updateDate},#{deleteFlag});
+        #{depository_idle_total},0,#{depository_total_unit},#{depository_flag},#{keyWord},1,#{createUserId},#{createDate},
+        #{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--根据id获取信息 -->
@@ -69,7 +69,7 @@
         and deleteFlag='0';
     </select>
 
-    <!--更新记录 -->
+    <!--更新操作 回收库存——>只能回收 未使用 的设备！！！ -->
     <update id="recoveryDepository" parameterType="com.xxk.management.office.depository.entity.Depository">
         update xxk_depository set depository_no=#{depository_no},depository_idle_no=#{depository_idle_no},
         depository_total=depository_total-#{depository_total},depository_idle_total=depository_idle_total-#{depository_idle_total},
@@ -77,20 +77,20 @@
         where id=#{id} and depository_idle_total>=#{depository_total} and depository_version=#{depository_version} and deleteFlag='0';
     </update>
 
-    <!--转移记录（注：部署的设备直接转移，未用量不变） -->
+    <!--更新操作 转移记录（注：部署的设备直接转移，未用量不变） -->
     <update id="transferDepositoryForStorage" parameterType="com.xxk.management.office.storage.entity.OfficesStorage">
         update xxk_depository set depository_no=#{offices_storage_no},depository_idle_no=#{offices_storage_no_2},
-        depository_total=depository_total-#{offices_storage_total},depository_idle_total=depository_idle_total-#{offices_storage_total},
+        depository_total=depository_total-#{offices_storage_total},depository_used_total=depository_used_total-#{offices_storage_total},
         depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
-        where id=#{id} and depository_idle_total>=#{offices_storage_total} and deleteFlag='0';
+        where id=#{id} and depository_used_total>=#{offices_storage_total} and deleteFlag='0';
     </update>
 
-    <!--转移记录（注：部署的设备直接转移，未用量不变） -->
+    <!--更新操作 回收记录（注：部署的设备回收，未用量不变） -->
     <update id="transferDepositoryForDelivery" parameterType="com.xxk.management.office.storage.entity.OfficesStorage">
         update xxk_depository set depository_no=#{offices_storage_no},depository_idle_no=#{offices_storage_no_2},
-        depository_total=depository_total-#{offices_storage_total},
+        depository_total=depository_total-#{offices_storage_total},depository_used_total=depository_used_total-#{offices_storage_total},
         depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
-        where id=#{stock_or_depository_id} and depository_idle_total>=#{offices_storage_total} and deleteFlag='0';
+        where id=#{stock_or_depository_id} and depository_used_total>=#{offices_storage_total} and deleteFlag='0';
     </update>
 
     <!--入库更新 -->
@@ -105,6 +105,7 @@
     <update id="reduceDepositoryIdleNo" parameterType="com.xxk.management.office.depository.entity.Depository">
         update xxk_depository set depository_idle_no=#{depository_idle_no},
         depository_idle_total=depository_idle_total-#{depository_idle_total},
+        depository_used_total=depository_used_total+#{depository_idle_total},
         depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
         where entity_id=#{entity_id}
          and #{depository_idle_total}>=1
@@ -113,13 +114,15 @@
          and deleteFlag='0';
     </update>
 
-    <!--单个设备部署减一 -->
+    <!--单个设备部署未用减一，已用加一 -->
     <update id="deploymentDeviceWithSingle">
         update xxk_depository set depository_idle_no=depository_idle_no-1,
         depository_idle_total=depository_idle_total-1,
+        depository_used_total=depository_used_total+1,
         depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
         where id=#{depository_id}
-        and depository_idle_total>=1
+        and depository_idle_total>=1,
+        and depository_used_total &lt; depository_total,
         and deleteFlag='0';
     </update>
 
