@@ -353,6 +353,7 @@ public class DepositoryServiceImpl implements DepositoryService {
         return result;
     }
 
+    //部署操作（库存减一）；标注时间：2021年6月17日 23:53:48
     @Override
     public boolean deploymentDeviceWithSingle(String depository_id, String updateUserId, String updateDate) {
         return dao.deploymentDeviceWithSingle(depository_id,updateUserId,updateDate)==1 ? true : false;

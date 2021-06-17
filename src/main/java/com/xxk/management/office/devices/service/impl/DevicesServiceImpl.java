@@ -107,6 +107,7 @@ public class DevicesServiceImpl implements DevicesService {
         return devicesResult;
     }
 
+    //部署操作；标注时间：2021年6月17日 23:53:48
     @Override
     public boolean updateDevicesForDeployment(Devices devices, OfficesStorage storage) {
 

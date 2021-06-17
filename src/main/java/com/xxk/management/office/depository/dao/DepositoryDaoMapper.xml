@@ -114,15 +114,15 @@
          and deleteFlag='0';
     </update>
 
-    <!--单个设备部署未用减一，已用加一 -->
+    <!--单个设备部署未用减一，已用加一 （部署操作）-->
     <update id="deploymentDeviceWithSingle">
         update xxk_depository set depository_idle_no=depository_idle_no-1,
         depository_idle_total=depository_idle_total-1,
         depository_used_total=depository_used_total+1,
         depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
         where id=#{depository_id}
-        and depository_idle_total>=1,
-        and depository_used_total &lt; depository_total,
+        and depository_idle_total>=1
+        and depository_used_total &lt; depository_total
         and deleteFlag='0';
     </update>
 
