@@ -101,8 +101,8 @@
          where id=#{id} and depository_version=#{depository_version} and deleteFlag='0';
     </update>
 
-    <!-- -->
-    <update id="reduceDepositoryIdleNo" parameterType="com.xxk.management.office.depository.entity.Depository">
+    <!--作废时间:2021年6月19日 01:33:39 -->
+    <!--<update id="reduceDepositoryIdleNo" parameterType="com.xxk.management.office.depository.entity.Depository">
         update xxk_depository set depository_idle_no=#{depository_idle_no},
         depository_idle_total=depository_idle_total-#{depository_idle_total},
         depository_used_total=depository_used_total+#{depository_idle_total},
@@ -112,7 +112,7 @@
          and #{depository_idle_total}>=depository_idle_total
          and depository_version=#{depository_version}
          and deleteFlag='0';
-    </update>
+    </update>-->
 
     <!--单个设备部署未用减一，已用加一 （部署操作）-->
     <update id="deploymentDeviceWithSingle">

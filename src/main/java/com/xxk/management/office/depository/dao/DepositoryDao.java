@@ -39,8 +39,6 @@ public interface DepositoryDao {
 
     public int plusDepositoryNo(Depository depository);
 
-    public int reduceDepositoryIdleNo(Depository depository);
-
     public int deploymentDeviceWithSingle(@Param("depository_id") String depository_id,
                                           @Param("updateUserId") String updateUserId,
                                           @Param("updateDate") String updateDate);

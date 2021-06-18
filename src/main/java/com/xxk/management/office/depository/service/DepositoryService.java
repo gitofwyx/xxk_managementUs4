@@ -29,8 +29,6 @@ public interface DepositoryService {
 
     public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage);
 
-    public Map<String, Object> deploymentDepository(Depository depository);
-
     public Map<String, Object> transferDepositoryForStorage(Devices devices, OfficesStorage storage);
 
     public Map<String, Object> transferDepositoryForDelivery(Devices devices, OfficesStorage storage);

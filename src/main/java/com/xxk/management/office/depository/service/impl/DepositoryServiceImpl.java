@@ -247,39 +247,6 @@ public class DepositoryServiceImpl implements DepositoryService {
         return result;
     }
 
-    //部署操作（减未使用库存）
-    @Override
-    public Map<String, Object> deploymentDepository(Depository depository) {
-        Map<String, Object> result = new HashMap<>();
-        String createDate = DateUtil.getFullTime();
-        String stockId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
-                log.info("deploymentDepository:出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            depository.setUpdateDate(createDate);
-            boolean depositoryResult = dao.reduceDepositoryIdleNo(depository) == 1 ? true : false;
-            if (!(depositoryResult)) {
-                log.error("depositoryResult:" + depositoryResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
-        }
-        return result;
-    }
-
     //转移库存(入库)
     @Override
     public Map<String, Object> transferDepositoryForStorage(Devices devices, OfficesStorage storage) {

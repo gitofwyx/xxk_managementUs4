@@ -83,7 +83,7 @@
     <update id="transferDevices" parameterType="com.xxk.management.office.devices.entity.Devices">
         update xxk_offices_devices
         set device_deployment_status=#{device_deployment_status},office_unique_name=#{office_unique_name}, location_office_id=#{location_office_id},
-            location_office_id=#{location_office_id},device_location=#{device_location},updateUserId=#{updateUserId},updateDate=#{updateDate}
+            present_stock_id=#{present_stock_id},device_location=#{device_location},updateUserId=#{updateUserId},updateDate=#{updateDate}
         where id=#{id} and deleteFlag='0';
     </update>
 
