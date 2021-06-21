@@ -66,8 +66,8 @@
     </div>
 
 </div>
-<div id="Content_I" class="hide">
-    <form id="I_Form" class="form-horizontal" action="">
+<div id="Content_B" class="hide">
+    <form id="B_Form" class="form-horizontal" action="">
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备名称：</label>
@@ -158,8 +158,8 @@
                 enumUsers = {},
                 select_data = [],
                 select_type = [],
-                Editing_I = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'Content_I', //设置隐藏的Dialog内容
+                Editing_B = new BUI.Grid.Plugins.DialogEditing({
+                    contentId: 'Content_B', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit'
                 }),
@@ -258,7 +258,7 @@
                         ]
                     },
                     emptyDataTpl: '<div class="centered"><img alt="Crying" src="http://img03.taobaocdn.com/tps/i3/T1amCdXhXqXXXXXXXX-60-67.png"><h2>未获得到数据</h2></div>',
-                    plugins: [Editing_I, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
+                    plugins: [Editing_B, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
 
                 });
 
@@ -268,7 +268,7 @@
                 }),
                 grid = search.get('grid'),
                 store = search.get('store'),
-                I_Form = Editing_I.get('form'),
+                B_Form = Editing_B.get('form'),
                 O_Form = Editing_O.get('form');
         grid.set('multipleSelect', true);
 
@@ -291,7 +291,7 @@
             }
         }
 
-        //出库操作
+        //反出库操作
         function backwardFunction() {
             var selections = grid.getSelection();
             if (selections.length == 0) {
@@ -301,7 +301,7 @@
                 return;
             } else {
                 var eData = selections[0];
-                Editing_O.edit(eData);
+                Editing_B.edit(eData);
                 O_Form.getField('used_no').addRule('max', selections[0].dev_no, '库存不足，不能大于{0}');
             }
         }
