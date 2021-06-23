@@ -69,41 +69,55 @@
 <div id="Content_B" class="hide">
     <form id="B_Form" class="form-horizontal" action="">
         <div class="row">
+
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备名称：</label>
-                <div class="controls" id="dev_name_select">
-                    <input name="dev_name" type="hidden" id="dev_name" data-rules="{required:true}">
-                </div>
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
-                <div class="controls" id="dev_type_select">
-                    <input name="dev_type" type="hidden" id="dev_type" data-rules="{required:true}">
+                <label class="control-label"><s>*</s>出库型号：</label>
+                <div class="controls">
+                    <input name="in_confirmed_by" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库确认人：</label>
+                <label class="control-label"><s>*</s>反出库确认人：</label>
                 <div class="controls">
                     <input name="in_confirmed_by" type="text" data-rules="{required:true}"
                            class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库时间：</label>
+                <label class="control-label"><s>*</s>反出库时间：</label>
                 <div class="controls">
-                    <input name="in_confirmed_date" type="text" data-rules="{required:true}" class="calendar">
+                    <input name="in_confirmed_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库数量：</label>
+                <label class="control-label"><s>*</s>反出库数量：</label>
                 <div class="controls">
-                    <input name="in_confirmed_no" type="number" data-rules="{required:true}"
+                    <input id="in_confirmed_no" name="in_confirmed_no" type="number" data-rules="{required:true}"
                            class="input-normal control-text">
                 </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>出库数量：</label>
+                <div class="controls">
+                    <input name="out_confirmed_no" type="number" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="stock_no" name="stock_no" type="hidden" data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -301,8 +315,11 @@
                 return;
             } else {
                 var eData = selections[0];
-                Editing_B.edit(eData);
-                O_Form.getField('used_no').addRule('max', selections[0].dev_no, '库存不足，不能大于{0}');
+                Editing_B.add(eData);
+                listStockByEntityId(eData.entity_id,eData.out_confirmed_officeId,function (sucData){
+
+                });
+                B_Form.getField('in_confirmed_no').addRule('max', eData.out_confirmed_no, '不能大于{0}');
             }
         }
 
@@ -324,6 +341,39 @@
                 }, 'question');
             }
         }
+
+        function listStockByEntityId(eId,oId,callback) {
+            if (eId != null && eId != '' && eId != undefined) {
+                $.ajax({
+                    url: '/listStockByEntityId',
+                    data: {
+                        entity_id: eId,
+                        office_id: oId
+                    },
+                    type: 'POST', //GET
+                    async: true,    //或false,是否异步
+                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success: function (data, textStatus, jqXHR) {
+                        if (!$.isEmptyObject(data.entityData)) {
+                            if (typeof callback === "function") {
+                                //调用它，既然我们已经确定了它是可调用的
+                                callback(data);
+                            }
+                            // input_console(false);
+                        } else {
+
+                            //input_console(false);
+                        }
+                    },
+                    error: function (xhr, textStatus) {
+                        console.log('错误')
+                        console.log(xhr)
+                        console.log(textStatus)
+                    }
+                })
+            }//if语句判断是否获取到设备ID
+        };
 
         //监听事件，删除一条记录
         grid.on('cellclick', function (ev) {
@@ -365,6 +415,17 @@
                 }
             }
             grid.setItems(items);
+        });
+
+        //入库数量输入框光标移入事件
+        $("#in_confirmed_no").on('focus', function () {
+            $("#in_confirmed_total").val();
+            $("#stock_total").val(0);
+        });
+
+        //入库数量输入框光标移出事件
+        $("#in_confirmed_no").on('blur', function () {
+            $("#stock_proportion").trigger('blur');
         });
     });
 </script>
