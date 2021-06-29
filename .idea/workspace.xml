@@ -13,6 +13,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/delivery_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/delivery_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1029,7 +1031,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/xxk/management/system/entity" />
-    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.last.edited" value="库" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33908045" />
     <property name="settings.editor.selected.configurable" value="preferences.updates" />
@@ -1938,14 +1940,14 @@
       <workItem from="1624279947972" duration="618000" />
       <workItem from="1624280604964" duration="4867000" />
       <workItem from="1624455151559" duration="360000" />
-      <workItem from="1624455525821" duration="5262000" />
-    </task>
-    <task id="LOCAL-00074" summary="2021年3月23日 23:11:33">
-      <created>1616512298682</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1616512298682</updated>
+      <workItem from="1624455525821" duration="6871000" />
+      <workItem from="1624711910685" duration="9930000" />
+      <workItem from="1624785978008" duration="1807000" />
+      <workItem from="1624796193364" duration="10381000" />
+      <workItem from="1624811108839" duration="361000" />
+      <workItem from="1624882573738" duration="618000" />
+      <workItem from="1624970125533" duration="7172000" />
+      <workItem from="1624980117070" duration="2541000" />
     </task>
     <task id="LOCAL-00075" summary="2021年3月23日 23:33:11">
       <created>1616513595912</created>
@@ -2283,7 +2285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624280691570</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="2021年6月19日 01:35:02">
+      <created>1624465663771</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1624465663771</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
