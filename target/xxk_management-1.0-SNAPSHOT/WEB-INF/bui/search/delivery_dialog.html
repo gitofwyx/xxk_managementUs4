@@ -114,43 +114,29 @@
                 <input id="in_confirmed_total" name="in_confirmed_total" type="hidden"
                        data-rules="{required:true}">
             </div>
-        </div>
-        <div class="row">
             <div class="control-group span2.5">
                 <input id="out_confirmed_no" name="out_confirmed_no" type="hidden"
                        data-rules="{required:true}">
             </div>
-        </div>
-        <div class="row">
             <div class="control-group span2.5">
                 <input id="out_confirmed_unit" name="out_confirmed_unit" type="hidden"
                        data-rules="{required:true}">
             </div>
-        </div>
-        <div class="row">
             <div class="control-group span2.5">
                 <input id="out_confirmed_proportion" name="out_confirmed_proportion" type="hidden"
                        data-rules="{required:true}">
             </div>
-        </div>
-        <div class="row">
             <div class="control-group span2.5">
                 <input id="out_confirmed_total" name="out_confirmed_total" type="hidden"
                        data-rules="{required:true}">
             </div>
-        </div>
-        <div class="row">
             <div class="control-group span2.5">
                 <input id="out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden"
                        data-rules="{required:true}">
             </div>
-        </div>
-        <div class="row">
             <div class="control-group span2.5">
                 <input id="stock_no" name="stock_no" type="hidden" data-rules="{required:true}">
             </div>
-        </div>
-        <div class="row">
             <div class="control-group span2.5">
                 <input id="stock_total" name="stock_total" type="hidden" data-rules="{required:true}">
             </div>
@@ -368,7 +354,18 @@
                     $("#out_confirmed_total_unit").val(sucData.stock_total_unit);
                 });
                 B_Form.getField('in_confirmed_no').addRule('max', eData.out_confirmed_no, '不能大于{0}');
-                B_Form.getField('out_no').addRule('min', 0, '不能小于{0}');
+                B_Form.getField('in_confirmed_no').addRule('min', 0.001, '不为0');
+                //B_Form.getField('out_no').addRule(value= {max:eData.out_confirmed_no,min:0} ,'不能大于{max},不能小于{min}');
+                B_Form.getField('out_no').addRules({
+                    max:eData.out_confirmed_no,
+                    min:0
+                });
+                B_Form.getField('in_confirmed_total').addRules({
+                    min:1
+                });
+                B_Form.getField('out_confirmed_total').addRules({
+                    min:0
+                });
             }
         }
 
