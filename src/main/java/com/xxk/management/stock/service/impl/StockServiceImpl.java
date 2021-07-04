@@ -349,6 +349,46 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
+    //入库操作
+    // 2019年8月19日 13:44:05更新
+    @Override
+    public Map<String, Object> updateStockForBackward(Storage storage,Delivery delivery,String stock_no) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        try {
+            if ("".equals(delivery.getStock_id()) || delivery.getStock_id() == null) {
+                log.info("出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错！无法获取库存ID");
+                return result;
+            }
+            delivery.setOut_confirmed_no_2(Double.valueOf(stock_no));
+            delivery.setUpdateDate(createDate);
+            delivery.setUpdateUserId(delivery.getUpdateUserId());
+
+            boolean stockResult = dao.plusStockNoForDelivery(delivery) == 1 ? true : false;
+            if (!(stockResult)) {
+                log.error("stockResult:" + stockResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+                //入库记录
+                storage.setClass_id(delivery.getClass_id());
+                storage.setEntity_id(delivery.getEntity_id());
+                result = storageService.addStorage(delivery, storage);
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
+    }
+
     @Override
     public boolean plusStockConfiguredTotal(String stockId, String userId, String date, String stock_version) {
         return dao.plusStockConfiguredTotal(stockId, userId, date, stock_version) == 1 ? true : false;

@@ -14,10 +14,12 @@ import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.storage.service.StorageService;
 import com.xxk.management.user.service.RebUserService;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,6 +42,9 @@ public class deliveryController extends BaseController {
 
     @Autowired
     private RebUserService rebUserService;
+
+    @Autowired
+    private StockService stockService;
 
 
     @ResponseBody
@@ -174,5 +179,33 @@ public class deliveryController extends BaseController {
             result.put("error", "查询出错");
         }
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/backwardDelivery", method = RequestMethod.POST)
+    public Map<String, Object> backwardDelivery(Storage storage,Delivery delivery,
+                                                @RequestParam(value = "delivery_id") String delivery_id,
+                                                @RequestParam(value = "stock_no") String stock_no) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            delivery.setUpdateUserId(CurrentUserId);
+            if ( !"".equals(delivery_id)&&delivery_id != null ) {
+                delivery.setId(delivery_id);
+                result = stockService.updateStockForBackward( storage,delivery,stock_no);
+
+            } else {
+                result.put("hasError", true);
+                result.put("error", "backwardDelivery:更新出错-delivery_id为空");
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
+        }
+        return result;
+        //return "system/index";
     }
 }

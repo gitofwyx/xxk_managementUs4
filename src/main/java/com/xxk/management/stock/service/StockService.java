@@ -36,6 +36,8 @@ public interface StockService {
 
     public Map<String, Object> updateStockForRecovery(OfficesStorage officesStorage);
 
+    public Map<String, Object> updateStockForBackward(Storage storage,Delivery delivery,String stock_no);
+
     public boolean plusStockConfiguredTotal(String stockId,String userId,String date,String stock_version);
 
     public boolean deleteListRegUser(List<String> listStr);
