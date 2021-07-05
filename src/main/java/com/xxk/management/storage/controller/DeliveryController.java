@@ -1,22 +1,15 @@
 package com.xxk.management.storage.controller;
 
 import com.xxk.core.file.BaseController;
-import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.JsonUtils;
-import com.xxk.core.util.UUIdUtil;
-import com.xxk.core.util.build_ident.IdentUtil;
-import com.xxk.management.device.service.DeviceService;
-import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
-import com.xxk.management.storage.service.StorageService;
 import com.xxk.management.user.service.RebUserService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,9 +26,9 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("")
-public class deliveryController extends BaseController {
+public class DeliveryController extends BaseController {
 
-    private static Logger log = Logger.getLogger(deliveryController.class);
+    private static Logger log = Logger.getLogger(DeliveryController.class);
 
     @Autowired
     private DeliveryService deliveryService;

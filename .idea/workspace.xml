@@ -9,16 +9,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月2日 14:34:47">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月5日 02:04:52">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/deliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/deliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/StorageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/controller/deliveryController.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1960,14 +1952,7 @@
       <workItem from="1625153534280" duration="1484000" />
       <workItem from="1625207673713" duration="4382000" />
       <workItem from="1625306452594" duration="1126000" />
-      <workItem from="1625395608313" duration="5979000" />
-    </task>
-    <task id="LOCAL-00078" summary="2021年3月26日 00:57:23">
-      <created>1617024612157</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1617024612158</updated>
+      <workItem from="1625395608313" duration="6729000" />
     </task>
     <task id="LOCAL-00079" summary="2021年3月29日 23:27:33">
       <created>1617031657215</created>
@@ -2305,7 +2290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625207695606</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="2021年7月5日 02:04:52">
+      <created>1625421897047</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1625421897047</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2412,7 +2404,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021-5-1 16:17:25" />
     <MESSAGE value="2021年5月5日 23:04:09" />
     <MESSAGE value="2021-5-6 00:09:58" />
     <MESSAGE value="2021年5月9日 23:58:34" />
@@ -2437,7 +2428,8 @@
     <MESSAGE value="2021年6月30日 00:04:42" />
     <MESSAGE value="2021年7月2日 00:05:12" />
     <MESSAGE value="2021年7月2日 14:34:47" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年7月2日 14:34:47" />
+    <MESSAGE value="2021年7月5日 02:04:52" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年7月5日 02:04:52" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
