@@ -349,7 +349,7 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
-    //入库操作
+    //反出库操作
     // 2019年8月19日 13:44:05更新
     @Override
     public Map<String, Object> updateStockForBackward(Storage storage,Delivery delivery,String stock_no) {
@@ -363,6 +363,7 @@ public class StockServiceImpl implements StockService {
                 return result;
             }
             delivery.setOut_confirmed_no_2(Double.valueOf(stock_no));
+            delivery.setOut_confirmed_total(storage.getIn_confirmed_total());//入库记录赋值
             delivery.setUpdateDate(createDate);
             delivery.setUpdateUserId(delivery.getUpdateUserId());
 
