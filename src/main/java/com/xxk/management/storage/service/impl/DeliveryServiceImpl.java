@@ -4,13 +4,16 @@ import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.stock.entity.Stock;
+import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.dao.DeliveryDao;
 import com.xxk.management.storage.entity.Delivery;
+import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +30,9 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Autowired
     private DeliveryDao dao;
+
+    @Autowired
+    private StockService stockService;
 
     @Override
     public List<Delivery> listDelivery(int pageStart, int pageSize) {
@@ -151,9 +157,61 @@ public class DeliveryServiceImpl implements DeliveryService {
         return result;
     }
 
+    @Override
+    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no) {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String deliveryId = UUIdUtil.getUUID();
+        try {
+            if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
+                log.info("出错！无法获取设备ID");
+                result.put("hasError", true);
+                result.put("error", "添加出错！无法获取设备ID");
+                return result;
+            }
+            //原纪录作废
+            boolean Result =dao.updateDeliveryStatus(delivery.getId(),"5") == 1 ? true : false;
+            if(!Result){
+                log.error("backwardDelivery:updateDeliveryStatus->error！");
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                return result;
+            }
+            result = stockService.updateStockForBackward( storage,delivery,stock_no);
+            if("true".equals(result.get("hasError"))){
+                log.error("backwardDelivery:updateStockForBackward->error！");
+                return result;
+            }
+            //新增出库记录
+            delivery.setId(deliveryId);
+            delivery.setOut_confirmed_genre("1");
+            delivery.setEntity_entry_status("2");
+            delivery.setDeleteFlag("0");
+
+            boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
+            if (!(storageResult)) {
+                log.error("addstorage:" + storageResult);
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+            } else {
+                //log.info(">>>>保存成功");
+                result.put("success", true);
+            }
+        } catch (DuplicateKeyException e) {
+            result.put("hasError", true);
+            result.put("error", "重复值异常，可能编号值重复");
+            log.error(e);
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "添加出错");
+            log.error(e);
+        }
+        return result;
+    }
+
 
     @Override
-    public boolean updateDeliveryStatus(String id) {
-        return dao.updateDeliveryStatus(id) == 1 ? true : false;
+    public boolean updateDeliveryStatus(String id,String status) {
+        return dao.updateDeliveryStatus(id,status) == 1 ? true : false;
     }
 }

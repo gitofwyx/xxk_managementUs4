@@ -2,6 +2,7 @@ package com.xxk.management.storage.service;
 
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
+import com.xxk.management.storage.entity.Storage;
 
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ public interface DeliveryService {
 
     public Map<String, Object> addDelivery(Delivery delivery, String status);
 
-    public boolean updateDeliveryStatus(String id);
+    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no);
+
+    public boolean updateDeliveryStatus(String id,String status);
 
 }

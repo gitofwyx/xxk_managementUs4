@@ -11,6 +11,30 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月5日 02:04:52">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/DeliveryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/StockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/DeliveryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/StorageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/StorageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/StockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/deliveryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/deliveryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/StorageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/StorageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1953,13 +1977,10 @@
       <workItem from="1625207673713" duration="4382000" />
       <workItem from="1625306452594" duration="1126000" />
       <workItem from="1625395608313" duration="6729000" />
-    </task>
-    <task id="LOCAL-00079" summary="2021年3月29日 23:27:33">
-      <created>1617031657215</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1617031657215</updated>
+      <workItem from="1625495140740" duration="355000" />
+      <workItem from="1625495515790" duration="9000" />
+      <workItem from="1625574372237" duration="3225000" />
+      <workItem from="1625596759126" duration="1020000" />
     </task>
     <task id="LOCAL-00080" summary="2021年3月30日 00:39:24">
       <created>1617035970335</created>
@@ -2297,7 +2318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625421897047</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="2021年7月5日 02:04:52">
+      <created>1625495193675</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1625495193675</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

@@ -36,9 +36,6 @@ public class DeliveryController extends BaseController {
     @Autowired
     private RebUserService rebUserService;
 
-    @Autowired
-    private StockService stockService;
-
 
     @ResponseBody
     @RequestMapping("/listDelivery")
@@ -186,7 +183,7 @@ public class DeliveryController extends BaseController {
             delivery.setUpdateUserId(CurrentUserId);
             if ( !"".equals(delivery_id)&&delivery_id != null ) {
                 delivery.setId(delivery_id);
-                result = stockService.updateStockForBackward( storage,delivery,stock_no);
+                result = deliveryService.backwardDelivery( storage,delivery,stock_no);
 
             } else {
                 result.put("hasError", true);

@@ -90,6 +90,12 @@
         updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and stock_version=#{stock_version} and deleteFlag='0';
     </update>
 
+    <!--入库更新 反出库 -->
+    <update id="plusStockNoForDelivery" parameterType="com.xxk.management.storage.entity.Delivery">
+        update xxk_stock set stock_no=#{out_confirmed_no_2},stock_total=stock_total+#{out_confirmed_total},stock_version=stock_version+1,
+                             updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{stock_id} and deleteFlag='0';
+    </update>
+
     <!--根据OfficesStorage入库更新 -->
     <update id="updateStockForOfficesStorage" parameterType="com.xxk.management.office.storage.entity.OfficesStorage">
         update xxk_stock set stock_no=#{offices_storage_no},stock_total=stock_total+#{offices_storage_total},stock_version=stock_version+1,
