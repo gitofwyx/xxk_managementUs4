@@ -177,6 +177,7 @@ public class DeliveryServiceImpl implements DeliveryService {
                 result.put("error", "添加出错");
                 return result;
             }
+            //更新库存记录
             result = stockService.updateStockForBackward( storage,delivery,stock_no);
             if("true".equals(result.get("hasError"))){
                 log.error("backwardDelivery:updateStockForBackward->error！");

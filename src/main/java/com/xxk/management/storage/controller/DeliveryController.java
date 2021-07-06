@@ -187,7 +187,7 @@ public class DeliveryController extends BaseController {
 
             } else {
                 result.put("hasError", true);
-                result.put("error", "backwardDelivery:更新出错-delivery_id为空");
+                result.put("error", "backwardDelivery:更新出错->delivery_id为空");
             }
 
         } catch (Exception e) {

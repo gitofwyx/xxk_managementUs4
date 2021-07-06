@@ -69,7 +69,12 @@
 <div id="Content_B" class="hide">
     <form id="B_Form" class="form-horizontal" action="">
         <div class="row">
-
+            <div class="control-group span2.5">
+                <input id="delivery_id" name="delivery_id" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+        </div>
+        <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>出库型号：</label>
                 <div class="controls">
@@ -342,6 +347,7 @@
                 out_former_total=eData.out_confirmed_total;
                 Editing_B.add({out_no: eData.out_confirmed_no});
                 B_Form.getField('stock_total').set('value', '');
+                $("#delivery_id").val(eData.id);
                 $("#out_confirmed_total").val(eData.out_confirmed_total);
                 getStockByStockId(eData.stock_id,function (sucData){
                    /* B_Form.getField('out_confirmed_unit').set('value', sucData.stock_unit);
