@@ -354,7 +354,6 @@ public class StockServiceImpl implements StockService {
     @Override
     public Map<String, Object> updateStockForBackward(Storage storage,Delivery delivery,String stock_no) {
         Map<String, Object> result = new HashMap<>();
-        String createDate = DateUtil.getFullTime();
         try {
             if ("".equals(delivery.getStock_id()) || delivery.getStock_id() == null) {
                 log.info("出错！无法获取设备ID");
@@ -362,12 +361,12 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错！无法获取库存ID");
                 return result;
             }
-            delivery.setOut_confirmed_no_2(Double.valueOf(stock_no));
-            delivery.setOut_confirmed_total(storage.getIn_confirmed_total());//入库记录赋值
-            delivery.setUpdateDate(createDate);
-            delivery.setUpdateUserId(delivery.getUpdateUserId());
 
-            boolean stockResult = dao.plusStockNoForDelivery(delivery) == 1 ? true : false;
+            boolean stockResult = dao.plusStockNoById(delivery.getStock_id(),
+                    Double.valueOf(stock_no),
+                    storage.getIn_confirmed_no(),
+                    delivery.getUpdateUserId(),
+                    delivery.getUpdateDate()) == 1;
             if (!(stockResult)) {
                 log.error("stockResult:" + stockResult);
                 result.put("hasError", true);

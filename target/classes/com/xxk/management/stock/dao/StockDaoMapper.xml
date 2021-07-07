@@ -91,9 +91,9 @@
     </update>
 
     <!--入库更新 反出库 -->
-    <update id="plusStockNoForDelivery" parameterType="com.xxk.management.storage.entity.Delivery">
-        update xxk_stock set stock_no=#{out_confirmed_no_2},stock_total=stock_total+#{out_confirmed_total},stock_version=stock_version+1,
-                             updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{stock_id} and deleteFlag='0';
+    <update id="plusStockNoById" >
+        update xxk_stock set stock_no=#{1},stock_total=stock_total+#{2},
+                             updateUserId=#{3},updateDate=#{4} where id=#{0} and deleteFlag='0';
     </update>
 
     <!--根据OfficesStorage入库更新 -->

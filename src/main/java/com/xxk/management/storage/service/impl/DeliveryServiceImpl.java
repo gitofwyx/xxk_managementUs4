@@ -188,6 +188,10 @@ public class DeliveryServiceImpl implements DeliveryService {
             delivery.setOut_confirmed_genre("1");
             delivery.setEntity_entry_status("2");
             delivery.setDeleteFlag("0");
+            delivery.setCreateDate(createDate);
+            delivery.setCreateUserId(delivery.getUpdateUserId());
+            delivery.setUpdateDate(createDate);
+            delivery.setDeleteFlag("0");
 
             boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
             if (!(storageResult)) {
