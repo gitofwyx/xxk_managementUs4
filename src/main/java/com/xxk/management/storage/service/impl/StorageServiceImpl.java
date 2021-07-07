@@ -126,6 +126,7 @@ public class StorageServiceImpl implements StorageService {
             storage.setIn_confirmed_ident(in_confirmed_ident);
             storage.setIn_confirmed_type(delivery.getOut_confirmed_type());
             storage.setIn_confirmed_by(delivery.getUpdateUserId());
+            storage.setIn_confirmed_origin("3");
             storage.setOut_flag("0");
             storage.setCreateDate(createDate);
             storage.setCreateUserId(delivery.getUpdateUserId());

@@ -11,8 +11,19 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月7日 02:56:32 反出库">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/delivery_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/delivery_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/deliveryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/controller/deliveryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/DeliveryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/DeliveryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/DeliveryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1961,14 +1972,12 @@
       <workItem from="1625596759126" duration="1118000" />
       <workItem from="1625597891190" duration="332000" />
       <workItem from="1625598238410" duration="185000" />
-      <workItem from="1625598438453" duration="331000" />
-    </task>
-    <task id="LOCAL-00082" summary="2021年4月1日 00:01:54">
-      <created>1617206520643</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1617206520644</updated>
+      <workItem from="1625598438453" duration="439000" />
+      <workItem from="1625598895015" duration="5000" />
+      <workItem from="1625627717932" duration="3473000" />
+      <workItem from="1625644205454" duration="180000" />
+      <workItem from="1625644401336" duration="976000" />
+      <workItem from="1625650459118" duration="3495000" />
     </task>
     <task id="LOCAL-00083" summary="2021年4月3日 00:09:25">
       <created>1617379770898</created>
@@ -2306,7 +2315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625598206118</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="2021年7月7日 02:56:32 反出库">
+      <created>1625598819020</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1625598819021</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2522,12 +2538,18 @@
           <line>175</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java</url>
+          <line>181</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="deviceService" language="JAVA" />
         <watch expression="stock.getStock_type()" />
+        <watch expression="(boolean)(result.get(&quot;success&quot;))==true" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
