@@ -345,7 +345,7 @@
             } else {
                 var eData = selections[0];
                 if (eData.entity_entry_status==='5') {
-                    BUI.Message.Alert('记录无法操作或已经反出库！');
+                    BUI.Message.Alert('无法操作或已反出库！');
                     return;
                 }
                 out_former_total=eData.out_confirmed_total;

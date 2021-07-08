@@ -182,26 +182,28 @@ public class DeliveryServiceImpl implements DeliveryService {
             if("true".equals(result.get("hasError"))){
                 log.error("backwardDelivery:updateStockForBackward->error！");
                 return result;
-            }
-            //新增出库记录
-            delivery.setId(deliveryId);
-            delivery.setOut_confirmed_genre("1");
-            delivery.setEntity_entry_status("2");
-            delivery.setDeleteFlag("0");
-            delivery.setCreateDate(createDate);
-            delivery.setCreateUserId(delivery.getUpdateUserId());
-            delivery.setUpdateDate(createDate);
-            delivery.setDeleteFlag("0");
+            }else if(delivery.getOut_confirmed_no()!=0&&delivery.getOut_confirmed_total()!=0){
+                //新增出库记录
+                delivery.setId(deliveryId);
+                delivery.setOut_confirmed_genre("1");
+                delivery.setEntity_entry_status("2");
+                delivery.setDeleteFlag("0");
+                delivery.setCreateDate(createDate);
+                delivery.setCreateUserId(delivery.getUpdateUserId());
+                delivery.setUpdateDate(createDate);
+                delivery.setDeleteFlag("0");
 
-            boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
-            if (!(storageResult)) {
-                log.error("addstorage:" + storageResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //log.info(">>>>保存成功");
-                result.put("success", true);
+                boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
+                if (!(storageResult)) {
+                    log.error("addstorage:" + storageResult);
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
+                } else {
+                    //log.info(">>>>保存成功");
+                    result.put("success", true);
+                }
             }
+
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
             result.put("error", "重复值异常，可能编号值重复");
