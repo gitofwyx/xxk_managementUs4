@@ -22,4 +22,6 @@ public interface StockDevicesService {
 
     public List<Devices> getDevicesWithStatus(String deviceId, String officeId, String status);
 
+    public boolean updateDevicesSetStatus(String devicesId, String status, String userId, String Date);
+
 }

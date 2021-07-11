@@ -3,6 +3,7 @@ package com.xxk.management.storage.service.impl;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
+import com.xxk.management.office.devices.service.StockDevicesService;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.dao.DeliveryDao;
@@ -33,6 +34,9 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Autowired
     private StockService stockService;
+
+    @Autowired
+    private StockDevicesService stockDevicesService;
 
     @Override
     public List<Delivery> listDelivery(int pageStart, int pageSize) {
@@ -158,7 +162,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no) {
+    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no,String out_total) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String deliveryId = UUIdUtil.getUUID();
@@ -170,19 +174,19 @@ public class DeliveryServiceImpl implements DeliveryService {
                 return result;
             }
             //原纪录作废
-            boolean Result =dao.updateDeliveryStatus(delivery.getId(),"5") == 1 ? true : false;
-            if(!Result){
+            boolean Result = dao.updateDeliveryStatus(delivery.getId(), "5") == 1 ? true : false;
+            if (!Result) {
                 log.error("backwardDelivery:updateDeliveryStatus->error！");
                 result.put("hasError", true);
                 result.put("error", "添加出错");
                 return result;
             }
             //更新库存记录
-            result = stockService.updateStockForBackward( storage,delivery,stock_no);
-            if("true".equals(result.get("hasError"))){
+            result = stockService.updateStockForBackward(storage, delivery, stock_no);
+            if ("true".equals(result.get("hasError"))) {
                 log.error("backwardDelivery:updateStockForBackward->error！");
                 return result;
-            }else if(delivery.getOut_confirmed_no()!=0&&delivery.getOut_confirmed_total()!=0){
+            } else if (delivery.getOut_confirmed_no() != 0 && delivery.getOut_confirmed_total() != 0&&storage.getIn_confirmed_total()<Integer.parseInt(out_total)) {
                 //新增出库记录
                 delivery.setId(deliveryId);
                 delivery.setOut_confirmed_genre("1");
@@ -198,9 +202,16 @@ public class DeliveryServiceImpl implements DeliveryService {
                     log.error("addstorage:" + storageResult);
                     result.put("hasError", true);
                     result.put("error", "添加出错");
-                } else {
-                    //log.info(">>>>保存成功");
-                    result.put("success", true);
+                    return result;
+                }
+            }
+            if (!"".equals(delivery.getStock_entity_id()) && delivery.getStock_entity_id() != null) {
+                Result = stockDevicesService.updateDevicesSetStatus(delivery.getStock_entity_id(), "0", delivery.getUpdateUserId(), delivery.getUpdateDate());
+                if (!Result) {
+                    log.error("backwardDelivery:updateDeliveryStatus->error！");
+                    result.put("hasError", true);
+                    result.put("error", "添加出错");
+                    return result;
                 }
             }
 
@@ -213,12 +224,13 @@ public class DeliveryServiceImpl implements DeliveryService {
             result.put("error", "添加出错");
             log.error(e);
         }
+        result.put("success", true);
         return result;
     }
 
 
     @Override
-    public boolean updateDeliveryStatus(String id,String status) {
-        return dao.updateDeliveryStatus(id,status) == 1 ? true : false;
+    public boolean updateDeliveryStatus(String id, String status) {
+        return dao.updateDeliveryStatus(id, status) == 1 ? true : false;
     }
 }

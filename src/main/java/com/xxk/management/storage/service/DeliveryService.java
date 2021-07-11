@@ -26,7 +26,7 @@ public interface DeliveryService {
 
     public Map<String, Object> addDelivery(Delivery delivery, String status);
 
-    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no);
+    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no,String out_total);
 
     public boolean updateDeliveryStatus(String id,String status);
 

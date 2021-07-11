@@ -175,7 +175,8 @@ public class DeliveryController extends BaseController {
     @RequestMapping(value = "/backwardDelivery", method = RequestMethod.POST)
     public Map<String, Object> backwardDelivery(Storage storage,Delivery delivery,
                                                 @RequestParam(value = "delivery_id") String delivery_id,
-                                                @RequestParam(value = "stock_no") String stock_no) {
+                                                @RequestParam(value = "stock_no") String stock_no,
+                                                @RequestParam(value = "out_former_total") String out_total) {
         Map<String, Object> result = new HashMap<>();
         try {
 
@@ -183,7 +184,7 @@ public class DeliveryController extends BaseController {
             delivery.setUpdateUserId(CurrentUserId);
             if ( !"".equals(delivery_id)&&delivery_id != null ) {
                 delivery.setId(delivery_id);
-                result = deliveryService.backwardDelivery( storage,delivery,stock_no);
+                result = deliveryService.backwardDelivery( storage,delivery,stock_no,out_total);
 
             } else {
                 result.put("hasError", true);

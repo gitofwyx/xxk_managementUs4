@@ -158,4 +158,21 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         return dao.getDevicesWithStatus(deviceId, officeId, status);
     }
 
+    @Override
+    public boolean updateDevicesSetStatus(String devicesId, String status, String userId, String Date) {
+
+        boolean devicesResult = false;
+        try {
+            devicesResult = dao.updateDevicesSetStatus(devicesId, status, userId, Date) == 1 ? true : false;
+            if (!(devicesResult)) {
+                log.error("depositoryResult:" + devicesResult);
+            }
+        } catch (DuplicateKeyException e) {
+            log.error(e);
+        } catch (Exception e) {
+            log.error(e);
+        }
+        return devicesResult;
+    }
+
 }
