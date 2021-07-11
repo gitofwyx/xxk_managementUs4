@@ -351,12 +351,13 @@
                     BUI.Message.Alert('无法操作或已反出库！');
                     return;
                 }
-                $("#out_former_total").val(eData.out_confirmed_total);
+
                 Editing_B.add(eData);
                 B_Form.getField('stock_total').set('value', '');
                 $("#delivery_id").val(eData.id);
                 $("#out_confirmed_name").val(eData.entity_name+"/"+eData.entity_type);
                 $("#out_no").val($("#out_confirmed_no").val());
+                $("#out_former_total").val(eData.out_confirmed_total);
                 $("#out_confirmed_total").val(eData.out_confirmed_total);
                 getStockByStockId(eData.stock_id,function (sucData){
                    /* B_Form.getField('out_confirmed_unit').set('value', sucData.stock_unit);
@@ -485,7 +486,7 @@
 
         //入库数量输入框光标移出事件
         $("#in_confirmed_no").on('blur', function () {
-           if(CheckIsNullOrEmpty($("#stock_total").val())){
+           if(CheckIsNullOrEmpty($("#stock_total").val())&&CheckIsNullOrEmpty($("#out_former_total").val())){
                $("#in_confirmed_no").val(calculate_amount($("#in_confirmed_no").val(),$("#out_confirmed_proportion").val()));
                $("#in_confirmed_total").val(reckon_stock_total($("#in_confirmed_no").val(),$("#out_confirmed_proportion").val()));
                $("#out_confirmed_total").val(parseInt($("#out_former_total").val())-parseInt($("#in_confirmed_total").val()));

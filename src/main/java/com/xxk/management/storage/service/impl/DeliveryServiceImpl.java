@@ -162,7 +162,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no,String out_total) {
+    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no, String out_total) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String deliveryId = UUIdUtil.getUUID();
@@ -186,7 +186,7 @@ public class DeliveryServiceImpl implements DeliveryService {
             if ("true".equals(result.get("hasError"))) {
                 log.error("backwardDelivery:updateStockForBackward->error！");
                 return result;
-            } else if (delivery.getOut_confirmed_no() != 0 && delivery.getOut_confirmed_total() != 0&&storage.getIn_confirmed_total()<Integer.parseInt(out_total)) {
+            } else if (delivery.getOut_confirmed_no() != 0 && delivery.getOut_confirmed_total() != 0 && storage.getIn_confirmed_total() < Double.valueOf(out_total).intValue()) {
                 //新增出库记录
                 delivery.setId(deliveryId);
                 delivery.setOut_confirmed_genre("1");
