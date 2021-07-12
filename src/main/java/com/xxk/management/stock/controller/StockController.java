@@ -182,6 +182,11 @@ public class StockController extends BaseController {
                 result.put("error", "出错！设备设为配置出库！");
                 return result;
             }
+            if(null==stock.getStock_office_id()||"".equals(stock.getStock_office_id())||stock.getStock_office_id().equals(delivery.getOut_confirmed_officeId())){
+                result.put("hasError", true);
+                result.put("error", "出错！库存科室为空或同科出库！");
+                return result;
+            }
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             stock.setUpdateUserId(CurrentUserId);
             if (stock_record_id != null && !"".equals(stock_record_id)) {
