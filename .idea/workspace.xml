@@ -9,11 +9,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月12日 00:23:26 反出库">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月12日 00:23:26 同科出库bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/storage_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/storage_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/controller/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/controller/StockController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1999,14 +1999,9 @@
       <workItem from="1626064731617" duration="1263000" />
       <workItem from="1626096437434" duration="2667000" />
       <workItem from="1626100709830" duration="4226000" />
-      <workItem from="1626105312145" duration="792000" />
-    </task>
-    <task id="LOCAL-00088" summary="2021年4月8日 01:03:06">
-      <created>1617814992390</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1617814992390</updated>
+      <workItem from="1626105312145" duration="942000" />
+      <workItem from="1626188219102" duration="779000" />
+      <workItem from="1626363795760" duration="2515000" />
     </task>
     <task id="LOCAL-00089" summary="2021-4-21 00:03:19">
       <created>1618934605348</created>
@@ -2344,7 +2339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626020613246</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="2021年7月12日 00:23:26 同科出库bug">
+      <created>1626106230117</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1626106230118</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2451,7 +2453,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年5月14日 18:00:55" />
     <MESSAGE value="2021年5月29日 14:45:38" />
     <MESSAGE value="2021年5月29日 17:50:53" />
     <MESSAGE value="2021年5月31日 01:04:54" />
@@ -2476,7 +2477,8 @@
     <MESSAGE value="2021年7月7日 18:34:08 反出库" />
     <MESSAGE value="2021年7月8日 01:07:37 反出库" />
     <MESSAGE value="2021年7月12日 00:23:26 反出库" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年7月12日 00:23:26 反出库" />
+    <MESSAGE value="2021年7月12日 00:23:26 同科出库bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年7月12日 00:23:26 同科出库bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2576,9 +2578,8 @@
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="deviceService" language="JAVA" />
         <watch expression="stock.getStock_type()" />
-        <watch expression="(boolean)(result.get(&quot;success&quot;))==true" language="JAVA" />
-        <watch expression="stock.getStock_office_id().equals(delivery.getStock_entity_id())" />
         <watch expression="stock.getStock_office_id()" />
+        <watch expression="delivery.getOut_confirmed_officeId()" />
       </configuration>
     </watches-manager>
   </component>

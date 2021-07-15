@@ -60,44 +60,111 @@
         <div id="grid"></div>
     </div>
 
+    <!--库存转移入库-->
 </div>
 <div id="Content_I" class="hide">
     <form id="I_Form" class="form-horizontal" action="">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备名称：</label>
-                <div class="controls" id="dev_name_select">
-                    <input name="dev_name" type="hidden" id="dev_name" data-rules="{required:true}">
-                </div>
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
-                <div class="controls" id="dev_type_select">
-                    <input name="dev_type" type="hidden" id="dev_type" data-rules="{required:true}">
+                <label class="control-label"><s>*</s>入科科室：</label>
+                <div class="controls">
+                    <input name="dep_office_ident" id="dep_office_ident" type="text" data-rules="{required:true}">
                 </div>
             </div>
         </div>
+
         <div class="row">
+            <div class="control-group span16">
+                <label class="control-label">&nbsp;&nbsp;<s>*</s>出库记录：(未入科登记记录)</label>
+                <div class="controls" id="office_dep_select">
+                    <input id="delivery_id" name="delivery_id" type="hidden">
+                </div>
+                &nbsp;
+                <input type="button" id="I_Reset" name="I_Reset" class=" icon-repeat"
+                       style="width:15px;height:18px;background-color:#ffffff;">
+            </div>
+
+        </div>
+        <div class="row" id="E_Input_console">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库确认人：</label>
+                <label class="control-label"><s>*</s>设备/耗材名称：</label>
                 <div class="controls">
-                    <input name="in_confirmed_by" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
+                    <div class="input-group" id="delivery_class_div">
+                        <input type="text" id="delivery_entity_name"
+                               name="delivery_entity_name">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库时间：</label>
+                <label class="control-label"><s>*</s>设备/耗材型号：</label>
                 <div class="controls">
-                    <input name="in_confirmed_date" type="text" data-rules="{required:true}" class="calendar">
+                    <div class="input-group" id="delivery_entity_div">
+                        <input type="text" id="delivery_entity_type"
+                               name="delivery_entity_type">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
         </div>
+        <div id="I_Input_console">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">未入科总量：</label>
+                    <div class="controls">
+                        <input name="out_confirmed_no" id="out_confirmed_total" type="text">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存单位：</label>
+                    <div class="controls">
+                        <input name="offices_storage_unit" id="offices_storage_unit" type="text"
+                               data-rules="{required:true}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>入科数量：</label>
+                    <div class="controls">
+                        <input name="offices_storage_no" id="offices_storage_no" type="number"
+                               data-rules="{required:true}">
+                    </div>
+                    <button type="button" id="depository_no_lock" name="" class="  icon-lock"
+                            style="width:19px;height:18px;margin-left:10px;background-color:#dddddd;"></button>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>单位比例：</label>
+                    <div class="controls">
+                        <input id="unit_num_1" name="unit_num" type="number" data-rules="{required:true}"
+                               class="span1 control-text"> ：
+                        <input id="offices_storage_proportion" name="offices_storage_proportion" type="number" min="1"
+                               max="999"
+                               data-rules="{required:true}" data-tip="{text:'数字有效'}" class="span2 control-text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>入科总量：</label>
+                    <div class="controls">
+                        <input name="offices_storage_total" id="offices_storage_total" type="number"
+                               data-rules="{required:true}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库数量：</label>
-                <div class="controls">
-                    <input name="in_confirmed_no" type="number" data-rules="{required:true}"
-                           class="input-normal control-text">
+            <div class="control-group span15">
+                <label class="control-label">备注：</label>
+                <div class="controls control-row4">
+                    <textarea name="remark" class="input-large" type="text"></textarea>
                 </div>
             </div>
         </div>
