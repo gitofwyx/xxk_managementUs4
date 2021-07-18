@@ -481,6 +481,14 @@
             return stock_office;
         }
 
+        //禁止输入框输入
+        function input_console(dis) {
+            $("#I_Input_console input").each(function () {
+                $(this).val('');
+                $(this).attr('readonly', dis);
+            })
+        };
+
         //监听事件，删除一条记录
         grid.on('cellclick', function (ev) {
             var sender = $(ev.domTarget); //点击的Dom
@@ -498,6 +506,39 @@
                 }
             }
             dev_type_select.set('items', select_type);
+        });
+
+        //监听事件，回收入库科室下拉框选中
+        stock_office_select.on('change', function (ev) {
+            input_console(true);
+            var edv = Editing_I.get('editor').getValue();
+            if (edv.entity_id != null && edv.entity_id != '' && edv.entity_id != undefined) {
+                $.ajax({
+                    url: '/listStockByEntityId',
+                    data: {
+                        entity_id: edv.entity_id,
+                        office_id: edv.in_confirmed_officeId
+                    },
+                    type: 'POST', //GET
+                    async: true,    //或false,是否异步
+                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success: function (data, textStatus, jqXHR) {
+                        if (!$.isEmptyObject(data.entityData)) {
+                            transfer_stock_grid.set('items', data.entityData);
+                            // input_console(false);
+                        } else {
+                            transfer_stock_grid.set('items', []);
+                            //input_console(false);
+                        }
+                    },
+                    error: function (xhr, textStatus) {
+                        console.log('错误')
+                        console.log(xhr)
+                        console.log(textStatus)
+                    }
+                })
+            }//if语句判断是否获取到设备ID
         });
 
         store.on('beforeprocessload', function (ev) {
