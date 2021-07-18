@@ -24,7 +24,7 @@
                 <div class="control-group span7">
                     <label class="control-label">库存ID：</label>
                     <div class="controls">
-                        <input id="stock_id" name="stock_id" type="text" >
+                        <input id="stock_id" name="stock_id" type="text">
                     </div>
                 </div>
                 <div class="control-group span7">
@@ -60,44 +60,111 @@
         <div id="grid"></div>
     </div>
 
+    <!--库存转移入库-->
 </div>
 <div id="Content_I" class="hide">
     <form id="I_Form" class="form-horizontal" action="">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备名称：</label>
-                <div class="controls" id="dev_name_select">
-                    <input name="dev_name" type="hidden" id="dev_name" data-rules="{required:true}">
-                </div>
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
-                <div class="controls" id="dev_type_select">
-                    <input name="dev_type" type="hidden" id="dev_type" data-rules="{required:true}">
+                <label class="control-label"><s>*</s>入科科室：</label>
+                <div class="controls" id="stock_office_select">
+                    <input name="stock_office_id" id="stock_office_id" type="hidden" data-rules="{required:true}">
                 </div>
             </div>
         </div>
+
         <div class="row">
+            <div class="control-group span16">
+                <label class="control-label">&nbsp;&nbsp;<s>*</s>出库记录：(未入科登记记录)</label>
+                <div class="controls" id="transfer_stock_select">
+                    <input id="delivery_id" name="delivery_id" type="hidden">
+                </div>
+                &nbsp;
+                <input type="button" id="I_Reset" name="I_Reset" class=" icon-repeat"
+                       style="width:15px;height:18px;background-color:#ffffff;">
+            </div>
+
+        </div>
+        <div class="row" id="E_Input_console">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库确认人：</label>
+                <label class="control-label"><s>*</s>设备/耗材名称：</label>
                 <div class="controls">
-                    <input name="in_confirmed_by" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
+                    <div class="input-group" id="delivery_class_div">
+                        <input type="text" id="delivery_entity_name"
+                               name="delivery_entity_name">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库时间：</label>
+                <label class="control-label"><s>*</s>设备/耗材型号：</label>
                 <div class="controls">
-                    <input name="in_confirmed_date" type="text" data-rules="{required:true}" class="calendar">
+                    <div class="input-group" id="delivery_entity_div">
+                        <input type="text" id="delivery_entity_type"
+                               name="delivery_entity_type">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
         </div>
+        <div id="I_Input_console">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">未入科总量：</label>
+                    <div class="controls">
+                        <input name="out_confirmed_no" id="out_confirmed_total" type="text">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存单位：</label>
+                    <div class="controls">
+                        <input name="offices_storage_unit" id="offices_storage_unit" type="text"
+                               data-rules="{required:true}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>入科数量：</label>
+                    <div class="controls">
+                        <input name="offices_storage_no" id="offices_storage_no" type="number"
+                               data-rules="{required:true}">
+                    </div>
+                    <button type="button" id="depository_no_lock" name="" class="  icon-lock"
+                            style="width:19px;height:18px;margin-left:10px;background-color:#dddddd;"></button>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>单位比例：</label>
+                    <div class="controls">
+                        <input id="unit_num_1" name="unit_num" type="number" data-rules="{required:true}"
+                               class="span1 control-text"> ：
+                        <input id="offices_storage_proportion" name="offices_storage_proportion" type="number" min="1"
+                               max="999"
+                               data-rules="{required:true}" data-tip="{text:'数字有效'}" class="span2 control-text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>入科总量：</label>
+                    <div class="controls">
+                        <input name="offices_storage_total" id="offices_storage_total" type="number"
+                               data-rules="{required:true}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>入库数量：</label>
-                <div class="controls">
-                    <input name="in_confirmed_no" type="number" data-rules="{required:true}"
-                           class="input-normal control-text">
+            <div class="control-group span15">
+                <label class="control-label">备注：</label>
+                <div class="controls control-row4">
+                    <textarea name="remark" class="input-large" type="text"></textarea>
                 </div>
             </div>
         </div>
@@ -137,142 +204,190 @@
 </div>
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/js/bui.js"></script>
+<script type="text/javascript" src="/js/sea.js"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/js/tree/json2.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/js/tree/tree_build.js"></script>
+<script type="text/javascript" src="/js/localstorageIO.js"></script>
+
 <script type="text/javascript">
     BUI.use('common/page-self');
 </script>
 <script type="text/javascript">
-    BUI.use(['common/search', 'bui/form', 'bui/select'], function (Search, Form, Select) {
+    BUI.use(['common/search', 'bui/form','bui/grid', 'bui/select','bui/picker'], function (Search, Form,Grid, Select,Picker) {
 
+        var offices_select = localstorageIO("offices_select", "/getOfficeSelect");
         var enumObj = {"0": "未出库", "1": "已出库"},
-                enumUsers = {},
-                select_data = [],
-                select_type = [],
-                Editing_I = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'Content_I', //设置隐藏的Dialog内容
-                    autoSave: true, //添加数据或者修改数据时，自动保存
-                    triggerCls: 'btn-edit'
-                }),
-                Editing_O = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'Content_O', //设置隐藏的Dialog内容
-                    autoSave: true, //添加数据或者修改数据时，自动保存
-                    triggerCls: 'btn-out_dev'
-                }),
-                dev_name_select = new Select.Select({
-                    render: '#dev_name_select',
-                    valueField: '#dev_name',
-                    multipleSelect: false,
-                }).render(),
-                dev_type_select = new Select.Select({
-                    render: '#dev_type_select',
-                    valueField: '#dev_type',
-                    multipleSelect: false,
-                    items: []
-                }).render(),
-                columns = [
-                    {title: '入库编号', dataIndex: 'in_confirmed_ident', elCls: 'center', width: 180},
-                    {title: '&nbsp入库确认人', dataIndex: 'in_confirmed_by', elCls: 'center', width: 150},
-                    {title: '&nbsp入库时间', dataIndex: 'in_confirmed_date', elCls: 'center', width: 200},
-                    {
-                        title: '入库数量',
-                        dataIndex: 'in_confirmed_no',
-                        elCls: 'center',
-                        width: 80,
-                        editor: {xtype: 'number', rules: {required: true}}
-                    },
+            confirmed_genre_tags = {"0": "配置", "1": "入科", "2": "部署", "3": "回收", "4": "调用", "5": "借用"},
 
-                   {
-                        title: '入库总量',
-                        dataIndex: 'in_confirmed_total',
-                        elCls: 'center',
-                        width: 80,
-                        editor: {xtype: 'number', rules: {required: true}}
-                    }, {
-                        title: '备注',
-                        dataIndex: '',
-                        elCls: 'center',
-                        width: 150,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj)
-                    },
+            enumUsers = {},
+            select_data = [],
+            select_type = [],
+            office_tree = null,
+            stock_office = {},
+
+            Editing_I = new BUI.Grid.Plugins.DialogEditing({
+                contentId: 'Content_I', //设置隐藏的Dialog内容
+                autoSave: true, //添加数据或者修改数据时，自动保存
+                triggerCls: 'btn-edit'
+            }),
+            Editing_O = new BUI.Grid.Plugins.DialogEditing({
+                contentId: 'Content_O', //设置隐藏的Dialog内容
+                autoSave: true, //添加数据或者修改数据时，自动保存
+                triggerCls: 'btn-out_dev'
+            }),
+            //库存科室选择框
+            stock_office_select = new Select.Select({
+                render: '#stock_office_select',
+                valueField: '#stock_office_id',
+                multipleSelect: false,
+                items: []
+            }).render(),
+            //入库设备选择框
+            transfer_stock_grid = new Grid.Grid({
+                idField: 'id',//选项的默认id字段
+                columns: [
+                    {title: '&nbsp设备/耗材', dataIndex: 'entity_name', elCls: 'center', width: '30%'},
+                    {title: '&nbsp型号', dataIndex: 'entity_type', elCls: 'center', width: '40%'},
+                    {title: '总量', dataIndex: 'out_confirmed_total', elCls: 'center', width: '20%'},
+                    {title: '出库时间', dataIndex: 'out_confirmed_date', elCls: 'center', width: '40%'},
                     {
-                        title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
+                        title: '&nbsp类别',
+                        dataIndex: 'out_confirmed_genre',
+                        elCls: 'center',
+                        width: '20%',
+                        renderer: BUI.Grid.Format.enumRenderer(confirmed_genre_tags)
+                    },
+                ],
+                textGetter: function (item) { //返回选中的文本
+                    return item.out_confirmed_ident;
+                },
+                bbar: {
+                    //可以是按钮(bar-item-button)、 文本(bar-item-text)、 默认(bar-item)、 分隔符(bar-item-separator)以及自定义项
+                    items: [{
+                        xclass: 'bar-item-button',
+                        btnCls: 'button button-small',
+                        text: '新增',
+                        handler: '',
+                    },
+                        {
+                            xclass: 'bar-item-text',
+                            text: '<p style="color: #dd1144">注：新增多个库存记录可能会造成出库错误</p>'
+                        },
+                    ]
+                },
+                items: [],
+            }),
+            transfer_stock_picker = new Picker.ListPicker({
+                width: 470,  //指定宽度
+                children: [transfer_stock_grid] //配置picker内的列表
+            }),
+            transfer_stock_select = new Select.Select({
+                picker: transfer_stock_picker,
+                render: '#transfer_stock_select',
+                valueField: '#delivery_id',
+                forceFit: false,
+                multipleSelect: false,
+                width: 470,
+                items: []
+            }).render(),
+            dev_name_select = new Select.Select({
+                render: '#dev_name_select',
+                valueField: '#dev_name',
+                multipleSelect: false,
+            }).render(),
+            dev_type_select = new Select.Select({
+                render: '#dev_type_select',
+                valueField: '#dev_type',
+                multipleSelect: false,
+                items: []
+            }).render(),
+            columns = [
+                {title: '入库编号', dataIndex: 'in_confirmed_ident', elCls: 'center', width: 180},
+                {title: '&nbsp入库确认人', dataIndex: 'in_confirmed_by', elCls: 'center', width: 150},
+                {title: '&nbsp入库时间', dataIndex: 'in_confirmed_date', elCls: 'center', width: 200},
+                {
+                    title: '入库数量',
+                    dataIndex: 'in_confirmed_no',
+                    elCls: 'center',
+                    width: 80,
+                    editor: {xtype: 'number', rules: {required: true}}
+                },
+
+                {
+                    title: '入库总量',
+                    dataIndex: 'in_confirmed_total',
+                    elCls: 'center',
+                    width: 80,
+                    editor: {xtype: 'number', rules: {required: true}}
+                }, {
+                    title: '备注',
+                    dataIndex: '',
+                    elCls: 'center',
+                    width: 150,
+                    renderer: BUI.Grid.Format.enumRenderer(enumObj)
+                },
+                {
+                    title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
 
                         var editStr1 = '<span class="grid-command btn-edit" title="编辑信息">编辑</span>',
-                                delStr = '<span class="grid-command btn-del" title="删除信息">删除</span>';//页面操作不需要使用Search.createLink
+                            delStr = '<span class="grid-command btn-del" title="删除信息">删除</span>';//页面操作不需要使用Search.createLink
                         return editStr1 + delStr;
                     }
-                  },
-                ],
-                store = Search.createStore('/listStorageByStock', {
-                    proxy: {
-                        save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
-                            addUrl: '/addStorage',
-                            updateUrl: '/updateStorage',
-                            removeUrl: '../data/del.php'
+                },
+            ],
+            store = Search.createStore('/listStorageByStock', {
+                proxy: {
+                    save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
+                        addUrl: '/addStorage',
+                        updateUrl: '/updateStorage',
+                        removeUrl: '../data/del.php'
+                    },
+                    method: 'POST'
+                },
+                pageSize: 12,
+                autoSync: true //保存数据后，自动更新
+            }),
+            gridCfg = Search.createGridCfg(columns, {
+                tbar: {
+                    items: [
+                        {
+                            text: '<i class="icon-plus"></i>新增入库',
+                            btnCls: 'button button-small',
+                            handler: addFunction
                         },
-                        method: 'POST'
-                    },
-                    pageSize: 12,
-                    autoSync: true //保存数据后，自动更新
-                }),
-                gridCfg = Search.createGridCfg(columns, {
-                    tbar: {
-                        items: [
-                            {
-                                text: '<i class="icon-plus"></i>新增入库',
-                                btnCls: 'button button-small',
-                                handler: addFunction
-                            },
-                            {
-                                text: '<i class="icon-hand-right"></i>设备出库',
-                                btnCls: 'button button-small',
-                                handler: outDevFunction
-                            },
-                            {
-                                text: '<a class="page-action" data-href="/menu/delivery_tab" methods="post" title="出库记录" data-id="outSwitch">出库记录</a>',
-                                btnCls: 'button button-small',
+                        {
+                            text: '<i class="icon-hand-right"></i>设备出库',
+                            btnCls: 'button button-small',
+                            handler: outDevFunction
+                        },
+                        {
+                            text: '<a class="page-action" data-href="/menu/delivery_tab" methods="post" title="出库记录" data-id="outSwitch">出库记录</a>',
+                            btnCls: 'button button-small',
 //                                handler: ioSwitch
-                            }
-                        ]
-                    },
-                    plugins: [Editing_I, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
+                        }
+                    ]
+                },
+                plugins: [Editing_I, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
 
-                });
+            });
 
         var search = new Search({
-                    store: store,
-                    gridCfg: gridCfg
-                }),
-                grid = search.get('grid'),
-                I_Form = Editing_I.get('form'),
-                O_Form = Editing_O.get('form');
+                store: store,
+                gridCfg: gridCfg
+            }),
+            grid = search.get('grid'),
+            I_Form = Editing_I.get('form'),
+            O_Form = Editing_O.get('form');
 
         function addFunction() {
-            if ($.isEmptyObject(select_data)) {
-                $.ajax({
-                    url: '/getStoreSelect',
-                    type: 'POST', //GET
-                    async: true,    //或false,是否异步
-                    /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                    success: function (data, textStatus, jqXHR) {
-                        if (data != null && data != undefined) {
-                            select_data = data;
-                            dev_name_select.set('items', select_data.dev_name);
-                        }
-                    },
-                    error: function (xhr, textStatus) {
-                        console.log('错误')
-                        console.log(xhr)
-                        console.log(textStatus)
-                    }
-                })
-            }
+            office_selectAjax();
+            stock_office_select.set('items', stock_officeSelect());
             dev_type_select.set('items', []);
             dev_name_select.set('items', select_data.dev_name);
             var newData = {isNew: true}; //标志是新增加的记录
             Editing_I.add(newData, 'name'); //添加记录后，直接编辑
-            I_Form.getField('in_confirmed_no').addRule('max',9, '入库限制 不能大于{0}');
-            I_Form.getField('in_confirmed_no').addRule('min',1, '入库限制 不能小于{0}');
         }
 
         //编辑操作
@@ -323,6 +438,49 @@
             }
         }
 
+        //下拉框ajax请求office_selectAjax--科室信息数据获取
+        function office_selectAjax() {
+            if (offices_select == undefined || offices_select == null) {
+                offices_select = localstorageIO("offices_select", "/getOfficeSelect");
+                if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
+                    alert("浏览器不支持localstorage！");
+                    $.ajax({
+                        url: '/getOfficeSelect',
+                        type: 'POST', //GET
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            if (data != null && data != undefined) {
+                                offices_select = data.result;
+                                stock_office_select.set('items', stock_officeSelect());
+                            }
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus)
+                        }
+                    })
+                }
+            }
+            if (office_tree == null) {
+                office_tree = GetMenus('root', offices_select);
+            }
+        }
+
+        //库存科室下拉框数据生成
+        function stock_officeSelect() {
+            if (stock_office == undefined || $.isEmptyObject(stock_office)) {
+                for (var i in offices_select) {
+                    if (offices_select[i].office_function == '1') {
+                        stock_office[offices_select[i].value] = offices_select[i].text;
+                    }
+                }
+            }
+            return stock_office;
+        }
+
         //监听事件，删除一条记录
         grid.on('cellclick', function (ev) {
             var sender = $(ev.domTarget); //点击的Dom
@@ -343,14 +501,14 @@
         });
 
         store.on('beforeprocessload', function (ev) {
-            if(!ev.data){
+            if (!ev.data) {
                 return;
             }
             enumUsers = ev.data.userMapList;
         });
 
         store.on('load', function (ev) {
-            if ($.isEmptyObject(enumUsers)||enumUsers.length == 0) {
+            if ($.isEmptyObject(enumUsers) || enumUsers.length == 0) {
                 return;
             }
             var items = grid.getItems();
