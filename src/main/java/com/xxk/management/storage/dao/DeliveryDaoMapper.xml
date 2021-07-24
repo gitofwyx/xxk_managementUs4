@@ -74,7 +74,7 @@ updateDate</sql>
         select
         <include refid="deliveryForEntry"></include>
         from xxk_delivery
-        where deleteFlag='0' and out_confirmed_officeId=#{2} and entity_entry_status in ('0','1','2')
+        where deleteFlag='0' and out_confirmed_genre!='6' and out_confirmed_officeId=#{2} and entity_entry_status in ('0','1','2')
         UNION ALL
         select
         <include refid="storageForEntry"></include>

@@ -64,7 +64,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Map<String, Object> addDelivery(Stock stock, Delivery delivery, String status) {
+    public Map<String, Object> addDelivery(Stock stock, Delivery delivery, String genre,String status) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String deliveryId = UUIdUtil.getUUID();
@@ -87,7 +87,7 @@ public class DeliveryServiceImpl implements DeliveryService {
             delivery.setStock_id(stock.getId());
             delivery.setOut_confirmed_ident(out_confirmed_ident);
             delivery.setOut_confirmed_type(stock.getStock_type());
-            delivery.setOut_confirmed_genre("1");
+            delivery.setOut_confirmed_genre(genre);
             delivery.setOut_confirmed_by(stock.getUpdateUserId());
             delivery.setOut_confirmed_unit(stock.getStock_unit());
             delivery.setOut_confirmed_proportion(stock.getStock_proportion());
@@ -121,7 +121,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Map<String, Object> addDelivery(Delivery delivery, String status) {
+    public Map<String, Object> addDelivery(Delivery delivery,String genre, String status) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String deliveryId = UUIdUtil.getUUID();
@@ -135,7 +135,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
             //c库
             delivery.setId(deliveryId);
-            delivery.setOut_confirmed_genre("1");
+            delivery.setOut_confirmed_genre(genre);
             delivery.setEntity_entry_status(status);
             delivery.setDeleteFlag("0");
 

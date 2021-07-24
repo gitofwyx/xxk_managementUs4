@@ -541,6 +541,16 @@
             }//if语句判断是否获取到设备ID
         });
 
+        //库存记录框选中
+        transfer_stock_select.on('change', function (ev) {
+            $("#in_confirmed_no").attr('disabled', false);
+            $("#in_confirmed_date").attr('disabled', false);
+            $("#stock_version").val(ev.item.stock_version);
+            $("#stock_unit").val(ev.item.stock_unit);
+            $("#stock_proportion").val(ev.item.stock_proportion);
+            $("#stock_total").val(ev.item.stock_total);
+        });
+
         store.on('beforeprocessload', function (ev) {
             if (!ev.data) {
                 return;

@@ -194,6 +194,10 @@
                     <input name="out_confirmed_offices" id="out_confirmed_offices" type="text"
                            data-rules="{required:true}">
                 </div>
+                <div class="controls">
+                    <input type="checkbox" id="T_Stock" name="T_Stock"
+                           style="width:15px;height:20px;background-color:#ffffff;">
+                </div>
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>出库确认人：</label>
@@ -234,35 +238,43 @@
                            min="0.1" max="999" class="input-normal control-text">
                 </div>
             </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="stock_office_id2" name="stock_office_id" type="hidden"
-                           data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="out_confirmed_officeId" name="out_confirmed_officeId" type="hidden"
-                           data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="out_confirmed_total" name="out_confirmed_total" type="hidden"
-                           data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden"
-                           data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="stock_no2" name="stock_no" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="stock_record_id2" name="stock_record_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="entity_name" name="entity_name" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
-                </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="stock_office_id2" name="stock_office_id" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="out_confirmed_genre" name="out_confirmed_genre" type="hidden">
+            </div>
+            <div class="control-group span2.5">
+                <input id="out_confirmed_officeId" name="out_confirmed_officeId" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="out_confirmed_total" name="out_confirmed_total" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_no2" name="stock_no" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_record_id2" name="stock_record_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_name" name="entity_name" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label ><s style="color: #ee2212">*操作提示：转库操作请在出库科室后面勾选</s></label>
             </div>
         </div>
     </form>
@@ -275,6 +287,7 @@
 <![endif]-->
 <script type="text/javascript" src="/js/tree/tree_build.js"></script>
 <script type="text/javascript" src="/js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tools/data_handling.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -948,7 +961,27 @@
 
             //出库科室选择
             stock_office_tree.on('itemclick', function (ev) {
+                $("#out_confirmed_genre").val("");
+                $("#T_Stock").prop("checked", false);
                 O_Form.getField('out_confirmed_officeId').set('value', ev.item.value);
+                //$("#out_confirmed_officeId").val(ev.item.value);
+            });
+
+            $("#T_Stock").change(function() {
+                alert("change");
+                $("#out_confirmed_genre").val("");
+                if(!CheckIsNullOrEmpty($("#out_confirmed_officeId").val())){
+                    return;
+                }
+                if (stock_office == undefined || $.isEmptyObject(stock_office)) {
+                    return;
+                }
+                for (var i in stock_office) {
+                    if (i === $("#out_confirmed_officeId").val()&&this.checked) {
+                        $("#out_confirmed_genre").val("6");
+                        BUI.Message.Alert('勾选了转库');
+                    }
+                }
             });
 
         });

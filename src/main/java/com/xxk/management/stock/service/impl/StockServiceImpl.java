@@ -192,7 +192,13 @@ public class StockServiceImpl implements StockService {
                 //出库更新
                 delivery.setClass_id(stock.getClass_id());
                 delivery.setEntity_id(stock.getEntity_id());
-                result = deliveryService.addDelivery(stock, delivery, "1");
+                if ("6".equals(delivery.getOut_confirmed_genre()) ) {
+                    result = deliveryService.addDelivery(stock, delivery,"6", "-");//转库
+                }
+                else if ("".equals(delivery.getOut_confirmed_genre()) ||!"6".equals(delivery.getOut_confirmed_genre())) {
+                    result = deliveryService.addDelivery(stock, delivery,"1", "1");
+                }
+
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -226,7 +232,7 @@ public class StockServiceImpl implements StockService {
                 result.put("error", "添加出错");
             } else {
                 //出库更新
-                result = deliveryService.addDelivery(delivery, "0");
+                result = deliveryService.addDelivery(delivery, "0","0");
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
