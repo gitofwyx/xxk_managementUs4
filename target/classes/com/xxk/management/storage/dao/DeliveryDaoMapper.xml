@@ -68,6 +68,15 @@ updateDate</sql>
         ORDER BY createDate desc limit #{0},#{1};
     </select>
 
+    <!--转库 -->
+    <select id="listDeliveryForTransfer" resultType="com.xxk.management.storage.entity.Delivery">
+        select
+        <include refid="columns"></include>
+        from xxk_delivery
+        where deleteFlag='0' and out_confirmed_officeId=#{2} and entity_entry_status='-'
+        ORDER BY createDate desc limit #{0},#{1};
+    </select>
+
     <select id="listDeliveryUNIONStorageByOffice" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
         SELECT Storage_UNION.*
         FROM (

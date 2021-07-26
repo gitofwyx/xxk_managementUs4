@@ -59,6 +59,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
+    public List<Delivery> listDeliveryForTransfer(int pageStart, int pageSize, String stock_id) {
+        return dao.listDeliveryForTransfer((pageStart - 1) * pageSize, pageSize, stock_id);
+    }
+
+    @Override
     public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize, String stock_id) {
         return dao.listDeliveryUNIONStorageByOffice((pageStart - 1) * pageSize, pageSize, stock_id);
     }

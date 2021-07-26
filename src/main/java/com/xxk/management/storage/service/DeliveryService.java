@@ -20,6 +20,8 @@ public interface DeliveryService {
 
     public  List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String stock_id);
 
+    public  List<Delivery> listDeliveryForTransfer(int pageStart, int pageSize,String stock_id);
+
     public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize, String stock_id);
 
     public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String genre,String status);
