@@ -66,16 +66,17 @@
     <form id="I_Form" class="form-horizontal" action="">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>入科科室选择：</label>
+                <label class="control-label"><s>*</s>入库科室选择：</label>
                 <div class="controls" id="stock_office_select">
-                    <input name="in_confirmed_officeId" id="in_confirmed_officeId" type="hidden" data-rules="{required:true}">
+                    <input name="in_confirmed_officeId" id="in_confirmed_officeId" type="hidden"
+                           data-rules="{required:true}">
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="control-group span16">
-                <label class="control-label">&nbsp;&nbsp;<s>*</s>出库记录：(未入科登记记录)</label>
+                <label class="control-label">&nbsp;&nbsp;<s>*</s>出库记录：(未入库记录)</label>
                 <div class="controls" id="transfer_delivery_select">
                     <input id="delivery_id" name="delivery_id" type="hidden">
                 </div>
@@ -90,63 +91,53 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备/耗材名称：</label>
                 <div class="controls">
-                    <div class="input-group" id="delivery_class_div">
-                        <input type="text" id="delivery_entity_name"
-                               name="delivery_entity_name">
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        </ul>
-                        <!-- /btn-group -->
-                    </div>
+                    <input name="entity_name" id="entity_name" type="text"
+                           data-rules="{required:true}">
                 </div>
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备/耗材型号：</label>
                 <div class="controls">
-                    <div class="input-group" id="delivery_entity_div">
-                        <input type="text" id="delivery_entity_type"
-                               name="delivery_entity_type">
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        </ul>
-                        <!-- /btn-group -->
-                    </div>
+                    <input name="entity_type" id="entity_type" type="text"
+                           data-rules="{required:true}">
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">未入库总量：</label>
+                <div class="controls">
+                    <input name="out_confirmed_total" id="out_confirmed_total" type="text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>库存单位：</label>
+                <div class="controls">
+                    <input name="out_confirmed_unit" id="out_confirmed_unit" type="text"
+                           data-rules="{required:true}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="control-group span16">
+                <label class="control-label">&nbsp;&nbsp;<s>*</s>库存记录：(选择入库的库存)</label>
+                <div class="controls" id="transfer_stock_select">
+                    <input id="stock_record_id" name="stock_record_id" type="hidden">
+                </div>
+                &nbsp;
+                <input type="button" id="S_Reset" name="I_Reset" class=" icon-repeat"
+                       style="width:15px;height:18px;background-color:#ffffff;">
+            </div>
+
         </div>
         <div id="I_Input_console">
             <div class="row">
                 <div class="control-group span8">
-                    <label class="control-label">未入科总量：</label>
+                    <label class="control-label"><s>*</s>入库数量：</label>
                     <div class="controls">
-                        <input name="out_confirmed_no" id="out_confirmed_total" type="text">
-                    </div>
-                </div>
-                <div class="control-group span8">
-                    <label class="control-label"><s>*</s>库存单位：</label>
-                    <div class="controls">
-                        <input name="offices_storage_unit" id="offices_storage_unit" type="text"
-                               data-rules="{required:true}">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="control-group span16">
-                    <label class="control-label">&nbsp;&nbsp;<s>*</s>库存记录：(选择入库的库存)</label>
-                    <div class="controls" id="transfer_stock_select">
-                        <input id="stock_record_id" name="stock_record_id" type="hidden">
-                    </div>
-                    &nbsp;
-                    <input type="button" id="S_Reset" name="I_Reset" class=" icon-repeat"
-                           style="width:15px;height:18px;background-color:#ffffff;">
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="control-group span8">
-                    <label class="control-label"><s>*</s>入科数量：</label>
-                    <div class="controls">
-                        <input name="offices_storage_no" id="offices_storage_no" type="number"
+                        <input name="in_confirmed_no" id="in_confirmed_no" type="number"
                                data-rules="{required:true}">
                     </div>
                     <button type="button" id="depository_no_lock" name="" class="  icon-lock"
@@ -155,9 +146,9 @@
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>单位比例：</label>
                     <div class="controls">
-                        <input id="unit_num_1" name="unit_num" type="number" data-rules="{required:true}"
+                        <input id="unit_num" name="unit_num" type="number" data-rules="{required:true}"
                                class="span1 control-text"> ：
-                        <input id="offices_storage_proportion" name="offices_storage_proportion" type="number" min="1"
+                        <input id="stock_proportion" name="stock_proportion" type="number" min="1"
                                max="999"
                                data-rules="{required:true}" data-tip="{text:'数字有效'}" class="span2 control-text">
                     </div>
@@ -167,7 +158,7 @@
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>入科总量：</label>
                     <div class="controls">
-                        <input name="offices_storage_total" id="offices_storage_total" type="number"
+                        <input name="in_storage_total" id="in_storage_total" type="number"
                                data-rules="{required:true}">
                     </div>
                 </div>
@@ -180,6 +171,35 @@
                 <div class="controls control-row4">
                     <textarea name="remark" class="input-large" type="text"></textarea>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="io_Console" name="io_Console" type="hidden" 　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="class_id" name="class_id" type="hidden" 　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_id" name="entity_id" type="hidden" 　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_type" name="stock_type" type="hidden" 　data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_no" name="stock_no" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="in_confirmed_total" name="in_confirmed_total" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="in_confirmed_origin" name="in_confirmed_origin" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_total_unit" name="stock_total_unit" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_version" name="stock_version" type="hidden" data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -224,12 +244,13 @@
 <![endif]-->
 <script type="text/javascript" src="/js/tree/tree_build.js"></script>
 <script type="text/javascript" src="/js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tools/data_handling.js"></script>
 
 <script type="text/javascript">
     BUI.use('common/page-self');
 </script>
 <script type="text/javascript">
-    BUI.use(['common/search', 'bui/form','bui/grid', 'bui/select','bui/picker'], function (Search, Form,Grid, Select,Picker) {
+    BUI.use(['common/search', 'bui/form', 'bui/grid', 'bui/select', 'bui/picker'], function (Search, Form, Grid, Select, Picker) {
 
         var offices_select = localstorageIO("offices_select", "/getOfficeSelect");
         var enumObj = {"0": "未出库", "1": "已出库"},
@@ -398,7 +419,7 @@
             store = Search.createStore('/listStorageByStock', {
                 proxy: {
                     save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
-                        addUrl: '/addStorage',
+                        addUrl: '/addStock',
                         updateUrl: '/updateStorage',
                         removeUrl: '../data/del.php'
                     },
@@ -413,7 +434,7 @@
                         {
                             text: '<i class="icon-plus"></i>新增入库',
                             btnCls: 'button button-small',
-                            handler: addFunction
+                            handler: transferFunction
                         },
                         {
                             text: '<i class="icon-hand-right"></i>设备出库',
@@ -439,13 +460,15 @@
             I_Form = Editing_I.get('form'),
             O_Form = Editing_O.get('form');
 
-        function addFunction() {
+        function transferFunction() {
             office_selectAjax();
             stock_office_select.set('items', stock_officeSelect());
             dev_type_select.set('items', []);
             dev_name_select.set('items', select_data.dev_name);
             var newData = {isNew: true}; //标志是新增加的记录
             Editing_I.add(newData, 'name'); //添加记录后，直接编辑
+            I_Form.getField('io_Console').set('value', '1');
+            I_Form.getField('in_confirmed_origin').set('value', '4');
         }
 
         //编辑操作
@@ -572,8 +595,8 @@
         };
 
         //更新库存列表
-        function updateStockSelect(eId,oId) {
-            if (eId != null && eId!= '' && eId!= undefined) {
+        function updateStockSelect(eId, oId) {
+            if (eId != null && eId != '' && eId != undefined) {
                 $.ajax({
                     url: '/listStockByEntityId',
                     data: {
@@ -587,10 +610,11 @@
                     success: function (data, textStatus, jqXHR) {
                         if (!$.isEmptyObject(data.entityData)) {
                             transfer_stock_grid.set('items', data.entityData);
-                            // input_console(false);
+                             input_console(true);
                         } else {
                             transfer_stock_grid.set('items', []);
                             input_console(false);
+                            $("#stock_version").val(0);
                         }
                         $("#unit_num").val(1);
                     },
@@ -636,17 +660,46 @@
         });
 
         transfer_delivery_select.on('change', function (ev) {
-            updateStockSelect(ev.item.entity_id,ev.item.out_confirmed_officeId);
+            updateStockSelect(ev.item.entity_id, ev.item.out_confirmed_officeId);
+            $("#class_id").val(ev.item.class_id);
+            $("#entity_id").val(ev.item.entity_id);
+            $("#entity_name").val(ev.item.entity_name);
+            $("#entity_type").val(ev.item.entity_type);
+            $("#stock_type").val(ev.item.out_confirmed_type);
+            $("#in_confirmed_total").val(ev.item.out_confirmed_total);
+            $("#stock_total_unit").val(ev.item.out_confirmed_total_unit);
+            $("#out_confirmed_no").val(ev.item.out_confirmed_no);
+            $("#out_confirmed_total").val(ev.item.out_confirmed_total);
+            $("#out_confirmed_unit").val(ev.item.out_confirmed_unit);
         });
 
         //库存记录框选中
         transfer_stock_select.on('change', function (ev) {
-            $("#in_confirmed_no").attr('disabled', false);
-            $("#in_confirmed_date").attr('disabled', false);
             $("#stock_version").val(ev.item.stock_version);
-            $("#stock_unit").val(ev.item.stock_unit);
+            $("#in_confirmed_no").val(transfer_delivery_grid.getSelected().out_confirmed_no);
             $("#stock_proportion").val(ev.item.stock_proportion);
-            $("#stock_total").val(ev.item.stock_total);
+            $("#in_storage_total").val(transfer_delivery_grid.getSelected().out_confirmed_total);
+            var stock_no = makeInNum(parseInt(ev.item.stock_total) + parseInt(transfer_delivery_grid.getSelected().out_confirmed_total), ev.item.stock_proportion);
+            $("#stock_no").val(stock_no);
+
+        });
+
+        $("#stock_proportion").on('blur', function () {
+            var O_num = $("#in_confirmed_no").val();//获取入库数量no
+            O_num=calculate_amount(O_num,$("#stock_proportion").val());
+            $("#in_confirmed_no").val(O_num);
+            $("#in_confirmed_total").val(reckon_stock_total(O_num,$("#stock_proportion").val()));
+            $("#in_storage_total").val($("#in_confirmed_total").val());
+            $("#stock_no").val(O_num);
+        });
+
+        //入库数量输入框光标移出事件
+        $("#in_confirmed_no").on('blur', function () {
+            if(!CheckIsNullOrEmpty($("#stock_proportion").val())){
+                $("#in_storage_total").val("");
+                return;
+            }
+            $("#stock_proportion").trigger('blur');
         });
 
         store.on('beforeprocessload', function (ev) {
