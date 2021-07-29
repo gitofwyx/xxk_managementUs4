@@ -98,6 +98,9 @@ public class StockServiceImpl implements StockService {
                 stock.setUpdateDate(createDate);
                 stock.setUpdateUserId(stock.getUpdateUserId());
                 stock.setDeleteFlag("0");
+                if (stock.getStock_office_id() == null || "".equals(stock.getStock_office_id())) {
+                    stock.setStock_office_id(createDate);
+                }
             } else {
                 log.error("addDepositoryWithStorage:无法获许设备或耗材ID");
                 result.put("hasError", true);

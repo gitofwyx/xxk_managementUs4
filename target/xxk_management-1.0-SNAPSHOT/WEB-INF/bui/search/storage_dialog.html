@@ -68,7 +68,7 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>入库科室选择：</label>
                 <div class="controls" id="stock_office_select">
-                    <input name="in_confirmed_officeId" id="in_confirmed_officeId" type="hidden"
+                    <input name="stock_office_id" id="stock_office_id" type="hidden"
                            data-rules="{required:true}">
                 </div>
             </div>
@@ -155,6 +155,13 @@
                 </div>
             </div>
             <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存单位：</label>
+                    <div class="controls">
+                        <input id="stock_unit" name="stock_unit" type="text" data-rules="{required:true}"
+                               class="input-normal control-text">
+                    </div>
+                </div>
                 <div class="control-group span8">
                     <label class="control-label"><s>*</s>入科总量：</label>
                     <div class="controls">
@@ -275,7 +282,7 @@
             //库存科室选择框
             stock_office_select = new Select.Select({
                 render: '#stock_office_select',
-                valueField: '#in_confirmed_officeId',
+                valueField: '#stock_office_id',
                 multipleSelect: false,
                 items: []
             }).render(),
@@ -676,6 +683,7 @@
         //库存记录框选中
         transfer_stock_select.on('change', function (ev) {
             $("#stock_version").val(ev.item.stock_version);
+            $("#stock_unit").val(ev.item.stock_unit);
             $("#in_confirmed_no").val(transfer_delivery_grid.getSelected().out_confirmed_no);
             $("#stock_proportion").val(ev.item.stock_proportion);
             $("#in_storage_total").val(transfer_delivery_grid.getSelected().out_confirmed_total);
