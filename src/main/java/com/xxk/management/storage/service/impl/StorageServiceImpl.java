@@ -7,11 +7,14 @@ import com.xxk.management.device.entity.Device;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.storage.entity.OfficesStorage;
 import com.xxk.management.stock.entity.Stock;
+import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.entity.Delivery;
+import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.storage.service.StorageService;
 import com.xxk.management.storage.dao.StorageDao;
 import com.xxk.management.storage.entity.Storage;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,12 @@ public class StorageServiceImpl implements StorageService {
 
     @Autowired
     private StorageDao dao;
+
+    @Autowired
+    private StockService stockService;
+
+    @Autowired
+    private DeliveryService deliveryService;
 
 
     @Override
@@ -198,6 +207,62 @@ public class StorageServiceImpl implements StorageService {
             result.put("hasError", true);
             result.put("error", "添加出错");
             log.error(e);
+        }
+        return result;
+    }
+
+    //转库操作
+    @Override
+    public Map<String, Object> transferStockOfUpdateStock(Stock stock,Storage storage,String delivery_id) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            result = stockService.updateStockWithStorage(stock, storage);
+            if("true".equals(result.get("hasError"))||(boolean)result.get("hasError")){
+                result.put("hasError", true);
+                result.put("error", "更新出错");
+                return result;
+            }
+            boolean Result =deliveryService.updateDeliveryStatus(delivery_id,"3");
+            if(!Result){
+                log.error("updateDepositoryWithStorage:deliveryService:allEntryDepository错误！");
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                return result;
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
+        }
+        return result;
+    }
+
+    //转库操作
+    @Override
+    public Map<String, Object> transferStockOfAddStock(Stock stock,Storage storage,String delivery_id) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            result = stockService.addStockWithStorage(stock, storage);
+            if("true".equals(result.get("hasError"))||(boolean)result.get("hasError")){
+                result.put("hasError", true);
+                result.put("error", "更新出错");
+                return result;
+            }
+            boolean Result =deliveryService.updateDeliveryStatus(delivery_id,"3");
+            if(!Result){
+                log.error("updateDepositoryWithStorage:deliveryService:allEntryDepository错误！");
+                result.put("hasError", true);
+                result.put("error", "添加出错");
+                return result;
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
         }
         return result;
     }

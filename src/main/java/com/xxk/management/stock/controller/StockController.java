@@ -13,6 +13,7 @@ import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.stock.service.StockService;
+import com.xxk.management.storage.service.StorageService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,9 @@ public class StockController extends BaseController {
 
     @Autowired
     private MaterialService materialService;
+
+    @Autowired
+    private StorageService storageService;
 
     @ResponseBody
     @RequestMapping("/listStock")
@@ -80,10 +84,9 @@ public class StockController extends BaseController {
                 List<Map<String, Object>> entityList = new ArrayList<>();
                 if ("1".equals(search_type)) {
                     entityList = deviceService.getStoreDeviceById(listEntId);
-                }else if("2".equals(search_type)|| "3".equals(search_type)){
+                } else if ("2".equals(search_type) || "3".equals(search_type)) {
                     entityList = materialService.getStoreMaterialById(listEntId);
-                }
-                else {
+                } else {
                     entityList = null;
                 }
                 if (resultList == null || entityList == null) {
@@ -140,6 +143,33 @@ public class StockController extends BaseController {
         //return "system/index";
     }
 
+    //转库操作
+    @ResponseBody
+    @RequestMapping(value = "/addStockForTransferStock", method = RequestMethod.POST)
+    public Map<String, Object> addStockForTransferStock(Stock stock, Storage storage,
+                                                        @RequestParam(value = "stock_record_id") String stock_record_id,
+                                                        @RequestParam(value = "delivery_id") String delivery_id) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            stock.setUpdateUserId(CurrentUserId);
+            if (stock_record_id != null && !"".equals(stock_record_id)) {
+                stock.setId(stock_record_id);//获取库存的id值
+                result = storageService.transferStockOfUpdateStock(stock, storage,delivery_id);
+            } else {
+                result = storageService.transferStockOfAddStock(stock, storage,delivery_id);
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
+        }
+        return result;
+        //return "system/index";
+    }
+
     @ResponseBody
     @RequestMapping("/updateStock")
     public Map<String, Object> updateStock(Stock stock, Delivery delivery,
@@ -158,7 +188,7 @@ public class StockController extends BaseController {
             }
         } catch (Exception e) {
             result.put("hasError", true);
-            result.put("error", "设备更新出错！"+e.getCause().getLocalizedMessage());
+            result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
             log.error(e);
         }
 
@@ -168,21 +198,21 @@ public class StockController extends BaseController {
     @ResponseBody
     @RequestMapping("/updateStockForMaterial")
     public Map<String, Object> updateStockForMaterial(Stock stock, Delivery delivery,
-                                           @RequestParam(value = "stock_record_id") String stock_record_id) {
+                                                      @RequestParam(value = "stock_record_id") String stock_record_id) {
         Map<String, Object> result = new HashMap<>();
         try {
-            if("1".equals(stock.getStock_type())||"".equals(stock.getStock_type())){
+            if ("1".equals(stock.getStock_type()) || "".equals(stock.getStock_type())) {
                 result.put("hasError", true);
-                result.put("error", "出错！设备类型获取不能为"+stock.getStock_type());
+                result.put("error", "出错！设备类型获取不能为" + stock.getStock_type());
                 return result;
             }
-            Device device=deviceService.getDeviceById(delivery.getEntity_id());
-            if(null!=device||"1".equals(stock.getStock_type())){
+            Device device = deviceService.getDeviceById(delivery.getEntity_id());
+            if (null != device || "1".equals(stock.getStock_type())) {
                 result.put("hasError", true);
                 result.put("error", "出错！设备设为配置出库！");
                 return result;
             }
-            if(null==stock.getStock_office_id()||"".equals(stock.getStock_office_id())||stock.getStock_office_id().equals(delivery.getOut_confirmed_officeId())){
+            if (null == stock.getStock_office_id() || "".equals(stock.getStock_office_id()) || stock.getStock_office_id().equals(delivery.getOut_confirmed_officeId())) {
                 result.put("hasError", true);
                 result.put("error", "出错！库存科室为空或同科出库！");
                 return result;
@@ -199,7 +229,7 @@ public class StockController extends BaseController {
             }
         } catch (Exception e) {
             result.put("hasError", true);
-            result.put("error", "设备更新出错！"+e.getCause().getLocalizedMessage());
+            result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
             log.error(e);
         }
 

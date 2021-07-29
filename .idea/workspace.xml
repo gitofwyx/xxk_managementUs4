@@ -9,12 +9,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月28日 18:26:43 转移入库">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月30日 01:40:01 转移入库">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/StorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/storage_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/storage_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/storage_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/storage_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/service/impl/StockServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2080,14 +2083,9 @@
       <workItem from="1627578883257" duration="721000" />
       <workItem from="1627579636161" duration="191000" />
       <workItem from="1627579844929" duration="218000" />
-      <workItem from="1627580080948" duration="311000" />
-    </task>
-    <task id="LOCAL-00095" summary="2021年5月5日 23:04:09">
-      <created>1620227055525</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1620227055525</updated>
+      <workItem from="1627580080948" duration="3614000" />
+      <workItem from="1627583757213" duration="1828000" />
+      <workItem from="1627585603696" duration="62000" />
     </task>
     <task id="LOCAL-00096" summary="2021-5-6 00:09:58">
       <created>1620231003180</created>
@@ -2425,7 +2423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627468007845</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="2021年7月30日 01:40:01 转移入库">
+      <created>1627580406539</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1627580406539</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2532,7 +2537,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年6月1日 23:20:58" />
     <MESSAGE value="2021年6月2日 14:25:12 重编译" />
     <MESSAGE value="2021-6-4 00:48:20" />
     <MESSAGE value="2021年6月13日 19:29:14" />
@@ -2557,7 +2561,8 @@
     <MESSAGE value="2021年7月18日 14:49:11 库存转移_入库" />
     <MESSAGE value="2021年7月27日 02:32:20 转移入库" />
     <MESSAGE value="2021年7月28日 18:26:43 转移入库" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年7月28日 18:26:43 转移入库" />
+    <MESSAGE value="2021年7月30日 01:40:01 转移入库" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年7月30日 01:40:01 转移入库" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2648,12 +2653,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java</url>
-          <line>171</line>
+          <line>201</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java</url>
-          <line>121</line>
+          <line>124</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
