@@ -211,62 +211,6 @@ public class StorageServiceImpl implements StorageService {
         return result;
     }
 
-    //转库操作
-    @Override
-    public Map<String, Object> transferStockOfUpdateStock(Stock stock,Storage storage,String delivery_id) {
-        Map<String, Object> result = new HashMap<>();
-        try {
-
-            result = stockService.updateStockWithStorage(stock, storage);
-            if("true".equals(result.get("hasError"))||(boolean)result.get("hasError")){
-                result.put("hasError", true);
-                result.put("error", "更新出错");
-                return result;
-            }
-            boolean Result =deliveryService.updateDeliveryStatus(delivery_id,"3");
-            if(!Result){
-                log.error("updateDepositoryWithStorage:deliveryService:allEntryDepository错误！");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-
-        } catch (Exception e) {
-            log.error(e);
-            result.put("hasError", true);
-            result.put("error", "更新出错");
-        }
-        return result;
-    }
-
-    //转库操作
-    @Override
-    public Map<String, Object> transferStockOfAddStock(Stock stock,Storage storage,String delivery_id) {
-        Map<String, Object> result = new HashMap<>();
-        try {
-
-            result = stockService.addStockWithStorage(stock, storage);
-            if("true".equals(result.get("hasError"))||(boolean)result.get("hasError")){
-                result.put("hasError", true);
-                result.put("error", "更新出错");
-                return result;
-            }
-            boolean Result =deliveryService.updateDeliveryStatus(delivery_id,"3");
-            if(!Result){
-                log.error("updateDepositoryWithStorage:deliveryService:allEntryDepository错误！");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-
-        } catch (Exception e) {
-            log.error(e);
-            result.put("hasError", true);
-            result.put("error", "更新出错");
-        }
-        return result;
-    }
-
     @Override
     public boolean deleteListRegUser(List<String> listStr) {
         return false;

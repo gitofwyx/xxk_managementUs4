@@ -9,6 +9,7 @@ import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.material.service.MaterialService;
 import com.xxk.management.stock.entity.Stock;
+import com.xxk.management.stock.service.UniteOperateStockService;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
@@ -48,7 +49,7 @@ public class StockController extends BaseController {
     private MaterialService materialService;
 
     @Autowired
-    private StorageService storageService;
+    private UniteOperateStockService uniteOperateStockService;
 
     @ResponseBody
     @RequestMapping("/listStock")
@@ -156,9 +157,9 @@ public class StockController extends BaseController {
             stock.setUpdateUserId(CurrentUserId);
             if (stock_record_id != null && !"".equals(stock_record_id)) {
                 stock.setId(stock_record_id);//获取库存的id值
-                result = storageService.transferStockOfUpdateStock(stock, storage,delivery_id);
+                result = uniteOperateStockService.transferStockOfUpdateStock(stock, storage,delivery_id);
             } else {
-                result = storageService.transferStockOfAddStock(stock, storage,delivery_id);
+                result = uniteOperateStockService.transferStockOfAddStock(stock, storage,delivery_id);
             }
 
         } catch (Exception e) {

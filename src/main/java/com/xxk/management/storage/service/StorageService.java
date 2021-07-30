@@ -27,10 +27,6 @@ public interface StorageService {
 
     public Map<String, Object> addStorageForOfficesStorage(OfficesStorage storage);
 
-    public Map<String, Object> transferStockOfUpdateStock(Stock stock,Storage storage,String delivery_id);
-
-    public Map<String, Object> transferStockOfAddStock(Stock stock,Storage storage,String delivery_id);
-
     public boolean deleteListRegUser(List<String> listStr);
 
     public List<String> getStorageIdByIdent(String ident);
