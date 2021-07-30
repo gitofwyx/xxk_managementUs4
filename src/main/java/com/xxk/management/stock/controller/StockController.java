@@ -1,24 +1,18 @@
 package com.xxk.management.stock.controller;
 
 import com.xxk.core.file.BaseController;
-import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.JsonUtils;
-import com.xxk.core.util.UUIdUtil;
-import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.material.service.MaterialService;
 import com.xxk.management.stock.entity.Stock;
-import com.xxk.management.stock.service.UniteOperateStockService;
+import com.xxk.management.stock.service.StockUniteOperateService;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
-import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.stock.service.StockService;
-import com.xxk.management.storage.service.StorageService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,7 +43,7 @@ public class StockController extends BaseController {
     private MaterialService materialService;
 
     @Autowired
-    private UniteOperateStockService uniteOperateStockService;
+    private StockUniteOperateService stockUniteOperateService;
 
     @ResponseBody
     @RequestMapping("/listStock")
@@ -157,9 +151,9 @@ public class StockController extends BaseController {
             stock.setUpdateUserId(CurrentUserId);
             if (stock_record_id != null && !"".equals(stock_record_id)) {
                 stock.setId(stock_record_id);//获取库存的id值
-                result = uniteOperateStockService.transferStockOfUpdateStock(stock, storage,delivery_id);
+                result = stockUniteOperateService.transferStockOfUpdateStock(stock, storage,delivery_id);
             } else {
-                result = uniteOperateStockService.transferStockOfAddStock(stock, storage,delivery_id);
+                result = stockUniteOperateService.transferStockOfAddStock(stock, storage,delivery_id);
             }
 
         } catch (Exception e) {

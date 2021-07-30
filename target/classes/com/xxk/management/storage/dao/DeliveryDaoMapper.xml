@@ -103,8 +103,7 @@ updateDate</sql>
     <!--修改信息 -->
     <update id="updateDeliveryStatus"  parameterType="string">
         update xxk_delivery set entity_entry_status=#{1}
-         where entity_entry_status in ('0','1','2')
-         and id=#{0}
+         where id=#{0}
          and deleteFlag='0';
     </update>
 

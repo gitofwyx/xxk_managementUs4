@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/3/15.
  */
-public interface UniteOperateStockService {
+public interface StockUniteOperateService {
 
     public Map<String, Object> transferStockOfUpdateStock(Stock stock,Storage storage,String delivery_id);
 
