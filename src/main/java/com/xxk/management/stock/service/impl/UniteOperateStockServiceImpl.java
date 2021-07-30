@@ -50,7 +50,7 @@ public class UniteOperateStockServiceImpl implements UniteOperateStockService {
         try {
 
             result = stockService.updateStockWithStorage(stock, storage);
-            if("true".equals(result.get("hasError"))||result.get("hasError")==true){
+            if(result.get("hasError") instanceof Boolean&&(Boolean)result.get("hasError")){
                 result.put("hasError", true);
                 result.put("error", "更新出错");
                 return result;

@@ -9,17 +9,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月30日 03:08:58 转移入库">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/UniteOperateStockService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/UniteOperateStockServiceImpl.java" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年7月30日 14:23:51 转移入库">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/StorageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/controller/StockController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/storage_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/bui/search/storage_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/controller/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/stock/controller/StockController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xxk_management-1.0-SNAPSHOT/WEB-INF/classes/com/xxk/management/storage/service/impl/StorageServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/UniteOperateStockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/UniteOperateStockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2091,21 +2084,8 @@
       <workItem from="1627585687292" duration="3864000" />
       <workItem from="1627623493287" duration="426000" />
       <workItem from="1627623936516" duration="88000" />
-      <workItem from="1627624069512" duration="1429000" />
-    </task>
-    <task id="LOCAL-00097" summary="2021年5月9日 23:58:34">
-      <created>1620575922436</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1620575922437</updated>
-    </task>
-    <task id="LOCAL-00098" summary="2021年5月9日 23:58:34">
-      <created>1620576929324</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1620576929324</updated>
+      <workItem from="1627624069512" duration="2154000" />
+      <workItem from="1627648358794" duration="5033000" />
     </task>
     <task id="LOCAL-00099" summary="2021年5月9日 23:58:34">
       <created>1620576962107</created>
@@ -2436,7 +2416,21 @@
       <option name="project" value="LOCAL" />
       <updated>1627585742439</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="2021年7月30日 14:23:51 转移入库">
+      <created>1627626235086</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1627626235086</updated>
+    </task>
+    <task id="LOCAL-00147" summary="2021年7月30日 14:23:51 转移入库">
+      <created>1627626337801</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1627626337801</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2543,7 +2537,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021-6-4 00:48:20" />
     <MESSAGE value="2021年6月13日 19:29:14" />
     <MESSAGE value="2021年6月13日 21:10:31" />
     <MESSAGE value="2021年6月13日 22:25:51" />
@@ -2568,7 +2561,8 @@
     <MESSAGE value="2021年7月28日 18:26:43 转移入库" />
     <MESSAGE value="2021年7月30日 01:40:01 转移入库" />
     <MESSAGE value="2021年7月30日 03:08:58 转移入库" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年7月30日 03:08:58 转移入库" />
+    <MESSAGE value="2021年7月30日 14:23:51 转移入库" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年7月30日 14:23:51 转移入库" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2676,8 +2670,11 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="(Boolean)result.get(&quot;hasError&quot;)" language="JAVA" />
         <watch expression="&quot;true&quot;.equals(result.get(&quot;hasError&quot;))" language="JAVA" />
-        <watch expression="(boolean)result.get(&quot;hasError&quot;)" language="JAVA" />
+        <watch expression="result.get(&quot;hasError&quot;) instanceof Boolean" language="JAVA" />
+        <watch expression="result.get(&quot;hasError&quot;).getClass().getSimpleName()" language="JAVA" />
+        <watch expression="result.get(&quot;hasError&quot;)==true" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
