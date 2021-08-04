@@ -232,7 +232,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             } else {
                 result = stockService.updateStockWithStorage(stock, storage);
             }
-            if(result.get("hasError")==true){
+            if(result.get("hasError") instanceof Boolean&&(Boolean)result.get("hasError")){
                 throw new Exception("error");
             }
         } catch (DuplicateKeyException e) {

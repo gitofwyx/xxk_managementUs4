@@ -11,33 +11,21 @@
         </webroots>
       </configuration>
     </facet>
-    <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="web application context" name="MVC 应用程序上下文" removed="true">
-          <file>file://$MODULE_DIR$/src/main/resources/application-context.xml</file>
-        </fileset>
-        <fileset id="web dispatcherServlet servlet context" name="MVC dispatcherServlet servlet 上下文" removed="true">
-          <file>file://$MODULE_DIR$/src/main/resources/springmvc.xml</file>
-        </fileset>
-        <fileset id="fileset" name="Spring 应用程序上下文" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/application-context.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/application-context.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/application-kaptcha.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/application-kaptcha.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/shiro-context.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/shiro-context.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/springmvc.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/springmvc.xml</file>
-        </fileset>
-      </configuration>
-    </facet>
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <datasource-mapping>
-          <factory-entry name="xxk_management" />
-        </datasource-mapping>
+        <datasource-mapping />
         <naming-strategy-map />
+      </configuration>
+    </facet>
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="Spring 应用程序上下文" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/application-context.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/application-kaptcha.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/shiro-context.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/springmvc.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>
@@ -51,6 +39,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="java" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax:javaee-web-api:6.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:4.3.2.RELEASE" level="project" />
@@ -77,7 +66,7 @@
     <orderEntry type="library" name="Maven: cglib:cglib:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: asm:asm:3.3.1" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.6" level="project" />
-    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.20" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.28" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.8" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
@@ -93,6 +82,9 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.5" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:log4j-over-slf4j:1.7.5" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.7.5" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-lgpl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
