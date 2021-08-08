@@ -10,8 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月4日 22:53:50 项目升级Spring4.0">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/dao/Bar_codeDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/entity/Bar_code.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/service/Bar_codeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/service/impl/Bar_codeServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h -f origin 9d43a32" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +26,13 @@
   </component>
   <component name="FavoritesManager">
     <favorites_list name="xxk_management" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -2107,14 +2117,11 @@
       <workItem from="1627841138502" duration="676000" />
       <workItem from="1627940816150" duration="117000" />
       <workItem from="1628088268816" duration="4381000" />
-      <workItem from="1628094168789" duration="1962000" />
-    </task>
-    <task id="LOCAL-00104" summary="2021年5月29日 17:50:53">
-      <created>1622281858510</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1622281858511</updated>
+      <workItem from="1628094168789" duration="2004000" />
+      <workItem from="1628177743205" duration="2551000" />
+      <workItem from="1628338314905" duration="2463000" />
+      <workItem from="1628354767329" duration="949000" />
+      <workItem from="1628394303664" duration="606000" />
     </task>
     <task id="LOCAL-00105" summary="2021年5月31日 01:04:54">
       <created>1622394298213</created>
@@ -2452,7 +2459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628095803278</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="2021年8月4日 22:53:50 项目升级Spring4.0">
+      <created>1628096139358</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1628096139358</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
