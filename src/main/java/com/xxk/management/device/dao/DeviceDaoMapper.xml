@@ -84,7 +84,7 @@
         from xxk_device where id=#{0} and deleteFlag='0';
     </select>
 
-    <select id="getDeviceByBar_code" parameterType="string" resultType="com.xxkm.management.device.entity.Device">
+    <select id="getDeviceByBar_code" parameterType="string" resultType="com.xxk.management.device.entity.Device">
         select
         <include refid="columns"></include>
         FROM xxk_management.xxk_device
