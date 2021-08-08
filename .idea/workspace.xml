@@ -11,8 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月4日 22:53:50 updatePrint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/dao/DeviceDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/device/dao/DeviceDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/device/dao/DeviceDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/dao/Bar_codeDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/dao/Bar_codeDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2127,13 +2126,8 @@
       <workItem from="1628439742967" duration="665000" />
       <workItem from="1628440422923" duration="259000" />
       <workItem from="1628440699908" duration="100000" />
-    </task>
-    <task id="LOCAL-00108" summary="2021年6月2日 14:25:12 重编译">
-      <created>1622615125452</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1622615125452</updated>
+      <workItem from="1628440814837" duration="692000" />
+      <workItem from="1628465034156" duration="95000" />
     </task>
     <task id="LOCAL-00109" summary="2021-6-4 00:48:20">
       <created>1622738904259</created>
@@ -2471,7 +2465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628440476388</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="2021年8月4日 22:53:50 updatePrint">
+      <created>1628440829508</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1628440829509</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
