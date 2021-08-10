@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月10日 12:35:45 update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月10日 12:35:45 update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -2129,28 +2127,7 @@
       <workItem from="1628465034156" duration="848000" />
       <workItem from="1628522865267" duration="2213000" />
       <workItem from="1628569465433" duration="748000" />
-      <workItem from="1628570239679" duration="1266000" />
-    </task>
-    <task id="LOCAL-00111" summary="2021年6月13日 21:10:31">
-      <created>1623589834873</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1623589834874</updated>
-    </task>
-    <task id="LOCAL-00112" summary="2021年6月13日 22:25:51">
-      <created>1623594354942</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1623594354943</updated>
-    </task>
-    <task id="LOCAL-00113" summary="2021年6月13日 22:51:52">
-      <created>1623595916190</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1623595916190</updated>
+      <workItem from="1628570239679" duration="1613000" />
     </task>
     <task id="LOCAL-00114" summary="2021年6月13日 23:49:18">
       <created>1623599361666</created>
@@ -2474,7 +2451,28 @@
       <option name="project" value="LOCAL" />
       <updated>1628570154688</updated>
     </task>
-    <option name="localTasksCounter" value="160" />
+    <task id="LOCAL-00160" summary="2021年8月10日 12:35:45 update">
+      <created>1628571555663</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1628571555663</updated>
+    </task>
+    <task id="LOCAL-00161" summary="2021年8月10日 12:35:45 update">
+      <created>1628571667463</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1628571667463</updated>
+    </task>
+    <task id="LOCAL-00162" summary="2021年8月10日 12:35:45 update">
+      <created>1628571790565</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1628571790565</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
