@@ -23,7 +23,7 @@ public interface DepositoryService {
 
     public Depository getDepositoryByEntId(String entity_id);
 
-    public Map<String, Object> addDepositoryWithStorage(Depository depository, OfficesStorage storage);
+    public Map<String, Object> addDepositoryWithStorage(Depository depository, OfficesStorage storage) throws Exception;
 
     public Map<String, Object> updateDepositoryWithStorage(Depository depository, OfficesStorage storage);
 

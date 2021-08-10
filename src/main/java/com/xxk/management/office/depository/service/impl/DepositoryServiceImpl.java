@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,13 +49,13 @@ public class DepositoryServiceImpl implements DepositoryService {
 
     @Override
     public List<Depository> listDepository(int pageStart, int pageSize, String class_id, String entity_id, String depository_officeId, int search_type) {
-        return dao.listDepository((pageStart - 1) * pageSize,pageSize,class_id,entity_id,depository_officeId,search_type);
+        return dao.listDepository((pageStart - 1) * pageSize, pageSize, class_id, entity_id, depository_officeId, search_type);
     }
 
     @Override
     public List<Depository> selectDepository(String entity_id, String depository_officeId) {
-        List<Depository> res = dao.selectDepositoryWithOfficeEnt(entity_id,depository_officeId);
-        if(res.size() == 0) {
+        List<Depository> res = dao.selectDepositoryWithOfficeEnt(entity_id, depository_officeId);
+        if (res.size() == 0) {
             return null;
         }
         return res;
@@ -68,7 +69,7 @@ public class DepositoryServiceImpl implements DepositoryService {
     @Override
     public Depository getDepositoryByEntId(String entity_id) {
         List<Depository> res = dao.getDepositoryByEntId(entity_id);
-        if(res.size() == 0) {
+        if (res.size() == 0) {
             return null;
         }
         return res.get(0);
@@ -77,68 +78,57 @@ public class DepositoryServiceImpl implements DepositoryService {
     //新增库存
     // 2019年8月12日 13:44:05更新
     @Override
-    public Map<String, Object> addDepositoryWithStorage(Depository depository, OfficesStorage storage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> addDepositoryWithStorage(Depository depository, OfficesStorage storage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String depositoryId = UUIdUtil.getUUID();
-        try {
+
             /*if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
                 log.info("出错！无法获取设备ID");
                 result.put("hasError", true);
                 result.put("error", "添加出错");
                 return result;
             }*/
-            boolean Result =deliveryService.updateDeliveryStatus(depository.getDelivery_id(),"3");
-            if(!Result){
-                log.error("addDepositoryWithStorage:deliveryService:allEntryDepository错误！");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            if("0".equals(storage.getEntity_entry_status())){
-                boolean devicesResult=devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
-                        depository.getDepository_officeId(),
-                        depositoryId,
-                        "2",
-                        depository.getUpdateUserId(),createDate);
-                if (!(devicesResult)) {
-                    result.put("hasError", true);
-                    result.put("error", "添加出错");
-                    return result;
-                }
-            }
-            depository.setId(depositoryId);
-            depository.setDepository_ident("NO");
-            depository.setDepository_no(storage.getOffices_storage_total());
-            depository.setDepository_idle_no(storage.getOffices_storage_total());
-            depository.setDepository_total(storage.getOffices_storage_total());
-            depository.setDepository_idle_total(storage.getOffices_storage_total());
-            depository.setDepository_flag("1");
-            depository.setCreateDate(createDate);
-            depository.setCreateUserId(depository.getUpdateUserId());
-            depository.setUpdateDate(createDate);
-            //depository.setUpdateUserId(depository.getUpdateUserId());
-            depository.setDeleteFlag("0");
-            boolean depositoryResult = dao.addDepository(depository) == 1 ? true : false;
-            if (!(depositoryResult)) {
-                log.error("depositoryResult:" + depositoryResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                storage.setClass_id(depository.getClass_id());
-                storage.setEntity_id(depository.getEntity_id());
-                storage.setOffices_storage_total(depository.getDepository_total());
-                result = storageService.addOfficesStorage(depository, storage,"3");//“1”代表入科标记
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3");
+        if (!Result) {
+            log.error("addDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+            throw new Exception("addDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
         }
+        if ("0".equals(storage.getEntity_entry_status())) {
+            boolean devicesResult = devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
+                    depository.getDepository_officeId(),
+                    depositoryId,
+                    "2",
+                    depository.getUpdateUserId(), createDate);
+            if (!(devicesResult)) {
+                log.error("addDepositoryWithStorage:devicesService.updateDevicesStatus出错！");
+                throw new Exception("addDepositoryWithStorage:devicesService.updateDevicesStatus出错！");
+            }
+        }
+        depository.setId(depositoryId);
+        depository.setDepository_ident("NO");
+        depository.setDepository_no(storage.getOffices_storage_total());
+        depository.setDepository_idle_no(storage.getOffices_storage_total());
+        depository.setDepository_total(storage.getOffices_storage_total());
+        depository.setDepository_idle_total(storage.getOffices_storage_total());
+        depository.setDepository_flag("1");
+        depository.setCreateDate(createDate);
+        depository.setCreateUserId(depository.getUpdateUserId());
+        depository.setUpdateDate(createDate);
+        //depository.setUpdateUserId(depository.getUpdateUserId());
+        depository.setDeleteFlag("0");
+        boolean depositoryResult = dao.addDepository(depository) == 1 ? true : false;
+        if (!(depositoryResult)) {
+            log.error("addDepositoryWithStorage:dao.addDepository出错！");
+            throw new Exception("addDepositoryWithStorage:dao.addDepository出错！");
+        } else {
+            storage.setClass_id(depository.getClass_id());
+            storage.setEntity_id(depository.getEntity_id());
+            storage.setOffices_storage_total(depository.getDepository_total());
+            result = storageService.addOfficesStorage(depository, storage, "3");//“1”代表入科标记
+        }
+        result.put("success", true);
         return result;
     }
 
@@ -155,22 +145,22 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错！无法获取设备ID");
                 return result;
             }*/
-            if (!"".equals(depository.getDelivery_id())&&depository.getDelivery_id()!=null) {
+            if (!"".equals(depository.getDelivery_id()) && depository.getDelivery_id() != null) {
                 //不是原科登记更新出库记录的状态
-                boolean Result =deliveryService.updateDeliveryStatus(depository.getDelivery_id(),"3");
-                if(!Result){
+                boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3");
+                if (!Result) {
                     log.error("updateDepositoryWithStorage:deliveryService:allEntryDepository错误！");
                     result.put("hasError", true);
                     result.put("error", "添加出错");
                     return result;
                 }
             }
-            if("0".equals(storage.getEntity_entry_status())){
-                boolean devicesResult=devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
+            if ("0".equals(storage.getEntity_entry_status())) {
+                boolean devicesResult = devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
                         depository.getDepository_officeId(),
                         depository.getId(),
                         "2",
-                        depository.getUpdateUserId(),createDate);
+                        depository.getUpdateUserId(), createDate);
                 if (!(devicesResult)) {
                     result.put("hasError", true);
                     result.put("error", "添加出错");
@@ -190,7 +180,7 @@ public class DepositoryServiceImpl implements DepositoryService {
                 //入库记录
                 storage.setClass_id(depository.getClass_id());
                 storage.setEntity_id(depository.getEntity_id());
-                result = storageService.addOfficesStorage(depository, storage,"3");//“3”代表入科标记
+                result = storageService.addOfficesStorage(depository, storage, "3");//“3”代表入科标记
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -232,7 +222,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             } else {
                 result = stockService.updateStockWithStorage(stock, storage);
             }
-            if(result.get("hasError") instanceof Boolean&&(Boolean)result.get("hasError")){
+            if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
                 throw new Exception("error");
             }
         } catch (DuplicateKeyException e) {
@@ -323,7 +313,7 @@ public class DepositoryServiceImpl implements DepositoryService {
     //部署操作（库存减一）；标注时间：2021年6月17日 23:53:48
     @Override
     public boolean deploymentDeviceWithSingle(String depository_id, String updateUserId, String updateDate) {
-        return dao.deploymentDeviceWithSingle(depository_id,updateUserId,updateDate)==1 ? true : false;
+        return dao.deploymentDeviceWithSingle(depository_id, updateUserId, updateDate) == 1 ? true : false;
     }
 
 
