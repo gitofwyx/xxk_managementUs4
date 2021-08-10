@@ -9,6 +9,7 @@ import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.dao.DeliveryDao;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
+import com.xxk.management.storage.service.DeliveryReportService;
 import com.xxk.management.storage.service.DeliveryService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Autowired
     private StockDevicesService stockDevicesService;
+
+    @Autowired
+    private DeliveryReportService deliveryReportService;
 
     @Override
     public List<Delivery> listDelivery(int pageStart, int pageSize) {
@@ -237,5 +241,20 @@ public class DeliveryServiceImpl implements DeliveryService {
     @Override
     public boolean updateDeliveryStatus(String id, String status) {
         return dao.updateDeliveryStatus(id, status) == 1 ? true : false;
+    }
+
+    @Override
+    public Map<String, Object> deliveryReport(String startDate,String endDate) {
+
+        Map<String, Object> resultMap = new HashMap<>();
+        try{
+            List<Map<String, Object>> listDelivery=deliveryReportService.getDeliveryReportSingleParam(startDate,endDate);
+            resultMap.put("data", listDelivery);
+        }catch (Exception e) {
+            resultMap.put("hasError", true);
+            resultMap.put("error", "查询出错");
+            log.error(e);
+        }
+        return resultMap;
     }
 }

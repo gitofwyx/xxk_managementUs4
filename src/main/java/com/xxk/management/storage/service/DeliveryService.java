@@ -32,4 +32,6 @@ public interface DeliveryService {
 
     public boolean updateDeliveryStatus(String id,String status);
 
+    public Map<String, Object> deliveryReport(String startDate,String endDate);
+
 }
