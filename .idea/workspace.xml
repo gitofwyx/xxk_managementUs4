@@ -9,14 +9,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月4日 22:53:50 updatePrint">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月10日 12:35:45 update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryReportDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryReportDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/DeliveryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xxk_management.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xxk_management.pdm" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_management.pdm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2134,14 +2128,8 @@
       <workItem from="1628440814837" duration="692000" />
       <workItem from="1628465034156" duration="848000" />
       <workItem from="1628522865267" duration="2213000" />
-      <workItem from="1628569465433" duration="585000" />
-    </task>
-    <task id="LOCAL-00110" summary="2021年6月13日 19:29:14">
-      <created>1623583760539</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1623583760540</updated>
+      <workItem from="1628569465433" duration="748000" />
+      <workItem from="1628570239679" duration="1266000" />
     </task>
     <task id="LOCAL-00111" summary="2021年6月13日 21:10:31">
       <created>1623589834873</created>
@@ -2479,7 +2467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628465213781</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="2021年8月10日 12:35:45 update">
+      <created>1628570154687</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1628570154688</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2591,7 +2586,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年6月18日 00:17:34" />
     <MESSAGE value="2021年6月19日 01:20:40" />
     <MESSAGE value="2021年6月19日 01:35:02" />
     <MESSAGE value="2021年6月30日 00:04:42" />
@@ -2616,7 +2610,8 @@
     <MESSAGE value="2021年8月4日 22:53:50 项目升级Spring4.0" />
     <MESSAGE value="2021年8月4日 22:53:50 bar_code" />
     <MESSAGE value="2021年8月4日 22:53:50 updatePrint" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年8月4日 22:53:50 updatePrint" />
+    <MESSAGE value="2021年8月10日 12:35:45 update" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年8月10日 12:35:45 update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
