@@ -135,62 +135,51 @@ public class DepositoryServiceImpl implements DepositoryService {
     //入库操作
     // 2019年8月19日 13:44:05更新
     @Override
-    public Map<String, Object> updateDepositoryWithStorage(Depository depository, OfficesStorage storage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> updateDepositoryWithStorage(Depository depository, OfficesStorage storage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
-        try {
+
            /* if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
                 log.info("出错！无法获取设备ID");
                 result.put("hasError", true);
                 result.put("error", "添加出错！无法获取设备ID");
                 return result;
             }*/
-            if (!"".equals(depository.getDelivery_id()) && depository.getDelivery_id() != null) {
-                //不是原科登记更新出库记录的状态
-                boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3");
-                if (!Result) {
-                    log.error("updateDepositoryWithStorage:deliveryService:allEntryDepository错误！");
-                    result.put("hasError", true);
-                    result.put("error", "添加出错");
-                    return result;
-                }
+        if (!"".equals(depository.getDelivery_id()) && depository.getDelivery_id() != null) {
+            //不是原科登记更新出库记录的状态
+            boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3");
+            if (!Result) {
+                log.error("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+                throw new Exception("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
             }
-            if ("0".equals(storage.getEntity_entry_status())) {
-                boolean devicesResult = devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
-                        depository.getDepository_officeId(),
-                        depository.getId(),
-                        "2",
-                        depository.getUpdateUserId(), createDate);
-                if (!(devicesResult)) {
-                    result.put("hasError", true);
-                    result.put("error", "添加出错");
-                    return result;
-                }
-            }
-            depository.setDepository_total(storage.getOffices_storage_total());
-            depository.setDepository_idle_total(storage.getOffices_storage_total());
-            depository.setUpdateDate(createDate);
-
-            boolean stockResult = dao.plusDepositoryNo(depository) == 1 ? true : false;
-            if (!(stockResult)) {
-                log.error("stockResult:" + stockResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //入库记录
-                storage.setClass_id(depository.getClass_id());
-                storage.setEntity_id(depository.getEntity_id());
-                result = storageService.addOfficesStorage(depository, storage, "3");//“3”代表入科标记
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
         }
+        if ("0".equals(storage.getEntity_entry_status())) {
+            boolean devicesResult = devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
+                    depository.getDepository_officeId(),
+                    depository.getId(),
+                    "2",
+                    depository.getUpdateUserId(), createDate);
+            if (!(devicesResult)) {
+                log.error("updateDepositoryWithStorage:devicesService.updateDevicesStatus出错！");
+                throw new Exception("updateDepositoryWithStorage:devicesService.updateDevicesStatus出错！");
+            }
+        }
+        depository.setDepository_total(storage.getOffices_storage_total());
+        depository.setDepository_idle_total(storage.getOffices_storage_total());
+        depository.setUpdateDate(createDate);
+
+        boolean stockResult = dao.plusDepositoryNo(depository) == 1 ? true : false;
+        if (!(stockResult)) {
+            log.error("updateDepositoryWithStorage:dao.plusDepositoryNo出错！");
+            throw new Exception("updateDepositoryWithStorage:dao.plusDepositoryNo出错！");
+        } else {
+            //入库记录
+            storage.setClass_id(depository.getClass_id());
+            storage.setEntity_id(depository.getEntity_id());
+            result = storageService.addOfficesStorage(depository, storage, "3");//“3”代表入科标记
+        }
+        result.put("success", true);
         return result;
     }
 

@@ -25,7 +25,7 @@ public interface DepositoryService {
 
     public Map<String, Object> addDepositoryWithStorage(Depository depository, OfficesStorage storage) throws Exception;
 
-    public Map<String, Object> updateDepositoryWithStorage(Depository depository, OfficesStorage storage);
+    public Map<String, Object> updateDepositoryWithStorage(Depository depository, OfficesStorage storage) throws Exception;
 
     public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage);
 
