@@ -27,11 +27,11 @@ public interface DepositoryService {
 
     public Map<String, Object> updateDepositoryWithStorage(Depository depository, OfficesStorage storage) throws Exception;
 
-    public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage);
+    public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage) throws Exception;
 
-    public Map<String, Object> transferDepositoryForStorage(Devices devices, OfficesStorage storage);
+    public Map<String, Object> transferDepositoryForStorage(Devices devices, OfficesStorage storage) throws Exception;
 
-    public Map<String, Object> transferDepositoryForDelivery(Devices devices, OfficesStorage storage);
+    public Map<String, Object> transferDepositoryForDelivery(Devices devices, OfficesStorage storage) throws Exception;
 
     public boolean deploymentDeviceWithSingle(String depository_id,String updateUserId,String updateDate);
 

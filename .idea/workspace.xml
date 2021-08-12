@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月11日 00:21:36 事务配置">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月11日 23:58:50 事务配置">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/DepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/DepositoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" afterDir="false" />
@@ -2135,14 +2135,8 @@
       <workItem from="1628600339477" duration="3925000" />
       <workItem from="1628606563768" duration="1118000" />
       <workItem from="1628607704817" duration="2403000" />
-      <workItem from="1628693546319" duration="1837000" />
-    </task>
-    <task id="LOCAL-00120" summary="2021年6月19日 01:20:40">
-      <created>1624036854118</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1624036854118</updated>
+      <workItem from="1628693546319" duration="2062000" />
+      <workItem from="1628775140467" duration="3795000" />
     </task>
     <task id="LOCAL-00121" summary="2021年6月19日 01:35:02">
       <created>1624037706267</created>
@@ -2480,7 +2474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628612506189</updated>
     </task>
-    <option name="localTasksCounter" value="169" />
+    <task id="LOCAL-00169" summary="2021年8月11日 23:58:50 事务配置">
+      <created>1628697535040</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1628697535041</updated>
+    </task>
+    <option name="localTasksCounter" value="170" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2592,7 +2593,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年6月19日 01:35:02" />
     <MESSAGE value="2021年6月30日 00:04:42" />
     <MESSAGE value="2021年7月2日 00:05:12" />
     <MESSAGE value="2021年7月2日 14:34:47" />
@@ -2617,7 +2617,8 @@
     <MESSAGE value="2021年8月4日 22:53:50 updatePrint" />
     <MESSAGE value="2021年8月10日 12:35:45 update" />
     <MESSAGE value="2021年8月11日 00:21:36 事务配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年8月11日 00:21:36 事务配置" />
+    <MESSAGE value="2021年8月11日 23:58:50 事务配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年8月11日 23:58:50 事务配置" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2678,7 +2679,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
-          <line>268</line>
+          <line>247</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

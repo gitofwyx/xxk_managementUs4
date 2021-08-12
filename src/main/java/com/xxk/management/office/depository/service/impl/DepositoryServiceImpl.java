@@ -185,117 +185,84 @@ public class DepositoryServiceImpl implements DepositoryService {
 
     //回收操作
     @Override
-    public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> recoveryDepository(Depository depository, Stock stock, Storage storage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String stockId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
-                log.info("recoveryDepository:出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            depository.setDepository_total(storage.getIn_confirmed_total());
-            depository.setDepository_idle_total(storage.getIn_confirmed_total());
-            depository.setUpdateDate(createDate);
-            boolean depositoryResult = dao.recoveryDepository(depository) == 1 ? true : false;
-            if (!(depositoryResult)) {
-                log.error("depositoryResult:" + depositoryResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            if ("".equals(stock.getId()) || stock.getId() == null) {
-                result = stockService.addStockWithStorage(stock, storage);
-            } else {
-                result = stockService.updateStockWithStorage(stock, storage);
-            }
-            if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
-                throw new Exception("error");
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+
+        if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
+            log.error("recoveryDepository:depository.getEntity_id为空！");
+            throw new Exception("recoveryDepository:depository.getEntity_id为空！");
         }
+        depository.setDepository_total(storage.getIn_confirmed_total());
+        depository.setDepository_idle_total(storage.getIn_confirmed_total());
+        depository.setUpdateDate(createDate);
+        boolean depositoryResult = dao.recoveryDepository(depository) == 1 ? true : false;
+        if (!(depositoryResult)) {
+            log.error("recoveryDepository:dao.recoveryDepository出错！");
+            throw new Exception("recoveryDepository:dao.recoveryDepository出错！");
+        }
+        if ("".equals(stock.getId()) || stock.getId() == null) {
+            result = stockService.addStockWithStorage(stock, storage);
+        } else {
+            result = stockService.updateStockWithStorage(stock, storage);
+        }
+        if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
+            log.error("recoveryDepository:stockService.add/updateStockWithStorage出错！");
+            throw new Exception("recoveryDepository:stockService.add/updateStockWithStorage出错！");
+        }
+        result.put("success", true);
         return result;
     }
 
     //转移库存(入库)
     @Override
-    public Map<String, Object> transferDepositoryForStorage(Devices devices, OfficesStorage storage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> transferDepositoryForStorage(Devices devices, OfficesStorage storage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String stockId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(devices.getDevice_id()) || devices.getDevice_id() == null) {
-                log.info("transferDepositoryForStorage:出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-
-            boolean depositoryResult = dao.transferDepositoryForDelivery(storage) == 1 ? true : false;
-            if (!(depositoryResult)) {
-                log.error("depositoryResult:" + depositoryResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            //入库记录
-            storage.setEntity_id(devices.getDevice_id());
-            result = storageService.addOfficesStorage(devices, storage);//“1”代表入科标记
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        if ("".equals(devices.getDevice_id()) || devices.getDevice_id() == null) {
+            log.error("transferDepositoryForStorage:devices.getDevice_id为空！");
+            throw new Exception("transferDepositoryForStorage:devices.getDevice_id为空！");
         }
+
+        boolean depositoryResult = dao.transferDepositoryForDelivery(storage) == 1 ? true : false;
+        if (!(depositoryResult)) {
+            log.error("transferDepositoryForStorage:dao.transferDepositoryForDelivery出错！");
+            throw new Exception("transferDepositoryForStorage:dao.transferDepositoryForDelivery出错！");
+        }
+        //入库记录
+        storage.setEntity_id(devices.getDevice_id());
+        result = storageService.addOfficesStorage(devices, storage);//“1”代表入科标记
+        result.put("success", true);
         return result;
     }
 
     //转移库存(出库)
     //Delivery为出库的意思，跟方法形参没有关系
     @Override
-    public Map<String, Object> transferDepositoryForDelivery(Devices devices, OfficesStorage storage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> transferDepositoryForDelivery(Devices devices, OfficesStorage storage) throws Exception, RuntimeException{
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String stockId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(devices.getDevice_id()) || devices.getDevice_id() == null) {
-                log.info("transferDepositoryForDelivery:出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
 
-            boolean depositoryResult = dao.transferDepositoryForDelivery(storage) == 1 ? true : false;
-            if (!(depositoryResult)) {
-                log.error("depositoryResult:" + depositoryResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            //入库记录
-            storage.setEntity_id(devices.getDevice_id());
-            result = storageService.addOfficesStorage(devices, storage);//“1”代表入科标记
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        if ("".equals(devices.getDevice_id()) || devices.getDevice_id() == null) {
+            log.error("transferDepositoryForDelivery:devices.getDevice_id为空！");
+            throw new Exception("transferDepositoryForDelivery:devices.getDevice_id为空！");
         }
+
+        boolean depositoryResult = dao.transferDepositoryForDelivery(storage) == 1 ? true : false;
+        if (!(depositoryResult)) {
+            log.error("transferDepositoryForDelivery:dao.transferDepositoryForDelivery为空！");
+            throw new Exception("transferDepositoryForDelivery:dao.transferDepositoryForDelivery为空！");
+        }
+        //入库记录
+        storage.setEntity_id(devices.getDevice_id());
+        result = storageService.addOfficesStorage(devices, storage);//“1”代表入科标记
+        result.put("success", true);
         return result;
     }
 
