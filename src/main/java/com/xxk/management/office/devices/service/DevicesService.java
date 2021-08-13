@@ -17,15 +17,15 @@ public interface DevicesService {
 
     public List<Devices> listDevicesById(List<String> listDevId);
 
-    public boolean addDevices(Devices devices, OfficesStorage storage);
+    public boolean addDevices(Devices devices, OfficesStorage storage) throws Exception;
 
-    public boolean updateDevicesForDeployment(Devices devices, OfficesStorage storage);
+    public boolean updateDevicesForDeployment(Devices devices, OfficesStorage storage) throws Exception;
 
     public boolean updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
 
-    public boolean transferDevices(Devices devices, OfficesStorage officesStorage);
+    public boolean transferDevices(Devices devices, OfficesStorage officesStorage) throws Exception;
 
-    public boolean recoveryDevices(Devices devices, OfficesStorage officesStorage, String stock_no, String stock_unit, String stock_proportion);
+    public boolean recoveryDevices(Devices devices, OfficesStorage officesStorage, String stock_no, String stock_unit, String stock_proportion) throws Exception;
 
     public List<Map<String, Object>> getDevicesNumber(String deviceId);
 
