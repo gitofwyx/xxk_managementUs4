@@ -20,9 +20,9 @@ public interface OfficesStorageService {
 
     public  List<OfficesStorage> listOfficesStorageByOffice(int pageStart, int pageSize,String stock_id);
 
-    public Map<String, Object> addOfficesStorage(Depository depository, OfficesStorage officesStorage, String status);
+    public Map<String, Object> addOfficesStorage(Depository depository, OfficesStorage officesStorage, String status) throws Exception;
 
-    public Map<String, Object> addOfficesStorage(Devices devices, OfficesStorage officesStorage);
+    public Map<String, Object> addOfficesStorage(Devices devices, OfficesStorage officesStorage) throws Exception;
 
     public boolean deleteListRegUser(List<String> listStr);
 

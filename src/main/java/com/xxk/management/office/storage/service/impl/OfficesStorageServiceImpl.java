@@ -1,4 +1,5 @@
 package com.xxk.management.office.storage.service.impl;
+
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
@@ -15,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,120 +40,97 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
     }
 
     @Override
-    public List<OfficesStorage> listOfficesStorageByStock(int pageStart, int pageSize,String stock_id) {
-        return dao.listOfficesStorageByStock((pageStart - 1) * pageSize, pageSize,stock_id);
+    public List<OfficesStorage> listOfficesStorageByStock(int pageStart, int pageSize, String stock_id) {
+        return dao.listOfficesStorageByStock((pageStart - 1) * pageSize, pageSize, stock_id);
     }
 
     @Override
-    public List<OfficesStorage> listOfficesStorageByOffice(int pageStart, int pageSize,String stock_id) {
-        return dao.listOfficesStorageByOffice((pageStart - 1) * pageSize, pageSize,stock_id);
+    public List<OfficesStorage> listOfficesStorageByOffice(int pageStart, int pageSize, String stock_id) {
+        return dao.listOfficesStorageByOffice((pageStart - 1) * pageSize, pageSize, stock_id);
     }
 
     @Override
-    public Map<String, Object> addOfficesStorage(Depository depository, OfficesStorage officesStorage, String status) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> addOfficesStorage(Depository depository, OfficesStorage officesStorage, String status) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String officesStorageId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
-                log.error("addOfficesStorage出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "入科记录出错！无法获取设备ID");
-                return result;
-            }
-            //库存编号生成
-            String out_confirmed_ident = IdentUtil.getIdentNo((int)depository.getDepository_no(),createDate);
-            if ("".equals(out_confirmed_ident) || out_confirmed_ident == null) {
-                result.put("hasError", true);
-                result.put("error", "添加出错,无法生成入库编号！");
-                return result;
-            }
-            //入库
-            officesStorage.setId(officesStorageId);
-            officesStorage.setOffices_storage_ident(out_confirmed_ident);
-            officesStorage.setOffices_storage_by(depository.getUpdateUserId());
-            officesStorage.setOffices_storage_officeId(depository.getDepository_officeId());
-            officesStorage.setOffices_storage_date(createDate);
-            officesStorage.setEntity_entry_status(status);
-            officesStorage.setCreateDate(createDate);
-            officesStorage.setCreateUserId(depository.getUpdateUserId());
-            officesStorage.setUpdateDate(createDate);
-            officesStorage.setUpdateUserId(depository.getUpdateUserId());
-            officesStorage.setDeleteFlag("0");
 
-            boolean storageResult = dao.addOfficesStorage(officesStorage) == 1 ? true : false;
-            ;
-            if (!(storageResult)) {
-                log.error("addstorage:" + storageResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //log.info(">>>>保存成功");
-                result.put("success", true);
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
+            log.error("addOfficesStorage:officesStorage.getEntity_id为空！");
+            throw new Exception("addOfficesStorage:officesStorage.getEntity_id为空！");
         }
+        //库存编号生成
+        String out_confirmed_ident = IdentUtil.getIdentNo((int) depository.getDepository_no(), createDate);
+        if ("".equals(out_confirmed_ident) || out_confirmed_ident == null) {
+            log.error("addOfficesStorage:out_confirmed_ident为空！");
+            throw new Exception("addOfficesStorage:out_confirmed_ident为空！");
+        }
+        //入库
+        officesStorage.setId(officesStorageId);
+        officesStorage.setOffices_storage_ident(out_confirmed_ident);
+        officesStorage.setOffices_storage_by(depository.getUpdateUserId());
+        officesStorage.setOffices_storage_officeId(depository.getDepository_officeId());
+        officesStorage.setOffices_storage_date(createDate);
+        officesStorage.setEntity_entry_status(status);
+        officesStorage.setCreateDate(createDate);
+        officesStorage.setCreateUserId(depository.getUpdateUserId());
+        officesStorage.setUpdateDate(createDate);
+        officesStorage.setUpdateUserId(depository.getUpdateUserId());
+        officesStorage.setDeleteFlag("0");
+
+        boolean storageResult = dao.addOfficesStorage(officesStorage) == 1 ? true : false;
+        if (!(storageResult)) {
+            log.error("addOfficesStorage:dao.addOfficesStorage出错！");
+            throw new Exception("addOfficesStorage:dao.addOfficesStorage出错！");
+        } else {
+            //log.info(">>>>保存成功");
+            result.put("success", true);
+        }
+
         return result;
     }
 
     @Override
-    public Map<String, Object> addOfficesStorage(Devices devices, OfficesStorage officesStorage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> addOfficesStorage(Devices devices, OfficesStorage officesStorage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String officesStorageId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
-                log.error("addOfficesStorage出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "入科记录出错！无法获取设备ID");
-                return result;
-            }
-            //库存编号生成
-            String out_confirmed_ident = "NO";
-            if ("".equals(out_confirmed_ident) || out_confirmed_ident == null) {
-                result.put("hasError", true);
-                result.put("error", "添加出错,无法生成入库编号！");
-                return result;
-            }
-            //
-            officesStorage.setId(officesStorageId);
-            officesStorage.setOffices_storage_ident(out_confirmed_ident);
-            officesStorage.setOffices_storage_by(devices.getUpdateUserId());
-            officesStorage.setOffices_storage_officeId(devices.getLocation_office_id());
-            officesStorage.setOffices_storage_date(devices.getDevice_deployment_date());
-            officesStorage.setOffices_storage_total(1.0);
-            officesStorage.setCreateDate(createDate);
-            officesStorage.setCreateUserId(devices.getUpdateUserId());
-            officesStorage.setUpdateDate(createDate);
-            officesStorage.setUpdateUserId(devices.getUpdateUserId());
-            officesStorage.setDeleteFlag("0");
-
-            boolean storageResult = dao.addOfficesStorage(officesStorage) == 1 ? true : false;
-            ;
-            if (!(storageResult)) {
-                log.error("addstorage:" + storageResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //log.info(">>>>保存成功");
-                result.put("success", true);
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        
+        if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
+            log.error("addOfficesStorage:officesStorage.getEntity_id为空！");
+            throw new Exception("addOfficesStorage:officesStorage.getEntity_id为空！");
         }
+        //库存编号生成
+        String out_confirmed_ident = "NO";
+        if ("".equals(out_confirmed_ident) || out_confirmed_ident == null) {
+            log.error("addOfficesStorage:out_confirmed_ident为空！");
+            throw new Exception("addOfficesStorage:out_confirmed_ident为空！");
+        }
+        //
+        officesStorage.setId(officesStorageId);
+        officesStorage.setOffices_storage_ident(out_confirmed_ident);
+        officesStorage.setOffices_storage_by(devices.getUpdateUserId());
+        officesStorage.setOffices_storage_officeId(devices.getLocation_office_id());
+        officesStorage.setOffices_storage_date(devices.getDevice_deployment_date());
+        officesStorage.setOffices_storage_total(1.0);
+        officesStorage.setCreateDate(createDate);
+        officesStorage.setCreateUserId(devices.getUpdateUserId());
+        officesStorage.setUpdateDate(createDate);
+        officesStorage.setUpdateUserId(devices.getUpdateUserId());
+        officesStorage.setDeleteFlag("0");
+
+        boolean storageResult = dao.addOfficesStorage(officesStorage) == 1 ? true : false;
+        ;
+        if (!(storageResult)) {
+            log.error("addOfficesStorage:dao.addOfficesStorage出错！");
+            throw new Exception("addOfficesStorage:dao.addOfficesStorage出错！");
+        } else {
+            //log.info(">>>>保存成功");
+            result.put("success", true);
+        }
+
         return result;
     }
 

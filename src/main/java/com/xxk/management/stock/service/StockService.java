@@ -22,21 +22,21 @@ public interface StockService {
 
     public List<Stock> getStocksByEntityId(String entity_id);
 
-    public Map<String, Object> addStockWithStorage(Stock stock,Storage storage);
+    public Map<String, Object> addStockWithStorage(Stock stock,Storage storage) throws Exception;
 
-    public Map<String, Object> updateStockWithStorage(Stock stock,Storage storage);
+    public Map<String, Object> updateStockWithStorage(Stock stock,Storage storage) throws Exception;
 
-    public Map<String, Object> updateStockWithDelivery(Stock stock, Delivery delivery);
+    public Map<String, Object> updateStockWithDelivery(Stock stock, Delivery delivery) throws Exception;
 
-    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery,double stock_no) ;
+    public Map<String, Object> updateSingleStockWithDelivery(Delivery delivery,double stock_no) throws Exception;
 
-    public Map<String, Object> updateStock(Stock stock);
+    public Map<String, Object> updateStock(Stock stock) throws Exception;
 
-    public Map<String, Object> addStockForRecovery(OfficesStorage officesStorage);
+    public Map<String, Object> addStockForRecovery(OfficesStorage officesStorage) throws Exception;
 
-    public Map<String, Object> updateStockForRecovery(OfficesStorage officesStorage);
+    public Map<String, Object> updateStockForRecovery(OfficesStorage officesStorage) throws Exception;
 
-    public Map<String, Object> updateStockForBackward(Storage storage,Delivery delivery,String stock_no);
+    public Map<String, Object> updateStockForBackward(Storage storage,Delivery delivery,String stock_no) throws Exception;
 
     public boolean plusStockConfiguredTotal(String stockId,String userId,String date,String stock_version);
 
