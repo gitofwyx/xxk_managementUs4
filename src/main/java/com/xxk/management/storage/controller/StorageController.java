@@ -120,7 +120,13 @@ public class StorageController extends BaseController {
     @RequestMapping("/addStorage")
     public Map<String, Object> addStorage(Stock stock, Storage storage) {
         Map<String, Object> result = new HashMap<>();
-        result = storageService.addStorage(stock,storage);
+        try {
+            result = storageService.addStorage(stock,storage);
+        }catch (Exception e){
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "查询出错");
+        }
 
         return result;
         //return "system/index";
