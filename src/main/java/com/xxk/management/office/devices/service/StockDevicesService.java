@@ -16,9 +16,9 @@ public interface StockDevicesService {
 
     public int countDevices();
 
-    public boolean addStockDevices(Devices devices,OfficesStorage storage,String stock_version);
+    public boolean addStockDevices(Devices devices,OfficesStorage storage,String stock_version) throws Exception;
 
-    public boolean deliveryStockDevices(Devices devices, Delivery delivery,double stock_no) ;
+    public boolean deliveryStockDevices(Devices devices, Delivery delivery,double stock_no) throws Exception;
 
     public List<Devices> getDevicesWithStatus(String deviceId, String officeId, String status);
 

@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,104 +51,90 @@ public class StockDevicesServiceImpl implements StockDevicesService {
     }
 
     @Override
-    public boolean addStockDevices(Devices devices, OfficesStorage storage,String stock_version) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public boolean addStockDevices(Devices devices, OfficesStorage storage, String stock_version) throws Exception, RuntimeException {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String devicesId = UUIdUtil.getUUID();
         boolean devicesResult = false;
-        try {
-            boolean Result =stockService.plusStockConfiguredTotal(devices.getPresent_stock_id(),devices.getCreateUserId(),createDate,stock_version);
-            if(!Result){
-                log.error("addStockDevices:plusStockConfiguredTotal错误！");
-                return false;
-            }
-            devices.setId(devicesId);
-            devices.setClass_id(storage.getClass_id());
-            devices.setDevice_id(storage.getEntity_id());
-            devices.setDevices_ident("NO");
-            devices.setDevice_state("0");
-            devices.setLocation_office_id(storage.getOffices_storage_officeId());
-            devices.setInventory_office_id(storage.getOffices_storage_officeId());
-            devices.setDevice_origin("1");
-            devices.setDevice_deployment_status("0");
-            devices.setRelated_flag("0");
-            devices.setCreateDate(createDate);
-            devices.setUpdateUserId(devices.getCreateUserId());
-            devices.setUpdateDate(createDate);
 
-            devices.setDeleteFlag("0");
-            devicesResult = dao.addStockDevices(devices) == 1 ? true : false;
-            if (!(devicesResult)) {
-                log.error("depositoryResult:" + devicesResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                storage.setEntity_id(devices.getDevice_id());
-                storage.setOffices_entity_id(devicesId);
-                storage.setOffices_storage_genre("0");
-                storage.setEntity_entry_status("0");
-                result = storageService.addOfficesStorage(devices,storage);
-                if("true".equals(result.get("hasError"))){
-                    return false;
-                }
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        boolean Result = stockService.plusStockConfiguredTotal(devices.getPresent_stock_id(), devices.getCreateUserId(), createDate, stock_version);
+        if (!Result) {
+            log.error("addStockDevices:stockService.plusStockConfiguredTotal出错！");
+            throw new Exception("addStockDevices:stockService.plusStockConfiguredTotal出错！");
         }
+        devices.setId(devicesId);
+        devices.setClass_id(storage.getClass_id());
+        devices.setDevice_id(storage.getEntity_id());
+        devices.setDevices_ident("NO");
+        devices.setDevice_state("0");
+        devices.setLocation_office_id(storage.getOffices_storage_officeId());
+        devices.setInventory_office_id(storage.getOffices_storage_officeId());
+        devices.setDevice_origin("1");
+        devices.setDevice_deployment_status("0");
+        devices.setRelated_flag("0");
+        devices.setCreateDate(createDate);
+        devices.setUpdateUserId(devices.getCreateUserId());
+        devices.setUpdateDate(createDate);
+
+        devices.setDeleteFlag("0");
+        devicesResult = dao.addStockDevices(devices) == 1 ? true : false;
+        if (!(devicesResult)) {
+            log.error("addStockDevices:dao.addStockDevices出错！");
+            throw new Exception("addStockDevices:dao.addStockDevices出错！");
+        } else {
+            storage.setEntity_id(devices.getDevice_id());
+            storage.setOffices_entity_id(devicesId);
+            storage.setOffices_storage_genre("0");
+            storage.setEntity_entry_status("0");
+            result = storageService.addOfficesStorage(devices, storage);
+            if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
+                log.error("addStockDevices:storageService.addOfficesStorage出错！");
+                throw new Exception("addStockDevices:storageService.addOfficesStorage出错！");
+            }
+        }
+
         return devicesResult;
     }
 
     //出库
     @Override
-    public boolean deliveryStockDevices(Devices devices, Delivery delivery,double stock_no) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public boolean deliveryStockDevices(Devices devices, Delivery delivery, double stock_no) throws Exception, RuntimeException {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
-        try {
-            devices.setId(delivery.getStock_entity_id());
-            devices.setDevice_origin("1");
-            devices.setDevice_deployment_status("1");
-            devices.setRelated_flag("0");
-            devices.setUpdateDate(createDate);
 
-            devices.setDeleteFlag("0");
-            devicesResult = dao.updateDeviceStatus(devices) == 1 ? true : false;
-            if (!(devicesResult)) {
-                log.error("depositoryResult:" + devicesResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                delivery.setOut_confirmed_ident("NO");
-                delivery.setOut_confirmed_type("1");
-                delivery.setOut_confirmed_date(createDate);
-                delivery.setOut_confirmed_total(1);
-                delivery.setOut_confirmed_by(devices.getUpdateUserId());
-                delivery.setCreateUserId(devices.getUpdateUserId());
-                delivery.setCreateDate(createDate);
-                delivery.setUpdateUserId(devices.getUpdateUserId());
-                delivery.setUpdateDate(createDate);
-                result = stockService.updateSingleStockWithDelivery(delivery,stock_no);
-                if("true".equals(result.get("hasError"))){
-                    return false;
-                }
+        devices.setId(delivery.getStock_entity_id());
+        devices.setDevice_origin("1");
+        devices.setDevice_deployment_status("1");
+        devices.setRelated_flag("0");
+        devices.setUpdateDate(createDate);
+
+        devices.setDeleteFlag("0");
+        devicesResult = dao.updateDeviceStatus(devices) == 1 ? true : false;
+        if (!(devicesResult)) {
+            log.error("deliveryStockDevices:dao.updateDeviceStatus出错！");
+            throw new Exception("deliveryStockDevices:dao.updateDeviceStatus出错！");
+        } else {
+            delivery.setOut_confirmed_ident("NO");
+            delivery.setOut_confirmed_type("1");
+            delivery.setOut_confirmed_date(createDate);
+            delivery.setOut_confirmed_total(1);
+            delivery.setOut_confirmed_by(devices.getUpdateUserId());
+            delivery.setCreateUserId(devices.getUpdateUserId());
+            delivery.setCreateDate(createDate);
+            delivery.setUpdateUserId(devices.getUpdateUserId());
+            delivery.setUpdateDate(createDate);
+            result = stockService.updateSingleStockWithDelivery(delivery, stock_no);
+            if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
+                log.error("deliveryStockDevices:stockService.updateSingleStockWithDelivery出错！");
+                throw new Exception("deliveryStockDevices:stockService.updateSingleStockWithDelivery出错！");
             }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
         }
+
         return devicesResult;
     }
 
