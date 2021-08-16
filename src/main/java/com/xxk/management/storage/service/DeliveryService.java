@@ -24,11 +24,11 @@ public interface DeliveryService {
 
     public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize, String stock_id);
 
-    public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String genre,String status);
+    public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String genre,String status) throws Exception;
 
-    public Map<String, Object> addDelivery(Delivery delivery, String genre,String status);
+    public Map<String, Object> addDelivery(Delivery delivery, String genre,String status) throws Exception;
 
-    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no,String out_total);
+    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no,String out_total) throws Exception;
 
     public boolean updateDeliveryStatus(String id,String status);
 

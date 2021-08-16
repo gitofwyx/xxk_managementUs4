@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
@@ -73,166 +74,131 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Map<String, Object> addDelivery(Stock stock, Delivery delivery, String genre,String status) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> addDelivery(Stock stock, Delivery delivery, String genre, String status) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String deliveryId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错！无法获取设备ID");
-                return result;
-            }
-            //库存编号生成
-            String out_confirmed_ident = IdentUtil.getIdentNo((int) stock.getStock_no(), createDate);
-            if ("".equals(out_confirmed_ident) || out_confirmed_ident == null) {
-                result.put("hasError", true);
-                result.put("error", "添加出错,无法生成入库编号！");
-                return result;
-            }
-            //
+
+        if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
+            log.error("addDelivery:delivery.getEntity_id为空！");
+            throw new Exception("addDelivery:delivery.getEntity_id为空！");
+        }
+        //库存编号生成
+        String out_confirmed_ident = IdentUtil.getIdentNo((int) stock.getStock_no(), createDate);
+        if ("".equals(out_confirmed_ident) || out_confirmed_ident == null) {
+            log.error("addDelivery:out_confirmed_ident为空！");
+            throw new Exception("addDelivery:out_confirmed_ident为空！");
+        }
+        //
+        delivery.setId(deliveryId);
+        delivery.setStock_id(stock.getId());
+        delivery.setOut_confirmed_ident(out_confirmed_ident);
+        delivery.setOut_confirmed_type(stock.getStock_type());
+        delivery.setOut_confirmed_genre(genre);
+        delivery.setOut_confirmed_by(stock.getUpdateUserId());
+        delivery.setOut_confirmed_unit(stock.getStock_unit());
+        delivery.setOut_confirmed_proportion(stock.getStock_proportion());
+        delivery.setEntity_entry_status(status);
+        delivery.setCreateDate(createDate);
+        delivery.setCreateUserId(stock.getUpdateUserId());
+        delivery.setUpdateDate(createDate);
+        delivery.setUpdateUserId(stock.getUpdateUserId());
+        delivery.setDeleteFlag("0");
+
+        boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
+        ;
+        if (!(storageResult)) {
+            log.error("addDelivery:dao.addDelivery出错！");
+            throw new Exception("addDelivery:dao.addDelivery出错！");
+        } else {
+            //log.info(">>>>保存成功");
+            result.put("success", true);
+        }
+
+        return result;
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> addDelivery(Delivery delivery, String genre, String status) throws Exception, RuntimeException {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String deliveryId = UUIdUtil.getUUID();
+
+        if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
+            log.error("addDelivery:delivery.getEntity_id为空！");
+            throw new Exception("addDelivery:delivery.getEntity_id为空！");
+        }
+
+        //c库
+        delivery.setId(deliveryId);
+        delivery.setOut_confirmed_genre(genre);
+        delivery.setEntity_entry_status(status);
+        delivery.setDeleteFlag("0");
+
+        boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
+        ;
+        if (!(storageResult)) {
+            log.error("addDelivery:dao.addDelivery出错！");
+            throw new Exception("addDelivery:dao.addDelivery出错！");
+        } else {
+            //log.info(">>>>保存成功");
+            result.put("success", true);
+        }
+
+        result.put("success", true);
+        return result;
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no, String out_total) throws Exception, RuntimeException {
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        String deliveryId = UUIdUtil.getUUID();
+       
+        if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
+            log.error("backwardDelivery:delivery.getEntity_id为空！");
+            throw new Exception("backwardDelivery:delivery.getEntity_id为空！");
+        }
+        //原纪录作废
+        boolean Result = dao.updateDeliveryStatus(delivery.getId(), "5") == 1 ? true : false;
+        if (!Result) {
+            log.error("backwardDelivery:dao.updateDeliveryStatus出错！");
+            throw new Exception("backwardDelivery:dao.updateDeliveryStatus出错！");
+        }
+        //更新库存记录
+        result = stockService.updateStockForBackward(storage, delivery, stock_no);
+        if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
+            log.error("backwardDelivery:stockService.updateStockForBackward出错！");
+            throw new Exception("backwardDelivery:stockService.updateStockForBackward出错！");
+        } else if (delivery.getOut_confirmed_no() != 0 && delivery.getOut_confirmed_total() != 0 && storage.getIn_confirmed_total() < Double.valueOf(out_total).intValue()) {
+            //新增出库记录
             delivery.setId(deliveryId);
-            delivery.setStock_id(stock.getId());
-            delivery.setOut_confirmed_ident(out_confirmed_ident);
-            delivery.setOut_confirmed_type(stock.getStock_type());
-            delivery.setOut_confirmed_genre(genre);
-            delivery.setOut_confirmed_by(stock.getUpdateUserId());
-            delivery.setOut_confirmed_unit(stock.getStock_unit());
-            delivery.setOut_confirmed_proportion(stock.getStock_proportion());
-            delivery.setEntity_entry_status(status);
+            delivery.setOut_confirmed_genre("1");
+            delivery.setEntity_entry_status("2");
+            delivery.setDeleteFlag("0");
             delivery.setCreateDate(createDate);
-            delivery.setCreateUserId(stock.getUpdateUserId());
+            delivery.setCreateUserId(delivery.getUpdateUserId());
             delivery.setUpdateDate(createDate);
-            delivery.setUpdateUserId(stock.getUpdateUserId());
             delivery.setDeleteFlag("0");
 
             boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
-            ;
             if (!(storageResult)) {
-                log.error("addstorage:" + storageResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //log.info(">>>>保存成功");
-                result.put("success", true);
+                log.error("backwardDelivery:dao.addDelivery出错！");
+                throw new Exception("backwardDelivery:dao.addDelivery出错！");
             }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
         }
-        return result;
-    }
-
-    @Override
-    public Map<String, Object> addDelivery(Delivery delivery,String genre, String status) {
-        Map<String, Object> result = new HashMap<>();
-        String createDate = DateUtil.getFullTime();
-        String deliveryId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错！无法获取设备ID");
-                return result;
-            }
-
-            //c库
-            delivery.setId(deliveryId);
-            delivery.setOut_confirmed_genre(genre);
-            delivery.setEntity_entry_status(status);
-            delivery.setDeleteFlag("0");
-
-            boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
-            ;
-            if (!(storageResult)) {
-                log.error("addstorage:" + storageResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //log.info(">>>>保存成功");
-                result.put("success", true);
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
-        }
-        return result;
-    }
-
-    @Override
-    public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no, String out_total) {
-        Map<String, Object> result = new HashMap<>();
-        String createDate = DateUtil.getFullTime();
-        String deliveryId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错！无法获取设备ID");
-                return result;
-            }
-            //原纪录作废
-            boolean Result = dao.updateDeliveryStatus(delivery.getId(), "5") == 1 ? true : false;
+        if (!"".equals(delivery.getStock_entity_id()) && delivery.getStock_entity_id() != null) {
+            Result = stockDevicesService.updateDevicesSetStatus(delivery.getStock_entity_id(), "0", delivery.getUpdateUserId(), delivery.getUpdateDate());
             if (!Result) {
-                log.error("backwardDelivery:updateDeliveryStatus->error！");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
+                log.error("backwardDelivery:stockDevicesService.updateDevicesSetStatus出错！");
+                throw new Exception("backwardDelivery:stockDevicesService.updateDevicesSetStatus出错！");
             }
-            //更新库存记录
-            result = stockService.updateStockForBackward(storage, delivery, stock_no);
-            if ("true".equals(result.get("hasError"))) {
-                log.error("backwardDelivery:updateStockForBackward->error！");
-                return result;
-            } else if (delivery.getOut_confirmed_no() != 0 && delivery.getOut_confirmed_total() != 0 && storage.getIn_confirmed_total() < Double.valueOf(out_total).intValue()) {
-                //新增出库记录
-                delivery.setId(deliveryId);
-                delivery.setOut_confirmed_genre("1");
-                delivery.setEntity_entry_status("2");
-                delivery.setDeleteFlag("0");
-                delivery.setCreateDate(createDate);
-                delivery.setCreateUserId(delivery.getUpdateUserId());
-                delivery.setUpdateDate(createDate);
-                delivery.setDeleteFlag("0");
-
-                boolean storageResult = dao.addDelivery(delivery) == 1 ? true : false;
-                if (!(storageResult)) {
-                    log.error("addstorage:" + storageResult);
-                    result.put("hasError", true);
-                    result.put("error", "添加出错");
-                    return result;
-                }
-            }
-            if (!"".equals(delivery.getStock_entity_id()) && delivery.getStock_entity_id() != null) {
-                Result = stockDevicesService.updateDevicesSetStatus(delivery.getStock_entity_id(), "0", delivery.getUpdateUserId(), delivery.getUpdateDate());
-                if (!Result) {
-                    log.error("backwardDelivery:updateDeliveryStatus->error！");
-                    result.put("hasError", true);
-                    result.put("error", "添加出错");
-                    return result;
-                }
-            }
-
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
         }
+
+
         result.put("success", true);
         return result;
     }
@@ -244,13 +210,13 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Map<String, Object> deliveryReport(String startDate,String endDate) {
+    public Map<String, Object> deliveryReport(String startDate, String endDate) {
 
         Map<String, Object> resultMap = new HashMap<>();
-        try{
-            List<Map<String, Object>> listDelivery=deliveryReportService.getDeliveryReportSingleParam(startDate,endDate);
+        try {
+            List<Map<String, Object>> listDelivery = deliveryReportService.getDeliveryReportSingleParam(startDate, endDate);
             resultMap.put("data", listDelivery);
-        }catch (Exception e) {
+        } catch (Exception e) {
             resultMap.put("hasError", true);
             resultMap.put("error", "查询出错");
             log.error(e);

@@ -21,11 +21,11 @@ public interface StorageService {
 
     public  List<Storage> listStorageByStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_id, String officeId);
 
-    public Map<String, Object> addStorage(Stock stock, Storage storage);
+    public Map<String, Object> addStorage(Stock stock, Storage storage) throws Exception;
 
-    public Map<String, Object> addStorage(Delivery delivery, Storage storage);
+    public Map<String, Object> addStorage(Delivery delivery, Storage storage) throws Exception;
 
-    public Map<String, Object> addStorageForOfficesStorage(OfficesStorage storage);
+    public Map<String, Object> addStorageForOfficesStorage(OfficesStorage storage) throws Exception;
 
     public boolean deleteListRegUser(List<String> listStr);
 

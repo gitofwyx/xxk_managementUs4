@@ -13,8 +13,8 @@ import java.util.Map;
  */
 public interface StockUniteOperateService {
 
-    public Map<String, Object> transferStockOfUpdateStock(Stock stock,Storage storage,String delivery_id);
+    public Map<String, Object> transferStockOfUpdateStock(Stock stock,Storage storage,String delivery_id) throws Exception;
 
-    public Map<String, Object> transferStockOfAddStock(Stock stock,Storage storage,String delivery_id);
+    public Map<String, Object> transferStockOfAddStock(Stock stock,Storage storage,String delivery_id) throws Exception;
 
 }

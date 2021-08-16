@@ -18,6 +18,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -58,156 +59,126 @@ public class StorageServiceImpl implements StorageService {
 
     //入库记录
     @Override
-    public Map<String, Object> addStorage(Stock stock, Storage storage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> addStorage(Stock stock, Storage storage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String storageId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(storage.getEntity_id()) || storage.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            String in_confirmed_ident = IdentUtil.getIdentNo((int)storage.getIn_confirmed_no(), createDate);
-            if ("".equals(in_confirmed_ident) || in_confirmed_ident == null) {
-                result.put("hasError", true);
-                result.put("error", "添加出错,无法生成入库编号！");
-                return result;
-            }
-            //入库
-            storage.setId(storageId);
-            storage.setStock_id(stock.getId());
-            storage.setIn_confirmed_ident(in_confirmed_ident);
-            storage.setIn_confirmed_type(stock.getStock_type());
-            storage.setIn_confirmed_by(stock.getUpdateUserId());
-            storage.setOut_flag("0");
-            storage.setCreateDate(createDate);
-            storage.setCreateUserId(stock.getUpdateUserId());
-            storage.setUpdateDate(createDate);
-            storage.setUpdateUserId(stock.getUpdateUserId());
-            storage.setDeleteFlag("0");
 
-            boolean storageResult = dao.addStorage(storage) == 1 ? true : false;
-            ;
-            if (!(storageResult)) {
-                log.error("addstorage:" + storageResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //log.info(">>>>保存成功");
-                result.put("success", true);
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        if ("".equals(storage.getEntity_id()) || storage.getEntity_id() == null) {
+            log.error("addStorage:storage.getEntity_id为空！");
+            throw new Exception("addStorage:storage.getEntity_id为空！");
         }
+        String in_confirmed_ident = IdentUtil.getIdentNo((int) storage.getIn_confirmed_no(), createDate);
+        if ("".equals(in_confirmed_ident) || in_confirmed_ident == null) {
+            log.error("addStorage:in_confirmed_ident为空！");
+            throw new Exception("addStorage:in_confirmed_ident空！");
+        }
+        //入库
+        storage.setId(storageId);
+        storage.setStock_id(stock.getId());
+        storage.setIn_confirmed_ident(in_confirmed_ident);
+        storage.setIn_confirmed_type(stock.getStock_type());
+        storage.setIn_confirmed_by(stock.getUpdateUserId());
+        storage.setOut_flag("0");
+        storage.setCreateDate(createDate);
+        storage.setCreateUserId(stock.getUpdateUserId());
+        storage.setUpdateDate(createDate);
+        storage.setUpdateUserId(stock.getUpdateUserId());
+        storage.setDeleteFlag("0");
+
+        boolean storageResult = dao.addStorage(storage) == 1 ? true : false;
+        ;
+        if (!(storageResult)) {
+            log.error("addStorage:dao.addStorage出错！");
+            throw new Exception("addStorage:dao.addStorage出错！");
+        } else {
+            //log.info(">>>>保存成功");
+            result.put("success", true);
+        }
+
+        result.put("success", true);
         return result;
     }
 
     //入库记录
     @Override
-    public Map<String, Object> addStorage(Delivery delivery, Storage storage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> addStorage(Delivery delivery, Storage storage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String storageId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(storage.getEntity_id()) || storage.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            String in_confirmed_ident = IdentUtil.getIdentNo((int)storage.getIn_confirmed_no(), createDate);
-            if ("".equals(in_confirmed_ident) || in_confirmed_ident == null) {
-                result.put("hasError", true);
-                result.put("error", "添加出错,无法生成入库编号！");
-                return result;
-            }
-            //入库
-            storage.setId(storageId);
-            storage.setStock_id(delivery.getStock_id());
-            storage.setIn_confirmed_ident(in_confirmed_ident);
-            storage.setIn_confirmed_type(delivery.getOut_confirmed_type());
-            storage.setIn_confirmed_by(delivery.getUpdateUserId());
-            storage.setIn_confirmed_origin("3");
-            storage.setOut_flag("0");
-            storage.setCreateDate(createDate);
-            storage.setCreateUserId(delivery.getUpdateUserId());
-            storage.setUpdateDate(createDate);
-            storage.setUpdateUserId(delivery.getUpdateUserId());
-            storage.setDeleteFlag("0");
 
-            boolean storageResult = dao.addStorage(storage) == 1 ? true : false;
-            ;
-            if (!(storageResult)) {
-                log.error("addstorage:" + storageResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //log.info(">>>>保存成功");
-                result.put("success", true);
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        if ("".equals(storage.getEntity_id()) || storage.getEntity_id() == null) {
+            log.error("addStorage:storage.getEntity_id为空！");
+            throw new Exception("addStorage:storage.getEntity_id为空！");
         }
+        String in_confirmed_ident = IdentUtil.getIdentNo((int) storage.getIn_confirmed_no(), createDate);
+        if ("".equals(in_confirmed_ident) || in_confirmed_ident == null) {
+            log.error("addStorage:in_confirmed_ident为空！");
+            throw new Exception("addStorage:in_confirmed_ident空！");
+        }
+        //入库
+        storage.setId(storageId);
+        storage.setStock_id(delivery.getStock_id());
+        storage.setIn_confirmed_ident(in_confirmed_ident);
+        storage.setIn_confirmed_type(delivery.getOut_confirmed_type());
+        storage.setIn_confirmed_by(delivery.getUpdateUserId());
+        storage.setIn_confirmed_origin("3");
+        storage.setOut_flag("0");
+        storage.setCreateDate(createDate);
+        storage.setCreateUserId(delivery.getUpdateUserId());
+        storage.setUpdateDate(createDate);
+        storage.setUpdateUserId(delivery.getUpdateUserId());
+        storage.setDeleteFlag("0");
+
+        boolean storageResult = dao.addStorage(storage) == 1 ? true : false;
+        ;
+        if (!(storageResult)) {
+            log.error("addStorage:dao.addStorage出错！");
+            throw new Exception("addStorage:dao.addStorage出错！");
+        } else {
+            //log.info(">>>>保存成功");
+            result.put("success", true);
+        }
+
+        result.put("success", true);
         return result;
     }
 
     //入库记录
     @Override
-    public Map<String, Object> addStorageForOfficesStorage(OfficesStorage storage) {
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public Map<String, Object> addStorageForOfficesStorage(OfficesStorage storage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String storageId = UUIdUtil.getUUID();
-        try {
-            if ("".equals(storage.getEntity_id()) || storage.getEntity_id() == null) {
-                log.info("出错！无法获取设备ID");
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-                return result;
-            }
-            String in_confirmed_ident = IdentUtil.getIdentNo((int)storage.getOffices_storage_no(), storage.getCreateDate());
-            if ("".equals(in_confirmed_ident) || in_confirmed_ident == null) {
-                result.put("hasError", true);
-                result.put("error", "添加出错,无法生成入库编号！");
-                return result;
-            }
-            //入库
-            storage.setId(storageId);
-            storage.setOffices_storage_ident(in_confirmed_ident);
-            storage.setEntity_entry_status("0");
-            storage.setDeleteFlag("0");
 
-            boolean storageResult = dao.addStorageForOfficesStorage(storage) == 1 ? true : false;
-            ;
-            if (!(storageResult)) {
-                log.error("addstorage:" + storageResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //log.info(">>>>保存成功");
-                result.put("success", true);
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        if ("".equals(storage.getEntity_id()) || storage.getEntity_id() == null) {
+            log.error("addStorageForOfficesStorage:storage.getEntity_id为空！");
+            throw new Exception("addStorageForOfficesStorage:storage.getEntity_id为空！");
         }
+        String in_confirmed_ident = IdentUtil.getIdentNo((int) storage.getOffices_storage_no(), storage.getCreateDate());
+        if ("".equals(in_confirmed_ident) || in_confirmed_ident == null) {
+            log.error("addStorageForOfficesStorage:in_confirmed_ident为空！");
+            throw new Exception("addStorageForOfficesStorage:in_confirmed_ident为空！");
+        }
+        //入库
+        storage.setId(storageId);
+        storage.setOffices_storage_ident(in_confirmed_ident);
+        storage.setEntity_entry_status("0");
+        storage.setDeleteFlag("0");
+
+        boolean storageResult = dao.addStorageForOfficesStorage(storage) == 1 ? true : false;
+        ;
+        if (!(storageResult)) {
+            log.error("addStorageForOfficesStorage:dao.addStorageForOfficesStorage出错！");
+            throw new Exception("addStorageForOfficesStorage:dao.addStorageForOfficesStorage出错！");
+        } else {
+            //log.info(">>>>保存成功");
+            result.put("success", true);
+        }
+
+        result.put("success", true);
         return result;
     }
 
