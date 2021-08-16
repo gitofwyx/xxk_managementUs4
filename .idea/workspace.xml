@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月11日 23:58:50 事务配置">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/service/OfficesStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/service/OfficesStorageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/service/impl/OfficesStorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/service/impl/OfficesStorageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/StockService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -2141,13 +2138,8 @@
       <workItem from="1628775140467" duration="4284000" />
       <workItem from="1628779447653" duration="5640000" />
       <workItem from="1629034817397" duration="6849000" />
-    </task>
-    <task id="LOCAL-00123" summary="2021年6月19日 01:35:02">
-      <created>1624465663771</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1624465663771</updated>
+      <workItem from="1629048765564" duration="704000" />
+      <workItem from="1629125400000" duration="138000" />
     </task>
     <task id="LOCAL-00124" summary="2021年6月30日 00:04:42">
       <created>1624982687849</created>
@@ -2485,7 +2477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628870769083</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="2021年8月11日 23:58:50 事务配置">
+      <created>1629048833289</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1629048833290</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

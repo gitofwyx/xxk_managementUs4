@@ -291,36 +291,27 @@ public class StockServiceImpl implements StockService {
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public Map<String, Object> updateStockForBackward(Storage storage, Delivery delivery, String stock_no) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
-        try {
-            if ("".equals(delivery.getStock_id()) || delivery.getStock_id() == null) {
-                log.error("updateStockForBackward:delivery.getStock_id为空！");
-                throw new Exception("updateStockForBackward:delivery.getStock_id为空！");
-            }
 
-            boolean stockResult = dao.plusStockNoById(delivery.getStock_id(),
-                    Double.valueOf(stock_no),
-                    storage.getIn_confirmed_no(),
-                    delivery.getUpdateUserId(),
-                    delivery.getUpdateDate()) == 1;
-            if (!(stockResult)) {
-                log.error("stockResult:" + stockResult);
-                result.put("hasError", true);
-                result.put("error", "添加出错");
-            } else {
-                //入库记录
-                storage.setClass_id(delivery.getClass_id());
-                storage.setEntity_id(delivery.getEntity_id());
-                result = storageService.addStorage(delivery, storage);
-            }
-        } catch (DuplicateKeyException e) {
-            result.put("hasError", true);
-            result.put("error", "重复值异常，可能编号值重复");
-            log.error(e);
-        } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
-            log.error(e);
+        if ("".equals(delivery.getStock_id()) || delivery.getStock_id() == null) {
+            log.error("updateStockForBackward:delivery.getStock_id为空！");
+            throw new Exception("updateStockForBackward:delivery.getStock_id为空！");
         }
+
+        boolean stockResult = dao.plusStockNoById(delivery.getStock_id(),
+                Double.valueOf(stock_no),
+                storage.getIn_confirmed_no(),
+                delivery.getUpdateUserId(),
+                delivery.getUpdateDate()) == 1;
+        if (!(stockResult)) {
+            log.error("updateStockForBackward: dao.plusStockNoById出错！");
+            throw new Exception("updateStockForBackward: dao.plusStockNoById出错！");
+        } else {
+            //入库记录
+            storage.setClass_id(delivery.getClass_id());
+            storage.setEntity_id(delivery.getEntity_id());
+            result = storageService.addStorage(delivery, storage);
+        }
+        result.put("success", true);
         return result;
     }
 
