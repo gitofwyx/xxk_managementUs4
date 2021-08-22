@@ -15,18 +15,39 @@
             classpath*:/applicationContext-zhsq_M-S.xml
         </param-value> -->
     </context-param>
-    <context-param>
+    <!--<context-param>
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:log4j.properties</param-value>
-    </context-param>
+    </context-param>-->
 
     <!--Spring ApplicationContext 载入 -->
+
+    <!-- log4j2-begin -->
     <listener>
-        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
     </listener>
+    <filter>
+        <filter-name>log4jServletFilter</filter-name>
+        <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>log4jServletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+    <!-- log4j2-end -->
+
+    <!-- 配置Spring上下文监听器 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    <!-- Spring -->
 
     <!-- 配置 Shiro 的 Filter! -->
     <filter>

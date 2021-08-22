@@ -1,12 +1,13 @@
 package com.xxk.core.shiro;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
 
 public class ShiroSessionListener implements SessionListener {
 
-    private Logger logger = Logger.getLogger(ShiroSessionListener.class);
+    private Logger logger = LogManager.getLogger();
 
     @Override
     public void onExpiration(Session session) {

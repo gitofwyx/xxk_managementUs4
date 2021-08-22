@@ -1,6 +1,8 @@
 package com.xxk.core.util;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -11,7 +13,7 @@ import org.apache.log4j.Logger;
  */
 public class LoggerUtil {
 
-    private static Logger logger = Logger.getLogger(LoggerUtil.class); // 作为日志的公用对象
+    private static Logger log = LogManager.getLogger(); // 作为日志的公用对象
 
     /**
      * 获取公用日志对象
@@ -19,6 +21,6 @@ public class LoggerUtil {
      * @return
      */
     public static Logger getLoggerInstance() {
-        return logger;
+        return log;
     }
 }

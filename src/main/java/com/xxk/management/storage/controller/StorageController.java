@@ -11,7 +11,8 @@ import com.xxk.management.storage.service.DeliveryService;
 
 import com.xxk.management.storage.service.StorageService;
 import com.xxk.management.user.service.RebUserService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ import java.util.*;
 @Controller
 public class StorageController extends BaseController {
 
-    private static Logger log = Logger.getLogger(StorageController.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private StorageService storageService;

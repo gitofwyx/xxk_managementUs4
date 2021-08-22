@@ -5,7 +5,9 @@ import com.xxk.management.test.dao.TestDao;
 import com.xxk.management.test.service.Test2Service;
 import com.xxk.management.test.service.TestService;
 import com.xxk.management.user.entity.RegUser;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +21,7 @@ import java.util.Map;
 @Service
 public class TestServiceImpl implements TestService {
 
-    private static Logger log = Logger.getLogger(TestServiceImpl.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private TestDao dao;

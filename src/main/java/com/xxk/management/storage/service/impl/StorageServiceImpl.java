@@ -13,7 +13,8 @@ import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.storage.service.StorageService;
 import com.xxk.management.storage.dao.StorageDao;
 import com.xxk.management.storage.entity.Storage;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -30,7 +31,7 @@ import java.util.Map;
 @Service
 public class StorageServiceImpl implements StorageService {
 
-    private static Logger log = Logger.getLogger(StorageServiceImpl.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private StorageDao dao;

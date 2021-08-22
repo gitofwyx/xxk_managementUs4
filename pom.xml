@@ -21,7 +21,7 @@
     <asm.version>3.3.1</asm.version>
     <junit.version>4.11</junit.version>
     <slf4j.version>1.7.5</slf4j.version>
-    <log4j.version>1.2.17</log4j.version>
+    <log4j.version>2.11.1</log4j.version>
     <aopalliance.version>1.0</aopalliance.version>
     <commons-beanutis.version>1.8.3</commons-beanutis.version>
     <commons-codec.version>1.8</commons-codec.version>
@@ -272,32 +272,37 @@
 
     <!--日志 -->
     <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>${commons-logging.version}</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
+      <artifactId>jcl-over-slf4j</artifactId>
       <version>${slf4j.version}</version>
-      <scope>compile</scope>
+      <scope>runtime</scope>
+    </dependency>
+    <!--用于slf4j与log4j2保持桥接 -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <scope>runtime</scope>
+      <version>${log4j.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>${slf4j.version}</version>
-      <scope>compile</scope>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>${log4j.version}</version>
     </dependency>
 
     <!--辅助 -->

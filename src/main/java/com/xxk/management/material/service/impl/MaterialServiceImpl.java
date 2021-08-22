@@ -4,7 +4,8 @@ import com.xxk.management.material.dao.MaterialDao;
 import com.xxk.management.material.entity.Material;
 import com.xxk.management.material.service.MaterialService;
 import com.xxk.management.stock.entity.Stock;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.Map;
 @Service
 public class MaterialServiceImpl implements MaterialService {
 
-    private static Logger log = Logger.getLogger(MaterialServiceImpl.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private MaterialDao dao;

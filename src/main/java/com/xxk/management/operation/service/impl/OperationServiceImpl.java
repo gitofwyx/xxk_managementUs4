@@ -3,7 +3,8 @@ package com.xxk.management.operation.service.impl;
 import com.xxk.management.operation.dao.OperationDao;
 import com.xxk.management.operation.entity.Operation;
 import com.xxk.management.operation.service.OperationService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.Map;
 @Service
 public class OperationServiceImpl implements OperationService {
 
-    private static Logger log = Logger.getLogger(OperationServiceImpl.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private OperationDao dao;

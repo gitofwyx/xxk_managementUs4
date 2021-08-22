@@ -3,7 +3,8 @@ package com.xxk.management.office.offices.service.impl;
 import com.xxk.management.office.offices.dao.OfficesDao;
 import com.xxk.management.office.offices.entity.Offices;
 import com.xxk.management.office.offices.service.OfficesService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import java.util.Map;
 @Service
 public class OfficesServiceImpl implements OfficesService {
 
-    private static Logger log = Logger.getLogger(OfficesServiceImpl.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private OfficesDao dao;

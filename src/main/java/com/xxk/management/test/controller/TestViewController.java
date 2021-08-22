@@ -1,7 +1,8 @@
 package com.xxk.management.test.controller;
 
 import com.xxk.core.file.BaseController;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,7 @@ import java.util.Map;
 @Controller
 public class TestViewController extends BaseController {
 
-    private static Logger log = Logger.getLogger(TestViewController.class);
+    private static Logger log = LogManager.getLogger();
 
     /*@RequestMapping("/index")
     public ModelAndView  index() {

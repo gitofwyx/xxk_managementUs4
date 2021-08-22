@@ -8,7 +8,8 @@ import com.xxk.management.device.entity.DeviceClass;
 import com.xxk.management.device.service.DeviceClassService;
 import com.xxk.management.material.entity.Material;
 import com.xxk.management.material.service.MaterialService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,7 @@ import java.util.Map;
 @RequestMapping("")
 public class MaterialController extends BaseController {
 
-    private static Logger log = Logger.getLogger(MaterialController.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private MaterialService materialService;

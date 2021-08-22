@@ -7,7 +7,8 @@ import com.xxk.management.roles.entity.Roles;
 import com.xxk.management.roles.service.RolesService;
 import com.xxk.management.user.entity.RegUser;
 import com.xxk.management.user.service.RebUserService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -31,7 +32,7 @@ import java.util.Map;
 @RequestMapping("")
 public class RegUserController extends BaseController {
 
-    private static Logger log = Logger.getLogger(RegUserController.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private RebUserService rebUserService;

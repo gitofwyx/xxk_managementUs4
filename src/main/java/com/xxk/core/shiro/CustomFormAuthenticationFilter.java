@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 
-	private static Logger log = Logger.getLogger(CustomFormAuthenticationFilter.class);
+	private static Logger log = LogManager.getLogger();
 
 	/**
 	 * 表示当访问拒绝时是否已经处理了；如果返回true表示需要继续处理；如果返回false表示该拦截器实例已经处理了，将直接返回即可。

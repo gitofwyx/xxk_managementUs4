@@ -1,7 +1,8 @@
 package com.xxk.management.system.controller;
 
 import com.xxk.core.file.BaseController;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
@@ -25,7 +26,7 @@ import java.util.Map;
 @Controller
 public class AuthController extends BaseController {
 
-    private static Logger log = Logger.getLogger(AuthController.class);
+    private static Logger log = LogManager.getLogger();
 
     @RequestMapping("/")
     public ModelAndView  indexLogin() {

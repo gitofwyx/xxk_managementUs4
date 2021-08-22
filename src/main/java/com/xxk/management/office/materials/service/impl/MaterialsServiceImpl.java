@@ -3,7 +3,8 @@ package com.xxk.management.office.materials.service.impl;
 import com.xxk.management.office.materials.dao.MaterialsDao;
 import com.xxk.management.office.materials.entity.Materials;
 import com.xxk.management.office.materials.service.MaterialsService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.Map;
 @Service
 public class MaterialsServiceImpl implements MaterialsService {
 
-    private static Logger log = Logger.getLogger(MaterialsServiceImpl.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private MaterialsDao dao;

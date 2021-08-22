@@ -8,7 +8,8 @@ import com.xxk.management.bar_code.service.StartPrintCheckOutService;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.storage.service.DeliveryReportService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ import java.util.function.Supplier;
 @RequestMapping("")
 public class Bar_codeController extends BaseController {
 
-    private static Logger log = Logger.getLogger(Bar_codeController.class);
+    private static Logger log = LogManager.getLogger();
 
     private Supplier<Bar_code> bar_codeStorySupplier = Bar_code::new;
 

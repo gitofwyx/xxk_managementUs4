@@ -10,7 +10,9 @@ import com.xxk.management.stock.service.StockUniteOperateService;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.stock.service.StockService;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,7 @@ import java.util.Map;
 @RequestMapping("")
 public class StockController extends BaseController {
 
-    private static Logger log = Logger.getLogger(StockController.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private StockService stockService;

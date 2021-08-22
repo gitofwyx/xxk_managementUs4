@@ -7,7 +7,8 @@ import com.xxk.management.stock.service.StockUniteOperateService;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
 import com.xxk.management.storage.service.StorageService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ import java.util.Map;
 @Service
 public class StockUniteOperateServiceImpl implements StockUniteOperateService {
 
-    private static Logger log = Logger.getLogger(StockService.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private StockDao dao;

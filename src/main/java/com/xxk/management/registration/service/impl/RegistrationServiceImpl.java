@@ -3,7 +3,8 @@ package com.xxk.management.registration.service.impl;
 import com.xxk.management.registration.dao.RegistrationDao;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
 
-    private static Logger log = Logger.getLogger(RegistrationServiceImpl.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private RegistrationDao dao;

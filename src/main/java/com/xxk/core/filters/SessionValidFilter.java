@@ -1,6 +1,7 @@
 package com.xxk.core.filters;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
@@ -62,7 +63,7 @@ public class SessionValidFilter implements Filter {
    /**
     * 当前类自己的logger
     */
-   private static Logger logger = Logger.getLogger(SessionValidFilter.class);
+   private static Logger logger = LogManager.getLogger();
 
    /**
     * Web.xml中对于本Filter的配置信息（用来得到参数的）

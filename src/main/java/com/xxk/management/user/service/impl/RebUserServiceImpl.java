@@ -3,7 +3,8 @@ package com.xxk.management.user.service.impl;
 import com.xxk.management.user.dao.RegUserDao;
 import com.xxk.management.user.entity.RegUser;
 import com.xxk.management.user.service.RebUserService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,7 @@ import java.util.Map;
 @Service
 public class RebUserServiceImpl implements RebUserService {
 
-    private static Logger log = Logger.getLogger(RebUserServiceImpl.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private RegUserDao dao;

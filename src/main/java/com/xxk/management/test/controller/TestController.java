@@ -8,7 +8,8 @@ import com.xxk.management.roles.service.RolesService;
 import com.xxk.management.test.service.TestService;
 import com.xxk.management.user.entity.RegUser;
 import com.xxk.management.user.service.RebUserService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -31,7 +32,7 @@ import java.util.Map;
 @Controller
 public class TestController extends BaseController {
 
-    private static Logger log = Logger.getLogger(TestController.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private TestService testService;

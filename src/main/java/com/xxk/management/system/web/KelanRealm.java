@@ -2,7 +2,8 @@ package com.xxk.management.system.web;
 
 import com.xxk.management.user.entity.RegUser;
 import com.xxk.management.user.service.RebUserService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -23,7 +24,7 @@ public class KelanRealm extends AuthorizingRealm {
 	@Autowired
 	private RebUserService userService;
 
-	private static Logger log = Logger.getLogger(KelanRealm.class);
+	private static Logger log = LogManager.getLogger();
 
 	// 进行认证的!
 	@Override

@@ -8,7 +8,8 @@ import com.xxk.management.office.offices.record.entity.Record;
 import com.xxk.management.office.offices.record.service.RecordService;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ import java.util.Map;
 @RequestMapping("")
 public class RegistrationController extends BaseController {
 
-    private static Logger log = Logger.getLogger(RegistrationController.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private RegistrationService registrationService;

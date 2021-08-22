@@ -7,7 +7,8 @@ import com.xxk.management.office.offices.record.entity.Record;
 import com.xxk.management.office.offices.record.service.RecordService;
 import com.xxk.management.operation.entity.Operation;
 import com.xxk.management.operation.service.OperationService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -29,7 +30,7 @@ import java.util.Map;
 @RequestMapping("")
 public class OperationController extends BaseController {
 
-    private static Logger log = Logger.getLogger(OperationController.class);
+    private static Logger log = LogManager.getLogger();
 
     @Autowired
     private OperationService operationService;

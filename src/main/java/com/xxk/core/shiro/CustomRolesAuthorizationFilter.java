@@ -8,7 +8,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.util.StringUtils;
@@ -17,7 +18,7 @@ import org.apache.shiro.web.util.WebUtils;
 
 public class CustomRolesAuthorizationFilter extends RolesAuthorizationFilter {
 
-	private static Logger log = Logger.getLogger(CustomRolesAuthorizationFilter.class);
+	private static Logger log = LogManager.getLogger();
 
 	public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
 			throws IOException {
