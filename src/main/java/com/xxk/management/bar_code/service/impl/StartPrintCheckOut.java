@@ -108,7 +108,7 @@ public class StartPrintCheckOut implements StartPrintCheckOutService {
 
         g2.setFont(f1);
 
-        int height = 50;
+        int height = 113;
 
         System.out.println("list_size=" + list.size());
 
@@ -126,11 +126,11 @@ public class StartPrintCheckOut implements StartPrintCheckOutService {
 
             height += 5;
 
-            g2.drawString(vo1.get("entity_name") + "", 10, height );
+            g2.drawString(vo1.get("entity_name") + "", 45, height );
 
-            g2.drawString(vo1.get("entity_type") + "", 65, height );
+            g2.drawString(vo1.get("entity_type") + "", 95, height );
 
-            g2.drawString(vo1.get("office_name") + "", 115, height );
+            g2.drawString(vo1.get("office_name") + "", 145, height );
 
             height += 15;
 
@@ -199,7 +199,7 @@ public class StartPrintCheckOut implements StartPrintCheckOutService {
 
             System.out.println("print paper Height : " + p.getHeight());
 
-            p.setImageableArea(0, 0, 595, 842);// A4(595 X
+            p.setImageableArea(20, 20, 595, 842);// A4(595 X
 
             // 842)设置打印区域，其实0，0应该是72，72，因为A4纸的默认X,Y边距是72
 
@@ -220,7 +220,7 @@ public class StartPrintCheckOut implements StartPrintCheckOutService {
 
             String printname="Microsoft XPS Document Writer";
 
-            //printname="Canon iR2525/2530 UFRII LT";
+            printname="EPSON L100 Series";
 
             //CheckOutDao dao = new CheckOutDao();
 

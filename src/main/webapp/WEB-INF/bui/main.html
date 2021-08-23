@@ -35,7 +35,7 @@
                 <div class="nav-item-inner nav-inventory">搜索页</div>
             </li>
             <li class="nav-item">
-                <div class="nav-item-inner nav-supplier">详情页</div>
+                <div class="nav-item-inner nav-goods">识别扫码</div>
             </li>
         </ul>
     </div>
@@ -122,11 +122,12 @@
                 ]
             }]
         }, {
-            id: 'detail',
+            id: 'bar_code',
+            homePage: 'storage_scan_code',
             menu: [{
-                text: '详情页面',
+                text: '操作',
                 items: [
-                    {id: 'code', text: '详情页面代码', href: 'detail/code.html'},
+                    {id: 'storage_scan_code', text: '入库识别', href: 'storage_scan_code_tab'},
                     {id: 'example', text: '详情页面示例', href: ''},
                     {id: 'introduce', text: '详情页面简介', href: 'detail/introduce.html'}
                 ]

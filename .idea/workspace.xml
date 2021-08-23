@@ -9,76 +9,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月11日 23:58:50 事务配置">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_11_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_11_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_11_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_web_2_11_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ubslogs/error.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ubslogs/info.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_5.xml" beforeDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月10日 12:35:45 update">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/controller/Bar_codeViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/bar_code/storage_scan_code.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/filters/SessionValidFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/filters/SessionValidFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomFormAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomFormAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomRolesAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/CustomRolesAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/ShiroSessionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/shiro/ShiroSessionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/JsonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/LoggerUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/core/util/LoggerUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/controller/Bar_codeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/controller/Bar_codeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/service/impl/Bar_codeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/service/impl/Bar_codeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/controller/DeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/controller/DeviceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceClassServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceClassServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/device/service/impl/DeviceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/controller/MaterialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/service/impl/MaterialServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/material/service/impl/MaterialServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/controller/officeMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/controller/officeMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/controller/officeViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/controller/officeViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/controller/DepositoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/controller/DepositoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/controller/MaterialsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/controller/MaterialsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/service/impl/MaterialsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/materials/service/impl/MaterialsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/record/service/impl/RecordServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/record/service/impl/RecordServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/impl/OfficesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/impl/OfficesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/controller/OfficesStorageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/controller/OfficesStorageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/service/impl/OfficesStorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/storage/service/impl/OfficesStorageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/controller/OperationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/service/impl/OperationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/operation/service/impl/OperationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/service/impl/RegistrationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/service/impl/RegistrationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/controller/StockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockUniteOperateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockUniteOperateServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/StorageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryReportServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/DeliveryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/service/impl/StorageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/web/KelanRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/system/web/KelanRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/Test2ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/Test2ServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/UserViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/UserViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/impl/RebUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/service/impl/RebUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xxk_managementUs4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_managementUs4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/service/impl/StartPrintCheckOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/bar_code/service/impl/StartPrintCheckOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shiro-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shiro-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1099,7 +1038,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/bar_code" />
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.33908045" />
@@ -1107,18 +1046,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\xxk\xxk_managementUs4\src\main\webapp\WEB-INF\bui\bar_code" />
       <recent name="G:\XXK\WYX\xxk_management\src\main\java\com\xxk\management\system\entity" />
       <recent name="G:\XXK\WYX\xxk_management\src\main\java\com\xxk\management\test\dao" />
       <recent name="G:\XXK\WYX\xxk_management\src\main\webapp\WEB-INF\bui\search" />
       <recent name="E:\xxk\xxk_management\src\main\java\com\xxk\management\office\devices\dao" />
-      <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\search" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.bar_code.controller" />
       <recent name="com.xxk.management.stock.service.impl" />
       <recent name="com.xxk.management.stock.service" />
       <recent name="com.xxk.management.test.dao" />
       <recent name="com.xxk.management.test.service.impl" />
-      <recent name="com.xxk.management.test.controller" />
     </key>
   </component>
   <component name="RunManager">
@@ -2218,6 +2157,9 @@
       <workItem from="1629597190424" duration="392000" />
       <workItem from="1629597595758" duration="1226000" />
       <workItem from="1629598846918" duration="1207000" />
+      <workItem from="1629705054716" duration="1588000" />
+      <workItem from="1629708230299" duration="883000" />
+      <workItem from="1629709248164" duration="171000" />
     </task>
     <task id="LOCAL-00128" summary="2021年7月5日 02:04:52">
       <created>1625495193675</created>
