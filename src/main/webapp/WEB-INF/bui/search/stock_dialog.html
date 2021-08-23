@@ -443,6 +443,13 @@
                         width: 70,
                         renderer: BUI.Grid.Format.enumRenderer(enumObj)
                     },
+                    {
+                        title: '&nbsp库存科室',
+                        dataIndex: 'stock_office_id',
+                        elCls: 'center',
+                        width: 150,
+                        renderer: BUI.Grid.Format.enumRenderer(getOfficeMakeGrid(offices_select,{})),
+                    },
                     {title: '&nbsp数量', dataIndex: 'stock_no', elCls: 'center', width: 70},
                     {title: '&nbsp库存单位', dataIndex: 'stock_unit', elCls: 'center', width: 100},
                     {title: '&nbsp总量', dataIndex: 'stock_total', elCls: 'center', width: 100},
@@ -972,7 +979,6 @@
             });
 
             $("#T_Stock").change(function() {
-                alert("change");
                 $("#out_confirmed_genre").val("");
                 if(!CheckIsNullOrEmpty($("#out_confirmed_officeId").val())){
                     return;

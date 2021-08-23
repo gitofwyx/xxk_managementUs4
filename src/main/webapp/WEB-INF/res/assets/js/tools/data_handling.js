@@ -70,6 +70,18 @@ function stock_officeSelect(offices_select, stock_office) {
     return stock_office;
 }
 
+//生成库存键值对用于GridForenumRenderer
+function getOfficeMakeGrid(offices_select, stock_office) {
+    if (stock_office == undefined || $.isEmptyObject(stock_office)) {
+        for (var i in offices_select) {
+
+            stock_office[offices_select[i].value] = offices_select[i].text;
+
+        }
+    }
+    return stock_office;
+}
+
 //判断数据是否为Null或者undefined或者为空字符串
 function CheckIsNullOrEmpty(value) {
     //正则表达式用于判斷字符串是否全部由空格或换行符组成
