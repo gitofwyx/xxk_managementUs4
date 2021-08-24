@@ -1,5 +1,5 @@
 //下拉提示框bsSuggest
-function buildBsSuggest(cla, v,search,effective, callback) {
+function buildBsSuggest(cla, v, search, effective, onSet_ck,onUnset_ck) {
     var options = {
         /*url: "/getMaterialName?tab=" + v,*/
         data: v,
@@ -20,11 +20,16 @@ function buildBsSuggest(cla, v,search,effective, callback) {
     }).on('onSetSelectValue', function (e, keyword, data) {
         console.log('onSetSelectValue: ', keyword, data);
         //回调函数
-        if (typeof callback === "function") {
+        if (typeof onSet_ck === "function") {
             //调用它，既然我们已经确定了它是可调用的
-            callback(keyword, data);
+            onSet_ck(keyword, data);
         }
 
+    }).on('onUnsetSelectValue', function () {
+        if (typeof onUnset_ck === "function") {
+            //调用它，既然我们已经确定了它是可调用的
+            onUnset_ck();
+        }
     });
 
 

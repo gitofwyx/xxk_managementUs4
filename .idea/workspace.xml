@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月24日 18:23:03 科室下拉框更新">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月24日 00:11:22 库存记录增加科室列">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/suggest_util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/suggest_util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,13 +31,11 @@
       <list>
         <option value="Class" />
         <option value="spring-beans.schema" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -1309,6 +1309,8 @@
     </configuration>
     <configuration name="T8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="apache-tomcat-8.5.57" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="C:\Program Files\Java\jdk1.8.0_281\jre">
       <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="xxk_managementUs4:war exploded">
@@ -2157,9 +2159,9 @@
       <workItem from="1629643943043" duration="609000" />
       <workItem from="1629694972700" duration="670000" />
       <workItem from="1629723542740" duration="7954000" />
-      <workItem from="1629733628918" duration="1151000" />
-      <workItem from="1629792568110" duration="538000" />
-      <workItem from="1629793187417" duration="6416000" />
+      <workItem from="1629733628918" duration="7441000" />
+      <workItem from="1629816840449" duration="5197000" />
+      <workItem from="1629824220348" duration="1080000" />
     </task>
     <task id="LOCAL-00130" summary="2021年7月7日 02:56:32 反出库">
       <created>1625598206118</created>
@@ -2497,12 +2499,12 @@
       <option name="project" value="LOCAL" />
       <updated>1629604197180</updated>
     </task>
-    <task id="LOCAL-00178" summary="2021年8月24日 18:23:03 科室下拉框更新">
-      <created>1629800604278</created>
+    <task id="LOCAL-00178" summary="2021年8月24日 00:11:22 库存记录增加科室列">
+      <created>1629735110510</created>
       <option name="number" value="00178" />
       <option name="presentableId" value="LOCAL-00178" />
       <option name="project" value="LOCAL" />
-      <updated>1629800604279</updated>
+      <updated>1629735110510</updated>
     </task>
     <option name="localTasksCounter" value="179" />
     <servers />
@@ -2596,37 +2598,11 @@
             <State />
           </value>
         </entry>
-        <entry key="b82f013d-8fee-4a67-8f2d-7f3e87fd51c4">
-          <value>
-            <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="HEAD" />
-                      </list>
-                    </value>
-                  </entry>
-                  <entry key="structure">
-                    <value>
-                      <list>
-                        <option value="dir:E:/xxk/xxk_managementUs4/src/main/java/com/xxk/management" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
       </map>
     </option>
     <option name="OPEN_GENERIC_TABS">
       <map>
         <entry key="1" value="TOOL_WINDOW" />
-        <entry key="b82f013d-8fee-4a67-8f2d-7f3e87fd51c4" value="TOOL_WINDOW" />
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
@@ -2666,8 +2642,8 @@
     <MESSAGE value="2021年8月11日 00:21:36 事务配置" />
     <MESSAGE value="2021年8月11日 23:58:50 事务配置" />
     <MESSAGE value="2021年8月22日 11:49:08 日志升级LOG4J2" />
-    <MESSAGE value="2021年8月24日 18:23:03 科室下拉框更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年8月24日 18:23:03 科室下拉框更新" />
+    <MESSAGE value="2021年8月24日 00:11:22 库存记录增加科室列" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年8月24日 00:11:22 库存记录增加科室列" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

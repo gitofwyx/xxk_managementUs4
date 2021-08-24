@@ -284,7 +284,7 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label ><s style="color: #ee2212">*操作提示：转库操作请在出库科室后面勾选</s></label>
+                <label><s style="color: #ee2212">*操作提示：转库操作请在出库科室后面勾选</s></label>
             </div>
         </div>
     </form>
@@ -436,11 +436,11 @@
                     //dirSelectable : false,//阻止树节点选中
                     showLine: true //显示连接线
                 }),
-               /* stock_office_picker = new TreePicker({
-                    trigger: '#out_confirmed_offices',
-                    width: 150,  //指定宽度
-                    children: [stock_office_tree] //配置picker内的列表
-                }).render(),*/
+                /* stock_office_picker = new TreePicker({
+                     trigger: '#out_confirmed_offices',
+                     width: 150,  //指定宽度
+                     children: [stock_office_tree] //配置picker内的列表
+                 }).render(),*/
 
                 columns = [
                     {title: '&nbsp库存编号', dataIndex: 'stock_ident', elCls: 'center', width: 110},
@@ -451,7 +451,7 @@
                         dataIndex: 'stock_office_id',
                         elCls: 'center',
                         width: 150,
-                        renderer: BUI.Grid.Format.enumRenderer(getOfficeMakeGrid(offices_select,{})),
+                        renderer: BUI.Grid.Format.enumRenderer(getOfficeMakeGrid(offices_select, {})),
                     },
                     {
                         title: '库存类别',
@@ -467,13 +467,13 @@
                         title: '&nbsp库存状态', dataIndex: 'stock_flag', elCls: 'center', width: 100,
                         renderer: function (value, obj) {
                             var Str;
-                            if(parseInt(obj.stock_total)<3&&parseInt(obj.stock_total)>0){
+                            if (parseInt(obj.stock_total) < 3 && parseInt(obj.stock_total) > 0) {
                                 Str = '<span style="color: firebrick;text-decoration: underline">备货</span><span class="icon-shopping-cart"></span>';
                             }
-                            if(parseInt(obj.stock_total)==0){
+                            if (parseInt(obj.stock_total) == 0) {
                                 Str = '<span style="color: red">缺货</span><span class="icon-ban-circle">';
                             }
-                            if(parseInt(obj.stock_total)>2){
+                            if (parseInt(obj.stock_total) > 2) {
                                 Str = '<span style="color: green">正常</span>';
                             }
                             return Str;
@@ -720,42 +720,6 @@
                 return num;
             }
 
-            //下拉提示框bsSuggest
-            function initDepBsSuggest(t, cla, v, callback) {
-                var options = {
-                    /*url: "/getMaterialName?tab=" + v,*/
-                    data: v,
-                    effectiveFields: ["text", "office_unique_name"],
-                    searchFields: ["text", "class_ident"],
-                    effectiveFieldsAlias: {text: "编号", office_unique_name: "科室别称",},
-                    listAlign: 'auto',
-                    showBtn: false,
-                    autoMinWidth: true,
-                    getDataMethod: 'data',
-                    idField: "value",
-                    keyField: "text",
-                    clearable: true,
-                };
-                if (t == 1) {
-                    $("#" + cla).bsSuggest('init', options).on('onDataRequestSuccess', function (e, result) {
-                        console.log('onDataRequestSuccess: ', result);
-                    }).on('onSetSelectValue', function (e, keyword, data) {
-                        console.log('onSetSelectValue: ', keyword, data);
-                        //回调函数
-                        if (typeof callback === "function") {
-                            //调用它，既然我们已经确定了它是可调用的
-                            callback(keyword, data);
-                        }
-
-                    }).on('onUnsetSelectValue', function () {
-                        console.log('onUnsetSelectValue');
-                    });
-                } else if (t == 0) {
-                    $("#" + cla).bsSuggest('destroy');
-                }
-
-            };
-
             //入库操作
             function in_storageFunction() {
                 dev_name_select.set('items', []);
@@ -815,11 +779,20 @@
                     O_Form.getField('entity_name').set('value', eData.entity_name);
                     O_Form.getField('entity_type').set('value', eData.entity_type);
 
-                    initDepBsSuggest(1, "out_confirmed_offices", {value: offices_select}, function (K, data) {
-                        $("#devices_id").val(data.value);
-                        $("#office_unique_name").val(data.office_unique_name);
-                        $("#device_location").val(data.device_location);
-                    });
+                    buildBsSuggest("out_confirmed_offices",
+                        {value: offices_select},
+                        ["text", "class_ident"],
+                        {"text": "科室名称",},
+                        function (K, data) {
+                            $("#out_confirmed_genre").val("");
+                            $("#out_confirmed_officeId").val(data.value);
+                            $("#T_Stock").prop("checked", false);
+                        },
+                        function () {
+                            $("#out_confirmed_genre").val("");
+                            $("#out_confirmed_officeId").val("");
+                        },
+                    );
                 }
             }
 
@@ -1030,16 +1003,16 @@
                 //$("#out_confirmed_officeId").val(ev.item.value);
             });
 
-            $("#T_Stock").change(function() {
+            $("#T_Stock").change(function () {
                 $("#out_confirmed_genre").val("");
-                if(!CheckIsNullOrEmpty($("#out_confirmed_officeId").val())){
+                if (!CheckIsNullOrEmpty($("#out_confirmed_officeId").val())) {
                     return;
                 }
                 if (stock_office == undefined || $.isEmptyObject(stock_office)) {
                     return;
                 }
                 for (var i in stock_office) {
-                    if (i === $("#out_confirmed_officeId").val()&&this.checked) {
+                    if (i === $("#out_confirmed_officeId").val() && this.checked) {
                         $("#out_confirmed_genre").val("6");
                         BUI.Message.Alert('已勾选转库');
                     }
