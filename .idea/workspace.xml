@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月25日 01:16:48 Suggest功能封装完善">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryReportController.java" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月28日 00:28:52 报表接口重新配置">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryReportController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/shiro-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shiro-context.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -2170,13 +2169,11 @@
       <workItem from="1630080863236" duration="255000" />
       <workItem from="1630081135008" duration="54000" />
       <workItem from="1630081202460" duration="221000" />
-    </task>
-    <task id="LOCAL-00131" summary="2021年7月7日 02:56:32 反出库">
-      <created>1625598819020</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1625598819021</updated>
+      <workItem from="1630081438131" duration="409000" />
+      <workItem from="1630081863693" duration="307000" />
+      <workItem from="1630082184725" duration="83000" />
+      <workItem from="1630082377700" duration="49000" />
+      <workItem from="1630082451468" duration="155000" />
     </task>
     <task id="LOCAL-00132" summary="2021年7月7日 18:34:08 反出库">
       <created>1625654055414</created>
@@ -2514,7 +2511,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629825454212</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="2021年8月28日 00:28:52 报表接口重新配置">
+      <created>1630081782736</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1630081782736</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2626,7 +2630,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年7月5日 02:04:52" />
     <MESSAGE value="2021年7月7日 02:56:32 反出库" />
     <MESSAGE value="2021年7月7日 18:34:08 反出库" />
     <MESSAGE value="2021年7月8日 01:07:37 反出库" />
@@ -2651,7 +2654,8 @@
     <MESSAGE value="2021年8月22日 11:49:08 日志升级LOG4J2" />
     <MESSAGE value="2021年8月24日 00:11:22 库存记录增加科室列" />
     <MESSAGE value="2021年8月25日 01:16:48 Suggest功能封装完善" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年8月25日 01:16:48 Suggest功能封装完善" />
+    <MESSAGE value="2021年8月28日 00:28:52 报表接口重新配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年8月28日 00:28:52 报表接口重新配置" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

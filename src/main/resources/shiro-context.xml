@@ -90,13 +90,14 @@
             <!--记住一点，权限为金字塔状，先精确匹配或是权限稍小在前面，权限大（模糊匹配）的在后面。-->
             <value>
 
-                /favicon.ico=anon
                 /logout = logout
 
-                /**=authc
+                /favicon.ico=anon
                 /test/**=anon
                 /index/**=anon  <!--登录页面的js和css不拦截-->
                 /report/**=anon
+
+                /**=authc  <!--要放最后不然后面的不生效-->
             </value>
         </property>
         <!-- <property name="filterChainDefinitionMap"> <bean factory-bean="filterChainDefinitionsBuilder"

@@ -66,10 +66,10 @@ public class DeliveryReportController extends BaseController {
                 endDate= DateUtil.getPreMonthEndDate(Day)+" 23:59:59";
             }
             if(!"".equals(objectMap.get("startdate"))&&objectMap.get("startdate")!=null){
-                startDate=(String) objectMap.get("startdate");
+                startDate=(String) objectMap.get("startdate")+" 00:00:00";
             }
             if(!"".equals(objectMap.get("enddate"))&&objectMap.get("enddate")!=null){
-                endDate=(String) objectMap.get("enddate");
+                endDate=(String) objectMap.get("enddate")+" 23:59:59";
             }
 
             resultMap = deliveryService.deliveryReport(startDate,endDate);
