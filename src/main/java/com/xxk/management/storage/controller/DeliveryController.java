@@ -118,53 +118,6 @@ public class DeliveryController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/deliveryReport")
-    public Map<String, Object> deliveryReport(HttpServletRequest request,
-                                              HttpServletResponse response) {
-        Map<String, Object> resultMap = new HashMap<>();
-        String createDate = DateUtil.getFullTime();
-        String startDate=DateUtil.getMonthStartDate(createDate);
-        String endDate=createDate;
-        try {
-            Map<String, String[]> pramMap = request.getParameterMap();
-            Map<String, Object> objectMap = new HashMap<>();
-            for (String key : pramMap.keySet()) {
-
-                String[] pramChar = pramMap.get(key);
-                StringBuffer pramBuffer = new StringBuffer();
-                for (int i = 0; i < pramChar.length; i++) {
-                    pramBuffer.append(pramChar[i]);
-                }
-                String pram = pramBuffer.toString();
-                objectMap.put(key, pram);
-            }
-            if(!"".equals(objectMap.get("date"))&&objectMap.get("date")!=null){
-                String Day=DateUtil.getFullDay();
-                startDate=DateUtil.getPreMonthStartDate(Day)+" 00:00:00";
-                endDate= DateUtil.getPreMonthEndDate(Day)+" 23:59:59";
-            }
-            if(!"".equals(objectMap.get("startdate"))&&objectMap.get("startdate")!=null){
-                startDate=(String) objectMap.get("startdate");
-            }
-            if(!"".equals(objectMap.get("enddate"))&&objectMap.get("enddate")!=null){
-                endDate=(String) objectMap.get("enddate");
-            }
-
-            resultMap = deliveryService.deliveryReport(startDate,endDate);
-            if (resultMap == null) {
-                log.error("listDelivery:获取分页出错");
-                return resultMap;
-            }
-
-        } catch (Exception e) {
-            log.error(e);
-            resultMap.put("hasError", true);
-            resultMap.put("error", "查询出错");
-        }
-        return resultMap;
-    }
-
-    @ResponseBody
     @RequestMapping("/listDeliveryByOffice")
     public Map<String, Object> listDeliveryByOffice(@RequestParam(value = "office_id") String office_id) {
         Map<String, Object> result = new HashMap<>();

@@ -9,11 +9,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月24日 00:11:22 库存记录增加科室列">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月25日 01:16:48 Suggest功能封装完善">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryReportController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/suggest_util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/suggest_util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shiro-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shiro-context.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1049,11 +1049,11 @@
       <recent name="E:\xxk\xxk_management\src\main\webapp\WEB-INF\bui\search" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.storage.controller" />
       <recent name="com.xxk.management.stock.service.impl" />
       <recent name="com.xxk.management.stock.service" />
       <recent name="com.xxk.management.test.dao" />
       <recent name="com.xxk.management.test.service.impl" />
-      <recent name="com.xxk.management.test.controller" />
     </key>
   </component>
   <component name="RunManager">
@@ -2162,13 +2162,14 @@
       <workItem from="1629733628918" duration="7441000" />
       <workItem from="1629816840449" duration="5197000" />
       <workItem from="1629824220348" duration="1080000" />
-    </task>
-    <task id="LOCAL-00130" summary="2021年7月7日 02:56:32 反出库">
-      <created>1625598206118</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1625598206118</updated>
+      <workItem from="1629825316552" duration="953000" />
+      <workItem from="1629884932591" duration="1693000" />
+      <workItem from="1630040321428" duration="902000" />
+      <workItem from="1630080099518" duration="417000" />
+      <workItem from="1630080529523" duration="309000" />
+      <workItem from="1630080863236" duration="255000" />
+      <workItem from="1630081135008" duration="54000" />
+      <workItem from="1630081202460" duration="221000" />
     </task>
     <task id="LOCAL-00131" summary="2021年7月7日 02:56:32 反出库">
       <created>1625598819020</created>
@@ -2506,7 +2507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629735110510</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <task id="LOCAL-00179" summary="2021年8月25日 01:16:48 Suggest功能封装完善">
+      <created>1629825454212</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1629825454212</updated>
+    </task>
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2618,7 +2626,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年7月2日 14:34:47" />
     <MESSAGE value="2021年7月5日 02:04:52" />
     <MESSAGE value="2021年7月7日 02:56:32 反出库" />
     <MESSAGE value="2021年7月7日 18:34:08 反出库" />
@@ -2643,7 +2650,8 @@
     <MESSAGE value="2021年8月11日 23:58:50 事务配置" />
     <MESSAGE value="2021年8月22日 11:49:08 日志升级LOG4J2" />
     <MESSAGE value="2021年8月24日 00:11:22 库存记录增加科室列" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年8月24日 00:11:22 库存记录增加科室列" />
+    <MESSAGE value="2021年8月25日 01:16:48 Suggest功能封装完善" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年8月25日 01:16:48 Suggest功能封装完善" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2719,7 +2727,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java</url>
-          <line>262</line>
+          <line>215</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
