@@ -538,7 +538,7 @@
                         ]
                     },
                     plugins: [Editing_I, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit, BUI.Grid.Plugins.columnresize],// 插件形式引入多选表格
-                    emptyDataTpl : '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
+                    emptyDataTpl: '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
                 });
 
             var search = new Search({
@@ -780,7 +780,14 @@
                     O_Form.getField('entity_type').set('value', eData.entity_type);
 
                     buildBsSuggest("out_confirmed_offices",
-                        {value: offices_select},
+                        {
+                            value: offices_select.filter(function (office, index) {
+                                if (CheckIsNullOrEmpty(office.office_property)) {
+                                    return office.office_property!=0;
+                                }
+                                return office;
+                            })
+                        },
                         ["text", "class_ident"],
                         {"text": "科室名称",},
                         function (K, data) {
