@@ -2,10 +2,10 @@
 <html>
 <head>
     <title> 详情页</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="/css/dpl-min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/bui-min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/page-min.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/page-min.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
         code {
             padding: 0px 4px;
@@ -16,81 +16,96 @@
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="detail-page">
-        <h2>个人信息</h2>
-        <div class="detail-section" id="RegUser">
-            <h3 id="btnShow">基本信息</h3>
-            <div class="row detail-row">
-                <div class="span8">
-                    <label>姓名：</label><span class="detail-text">{{ Object.name }}</span>
+<div id="RegUser">
+    <div class="container">
+        <div class="detail-page">
+            <h2>个人信息</h2>
+            <div class="detail-section">
+                <h3 id="btnShow">基本信息</h3>
+                <div class="row detail-row">
+                    <div class="span8">
+                        <label>姓名：</label><span class="detail-text">{{ Object.name }}</span>
+                    </div>
+                    <div class="span8">
+                        <label>工号：</label><span class="detail-text">{{ Object.account }}</span>
+                    </div>
+                    <div class="span8">
+                        <label>性别：</label><span class="detail-text">{{ Object.sex }}</span>
+                    </div>
                 </div>
-                <div class="span8">
-                    <label>工号：</label><span class="detail-text">{{ Object.account }}</span>
-                </div>
-                <div class="span8">
-                    <label>性别：</label><span class="detail-text">{{ Object.sex }}</span>
+                <div class="row detail-row">
+                    <div class="span8">
+                        <label>电话\手机：</label><span class="detail-text">{{ Object.phone }}</span>
+                    </div>
+                    <div class="span8">
+                        <label>年龄：</label><span class="detail-text">{{ Object.birth }}</span>
+                    </div>
+                    <div class="span8">
+                        <label>家庭住址：</label><span class="detail-text">{{ Object.address }}</span>
+                    </div>
                 </div>
             </div>
-            <div class="row detail-row">
-                <div class="span8">
-                    <label>电话\手机：</label><span class="detail-text">{{ Object.phone }}</span>
-                </div>
-                <div class="span8">
-                    <label>年龄：</label><span class="detail-text">{{ Object.birth }}</span>
-                </div>
-                <div class="span8">
-                    <label>家庭住址：</label><span class="detail-text">{{ Object.address }}</span>
-                </div>
+            <div class="detail-section">
+                <h3>单位信息</h3>
+
+
             </div>
-        </div>
-        <div class="detail-section">
-            <h3>单位信息</h3>
-
-
-        </div>
-        <div class="detail-section">
-            <h3>工作清单</h3>
-            <div class="row detail-row">
-                <div class="span24">
-                    <div id="grid"></div>
+            <div class="detail-section">
+                <h3>工作清单</h3>
+                <div class="row detail-row">
+                    <div class="span24">
+                        <div id="grid"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div id="content" class="hide">
-    <form class="form-horizontal">
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label">姓名：</label>
-                <div class="controls">
-                    <input type="text" class="input-normal control-text">
+    <div id="content" class="hide">
+        <form class="form-horizontal" autocomplete="off">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">姓名：</label>
+                    <div class="controls">
+                        <input type="text" class="input-normal control-text" v-model="Object.name">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label">年龄：</label>
+                    <div class="controls">
+                        <input type="text" class="input-normal control-text" v-model="Object.birth">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label">联系方式：</label>
+                    <div class="controls">
+                        <input type="text" class="input-normal control-text" v-model="Object.phone">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label">密码：</label>
+                    <div class="controls">
+                        <input ref="passWord" placeholder="请输入密码..." type="password" v-model="Object.password" v-show="!showPass"/>
+                        <input ref="passWord" placeholder="请输入密码..." type="text" v-model="Object.password" v-show="showPass"/>
+
+                    </div>
+                    <div @click="showPass = ! showPass">
+                        <span v-show="showPass"><img src="/img/passwordHide.jpg"></span>
+                        <span v-show="!showPass"><img src="/img/passwordShow.jpg"></span>
+                    </div>
+
+
                 </div>
             </div>
-            <div class="control-group span8">
-                <label class="control-label">年龄：</label>
-                <div class="controls">
-                    <input type="text" class="input-normal control-text">
+            <div class="row">
+                <div class="control-group span15">
+                    <label class="control-label">备注：</label>
+                    <div class="controls control-row4">
+                        <textarea class="input-large" type="text"></textarea>
+                    </div>
                 </div>
             </div>
-            <div class="control-group span8">
-                <label class="control-label">联系方式：</label>
-                <div class="controls">
-                    <input type="text" class="input-normal control-text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group span15">
-                <label class="control-label">备注：</label>
-                <div class="controls control-row4">
-                    <textarea class="input-large" type="text"></textarea>
-                </div>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/js/bui-min.js"></script>
@@ -104,7 +119,8 @@
     var RegUser = new Vue({
         el: '#RegUser',
         data: {
-            Object:{}
+            Object: {},
+            showPass:false,
         },
     });
 
@@ -117,9 +133,9 @@
         dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success: function (data, textStatus, jqXHR) {
             if (data != null && data != undefined) {
-                RegUser.Object=data.Object;
-                RegUser.Object.sex=data.Object.sex==1?"男":"女";
-                RegUser.Object.birth=jsGetAge(data.Object.birth);
+                RegUser.Object = data.Object;
+                RegUser.Object.sex = data.Object.sex == 1 ? "男" : "女";
+                RegUser.Object.birth = jsGetAge(data.Object.birth);
             }
         },
         error: function (xhr, textStatus) {
@@ -130,33 +146,50 @@
     });
 
 
-    BUI.use('bui/grid',function (Grid) {
+    BUI.use('bui/grid', function (Grid) {
         var data = [],
 
-                grid = new Grid.SimpleGrid({
-                    render : '#grid', //显示Grid到此处
-                    width : 950,      //设置宽度
-                    columns : [
-                        {title:'编号',dataIndex:'id',width:80},
-                        {title:'姓名',dataIndex:'name',width:100},
-                        {title:'时间',dataIndex:'day',width:100,renderer:Grid.Format.dateRenderer},
-                        {title:'家庭住址',dataIndex:'address',width:300}
-                    ]
-                });
+            grid = new Grid.SimpleGrid({
+                render: '#grid', //显示Grid到此处
+                width: 950,      //设置宽度
+                columns: [
+                    {title: '编号', dataIndex: 'id', width: 80},
+                    {title: '姓名', dataIndex: 'name', width: 100},
+                    {title: '时间', dataIndex: 'day', width: 100, renderer: Grid.Format.dateRenderer},
+                    {title: '家庭住址', dataIndex: 'address', width: 300}
+                ]
+            });
         grid.render();
         grid.showData(data);
     });
-    BUI.use('bui/overlay',function(Overlay){
-        $('#btnShow').on('click',function () {
+    BUI.use('bui/overlay', function (Overlay) {
+        $('#btnShow').on('click', function () {
             var dialog = new Overlay.Dialog({
-                title:'修改',
-                width:500,
-                height:320,
-                closeAction : 'destroy', //每次关闭dialog释放
+                title: '修改',
+                width: 500,
+                height: 320,
+                closeAction: 'destroy', //每次关闭dialog释放
                 //配置DOM容器的编号
-                contentId:'content',
-                success:function () {
-                    alert('确认');
+                contentId: 'content',
+                success: function () {
+                    $.ajax({
+                        url: "/updateRegUser",
+                        data: RegUser.Object,
+                        type: 'POST', //GET
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            if (data != null && data != undefined) {
+
+                            }
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus)
+                        }
+                    });
                     this.close();
                 }
             });

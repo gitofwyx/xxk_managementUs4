@@ -88,7 +88,7 @@
 
     <!--修改信息 -->
     <update id="updateRegUser" parameterType="com.xxk.management.user.entity.RegUser">
-        update xxk_reg_user set account=#{account},birth=#{birth},sex=#{sex},phone=#{phone},createUnit=#{createUnit},
+        update xxk_reg_user set password=#{password},birth=#{birth},sex=#{sex},phone=#{phone},createUnit=#{createUnit},
         QCellCore=#{QCellCore},updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
     </update>
 

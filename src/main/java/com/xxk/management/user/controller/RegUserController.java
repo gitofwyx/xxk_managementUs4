@@ -133,8 +133,9 @@ public class RegUserController extends BaseController {
         //String phone=(String)request.getAttribute("phone");
         //String phone = request.getParameter("phone");
         String updateDate = DateUtil.getFullTime();
+        String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
         try {
-            user.setUpdateUserId("admin");
+            user.setUpdateUserId(CurrentUserId);
             user.setUpdateDate(updateDate);
             if (rebUserService.updateRegUser(user) == false) {
                 log.error("更新出错");
