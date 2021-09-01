@@ -891,6 +891,9 @@
 
             //监听事件，选择设备型号下拉框选中
             dev_type_select.on('change', function (ev) {
+                if(!CheckIsNullOrEmpty(ev.item)){
+                    return;
+                }
                 $("#stock_total_unit").val(ev.item.single_unit);
                 stock_office_select.setSelectedValue('');//初始化入库科室！！
             });

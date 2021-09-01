@@ -10,12 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年8月28日 01:04:58 search检索为空提示图标优化">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/img/passwordHide.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/img/passwordShow.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/dao/RebUserDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/user/dao/RebUserDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/detail/user_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/detail/user_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2186,13 +2182,8 @@
       <workItem from="1630412701918" duration="10241000" />
       <workItem from="1630428790582" duration="393000" />
       <workItem from="1630429199106" duration="466000" />
-    </task>
-    <task id="LOCAL-00136" summary="2021年7月12日 00:23:26 反出库">
-      <created>1626020613245</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1626020613246</updated>
+      <workItem from="1630429679184" duration="864000" />
+      <workItem from="1630497557856" duration="3440000" />
     </task>
     <task id="LOCAL-00137" summary="2021年7月12日 00:23:26 同科出库bug">
       <created>1626106230117</created>
@@ -2530,7 +2521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630255567639</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <task id="LOCAL-00185" summary="2021年8月28日 01:04:58 search检索为空提示图标优化">
+      <created>1630429745735</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1630429745735</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2745,11 +2743,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java</url>
           <line>215</line>
           <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/user/controller/RegUserController.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
