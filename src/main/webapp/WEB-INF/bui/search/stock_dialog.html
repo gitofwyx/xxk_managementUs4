@@ -876,9 +876,11 @@
             //监听事件，tab类别切换
             tab_I.on('selectedchange', function (ev) {
 
-                I_Reset();
+                I_Reset();//该操作会请空所有的输入框数据！！！--》executeI_Form.clearFields();
                 select_data = [];
                 entity_selectAjax(tab_I.getSelected().__attrVals.name, tab_I.getSelected().__attrVals.value);
+
+                //注意：由于execute clearFields 操作，有默认值的必须项要重新赋值！！！
                 I_Form.getField('stock_type').set('value', tab_I.getSelected().__attrVals.value);
                 I_Form.getField('in_confirmed_origin').set('value', '2');
             });
