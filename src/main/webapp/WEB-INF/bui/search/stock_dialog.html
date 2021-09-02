@@ -880,6 +880,7 @@
                 select_data = [];
                 entity_selectAjax(tab_I.getSelected().__attrVals.name, tab_I.getSelected().__attrVals.value);
                 I_Form.getField('stock_type').set('value', tab_I.getSelected().__attrVals.value);
+                I_Form.getField('in_confirmed_origin').set('value', '2');
             });
 
             //监听事件，选择设备种类下拉框选中
