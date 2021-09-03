@@ -9,8 +9,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月3日 01:51:57 入库功能bug大修复">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月3日 01:51:57 备注">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/DevicesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/DevicesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2185,14 +2189,12 @@
       <workItem from="1630497557856" duration="3440000" />
       <workItem from="1630501170857" duration="1453000" />
       <workItem from="1630584736784" duration="4790000" />
-      <workItem from="1630605053055" duration="362000" />
-    </task>
-    <task id="LOCAL-00139" summary="2021年7月18日 14:49:11 库存转移_入库">
-      <created>1626590957807</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1626590957810</updated>
+      <workItem from="1630605053055" duration="472000" />
+      <workItem from="1630605549912" duration="121000" />
+      <workItem from="1630642335810" duration="1961000" />
+      <workItem from="1630644832306" duration="189000" />
+      <workItem from="1630645035023" duration="98000" />
+      <workItem from="1630645146177" duration="483000" />
     </task>
     <task id="LOCAL-00140" summary="2021年7月18日 14:49:11 库存转移_入库">
       <created>1626591521773</created>
@@ -2530,7 +2532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630605122272</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="2021年9月3日 01:51:57 备注">
+      <created>1630605496656</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1630605496656</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2642,7 +2651,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年7月12日 00:23:26 同科出库bug" />
     <MESSAGE value="2021年7月16日 00:40:23 库存转移_入库" />
     <MESSAGE value="2021年7月18日 14:49:11 库存转移_入库" />
     <MESSAGE value="2021年7月27日 02:32:20 转移入库" />
@@ -2667,7 +2675,8 @@
     <MESSAGE value="2021年8月28日 01:04:58 search检索为空提示图标优化" />
     <MESSAGE value="2021年9月1日 20:59:51 入库页面设备选择bug大修复" />
     <MESSAGE value="2021年9月3日 01:51:57 入库功能bug大修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月3日 01:51:57 入库功能bug大修复" />
+    <MESSAGE value="2021年9月3日 01:51:57 备注" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月3日 01:51:57 备注" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2745,6 +2754,21 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java</url>
           <line>215</line>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/controller/DepositoryController.java</url>
+          <line>146</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -18,7 +18,7 @@
     <select id="listDevices" resultType="com.xxk.management.office.devices.entity.Devices">
         select
         <include refid="columns"></include>
-        from xxk_offices_devices where  deleteFlag='0' and device_deployment_status='2'
+        from xxk_offices_devices where  deleteFlag='0' and device_deployment_status in ('2','3')
         <if test="class_id!=null and ''!= class_id">
             and class_id = #{class_id}
         </if>

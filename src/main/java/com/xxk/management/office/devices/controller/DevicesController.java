@@ -127,9 +127,9 @@ public class DevicesController extends BaseController {
             if(!"".equals(devices_id) || devices_id != null){
                 devices.setId(devices_id);
                 Result = devicesService.updateDevicesForDeployment(devices, officesStorage);
-            }else {
+            }/*else {
                 Result = devicesService.addDevices(devices, officesStorage);
-            }
+            }*/
             if (!(Result)) {
                 result.put("success", false);
             } else {

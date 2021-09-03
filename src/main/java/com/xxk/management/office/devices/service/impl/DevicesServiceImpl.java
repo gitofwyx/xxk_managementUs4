@@ -56,7 +56,7 @@ public class DevicesServiceImpl implements DevicesService {
         return dao.listDevicesById(listDevId);
     }
 
-    @Override
+    /*@Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public boolean addDevices(Devices devices, OfficesStorage storage) throws Exception, RuntimeException {
 
@@ -99,7 +99,7 @@ public class DevicesServiceImpl implements DevicesService {
         }
 
         return devicesResult;
-    }
+    }*/
 
     //部署操作；标注时间：2021年6月17日 23:53:48
     @Override
@@ -113,7 +113,7 @@ public class DevicesServiceImpl implements DevicesService {
         devices.setClass_id(storage.getClass_id());
         devices.setDevice_id(storage.getEntity_id());
         devices.setDevices_ident("NO");
-        devices.setDevice_deployment_status("2");
+        devices.setDevice_deployment_status("3");
         devices.setRelated_flag("0");
         devices.setUpdateUserId(devices.getCreateUserId());
         devices.setUpdateDate(createDate);

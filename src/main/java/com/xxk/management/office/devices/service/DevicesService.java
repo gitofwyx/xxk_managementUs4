@@ -17,7 +17,7 @@ public interface DevicesService {
 
     public List<Devices> listDevicesById(List<String> listDevId);
 
-    public boolean addDevices(Devices devices, OfficesStorage storage) throws Exception;
+    /*public boolean addDevices(Devices devices, OfficesStorage storage) throws Exception;*/
 
     public boolean updateDevicesForDeployment(Devices devices, OfficesStorage storage) throws Exception;
 
