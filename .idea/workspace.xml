@@ -9,12 +9,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月3日 01:51:57 备注">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月3日 13:10:21 部署功能bug修复">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/DevicesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/DevicesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2194,14 +2193,12 @@
       <workItem from="1630642335810" duration="1961000" />
       <workItem from="1630644832306" duration="189000" />
       <workItem from="1630645035023" duration="98000" />
-      <workItem from="1630645146177" duration="483000" />
-    </task>
-    <task id="LOCAL-00140" summary="2021年7月18日 14:49:11 库存转移_入库">
-      <created>1626591521773</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1626591521773</updated>
+      <workItem from="1630645146177" duration="1424000" />
+      <workItem from="1630668228357" duration="1051000" />
+      <workItem from="1630669305310" duration="1898000" />
+      <workItem from="1630673769470" duration="777000" />
+      <workItem from="1630674561508" duration="463000" />
+      <workItem from="1630675049292" duration="989000" />
     </task>
     <task id="LOCAL-00141" summary="2021年7月18日 14:49:11 库存转移_入库">
       <created>1627142970515</created>
@@ -2539,7 +2536,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630605496656</updated>
     </task>
-    <option name="localTasksCounter" value="189" />
+    <task id="LOCAL-00189" summary="2021年9月3日 13:10:21 部署功能bug修复">
+      <created>1630645850937</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1630645850937</updated>
+    </task>
+    <option name="localTasksCounter" value="190" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2651,7 +2655,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年7月16日 00:40:23 库存转移_入库" />
     <MESSAGE value="2021年7月18日 14:49:11 库存转移_入库" />
     <MESSAGE value="2021年7月27日 02:32:20 转移入库" />
     <MESSAGE value="2021年7月28日 18:26:43 转移入库" />
@@ -2676,7 +2679,8 @@
     <MESSAGE value="2021年9月1日 20:59:51 入库页面设备选择bug大修复" />
     <MESSAGE value="2021年9月3日 01:51:57 入库功能bug大修复" />
     <MESSAGE value="2021年9月3日 01:51:57 备注" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月3日 01:51:57 备注" />
+    <MESSAGE value="2021年9月3日 13:10:21 部署功能bug修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月3日 13:10:21 部署功能bug修复" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2756,19 +2760,9 @@
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/controller/DepositoryController.java</url>
-          <line>146</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
           <line>83</line>
           <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/DevicesServiceImpl.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
