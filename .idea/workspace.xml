@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月3日 13:10:21 部署功能bug修复">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月3日 21:41:34 科室设备页面优化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/office/devices/dao/DevicesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2198,14 +2196,7 @@
       <workItem from="1630669305310" duration="1898000" />
       <workItem from="1630673769470" duration="777000" />
       <workItem from="1630674561508" duration="463000" />
-      <workItem from="1630675049292" duration="989000" />
-    </task>
-    <task id="LOCAL-00141" summary="2021年7月18日 14:49:11 库存转移_入库">
-      <created>1627142970515</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1627142970516</updated>
+      <workItem from="1630675049292" duration="2243000" />
     </task>
     <task id="LOCAL-00142" summary="2021年7月27日 02:32:20 转移入库">
       <created>1627324366432</created>
@@ -2543,7 +2534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630645850937</updated>
     </task>
-    <option name="localTasksCounter" value="190" />
+    <task id="LOCAL-00190" summary="2021年9月3日 21:41:34 科室设备页面优化">
+      <created>1630676527698</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1630676527699</updated>
+    </task>
+    <option name="localTasksCounter" value="191" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2655,7 +2653,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年7月18日 14:49:11 库存转移_入库" />
     <MESSAGE value="2021年7月27日 02:32:20 转移入库" />
     <MESSAGE value="2021年7月28日 18:26:43 转移入库" />
     <MESSAGE value="2021年7月30日 01:40:01 转移入库" />
@@ -2680,7 +2677,8 @@
     <MESSAGE value="2021年9月3日 01:51:57 入库功能bug大修复" />
     <MESSAGE value="2021年9月3日 01:51:57 备注" />
     <MESSAGE value="2021年9月3日 13:10:21 部署功能bug修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月3日 13:10:21 部署功能bug修复" />
+    <MESSAGE value="2021年9月3日 21:41:34 科室设备页面优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月3日 21:41:34 科室设备页面优化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
