@@ -6,6 +6,8 @@
     <link href="/css/dpl-min.css" rel="stylesheet" type="text/css"/>
     <link href="/css/bui-min.css" rel="stylesheet" type="text/css"/>
     <link href="/css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/suggest-style.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
         code {
             padding: 0px 4px;
@@ -65,13 +67,25 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>登记科室：</label>
                 <div class="controls">
-                    <input name="reg_office_ident" id="reg_office_ident" type="text" data-rules="{required:true}">
+                    <div class="input-group" id="reg_office_div">
+                        <input type="text" id="reg_office_ident"
+                               name="reg_office_ident">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>执行科室：</label>
                 <div class="controls">
-                    <input name="exe_office_ident" id="exe_office_ident" type="text" data-rules="{required:true}">
+                    <div class="input-group" id="exe_office_div">
+                        <input type="text" id="exe_office_ident"
+                               name="exe_office_ident">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,6 +162,10 @@
 <![endif]-->
 <script type="text/javascript" src="/js/tree/tree_build.js"></script>
 <script type="text/javascript" src="/js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tools/data_handling.js"></script>
+<script type="text/javascript" src="/js/suggest/bootstrap-suggest.js"></script>
+<script type="text/javascript" src="/js/suggest/dropdown.js"></script>
+<script type="text/javascript" src="/js/suggest/suggest_util.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -171,7 +189,7 @@
                     contentId: 'Content_O', //设置隐藏的Dialog内容
                     autoSave: true, //添加数据或者修改数据时，自动保存
                 }),
-                reg_office_tree = new Tree.TreeList({
+                /*reg_office_tree = new Tree.TreeList({
                     nodes: [],
                     //store: store,
                     //dirSelectable : false,//阻止树节点选中
@@ -182,8 +200,8 @@
                     //store: store,
                     //dirSelectable : false,//阻止树节点选中
                     showLine: true //显示连接线
-                }),
-                belong_to_picker = new TreePicker({
+                }),*/
+                /*belong_to_picker = new TreePicker({
                     trigger: '#reg_office_ident',
                     //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                     width: 150,  //指定宽度
@@ -194,7 +212,7 @@
                     //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                     width: 150,  //指定宽度
                     children: [exe_office_tree] //配置picker内的列表
-                }).render(),
+                }).render(),*/
                 reg_type_select = new Select.Select({
                     render: '#reg_type_select',
                     valueField: '#reg_type',
@@ -253,6 +271,22 @@
                 R_Form = Editing_R.get('form'),
                 O_Form = Editing_O.get('form');
 
+        function makeBsSuggest(Dv,onSet_ck,onUnset_ck){
+            buildBsSuggest(Dv,
+                {
+                    value: offices_select.filter(function (office, index) {
+                        if (CheckIsNullOrEmpty(office.office_property)) {
+                            return office.office_property!=0;
+                        }
+                        return office;
+                    })
+                },
+                ["text", "class_ident"],
+                {"text": "科室名称",},
+                onSet_ck, onUnset_ck);
+        };
+
+
         //登记操作
         function regFunction() {
             var save = {
@@ -272,8 +306,8 @@
                             if (data != null && data != undefined) {
                                 offices_select = data.result;
                                 var mObj = GetMenus('root', offices_select);
-                                reg_office_tree.set('nodes', mObj);
-                                exe_office_tree.set('nodes', mObj);
+                                //reg_office_tree.set('nodes', mObj);
+                                //exe_office_tree.set('nodes', mObj);
                                 //belong_to_select.set('items', offices_select);
                             }
                         },
@@ -285,12 +319,28 @@
                     })
                 }
             }
-            var mObj = GetMenus('root', offices_select);
-            reg_office_tree.set('nodes', mObj);
-            exe_office_tree.set('nodes', mObj);
+            //var mObj = GetMenus('root', offices_select);
+            //reg_office_tree.set('nodes', mObj);
+            //exe_office_tree.set('nodes', mObj);
             store.get('proxy').set('save', save);
             var newData = {isNew: true}; //标志是新增加的记录
             Editing_R.add(newData, 'name'); //添加记录后，直接编辑
+            makeBsSuggest("reg_office_ident",
+                function (K, data) {
+                    R_Form.getField('reg_office_id').set('value', ev.item.value);
+                },
+                function () {
+                    R_Form.getField('reg_office_id').set('value','');
+                },
+            );
+            makeBsSuggest("exe_office_ident",
+                function (K, data) {
+                    R_Form.getField('exe_office_id').set('value', ev.item.value);
+                },
+                function () {
+                    R_Form.getField('exe_office_id').set('value', '');
+                },
+            );
         }
 
         //编辑操作
@@ -367,12 +417,12 @@
             store.get('proxy').set('save', {});
         });
 
-        reg_office_tree.on('itemclick', function (ev) {
+        /*reg_office_tree.on('itemclick', function (ev) {
             R_Form.getField('reg_office_id').set('value', ev.item.value);
         });
         exe_office_tree.on('itemclick', function (ev) {
             R_Form.getField('exe_office_id').set('value', ev.item.value);
-        });
+        });*/
     });
 </script>
 

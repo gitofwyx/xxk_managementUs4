@@ -121,7 +121,7 @@
     <update id="reduceSingleStockNo">
         update xxk_stock set stock_no=#{1},stock_total=stock_total-1,stock_configured_total=stock_configured_total-1,stock_version=stock_version+1,
         updateUserId=#{2},updateDate=#{3}
-        where id=#{0} and stock_total&gt;0 and deleteFlag='0';
+        where id=#{0} and stock_total&gt;0 and stock_total>stock_idle_total and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->

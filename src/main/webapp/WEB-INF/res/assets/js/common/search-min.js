@@ -171,7 +171,7 @@ define('common/search',['bui/common','bui/grid','bui/form','bui/data','bui/overl
                         }
                     });
                 }else {
-                    BUI.Message.Alert("出错，请联系管理员或退出重试",function(){
+                    BUI.Message.Alert("在线超时,重新登录..",function(){
                         if(top.topManager){
                             //打开左侧菜单中配置过的页面
                             top.topManager.reloadPage();
