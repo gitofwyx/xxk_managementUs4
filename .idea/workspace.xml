@@ -11,12 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月4日 08:22:08 登记表新增字段">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/search-min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/common/search-min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/stock/dao/StockDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2211,6 +2207,7 @@
       <workItem from="1630854225454" duration="858000" />
       <workItem from="1630855430870" duration="190000" />
       <workItem from="1630855647429" duration="4050000" />
+      <workItem from="1630937371124" duration="3354000" />
     </task>
     <task id="LOCAL-00143" summary="2021年7月28日 18:26:43 转移入库">
       <created>1627468007844</created>
@@ -2800,6 +2797,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
           <line>190</line>
           <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

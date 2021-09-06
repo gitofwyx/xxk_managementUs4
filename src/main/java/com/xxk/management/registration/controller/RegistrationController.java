@@ -71,8 +71,7 @@ public class RegistrationController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addRegistration")
-    public Map<String, Object> addRegistration(Registration registration, Record record,
-                                               @RequestParam(value = "reg_office_ident") String reg_office_ident) {
+    public Map<String, Object> addRegistration(Registration registration, Record record) {
         Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
@@ -83,7 +82,7 @@ public class RegistrationController extends BaseController {
             if (resultRecord != null && !resultRecord.isEmpty()) {
                 reg_count = (int) resultRecord.get("reg_count");
             }
-            String reg_ident = IdentUtil.buildIdent(reg_office_ident, reg_count, Date);
+            String reg_ident = IdentUtil.buildIdent("", reg_count, Date);
             registration.setId(id);
             registration.setReg_ident(reg_ident);
             registration.setCreateUserId("admin");

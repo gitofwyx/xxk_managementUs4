@@ -61,8 +61,7 @@
 </div>
 <div id="Content_R" class="hide">
     <form id="R_Form" class="form-horizontal" action="" autocomplete="off">
-        <input type="hidden" name="reg_office_id" id="reg_office_id">
-        <input type="hidden" name="exe_office_id" id="exe_office_id">
+
         <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>登记科室：</label>
@@ -110,6 +109,15 @@
                     <textarea name="reg_content" class="input-large" type="text"></textarea>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input type="hidden" name="reg_office_id" id="reg_office_id" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input type="hidden" name="exe_office_id" id="exe_office_id" data-rules="{required:true}">
+            </div>
+
         </div>
     </form>
 </div>
@@ -327,7 +335,7 @@
             Editing_R.add(newData, 'name'); //添加记录后，直接编辑
             makeBsSuggest("reg_office_ident",
                 function (K, data) {
-                    R_Form.getField('reg_office_id').set('value', ev.item.value);
+                    R_Form.getField('reg_office_id').set('value', data.value);
                 },
                 function () {
                     R_Form.getField('reg_office_id').set('value','');
@@ -335,7 +343,7 @@
             );
             makeBsSuggest("exe_office_ident",
                 function (K, data) {
-                    R_Form.getField('exe_office_id').set('value', ev.item.value);
+                    R_Form.getField('exe_office_id').set('value', data.value);
                 },
                 function () {
                     R_Form.getField('exe_office_id').set('value', '');
