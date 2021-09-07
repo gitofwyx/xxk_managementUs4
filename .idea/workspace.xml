@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月4日 08:22:08 登记表新增字段">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月7日 00:06:19 登记开发">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2208,13 +2207,8 @@
       <workItem from="1630855430870" duration="190000" />
       <workItem from="1630855647429" duration="4050000" />
       <workItem from="1630937371124" duration="3354000" />
-    </task>
-    <task id="LOCAL-00143" summary="2021年7月28日 18:26:43 转移入库">
-      <created>1627468007844</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1627468007845</updated>
+      <workItem from="1630944205550" duration="336000" />
+      <workItem from="1630995473790" duration="105000" />
     </task>
     <task id="LOCAL-00144" summary="2021年7月30日 01:40:01 转移入库">
       <created>1627580406539</created>
@@ -2552,7 +2546,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630714962871</updated>
     </task>
-    <option name="localTasksCounter" value="192" />
+    <task id="LOCAL-00192" summary="2021年9月7日 00:06:19 登记开发">
+      <created>1630944383365</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1630944383365</updated>
+    </task>
+    <option name="localTasksCounter" value="193" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2664,7 +2665,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年7月28日 18:26:43 转移入库" />
     <MESSAGE value="2021年7月30日 01:40:01 转移入库" />
     <MESSAGE value="2021年7月30日 03:08:58 转移入库" />
     <MESSAGE value="2021年7月30日 14:23:51 转移入库" />
@@ -2689,7 +2689,8 @@
     <MESSAGE value="2021年9月3日 13:10:21 部署功能bug修复" />
     <MESSAGE value="2021年9月3日 21:41:34 科室设备页面优化" />
     <MESSAGE value="2021年9月4日 08:22:08 登记表新增字段" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月4日 08:22:08 登记表新增字段" />
+    <MESSAGE value="2021年9月7日 00:06:19 登记开发" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月7日 00:06:19 登记开发" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2797,11 +2798,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
           <line>190</line>
           <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationController.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
