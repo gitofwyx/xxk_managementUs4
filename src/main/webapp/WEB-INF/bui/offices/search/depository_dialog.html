@@ -72,8 +72,8 @@
         <input type="hidden" name="offices_entity_id" id="offices_entity_id" data-rules="{required:true}">
         <input type="hidden" name="stock_or_depository_id" id="stock_or_depository_id" data-rules="{required:true}">
         <input type="hidden" name="offices_storage_genre" id="offices_storage_genre" data-rules="{required:true}">
-        <input type="hidden" name="depository_type" id="depository_type">
-        <input type="hidden" name="depository_officeId" id="depository_officeId">
+        <input type="hidden" name="depository_type" id="depository_type" data-rules="{required:true}">
+        <input type="hidden" name="depository_officeId" id="depository_officeId" data-rules="{required:true}">
         <input type="hidden" name="depository_no" id="depository_no" data-rules="{required:true}">
         <input id="depository_idle_no" name="depository_idle_no" type="hidden" data-rules="{required:true}">
         <input id="entity_entry_status" name="entity_entry_status" type="hidden" data-rules="{required:true}">
@@ -85,7 +85,13 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>入科科室：</label>
                 <div class="controls">
-                    <input name="dep_office_ident" id="dep_office_ident" type="text" data-rules="{required:true}">
+                    <div class="input-group" id="dep_office_div">
+                        <input type="text" id="dep_office_ident"
+                               name="reg_office_ident">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -300,6 +306,7 @@
 <script type="text/javascript" src="/js/tree/tree_build.js"></script>
 <script type="text/javascript" src="/js/localstorageIO.js"></script>
 <script type="text/javascript" src="/js/tools/data_handling.js"></script>
+<script type="text/javascript" src="/js/suggest/suggest_util.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -372,12 +379,12 @@
                     //dirSelectable : false,//阻止树节点选中
                     showLine: true //显示连接线
                 }),
-                dep_office_picker = new TreePicker({
+                /*dep_office_picker = new TreePicker({
                     trigger: '#dep_office_ident',
                     //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
                     width: 150,  //指定宽度
                     children: [dep_office_tree] //配置picker内的列表
-                }).render(),
+                }).render(),*/
                 //回收科室选择数框
                 stock_office_select = new Select.Select({
                     render: '#stock_office_select',
@@ -542,7 +549,7 @@
                             }
                         ]
                     },
-                    emptyDataTpl : '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
+                    emptyDataTpl: '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
                     plugins: [editing_J, editing_R, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
 
@@ -556,6 +563,55 @@
 
             //初始化
             search_office_tree.set('nodes', GetMenus('root', offices_select));
+
+            //科室下拉检索框
+            function makeOfficeBsSuggest(Dv, onSet_ck, onUnset_ck) {
+                buildBsSuggest(Dv,
+                    {
+                        value: offices_select.filter(function (office, index) {
+                            if (CheckIsNullOrEmpty(office.office_property)) {
+                                return office.office_property != 0;
+                            }
+                            return office;
+                        })
+                    },
+                    ["text", "class_ident"],
+                    {"text": "科室名称",},
+                    onSet_ck, onUnset_ck);
+            };
+
+            //监听事件，选择入科科室下拉框选中
+            function officeBsSuggestCallback(v) {
+                if (v.value != null && v.value != '' && v.value != undefined) {
+                    $.ajax({
+                        url: '/listDeliveryUNIONStorageByOffice',
+                        data: {
+                            office_id: v.value,
+                        },
+                        type: 'POST', //GET
+                        async: true,    //或false,是否异步
+                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        success: function (data, textStatus, jqXHR) {
+                            $("#entity_record_id").val('');
+                            if (!$.isEmptyObject(data.entityData)) {
+                                office_dep_grid.setItems(data.entityData);
+                                //office_dep_grid.set('items', data.entityData);
+
+                            } else {
+                                office_dep_grid.setItems({});
+                            }
+                            $("#depository_officeId").val(v.value);
+                        },
+                        error: function (xhr, textStatus) {
+                            console.log('错误')
+                            console.log(xhr)
+                            console.log(textStatus)
+                        }
+                    })
+                }//if语句判断是否获取到设备ID
+            }
+
 
             //下拉框ajax请求entity_selectAjax
             function entity_selectAjax(n, v, callback) {
@@ -683,8 +739,18 @@
                 }
                 var newData = {isNew: true}; //标志是新增加的记录
                 editing_J.add(newData, 'name'); //添加记录后，直接编辑
-                office_dep_grid.set('items', []);
+                office_dep_grid.setItems({});
                 $("#offices_storage_genre").val('1');
+
+                makeOfficeBsSuggest("dep_office_ident",
+                    function (K, data) {
+                        officeBsSuggestCallback(data);
+                    },
+                    function () {
+                        office_dep_grid.setItems({});
+                        $("#depository_officeId").val('');
+                    },
+                );
             }
 
             function addDepositoryBt() {
@@ -787,7 +853,7 @@
                 }
                 var newData = {isNew: true}; //标志是新增加的记录
                 editing_J.add(newData, 'name'); //添加记录后，直接编辑
-                office_dep_grid.set('items', []);
+                office_dep_grid.setItems({});
                 $("#depository_type").val(search_type_select.getSelectedValue());
                 $("#offices_storage_genre").val('2');
             }
@@ -887,38 +953,6 @@
                 dep_entity_data = [];
             });
 
-            //监听事件，选择入科科室下拉框选中
-            dep_office_tree.on('itemclick', function (ev) {
-
-                if (ev.item.value != null && ev.item.value != '' && ev.item.value != undefined) {
-                    $.ajax({
-                        url: '/listDeliveryUNIONStorageByOffice',
-                        data: {
-                            office_id: ev.item.value,
-                        },
-                        type: 'POST', //GET
-                        async: true,    //或false,是否异步
-                        /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                        success: function (data, textStatus, jqXHR) {
-                            $("#entity_record_id").val('');
-                            if (!$.isEmptyObject(data.entityData)) {
-                                office_dep_grid.set('items', data.entityData);
-
-                            } else {
-                                office_dep_grid.set('items', []);
-                            }
-                            $("#depository_officeId").val(ev.item.value);
-                        },
-                        error: function (xhr, textStatus) {
-                            console.log('错误')
-                            console.log(xhr)
-                            console.log(textStatus)
-                        }
-                    })
-                }//if语句判断是否获取到设备ID
-            });
-
             //入科记录框选中
             office_dep_select.on('change', function (ev) {
                 input_disabled(true);
@@ -941,7 +975,7 @@
                 var entity_select = select_data.Entity_data.find(function (ele, index) {
                     return ele.value == ev.item.entity_id;
                 });
-                if(!CheckIsNullOrEmpty(entity_select)){
+                if (!CheckIsNullOrEmpty(entity_select)) {
                     return;
                 }
                 editing_J.set('record', {
@@ -965,7 +999,7 @@
                 $("#entity_entry_status").val(ev.item.entity_entry_status);
                 $("#unit_num_1").val(1);
                 //耗材不是配置出库导致offices_entity_id报空！当前先处理为不为空，后期调整
-                if(ev.item.out_confirmed_type==="3"&&CheckIsNullOrEmpty(offices_entity_id)){
+                if (ev.item.out_confirmed_type === "3" && CheckIsNullOrEmpty(offices_entity_id)) {
                     $("#offices_entity_id").val("3");
                 }
             });
@@ -1068,8 +1102,8 @@
                         I_stock_total = reckon_stock_total(I_num, stock_proportion);//生成入库总量
                         R_Form.getField('in_confirmed_total').set('value', I_stock_total);
                         //改变数量
-                        R_Form.getField('depository_no').set('value', makeInNum(parseInt(dep_total) - parseInt(I_stock_total),stock_proportion));
-                        R_Form.getField('depository_idle_no').set('value', makeInNum(parseInt(dep_idle_total) - parseInt(I_stock_total),stock_proportion));
+                        R_Form.getField('depository_no').set('value', makeInNum(parseInt(dep_total) - parseInt(I_stock_total), stock_proportion));
+                        R_Form.getField('depository_idle_no').set('value', makeInNum(parseInt(dep_idle_total) - parseInt(I_stock_total), stock_proportion));
 
                         //剩余库存数量更新
                         //dep_idle_total=dep_idle_total-I_stock_total;

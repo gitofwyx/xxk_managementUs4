@@ -279,7 +279,7 @@
                 R_Form = Editing_R.get('form'),
                 O_Form = Editing_O.get('form');
 
-        function makeBsSuggest(Dv,onSet_ck,onUnset_ck){
+        function makeOfficeBsSuggest(Dv,onSet_ck,onUnset_ck){
             buildBsSuggest(Dv,
                 {
                     value: offices_select.filter(function (office, index) {
@@ -333,7 +333,7 @@
             store.get('proxy').set('save', save);
             var newData = {isNew: true}; //标志是新增加的记录
             Editing_R.add(newData, 'name'); //添加记录后，直接编辑
-            makeBsSuggest("reg_office_ident",
+            makeOfficeBsSuggest("reg_office_ident",
                 function (K, data) {
                     R_Form.getField('reg_office_id').set('value', data.value);
                 },
@@ -341,7 +341,7 @@
                     R_Form.getField('reg_office_id').set('value','');
                 },
             );
-            makeBsSuggest("exe_office_ident",
+            makeOfficeBsSuggest("exe_office_ident",
                 function (K, data) {
                     R_Form.getField('exe_office_id').set('value', data.value);
                 },

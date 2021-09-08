@@ -11,7 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月7日 00:06:19 登记开发">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2208,14 +2209,8 @@
       <workItem from="1630855647429" duration="4050000" />
       <workItem from="1630937371124" duration="3354000" />
       <workItem from="1630944205550" duration="336000" />
-      <workItem from="1630995473790" duration="105000" />
-    </task>
-    <task id="LOCAL-00144" summary="2021年7月30日 01:40:01 转移入库">
-      <created>1627580406539</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
-      <option name="project" value="LOCAL" />
-      <updated>1627580406539</updated>
+      <workItem from="1630995473790" duration="248000" />
+      <workItem from="1631019559471" duration="7408000" />
     </task>
     <task id="LOCAL-00145" summary="2021年7月30日 03:08:58 转移入库">
       <created>1627585742438</created>
@@ -2553,7 +2548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630944383365</updated>
     </task>
-    <option name="localTasksCounter" value="193" />
+    <task id="LOCAL-00193" summary="2021年9月7日 00:06:19 登记开发">
+      <created>1630995630893</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1630995630893</updated>
+    </task>
+    <option name="localTasksCounter" value="194" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2768,11 +2770,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java</url>
           <line>215</line>
           <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/depository/service/impl/DepositoryServiceImpl.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java</url>
