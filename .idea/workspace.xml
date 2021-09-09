@@ -11,7 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月8日 18:38:43 入科优化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/depository_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/offices/search/devices_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2212,14 +2212,8 @@
       <workItem from="1631019559471" duration="7540000" />
       <workItem from="1631097628613" duration="870000" />
       <workItem from="1631185660070" duration="9000" />
-      <workItem from="1631185683110" duration="927000" />
-    </task>
-    <task id="LOCAL-00147" summary="2021年7月30日 14:23:51 转移入库">
-      <created>1627626337801</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1627626337801</updated>
+      <workItem from="1631185683110" duration="3245000" />
+      <workItem from="1631191239281" duration="3955000" />
     </task>
     <task id="LOCAL-00148" summary="2021年7月31日 02:27:03 转移入库">
       <created>1627669628354</created>
@@ -2557,7 +2551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631098314074</updated>
     </task>
-    <option name="localTasksCounter" value="196" />
+    <task id="LOCAL-00196" summary="2021年9月8日 18:38:43 入科优化">
+      <created>1631187751860</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1631187751861</updated>
+    </task>
+    <option name="localTasksCounter" value="197" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

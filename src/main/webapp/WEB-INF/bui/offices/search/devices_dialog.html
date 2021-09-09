@@ -687,36 +687,6 @@
                 }
             }
 
-            //科室更新函数
-            function handle_office() {
-                if (offices_select == undefined || offices_select == null) {
-                    offices_select = localstorageIO("offices_select", "/getOfficeSelect");
-                    if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
-                        alert("浏览器不支持localstorage！");
-                        $.ajax({
-                            url: '/getOfficeSelect',
-                            type: 'POST', //GET
-                            async: true,    //或false,是否异步
-                            /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                            success: function (data, textStatus, jqXHR) {
-                                if (data != null && data != undefined) {
-                                    offices_select = data.result;
-                                    var mObj = GetMenus('root', offices_data);
-                                    loc_office_tree.set('nodes', mObj);
-                                    //belong_to_select.set('items', offices_select);
-                                }
-                            },
-                            error: function (xhr, textStatus) {
-                                console.log('错误')
-                                console.log(xhr)
-                                console.log(textStatus)
-                            }
-                        })
-                    }
-                }
-            }
-
             //根据设备、耗材ID获取科室库存
             function selectDepositoryForOfficeEntitys(data, callback) {
                 $.ajax({
@@ -827,7 +797,7 @@
             }
 
             //下拉提示框bsSuggest
-            function initBsSuggest(t, cla, v, callback) {
+            function initBsSuggest(t, cla, v, callback,onUnset_ck) {
                 var options = {
                     /*url: "/getMaterialName?tab=" + v,*/
                     data: v,
@@ -854,7 +824,10 @@
                         }
 
                     }).on('onUnsetSelectValue', function () {
-                        console.log('onUnsetSelectValue');
+                        if (typeof onUnset_ck === "function") {
+                            //调用它，既然我们已经确定了它是可调用的
+                            onUnset_ck();
+                        }
                     });
                 } else if (t == 0) {
                     $("#" + cla).bsSuggest('destroy');
@@ -876,8 +849,12 @@
                             initBsSuggest(1, "search_devices_entity", {value: entity_data}, function (K, data) {
                                 $("#search_entity_id").val(data.value);
                                 device_select = data;
+                            },function (){
+                                $("#search_entity_id").val('');
                             });
                         }
+                    },function (){
+                        $("#search_class_id").val('');
                     });
                 }
             };
@@ -998,7 +975,11 @@
 
             });
 
-            loc_office_tree.on('itemclick', function (ev) {
+            loc_office_tree.on('selectedchange', function (ev) {
+                if(!CheckIsNullOrEmpty(ev.item)){
+                    $("#location_office_id").val('');
+                    return;
+                }
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
             });
