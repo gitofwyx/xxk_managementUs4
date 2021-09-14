@@ -125,13 +125,13 @@
     <form id="O_Form" class="form-horizontal" action="">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>维护人员：</label>
+                <label class="control-label"><s>*</s>受理人员：</label>
                 <div class="controls">
-                    <input name="use_offices" type="text" id="use_offices" data-rules="{required:true}">
+                    <input name="use_offices" type="text" id="use_offices" >
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>维护类型：</label>
+                <label class="control-label"><s>*</s>受理类型：</label>
                 <div class="controls">
                     <input name="used_name" type="text" class="input-normal control-text">
                 </div>
@@ -139,14 +139,14 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>开始维护时间：</label>
+                <label class="control-label"><s>*</s>受理时间：</label>
                 <div class="controls">
                     <input name="ope_confirm_date" type="text" data-rules="{required:true}"
                            class="calendar calendar-time">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>维护状态：</label>
+                <label class="control-label"><s>*</s>执行状态：</label>
                 <div class="controls">
                     <input name="ope_flag" type="number" id="used_no" value="1" data-rules="{required:true}">
                 </div>
@@ -154,7 +154,7 @@
         </div>
         <div class="row">
             <div class="control-group span15">
-                <label class="control-label">维护情况描述：</label>
+                <label class="control-label">受理情况：</label>
                 <div class="controls control-row4">
                     <textarea name="ope_content" class="input-large" type="text"></textarea>
                 </div>
@@ -261,7 +261,7 @@
                                 handler: regFunction
                             },
                             {
-                                text: '<i class="icon-hand-right"></i>执行',
+                                text: '<i class="icon-hand-right"></i>受理',
                                 btnCls: 'button button-small',
                                 handler: opeFunction
                             }
