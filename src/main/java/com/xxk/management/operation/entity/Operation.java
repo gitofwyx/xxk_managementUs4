@@ -15,13 +15,25 @@ public class Operation extends BaseInfoEntity {
     private String ope_device_id;         //运维设备ID
     private String ope_auditing_id;       //审核ID
     private String ope_source;             //运维来源
+    private String ope_statement;                //运维声明
     private String ope_type;                //运维类型
     private String ope_confirm_date;      //运维确认时间
     private String ope_content;            //运维内容
     private String ope_flag;               //运维状态
     private String ope_result;             //运维结果
+    private String ope_suggest;             //运维建议
     private String remark;                 //备注
     private String keyWord;                //关键字
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getOpe_ident() {
         return ope_ident;
@@ -79,6 +91,14 @@ public class Operation extends BaseInfoEntity {
         this.ope_source = ope_source;
     }
 
+    public String getOpe_statement() {
+        return ope_statement;
+    }
+
+    public void setOpe_statement(String ope_statement) {
+        this.ope_statement = ope_statement;
+    }
+
     public String getOpe_type() {
         return ope_type;
     }
@@ -119,6 +139,14 @@ public class Operation extends BaseInfoEntity {
         this.ope_result = ope_result;
     }
 
+    public String getOpe_suggest() {
+        return ope_suggest;
+    }
+
+    public void setOpe_suggest(String ope_suggest) {
+        this.ope_suggest = ope_suggest;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -133,15 +161,5 @@ public class Operation extends BaseInfoEntity {
 
     public void setKeyWord(String keyWord) {
         this.keyWord = keyWord;
-    }
-
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = id;
     }
 }
