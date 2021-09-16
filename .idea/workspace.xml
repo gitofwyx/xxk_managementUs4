@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月16日 13:40:15 日志、数据库日志优化">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月17日 05:00:43 打印sql语句到文件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
     </list>
@@ -2228,13 +2228,7 @@
       <workItem from="1631733951849" duration="752000" />
       <workItem from="1631766593223" duration="3602000" />
       <workItem from="1631770716598" duration="4094000" />
-    </task>
-    <task id="LOCAL-00153" summary="2021年8月4日 22:53:50 项目升级Spring4.0">
-      <created>1628096139358</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1628096139358</updated>
+      <workItem from="1631826035434" duration="365000" />
     </task>
     <task id="LOCAL-00154" summary="2021年8月4日 22:53:50 bar_code">
       <created>1628428026932</created>
@@ -2572,7 +2566,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631770844191</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="2021年9月17日 05:00:43 打印sql语句到文件">
+      <created>1631826059633</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1631826059634</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2684,7 +2685,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年7月31日 07:50:00 新增字段stock表stock_idle_total" />
     <MESSAGE value="2021年8月4日 22:53:50 项目升级Spring4.0" />
     <MESSAGE value="2021年8月4日 22:53:50 bar_code" />
     <MESSAGE value="2021年8月4日 22:53:50 updatePrint" />
@@ -2709,7 +2709,8 @@
     <MESSAGE value="2021年9月14日 23:59:24 登记功能开发" />
     <MESSAGE value="2021年9月15日 00:30:54 登记维护功能开发" />
     <MESSAGE value="2021年9月16日 13:40:15 日志、数据库日志优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月16日 13:40:15 日志、数据库日志优化" />
+    <MESSAGE value="2021年9月17日 05:00:43 打印sql语句到文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月17日 05:00:43 打印sql语句到文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
