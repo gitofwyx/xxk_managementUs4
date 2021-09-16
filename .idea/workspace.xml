@@ -9,15 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月15日 00:30:54 登记维护功能开发">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_2_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_2_8.xml" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月16日 13:40:15 日志、数据库日志优化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xxk_managementUs4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_managementUs4.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2233,13 +2227,7 @@
       <workItem from="1631726540095" duration="5691000" />
       <workItem from="1631733951849" duration="752000" />
       <workItem from="1631766593223" duration="3602000" />
-    </task>
-    <task id="LOCAL-00152" summary="2021年8月4日 22:53:50 项目升级Spring4.0">
-      <created>1628095803278</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1628095803278</updated>
+      <workItem from="1631770716598" duration="4094000" />
     </task>
     <task id="LOCAL-00153" summary="2021年8月4日 22:53:50 项目升级Spring4.0">
       <created>1628096139358</created>
@@ -2577,7 +2565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631680265393</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="2021年9月16日 13:40:15 日志、数据库日志优化">
+      <created>1631770844190</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1631770844191</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2689,7 +2684,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年7月31日 04:10:42 转移入库" />
     <MESSAGE value="2021年7月31日 07:50:00 新增字段stock表stock_idle_total" />
     <MESSAGE value="2021年8月4日 22:53:50 项目升级Spring4.0" />
     <MESSAGE value="2021年8月4日 22:53:50 bar_code" />
@@ -2714,7 +2708,8 @@
     <MESSAGE value="2021年9月9日 21:53:50 部署页面优化" />
     <MESSAGE value="2021年9月14日 23:59:24 登记功能开发" />
     <MESSAGE value="2021年9月15日 00:30:54 登记维护功能开发" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月15日 00:30:54 登记维护功能开发" />
+    <MESSAGE value="2021年9月16日 13:40:15 日志、数据库日志优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月16日 13:40:15 日志、数据库日志优化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2817,11 +2812,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
           <line>190</line>
           <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://E:/tools/maven/repository/org/mybatis/mybatis/3.2.8/mybatis-3.2.8.jar!/org/apache/ibatis/session/Configuration.class</url>
-          <line>181</line>
-          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
