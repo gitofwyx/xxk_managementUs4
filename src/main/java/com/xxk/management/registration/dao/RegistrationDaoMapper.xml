@@ -5,7 +5,7 @@
           createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
-    <select id="listRegistration" parameterType="string" resultType="com.xxk.management.registration.entity.Registration">
+    <select id="listRegistration"  resultType="com.xxk.management.registration.entity.Registration">
         select
         <include refid="columns"></include>
         from xxk_registration where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};

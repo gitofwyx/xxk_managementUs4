@@ -11,7 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月17日 05:00:43 打印sql语句到文件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/dpl-min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/dpl-min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ubslogs/error.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ubslogs/info.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2229,13 +2234,12 @@
       <workItem from="1631766593223" duration="3602000" />
       <workItem from="1631770716598" duration="4094000" />
       <workItem from="1631826035434" duration="365000" />
-    </task>
-    <task id="LOCAL-00154" summary="2021年8月4日 22:53:50 bar_code">
-      <created>1628428026932</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1628428026933</updated>
+      <workItem from="1631826415254" duration="760000" />
+      <workItem from="1631827924194" duration="1627000" />
+      <workItem from="1631894575675" duration="2998000" />
+      <workItem from="1631897592942" duration="4171000" />
+      <workItem from="1632027982041" duration="2137000" />
+      <workItem from="1632223631939" duration="3415000" />
     </task>
     <task id="LOCAL-00155" summary="2021年8月4日 22:53:50 bar_code">
       <created>1628439608154</created>
@@ -2573,7 +2577,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631826059634</updated>
     </task>
-    <option name="localTasksCounter" value="203" />
+    <task id="LOCAL-00203" summary="2021年9月17日 05:00:43 打印sql语句到文件">
+      <created>1631826429484</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1631826429484</updated>
+    </task>
+    <option name="localTasksCounter" value="204" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
