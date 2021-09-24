@@ -48,11 +48,15 @@
                 </div>
                 <div class="control-group span9">
                 </div>
+
                 <div class="span3 offset2">
                     <button type="button" id="btnSearch" class="button button-primary">搜索</button>
                 </div>
             </div>
         </form>
+        <div id="s1">
+            <input type="hidden" id="hide" value="选项二" name="hide">
+        </div>
     </div>
     <div class="search-grid-container">
         <div id="grid"></div>
@@ -127,7 +131,7 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>受理人员：</label>
                 <div class="controls">
-                    <input name="use_offices" type="text" id="use_offices" >
+                    <input name="use_offices" type="text" id="use_offices">
                 </div>
             </div>
             <div class="control-group span8">
@@ -163,7 +167,7 @@
     </form>
 </div>
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="/js/bui-min.js"></script>
+<script type="text/javascript" src="/js/bui_1_1-21/bui.js"></script>
 <script type="text/javascript" src="/js/config-min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="/js/tree/json2.js"></script>
@@ -181,110 +185,133 @@
     BUI.use(['common/search', 'bui/form', 'bui/select', 'bui/extensions/treepicker', 'bui/tree'], function (Search, Form, Select, TreePicker, Tree) {
 
         var offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
-                officesEnum = getOfficesEnum(offices_select),
-                enumObj = {"0": "未出库", "1": "已出库"},
-                select_type = [],
-                reg_type_items = [
-                    {text:'耗材申请',value:'a'},
-                    {text:'维护申请',value:'b'},
+            officesEnum = getOfficesEnum(offices_select),
+            enumObj = {"0": "未出库", "1": "已出库"},
+            select_type = [],
+            reg_type_items = [
+                {text: '耗材申请', value: 'a'},
+                {text: '维护申请', value: 'b'},
 
-                ],
-                Editing_R = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'Content_R', //设置隐藏的Dialog内容
-                    autoSave: true, //添加数据或者修改数据时，自动保存
-                }),
-                Editing_O = new BUI.Grid.Plugins.DialogEditing({
-                    contentId: 'Content_O', //设置隐藏的Dialog内容
-                    autoSave: true, //添加数据或者修改数据时，自动保存
-                }),
-                /*reg_office_tree = new Tree.TreeList({
-                    nodes: [],
-                    //store: store,
-                    //dirSelectable : false,//阻止树节点选中
-                    showLine: true //显示连接线
-                }),
-                exe_office_tree = new Tree.TreeList({
-                    nodes: [],
-                    //store: store,
-                    //dirSelectable : false,//阻止树节点选中
-                    showLine: true //显示连接线
-                }),*/
-                /*belong_to_picker = new TreePicker({
-                    trigger: '#reg_office_ident',
-                    //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
-                    width: 150,  //指定宽度
-                    children: [reg_office_tree] //配置picker内的列表
-                }).render(),
-                belong_to_picker = new TreePicker({
-                    trigger: '#exe_office_ident',
-                    //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
-                    width: 150,  //指定宽度
-                    children: [exe_office_tree] //配置picker内的列表
-                }).render(),*/
-                reg_type_select = new Select.Select({
-                    render: '#reg_type_select',
-                    valueField: '#reg_type',
-                    multipleSelect: false,
-                    items:reg_type_items,
-                }).render(),
-                columns = [
-                    {title: '&nbsp登记编号', dataIndex: 'reg_ident', elCls: 'center', width: 110},
-                    {title: '&nbsp登记科室', dataIndex: 'reg_office_id', elCls: 'center', width: 110, renderer: BUI.Grid.Format.enumRenderer(officesEnum)},
-                    {title: '&nbsp执行科室', dataIndex: 'exe_office_id', elCls: 'center', width: 110,renderer: BUI.Grid.Format.enumRenderer(officesEnum)},
-                    {title: '&nbsp登记时间', dataIndex: 'reg_date', elCls: 'center', width: 150},
-                    {title: '&nbsp登记类型', dataIndex: 'reg_type', elCls: 'center', width: 110},
-                    {title: '&nbsp登记内容', dataIndex: 'reg_content', elCls: 'center', width: 250},
-                    {
-                        title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
+            ],
+            Editing_R = new BUI.Grid.Plugins.DialogEditing({
+                contentId: 'Content_R', //设置隐藏的Dialog内容
+                autoSave: true, //添加数据或者修改数据时，自动保存
+            }),
+            Editing_O = new BUI.Grid.Plugins.DialogEditing({
+                contentId: 'Content_O', //设置隐藏的Dialog内容
+                autoSave: true, //添加数据或者修改数据时，自动保存
+            }),
+            /*reg_office_tree = new Tree.TreeList({
+                nodes: [],
+                //store: store,
+                //dirSelectable : false,//阻止树节点选中
+                showLine: true //显示连接线
+            }),
+            exe_office_tree = new Tree.TreeList({
+                nodes: [],
+                //store: store,
+                //dirSelectable : false,//阻止树节点选中
+                showLine: true //显示连接线
+            }),*/
+            /*belong_to_picker = new TreePicker({
+                trigger: '#reg_office_ident',
+                //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                width: 150,  //指定宽度
+                children: [reg_office_tree] //配置picker内的列表
+            }).render(),
+            belong_to_picker = new TreePicker({
+                trigger: '#exe_office_ident',
+                //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+                width: 150,  //指定宽度
+                children: [exe_office_tree] //配置picker内的列表
+            }).render(),*/
+            reg_type_select = new Select.Select({
+                render: '#reg_type_select',
+                valueField: '#reg_type',
+                multipleSelect: false,
+                items: reg_type_items,
+            }).render(),
+          items = [
+            '选项一','选项二','选项三','选项四'
+        ],
+            select = new Select.Combox({
+                render: '#s1',
+                showTag: true,
+                width: 500,
+                valueField: '#hide',//显示tag的Combox必须存在valueField
+                items: items
+            }).render(),
+            columns = [
+                {title: '&nbsp登记编号', dataIndex: 'reg_ident', elCls: 'center', width: 110},
+                {
+                    title: '&nbsp登记科室',
+                    dataIndex: 'reg_office_id',
+                    elCls: 'center',
+                    width: 110,
+                    renderer: BUI.Grid.Format.enumRenderer(officesEnum)
+                },
+                {
+                    title: '&nbsp执行科室',
+                    dataIndex: 'exe_office_id',
+                    elCls: 'center',
+                    width: 110,
+                    renderer: BUI.Grid.Format.enumRenderer(officesEnum)
+                },
+                {title: '&nbsp登记时间', dataIndex: 'reg_date', elCls: 'center', width: 150},
+                {title: '&nbsp登记类型', dataIndex: 'reg_type', elCls: 'center', width: 110},
+                {title: '&nbsp登记内容', dataIndex: 'reg_content', elCls: 'center', sortable: false, width: 250},
+                {
+                    title: '操作', dataIndex: '', sortable: false, width: 100, renderer: function (value, obj) {
 
                         var editStr1 = '<span class="grid-command btn-edit" title="编辑信息">编辑</span>',
-                                delStr = '<span class="grid-command btn-del" title="删除信息">删除</span>';//页面操作不需要使用Search.createLink
+                            delStr = '<span class="grid-command btn-del" title="删除信息">删除</span>';//页面操作不需要使用Search.createLink
                         return editStr1 + delStr;
                     }
-                    }
-                ],
-                store = Search.createStore('/listRegistration', {
-                    proxy: {
-                        save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
+                }
+            ],
+            store = Search.createStore('/listRegistration', {
+                proxy: {
+                    save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
+                    },
+                    method: 'POST'
+                },
+                pageSize: 6,
+                autoSync: true //保存数据后，自动更新
+            }),
+            gridCfg = Search.createGridCfg(columns, {
+                tbar: {
+                    items: [
+                        {
+                            text: '<i class="icon-edit"></i>登记',
+                            btnCls: 'button button-small',
+                            handler: regFunction
                         },
-                        method: 'POST'
-                    },
-                    pageSize: 6,
-                    autoSync: true //保存数据后，自动更新
-                }),
-                gridCfg = Search.createGridCfg(columns, {
-                    tbar: {
-                        items: [
-                            {
-                                text: '<i class="icon-edit"></i>登记',
-                                btnCls: 'button button-small',
-                                handler: regFunction
-                            },
-                            {
-                                text: '<i class="icon-hand-right"></i>受理',
-                                btnCls: 'button button-small',
-                                handler: opeFunction
-                            }
-                        ]
-                    },
-                    plugins: [Editing_R, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
-                    emptyDataTpl : '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
-                });
+                        {
+                            text: '<i class="icon-hand-right"></i>受理',
+                            btnCls: 'button button-small',
+                            handler: opeFunction
+                        }
+                    ]
+                },
+                forceFit: true,
+                plugins: [Editing_R, Editing_O, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit],// 插件形式引入多选表格
+                emptyDataTpl: '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
+            });
 
         var search = new Search({
-                    store: store,
-                    gridCfg: gridCfg
-                }),
-                grid = search.get('grid'),
-                R_Form = Editing_R.get('form'),
-                O_Form = Editing_O.get('form');
+                store: store,
+                gridCfg: gridCfg
+            }),
+            grid = search.get('grid'),
+            R_Form = Editing_R.get('form'),
+            O_Form = Editing_O.get('form');
 
-        function makeOfficeBsSuggest(Dv,onSet_ck,onUnset_ck){
+        function makeOfficeBsSuggest(Dv, onSet_ck, onUnset_ck) {
             buildBsSuggest(Dv,
                 {
                     value: offices_select.filter(function (office, index) {
                         if (CheckIsNullOrEmpty(office.office_property)) {
-                            return office.office_property!=0;
+                            return office.office_property != 0;
                         }
                         return office;
                     })
@@ -338,7 +365,7 @@
                     R_Form.getField('reg_office_id').set('value', data.value);
                 },
                 function () {
-                    R_Form.getField('reg_office_id').set('value','');
+                    R_Form.getField('reg_office_id').set('value', '');
                 },
             );
             makeOfficeBsSuggest("exe_office_ident",
@@ -367,9 +394,9 @@
         //执行操作
         function opeFunction() {
             var selections = grid.getSelection(),
-                    save = {
-                        addUrl: '/addOperation',
-                    };
+                save = {
+                    addUrl: '/addOperation',
+                };
             if (selections.length == 0) {
                 BUI.Message.Show({
                     msg: '请选择执行项目',
