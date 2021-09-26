@@ -11,7 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月27日 00:40:25 登记记录表">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2246,14 +2246,8 @@
       <workItem from="1632458368787" duration="1269000" />
       <workItem from="1632581829126" duration="6149000" />
       <workItem from="1632669551491" duration="2194000" />
-      <workItem from="1632674410359" duration="295000" />
-    </task>
-    <task id="LOCAL-00159" summary="2021年8月10日 12:35:45 update">
-      <created>1628570154687</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1628570154688</updated>
+      <workItem from="1632674410359" duration="349000" />
+      <workItem from="1632674771047" duration="35000" />
     </task>
     <task id="LOCAL-00160" summary="2021年8月10日 12:35:45 update">
       <created>1628571555663</created>
@@ -2591,7 +2585,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632674446136</updated>
     </task>
-    <option name="localTasksCounter" value="208" />
+    <task id="LOCAL-00208" summary="2021年9月27日 00:40:25 登记记录表">
+      <created>1632674745593</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1632674745593</updated>
+    </task>
+    <option name="localTasksCounter" value="209" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
