@@ -65,6 +65,8 @@
 	<mvc:resources mapping="/index/img/**" location="/WEB-INF/res/index/img/" cache-period="31556926"/>
 	<!--<mvc:resources mapping="assets/tools/**" location="/WEB-INF/res/assets/tools/" cache-period="31556926"/>-->
 
+	<mvc:resources mapping="/favicon.ico" location="/WEB-INF/res/favicon/" cache-period="31556926"/>
+
 	<mvc:view-controller path="/" view-name="index" />
 
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->

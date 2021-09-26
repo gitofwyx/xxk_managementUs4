@@ -9,18 +9,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月21日 23:59:28 运维功能">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/bs3/bui-min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/bs3/bui.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/bs3/dpl-min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/bs3/dpl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/bui_1_1-21/bui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/bui_1_1-21/extensions/treegrid-min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/bui_1_1-21/extensions/treepicker-min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/bui_1_1-21/extensions/treepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/tree-min.js" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月24日 12:59:36 bui1.1.21">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/img/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/favicon/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/registration_dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/springmvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/springmvc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1042,7 +1036,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/favicon" />
     <property name="project.structure.last.edited" value="工件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3472637" />
@@ -1050,11 +1044,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\css" />
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\bui_1_1-21" />
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\bui_1_1-21\extensions" />
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js" />
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\bui_1_1_21" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\favicon" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\img" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\favicon" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\index\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\bui_1_1-21" />
@@ -2252,14 +2246,8 @@
       <workItem from="1632404600827" duration="1495000" />
       <workItem from="1632406182675" duration="5900000" />
       <workItem from="1632412206629" duration="3147000" />
-      <workItem from="1632458368787" duration="599000" />
-    </task>
-    <task id="LOCAL-00156" summary="2021年8月4日 22:53:50 updatePrint">
-      <created>1628440476388</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1628440476388</updated>
+      <workItem from="1632458368787" duration="1269000" />
+      <workItem from="1632581829126" duration="5791000" />
     </task>
     <task id="LOCAL-00157" summary="2021年8月4日 22:53:50 updatePrint">
       <created>1628440829508</created>
@@ -2597,7 +2585,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632239990873</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="2021年9月24日 12:59:36 bui1.1.21">
+      <created>1632459596838</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1632459596838</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2709,7 +2704,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年8月4日 22:53:50 bar_code" />
     <MESSAGE value="2021年8月4日 22:53:50 updatePrint" />
     <MESSAGE value="2021年8月10日 12:35:45 update" />
     <MESSAGE value="2021年8月11日 00:21:36 事务配置" />
@@ -2734,7 +2728,8 @@
     <MESSAGE value="2021年9月16日 13:40:15 日志、数据库日志优化" />
     <MESSAGE value="2021年9月17日 05:00:43 打印sql语句到文件" />
     <MESSAGE value="2021年9月21日 23:59:28 运维功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月21日 23:59:28 运维功能" />
+    <MESSAGE value="2021年9月24日 12:59:36 bui1.1.21" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月24日 12:59:36 bui1.1.21" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
