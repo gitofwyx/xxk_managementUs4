@@ -9,12 +9,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月24日 12:59:36 bui1.1.21">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/img/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/favicon/favicon.ico" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月26日 23:17:25 favicon.ico圖標路徑修復">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDaoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration_record.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/springmvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/springmvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1036,7 +1035,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/favicon" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao" />
     <property name="project.structure.last.edited" value="工件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3472637" />
@@ -1044,22 +1043,22 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\java\com\xxk\management\registration\dao" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\favicon" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\img" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\favicon" />
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\index\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\bui_1_1-21" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.registration.dao" />
+      <recent name="com.xxk.management.registration.entity" />
       <recent name="com.xxk.management.storage.controller" />
       <recent name="com.xxk.management.stock.service.impl" />
       <recent name="com.xxk.management.stock.service" />
-      <recent name="com.xxk.management.test.dao" />
-      <recent name="com.xxk.management.test.service.impl" />
     </key>
   </component>
   <component name="RunManager">
@@ -2247,14 +2246,8 @@
       <workItem from="1632406182675" duration="5900000" />
       <workItem from="1632412206629" duration="3147000" />
       <workItem from="1632458368787" duration="1269000" />
-      <workItem from="1632581829126" duration="5791000" />
-    </task>
-    <task id="LOCAL-00157" summary="2021年8月4日 22:53:50 updatePrint">
-      <created>1628440829508</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1628440829509</updated>
+      <workItem from="1632581829126" duration="6149000" />
+      <workItem from="1632669551491" duration="2194000" />
     </task>
     <task id="LOCAL-00158" summary="2021年8月4日 22:53:50 updatePrint">
       <created>1628465213781</created>
@@ -2592,7 +2585,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632459596838</updated>
     </task>
-    <option name="localTasksCounter" value="206" />
+    <task id="LOCAL-00206" summary="2021年9月26日 23:17:25 favicon.ico圖標路徑修復">
+      <created>1632669506476</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1632669506477</updated>
+    </task>
+    <option name="localTasksCounter" value="207" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2704,7 +2704,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年8月4日 22:53:50 updatePrint" />
     <MESSAGE value="2021年8月10日 12:35:45 update" />
     <MESSAGE value="2021年8月11日 00:21:36 事务配置" />
     <MESSAGE value="2021年8月11日 23:58:50 事务配置" />
@@ -2729,7 +2728,8 @@
     <MESSAGE value="2021年9月17日 05:00:43 打印sql语句到文件" />
     <MESSAGE value="2021年9月21日 23:59:28 运维功能" />
     <MESSAGE value="2021年9月24日 12:59:36 bui1.1.21" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月24日 12:59:36 bui1.1.21" />
+    <MESSAGE value="2021年9月26日 23:17:25 favicon.ico圖標路徑修復" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月26日 23:17:25 favicon.ico圖標路徑修復" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
