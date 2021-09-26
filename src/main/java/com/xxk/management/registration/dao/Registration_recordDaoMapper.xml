@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xxk.management.registration.dao.RegistrationDao">
-    <sql id="columns">id,reg_ident,reg_office_id,exe_office_id,reg_class_id,execute_id,examine_id,reg_status,reg_date,reg_type,execute_status,examine_status,reg_content,
+<mapper namespace="com.xxk.management.registration.dao.Registration_recordDao">
+    <sql id="columns">id,reg_class_id,registration_id,examine_id,reg_record_ident,reg_record_status,reg_record_date,reg_record_type,
+          execute_record_status,examine_record_status,reg_record_content,reg_record_describe,
           createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
-    <select id="listRegistration"  resultType="com.xxk.management.registration.entity.Registration">
+    <select id="listRegistration_record"  resultType="com.xxk.management.registration.entity.Registration_record">
         select
         <include refid="columns"></include>
         from xxk_registration where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
     </select>
 
-    <insert id="addRegistration" parameterType="com.xxk.management.registration.entity.Registration">
+    <insert id="addRegistration_record" parameterType="com.xxk.management.registration.entity.Registration_record">
         insert into xxk_registration(<include refid="columns"></include>) values(
-        #{id},#{reg_ident},#{reg_office_id},#{exe_office_id},#{reg_class_id},#{execute_id},#{examine_id},#{reg_status},#{reg_date},#{reg_type},#{execute_status},#{examine_status},
-        #{reg_content},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{id},#{reg_class_id},#{registration_id},#{examine_id},#{reg_record_ident},#{reg_record_status},#{reg_record_date},#{reg_record_type},
+        #{execute_record_status},#{examine_record_status},#{reg_record_content},#{reg_record_describe},
+        #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--修改信息 -->
-    <update id="updateRegistration" parameterType="com.xxk.management.registration.entity.Registration">
+    <update id="updateRegistration_record" parameterType="com.xxk.management.registration.entity.Registration_record">
         update xxk_registration set reg_date=#{reg_date},reg_type=#{reg_type},reg_content=#{reg_content},
         updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
     </update>
