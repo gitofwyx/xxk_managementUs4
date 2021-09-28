@@ -14,6 +14,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/15.
  */
 @Controller
+@RequestMapping("/test")
 public class TestViewController extends BaseController {
 
     private static Logger log = LogManager.getLogger();
@@ -28,6 +29,12 @@ public class TestViewController extends BaseController {
     public ModelAndView  test_dialog() {
         Map<String, Object> result = new HashMap<>();
         return new ModelAndView("/search/test-dialog", "result", result);
+    }
+
+    @RequestMapping("/testReg")
+    public ModelAndView  testReg() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/layui/form", "result", result);
     }
 
 }

@@ -10,8 +10,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月27日 00:40:25 登记记录表">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/layui/form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/code.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/laydate/default/font.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/laydate/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/layer/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/layer/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/layer/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/layer/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/layer/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/layer/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/code.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/colorpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/demo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/dropdown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/flow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/lay.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/layedit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/laypage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/laytpl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/layui.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/rate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/transfer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/layui/modules/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1048,8 +1085,11 @@
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\favicon" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\css\layui" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\layui\modules" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\layui" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\layui" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\bui_1_1-21" />
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.xxk.management.registration.dao" />
@@ -2247,14 +2287,11 @@
       <workItem from="1632581829126" duration="6149000" />
       <workItem from="1632669551491" duration="2194000" />
       <workItem from="1632674410359" duration="349000" />
-      <workItem from="1632674771047" duration="35000" />
-    </task>
-    <task id="LOCAL-00160" summary="2021年8月10日 12:35:45 update">
-      <created>1628571555663</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1628571555663</updated>
+      <workItem from="1632674771047" duration="62000" />
+      <workItem from="1632717898714" duration="5756000" />
+      <workItem from="1632850973124" duration="23000" />
+      <workItem from="1632851009990" duration="368000" />
+      <workItem from="1632851392271" duration="3947000" />
     </task>
     <task id="LOCAL-00161" summary="2021年8月10日 12:35:45 update">
       <created>1628571667463</created>
@@ -2592,7 +2629,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632674745593</updated>
     </task>
-    <option name="localTasksCounter" value="209" />
+    <task id="LOCAL-00209" summary="2021年9月27日 00:40:25 登记记录表">
+      <created>1632674812897</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1632674812897</updated>
+    </task>
+    <option name="localTasksCounter" value="210" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
