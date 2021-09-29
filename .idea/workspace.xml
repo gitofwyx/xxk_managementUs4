@@ -10,14 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月29日 03:11:54 layUI接入整合">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/iconfont.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/layui.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/layui.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/laydate/default/font.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/layui/modules/laydate/default/font.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/layui/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/layui/form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1321,8 +1316,6 @@
     </configuration>
     <configuration name="T8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="apache-tomcat-8.5.57" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="C:\Program Files\Java\jdk1.8.0_281\jre">
       <option name="OPEN_IN_BROWSER" value="false" />
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="xxk_managementUs4:war exploded">
@@ -2263,6 +2256,7 @@
       <workItem from="1632851392271" duration="3947000" />
       <workItem from="1632856300974" duration="791000" />
       <workItem from="1632857104830" duration="907000" />
+      <workItem from="1632876013717" duration="6958000" />
     </task>
     <task id="LOCAL-00162" summary="2021年8月10日 12:35:45 update">
       <created>1628571790565</created>
