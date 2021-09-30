@@ -9,21 +9,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月29日 18:28:43 layUI接入整合">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/bootstrap/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/css/bootstrap/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月29日 03:11:54 layUI接入整合">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/form-dialog-grid.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/form-dialog-grid.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/layui/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/layui/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/layui/form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/suggest_util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/suggest_util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1045,19 +1036,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/fonts" />
     <property name="project.structure.last.edited" value="工件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3472637" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\xxk\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js" />
-      <recent name="E:\xxk\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\css\bootstrap" />
-      <recent name="E:\xxk\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\fonts" />
-      <recent name="E:\xxk\xxk_managementUs4\src\main\webapp\WEB-INF\bui\form" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\fonts" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js\layui" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\java\com\xxk\management\registration\dao" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\favicon" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\css" />
@@ -1327,6 +1318,8 @@
     </configuration>
     <configuration name="T8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="apache-tomcat-8.5.57" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="C:\Program Files\Java\jdk1.8.0_281\jre">
       <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="xxk_managementUs4:war exploded">
@@ -2267,8 +2260,16 @@
       <workItem from="1632851392271" duration="3947000" />
       <workItem from="1632856300974" duration="791000" />
       <workItem from="1632857104830" duration="907000" />
-      <workItem from="1632876013717" duration="19930000" />
-      <workItem from="1632989168130" duration="6600000" />
+      <workItem from="1632876013717" duration="6958000" />
+      <workItem from="1633019924528" duration="9426000" />
+      <workItem from="1633029571142" duration="634000" />
+    </task>
+    <task id="LOCAL-00162" summary="2021年8月10日 12:35:45 update">
+      <created>1628571790565</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1628571790565</updated>
     </task>
     <task id="LOCAL-00163" summary="2021年8月10日 12:35:45 update">
       <created>1628571861837</created>
@@ -2606,14 +2607,7 @@
       <option name="project" value="LOCAL" />
       <updated>1632856475650</updated>
     </task>
-    <task id="LOCAL-00211" summary="2021年9月29日 18:28:43 layUI接入整合">
-      <created>1632911335978</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
-      <option name="project" value="LOCAL" />
-      <updated>1632911335980</updated>
-    </task>
-    <option name="localTasksCounter" value="212" />
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2725,6 +2719,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="2021年8月11日 23:58:50 事务配置" />
     <MESSAGE value="2021年8月22日 11:49:08 日志升级LOG4J2" />
     <MESSAGE value="2021年8月24日 00:11:22 库存记录增加科室列" />
     <MESSAGE value="2021年8月25日 01:16:48 Suggest功能封装完善" />
@@ -2749,8 +2744,7 @@
     <MESSAGE value="2021年9月26日 23:17:25 favicon.ico圖標路徑修復" />
     <MESSAGE value="2021年9月27日 00:40:25 登记记录表" />
     <MESSAGE value="2021年9月29日 03:11:54 layUI接入整合" />
-    <MESSAGE value="2021年9月29日 18:28:43 layUI接入整合" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月29日 18:28:43 layUI接入整合" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年9月29日 03:11:54 layUI接入整合" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
