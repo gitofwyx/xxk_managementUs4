@@ -31,6 +31,12 @@ public class TestViewController extends BaseController {
         return new ModelAndView("/search/test-dialog", "result", result);
     }
 
+    @RequestMapping("/test1")
+    public ModelAndView  test1() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/form/bootstrap_form", "result", result);
+    }
+
     @RequestMapping("/testReg")
     public ModelAndView  testReg() {
         Map<String, Object> result = new HashMap<>();
