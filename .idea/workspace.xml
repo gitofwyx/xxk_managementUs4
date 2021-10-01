@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年9月29日 03:11:54 layUI接入整合">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月1日 03:30:18 Bootstrap响应式布局">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/layui/form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/suggest_util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/js/suggest/suggest_util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2262,14 +2259,8 @@
       <workItem from="1632857104830" duration="907000" />
       <workItem from="1632876013717" duration="6958000" />
       <workItem from="1633019924528" duration="9426000" />
-      <workItem from="1633029571142" duration="634000" />
-    </task>
-    <task id="LOCAL-00162" summary="2021年8月10日 12:35:45 update">
-      <created>1628571790565</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1628571790565</updated>
+      <workItem from="1633029571142" duration="3016000" />
+      <workItem from="1633060820365" duration="1443000" />
     </task>
     <task id="LOCAL-00163" summary="2021年8月10日 12:35:45 update">
       <created>1628571861837</created>
@@ -2607,7 +2598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632856475650</updated>
     </task>
-    <option name="localTasksCounter" value="211" />
+    <task id="LOCAL-00211" summary="2021年10月1日 03:30:18 Bootstrap响应式布局">
+      <created>1633030290239</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1633030290239</updated>
+    </task>
+    <option name="localTasksCounter" value="212" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2719,7 +2717,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年8月11日 23:58:50 事务配置" />
     <MESSAGE value="2021年8月22日 11:49:08 日志升级LOG4J2" />
     <MESSAGE value="2021年8月24日 00:11:22 库存记录增加科室列" />
     <MESSAGE value="2021年8月25日 01:16:48 Suggest功能封装完善" />
@@ -2744,7 +2741,8 @@
     <MESSAGE value="2021年9月26日 23:17:25 favicon.ico圖標路徑修復" />
     <MESSAGE value="2021年9月27日 00:40:25 登记记录表" />
     <MESSAGE value="2021年9月29日 03:11:54 layUI接入整合" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年9月29日 03:11:54 layUI接入整合" />
+    <MESSAGE value="2021年10月1日 03:30:18 Bootstrap响应式布局" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年10月1日 03:30:18 Bootstrap响应式布局" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
