@@ -93,7 +93,7 @@
                 /logout = logout
 
                 /favicon.ico=anon
-                /test/**=anon
+                <!--/test/**=anon-->
                 /index/**=anon  <!--登录页面的js和css不拦截-->
                 /report/**=anon
 
