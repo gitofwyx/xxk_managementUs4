@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月4日 00:19:50 日期默认值">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
     </list>
@@ -2266,13 +2266,12 @@
       <workItem from="1633276765794" duration="2642000" />
       <workItem from="1633279998602" duration="2293000" />
       <workItem from="1633282488691" duration="495000" />
-    </task>
-    <task id="LOCAL-00165" summary="2021年8月10日 12:35:45 update">
-      <created>1628571958180</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1628571958180</updated>
+      <workItem from="1633283000924" duration="2699000" />
+      <workItem from="1633322108532" duration="6092000" />
+      <workItem from="1633329200498" duration="1327000" />
+      <workItem from="1633330716340" duration="681000" />
+      <workItem from="1633346489944" duration="12805000" />
+      <workItem from="1633365313649" duration="696000" />
     </task>
     <task id="LOCAL-00166" summary="2021年8月10日 12:35:45 update">
       <created>1628571990770</created>
@@ -2610,7 +2609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633278020867</updated>
     </task>
-    <option name="localTasksCounter" value="214" />
+    <task id="LOCAL-00214" summary="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页">
+      <created>1633283026697</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1633283026697</updated>
+    </task>
+    <option name="localTasksCounter" value="215" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2722,7 +2728,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年8月24日 00:11:22 库存记录增加科室列" />
     <MESSAGE value="2021年8月25日 01:16:48 Suggest功能封装完善" />
     <MESSAGE value="2021年8月28日 00:28:52 报表接口重新配置" />
     <MESSAGE value="2021年8月28日 02:04:42 科室下拉检索优化去除范围归类的科室" />
@@ -2747,7 +2752,8 @@
     <MESSAGE value="2021年9月29日 03:11:54 layUI接入整合" />
     <MESSAGE value="2021年10月1日 03:30:18 Bootstrap响应式布局" />
     <MESSAGE value="2021年10月4日 00:19:50 日期默认值" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年10月4日 00:19:50 日期默认值" />
+    <MESSAGE value="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
