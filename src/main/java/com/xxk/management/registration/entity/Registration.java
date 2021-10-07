@@ -12,6 +12,7 @@ public class Registration extends BaseInfoEntity {
     private String reg_office_id;      //登记科室ID
     private String exe_office_id;      //执行科室ID
     private String reg_class_id;      //登记分类ID
+    private String registration_py;      //登记人员ID
     private String execute_id;      //登记ID
     private String examine_id;      //审核ID
     private String reg_status;      //登记状态
@@ -61,6 +62,14 @@ public class Registration extends BaseInfoEntity {
 
     public void setReg_class_id(String reg_class_id) {
         this.reg_class_id = reg_class_id;
+    }
+
+    public String getRegistration_py() {
+        return registration_py;
+    }
+
+    public void setRegistration_py(String registration_py) {
+        this.registration_py = registration_py;
     }
 
     public String getExecute_id() {

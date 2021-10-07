@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.registration.dao.RegistrationDao">
-    <sql id="columns">id,reg_ident,reg_office_id,exe_office_id,reg_class_id,execute_id,examine_id,reg_status,reg_date,reg_type,execute_status,examine_status,reg_content,
+    <sql id="columns">id,reg_ident,reg_office_id,exe_office_id,reg_class_id,registration_py,execute_id,examine_id,
+          reg_status,reg_date,reg_type,execute_status,examine_status,reg_content,
           createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <!--获取分页 -->
@@ -13,7 +14,8 @@
 
     <insert id="addRegistration" parameterType="com.xxk.management.registration.entity.Registration">
         insert into xxk_registration(<include refid="columns"></include>) values(
-        #{id},#{reg_ident},#{reg_office_id},#{exe_office_id},#{reg_class_id},#{execute_id},#{examine_id},#{reg_status},#{reg_date},#{reg_type},#{execute_status},#{examine_status},
+        #{id},#{reg_ident},#{reg_office_id},#{exe_office_id},#{reg_class_id},#{registration_py},#{execute_id},#{examine_id},
+        #{reg_status},#{reg_date},#{reg_type},#{execute_status},#{examine_status},
         #{reg_content},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 

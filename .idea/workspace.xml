@@ -10,8 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationMController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration_record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration_record.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1055,11 +1061,11 @@
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\layui" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.registration.controller" />
       <recent name="com.xxk.management.registration.dao" />
       <recent name="com.xxk.management.registration.entity" />
       <recent name="com.xxk.management.storage.controller" />
       <recent name="com.xxk.management.stock.service.impl" />
-      <recent name="com.xxk.management.stock.service" />
     </key>
   </component>
   <component name="RunManager">
@@ -2271,14 +2277,25 @@
       <workItem from="1633329200498" duration="1327000" />
       <workItem from="1633330716340" duration="681000" />
       <workItem from="1633346489944" duration="12805000" />
-      <workItem from="1633365313649" duration="696000" />
-    </task>
-    <task id="LOCAL-00166" summary="2021年8月10日 12:35:45 update">
-      <created>1628571990770</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1628571990770</updated>
+      <workItem from="1633365313649" duration="3174000" />
+      <workItem from="1633431178964" duration="3976000" />
+      <workItem from="1633439283762" duration="3166000" />
+      <workItem from="1633446405004" duration="2463000" />
+      <workItem from="1633449025198" duration="1430000" />
+      <workItem from="1633495725678" duration="461000" />
+      <workItem from="1633496200265" duration="57000" />
+      <workItem from="1633496272600" duration="636000" />
+      <workItem from="1633496927194" duration="140000" />
+      <workItem from="1633497081280" duration="3073000" />
+      <workItem from="1633517962053" duration="7386000" />
+      <workItem from="1633594739468" duration="3658000" />
+      <workItem from="1633607399112" duration="2408000" />
+      <workItem from="1633614171716" duration="2697000" />
+      <workItem from="1633617093000" duration="1755000" />
+      <workItem from="1633618864907" duration="1082000" />
+      <workItem from="1633620573948" duration="1754000" />
+      <workItem from="1633622345267" duration="92000" />
+      <workItem from="1633622463080" duration="87000" />
     </task>
     <task id="LOCAL-00167" summary="2021年8月10日 12:35:45 update">
       <created>1628600369595</created>
@@ -2616,7 +2633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633283026697</updated>
     </task>
-    <option name="localTasksCounter" value="215" />
+    <task id="LOCAL-00215" summary="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页">
+      <created>1633391002470</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1633391002470</updated>
+    </task>
+    <option name="localTasksCounter" value="216" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
