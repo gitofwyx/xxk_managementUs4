@@ -9,15 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationMController.java" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月8日 00:04:19 移动登记">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/Registration_recordDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration_record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/entity/Registration_record.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2295,14 +2289,7 @@
       <workItem from="1633618864907" duration="1082000" />
       <workItem from="1633620573948" duration="1754000" />
       <workItem from="1633622345267" duration="92000" />
-      <workItem from="1633622463080" duration="87000" />
-    </task>
-    <task id="LOCAL-00167" summary="2021年8月10日 12:35:45 update">
-      <created>1628600369595</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1628600369595</updated>
+      <workItem from="1633622463080" duration="4763000" />
     </task>
     <task id="LOCAL-00168" summary="2021年8月11日 00:21:36 事务配置">
       <created>1628612506189</created>
@@ -2640,7 +2627,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633391002470</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="2021年10月8日 00:04:19 移动登记">
+      <created>1633622673514</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1633622673514</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2752,7 +2746,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年8月25日 01:16:48 Suggest功能封装完善" />
     <MESSAGE value="2021年8月28日 00:28:52 报表接口重新配置" />
     <MESSAGE value="2021年8月28日 02:04:42 科室下拉检索优化去除范围归类的科室" />
     <MESSAGE value="2021年8月28日 01:04:58 search检索为空提示图标优化" />
@@ -2777,7 +2770,8 @@
     <MESSAGE value="2021年10月1日 03:30:18 Bootstrap响应式布局" />
     <MESSAGE value="2021年10月4日 00:19:50 日期默认值" />
     <MESSAGE value="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页" />
+    <MESSAGE value="2021年10月8日 00:04:19 移动登记" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年10月8日 00:04:19 移动登记" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2880,6 +2874,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
           <line>190</line>
           <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/registration/controller/RegistrationMController.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
