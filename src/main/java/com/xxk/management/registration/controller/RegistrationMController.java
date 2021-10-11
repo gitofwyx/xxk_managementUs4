@@ -3,24 +3,19 @@ package com.xxk.management.registration.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
-import com.xxk.core.util.build_ident.IdentUtil;
-import com.xxk.management.office.offices.record.entity.Record;
-import com.xxk.management.office.offices.record.service.RecordService;
 import com.xxk.management.registration.entity.Registration;
-import com.xxk.management.registration.entity.Registration_record;
 import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration.service.RegistrationService;
+import com.xxk.management.registration_record.entity.Registration_record;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

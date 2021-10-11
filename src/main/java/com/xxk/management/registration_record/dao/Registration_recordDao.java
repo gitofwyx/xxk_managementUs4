@@ -1,7 +1,7 @@
-package com.xxk.management.registration.dao;
+package com.xxk.management.registration_record.dao;
 
 import com.xxk.management.registration.entity.Registration;
-import com.xxk.management.registration.entity.Registration_record;
+import com.xxk.management.registration_record.entity.Registration_record;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface Registration_recordDao {
 
-    public List<Registration> listRegistration_record(int pageStart, int pageSize);
+    public List<Registration_record> listRegistration_record(int pageStart, int pageSize);
 
     public int addRegistration_record(Registration_record registration_record);
 

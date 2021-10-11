@@ -1,7 +1,7 @@
 package com.xxk.management.registration.service;
 
 import com.xxk.management.registration.entity.Registration;
-import com.xxk.management.registration.entity.Registration_record;
+import com.xxk.management.registration_record.entity.Registration_record;
 
 import java.util.List;
 import java.util.Map;

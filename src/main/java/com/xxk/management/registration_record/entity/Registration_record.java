@@ -1,4 +1,4 @@
-package com.xxk.management.registration.entity;
+package com.xxk.management.registration_record.entity;
 
 import com.xxk.core.entity.BaseInfoEntity;
 
