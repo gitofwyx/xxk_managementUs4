@@ -25,6 +25,18 @@
         #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
+    <insert id="addListRegistration_record" parameterType="java.util.List" >
+        insert into TABLE_NAME (<include refid="columns"></include>)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{id},#{reg_class_id},#{registration_id},#{examine_id},#{reg_record_py},#{reg_record_ident},#{reg_record_status},#{reg_record_date},
+            #{reg_record_type},#{execute_record_status},#{examine_record_status},#{reg_record_content},#{reg_record_describe},
+            #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag})
+            )
+        </foreach>
+    </insert>
+
     <!--修改信息 -->
     <update id="updateRegistration_record" parameterType="com.xxk.management.registration_record.entity.Registration_record">
         update xxk_registration set reg_date=#{reg_date},reg_type=#{reg_type},reg_content=#{reg_content},

@@ -18,4 +18,6 @@ public interface Registration_recordDao {
 
     public int addRegistration_record(Registration_record registration_record);
 
+    public int addListRegistration_record(List<Registration_record> ListRecord);
+
 }

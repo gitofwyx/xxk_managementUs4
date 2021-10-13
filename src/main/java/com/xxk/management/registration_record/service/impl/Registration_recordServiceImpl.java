@@ -36,5 +36,10 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         return dao.addRegistration_record(registration_record)==1?true:false;
     }
 
+    @Override
+    public boolean addListRegistration_record(List<Registration_record> ListRecord) {
+        return dao.addListRegistration_record(ListRecord)==1?true:false;
+    }
+
 
 }

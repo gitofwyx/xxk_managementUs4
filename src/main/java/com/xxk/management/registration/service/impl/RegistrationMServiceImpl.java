@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,7 @@ public class RegistrationMServiceImpl implements RegistrationMService {
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
+        //ArrayList listRecord=new ArrayList();
         int reg_count = 0;
 
         Registration_record R_record=registration_recordService.getRegistration_recordForRegStatus(record.getReg_record_py(),"0");

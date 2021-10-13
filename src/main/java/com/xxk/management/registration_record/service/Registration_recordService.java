@@ -15,4 +15,6 @@ public interface Registration_recordService {
 
     public boolean addRegistration_record(Registration_record registration_record);
 
+    public boolean addListRegistration_record(List<Registration_record> ListRecord);
+
 }
