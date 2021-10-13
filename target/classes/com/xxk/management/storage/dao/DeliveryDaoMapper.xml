@@ -40,7 +40,7 @@ updateDate</sql>
     </select>
 
     <!--获取分页 -->
-    <select id="listDeliveryByStock" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
+    <select id="listDeliveryByStock"  resultType="com.xxk.management.storage.entity.Delivery">
         select
         <include refid="columns"></include>
         from xxk_delivery where  deleteFlag='0'
@@ -77,7 +77,7 @@ updateDate</sql>
         ORDER BY createDate desc limit #{0},#{1};
     </select>
 
-    <select id="listDeliveryUNIONStorageByOffice" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
+    <select id="listDeliveryUNIONStorageByOffice" resultType="com.xxk.management.storage.entity.Delivery">
         SELECT Storage_UNION.*
         FROM (
         select

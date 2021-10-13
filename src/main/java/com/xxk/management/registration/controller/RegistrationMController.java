@@ -42,7 +42,7 @@ public class RegistrationMController extends BaseController {
         String recId = UUIdUtil.getUUID();
         int reg_count = 0;
         try {
-
+            result=registrationMService.addRegistrationAccordingRegStatus(registration,record);
 
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);

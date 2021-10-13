@@ -48,7 +48,7 @@ public class RegistrationMServiceImpl implements RegistrationMService {
         String recId = UUIdUtil.getUUID();
         int reg_count = 0;
 
-        Registration_record R_record=registration_recordService.getRegistration_recordForRegStatus(registration.getRegistration_py(),"0");
+        Registration_record R_record=registration_recordService.getRegistration_recordForRegStatus(record.getReg_record_py(),"0");
         if(R_record==null){
             String reg_ident = IdentUtil.buildIdent("", reg_count, Date);
             registration.setId(id);
@@ -60,12 +60,13 @@ public class RegistrationMServiceImpl implements RegistrationMService {
             registration.setDeleteFlag("0");
             resultReg = dao.addRegistration(registration) == 1 ? true : false;
         }else {
-
+            registration.setId(R_record.getRegistration_id());
         }
         if (!(resultReg)) {
             log.error("addRegistration:dao.addRegistration出错！");
             throw new Exception("addRegistration:dao.addRegistration出错！");
         } else {
+            record.setId(recId);
             record.setRegistration_id(registration.getId());
             record.setReg_record_py(registration.getRegistration_py());
             record.setReg_record_status("0");
@@ -77,9 +78,10 @@ public class RegistrationMServiceImpl implements RegistrationMService {
             record.setCreateUserId(registration.getRegistration_py());
             record.setCreateDate(Date);
             record.setDeleteFlag("0");
+            resultReg=registration_recordService.addRegistration_record(record);
             if (!(resultReg)) {
-                log.error("addRegistration:deliveryService.updateDeliveryStatus出错！");
-                throw new Exception("addDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+                log.error("addRegistration:registration_recordService.addRegistration_record出错！");
+                throw new Exception("addRegistration:registration_recordService.addRegistration_record出错！");
             }
         }
         return result;
