@@ -14,6 +14,9 @@ public interface RegistrationDao {
 
     public List<Registration> listRegistration(int pageStart, int pageSize);
 
+    public Registration getRegistrationForRegStatus(String registrationId,String Status);
+
     public int addRegistration(Registration registration);
+
 
 }

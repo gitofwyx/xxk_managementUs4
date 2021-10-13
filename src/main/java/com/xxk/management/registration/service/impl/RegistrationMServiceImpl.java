@@ -7,6 +7,7 @@ import com.xxk.management.registration.dao.RegistrationDao;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration_record.entity.Registration_record;
+import com.xxk.management.registration_record.service.Registration_recordService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class RegistrationMServiceImpl implements RegistrationMService {
     @Autowired
     private RegistrationDao dao;
 
+    @Autowired
+    private Registration_recordService registration_recordService;
+
 
     @Override
     public List<Registration> listRegistration(int pageStart, int pageSize) {
@@ -36,23 +40,28 @@ public class RegistrationMServiceImpl implements RegistrationMService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public Map<String, Object> addRegistration(Registration registration, Registration_record record)  throws Exception, RuntimeException{
+    public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record)  throws Exception, RuntimeException{
         Map<String, Object> result = new HashMap<>();
+        Boolean resultReg=false;
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
         int reg_count = 0;
 
+        Registration_record R_record=registration_recordService.getRegistration_recordForRegStatus(registration.getRegistration_py(),"0");
+        if(R_record==null){
+            String reg_ident = IdentUtil.buildIdent("", reg_count, Date);
+            registration.setId(id);
+            registration.setReg_ident(reg_ident);
+            registration.setCreateUserId("admin");
+            registration.setCreateDate(Date);
+            registration.setUpdateUserId("admin");
+            registration.setUpdateDate(Date);
+            registration.setDeleteFlag("0");
+            resultReg = dao.addRegistration(registration) == 1 ? true : false;
+        }else {
 
-        String reg_ident = IdentUtil.buildIdent("", reg_count, Date);
-        registration.setId(id);
-        registration.setReg_ident(reg_ident);
-        registration.setCreateUserId("admin");
-        registration.setCreateDate(Date);
-        registration.setUpdateUserId("admin");
-        registration.setUpdateDate(Date);
-        registration.setDeleteFlag("0");
-        Boolean resultReg = dao.addRegistration(registration) == 1 ? true : false;
+        }
         if (!(resultReg)) {
             log.error("addRegistration:dao.addRegistration出错！");
             throw new Exception("addRegistration:dao.addRegistration出错！");

@@ -13,6 +13,6 @@ public interface RegistrationMService {
 
     public List<Registration> listRegistration(int pageStart, int pageSize);
 
-    public Map<String, Object> addRegistration(Registration registration, Registration_record record) throws Exception, RuntimeException;
+    public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException;
 
 }

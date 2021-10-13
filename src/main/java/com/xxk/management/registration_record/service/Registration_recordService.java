@@ -11,6 +11,8 @@ public interface Registration_recordService {
 
     public List<Registration_record> listRegistration_record(int pageStart, int pageSize);
 
+    public Registration_record getRegistration_recordForRegStatus(String registrationId,String Status);
+
     public boolean addRegistration_record(Registration_record registration_record);
 
 }
