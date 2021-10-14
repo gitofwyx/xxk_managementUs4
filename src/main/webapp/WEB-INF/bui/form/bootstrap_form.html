@@ -40,6 +40,8 @@
                         <div class="">
                             <input type="text" id="reg_office_ident" class="form-control" name="reg_office_ident"
                                    placeholder="请选择">
+                            <input type="hidden" name="reg_office_id" id="reg_office_id" lay-verify="required" lay-verType="alert"
+                                   lay-reqText="登记科室不能为空">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
                         </div>
@@ -50,6 +52,8 @@
                         <div class="">
                             <input type="text" id="exe_office_ident" class="form-control" name="exe_office_ident"
                                    placeholder="请选择">
+                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required" lay-verType="alert"
+                                   lay-reqText="执行科室不能为空">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
                         </div>
@@ -60,7 +64,7 @@
                         <div class="">
                             <!--<input type="date" id="32423" class="form-control" name="email"
                                    placeholder="请输入">-->
-                            <input type="text" name="reg_date" id="reg_date" lay-verify="date"
+                            <input type="text" name="reg_date" id="reg_date" lay-verify="required|datetime"
                                    placeholder="yyyy-MM-dd HH:mm:ss"
                                    autocomplete="off" class="form-control">
                         </div>
@@ -68,7 +72,7 @@
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">登记人</label>
                         <div class="">
-                            <input type="text" id="32423" class="form-control" name="email"
+                            <input type="text" id="32423" class="form-control" name=""
                                    placeholder="请输入">
                         </div>
                     </div>
@@ -106,7 +110,7 @@
 
                     <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-top: 10px">
                         <div>
-                            <button type="button" class="btn btn-primary btn-block" id="reg_record_submit">登录</button>
+                            <button type="button" class="btn btn-primary btn-block" id="reg_record_submit" lay-submit lay-filter="regForm">登录</button>
                         </div>
                     </div>
                 </form>
@@ -233,14 +237,20 @@
     }
 
     useBsSuggest("reg_office_ident",function (K, data) {
+        $("#reg_office_id").val(data.value);
         if(m===0){
             $("#reg_area").removeClass("col-md-offset-2 col-lg-offset-2");
             $("#reg_record").removeClass("hidden");
             m=m+1;
         }
     },function () {
+        $("#reg_office_id").val("");
     });
-    useBsSuggest("exe_office_ident");
+    useBsSuggest("exe_office_ident",function (K, data) {
+        $("#exe_office_id").val(data.value);
+    },function () {
+        $("#exe_office_id").val("");
+    });
 
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
@@ -248,11 +258,34 @@
             , layedit = layui.layedit
             , laydate = layui.laydate;
 
+        //自定义验证规则
+        form.verify({
+            datetime: function(value){
+                if(value.length < 19){
+                    return '也太短了吧！';
+                }else{
+                    var result = value.match(/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/);
+                    if (result == null) return '时间格式不对！';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,money: [
+                /^\d+\.\b\d{2}\b$/
+                ,'金额必须为小数保留两位'
+            ]
+        });
+
         //日期
         laydate.render({
             elem: '#reg_date',
             type: 'datetime',
             value: new Date(),
+        });
+
+        form.on('submit(regForm)', function(data){
+
+            alert(JSON.stringify(data.field));
+            return false;
         });
 
     });
@@ -264,7 +297,7 @@
         }
     });
 
-    $('#reg_record_submit').on('click', function(){
+    /*$('#reg_record_submit').on('click', function(){
         var d = {};
         CD_ajaxAllParam("/addMobileRegistration",$.each($("#reg_area_form").serializeArray(),
             function(i, field){
@@ -273,7 +306,7 @@
 
             }
         );
-    });
+    });*/
 
 </script>
 
