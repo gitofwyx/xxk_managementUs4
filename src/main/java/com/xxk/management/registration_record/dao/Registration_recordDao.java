@@ -14,7 +14,7 @@ public interface Registration_recordDao {
 
     public List<Registration_record> listRegistration_record(int pageStart, int pageSize);
 
-    public Registration_record getRegistration_recordForRegStatus(String registrationId,String Status);
+    public List<Registration_record> getRegistration_recordForRegStatus(String registrationId,String Status);
 
     public int addRegistration_record(Registration_record registration_record);
 

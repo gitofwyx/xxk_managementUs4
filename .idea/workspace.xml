@@ -10,11 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021-10-11 00:22:30 登记业务">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/controller/Registration_recordMController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/service/impl/RegistrationMServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/service/impl/RegistrationMServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/Registration_recordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/Registration_recordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxk/management/registration/dao/RegistrationDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1058,11 +1061,11 @@
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\layui" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.registration_record.controller" />
       <recent name="com.xxk.management.registration_record.entity" />
       <recent name="com.xxk.management.registration.service" />
       <recent name="com.xxk.management.registration.service.impl" />
       <recent name="com.xxk.management.registration.controller" />
-      <recent name="com.xxk.management.registration.dao" />
     </key>
   </component>
   <component name="RunManager">
@@ -2316,14 +2319,10 @@
       <workItem from="1634300628597" duration="1947000" />
       <workItem from="1634319685230" duration="744000" />
       <workItem from="1634320535096" duration="273000" />
-      <workItem from="1634320831962" duration="377000" />
-    </task>
-    <task id="LOCAL-00178" summary="2021年8月24日 00:11:22 库存记录增加科室列">
-      <created>1629735110510</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1629735110510</updated>
+      <workItem from="1634320831962" duration="3393000" />
+      <workItem from="1634326052416" duration="1027000" />
+      <workItem from="1634327094252" duration="7596000" />
+      <workItem from="1634334712209" duration="1094000" />
     </task>
     <task id="LOCAL-00179" summary="2021年8月25日 01:16:48 Suggest功能封装完善">
       <created>1629825454212</created>
@@ -2661,7 +2660,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634300598095</updated>
     </task>
-    <option name="localTasksCounter" value="227" />
+    <task id="LOCAL-00227" summary="2021-10-11 00:22:30 登记业务">
+      <created>1634321214529</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1634321214529</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2897,15 +2903,16 @@
           <line>106</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="(Boolean)result.get(&quot;hasError&quot;)" language="JAVA" />
-        <watch expression="&quot;true&quot;.equals(result.get(&quot;hasError&quot;))" language="JAVA" />
-        <watch expression="result.get(&quot;hasError&quot;) instanceof Boolean" language="JAVA" />
-        <watch expression="result.get(&quot;hasError&quot;).getClass().getSimpleName()" language="JAVA" />
-        <watch expression="result.get(&quot;hasError&quot;)==true" language="JAVA" />
+        <watch expression="dateList.contains(recordDate)" />
       </configuration>
     </watches-manager>
   </component>

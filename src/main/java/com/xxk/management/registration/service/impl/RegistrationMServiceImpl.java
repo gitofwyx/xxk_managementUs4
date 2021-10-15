@@ -47,11 +47,11 @@ public class RegistrationMServiceImpl implements RegistrationMService {
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
-        //ArrayList listRecord=new ArrayList();
+        List<Registration_record> listRecord=new ArrayList();
         int reg_count = 0;
 
-        Registration_record R_record=registration_recordService.getRegistration_recordForRegStatus(registration.getRegistration_py(),"0");
-        if(R_record==null){
+        listRecord=registration_recordService.getRegistration_recordForRegStatus(registration.getRegistration_py(),"0");
+        if(listRecord.size()==0){
             String reg_ident = IdentUtil.buildIdent("", reg_count, Date);
             registration.setId(id);
             registration.setReg_ident(reg_ident);
@@ -65,7 +65,7 @@ public class RegistrationMServiceImpl implements RegistrationMService {
             registration.setDeleteFlag("0");
             resultReg = dao.addRegistration(registration) == 1 ? true : false;
         }else {
-            registration.setId(R_record.getRegistration_id());
+            registration.setId(listRecord.get(0).getRegistration_id());
             resultReg=true;
         }
         if (!(resultReg)) {
