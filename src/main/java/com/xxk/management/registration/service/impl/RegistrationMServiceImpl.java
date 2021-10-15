@@ -50,19 +50,23 @@ public class RegistrationMServiceImpl implements RegistrationMService {
         //ArrayList listRecord=new ArrayList();
         int reg_count = 0;
 
-        Registration_record R_record=registration_recordService.getRegistration_recordForRegStatus(record.getReg_record_py(),"0");
+        Registration_record R_record=registration_recordService.getRegistration_recordForRegStatus(registration.getRegistration_py(),"0");
         if(R_record==null){
             String reg_ident = IdentUtil.buildIdent("", reg_count, Date);
             registration.setId(id);
             registration.setReg_ident(reg_ident);
-            registration.setCreateUserId("admin");
+            registration.setReg_status("0");
+            registration.setExecute_status("0");
+            registration.setExamine_status("0");
+            registration.setCreateUserId(registration.getRegistration_py());
             registration.setCreateDate(Date);
-            registration.setUpdateUserId("admin");
+            registration.setUpdateUserId(registration.getRegistration_py());
             registration.setUpdateDate(Date);
             registration.setDeleteFlag("0");
             resultReg = dao.addRegistration(registration) == 1 ? true : false;
         }else {
             registration.setId(R_record.getRegistration_id());
+            resultReg=true;
         }
         if (!(resultReg)) {
             log.error("addRegistration:dao.addRegistration出错！");

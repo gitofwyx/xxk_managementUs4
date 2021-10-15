@@ -15,7 +15,7 @@
     <select id="getRegistrationForRegStatus"  resultType="com.xxk.management.registration.entity.Registration">
         select
         <include refid="columns"></include>
-        from xxk_registration where registration_py= #{0} and reg_date= #{1} and deleteFlag='0';
+        from xxk_registration where registration_py= #{0} and reg_status= #{1} and deleteFlag='0';
     </select>
 
     <insert id="addRegistration" parameterType="com.xxk.management.registration.entity.Registration">

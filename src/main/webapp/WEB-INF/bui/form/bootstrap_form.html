@@ -285,7 +285,10 @@
         form.on('submit(regForm)', function(data){
 
             alert(JSON.stringify(data.field));
-            return false;
+            CD_ajaxAllParam("/addMobileRegistration",data.field,function (){
+
+                }
+            );
         });
 
     });
