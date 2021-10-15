@@ -15,7 +15,7 @@
     <select id="getRegistration_recordForRegStatus"  resultType="com.xxk.management.registration_record.entity.Registration_record">
         select
         <include refid="columns"></include>
-        from xxk_registration_record where registration_py= #{0} and reg_date= #{1} and deleteFlag='0' limit 0,1;
+        from xxk_registration_record where reg_record_py= #{0} and reg_date= #{1} and deleteFlag='0' limit 0,1;
     </select>
 
     <insert id="addRegistration_record" parameterType="com.xxk.management.registration_record.entity.Registration_record">

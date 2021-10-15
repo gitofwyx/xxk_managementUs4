@@ -11,7 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021-10-11 00:22:30 登记业务">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2308,13 +2308,7 @@
       <workItem from="1634219968606" duration="5470000" />
       <workItem from="1634229764156" duration="159000" />
       <workItem from="1634229938526" duration="1336000" />
-    </task>
-    <task id="LOCAL-00175" summary="2021年8月11日 23:58:50 事务配置">
-      <created>1629130838604</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1629130838604</updated>
+      <workItem from="1634253681585" duration="1042000" />
     </task>
     <task id="LOCAL-00176" summary="2021年8月11日 23:58:50 事务配置">
       <created>1629131172258</created>
@@ -2652,7 +2646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634147033945</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <task id="LOCAL-00224" summary="2021-10-11 00:22:30 登记业务">
+      <created>1634253695971</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1634253695971</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
