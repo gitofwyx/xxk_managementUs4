@@ -15,11 +15,11 @@
     <select id="getRegistration_recordForRegStatus"  resultType="com.xxk.management.registration_record.entity.Registration_record">
         select
         <include refid="columns"></include>
-        from xxk_registration_record where reg_record_py= #{0} and reg_date= #{1} and deleteFlag='0' limit 0,1;
+        from xxk_registration_record where reg_record_py= #{0} and reg_record_status= #{1} and deleteFlag='0' limit 0,1;
     </select>
 
     <insert id="addRegistration_record" parameterType="com.xxk.management.registration_record.entity.Registration_record">
-        insert into xxk_registration(<include refid="columns"></include>) values(
+        insert into xxk_registration_record(<include refid="columns"></include>) values(
         #{id},#{reg_class_id},#{registration_id},#{examine_id},#{reg_record_py},#{reg_record_ident},#{reg_record_status},#{reg_record_date},
         #{reg_record_type},#{execute_record_status},#{examine_record_status},#{reg_record_content},#{reg_record_describe},
         #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});

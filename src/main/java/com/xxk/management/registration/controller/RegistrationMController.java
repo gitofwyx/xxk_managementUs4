@@ -9,6 +9,7 @@ import com.xxk.management.registration.service.RegistrationService;
 import com.xxk.management.registration_record.entity.Registration_record;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,8 @@ public class RegistrationMController extends BaseController {
         String recId = UUIdUtil.getUUID();
         int reg_count = 0;
         try {
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            registration.setRegistration_py(CurrentUserId);
             result=registrationMService.addRegistrationAccordingRegStatus(registration,record);
 
         } catch (DuplicateKeyException e) {
