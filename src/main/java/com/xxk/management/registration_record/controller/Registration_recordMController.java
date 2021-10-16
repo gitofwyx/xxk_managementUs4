@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,25 +39,26 @@ public class Registration_recordMController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/showMobileRegistration_record")
-    public Map<String, Object> showMobileRegistration_record() {
+    public List<Map<String, Object>> showMobileRegistration_record() {
         Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            List<Map<String, Object>> listRegistration_record = registration_recordService.getRegistration_recordMakeDate(CurrentUserId, "0");
-            if (listRegistration_record == null) {
+            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId, "0");
+            if (listRecord == null) {
                 log.error("获取分页出错");
                 result.put("hasError", true);
                 result.put("error", "获取数据出错");
-                return result;
+
             } else {
-                result.put("resultRecord", listRegistration_record);
+                result.put("resultRecord", listRecord);
             }
         } catch (Exception e) {
             log.error(e);
             result.put("hasError", true);
             result.put("error", "获取数据出错");
         }
-        return result;
+        return listRecord;
     }
 }

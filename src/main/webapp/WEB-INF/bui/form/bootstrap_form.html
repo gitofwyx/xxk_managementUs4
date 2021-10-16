@@ -121,19 +121,24 @@
                     <legend>登记记录(未受理)</legend>
                 </fieldset>
                 <ul class="layui-timeline">
-                    <#list shopCars as shopCar>
+                    <#if (result.RecordMap)??>
+                    <#list result.RecordMap as recordMap>
+                      <#list recordMap?keys as recordDate>
                     <li class="layui-timeline-item">
                         <i class="layui-icon layui-timeline-axis"></i>
                         <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">8月18日</h3>
+                            <h3 class="layui-timeline-title">${recordDate}</h3>
                             <p>
-                                layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
-                                <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
-                                <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
+                                <#assign item = recordMap[recordDate]>
+                                <#list item as record>
+                                <br><i class="layui-icon layui-icon-tips" style="color: #f10e3b;"></i>&nbsp;${record.reg_record_content}
+                                 </#list>
                             </p>
                         </div>
                     </li>
+                       </#list>
                     </#list>
+                    </#if>
                 </ul>
             </div>
         </div>

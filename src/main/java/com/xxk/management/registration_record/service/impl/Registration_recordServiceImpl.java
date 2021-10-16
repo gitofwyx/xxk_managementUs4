@@ -49,13 +49,15 @@ public class Registration_recordServiceImpl implements Registration_recordServic
                     continue;
                 }
                 dateList.add(recordDate);
+                Map<String, Object> resultReg = new HashMap<>();
+                List<Registration_record> recordList = new ArrayList<>();
                 for (Registration_record r : listRegistration_record) {
                     if(recordDate.equals(r.getReg_record_date().substring(0,10))){
-                        Map<String, Object> resultReg = new HashMap<>();
-                        resultReg.put(recordDate,r);
-                        resultList.add(resultReg);
+                        recordList.add(r);
                     }
                 }
+                resultReg.put(recordDate,recordList);
+                resultList.add(resultReg);
             }
         }catch (Exception e) {
             log.error(e);
