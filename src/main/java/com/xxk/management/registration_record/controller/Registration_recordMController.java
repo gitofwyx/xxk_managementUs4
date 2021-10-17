@@ -43,9 +43,9 @@ public class Registration_recordMController extends BaseController {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
-
+            String[] status={"0"};
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId, "0");
+            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId, status);
             if (listRecord == null) {
                 log.error("获取分页出错");
                 result.put("hasError", true);

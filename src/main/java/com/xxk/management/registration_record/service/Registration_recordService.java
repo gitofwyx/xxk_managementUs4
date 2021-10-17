@@ -12,9 +12,9 @@ public interface Registration_recordService {
 
     public List<Registration_record> listRegistration_record(int pageStart, int pageSize);
 
-    public List<Registration_record>  getRegistration_recordForRegStatus(String registrationId,String Status);
+    public List<Registration_record> getRecordAccordRegistration(String registrationId,String officeId,String status);
 
-    public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId, String status);
+    public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId, String[] status);
 
     public boolean addRegistration_record(Registration_record registration_record);
 

@@ -30,16 +30,16 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         return dao.listRegistration_record((pageStart-1)*pageSize, pageSize);
     }
 
-    public List<Registration_record> getRegistration_recordForRegStatus(String registrationId,String status){
-        return dao.getRegistration_recordForRegStatus(registrationId,status);
+    public List<Registration_record> getRecordAccordRegistration(String registrationId,String officeId,String status){
+        return dao.getRecordAccordRegistration(registrationId,officeId,status);
     }
 
-    public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId,String status){
+    public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId,String[] status){
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         List<String> dateList = new ArrayList<>();
         try {
-            List<Registration_record> listRegistration_record=dao.getRegistration_recordForRegStatus(registrationId,status);
+            List<Registration_record> listRegistration_record=dao.getRegistration_recordByOffice(registrationId,status);
             for (Registration_record record : listRegistration_record) {
                 if(record.getReg_record_date()==null){
                     continue;

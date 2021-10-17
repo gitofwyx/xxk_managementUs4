@@ -50,7 +50,7 @@ public class RegistrationMServiceImpl implements RegistrationMService {
         List<Registration_record> listRecord=new ArrayList();
         int reg_count = 0;
 
-        listRecord=registration_recordService.getRegistration_recordForRegStatus(registration.getRegistration_py(),"0");
+        listRecord=registration_recordService.getRecordAccordRegistration(registration.getRegistration_py(),registration.getReg_office_id(),"0");
         if(listRecord.size()==0){
             String reg_ident = IdentUtil.buildIdent("", reg_count, Date);
             registration.setId(id);

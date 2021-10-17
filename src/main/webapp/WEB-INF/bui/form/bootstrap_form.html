@@ -120,7 +120,8 @@
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                     <legend>登记记录(未受理)</legend>
                 </fieldset>
-                <ul class="layui-timeline">
+                <div id="registration_record_part">
+                <!--<ul class="layui-timeline">
                     <#if (result.RecordMap)??>
                     <#list result.RecordMap as recordMap>
                       <#list recordMap?keys as recordDate>
@@ -143,7 +144,8 @@
                        </#list>
                     </#list>
                     </#if>
-                </ul>
+                </ul>-->
+                </div>
             </div>
         </div>
     </div>
@@ -225,6 +227,7 @@
             $("#reg_record").removeClass("hidden");
             m=m+1;
         }
+        $("#registration_record_part").load("/test/registration_record_part?office_id="+data.value);
     },function () {
         $("#reg_office_id").val("");
     });
@@ -267,8 +270,8 @@
         form.on('submit(regForm)', function(data){
 
             alert(JSON.stringify(data.field));
-            CD_ajaxAllParam("/addMobileRegistration",data.field,function (){
-
+            CD_ajaxAllParam("/addMobileRegistration",data.field,true,function (v){
+                $("#registration_record_part").load("/test/registration_record_part?"+data.field);
                 }
             );
         });
