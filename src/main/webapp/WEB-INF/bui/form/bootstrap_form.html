@@ -131,8 +131,12 @@
                             <p>
                                 <#assign item = recordMap[recordDate]>
                                 <#list item as record>
-                                <br><i class="layui-icon layui-icon-tips" style="color: #f10e3b;"></i>&nbsp;${record.reg_record_content}
-                                 </#list>
+                                <i class="layui-icon layui-icon-tips" style="color: #f10e3b;"></i>&nbsp;${record.reg_record_content}<br>
+                                &nbsp;<i class="layui-icon layui-icon-username" style="font-size: 12px;color: #635f5f;">${result.userName}&nbsp;登记于${record.reg_record_date}</i>&nbsp;
+                                <i class="layui-icon layui-icon-up" style="font-size: 12px;color: #635f5f;"></i>
+                                <br>
+                                <div style="height: 5px"></div>
+                                </#list>
                             </p>
                         </div>
                     </li>

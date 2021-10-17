@@ -46,11 +46,13 @@ public class TestViewController extends BaseController {
         try {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId, "0");
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {
                 result.put("RecordMap", listRecord);
+                result.put("userName",userName);
             }
         } catch (Exception e) {
             log.error(e);

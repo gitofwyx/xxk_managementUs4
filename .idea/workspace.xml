@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021-10-11 00:22:30 登记业务">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/controller/Registration_recordMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/controller/Registration_recordMController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
     </list>
@@ -2326,13 +2323,10 @@
       <workItem from="1634384863040" duration="6146000" />
       <workItem from="1634394380829" duration="4592000" />
       <workItem from="1634400887786" duration="1076000" />
-    </task>
-    <task id="LOCAL-00180" summary="2021年8月28日 00:28:52 报表接口重新配置">
-      <created>1630081782736</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1630081782736</updated>
+      <workItem from="1634401976837" duration="4785000" />
+      <workItem from="1634438769843" duration="3280000" />
+      <workItem from="1634461133713" duration="756000" />
+      <workItem from="1634462207026" duration="846000" />
     </task>
     <task id="LOCAL-00181" summary="2021年8月28日 00:28:52 报表接口重新配置">
       <created>1630082708631</created>
@@ -2670,7 +2664,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634335840925</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="2021-10-11 00:22:30 登记业务">
+      <created>1634402020754</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1634402020755</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2911,6 +2912,7 @@
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="dateList.contains(recordDate)" />
+        <watch expression="SecurityUtils.getSubject().getSession()" />
       </configuration>
     </watches-manager>
   </component>
