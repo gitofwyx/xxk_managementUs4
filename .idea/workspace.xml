@@ -9,16 +9,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021-10-11 00:22:30 登记业务">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/layui_html_part/registration_record_part.html" afterDir="false" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月18日 01:52:56 登记业务90%">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/service/impl/RegistrationMServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration/service/impl/RegistrationMServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/controller/Registration_recordMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/controller/Registration_recordMController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/Registration_recordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/Registration_recordService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -2340,14 +2332,11 @@
       <workItem from="1634471712190" duration="1452000" />
       <workItem from="1634475632202" duration="13941000" />
       <workItem from="1634490617763" duration="1648000" />
-      <workItem from="1634492279614" duration="709000" />
-    </task>
-    <task id="LOCAL-00182" summary="2021年8月28日 01:04:58 search检索为空提示图标优化">
-      <created>1630083957121</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1630083957122</updated>
+      <workItem from="1634492279614" duration="1613000" />
+      <workItem from="1634555852508" duration="4003000" />
+      <workItem from="1634565502630" duration="1890000" />
+      <workItem from="1634569332580" duration="2916000" />
+      <workItem from="1634574606831" duration="612000" />
     </task>
     <task id="LOCAL-00183" summary="2021年8月28日 02:04:42 科室下拉检索优化去除范围归类的科室">
       <created>1630087552669</created>
@@ -2685,7 +2674,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634463060211</updated>
     </task>
-    <option name="localTasksCounter" value="231" />
+    <task id="LOCAL-00231" summary="2021年10月18日 01:52:56 登记业务90%">
+      <created>1634493198291</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1634493198291</updated>
+    </task>
+    <option name="localTasksCounter" value="232" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2797,7 +2793,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年9月1日 20:59:51 入库页面设备选择bug大修复" />
     <MESSAGE value="2021年9月3日 01:51:57 入库功能bug大修复" />
     <MESSAGE value="2021年9月3日 01:51:57 备注" />
     <MESSAGE value="2021年9月3日 13:10:21 部署功能bug修复" />
@@ -2822,7 +2817,8 @@
     <MESSAGE value="2021年10月9日 00:56:16 移动登记" />
     <MESSAGE value="2021年10月10日 00:41:12 mybaits parameterType报错排除" />
     <MESSAGE value="2021-10-11 00:22:30 登记业务" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021-10-11 00:22:30 登记业务" />
+    <MESSAGE value="2021年10月18日 01:52:56 登记业务90%" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年10月18日 01:52:56 登记业务90%" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2920,11 +2916,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java</url>
           <line>106</line>
           <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/registration/service/impl/RegistrationMServiceImpl.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

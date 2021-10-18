@@ -227,7 +227,7 @@
             $("#reg_record").removeClass("hidden");
             m=m+1;
         }
-        $("#registration_record_part").load("/test/registration_record_part?office_id="+data.value);
+        $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id="+data.value);
     },function () {
         $("#reg_office_id").val("");
     });
@@ -269,9 +269,22 @@
 
         form.on('submit(regForm)', function(data){
 
-            alert(JSON.stringify(data.field));
             CD_ajaxAllParam("/addMobileRegistration",data.field,true,function (v){
-                $("#registration_record_part").load("/test/registration_record_part?"+data.field);
+                $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id="+data.field.reg_office_id);
+                layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
+                    time: 8*1000
+                    ,success: function(layero, index){
+                        var timeNum = this.time/1000, setText = function(start){
+                            layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
+                        };
+                        setText(!0);
+                        this.timer = setInterval(setText, 1000);
+                        if(timeNum <= 0) clearInterval(this.timer);
+                    }
+                    ,end: function(){
+                        clearInterval(this.timer);
+                    }
+                });
                 }
             );
         });
