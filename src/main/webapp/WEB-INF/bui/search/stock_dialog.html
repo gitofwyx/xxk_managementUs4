@@ -856,8 +856,8 @@
             //监听事件，搜索设备类别下拉框选中
             search_type_select.on('click', function selectClick(ev) {
                 ev.item = {
-                    name: search_type_select.get('items')[0].name,
-                    value: search_type_select.get('items')[0].value,
+                    name: search_type_select.get('items')[2].name,
+                    value: search_type_select.get('items')[2].value,
                 };
                 search_type_select.fire('change', ev);//触发change事件
                 search_type_select.off('click', selectClick); //移除click事件

@@ -48,8 +48,9 @@ entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,dele
         from xxk_delivery xd LEFT JOIN xxk_offices xo ON xd.out_confirmed_officeId=xo.id
         LEFT JOIN xxk_reg_user xu ON xd.out_confirmed_by=xu.id
         where xd.deleteFlag='0'
-        and str_to_date(xd.createDate,'%Y-%m-%d %H:%i:%s') BETWEEN
-        str_to_date(#{0},'%Y-%m-%d %H:%i:%s') and str_to_date(#{1},'%Y-%m-%d %H:%i:%s');
+        and str_to_date(xd.out_confirmed_date,'%Y-%m-%d %H:%i:%s') BETWEEN
+        str_to_date(#{0},'%Y-%m-%d %H:%i:%s') and str_to_date(#{1},'%Y-%m-%d %H:%i:%s')
+        ORDER BY xd.out_confirmed_date desc;
     </select>
 
 

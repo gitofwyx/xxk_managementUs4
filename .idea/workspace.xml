@@ -10,10 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月18日 01:52:56 登记业务90%">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/img/left_lead.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/assets/img/top_lead.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryReportDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryReportDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2339,14 +2339,11 @@
       <workItem from="1634565502630" duration="1890000" />
       <workItem from="1634569332580" duration="2916000" />
       <workItem from="1634574606831" duration="4612000" />
-      <workItem from="1634656729614" duration="9668000" />
-    </task>
-    <task id="LOCAL-00184" summary="2021年8月28日 01:04:58 search检索为空提示图标优化">
-      <created>1630255567639</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1630255567639</updated>
+      <workItem from="1634656729614" duration="9799000" />
+      <workItem from="1634666833437" duration="1820000" />
+      <workItem from="1634749026146" duration="717000" />
+      <workItem from="1634749757033" duration="274000" />
+      <workItem from="1634750047083" duration="315000" />
     </task>
     <task id="LOCAL-00185" summary="2021年8月28日 01:04:58 search检索为空提示图标优化">
       <created>1630429745735</created>
@@ -2684,7 +2681,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634575337221</updated>
     </task>
-    <option name="localTasksCounter" value="233" />
+    <task id="LOCAL-00233" summary="2021年10月18日 01:52:56 登记业务90%">
+      <created>1634666805980</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1634666805981</updated>
+    </task>
+    <option name="localTasksCounter" value="234" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
