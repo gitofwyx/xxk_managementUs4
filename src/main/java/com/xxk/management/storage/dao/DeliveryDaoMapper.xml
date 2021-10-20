@@ -3,7 +3,7 @@
 <mapper namespace="com.xxk.management.storage.dao.DeliveryDao">
     <sql id="columns">id,class_id,entity_id,entity_name,entity_type,stock_id,stock_entity_id,out_confirmed_ident,out_confirmed_type,out_confirmed_genre,out_confirmed_by,
 out_confirmed_officeId,out_confirmed_date,out_confirmed_no,out_confirmed_no_2,out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,out_confirmed_total_unit,
-entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+out_confirmed_remark,entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <sql id="deliveryForEntry">id,class_id,entity_id,entity_name,entity_type,stock_id,stock_entity_id,out_confirmed_ident,out_confirmed_type,out_confirmed_genre,
 out_confirmed_by,out_confirmed_officeId,out_confirmed_date,out_confirmed_no,out_confirmed_no_2,out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,
@@ -97,7 +97,7 @@ updateDate</sql>
         insert into xxk_delivery(<include refid="columns"></include>) values(
         #{id},#{class_id},#{entity_id},#{entity_name},#{entity_type},#{stock_id},#{stock_entity_id},#{out_confirmed_ident},#{out_confirmed_type},#{out_confirmed_genre},
         #{out_confirmed_by},#{out_confirmed_officeId},#{out_confirmed_date}, #{out_confirmed_no},#{out_confirmed_no_2},#{out_confirmed_unit},#{out_confirmed_proportion},
-        #{out_confirmed_total},#{out_confirmed_total_unit},#{entity_entry_status},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{out_confirmed_total},#{out_confirmed_total_unit},#{out_confirmed_remark},#{entity_entry_status},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--修改信息 -->

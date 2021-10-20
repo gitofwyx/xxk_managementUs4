@@ -26,6 +26,7 @@ public class Delivery extends BaseInfoEntity {
     private int out_confirmed_proportion;  //个体/单位比例
     private double out_confirmed_total;      //出库总量
     private String out_confirmed_total_unit;  //总量单位
+    private String out_confirmed_remark;  //备注
     private String entity_entry_status;      //入科状态（1：待入科；2：部分待入科；3：已入科；4：部分已入科）
     private String keyWord;           //关键字
 
@@ -181,6 +182,14 @@ public class Delivery extends BaseInfoEntity {
 
     public void setOut_confirmed_total_unit(String out_confirmed_total_unit) {
         this.out_confirmed_total_unit = out_confirmed_total_unit;
+    }
+
+    public String getOut_confirmed_remark() {
+        return out_confirmed_remark;
+    }
+
+    public void setOut_confirmed_remark(String out_confirmed_remark) {
+        this.out_confirmed_remark = out_confirmed_remark;
     }
 
     public String getEntity_entry_status() {
