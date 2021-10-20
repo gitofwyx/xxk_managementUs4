@@ -9,13 +9,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月21日 01:19:28 改bug">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/dao/DeliveryDaoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/entity/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/storage/entity/Delivery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/delivery_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/search/stock_dialog.html" afterDir="false" />
-    </list>
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月21日 01:19:28 改bug" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -2345,20 +2339,7 @@
       <workItem from="1634749026146" duration="717000" />
       <workItem from="1634749757033" duration="274000" />
       <workItem from="1634750047083" duration="1295000" />
-    </task>
-    <task id="LOCAL-00186" summary="2021年9月1日 20:59:51 入库页面设备选择bug大修复">
-      <created>1630501236073</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1630501236074</updated>
-    </task>
-    <task id="LOCAL-00187" summary="2021年9月3日 01:51:57 入库功能bug大修复">
-      <created>1630605122272</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1630605122272</updated>
+      <workItem from="1634751356135" duration="358000" />
     </task>
     <task id="LOCAL-00188" summary="2021年9月3日 01:51:57 备注">
       <created>1630605496656</created>
@@ -2689,7 +2670,21 @@
       <option name="project" value="LOCAL" />
       <updated>1634750381765</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="2021年10月21日 01:36:22 新增入库备注功能">
+      <created>1634751414180</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1634751414181</updated>
+    </task>
+    <task id="LOCAL-00236" summary="2021年10月21日 01:19:28 改bug">
+      <created>1634751466224</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1634751466224</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2801,7 +2796,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年9月3日 01:51:57 备注" />
     <MESSAGE value="2021年9月3日 13:10:21 部署功能bug修复" />
     <MESSAGE value="2021年9月3日 21:41:34 科室设备页面优化" />
     <MESSAGE value="2021年9月4日 08:22:08 登记表新增字段" />
@@ -2825,6 +2819,7 @@
     <MESSAGE value="2021年10月10日 00:41:12 mybaits parameterType报错排除" />
     <MESSAGE value="2021-10-11 00:22:30 登记业务" />
     <MESSAGE value="2021年10月18日 01:52:56 登记业务90%" />
+    <MESSAGE value="2021年10月21日 01:36:22 新增入库备注功能" />
     <MESSAGE value="2021年10月21日 01:19:28 改bug" />
     <option name="LAST_COMMIT_MESSAGE" value="2021年10月21日 01:19:28 改bug" />
   </component>
