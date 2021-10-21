@@ -3,7 +3,7 @@
 <mapper namespace="com.xxk.management.storage.dao.DeliveryReportDao">
     <sql id="columns">id,class_id,entity_id,entity_name,entity_type,stock_id,stock_entity_id,out_confirmed_ident,out_confirmed_type,out_confirmed_genre,out_confirmed_by,
 out_confirmed_officeId,out_confirmed_date,out_confirmed_no,out_confirmed_no_2,out_confirmed_unit,out_confirmed_proportion,out_confirmed_total,out_confirmed_total_unit,
-entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+out_confirmed_remark,entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <sql id="Report_columns">
         xd.id AS id,
@@ -16,11 +16,13 @@ entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,dele
       xd.out_confirmed_by AS out_confirmed_by,
       xu.name AS out_confirmed_name,
       xd.out_confirmed_officeId AS out_confirmed_officeId,
+      xd.out_confirmed_date AS out_confirmed_date,
       xo.office_name AS office_name,
       xd.createDate AS createDate,
       xd.out_confirmed_total AS out_confirmed_total,
       xd.out_confirmed_total_unit AS out_confirmed_total_unit,
-      xd.entity_entry_status AS entity_entry_status
+      xd.entity_entry_status AS entity_entry_status,
+      xd.out_confirmed_remark AS out_confirmed_remark
     </sql>
 
     <resultMap id="DeliveryReportMap" type="java.util.HashMap">
@@ -34,11 +36,13 @@ entity_entry_status,keyWord,createUserId,createDate,updateUserId,updateDate,dele
         <result column="out_confirmed_by" property="out_confirmed_by" jdbcType="VARCHAR"/>
         <result column="out_confirmed_name" property="out_confirmed_name" jdbcType="VARCHAR"/>
         <result column="out_confirmed_officeId" property="out_confirmed_officeId" jdbcType="VARCHAR"/>
+        <result column="out_confirmed_date" property="out_confirmed_date" jdbcType="VARCHAR"/>
         <result column="office_name" property="office_name" jdbcType="VARCHAR"/>
         <result column="createDate" property="createDate" jdbcType="VARCHAR"/>
         <result column="out_confirmed_total" property="out_confirmed_total" jdbcType="VARCHAR"/>
         <result column="out_confirmed_total_unit" property="out_confirmed_total_unit" jdbcType="VARCHAR"/>
         <result column="entity_entry_status" property="entity_entry_status" jdbcType="VARCHAR"/>
+        <result column="out_confirmed_remark" property="out_confirmed_remark" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--获取-->
