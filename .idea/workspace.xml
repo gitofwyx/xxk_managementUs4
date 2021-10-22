@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月21日 01:19:28 改bug" />
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月21日 01:19:28 改bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -2339,21 +2342,12 @@
       <workItem from="1634749026146" duration="717000" />
       <workItem from="1634749757033" duration="274000" />
       <workItem from="1634750047083" duration="1295000" />
-      <workItem from="1634751356135" duration="358000" />
-    </task>
-    <task id="LOCAL-00188" summary="2021年9月3日 01:51:57 备注">
-      <created>1630605496656</created>
-      <option name="number" value="00188" />
-      <option name="presentableId" value="LOCAL-00188" />
-      <option name="project" value="LOCAL" />
-      <updated>1630605496656</updated>
-    </task>
-    <task id="LOCAL-00189" summary="2021年9月3日 13:10:21 部署功能bug修复">
-      <created>1630645850937</created>
-      <option name="number" value="00189" />
-      <option name="presentableId" value="LOCAL-00189" />
-      <option name="project" value="LOCAL" />
-      <updated>1630645850937</updated>
+      <workItem from="1634751356135" duration="657000" />
+      <workItem from="1634752045521" duration="1296000" />
+      <workItem from="1634790170331" duration="408000" />
+      <workItem from="1634815792036" duration="3029000" />
+      <workItem from="1634921303876" duration="16000" />
+      <workItem from="1634921334720" duration="321000" />
     </task>
     <task id="LOCAL-00190" summary="2021年9月3日 21:41:34 科室设备页面优化">
       <created>1630676527698</created>
@@ -2684,7 +2678,21 @@
       <option name="project" value="LOCAL" />
       <updated>1634751466224</updated>
     </task>
-    <option name="localTasksCounter" value="237" />
+    <task id="LOCAL-00237" summary="2021年10月21日 01:19:28 改bug">
+      <created>1634751960530</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
+      <option name="project" value="LOCAL" />
+      <updated>1634751960530</updated>
+    </task>
+    <task id="LOCAL-00238" summary="2021年10月21日 01:19:28 改bug">
+      <created>1634790225272</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
+      <option name="project" value="LOCAL" />
+      <updated>1634790225272</updated>
+    </task>
+    <option name="localTasksCounter" value="239" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

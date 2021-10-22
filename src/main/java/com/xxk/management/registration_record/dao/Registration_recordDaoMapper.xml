@@ -40,6 +40,7 @@
                  open="(" close=")" separator=",">
             #{status}
         </foreach>
+        ORDER BY reg_record_date desc;
     </select>
 
     <insert id="addRegistration_record" parameterType="com.xxk.management.registration_record.entity.Registration_record">
