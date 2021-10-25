@@ -41,6 +41,8 @@ public interface StockDao {
 
     public int plusStockNoById(String stock_id,Double stock_no,Double stock_total,String userId,String date);
 
+    public int plusStockNoByIdOfConfigured(String stock_id,Double stock_no,Double stock_total,String userId,String date);
+
     public int plusStockConfiguredTotal(String stock_id,String userId,String date,String stock_version);
 
     public int reduceStockNo(Stock stock);

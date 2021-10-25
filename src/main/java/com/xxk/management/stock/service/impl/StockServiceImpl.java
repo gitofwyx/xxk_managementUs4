@@ -292,17 +292,25 @@ public class StockServiceImpl implements StockService {
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public Map<String, Object> updateStockForBackward(Storage storage, Delivery delivery, String stock_no) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
-
+        boolean stockResult = false;
         if ("".equals(delivery.getStock_id()) || delivery.getStock_id() == null) {
             log.error("updateStockForBackward:delivery.getStock_id为空！");
             throw new Exception("updateStockForBackward:delivery.getStock_id为空！");
         }
 
-        boolean stockResult = dao.plusStockNoById(delivery.getStock_id(),
-                Double.valueOf(stock_no),
-                storage.getIn_confirmed_no(),
-                delivery.getUpdateUserId(),
-                delivery.getUpdateDate()) == 1;
+        if (!"".equals(delivery.getStock_entity_id()) && delivery.getStock_entity_id() != null) {
+            stockResult = dao.plusStockNoByIdOfConfigured(delivery.getStock_id(),
+                    Double.valueOf(stock_no),
+                    storage.getIn_confirmed_no(),
+                    delivery.getUpdateUserId(),
+                    delivery.getUpdateDate()) == 1;
+        } else {
+            stockResult = dao.plusStockNoById(delivery.getStock_id(),
+                    Double.valueOf(stock_no),
+                    storage.getIn_confirmed_no(),
+                    delivery.getUpdateUserId(),
+                    delivery.getUpdateDate()) == 1;
+        }
         if (!(stockResult)) {
             log.error("updateStockForBackward: dao.plusStockNoById出错！");
             throw new Exception("updateStockForBackward: dao.plusStockNoById出错！");

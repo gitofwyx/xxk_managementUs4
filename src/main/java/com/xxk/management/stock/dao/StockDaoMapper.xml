@@ -97,6 +97,12 @@
                              updateUserId=#{3},updateDate=#{4} where id=#{0} and deleteFlag='0';
     </update>
 
+    <!--入库更新 反出库 -->
+    <update id="plusStockNoByIdOfConfigured" >
+        update xxk_stock set stock_no=#{1},stock_total=stock_total+#{2},stock_configured_total=stock_configured_total+#{2},
+                             updateUserId=#{3},updateDate=#{4} where id=#{0} and deleteFlag='0';
+    </update>
+
     <!--根据OfficesStorage入库更新 -->
     <update id="updateStockForOfficesStorage" parameterType="com.xxk.management.office.storage.entity.OfficesStorage">
         update xxk_stock set stock_no=#{offices_storage_no},stock_total=stock_total+#{offices_storage_total},stock_idle_total=stock_idle_total+#{offices_storage_total},
