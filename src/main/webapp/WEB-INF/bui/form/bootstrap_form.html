@@ -23,25 +23,25 @@
             background-color: #f7f7f9;
             border: 1px solid #e1e1e8;
         }
+
         @media only screen and (max-width: 991px) {
             /*.media-icon-lead:before{content:"\e619"}*/
-
-            .media-icon-lead{
-                width:100%;
-                height:30px;
+            .media-icon-lead {
+                width: 100%;
+                height: 30px;
                 background-image: url("/img/top_lead.svg");
-                background-repeat:no-repeat;
+                background-repeat: no-repeat;
                 padding-bottom: 4px;
             }
         }
-        @media screen and (min-width:992px){
-            /*.media-icon-lead:before{content:"\e603"}*/
 
-            .media-icon-lead{
-                width:100%;
-                height:30px;
+        @media screen and (min-width: 992px) {
+            /*.media-icon-lead:before{content:"\e603"}*/
+            .media-icon-lead {
+                width: 100%;
+                height: 30px;
                 background-image: url("/img/left_lead.svg");
-                background-repeat:no-repeat;
+                background-repeat: no-repeat;
                 padding-bottom: 3px;
             }
         }
@@ -62,7 +62,8 @@
                         <div class="">
                             <input type="text" id="reg_office_ident" class="form-control" name="reg_office_ident"
                                    placeholder="请选择">
-                            <input type="hidden" name="reg_office_id" id="reg_office_id" lay-verify="required" lay-verType="alert"
+                            <input type="hidden" name="reg_office_id" id="reg_office_id" lay-verify="required"
+                                   lay-verType="alert"
                                    lay-reqText="登记科室不能为空">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
@@ -74,7 +75,8 @@
                         <div class="">
                             <input type="text" id="exe_office_ident" class="form-control" name="exe_office_ident"
                                    placeholder="请选择">
-                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required" lay-verType="alert"
+                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required"
+                                   lay-verType="alert"
                                    lay-reqText="执行科室不能为空">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
@@ -112,7 +114,8 @@
                     <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:3px; ">登记内容录入</label>
                     <div class="col-sm-11 col-xs-12 col-lg-11" style="margin-bottom:5px; padding-right:0px ">
 
-                        <input type="text" id="reg_record_content" class="form-control" name="reg_record_content" style="width: 97% "
+                        <input type="text" id="reg_record_content" class="form-control" name="reg_record_content"
+                               style="width: 97% "
                                placeholder="请选择录入">
 
                     </div>
@@ -123,7 +126,8 @@
                         <button type="button" id="reg_describe_btn" class="btn btn-default ">描述</button>
                     </div>
 
-                    <div id="reg_describe_area" class="hidden col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
+                    <div id="reg_describe_area" class="hidden col-sm-12 col-xs-12 col-lg-12"
+                         style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">详细描述</label>
                         <div class="">
                             <textarea class="form-control" name="reg_record_describe" rows="5"></textarea>
@@ -132,7 +136,9 @@
 
                     <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-top: 10px">
                         <div>
-                            <button type="button" class="btn btn-primary btn-block" id="reg_record_submit" lay-submit lay-filter="regForm">登录</button>
+                            <button type="button" class="btn btn-primary btn-block" id="reg_record_submit" lay-submit
+                                    lay-filter="regForm">登录
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -141,37 +147,41 @@
             <!--登记记录栏-->
             <div id="reg_record" class="hidden col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-                    <legend>登记记录<a id="record_status">(未受理)</a>&nbsp;
+                    <legend><a id="record_select">登记记录</a>
+                        (<i id="record_status_icon" class="layui-icon layui-icon-tips" style="color: #f10e3b;">
+                        </i>
+                        <a id="record_status">
+                            未受理</a>)&nbsp;
                         <i class="media-icon-lead">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </i>
                     </legend>
                 </fieldset>
                 <div id="registration_record_part">
-                <!--<ul class="layui-timeline">
-                    <#if (result.RecordMap)??>
-                    <#list result.RecordMap as recordMap>
-                      <#list recordMap?keys as recordDate>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">${recordDate}</h3>
-                            <p>
-                                <#assign item = recordMap[recordDate]>
-                                <#list item as record>
-                                <i class="layui-icon layui-icon-tips" style="color: #f10e3b;"></i>&nbsp;${record.reg_record_content}<br>
-                                &nbsp;<i class="layui-icon layui-icon-username" style="font-size: 12px;color: #635f5f;">${result.userName}&nbsp;登记于${record.reg_record_date}</i>&nbsp;
-                                <i class="layui-icon layui-icon-up" style="font-size: 12px;color: #635f5f;"></i>
-                                <br>
-                                <div style="height: 5px"></div>
-                                </#list>
-                            </p>
-                        </div>
-                    </li>
-                       </#list>
-                    </#list>
-                    </#if>
-                </ul>-->
+                    <!--<ul class="layui-timeline">
+                        <#if (result.RecordMap)??>
+                        <#list result.RecordMap as recordMap>
+                          <#list recordMap?keys as recordDate>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis"></i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">${recordDate}</h3>
+                                <p>
+                                    <#assign item = recordMap[recordDate]>
+                                    <#list item as record>
+                                    <i class="layui-icon layui-icon-tips" style="color: #f10e3b;"></i>&nbsp;${record.reg_record_content}<br>
+                                    &nbsp;<i class="layui-icon layui-icon-username" style="font-size: 12px;color: #635f5f;">${result.userName}&nbsp;登记于${record.reg_record_date}</i>&nbsp;
+                                    <i class="layui-icon layui-icon-up" style="font-size: 12px;color: #635f5f;"></i>
+                                    <br>
+                                    <div style="height: 5px"></div>
+                                    </#list>
+                                </p>
+                            </div>
+                        </li>
+                           </#list>
+                        </#list>
+                        </#if>
+                    </ul>-->
                 </div>
             </div>
         </div>
@@ -193,7 +203,7 @@
 
 <script type="text/javascript">
     var offices_select = null,
-        rmV_1=0;
+        rmV_1 = 0;
     if (offices_select == undefined || offices_select == null) {
         offices_select = localstorageIO("offices_select", "/getOfficeSelect");
         if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
@@ -219,7 +229,7 @@
         }
     }
 
-    function useBsSuggest(i, onSet_ck,onUnset_ck) {
+    function useBsSuggest(i, onSet_ck, onUnset_ck) {
 
         buildBsSuggestIO(i,
             {
@@ -247,59 +257,119 @@
         );
     }
 
-    useBsSuggest("reg_office_ident",function (K, data) {
+    useBsSuggest("reg_office_ident", function (K, data) {
         $("#reg_office_id").val(data.value);
-        if(rmV_1===0){
+        if (rmV_1 === 0) {
             $("#reg_area").removeClass("col-md-offset-2 col-lg-offset-2");
             $("#reg_record").removeClass("hidden");
-            rmV_1=rmV_1+1;
+            rmV_1 = rmV_1 + 1;
         }
-        $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id="+data.value);
-    },function () {
+        $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value);
+    }, function () {
         $("#reg_office_id").val("");
     });
-    useBsSuggest("exe_office_ident",function (K, data) {
+    useBsSuggest("exe_office_ident", function (K, data) {
         $("#exe_office_id").val(data.value);
-    },function () {
+    }, function () {
         $("#exe_office_id").val("");
     });
 
-    layui.use(['form','dropdown', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'dropdown', 'layedit', 'laydate'], function () {
         var form = layui.form
-            ,dropdown = layui.dropdown
+            , dropdown = layui.dropdown
             , layer = layui.layer
             , layedit = layui.layedit
             , laydate = layui.laydate;
 
         //自定义验证规则
         form.verify({
-            datetime: function(value){
-                if(value.length < 19){
+            datetime: function (value) {
+                if (value.length < 19) {
                     return '也太短了吧！';
-                }else{
+                } else {
                     var result = value.match(/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/);
                     if (result == null) return '时间格式不对！';
                 }
             }
-            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-            ,money: [
+            , pass: [/(.+){6,12}$/, '密码必须6到12位']
+            , money: [
                 /^\d+\.\b\d{2}\b$/
-                ,'金额必须为小数保留两位'
+                , '金额必须为小数保留两位'
             ]
         });
 
-        dropdown.render({
-            elem: '#record_status'
-            ,data: [{
-                title: '已受理'
-                ,id: 100
-            },{
+        var reg_record_data = [{
                 title: '未受理'
-                ,id: 101
+                , id: 100
+                , icon: 'layui-icon layui-icon-tips'
+                , style: 'color: #f10e3b;'
+            }, {
+                title: '已受理'
+                , id: 101
+                , icon: 'layui-icon layui-icon-service'
+                , style: 'color: #0E2DF1FF;'
+            },],
+            exe_record_data = [{
+                title: '执行中'
+                , id: 100
+                , icon: 'layui-icon layui-icon-file'
+                , style: 'color: #0E2DF1FF;'
+            }, {
+                title: '执行完'
+                , id: 101
+                , icon: 'layui-icon layui-icon-ok'
+                , style: 'color: #f10e3b;'
+            },],
+            reg_record_function = function (obj) {
+                $("#record_status").text(obj.title);
+                $("#record_status_icon").attr("class", obj.icon);
+                $("#record_status_icon").attr("style", obj.style);
+                layer.tips('选择了：' + obj.title, this.elem, {tips: [1, '#5FB878']});
+            },
+            exe_record_function =function (obj) {
+                $("#record_status").text(obj.title);
+                $("#record_status_icon").attr("class", obj.icon);
+                $("#record_status_icon").attr("style", obj.style);
+                layer.tips('选择了：' + obj.title, this.elem, {tips: [1, '#5FB878']});
+            };
+
+        dropdown.render({
+            id:1001
+            ,elem: '#record_status'
+            , data: reg_record_data
+            , click: reg_record_function
+        });
+
+        dropdown.render({
+            id:1002
+            ,elem: '#record_select'
+            , data: [{
+                title: '登记记录'
+                , id: 110
+                , icon: 'layui-icon layui-icon-service'
+                , style: 'color: #0E2DF1FF;'
+                ,record_data:reg_record_data
+                ,record_func:reg_record_function
+            }, {
+                title: '执行记录'
+                , id: 111
+                , icon: 'layui-icon layui-icon-tips'
+                , style: 'color: #f10e3b;'
+                ,record_data:exe_record_data
+                ,record_func:exe_record_function
             },]
-            ,click: function(obj){
-                $("#record_status").text("("+obj.title+")");
-                layer.tips('选择了：'+ obj.title, this.elem, {tips: [1, '#5FB878']});
+            , click: function (obj) {
+                $("#record_select").text(obj.title);
+
+                $("#record_status").text(obj.record_data[0].title);
+                $("#record_status_icon").attr("class", obj.record_data[0].icon);
+                $("#record_status_icon").attr("style", obj.record_data[0].style);
+
+                dropdown.reload(1001,{
+                    elem: '#record_status'
+                    , data: obj.record_data
+                    , click: obj.record_func
+                });
             }
         });
 
@@ -310,46 +380,45 @@
             value: new Date(),
         });
 
-        form.on('submit(regForm)', function(data){
+        form.on('submit(regForm)', function (data) {
 
-            CD_ajaxAllParam("/addMobileRegistration",data.field,true,function (v){
-                $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id="+data.field.reg_office_id);
-                layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
-                    time: 8*1000
-                    ,success: function(layero, index){
-                        var timeNum = this.time/1000, setText = function(start){
-                            layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
-                        };
-                        setText(!0);
-                        this.timer = setInterval(setText, 1000);
-                        if(timeNum <= 0) clearInterval(this.timer);
-                    }
-                    ,end: function(){
-                        clearInterval(this.timer);
-                    }
-                });
+            CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
+                    $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id);
+                    layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
+                        time: 8 * 1000
+                        , success: function (layero, index) {
+                            var timeNum = this.time / 1000, setText = function (start) {
+                                layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
+                            };
+                            setText(!0);
+                            this.timer = setInterval(setText, 1000);
+                            if (timeNum <= 0) clearInterval(this.timer);
+                        }
+                        , end: function () {
+                            clearInterval(this.timer);
+                        }
+                    });
                 }
             );
         });
 
     });
 
-    $('.media-icon-lead').on('click', function(){
-        if(rmV_1===1){
+    $('.media-icon-lead').on('click', function () {
+        if (rmV_1 === 1) {
             $("#reg_area").addClass("hidden");
-            $("#reg_record").attr("class","col-xs-12 col-sm-12 col-md-10 col-lg-10");
-            rmV_1=rmV_1+1;
-        }
-        else if(rmV_1===2){
+            $("#reg_record").attr("class", "col-xs-12 col-sm-12 col-md-10 col-lg-10");
+            rmV_1 = rmV_1 + 1;
+        } else if (rmV_1 === 2) {
             $("#reg_area").removeClass("hidden");
-            $("#reg_record").attr("class","col-xs-12 col-sm-12 col-md-4 col-lg-4");
-            rmV_1=rmV_1-1;
+            $("#reg_record").attr("class", "col-xs-12 col-sm-12 col-md-4 col-lg-4");
+            rmV_1 = rmV_1 - 1;
         }
     });
 
-    $('#reg_describe_btn').on('click', function(){
+    $('#reg_describe_btn').on('click', function () {
 
-            $("#reg_describe_area").removeClass("hidden");
+        $("#reg_describe_area").removeClass("hidden");
 
     });
 
