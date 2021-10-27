@@ -266,7 +266,13 @@
             $("#occupy_area").removeClass("hidden");
             rmV_1 = rmV_1 + 1;
         }
-        $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value);
+        $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value,"",function (){
+            $('.exe-affairs').on('click', function (ev) {
+
+                alert($(this).children('input').val());
+
+            });
+        });
     }, function () {
         $("#reg_office_id").val("");
     });
