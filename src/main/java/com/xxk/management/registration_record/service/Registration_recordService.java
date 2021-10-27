@@ -16,6 +16,8 @@ public interface Registration_recordService {
 
     public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId, String[] status);
 
+    public List<Map<String, Object>>  getRegistration_recordById(String recordId);
+
     public boolean addRegistration_record(Registration_record registration_record);
 
     public boolean addListRegistration_record(List<Registration_record> ListRecord);

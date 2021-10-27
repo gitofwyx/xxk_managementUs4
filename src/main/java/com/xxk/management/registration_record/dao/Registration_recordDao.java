@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -19,6 +20,8 @@ public interface Registration_recordDao {
 
     public List<Registration_record> getRegistration_recordByOffice(@Param("office_id")String office_id,
                                                                     @Param("statusList")String[] listStr);
+
+    public List<Map<String, Object>> getRegistration_recordById(String recordId);
 
     public int addRegistration_record(Registration_record registration_record);
 

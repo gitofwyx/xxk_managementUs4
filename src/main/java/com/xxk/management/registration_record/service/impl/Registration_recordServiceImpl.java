@@ -3,6 +3,7 @@ package com.xxk.management.registration_record.service.impl;
 import com.xxk.management.registration_record.dao.Registration_recordDao;
 import com.xxk.management.registration_record.entity.Registration_record;
 import com.xxk.management.registration_record.service.Registration_recordService;
+import com.xxk.management.stock.entity.Stock;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,11 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         }
 
         return resultList;
+    }
+
+    @Override
+    public List<Map<String, Object>>  getRegistration_recordById(String recordId) {
+        return dao.getRegistration_recordById(recordId);
     }
 
     @Override
