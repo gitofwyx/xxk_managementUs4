@@ -67,7 +67,7 @@ public class Registration_recordMController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "/getRegistration_recordById", method = RequestMethod.POST)
-    public Map<String, Object> getRegistration_recordById(@RequestParam(value = "recordId") String recordId) {
+    public Map<String, Object> getRegistration_recordById(@RequestParam(value = "record_id") String recordId) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listReg_record = new ArrayList<>();
         try {

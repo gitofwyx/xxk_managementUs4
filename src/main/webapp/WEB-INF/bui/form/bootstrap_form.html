@@ -372,6 +372,12 @@
 
                 //alert($(this).children('input').val());
                 rec_id=$(this).children('input').val();
+                var listrecord = {};
+                listrecord=CD_ajaxAllParam("/getRegistration_recordById",{record_id:rec_id}, true, function (data) {
+                    if (data != null && data != undefined) {
+                        return  data;
+                    }
+                });
                 layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
                     time: 8 * 1000
                     , success: function (layero, index) {
