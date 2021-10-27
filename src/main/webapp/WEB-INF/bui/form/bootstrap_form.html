@@ -53,6 +53,7 @@
 
     <div>
         <div class="row">
+            <div id="occupy_area" class="hidden col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
             <div id="reg_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
                 <!--偏移列 .col-*-offset-* -->
                 <form class="form-horizontal layui-form" autocomplete="off" id="reg_area_form">
@@ -262,6 +263,7 @@
         if (rmV_1 === 0) {
             $("#reg_area").removeClass("col-md-offset-2 col-lg-offset-2");
             $("#reg_record").removeClass("hidden");
+            $("#occupy_area").removeClass("hidden");
             rmV_1 = rmV_1 + 1;
         }
         $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value);
@@ -311,12 +313,12 @@
             },],
             exe_record_data = [{
                 title: '执行中'
-                , id: 100
+                , id: 102
                 , icon: 'layui-icon layui-icon-file'
                 , style: 'color: #0E2DF1FF;'
             }, {
                 title: '执行完'
-                , id: 101
+                , id: 103
                 , icon: 'layui-icon layui-icon-ok'
                 , style: 'color: #f10e3b;'
             },],
