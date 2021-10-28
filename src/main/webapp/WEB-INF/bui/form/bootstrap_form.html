@@ -367,31 +367,40 @@
             value: new Date(),
         });
 
+        function layer_alert(msg){
+            layer.alert(msg, {
+                time: 8 * 1000
+                , success: function (layero, index) {
+                    var timeNum = this.time / 1000, setText = function (start) {
+                        layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
+                    };
+                    setText(!0);
+                    this.timer = setInterval(setText, 1000);
+                    if (timeNum <= 0) clearInterval(this.timer);
+                }
+                , end: function () {
+                    clearInterval(this.timer);
+                }
+            });
+        }
+
         function exe_affairs_func(){
             $('.exe-affairs').on('click', function (ev) {
 
                 //alert($(this).children('input').val());
                 rec_id=$(this).children('input').val();
-                var listrecord = {};
-                listrecord=CD_ajaxAllParam("/getRegistration_recordById",{record_id:rec_id}, true, function (data) {
-                    if (data != null && data != undefined) {
-                        return  data;
+                var listRecord = {};
+                CD_ajaxAllParam("/getRegistration_recordById",{record_id:rec_id,"TD":"logout"}, true, function (data) {
+                    if (resultStatus_handle(data)) {
+                        listRecord=data.listReg_record[0];
+                        if(listRecord.reg_record_status==="0"){
+                            layer_alert("未受理");
+                        }
+                    }else {
+                        layer_alert(data.error);
                     }
                 });
-                layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
-                    time: 8 * 1000
-                    , success: function (layero, index) {
-                        var timeNum = this.time / 1000, setText = function (start) {
-                            layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
-                        };
-                        setText(!0);
-                        this.timer = setInterval(setText, 1000);
-                        if (timeNum <= 0) clearInterval(this.timer);
-                    }
-                    , end: function () {
-                        clearInterval(this.timer);
-                    }
-                });
+
 
             });
         }
