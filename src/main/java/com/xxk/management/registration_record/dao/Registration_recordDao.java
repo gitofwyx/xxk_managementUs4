@@ -27,4 +27,6 @@ public interface Registration_recordDao {
 
     public int addListRegistration_record(List<Registration_record> ListRecord);
 
+    public int updateRegistration_recordStatus(String id,String status, String receiver_id,String date);
+
 }

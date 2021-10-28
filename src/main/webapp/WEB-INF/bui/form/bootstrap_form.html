@@ -366,7 +366,20 @@
             value: new Date(),
         });
 
-        function layer_alert(msg,btn,time) {
+
+        function result_handle(data) {
+            if (CheckIsNullOrEmpty(data)) {
+                if(data.hasError===true){
+                    return false;
+                }
+            }else {
+                return false;
+            }
+            return true;
+
+        }
+
+        function layer_alert(msg,btn,time,btn1_ck,btn2_ck) {
             if (isNaN(time)) {
                 time = 5;
             }
@@ -387,12 +400,14 @@
                     clearInterval(this.timer);
                 }
                 ,yes: function(index, layero){
-                    layer.msg('的确很重要', {icon: 1});
+                    if (typeof btn1_ck === "function") {
+                        btn1_ck(index,layero);
+                    }
                 }
                 ,btn2: function(index, layero){
-                    //按钮【按钮二】的回调
-
-                    //return false 开启该代码可禁止点击该按钮关闭
+                    if (typeof btn2_ck === "function") {
+                        btn2_ck(index,layero);
+                    }
                 }
                 ,btn3: function(index, layero){
                     //按钮【按钮三】的回调
@@ -417,10 +432,21 @@
                     record_id: rec_id,
                     "TD": "logout"
                 }, true, function (data) {
-                    if (resultStatus_handle(data)) {
+                    if (result_handle(data)) {
                         listRecord = data.listReg_record[0];
                         if (listRecord.reg_record_status === "0") {
-                            layer_alert("未受理",['已受理','关闭'], 8);
+                            layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
+                                "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！",['已受理','关闭'], 12
+                                ,function (i,l){
+                                layer_alert("是否确定该申请已受理？确定后无法撤销！"
+                                    ,['确定','不确定'],7,function (i,l) {
+                                        CD_ajaxAllParam("/acceptanceRegistration_record",
+                                            {reg_record_id:listRecord.id},
+                                            true,function () {
+                                            layer.msg('已提交');
+                                        });
+                                });
+                            });
                         }
                     } else {
                         layer_alert(data.error);

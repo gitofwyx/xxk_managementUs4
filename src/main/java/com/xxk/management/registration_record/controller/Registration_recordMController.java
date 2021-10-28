@@ -3,12 +3,14 @@ package com.xxk.management.registration_record.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
+import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration.service.RegistrationService;
 import com.xxk.management.registration_record.entity.Registration_record;
 import com.xxk.management.registration_record.service.Registration_recordService;
 import com.xxk.management.stock.entity.Stock;
+import com.xxk.management.storage.entity.Delivery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -82,5 +84,34 @@ public class Registration_recordMController extends BaseController {
             result.put("error", "获取出错");
         }
         return result;
+    }
+
+    //出库
+    @ResponseBody
+    @RequestMapping(value = "/acceptanceRegistration_record", method = RequestMethod.POST)
+    public Map<String, Object> acceptanceRegistration_record(@RequestParam(value = "reg_record_id") String reg_record_id) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            if (reg_record_id != null && !"".equals(reg_record_id)) {
+
+                boolean Result = registration_recordService.acceptanceRegistration_record(reg_record_id,CurrentUserId);
+                if (!(Result)) {
+                    result.put("hasError", true);
+                    result.put("error", "更新出错");
+                } else {
+                    result.put("hasError", true);
+                    result.put("error", "更新出错");
+                }
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "更新出错");
+        }
+        return result;
+        //return "system/index";
     }
 }

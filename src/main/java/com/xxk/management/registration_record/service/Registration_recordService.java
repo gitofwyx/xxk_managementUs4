@@ -22,4 +22,6 @@ public interface Registration_recordService {
 
     public boolean addListRegistration_record(List<Registration_record> ListRecord);
 
+    public boolean acceptanceRegistration_record(String id,String receiver_id);
+
 }

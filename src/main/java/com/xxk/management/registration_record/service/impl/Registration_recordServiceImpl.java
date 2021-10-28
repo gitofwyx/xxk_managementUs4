@@ -1,5 +1,6 @@
 package com.xxk.management.registration_record.service.impl;
 
+import com.xxk.core.util.DateUtil;
 import com.xxk.management.registration_record.dao.Registration_recordDao;
 import com.xxk.management.registration_record.entity.Registration_record;
 import com.xxk.management.registration_record.service.Registration_recordService;
@@ -7,6 +8,7 @@ import com.xxk.management.stock.entity.Stock;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -81,6 +83,23 @@ public class Registration_recordServiceImpl implements Registration_recordServic
     @Override
     public boolean addListRegistration_record(List<Registration_record> ListRecord) {
         return dao.addListRegistration_record(ListRecord)==1?true:false;
+    }
+
+    @Override
+    public boolean acceptanceRegistration_record(String id,String receiver_id) {
+        String createDate = DateUtil.getFullTime();
+        boolean devicesResult = false;
+        try {
+            devicesResult = dao.updateRegistration_recordStatus(id, "1", receiver_id, createDate) == 1 ? true : false;
+            if (!(devicesResult)) {
+                log.error("updateDevicesSetStatus->updateRegistration_recordStatus:" + devicesResult);
+            }
+        } catch (DuplicateKeyException e) {
+            log.error(e);
+        } catch (Exception e) {
+            log.error(e);
+        }
+        return devicesResult;
     }
 
 
