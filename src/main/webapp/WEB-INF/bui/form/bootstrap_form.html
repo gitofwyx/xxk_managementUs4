@@ -204,8 +204,8 @@
 
 <script type="text/javascript">
     var offices_select = null,
-        rec_id=null;
-        rmV_1 = 0;
+        rec_id = null;
+    rmV_1 = 0;
     if (offices_select == undefined || offices_select == null) {
         offices_select = localstorageIO("offices_select", "/getOfficeSelect");
         if (offices_select == null) {   //offices_select为null表示浏览器不支持localstorage
@@ -260,7 +260,6 @@
     }
 
 
-
     layui.use(['form', 'dropdown', 'layedit', 'laydate'], function () {
         var form = layui.form
             , dropdown = layui.dropdown
@@ -313,7 +312,7 @@
                 $("#record_status_icon").attr("style", obj.style);
                 layer.tips('选择了：' + obj.title, this.elem, {tips: [1, '#5FB878']});
             },
-            exe_record_function =function (obj) {
+            exe_record_function = function (obj) {
                 $("#record_status").text(obj.title);
                 $("#record_status_icon").attr("class", obj.icon);
                 $("#record_status_icon").attr("style", obj.style);
@@ -321,29 +320,29 @@
             };
 
         dropdown.render({
-            id:1001
-            ,elem: '#record_status'
+            id: 1001
+            , elem: '#record_status'
             , data: reg_record_data
             , click: reg_record_function
         });
 
         dropdown.render({
-            id:1002
-            ,elem: '#record_select'
+            id: 1002
+            , elem: '#record_select'
             , data: [{
                 title: '登记记录'
                 , id: 110
                 , icon: 'layui-icon layui-icon-service'
                 , style: 'color: #0E2DF1FF;'
-                ,record_data:reg_record_data
-                ,record_func:reg_record_function
+                , record_data: reg_record_data
+                , record_func: reg_record_function
             }, {
                 title: '执行记录'
                 , id: 111
                 , icon: 'layui-icon layui-icon-tips'
                 , style: 'color: #f10e3b;'
-                ,record_data:exe_record_data
-                ,record_func:exe_record_function
+                , record_data: exe_record_data
+                , record_func: exe_record_function
             },]
             , click: function (obj) {
                 $("#record_select").text(obj.title);
@@ -352,7 +351,7 @@
                 $("#record_status_icon").attr("class", obj.record_data[0].icon);
                 $("#record_status_icon").attr("style", obj.record_data[0].style);
 
-                dropdown.reload(1001,{
+                dropdown.reload(1001, {
                     elem: '#record_status'
                     , data: obj.record_data
                     , click: obj.record_func
@@ -367,36 +366,63 @@
             value: new Date(),
         });
 
-        function layer_alert(msg){
-            layer.alert(msg, {
-                time: 8 * 1000
-                , success: function (layero, index) {
-                    var timeNum = this.time / 1000, setText = function (start) {
+        function layer_alert(msg,btn,time) {
+            if (isNaN(time)) {
+                time = 5;
+            }
+            //eg2
+            layer.open({
+                content: msg
+                ,btn: btn
+                , time: time*1000
+                ,success: function(layero, index){
+                    var timeNum = this.time/1000, setText = function(start){
                         layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
                     };
                     setText(!0);
                     this.timer = setInterval(setText, 1000);
-                    if (timeNum <= 0) clearInterval(this.timer);
+                    if(timeNum <= 0) clearInterval(this.timer);
                 }
-                , end: function () {
+                ,end: function(){
                     clearInterval(this.timer);
+                }
+                ,yes: function(index, layero){
+                    layer.msg('的确很重要', {icon: 1});
+                }
+                ,btn2: function(index, layero){
+                    //按钮【按钮二】的回调
+
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+                ,btn3: function(index, layero){
+                    //按钮【按钮三】的回调
+
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+                ,cancel: function(){
+                    //右上角关闭回调
+
+                    //return false 开启该代码可禁止点击该按钮关闭
                 }
             });
         }
 
-        function exe_affairs_func(){
+        function exe_affairs_func() {
             $('.exe-affairs').on('click', function (ev) {
 
                 //alert($(this).children('input').val());
-                rec_id=$(this).children('input').val();
+                rec_id = $(this).children('input').val();
                 var listRecord = {};
-                CD_ajaxAllParam("/getRegistration_recordById",{record_id:rec_id,"TD":"logout"}, true, function (data) {
+                CD_ajaxAllParam("/getRegistration_recordById", {
+                    record_id: rec_id,
+                    "TD": "logout"
+                }, true, function (data) {
                     if (resultStatus_handle(data)) {
-                        listRecord=data.listReg_record[0];
-                        if(listRecord.reg_record_status==="0"){
-                            layer_alert("未受理");
+                        listRecord = data.listReg_record[0];
+                        if (listRecord.reg_record_status === "0") {
+                            layer_alert("未受理",['已受理','关闭'], 8);
                         }
-                    }else {
+                    } else {
                         layer_alert(data.error);
                     }
                 });
@@ -413,7 +439,7 @@
                 $("#occupy_area").removeClass("hidden");
                 rmV_1 = rmV_1 + 1;
             }
-            $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value,"",exe_affairs_func);
+            $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value, "", exe_affairs_func);
         }, function () {
             $("#reg_office_id").val("");
         });
@@ -426,7 +452,7 @@
         form.on('submit(regForm)', function (data) {
 
             CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
-                    $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id,"",exe_affairs_func);
+                    $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", exe_affairs_func);
                     layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
                         time: 8 * 1000
                         , success: function (layero, index) {
