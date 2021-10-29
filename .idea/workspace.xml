@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月21日 01:19:28 改bug">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月25日 13:33:24 登记class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_class/dao/Registration_classDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_class/dao/Registration_classDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/dao/Registration_recordDaoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2351,62 +2351,24 @@
       <workItem from="1635091274869" duration="67000" />
       <workItem from="1635091360373" duration="170000" />
       <workItem from="1635138171118" duration="982000" />
-    </task>
-    <task id="LOCAL-00192" summary="2021年9月7日 00:06:19 登记开发">
-      <created>1630944383365</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1630944383365</updated>
-    </task>
-    <task id="LOCAL-00193" summary="2021年9月7日 00:06:19 登记开发">
-      <created>1630995630893</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1630995630893</updated>
-    </task>
-    <task id="LOCAL-00194" summary="2021年9月8日 18:38:43 入科优化">
-      <created>1631097533130</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1631097533131</updated>
-    </task>
-    <task id="LOCAL-00195" summary="2021年9月8日 18:38:43 入科优化">
-      <created>1631098314073</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1631098314074</updated>
-    </task>
-    <task id="LOCAL-00196" summary="2021年9月8日 18:38:43 入科优化">
-      <created>1631187751860</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1631187751861</updated>
-    </task>
-    <task id="LOCAL-00197" summary="2021年9月9日 21:53:50 部署页面优化">
-      <created>1631195732963</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1631195732963</updated>
-    </task>
-    <task id="LOCAL-00198" summary="2021年9月14日 23:59:24 登记功能开发">
-      <created>1631635187295</created>
-      <option name="number" value="00198" />
-      <option name="presentableId" value="LOCAL-00198" />
-      <option name="project" value="LOCAL" />
-      <updated>1631635187296</updated>
-    </task>
-    <task id="LOCAL-00199" summary="2021年9月15日 00:30:54 登记维护功能开发">
-      <created>1631637078597</created>
-      <option name="number" value="00199" />
-      <option name="presentableId" value="LOCAL-00199" />
-      <option name="project" value="LOCAL" />
-      <updated>1631637078597</updated>
+      <workItem from="1635139924498" duration="5851000" />
+      <workItem from="1635180800414" duration="241000" />
+      <workItem from="1635225451031" duration="4027000" />
+      <workItem from="1635259153288" duration="6252000" />
+      <workItem from="1635266550581" duration="1377000" />
+      <workItem from="1635267941192" duration="8561000" />
+      <workItem from="1635351795411" duration="5209000" />
+      <workItem from="1635357058566" duration="825000" />
+      <workItem from="1635357919561" duration="1877000" />
+      <workItem from="1635435866945" duration="2903000" />
+      <workItem from="1635438989813" duration="1507000" />
+      <workItem from="1635440516577" duration="1874000" />
+      <workItem from="1635442406201" duration="450000" />
+      <workItem from="1635442878848" duration="31000" />
+      <workItem from="1635442924466" duration="223000" />
+      <workItem from="1635443165973" duration="2204000" />
+      <workItem from="1635445386186" duration="5794000" />
+      <workItem from="1635486379819" duration="173000" />
     </task>
     <task id="LOCAL-00200" summary="2021年9月15日 00:30:54 登记维护功能开发">
       <created>1631680265393</created>
@@ -2695,7 +2657,63 @@
       <option name="project" value="LOCAL" />
       <updated>1635091520431</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635140023384</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1635140023385</updated>
+    </task>
+    <task id="LOCAL-00242" summary="2021年10月26日 00:52:00 解决配置反出库后无法在出库的问题">
+      <created>1635180767917</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1635180767917</updated>
+    </task>
+    <task id="LOCAL-00243" summary="2021年10月27日 01:06:05 登记业务">
+      <created>1635267976259</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1635267976259</updated>
+    </task>
+    <task id="LOCAL-00244" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635315885192</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1635315885192</updated>
+    </task>
+    <task id="LOCAL-00245" summary="2021年10月28日 01:50:03 登记处理">
+      <created>1635357027704</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1635357027704</updated>
+    </task>
+    <task id="LOCAL-00246" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635357870600</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1635357870601</updated>
+    </task>
+    <task id="LOCAL-00247" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635445348375</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1635445348376</updated>
+    </task>
+    <task id="LOCAL-00248" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635486311643</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
+      <option name="project" value="LOCAL" />
+      <updated>1635486311643</updated>
+    </task>
+    <option name="localTasksCounter" value="249" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2807,10 +2825,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年9月3日 21:41:34 科室设备页面优化" />
-    <MESSAGE value="2021年9月4日 08:22:08 登记表新增字段" />
-    <MESSAGE value="2021年9月7日 00:06:19 登记开发" />
-    <MESSAGE value="2021年9月8日 18:38:43 入科优化" />
     <MESSAGE value="2021年9月9日 21:53:50 部署页面优化" />
     <MESSAGE value="2021年9月14日 23:59:24 登记功能开发" />
     <MESSAGE value="2021年9月15日 00:30:54 登记维护功能开发" />
@@ -2832,7 +2846,11 @@
     <MESSAGE value="2021年10月21日 01:36:22 新增入库备注功能" />
     <MESSAGE value="2021年10月21日 01:19:28 改bug" />
     <MESSAGE value="2021年10月25日 00:04:50 登记类型" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年10月25日 00:04:50 登记类型" />
+    <MESSAGE value="2021年10月26日 00:52:00 解决配置反出库后无法在出库的问题" />
+    <MESSAGE value="2021年10月27日 01:06:05 登记业务" />
+    <MESSAGE value="2021年10月28日 01:50:03 登记处理" />
+    <MESSAGE value="2021年10月25日 13:33:24 登记class" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年10月25日 13:33:24 登记class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2907,29 +2925,14 @@
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/storage/controller/DeliveryController.java</url>
-          <line>215</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="44" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
+          <line>235</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
-          <line>320</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/StockDevicesController.java</url>
-          <line>134</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/service/impl/StockDevicesServiceImpl.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="47" />
+          <line>300</line>
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

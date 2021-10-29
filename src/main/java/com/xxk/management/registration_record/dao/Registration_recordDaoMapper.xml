@@ -49,6 +49,11 @@
         select id
         from xxk_registration
         where reg_office_id=#{office_id}
+        and reg_status in
+        <foreach collection="statusList" item="status" index="index"
+                 open="(" close=")" separator=",">
+            #{status}
+        </foreach>
         ) and reg_record_status in
         <foreach collection="statusList" item="status" index="index"
                  open="(" close=")" separator=",">
