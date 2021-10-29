@@ -92,24 +92,28 @@ public class Registration_recordServiceImpl implements Registration_recordServic
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public boolean acceptanceRegistration_record(String id, String receiver_id, String registration_py, String reg_office_id) throws Exception, RuntimeException{
+    public boolean acceptanceRegistration_record(String registration_id,String reg_record_id, String receiver_id, String registration_py) throws Exception, RuntimeException{
         String createDate = DateUtil.getFullTime();
-        boolean devicesResult = false;
+        boolean result = false;
         List<Registration_record> listRecord = new ArrayList();
 
-        listRecord = dao.getRecordAccordRegistration(registration_py, reg_office_id, "0");
-        if (listRecord.size() == 0) {
-            registrationMService.acceptanceRegistration(listRecord.get(0).getRegistration_id(), receiver_id);
+        listRecord = dao.getRecordByRegistrationId(registration_id, "0");
+        if (listRecord.size() == 1) {
+            result=registrationMService.acceptanceRegistration(listRecord.get(0).getRegistration_id(), receiver_id);
+            if (!(result)) {
+                log.error("acceptanceRegistration_record:registrationMService.acceptanceRegistration:" + result);
+                throw new Exception("acceptanceRegistration_record:registrationMService.acceptanceRegistration出错！");
+            }
+
         }
 
-        devicesResult = dao.updateRegistration_recordStatus(id, "1", receiver_id, createDate) == 1 ? true : false;
-        if (!(devicesResult)) {
-            log.error("updateDevicesSetStatus->updateRegistration_recordStatus:" + devicesResult);
-            log.error("addRegistration:registration_recordService.addRegistration_record出错！");
-            throw new Exception("addRegistration:registration_recordService.addRegistration_record出错！");
+        result = dao.updateRegistration_recordStatus(reg_record_id, "1", receiver_id, createDate) == 1 ? true : false;
+        if (!(result)) {
+            log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
+            throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
         }
 
-        return devicesResult;
+        return result;
     }
 
 

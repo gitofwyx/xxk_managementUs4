@@ -89,16 +89,16 @@ public class Registration_recordMController extends BaseController {
     //出库
     @ResponseBody
     @RequestMapping(value = "/acceptanceRegistration_record", method = RequestMethod.POST)
-    public Map<String, Object> acceptanceRegistration_record(@RequestParam(value = "reg_record_id") String reg_record_id,
-                                                             @RequestParam(value = "registration_py") String registration_py,
-                                                             @RequestParam(value = "reg_office_id") String reg_office_id) {
+    public Map<String, Object> acceptanceRegistration_record(@RequestParam(value = "registration_id") String registration_id,
+                                                             @RequestParam(value = "reg_record_id") String reg_record_id,
+                                                             @RequestParam(value = "registration_py") String registration_py) {
         Map<String, Object> result = new HashMap<>();
         try {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             if (reg_record_id != null && !"".equals(reg_record_id)) {
 
-                boolean Result = registration_recordService.acceptanceRegistration_record(reg_record_id,CurrentUserId,registration_py,reg_office_id);
+                boolean Result = registration_recordService.acceptanceRegistration_record(registration_id,reg_record_id,CurrentUserId,registration_py);
                 if (!(Result)) {
                     result.put("hasError", true);
                     result.put("error", "更新出错");

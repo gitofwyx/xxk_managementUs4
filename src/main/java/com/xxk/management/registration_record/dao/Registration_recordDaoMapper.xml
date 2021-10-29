@@ -42,6 +42,16 @@
         ORDER BY reg_record_date desc;
     </select>
 
+    <select id="getRecordByRegistrationId"  resultType="com.xxk.management.registration_record.entity.Registration_record">
+        select
+        <include refid="columns"></include>
+        from xxk_registration_record
+        where registration_id=#{0}
+        and reg_record_status= #{1}
+        and deleteFlag='0'
+        ORDER BY reg_record_date desc;
+    </select>
+
     <select id="getRegistration_recordByOffice"  resultType="com.xxk.management.registration_record.entity.Registration_record">
         select
         <include refid="columns"></include>

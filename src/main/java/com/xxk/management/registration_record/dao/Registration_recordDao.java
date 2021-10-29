@@ -18,6 +18,8 @@ public interface Registration_recordDao {
 
     public List<Registration_record> getRecordAccordRegistration(String registrationId,String officeId,String Status);
 
+    public List<Registration_record> getRecordByRegistrationId(String registrationId,String Status);
+
     public List<Registration_record> getRegistration_recordByOffice(@Param("office_id")String office_id,
                                                                     @Param("statusList")String[] listStr);
 
