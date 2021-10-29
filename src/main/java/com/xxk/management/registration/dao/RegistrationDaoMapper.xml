@@ -25,6 +25,12 @@
         #{reg_content},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
+    <update id="updateRegistrationStatus" >
+        update xxk_registration
+        set reg_status=#{3},updateUserId=#{1},updateDate=#{2}
+        where id=#{0} and deleteFlag='0';
+    </update>
+
     <!--修改信息 -->
     <update id="updateRegistration" parameterType="com.xxk.management.registration.entity.Registration">
         update xxk_registration set reg_date=#{reg_date},reg_type=#{reg_type},reg_content=#{reg_content},

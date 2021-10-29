@@ -18,5 +18,7 @@ public interface RegistrationDao {
 
     public int addRegistration(Registration registration);
 
+    public int updateRegistrationStatus(String id, String receiver_id,String date,String status);
+
 
 }

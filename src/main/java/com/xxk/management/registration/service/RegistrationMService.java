@@ -15,4 +15,6 @@ public interface RegistrationMService {
 
     public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException;
 
+    public boolean acceptanceRegistration(String id,String receiver_id) throws Exception, RuntimeException;
+
 }

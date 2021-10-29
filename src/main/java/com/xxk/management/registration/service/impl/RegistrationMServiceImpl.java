@@ -11,6 +11,7 @@ import com.xxk.management.registration_record.service.Registration_recordService
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,17 +42,17 @@ public class RegistrationMServiceImpl implements RegistrationMService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record)  throws Exception, RuntimeException{
+    public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
-        Boolean resultReg=false;
+        Boolean resultReg = false;
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
-        List<Registration_record> listRecord=new ArrayList();
+        List<Registration_record> listRecord = new ArrayList();
         int reg_count = 0;
 
-        listRecord=registration_recordService.getRecordAccordRegistration(registration.getRegistration_py(),registration.getReg_office_id(),"0");
-        if(listRecord.size()==0){
+        listRecord = registration_recordService.getRecordAccordRegistration(registration.getRegistration_py(), registration.getReg_office_id(), "0");
+        if (listRecord.size() == 0) {
             String reg_ident = IdentUtil.buildIdent("", reg_count, Date);
             registration.setId(id);
             registration.setReg_ident(reg_ident);
@@ -64,9 +65,9 @@ public class RegistrationMServiceImpl implements RegistrationMService {
             registration.setUpdateDate(Date);
             registration.setDeleteFlag("0");
             resultReg = dao.addRegistration(registration) == 1 ? true : false;
-        }else {
+        } else {
             registration.setId(listRecord.get(0).getRegistration_id());
-            resultReg=true;
+            resultReg = true;
         }
         if (!(resultReg)) {
             log.error("addRegistration:dao.addRegistration出错！");
@@ -85,7 +86,7 @@ public class RegistrationMServiceImpl implements RegistrationMService {
             record.setCreateUserId(registration.getRegistration_py());
             record.setCreateDate(Date);
             record.setDeleteFlag("0");
-            resultReg=registration_recordService.addRegistration_record(record);
+            resultReg = registration_recordService.addRegistration_record(record);
             if (!(resultReg)) {
                 log.error("addRegistration:registration_recordService.addRegistration_record出错！");
                 throw new Exception("addRegistration:registration_recordService.addRegistration_record出错！");
@@ -93,6 +94,23 @@ public class RegistrationMServiceImpl implements RegistrationMService {
         }
         return result;
         //return "system/index";
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public boolean acceptanceRegistration(String id, String receiver_id) throws Exception, RuntimeException {
+        String createDate = DateUtil.getFullTime();
+        boolean devicesResult = false;
+        List<Registration_record> listRecord = new ArrayList();
+
+
+        devicesResult = dao.updateRegistrationStatus(id, receiver_id, createDate, "1") == 1 ? true : false;
+        if (!(devicesResult)) {
+            log.error("acceptanceRegistration->updateRegistration_recordStatus:" + devicesResult);
+            throw new Exception("acceptanceRegistration:dao.updateRegistrationStatus出错！");
+        }
+
+        return devicesResult;
     }
 
 }
