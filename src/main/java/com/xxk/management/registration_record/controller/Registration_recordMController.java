@@ -100,6 +100,7 @@ public class Registration_recordMController extends BaseController {
             if(registration_py.equals(CurrentUserId)){
                 result.put("hasError", true);
                 result.put("error", "不是登记者");
+                return result;
             }
             if (reg_record_id != null && !"".equals(reg_record_id)) {
 
