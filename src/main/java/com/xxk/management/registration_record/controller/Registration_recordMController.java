@@ -75,7 +75,8 @@ public class Registration_recordMController extends BaseController {
         try {
             listReg_record=registration_recordService.getRegistration_recordById(recordId);
             if (listReg_record.isEmpty()) {
-                return null;
+                result.put("hasError", true);
+                result.put("error", "记录为空！");
             }
             result.put("listReg_record", listReg_record);
         } catch (Exception e) {
@@ -86,7 +87,7 @@ public class Registration_recordMController extends BaseController {
         return result;
     }
 
-    //出库
+    //受理
     @ResponseBody
     @RequestMapping(value = "/acceptanceRegistration_record", method = RequestMethod.POST)
     public Map<String, Object> acceptanceRegistration_record(@RequestParam(value = "registration_id") String registration_id,

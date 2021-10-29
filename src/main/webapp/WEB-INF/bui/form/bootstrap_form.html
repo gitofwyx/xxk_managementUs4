@@ -442,9 +442,9 @@
                                     ,['确定','不确定'],7,function (i,l) {
                                         CD_ajaxAllParam("/acceptanceRegistration_record",
                                             {
+                                                registration_id:listRecord.registration_id,
                                                 reg_record_id:listRecord.id,
                                                 registration_py:listRecord.reg_record_py,
-                                                reg_record_id:listRecord.id,
                                             },
                                             true,function () {
                                             layer.msg('已提交');
