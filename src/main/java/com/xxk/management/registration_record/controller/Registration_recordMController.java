@@ -97,7 +97,7 @@ public class Registration_recordMController extends BaseController {
         try {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            if(registration_py.equals(CurrentUserId)){
+            if(!registration_py.equals(CurrentUserId)){
                 result.put("hasError", true);
                 result.put("error", "不是登记者");
                 return result;
