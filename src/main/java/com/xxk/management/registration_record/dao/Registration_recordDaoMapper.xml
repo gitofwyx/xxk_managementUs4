@@ -35,6 +35,7 @@
         select id
         from xxk_registration
         where reg_office_id=#{1}
+        and reg_status=#{2}
         )
           and reg_record_status= #{2}
           and deleteFlag='0'
