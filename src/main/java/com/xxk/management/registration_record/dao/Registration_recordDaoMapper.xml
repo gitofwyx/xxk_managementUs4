@@ -56,7 +56,7 @@
         select
         <include refid="columns"></include>
         from xxk_registration_record
-        where  registration_id=(
+        where  registration_id in (
         select id
         from xxk_registration
         where reg_office_id=#{office_id}

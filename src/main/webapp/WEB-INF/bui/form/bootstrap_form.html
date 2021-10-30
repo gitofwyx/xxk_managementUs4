@@ -446,8 +446,9 @@
                                                 reg_record_id:listRecord.id,
                                                 registration_py:listRecord.reg_record_py,
                                             },
-                                            true,function () {
-                                            layer.msg('已提交');
+                                            true,function (v) {
+                                            if(result_handle(v)) layer.msg('已提交');
+                                            else layer.msg(v.error);
                                         });
                                 });
                             });
