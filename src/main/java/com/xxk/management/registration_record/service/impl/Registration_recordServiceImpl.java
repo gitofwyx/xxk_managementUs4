@@ -99,7 +99,7 @@ public class Registration_recordServiceImpl implements Registration_recordServic
 
         listRecord = dao.getRecordByRegistrationId(registration_id, "0");
         if (listRecord.size() == 1) {
-            result=registrationMService.acceptanceRegistration(listRecord.get(0).getRegistration_id(), receiver_id);
+            result=registrationMService.acceptanceRegistration(registration_id, receiver_id);
             if (!(result)) {
                 log.error("acceptanceRegistration_record:registrationMService.acceptanceRegistration:" + result);
                 throw new Exception("acceptanceRegistration_record:registrationMService.acceptanceRegistration出错！");

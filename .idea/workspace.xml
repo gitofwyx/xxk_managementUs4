@@ -11,7 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年10月25日 13:33:24 登记class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/controller/Registration_recordMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/controller/Registration_recordMController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2374,35 +2374,12 @@
       <workItem from="1635524727912" duration="2805000" />
       <workItem from="1635527549015" duration="361000" />
       <workItem from="1635527922480" duration="1122000" />
-      <workItem from="1635529075201" duration="485000" />
-    </task>
-    <task id="LOCAL-00204" summary="2021年9月21日 23:59:28 运维功能">
-      <created>1632239990872</created>
-      <option name="number" value="00204" />
-      <option name="presentableId" value="LOCAL-00204" />
-      <option name="project" value="LOCAL" />
-      <updated>1632239990873</updated>
-    </task>
-    <task id="LOCAL-00205" summary="2021年9月24日 12:59:36 bui1.1.21">
-      <created>1632459596838</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1632459596838</updated>
-    </task>
-    <task id="LOCAL-00206" summary="2021年9月26日 23:17:25 favicon.ico圖標路徑修復">
-      <created>1632669506476</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
-      <option name="project" value="LOCAL" />
-      <updated>1632669506477</updated>
-    </task>
-    <task id="LOCAL-00207" summary="2021年9月27日 00:40:25 登记记录表">
-      <created>1632674446136</created>
-      <option name="number" value="00207" />
-      <option name="presentableId" value="LOCAL-00207" />
-      <option name="project" value="LOCAL" />
-      <updated>1632674446136</updated>
+      <workItem from="1635529075201" duration="545000" />
+      <workItem from="1635529637603" duration="83000" />
+      <workItem from="1635529746784" duration="5472000" />
+      <workItem from="1635581099927" duration="889000" />
+      <workItem from="1635582163911" duration="2325000" />
+      <workItem from="1635607276151" duration="1053000" />
     </task>
     <task id="LOCAL-00208" summary="2021年9月27日 00:40:25 登记记录表">
       <created>1632674745593</created>
@@ -2719,7 +2696,35 @@
       <option name="project" value="LOCAL" />
       <updated>1635529024298</updated>
     </task>
-    <option name="localTasksCounter" value="253" />
+    <task id="LOCAL-00253" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635529567325</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1635529567325</updated>
+    </task>
+    <task id="LOCAL-00254" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635529598524</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1635529598524</updated>
+    </task>
+    <task id="LOCAL-00255" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635529705804</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1635529705805</updated>
+    </task>
+    <task id="LOCAL-00256" summary="2021年10月25日 13:33:24 登记class">
+      <created>1635581970147</created>
+      <option name="number" value="00256" />
+      <option name="presentableId" value="LOCAL-00256" />
+      <option name="project" value="LOCAL" />
+      <updated>1635581970148</updated>
+    </task>
+    <option name="localTasksCounter" value="257" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2939,6 +2944,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/stock/service/impl/StockServiceImpl.java</url>
           <line>300</line>
           <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
