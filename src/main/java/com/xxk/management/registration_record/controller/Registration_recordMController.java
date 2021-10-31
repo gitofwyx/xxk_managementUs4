@@ -109,8 +109,8 @@ public class Registration_recordMController extends BaseController {
                     result.put("hasError", true);
                     result.put("error", "更新出错");
                 } else {
-                    result.put("hasError", true);
-                    result.put("error", "更新出错");
+                    result.put("hasError", false);
+
                 }
             }
 
