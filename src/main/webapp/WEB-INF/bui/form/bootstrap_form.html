@@ -380,7 +380,7 @@
         }
 
         function layer_alert(msg,btn,time,btn1_ck,btn2_ck) {
-            if (isNaN(time)) {
+            if (isNaN(time)||!CheckIsNullOrEmpty(time)) {
                 time = 5;
             }
             //eg2
@@ -454,7 +454,9 @@
                             });
                         }
                     } else {
-                        layer_alert(data.error);
+                        layer_alert(data.error,['确定','关闭'],'',function () {
+                            location.reload();
+                        });
                     }
                 });
 
