@@ -296,15 +296,15 @@
                 , style: 'color: #0E2DF1FF;'
             },],
             exe_record_data = [{
-                title: '执行中'
+                title: '未处理'
                 , id: 102
-                , icon: 'layui-icon layui-icon-file'
-                , style: 'color: #0E2DF1FF;'
-            }, {
-                title: '执行完'
-                , id: 103
-                , icon: 'layui-icon layui-icon-ok'
+                , icon: 'layui-icon layui-icon-reduce-circle'
                 , style: 'color: #f10e3b;'
+            }, {
+                title: '处理中'
+                , id: 103
+                , icon: 'layui-icon layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop'
+                , style: 'color: #0E2DF1FF;'
             },],
             reg_record_function = function (obj) {
                 $("#record_status").text(obj.title);
