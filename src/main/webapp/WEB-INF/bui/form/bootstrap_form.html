@@ -357,7 +357,14 @@
                     , data: obj.record_data
                     , click: obj.record_func
                 });
-                $("#registration_record_part").load("/test/operation_record_part?TD=logout", "", exe_affairs_func);
+                if(obj.id==110){
+                    var office_id=$("#reg_office_id").val();
+                    $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + office_id, "", exe_affairs_func);
+                }
+                if(obj.id==111){
+                    var office_id=$("#exe_office_id").val();
+                    $("#registration_record_part").load("/test/operation_record_part?TD=logout&office_id=" + office_id, "", exe_affairs_func);
+                }
                 $("#record_select_id").val(obj.id);
             }
         });
