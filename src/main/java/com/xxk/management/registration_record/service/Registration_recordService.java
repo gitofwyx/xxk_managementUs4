@@ -14,7 +14,9 @@ public interface Registration_recordService {
 
     public List<Registration_record> getRecordAccordRegistration(String registrationId,String officeId,String status);
 
-    public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId, String[] status);
+    public List<Map<String, Object>> getRegistration_recordMakeDate(String office_id, String[] status);
+
+    public List<Map<String, Object>> getRegistration_recordMakeDateByReceiver(String office_id, String[] status,String receiver_id);
 
     public List<Map<String, Object>>  getRegistration_recordById(String recordId);
 

@@ -42,12 +42,45 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         return dao.getRecordAccordRegistration(registrationId, officeId, status);
     }
 
-    public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId, String[] status) {
+    public List<Map<String, Object>> getRegistration_recordMakeDate(String office_id, String[] status) {
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         List<String> dateList = new ArrayList<>();
         try {
-            List<Registration_record> listRegistration_record = dao.getRegistration_recordByOffice(registrationId, status);
+            List<Registration_record> listRegistration_record = dao.getRegistration_recordByOffice(office_id, status);
+            for (Registration_record record : listRegistration_record) {
+                if (record.getReg_record_date() == null) {
+                    continue;
+                }
+                String recordDate = record.getReg_record_date().substring(0, 10);
+                if (dateList.contains(recordDate)) {
+                    continue;
+                }
+                dateList.add(recordDate);
+                Map<String, Object> resultReg = new HashMap<>();
+                List<Registration_record> recordList = new ArrayList<>();
+                for (Registration_record r : listRegistration_record) {
+                    if (recordDate.equals(r.getReg_record_date().substring(0, 10))) {
+                        recordList.add(r);
+                    }
+                }
+                resultReg.put(recordDate, recordList);
+                resultList.add(resultReg);
+            }
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+
+        return resultList;
+    }
+
+    public List<Map<String, Object>> getRegistration_recordMakeDateByReceiver(String office_id, String[] status,String receiver_id) {
+
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<String> dateList = new ArrayList<>();
+        try {
+            List<Registration_record> listRegistration_record = dao.getRegistration_recordByReceiver(office_id, status,receiver_id);
             for (Registration_record record : listRegistration_record) {
                 if (record.getReg_record_date() == null) {
                     continue;

@@ -147,6 +147,7 @@
 
             <!--登记记录栏-->
             <div id="reg_record" class="hidden col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <input type="hidden" id="record_select_id" name="record_select_id" value=110>
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                     <legend><a id="record_select">登记记录</a>
                         (<i id="record_status_icon" class="layui-icon layui-icon-tips" style="color: #f10e3b;">
@@ -356,6 +357,8 @@
                     , data: obj.record_data
                     , click: obj.record_func
                 });
+                $("#registration_record_part").load("/test/operation_record_part?TD=logout", "", exe_affairs_func);
+                $("#record_select_id").val(obj.id);
             }
         });
 
@@ -472,7 +475,10 @@
                 $("#occupy_area").removeClass("hidden");
                 rmV_1 = rmV_1 + 1;
             }
-            $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value, "", exe_affairs_func);
+            if($("#record_select_id").val()==110){
+                $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value, "", exe_affairs_func);
+            }
+
         }, function () {
             $("#reg_office_id").val("");
         });

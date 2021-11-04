@@ -60,12 +60,28 @@
         select id
         from xxk_registration
         where reg_office_id=#{office_id}
-        and reg_status in
+        ) and reg_record_status in
         <foreach collection="statusList" item="status" index="index"
                  open="(" close=")" separator=",">
             #{status}
         </foreach>
-        ) and reg_record_status in
+        ORDER BY reg_record_date desc;
+    </select>
+
+    <select id="getRegistration_recordByReceiver"  resultType="com.xxk.management.registration_record.entity.Registration_record">
+        select
+        <include refid="columns"></include>
+        from xxk_registration_record
+        where
+        reg_receiver_id=#{receiver_id}
+        <if test="office_id!=null and ''!= office_id">
+            and registration_id in (
+            select id
+            from xxk_registration
+            where exe_office_id=#{office_id}
+            )
+        </if>
+        and reg_record_status in
         <foreach collection="statusList" item="status" index="index"
                  open="(" close=")" separator=",">
             #{status}

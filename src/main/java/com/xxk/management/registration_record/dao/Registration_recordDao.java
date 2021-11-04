@@ -23,6 +23,10 @@ public interface Registration_recordDao {
     public List<Registration_record> getRegistration_recordByOffice(@Param("office_id")String office_id,
                                                                     @Param("statusList")String[] listStr);
 
+    public List<Registration_record> getRegistration_recordByReceiver(@Param("office_id")String office_id,
+                                                                      @Param("statusList")String[] listStr,
+                                                                      @Param("receiver_id")String receiver_id);
+
     public List<Map<String, Object>> getRegistration_recordById(String recordId);
 
     public int addRegistration_record(Registration_record registration_record);
