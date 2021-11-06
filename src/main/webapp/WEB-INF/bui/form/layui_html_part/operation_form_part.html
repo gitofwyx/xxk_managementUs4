@@ -1,0 +1,38 @@
+<form class="form-horizontal layui-form" autocomplete="off" id="exe_area_form">
+
+
+    <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
+        <label class="control-label" style="margin-bottom:5px; ">处理声明</label>
+        <div class="">
+            <input type="checkbox" name="like[write]" title="维护申请">
+            <input type="checkbox" name="like[read]" title="耗材申请">
+            <div class="visible-xs" style="margin-bottom:10px; "></div>
+            <input type="checkbox" name="like[game]" title="设备申请" disabled>
+        </div>
+    </div>
+
+    <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:3px; ">处理情况录入</label>
+    <div class="col-sm-11 col-xs-12 col-lg-11" style="margin-bottom:5px; padding-right:0px ">
+
+        <input type="text" id="exe_record_content" class="form-control" name="exe_record_content"
+               style="width: 97% "
+               placeholder="请选择录入">
+
+    </div>
+
+    <div class="col-sm-1 col-xs-12 col-lg-1" style="margin-bottom:5px;padding-left:0px ">
+        <div class=" col-xs-1 visible-xs" style="padding:0px;width: 15px; ">
+        </div>
+        <button type="button" id="exe_describe_btn" class="btn btn-default ">描述</button>
+    </div>
+
+    <div id="exe_describe_area" class="hidden col-sm-12 col-xs-12 col-lg-12"
+         style="margin-bottom:10px; ">
+        <label class="control-label" style="margin-bottom:5px; ">详细描述</label>
+        <div class="">
+            <textarea class="form-control" name="exe_record_describe" rows="5"></textarea>
+        </div>
+    </div>
+
+
+</form>

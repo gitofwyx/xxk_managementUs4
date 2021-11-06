@@ -9,9 +9,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年11月5日 06:33:58 处理业务">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/layui_html_part/operation_form_part.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/layui_html_part/operation_record_part.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/layui_html_part/operation_record_part.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/layui_html_part/registration_record_part.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/layui_html_part/registration_record_part.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2386,14 +2390,15 @@
       <workItem from="1636060870721" duration="65000" />
       <workItem from="1636060951304" duration="316000" />
       <workItem from="1636061285309" duration="3974000" />
-      <workItem from="1636065280027" duration="2060000" />
-    </task>
-    <task id="LOCAL-00212" summary="2021年10月1日 03:30:18 Bootstrap响应式布局">
-      <created>1633066711169</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
-      <option name="project" value="LOCAL" />
-      <updated>1633066711169</updated>
+      <workItem from="1636065280027" duration="2074000" />
+      <workItem from="1636144011218" duration="1146000" />
+      <workItem from="1636145378841" duration="1260000" />
+      <workItem from="1636146870397" duration="4788000" />
+      <workItem from="1636152574329" duration="1832000" />
+      <workItem from="1636154525211" duration="387000" />
+      <workItem from="1636154959708" duration="1779000" />
+      <workItem from="1636189829008" duration="1558000" />
+      <workItem from="1636191409504" duration="1303000" />
     </task>
     <task id="LOCAL-00213" summary="2021年10月4日 00:19:50 日期默认值">
       <created>1633278020866</created>
@@ -2731,7 +2736,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636065258972</updated>
     </task>
-    <option name="localTasksCounter" value="261" />
+    <task id="LOCAL-00261" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1636067348457</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1636067348457</updated>
+    </task>
+    <option name="localTasksCounter" value="262" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

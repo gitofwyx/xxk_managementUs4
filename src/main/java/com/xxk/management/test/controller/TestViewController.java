@@ -101,6 +101,12 @@ public class TestViewController extends BaseController {
         return new ModelAndView("/form/layui_html_part/operation_record_part", "result", result);
     }
 
+    @RequestMapping("/operation_form_part")
+    public ModelAndView  operation_form_part() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/form/layui_html_part/operation_form_part", "result", result);
+    }
+
     @RequestMapping("/testReg")
     public ModelAndView  testReg() {
         Map<String, Object> result = new HashMap<>();
