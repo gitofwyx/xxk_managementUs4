@@ -186,37 +186,44 @@
                     </ul>-->
                 </div>
             </div>
-            <div id="operation_form_div" class="col-sm-6 col-xs-12 col-lg-6 col-md-offset-3 col-lg-offset-3" style="display: none; padding: 20px;">
+            <div id="operation_form_div" class="col-sm-12 col-xs-12 col-lg-12" style="display: none; padding: 10px;">
                 <form class="form-horizontal layui-form" autocomplete="off" id="exe_area_form">
 
-
-                    <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">处理声明选择</label>
-                        <div class="">
-                            <input type="radio" name="like" title="处理建议">
-                            <input type="radio" name="like" title="处理流程">
-                            <div class="visible-xs" style="margin-bottom:10px; "></div>
-                            <input type="radio" name="like" title="处理反馈">
+                    <div class="col-sm-1 col-xs-4 col-lg-1 col-md-offset-11 col-lg-offset-11 col-xs-offset-9" >
+                        <div>
+                            <button type="button" class="btn btn-primary btn-block" id="exe_record_submit" lay-submit
+                                    lay-filter="exeForm">提交
+                            </button>
                         </div>
                     </div>
-
-                    <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">声明情况录入</label>
-                    <div class="col-sm-11 col-xs-12 col-lg-12" >
-
-                        <input type="text" id="exe_record_content" class="form-control" name="exe_record_content"
-                               placeholder="请选择录入">
-
-                    </div>
-
-                    <div id="exe_describe_area" class="col-sm-12 col-xs-12 col-lg-12"
-                         style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">详细描述</label>
-                        <div class="">
-                            <textarea class="form-control" name="exe_record_describe" rows="7"></textarea>
+                    <div class="col-sm-6 col-xs-12 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                        <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
+                            <label class="control-label" style="margin-bottom:5px; ">处理声明选择</label>
+                            <div class="">
+                                <input type="radio" name="like" title="处理建议">
+                                <input type="radio" name="like" title="处理流程">
+                                <div class="visible-xs" style="margin-bottom:10px; "></div>
+                                <input type="radio" name="like" title="处理反馈">
+                            </div>
                         </div>
+
+                        <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">声明情况录入</label>
+                        <div class="col-sm-11 col-xs-12 col-lg-12">
+
+                            <input type="text" id="exe_record_content" class="form-control" name="exe_record_content"
+                                   placeholder="请选择录入">
+
+                        </div>
+
+                        <div id="exe_describe_area" class="col-sm-12 col-xs-12 col-lg-12"
+                             style="margin-bottom:10px; ">
+                            <label class="control-label" style="margin-bottom:5px; ">详细描述</label>
+                            <div class="">
+                                <textarea class="form-control" name="exe_record_describe" rows="7"></textarea>
+                            </div>
+                        </div>
+
                     </div>
-
-
                 </form>
             </div>
         </div>
@@ -390,12 +397,12 @@
                     , data: obj.record_data
                     , click: obj.record_func
                 });
-                if(obj.id==110){
-                    var office_id=$("#reg_office_id").val();
+                if (obj.id == 110) {
+                    var office_id = $("#reg_office_id").val();
                     $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + office_id, "", deal_affairs_func);
                 }
-                if(obj.id==111){
-                    var office_id=$("#exe_office_id").val();
+                if (obj.id == 111) {
+                    var office_id = $("#exe_office_id").val();
                     $("#registration_record_part").load("/test/operation_record_part?TD=logout&office_id=" + office_id, "", exe_affairs_func);
                 }
                 $("#record_select_id").val(obj.id);
@@ -412,52 +419,52 @@
 
         function result_handle(data) {
             if (CheckIsNullOrEmpty(data)) {
-                if(data.hasError===true){
+                if (data.hasError === true) {
                     return false;
                 }
-            }else {
+            } else {
                 return false;
             }
             return true;
 
         }
 
-        function layer_alert(msg,btn,time,btn1_ck,btn2_ck) {
-            if (isNaN(time)||!CheckIsNullOrEmpty(time)) {
+        function layer_alert(msg, btn, time, btn1_ck, btn2_ck) {
+            if (isNaN(time) || !CheckIsNullOrEmpty(time)) {
                 time = 5;
             }
             //eg2
             layer.open({
                 content: msg
-                ,btn: btn
-                , time: time*1000
-                ,success: function(layero, index){
-                    var timeNum = this.time/1000, setText = function(start){
+                , btn: btn
+                , time: time * 1000
+                , success: function (layero, index) {
+                    var timeNum = this.time / 1000, setText = function (start) {
                         layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
                     };
                     setText(!0);
                     this.timer = setInterval(setText, 1000);
-                    if(timeNum <= 0) clearInterval(this.timer);
+                    if (timeNum <= 0) clearInterval(this.timer);
                 }
-                ,end: function(){
+                , end: function () {
                     clearInterval(this.timer);
                 }
-                ,yes: function(index, layero){
+                , yes: function (index, layero) {
                     if (typeof btn1_ck === "function") {
-                        btn1_ck(index,layero);
+                        btn1_ck(index, layero);
                     }
                 }
-                ,btn2: function(index, layero){
+                , btn2: function (index, layero) {
                     if (typeof btn2_ck === "function") {
-                        btn2_ck(index,layero);
+                        btn2_ck(index, layero);
                     }
                 }
-                ,btn3: function(index, layero){
+                , btn3: function (index, layero) {
                     //按钮【按钮三】的回调
 
                     //return false 开启该代码可禁止点击该按钮关闭
                 }
-                ,cancel: function(){
+                , cancel: function () {
                     //右上角关闭回调
 
                     //return false 开启该代码可禁止点击该按钮关闭
@@ -479,25 +486,25 @@
                         listRecord = data.listReg_record[0];
                         if (listRecord.reg_record_status === "0") {
                             layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
-                                "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！",['已受理','关闭'], 12
-                                ,function (i,l){
-                                layer_alert("是否确定该申请已受理？确定后无法撤销！"
-                                    ,['确定','不确定'],7,function (i,l) {
-                                        CD_ajaxAllParam("/acceptanceRegistration_record",
-                                            {
-                                                registration_id:listRecord.registration_id,
-                                                reg_record_id:listRecord.id,
-                                                registration_py:listRecord.reg_record_py,
-                                            },
-                                            true,function (v) {
-                                            if(result_handle(v)) layer.msg('已提交');
-                                            else layer.msg(v.error);
+                                "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
+                                , function (i, l) {
+                                    layer_alert("是否确定该申请已受理？确定后无法撤销！"
+                                        , ['确定', '不确定'], 7, function (i, l) {
+                                            CD_ajaxAllParam("/acceptanceRegistration_record",
+                                                {
+                                                    registration_id: listRecord.registration_id,
+                                                    reg_record_id: listRecord.id,
+                                                    registration_py: listRecord.reg_record_py,
+                                                },
+                                                true, function (v) {
+                                                    if (result_handle(v)) layer.msg('已提交');
+                                                    else layer.msg(v.error);
+                                                });
                                         });
                                 });
-                            });
                         }
                     } else {
-                        layer_alert(data.error,['确定','关闭'],'',function () {
+                        layer_alert(data.error, ['确定', '关闭'], '', function () {
                             location.reload();
                         });
                     }
@@ -511,7 +518,7 @@
             //$("#operation_form_div").load("/test/operation_form_part");
             $('.exe-affairs').on('click', function (ev) {
                 layer.open({
-                    title:'添加处理流程',
+                    title: '添加处理流程',
                     type: 1,
                     skin: 'layui-layer-rim',
                     area: 'auto',
@@ -521,14 +528,14 @@
                     maxmin: true,
                     minStack: false, //最小化不堆叠在左下角
                     id: 'operation_form_layer', //定义 ID，防止重复弹出
-                    min: function(layero, index){
+                    min: function (layero, index) {
 
                         layer.msg('阻止了默认的最小化');
                         layer.style(index, {top: 'auto', bottom: 0});
 
                         return false;
                     },
-                    success: function(layero, index){
+                    success: function (layero, index) {
                         layer.full(index);
                     }
                 });
@@ -544,7 +551,7 @@
                 $("#occupy_area").removeClass("hidden");
                 rmV_1 = rmV_1 + 1;
             }
-            if($("#record_select_id").val()==110){
+            if ($("#record_select_id").val() == 110) {
                 $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.value, "", deal_affairs_func);
             }
 
@@ -577,6 +584,11 @@
                     });
                 }
             );
+        });
+
+        form.on('submit(exeForm)', function (data) {
+
+            alert('');
         });
 
     });
