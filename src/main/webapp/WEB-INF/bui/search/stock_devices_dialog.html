@@ -531,7 +531,7 @@
                     O_Form.getField('dev_type').set('value', eData.entity_type + "/" + eData.entity_name);
                     O_Form.getField('office_unique_name').set('value', eData.office_unique_name);
                     O_Form.getField('device_location').set('value', eData.device_location);
-                    if (select_devices_id !== eData.id) {
+                    if (select_devices_id !== eData.id||!CheckIsNullOrEmpty(O_Form.getField('stock_no').get('value'))) {
                         getStockByStockId(eData.present_stock_id, function (v) {
                             var no = parseInt(v.stock_total) - 1;
                             O_Form.getField('stock_no').set('value', makeInNum(no, v.stock_proportion));
