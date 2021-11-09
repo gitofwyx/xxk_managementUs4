@@ -200,10 +200,11 @@
                         <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
                             <label class="control-label" style="margin-bottom:5px; ">处理声明选择</label>
                             <div class="">
-                                <input type="radio" name="like" title="处理建议">
-                                <input type="radio" name="like" title="处理流程">
+                                <input type="radio" name="ope_statement" title="调查陈述">
+                                <input type="radio" name="ope_statement" title="处理建议">
                                 <div class="visible-xs" style="margin-bottom:10px; "></div>
-                                <input type="radio" name="like" title="处理反馈">
+                                <input type="radio" name="ope_statement" title="处理流程">
+                                <input type="radio" name="ope_statement" title="处理反馈">
                             </div>
                         </div>
 
@@ -219,7 +220,7 @@
                              style="margin-bottom:10px; ">
                             <label class="control-label" style="margin-bottom:5px; ">详细描述</label>
                             <div class="">
-                                <textarea class="form-control" name="exe_record_describe" rows="7"></textarea>
+                                <textarea class="form-control" name="ope_content" rows="7"></textarea>
                             </div>
                         </div>
 
@@ -525,7 +526,7 @@
                     content: $('#operation_form_div'),
                     btn: ['提交', '关闭'],
                     btnAlign: 'c',
-                    btn_margin:'30px',
+                    btn_margin:'20px',
                     maxmin: true,
                     minStack: false, //最小化不堆叠在左下角
                     id: 'operation_form_layer', //定义 ID，防止重复弹出
@@ -589,7 +590,24 @@
 
         form.on('submit(exeForm)', function (data) {
 
-            alert('');
+            CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
+                    $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
+                    layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
+                        time: 8 * 1000
+                        , success: function (layero, index) {
+                            var timeNum = this.time / 1000, setText = function (start) {
+                                layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
+                            };
+                            setText(!0);
+                            this.timer = setInterval(setText, 1000);
+                            if (timeNum <= 0) clearInterval(this.timer);
+                        }
+                        , end: function () {
+                            clearInterval(this.timer);
+                        }
+                    });
+                }
+            );
         });
 
     });
