@@ -947,6 +947,7 @@
                         // console.log('mouseleave')
                         isMouseenterMenu = 0;
                         $input.focus();
+                        hideDropMenu($input, options);
                     }).on('mouseenter', 'tbody tr', function() {
                         // 行上的移动事件
                         unHoverAll($dropdownMenu, options);
