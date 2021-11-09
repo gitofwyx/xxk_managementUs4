@@ -31,11 +31,10 @@
         <include refid="columns"></include>
         from xxk_registration_record
         where reg_record_py= #{0}
-          and registration_id=(
+          and registration_id in (
         select id
         from xxk_registration
         where reg_office_id=#{1}
-        and reg_status=#{2}
         )
           and reg_record_status= #{2}
           and deleteFlag='0'
