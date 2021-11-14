@@ -124,7 +124,7 @@
     <update id="updateRegistration_recordStatus" >
         update xxk_registration_record
         set reg_record_status=#{1},reg_receiver_id=#{2}, reg_receiver_date=#{3},updateUserId=#{2},updateDate=#{3}
-        where id=#{0} and deleteFlag='0';
+        where id=#{0} and reg_record_status!=#{1} and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->
