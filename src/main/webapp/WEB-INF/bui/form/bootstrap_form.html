@@ -116,7 +116,7 @@
                     <div class="col-sm-11 col-xs-12 col-lg-11" style="margin-bottom:5px; padding-right:0px ">
 
                         <input type="text" id="reg_record_content" class="form-control" name="reg_record_content"
-                               style="width: 97% "
+                               style="width: 97% " lay-verify="required"
                                placeholder="请选择录入">
 
                     </div>
@@ -187,8 +187,8 @@
                 </div>
             </div>
             <div id="operation_form_div" class="col-sm-12 col-xs-12 col-lg-12" style="display: none; padding: 10px;">
-                <form class="form-horizontal layui-form" autocomplete="off" id="exe_area_form">
-
+                <form class="form-horizontal layui-form" lay-filter="operation_form" autocomplete="off" id="exe_area_form">
+                    <input type="hidden" name="registration_id" id="registration_id">
                     <div class="col-sm-1 col-xs-4 col-lg-1 col-md-offset-11 col-lg-offset-11 col-xs-offset-9" >
                         <div>
                             <button type="button" class="btn btn-primary btn-block" id="exe_record_submit" lay-submit
@@ -200,18 +200,18 @@
                         <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
                             <label class="control-label" style="margin-bottom:5px; ">处理声明选择</label>
                             <div class="">
-                                <input type="radio" name="ope_statement" title="调查陈述">
-                                <input type="radio" name="ope_statement" title="处理建议">
+                                <input type="radio" name="ope_statement" value="1" title="调查陈述" checked>
+                                <input type="radio" name="ope_statement" value="2" title="处理建议">
                                 <div class="visible-xs" style="margin-bottom:10px; "></div>
-                                <input type="radio" name="ope_statement" title="处理流程">
-                                <input type="radio" name="ope_statement" title="处理反馈">
+                                <input type="radio" name="ope_statement" value="3" title="处理流程">
+                                <input type="radio" name="ope_statement" value="4" title="处理反馈">
                             </div>
                         </div>
 
                         <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">声明情况录入</label>
                         <div class="col-sm-11 col-xs-12 col-lg-12">
 
-                            <input type="text" id="exe_record_content" class="form-control" name="exe_record_content"
+                            <input type="text" id="exe_record_content" class="form-control" name="exe_record_content" lay-verify="required"
                                    placeholder="请选择录入">
 
                         </div>
@@ -517,6 +517,8 @@
 
         function exe_affairs_func() {
             //$("#operation_form_div").load("/test/operation_form_part");
+            rec_id = $(this).children('input').val();
+            $('#registration_id').val(rec_id);
             $('.exe-affairs').on('click', function (ev) {
                 layer.open({
                     title: '添加处理流程',
@@ -539,31 +541,24 @@
                     },
                     success: function (layero, index) {
                         layer.full(index);
+                    },
+                    yes: function (index, layero) {
+                        $('#exe_record_submit').trigger("click");
+                        //var data1 = form.val("operation_form");
+                        //form.on('submit(exeForm)');
                     }
                 });
 
             });
         }
 
-        function ope_submit() {
-            CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
+        function ope_submit(data) {
+            layer_alert('处理提交中', ['确定'],2);
+           /* CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
                     //$("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
-                    layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
-                        time: 8 * 1000
-                        , success: function (layero, index) {
-                            var timeNum = this.time / 1000, setText = function (start) {
-                                layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
-                            };
-                            setText(!0);
-                            this.timer = setInterval(setText, 1000);
-                            if (timeNum <= 0) clearInterval(this.timer);
-                        }
-                        , end: function () {
-                            clearInterval(this.timer);
-                        }
-                    });
+                layer_alert('处理提交中', ['确定'],2);
                 }
-            );
+            );*/
         }
 
         useBsSuggest("reg_office_ident", function (K, data) {
@@ -611,24 +606,7 @@
 
         form.on('submit(exeForm)', function (data) {
 
-            CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
-                    $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
-                    layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
-                        time: 8 * 1000
-                        , success: function (layero, index) {
-                            var timeNum = this.time / 1000, setText = function (start) {
-                                layer.title((start ? timeNum : --timeNum) + ' 秒后关闭', index);
-                            };
-                            setText(!0);
-                            this.timer = setInterval(setText, 1000);
-                            if (timeNum <= 0) clearInterval(this.timer);
-                        }
-                        , end: function () {
-                            clearInterval(this.timer);
-                        }
-                    });
-                }
-            );
+            ope_submit(data);
         });
 
     });
