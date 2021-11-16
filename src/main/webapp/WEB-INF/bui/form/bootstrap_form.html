@@ -517,9 +517,9 @@
 
         function exe_affairs_func() {
             //$("#operation_form_div").load("/test/operation_form_part");
-            rec_id = $(this).children('input').val();
-            $('#registration_id').val(rec_id);
             $('.exe-affairs').on('click', function (ev) {
+                rec_id = $(this).children('input').val();
+                $('#registration_id').val(rec_id);
                 layer.open({
                     title: '添加处理流程',
                     type: 1,
