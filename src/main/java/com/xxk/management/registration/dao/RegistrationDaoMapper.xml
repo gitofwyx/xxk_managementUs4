@@ -18,6 +18,14 @@
         from xxk_registration where registration_py= #{0} and reg_status= #{1} and deleteFlag='0';
     </select>
 
+    <select id="getRegistrationByRecordId"  resultType="com.xxk.management.registration.entity.Registration">
+        select
+        <include refid="columns"></include>
+        from xxk_registration where id= (
+        select registration_id from xxk_registration_record where id=#{0} and deleteFlag='0'
+        ) and deleteFlag='0';
+    </select>
+
     <insert id="addRegistration" parameterType="com.xxk.management.registration.entity.Registration">
         insert into xxk_registration(<include refid="columns"></include>) values(
         #{id},#{reg_ident},#{reg_office_id},#{exe_office_id},#{reg_class_id},#{registration_py},#{execute_id},#{examine_id},

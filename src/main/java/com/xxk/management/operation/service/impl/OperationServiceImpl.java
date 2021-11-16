@@ -6,6 +6,8 @@ import com.xxk.core.util.build_ident.IdentUtil;
 import com.xxk.management.operation.dao.OperationDao;
 import com.xxk.management.operation.entity.Operation;
 import com.xxk.management.operation.service.OperationService;
+import com.xxk.management.registration.entity.Registration;
+import com.xxk.management.registration.service.RegistrationService;
 import com.xxk.management.registration_record.entity.Registration_record;
 import com.xxk.management.registration_record.service.Registration_recordService;
 import org.apache.logging.log4j.LogManager;
@@ -33,6 +35,8 @@ public class OperationServiceImpl implements OperationService {
     @Autowired
     private Registration_recordService registration_recordService;
 
+    @Autowired
+    private RegistrationService registrationService;
 
     @Override
     public List<Operation> listOperation(int pageStart, int pageSize) {
@@ -50,9 +54,15 @@ public class OperationServiceImpl implements OperationService {
         String recId = UUIdUtil.getUUID();
         List<Registration_record> listRecord = new ArrayList();
         int reg_count = 0;
+        Registration reg =registrationService.getRegistrationByRecordId(operation.getOpe_registration_id());
+        operation.setOpe_office_id("NO");
+        if(reg!=null){
+            operation.setOpe_office_id(reg.getExe_office_id());
+        }
 
         operation.setId(recId);
         operation.setOpe_ident("NO");
+        operation.setOpe_staff_id(operation.getCreateUserId());
         operation.setOpe_confirm_date(Date);
         operation.setUpdateUserId(operation.getCreateUserId());
         operation.setUpdateDate(Date);

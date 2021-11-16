@@ -28,6 +28,11 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
+    public Registration getRegistrationByRecordId(String recordId) {
+        return dao.getRegistrationByRecordId(recordId);
+    }
+
+    @Override
     public boolean addRegistration(Registration registration) {
         return dao.addRegistration(registration)==1?true:false;
     }

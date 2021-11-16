@@ -518,7 +518,7 @@
         function exe_affairs_func() {
             //$("#operation_form_div").load("/test/operation_form_part");
             $('.exe-affairs').on('click', function (ev) {
-                rec_id = $(this).children('input').val();
+                var rec_id = $(this).children('input').val();
                 $('#registration_id').val(rec_id);
                 layer.open({
                     title: '添加处理流程',
@@ -553,12 +553,13 @@
         }
 
         function ope_submit(data) {
-            layer_alert('处理提交中', ['确定'],2);
-           /* CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
+
+            CD_ajaxAllParam("/addMobileOperation", data.field, true, function (v) {
+                if(v.hasError==true) layer_alert(v.error, ['确定'],2) ;else layer_alert("提交完成", ['确定'],2)
                     //$("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
-                layer_alert('处理提交中', ['确定'],2);
+
                 }
-            );*/
+            );
         }
 
         useBsSuggest("reg_office_ident", function (K, data) {

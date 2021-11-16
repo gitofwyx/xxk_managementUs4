@@ -16,6 +16,8 @@ public interface RegistrationDao {
 
     public Registration getRegistrationForRegStatus(String registrationId,String Status);
 
+    public Registration getRegistrationByRecordId(String recordId);
+
     public int addRegistration(Registration registration);
 
     public int updateRegistrationStatus(String id, String receiver_id,String date,String status);

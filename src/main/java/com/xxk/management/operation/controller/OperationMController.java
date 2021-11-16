@@ -52,11 +52,15 @@ public class OperationMController extends BaseController {
                 result.put("error", "添加出错,登记Id为空！");
             }
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            operation.setOpe_registration_id(registration_id);
             operation.setCreateUserId(CurrentUserId);
             Boolean resultOpe = operationService.addOperation(operation);
             if (!(resultOpe)) {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
+                log.error("resultOpe:"+resultOpe);
+            }else {
+                result.put("hasError", false);
                 log.error("resultOpe:"+resultOpe);
             }
         } catch (Exception e) {

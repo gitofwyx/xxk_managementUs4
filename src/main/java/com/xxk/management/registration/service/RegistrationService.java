@@ -12,6 +12,8 @@ public interface RegistrationService {
 
     public List<Registration> listRegistration(int pageStart, int pageSize);
 
+    public Registration getRegistrationByRecordId(String recordId);
+
     public boolean addRegistration(Registration registration);
 
 }
