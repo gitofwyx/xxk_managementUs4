@@ -307,7 +307,8 @@
             , dropdown = layui.dropdown
             , layer = layui.layer
             , layedit = layui.layedit
-            , laydate = layui.laydate;
+            , laydate = layui.laydate
+            ,exe_affairs_layer=null;
 
         //自定义验证规则
         form.verify({
@@ -520,7 +521,7 @@
             $('.exe-affairs').on('click', function (ev) {
                 var rec_id = $(this).children('input').val();
                 $('#registration_id').val(rec_id);
-                layer.open({
+                exe_affairs_layer=layer.open({
                     title: '添加处理流程',
                     type: 1,
                     skin: 'layui-layer-rim',
@@ -557,7 +558,7 @@
             CD_ajaxAllParam("/addMobileOperation", data.field, true, function (v) {
                 if(v.hasError==true) layer_alert(v.error, ['确定'],2) ;else layer_alert("提交完成", ['确定'],2)
                     //$("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
-
+                    layer.close(exe_affairs_layer);
                 }
             );
         }
