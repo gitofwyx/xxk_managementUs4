@@ -61,7 +61,7 @@ public class OperationMController extends BaseController {
                 log.error("resultOpe:"+resultOpe);
             }else {
                 result.put("hasError", false);
-                log.error("resultOpe:"+resultOpe);
+                log.info("resultOpe:"+resultOpe);
             }
         } catch (Exception e) {
             result.put("hasError", true);
