@@ -72,7 +72,7 @@ public class OperationServiceImpl implements OperationService {
             log.error("addRegistration:registration_recordService.addRegistration_record出错！");
             throw new Exception("addRegistration:registration_recordService.addRegistration_record出错！");
         }else {
-            resultReg = registration_recordService.updateRegistration_recordStatus(operation.getOpe_registration_id(), "2", operation.getCreateUserId(), Date);
+            registration_recordService.updateRegistration_recordStatus(operation.getOpe_registration_id(), "2", operation.getCreateUserId(), Date);
         }
 
         return resultReg;
