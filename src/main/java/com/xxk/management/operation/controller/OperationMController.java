@@ -39,6 +39,31 @@ public class OperationMController extends BaseController {
     private RecordService recordService;
 
     @ResponseBody
+    @RequestMapping("/listOperationAccordingDate")
+    public List<Map<String, Object>> listOperationAccordingDate(@RequestParam(value = "registration_id") String registration_id) {
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> listRecord=new ArrayList<>();
+        try {
+            String[] status={"0","1"};
+            //String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            listRecord = operationService.listOperationAccordingDate(registration_id, status);
+            if (listRecord == null) {
+                log.error("获取分页出错");
+                result.put("hasError", true);
+                result.put("error", "获取数据出错");
+
+            } else {
+                result.put("resultRecord", listRecord);
+            }
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "获取数据出错");
+        }
+        return listRecord;
+    }
+
+    @ResponseBody
     @RequestMapping("/addMobileOperation")
     public Map<String, Object> addMobileOperation(Operation operation,
                                                   @RequestParam(value = "registration_id") String registration_id) {

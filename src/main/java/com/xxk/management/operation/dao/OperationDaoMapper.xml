@@ -4,11 +4,59 @@
     <sql id="columns">id,ope_ident,ope_registration_id,ope_staff_id,ope_office_id,ope_device_id,ope_auditing_id,ope_source,ope_statement,ope_type,
           ope_confirm_date,ope_content,ope_flag,ope_result,ope_suggest,remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
+    <sql id="opeRecordColumns">xo.id as operationId,
+                      xo.ope_registration_id as registration_id,
+                      xo.ope_staff_id as ope_staff_id,
+                      xu.name as ope_staff_name,
+                      ope_office_id as ope_office_id,
+                      xf.office_name as ope_office,
+                      xo.ope_statement as ope_statement,
+                      xo.ope_type as ope_type,
+                      xo.ope_confirm_date as ope_confirm_date,
+                      xo.ope_content as ope_content,
+                      xo.ope_flag as ope_flag,
+                      xo.ope_result as ope_result,
+                      xo.ope_suggest as ope_suggest
+                      </sql>
+
+    <resultMap id="operationMakeRecordMap" type="java.util.HashMap">
+        <id column="operationId" property="operationId" jdbcType="VARCHAR"/>
+        <result column="registration_id" property="registration_id" jdbcType="VARCHAR"/>
+        <result column="ope_staff_id" property="ope_staff_id" jdbcType="VARCHAR"/>
+        <result column="ope_staff_name" property="ope_staff_name" jdbcType="VARCHAR"/>
+        <result column="ope_office_id" property="ope_office_id" jdbcType="VARCHAR"/>
+        <result column="ope_office" property="ope_office" jdbcType="VARCHAR"/>
+        <result column="ope_statement" property="ope_statement" jdbcType="VARCHAR"/>
+        <result column="ope_type" property="ope_type" jdbcType="VARCHAR"/>
+        <result column="ope_confirm_date" property="ope_confirm_date" jdbcType="VARCHAR"/>
+        <result column="ope_content" property="ope_content" jdbcType="VARCHAR"/>
+        <result column="ope_flag" property="ope_flag" jdbcType="VARCHAR"/>
+        <result column="ope_result" property="ope_result" jdbcType="VARCHAR"/>
+        <result column="ope_suggest" property="ope_suggest" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <!--获取分页 -->
     <select id="listOperation" parameterType="string" resultType="com.xxk.management.operation.entity.Operation">
         select
         <include refid="columns"></include>
         from xxk_operation where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
+    </select>
+
+    <select id="listOperationByRegId"  resultMap="operationMakeRecordMap">
+        select
+        <include refid="opeRecordColumns"></include>
+        from xxk_operation xo
+        LEFT JOIN xxk_reg_user xu ON xo.ope_staff_id=xu.id
+        LEFT JOIN xxk_offices xf ON xo.ope_office_id=xf.id
+        where
+        xo.ope_registration_id=#{ope_registration_id}
+        and xo.deleteFlag='0'
+        and xo.ope_flag in
+        <foreach collection="statusList" item="status" index="index"
+                 open="(" close=")" separator=",">
+            #{status}
+        </foreach>
+        ORDER BY xo.ope_confirm_date desc;
     </select>
 
     <!--添加信息 -->

@@ -434,7 +434,7 @@
                 }
                 if (obj.id == 111) {
                     var office_id = $("#exe_office_id").val();
-                    $("#registration_record_part").load("/test/operation_record_part?TD=logout&office_id=" + office_id, "", exe_affairs_func);
+                    $("#registration_record_part").load("/test/operation_record_part1?TD=logout&office_id=" + office_id, "", exe_affairs_func);
                 }
                 $("#record_select_id").val(obj.id);
             }
@@ -515,7 +515,7 @@
                 }, true, function (data) {
                     if (result_handle(data)) {
                         listRecord = data.listReg_record[0];
-                        $("#ope_record_part").load("/test/operation_record_part?TD=logout");
+                        $("#ope_record_part").load("/test/operation_record_part?TD=logout&registration_id="+rec_id);
                         exe_layer=layer.open({
                             title: '添加处理流程',
                             type: 1,

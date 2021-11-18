@@ -43,6 +43,39 @@ public class OperationServiceImpl implements OperationService {
         return dao.listOperation((pageStart - 1) * pageSize, pageSize);
     }
 
+    public List<Map<String, Object>> listOperationAccordingDate(String registration_id, String[] status) {
+
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<String> dateList = new ArrayList<>();
+        try {
+            List<Map<String, Object>> listOpe = dao.listOperationByRegId(registration_id, status);
+            for (Map<String, Object> ope : listOpe) {
+                if (ope.get("ope_confirm_date") == null) {
+                    continue;
+                }
+                String recordDate = ope.get("ope_confirm_date").toString().substring(0, 10);
+                if (dateList.contains(recordDate)) {
+                    continue;
+                }
+                dateList.add(recordDate);
+                Map<String, Object> resultReg = new HashMap<>();
+                List<Map<String, Object>> recordList = new ArrayList<>();
+                for (Map<String, Object> opeMap : listOpe) {
+                    if (recordDate.equals(opeMap.get("ope_confirm_date").toString().substring(0, 10))) {
+                        recordList.add(opeMap);
+                    }
+                }
+                resultReg.put(recordDate, recordList);
+                resultList.add(resultReg);
+            }
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+
+        return resultList;
+    }
+
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public boolean addOperation(Operation operation) throws Exception, RuntimeException {
@@ -59,6 +92,9 @@ public class OperationServiceImpl implements OperationService {
         if(reg!=null){
             operation.setOpe_office_id(reg.getExe_office_id());
         }
+        if("1".equals(operation.getOpe_statement())){
+            operation.setOpe_flag("0");
+        }else {operation.setOpe_flag("1");}
 
         operation.setId(recId);
         operation.setOpe_ident("NO");
