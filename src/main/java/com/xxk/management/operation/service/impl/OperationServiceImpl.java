@@ -92,8 +92,9 @@ public class OperationServiceImpl implements OperationService {
         if(reg!=null){
             operation.setOpe_office_id(reg.getExe_office_id());
         }
-        if("1".equals(operation.getOpe_statement())){
-            operation.setOpe_flag("0");
+        if("3".equals(operation.getOpe_statement())){
+            resultReg=registration_recordService.updateRegistration_recordExeStatus(operation.getOpe_registration_id(),"1",operation.getCreateUserId(),Date);
+            operation.setOpe_flag("1");
         }else {operation.setOpe_flag("1");}
 
         operation.setId(recId);

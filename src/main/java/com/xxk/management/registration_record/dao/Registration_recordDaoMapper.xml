@@ -16,6 +16,7 @@
         <result column="reg_record_py" property="reg_record_py" jdbcType="VARCHAR"/>
         <result column="reg_record_status" property="reg_record_status" jdbcType="VARCHAR"/>
         <result column="reg_record_date" property="reg_record_date" jdbcType="VARCHAR"/>
+        <result column="execute_record_status" property="execute_record_status" jdbcType="VARCHAR"/>
         <result column="reg_record_content" property="reg_record_content" jdbcType="VARCHAR"/>
     </resultMap>
 
