@@ -26,6 +26,8 @@ public interface Registration_recordService {
 
     public boolean updateRegistration_recordStatus(String id,String status, String receiver_id,String date);
 
+    public boolean updateRegistration_recordExeStatus(String id,String status, String updateUserId,String date);
+
     public boolean acceptanceRegistration_record(String id,String receiver_id,String registration_py,String reg_office_id) throws Exception, RuntimeException;
 
 }

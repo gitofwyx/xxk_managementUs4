@@ -129,6 +129,11 @@ public class Registration_recordServiceImpl implements Registration_recordServic
     }
 
     @Override
+    public boolean updateRegistration_recordExeStatus(String id,String status, String updateUserId,String date) {
+        return dao.updateRegistration_recordExeStatus(id,status,updateUserId,date)== 1 ? true : false;
+    }
+
+    @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public boolean acceptanceRegistration_record(String registration_id,String reg_record_id, String receiver_id, String registration_py) throws Exception, RuntimeException{
         String createDate = DateUtil.getFullTime();

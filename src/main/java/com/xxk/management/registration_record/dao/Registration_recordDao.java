@@ -35,4 +35,6 @@ public interface Registration_recordDao {
 
     public int updateRegistration_recordStatus(String id,String status, String receiver_id,String date);
 
+    public int updateRegistration_recordExeStatus(String id,String status, String updateUserId,String date);
+
 }
