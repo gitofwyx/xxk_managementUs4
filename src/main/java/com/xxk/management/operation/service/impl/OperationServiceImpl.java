@@ -92,11 +92,23 @@ public class OperationServiceImpl implements OperationService {
         if(reg!=null){
             operation.setOpe_office_id(reg.getExe_office_id());
         }
-        if("3".equals(operation.getOpe_statement())){
-            resultReg=registration_recordService.updateRegistration_recordExeStatus(operation.getOpe_registration_id(),"1",operation.getCreateUserId(),Date);
-            operation.setOpe_flag("1");
-        }else {operation.setOpe_flag("1");}
+        List<Map<String, Object>> reg_records=registration_recordService.getRegistration_recordById(operation.getOpe_registration_id());
+        if(reg_records!=null && reg_records.size()>0 && reg_records.get(0)!=null){
+            if("3".equals(operation.getOpe_statement())&&"0".equals(reg_records.get(0).get("execute_record_status"))){
+                registration_recordService.updateRegistration_recordExeStatus(operation.getOpe_registration_id(),"1",operation.getCreateUserId(),Date);
+                operation.setOpe_flag("1");
+            }else if("1".equals(reg_records.get(0).get("execute_record_status"))){
+                operation.setOpe_flag("1");
+            }
+            else {operation.setOpe_flag("0");}
+            if("0".equals(reg_records.get(0).get("reg_record_status"))){
+                registration_recordService.updateRegistration_recordStatus(operation.getOpe_registration_id(), "1", operation.getCreateUserId(), Date);
+            }
 
+        }else {
+            log.error("addRegistration:registration_recordService.getRegistration_recordById为空！");
+            throw new Exception("addRegistration:registration_recordService.getRegistration_recordById为空！");
+        }
         operation.setId(recId);
         operation.setOpe_ident("NO");
         operation.setOpe_staff_id(operation.getCreateUserId());
@@ -108,8 +120,6 @@ public class OperationServiceImpl implements OperationService {
         if (!(resultReg)) {
             log.error("addRegistration:registration_recordService.addRegistration_record出错！");
             throw new Exception("addRegistration:registration_recordService.addRegistration_record出错！");
-        }else {
-            registration_recordService.updateRegistration_recordStatus(operation.getOpe_registration_id(), "2", operation.getCreateUserId(), Date);
         }
 
         return resultReg;

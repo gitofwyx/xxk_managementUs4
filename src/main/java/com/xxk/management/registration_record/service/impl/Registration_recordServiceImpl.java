@@ -150,7 +150,7 @@ public class Registration_recordServiceImpl implements Registration_recordServic
 
         }
 
-        result = dao.updateRegistration_recordStatus(reg_record_id, "1", receiver_id, createDate) == 1 ? true : false;
+        result = dao.updateRegistration_recordStatus(reg_record_id, "2", receiver_id, createDate) == 1 ? true : false;
         if (!(result)) {
             log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
             throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
