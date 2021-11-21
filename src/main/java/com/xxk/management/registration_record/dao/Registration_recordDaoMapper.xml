@@ -128,6 +128,12 @@
         where id=#{0} and reg_record_status!=#{1} and deleteFlag='0';
     </update>
 
+    <update id="updateOnlyRegistration_recordStatus" >
+        update xxk_registration_record
+        set reg_record_status=#{1},updateUserId=#{2},updateDate=#{3}
+        where id=#{0} and reg_record_status!=#{1} and deleteFlag='0';
+    </update>
+
     <update id="updateRegistration_recordExeStatus" >
         update xxk_registration_record
         set execute_record_status=#{1},updateUserId=#{2},updateDate=#{3}

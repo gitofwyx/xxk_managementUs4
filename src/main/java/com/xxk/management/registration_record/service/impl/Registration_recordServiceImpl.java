@@ -135,25 +135,25 @@ public class Registration_recordServiceImpl implements Registration_recordServic
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public boolean acceptanceRegistration_record(String registration_id,String reg_record_id, String receiver_id, String registration_py) throws Exception, RuntimeException{
+    public boolean acceptanceRegistration_record(String registration_id,String reg_record_id, String updateUserId, String registration_py) throws Exception, RuntimeException{
         String createDate = DateUtil.getFullTime();
         boolean result = false;
         List<Registration_record> listRecord = new ArrayList();
 
+        result = dao.updateOnlyRegistration_recordStatus(reg_record_id, "2", updateUserId, createDate) == 1 ? true : false;
+        if (!(result)) {
+            log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
+            throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
+        }
+
         listRecord = dao.getRecordByRegistrationId(registration_id, "0");
         if (listRecord.size() == 1) {
-            result=registrationMService.acceptanceRegistration(registration_id, receiver_id);
+            result=registrationMService.acceptanceRegistration(registration_id, updateUserId);
             if (!(result)) {
                 log.error("acceptanceRegistration_record:registrationMService.acceptanceRegistration:" + result);
                 throw new Exception("acceptanceRegistration_record:registrationMService.acceptanceRegistration出错！");
             }
 
-        }
-
-        result = dao.updateRegistration_recordStatus(reg_record_id, "2", receiver_id, createDate) == 1 ? true : false;
-        if (!(result)) {
-            log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
-            throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
         }
 
         return result;
