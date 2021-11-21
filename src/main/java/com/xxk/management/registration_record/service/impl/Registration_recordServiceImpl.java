@@ -75,12 +75,12 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         return resultList;
     }
 
-    public List<Map<String, Object>> getRegistration_recordMakeDateByReceiver(String office_id, String[] status,String receiver_id) {
+    public List<Map<String, Object>> getRegistration_recordMakeDateByReceiver(String office_id, String[] status, String receiver_id) {
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         List<String> dateList = new ArrayList<>();
         try {
-            List<Registration_record> listRegistration_record = dao.getRegistration_recordByReceiver(office_id, status,receiver_id);
+            List<Registration_record> listRegistration_record = dao.getRegistration_recordByReceiver(office_id, status, receiver_id);
             for (Registration_record record : listRegistration_record) {
                 if (record.getReg_record_date() == null) {
                     continue;
@@ -124,36 +124,43 @@ public class Registration_recordServiceImpl implements Registration_recordServic
     }
 
     @Override
-    public boolean updateRegistration_recordStatus(String id,String status, String receiver_id,String date) {
-        return dao.updateRegistration_recordStatus(id,status,receiver_id,date)== 1 ? true : false;
+    public boolean updateRegistration_recordStatus(String id, String status, String receiver_id, String date) {
+        return dao.updateRegistration_recordStatus(id, status, receiver_id, date) == 1 ? true : false;
     }
 
     @Override
-    public boolean updateRegistration_recordExeStatus(String id,String status, String updateUserId,String date) {
-        return dao.updateRegistration_recordExeStatus(id,status,updateUserId,date)== 1 ? true : false;
+    public boolean updateRegistration_recordExeStatus(String id, String status, String updateUserId, String date) {
+        return dao.updateRegistration_recordExeStatus(id, status, updateUserId, date) == 1 ? true : false;
     }
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public boolean acceptanceRegistration_record(String registration_id,String reg_record_id, String updateUserId, String registration_py) throws Exception, RuntimeException{
+    public boolean acceptanceRegistration_record(String registration_id, String reg_record_id, String updateUserId, String registration_py) throws Exception, RuntimeException {
         String createDate = DateUtil.getFullTime();
         boolean result = false;
         List<Registration_record> listRecord = new ArrayList();
 
-        result = dao.updateOnlyRegistration_recordStatus(reg_record_id, "2", updateUserId, createDate) == 1 ? true : false;
-        if (!(result)) {
-            log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
-            throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
-        }
-
-        listRecord = dao.getRecordByRegistrationId(registration_id, "0");
-        if (listRecord.size() == 1) {
-            result=registrationMService.acceptanceRegistration(registration_id, updateUserId);
+        List<Map<String, Object>> reg_records = dao.getRegistration_recordById(reg_record_id);
+        if (reg_records != null && reg_records.size() > 0 && reg_records.get(0) != null) {
+            if (!"1".equals(reg_records.get(0).get("reg_record_status"))) {
+                throw new Exception("无法确认的操作！请先确认登记状态！！");
+            }
+        } else {
+            result = dao.updateOnlyRegistration_recordStatus(reg_record_id, "2", updateUserId, createDate) == 1 ? true : false;
             if (!(result)) {
-                log.error("acceptanceRegistration_record:registrationMService.acceptanceRegistration:" + result);
-                throw new Exception("acceptanceRegistration_record:registrationMService.acceptanceRegistration出错！");
+                log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
+                throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
             }
 
+            listRecord = dao.getRecordByRegistrationId(registration_id, "0");
+            if (listRecord.size() == 1) {
+                result = registrationMService.acceptanceRegistration(registration_id, updateUserId);
+                if (!(result)) {
+                    log.error("acceptanceRegistration_record:registrationMService.acceptanceRegistration:" + result);
+                    throw new Exception("acceptanceRegistration_record:registrationMService.acceptanceRegistration出错！");
+                }
+
+            }
         }
 
         return result;

@@ -22,10 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -117,7 +114,10 @@ public class Registration_recordMController extends BaseController {
         } catch (Exception e) {
             log.error(e);
             result.put("hasError", true);
-            result.put("error", "更新出错");
+            log.error(e);
+            Optional.ofNullable(e).ifPresent(e1 -> {
+                result.put("error",e1.getLocalizedMessage());
+            });
         }
         return result;
         //return "system/index";
