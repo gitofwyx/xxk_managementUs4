@@ -13,6 +13,11 @@ public interface RegistrationMService {
 
     public List<Registration> listRegistration(int pageStart, int pageSize);
 
+    List<Map<String, Object>> listRegistrationMapAccordingDate(String office_id,
+                                                               String reg_record_py,
+                                                               String reg_receiver_id,
+                                                               String[] status);
+
     public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException;
 
     public boolean acceptanceRegistration(String id,String receiver_id) throws Exception, RuntimeException;

@@ -41,6 +41,43 @@ public class RegistrationMServiceImpl implements RegistrationMService {
     }
 
     @Override
+    public List<Map<String, Object>> listRegistrationMapAccordingDate(String office_id,
+                                                                      String reg_record_py,
+                                                                      String reg_receiver_id,
+                                                                      String[] status) {
+
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<String> dateList = new ArrayList<>();
+        try {
+            List<Map<String, Object>> listReg = dao.listRegistrationUnionMap(office_id,reg_record_py,reg_receiver_id, status);
+            for (Map<String, Object> reg : listReg) {
+                if (reg.get("reg_record_date") == null) {
+                    continue;
+                }
+                String recordDate = reg.get("reg_record_date").toString().substring(0, 10);
+                if (dateList.contains(recordDate)) {
+                    continue;
+                }
+                dateList.add(recordDate);
+                Map<String, Object> resultReg = new HashMap<>();
+                List<Map<String, Object>> recordList = new ArrayList<>();
+                for (Map<String, Object> regMap : listReg) {
+                    if (recordDate.equals(regMap.get("reg_record_date").toString().substring(0, 10))) {
+                        recordList.add(regMap);
+                    }
+                }
+                resultReg.put(recordDate, recordList);
+                resultList.add(resultReg);
+            }
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+
+        return resultList;
+    }
+
+    @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();

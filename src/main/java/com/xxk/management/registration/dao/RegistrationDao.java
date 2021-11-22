@@ -1,6 +1,7 @@
 package com.xxk.management.registration.dao;
 
 import com.xxk.management.registration.entity.Registration;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +14,11 @@ import java.util.Map;
 public interface RegistrationDao {
 
     public List<Registration> listRegistration(int pageStart, int pageSize);
+
+    public List<Map<String, Object>> listRegistrationUnionMap(@Param("office_id")String office_id,
+                                                              @Param("reg_record_py")String reg_record_py,
+                                                              @Param("reg_receiver_id")String reg_receiver_id,
+                                                              @Param("statusList")String[] listStr);
 
     public Registration getRegistrationForRegStatus(String registrationId,String Status);
 

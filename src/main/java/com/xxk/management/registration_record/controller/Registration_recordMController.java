@@ -114,10 +114,10 @@ public class Registration_recordMController extends BaseController {
         } catch (Exception e) {
             log.error(e);
             result.put("hasError", true);
-            log.error(e);
-            Optional.ofNullable(e).ifPresent(e1 -> {
+            result.put("error",e.getLocalizedMessage());
+            /*Optional.ofNullable(e).ifPresent(e1 -> {
                 result.put("error",e1.getLocalizedMessage());
-            });
+            });*/
         }
         return result;
         //return "system/index";

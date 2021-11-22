@@ -8,7 +8,7 @@
                       xo.ope_registration_id as registration_id,
                       xo.ope_staff_id as ope_staff_id,
                       xu.name as ope_staff_name,
-                      ope_office_id as ope_office_id,
+                      xo.ope_office_id as ope_office_id,
                       xf.office_name as ope_office,
                       xo.ope_statement as ope_statement,
                       xo.ope_type as ope_type,

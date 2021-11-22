@@ -43,6 +43,7 @@ public class OperationServiceImpl implements OperationService {
         return dao.listOperation((pageStart - 1) * pageSize, pageSize);
     }
 
+    @Override
     public List<Map<String, Object>> listOperationAccordingDate(String registration_id, String[] status) {
 
         List<Map<String, Object>> resultList = new ArrayList<>();

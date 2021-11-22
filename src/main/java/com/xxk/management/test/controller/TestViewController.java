@@ -2,6 +2,7 @@ package com.xxk.management.test.controller;
 
 import com.xxk.core.file.BaseController;
 import com.xxk.management.operation.service.OperationService;
+import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration_record.service.Registration_recordService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +27,9 @@ import java.util.Map;
 public class TestViewController extends BaseController {
 
     private static Logger log = LogManager.getLogger();
+
+    @Autowired
+    private RegistrationMService registrationMService;
 
     @Autowired
     private Registration_recordService registration_recordService;
@@ -85,10 +89,10 @@ public class TestViewController extends BaseController {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
-            String[] status={"1"};
+            String[] status={"1","0"};
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = registration_recordService.getRegistration_recordMakeDateByReceiver(office_id, status,CurrentUserId);
+            listRecord = registrationMService.listRegistrationMapAccordingDate("","","", status);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {

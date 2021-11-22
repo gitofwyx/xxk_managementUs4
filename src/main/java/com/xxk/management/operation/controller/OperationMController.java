@@ -89,9 +89,9 @@ public class OperationMController extends BaseController {
                 log.info("resultOpe:"+resultOpe);
             }
         } catch (Exception e) {
-            result.put("hasError", true);
-            result.put("error", "添加出错");
             log.error(e);
+            result.put("hasError", true);
+            result.put("error",e.getLocalizedMessage());
         }
         return result;
         //return "system/index";

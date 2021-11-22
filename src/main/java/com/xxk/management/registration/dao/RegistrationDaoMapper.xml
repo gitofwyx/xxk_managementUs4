@@ -5,11 +5,79 @@
           reg_status,reg_date,reg_type,execute_status,examine_status,reg_content,
           createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
+    <sql id="regRecordColumns">rr.id as reg_record_id,
+                      rr.registration_id as registration_id,
+                      rr.examine_id as examine_id,
+                      rr.reg_class_id as reg_class_id,
+                      xr.reg_office_id as reg_office_id,
+                      xf.office_name as ope_office,
+                      rr.reg_record_py as reg_record_py,
+                      xu.name as reg_record_name,
+                      rr.reg_receiver_id as reg_receiver_id,
+                      xe.name as reg_receiver_name,
+                      rr.reg_record_status as reg_record_status,
+                      rr.reg_record_date as reg_record_date,
+                      rr.reg_receiver_date as reg_receiver_date,
+                      rr.reg_record_type as reg_record_type,
+                      rr.execute_record_status as execute_record_status,
+                      rr.examine_record_status as examine_record_status,
+                      rr.reg_record_content as reg_record_content,
+                      rr.reg_record_describe as reg_record_describe
+    </sql>
+
+    <resultMap id="registrationMakeRecordMap" type="java.util.HashMap">
+        <id column="reg_record_id" property="reg_record_id" jdbcType="VARCHAR"/>
+        <result column="registration_id" property="registration_id" jdbcType="VARCHAR"/>
+        <result column="examine_id" property="examine_id" jdbcType="VARCHAR"/>
+        <result column="reg_class_id" property="reg_class_id" jdbcType="VARCHAR"/>
+        <result column="reg_office_id" property="reg_office_id" jdbcType="VARCHAR"/>
+        <result column="reg_office" property="reg_office" jdbcType="VARCHAR"/>
+        <result column="reg_record_py" property="reg_record_py" jdbcType="VARCHAR"/>
+        <result column="reg_record_name" property="reg_record_name" jdbcType="VARCHAR"/>
+        <result column="reg_receiver_id" property="reg_receiver_id" jdbcType="VARCHAR"/>
+        <result column="reg_receiver_name" property="reg_receiver_name" jdbcType="VARCHAR"/>
+        <result column="reg_record_status" property="reg_record_status" jdbcType="VARCHAR"/>
+        <result column="reg_record_date" property="reg_record_date" jdbcType="VARCHAR"/>
+        <result column="reg_receiver_date" property="reg_receiver_date" jdbcType="VARCHAR"/>
+        <result column="reg_record_type" property="reg_record_type" jdbcType="VARCHAR"/>
+        <result column="execute_record_status" property="execute_record_status" jdbcType="VARCHAR"/>
+        <result column="examine_record_status" property="examine_record_status" jdbcType="VARCHAR"/>
+        <result column="reg_record_content" property="reg_record_content" jdbcType="VARCHAR"/>
+        <result column="reg_record_describe" property="reg_record_describe" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <!--获取分页 -->
     <select id="listRegistration"  resultType="com.xxk.management.registration.entity.Registration">
         select
         <include refid="columns"></include>
         from xxk_registration where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
+    </select>
+
+    <select id="listRegistrationUnionMap"  resultMap="registrationMakeRecordMap">
+        select
+        <include refid="regRecordColumns"></include>
+        from xxk_registration xr
+        RIGHT JOIN xxk_registration_record rr ON xr.id=rr.registration_id
+        LEFT JOIN xxk_reg_user xu ON rr.reg_record_py=xu.id
+        LEFT JOIN xxk_reg_user xe ON rr.reg_receiver_id=xe.id
+        LEFT JOIN xxk_offices xf ON xr.reg_office_id=xf.id
+        where
+        rr.deleteFlag='0'
+        <if test="reg_record_py!=null and ''!= reg_record_py">
+            and rr.reg_record_py=#{reg_record_py}
+        </if>
+        <if test="reg_receiver_id!=null and ''!= reg_receiver_id">
+            and rr.reg_receiver_id=#{reg_receiver_id}
+        </if>
+        <if test="office_id!=null and ''!= office_id">
+            and xr.reg_office_id=#{office_id}
+        </if>
+        and rr.reg_record_status in
+        <foreach collection="statusList" item="status" index="index"
+                 open="(" close=")" separator=",">
+            #{status}
+        </foreach>
+        ORDER BY rr.reg_record_date desc;
     </select>
 
     <select id="getRegistrationForRegStatus"  resultType="com.xxk.management.registration.entity.Registration">
