@@ -144,25 +144,24 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         if (reg_records != null && reg_records.size() > 0 && reg_records.get(0) != null) {
             if (!"1".equals(reg_records.get(0).get("reg_record_status"))) {
                 throw new Exception("无法确认的操作！请先确认登记状态！！");
-            }
-        } else {
-            result = dao.updateOnlyRegistration_recordStatus(reg_record_id, "2", updateUserId, createDate) == 1 ? true : false;
-            if (!(result)) {
-                log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
-                throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
-            }
-
-            listRecord = dao.getRecordByRegistrationId(registration_id, "0");
-            if (listRecord.size() == 1) {
-                result = registrationMService.acceptanceRegistration(registration_id, updateUserId);
+            } else {
+                result = dao.updateOnlyRegistration_recordStatus(reg_record_id, "2", updateUserId, createDate) == 1 ? true : false;
                 if (!(result)) {
-                    log.error("acceptanceRegistration_record:registrationMService.acceptanceRegistration:" + result);
-                    throw new Exception("acceptanceRegistration_record:registrationMService.acceptanceRegistration出错！");
+                    log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
+                    throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
                 }
 
+                listRecord = dao.getRecordByRegistrationId(registration_id, "0");
+                if (listRecord.size() == 1) {
+                    result = registrationMService.acceptanceRegistration(registration_id, updateUserId);
+                    if (!(result)) {
+                        log.error("acceptanceRegistration_record:registrationMService.acceptanceRegistration:" + result);
+                        throw new Exception("acceptanceRegistration_record:registrationMService.acceptanceRegistration出错！");
+                    }
+
+                }
             }
         }
-
         return result;
     }
 

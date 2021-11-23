@@ -544,7 +544,7 @@
                                 //form.on('submit(exeForm)');
                             }
                         });
-                        if (listRecord.reg_record_status === "0") {
+                        if (listRecord.reg_record_status === "0"||listRecord.reg_record_status === "1") {
                             layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
                                 "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
                                 , function (i, l) {
