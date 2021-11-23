@@ -515,7 +515,7 @@
                 }, true, function (data) {
                     if (result_handle(data)) {
                         listRecord = data.listReg_record[0];
-                        $("#ope_record_part").load("/test/operation_record_part?TD=logout&registration_id=8c640cf2-eedc-4c9a-acc8-c85653f6372d");
+                        $("#ope_record_part").load("/test/operation_record_part?TD=logout&registration_id="+rec_id);
                         exe_layer=layer.open({
                             title: '添加处理流程',
                             type: 1,

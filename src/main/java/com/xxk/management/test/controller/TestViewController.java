@@ -64,7 +64,7 @@ public class TestViewController extends BaseController {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
-            String[] status={"0"};
+            String[] status={"0","1"};
             //String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             listRecord = registration_recordService.getRegistration_recordMakeDate(office_id, status);
@@ -114,7 +114,7 @@ public class TestViewController extends BaseController {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
-            String[] status={"1"};
+            String[] status={"0","1"};
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             listRecord = operationService.listOperationAccordingDate(registration_id, status);
