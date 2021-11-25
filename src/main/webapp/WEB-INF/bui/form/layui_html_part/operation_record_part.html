@@ -9,11 +9,28 @@
             <p>
                 <#assign item = recordMap[recordDate]>
                 <#list item as record>
-                <i class="layui-icon layui-icon-tips" style="color: #f10e3b;"></i>&nbsp;${record.ope_content}<br>
-                &nbsp;<i class="layui-icon layui-icon-username" style="font-size: 12px;color: #635f5f;">&nbsp;登记于${record.ope_confirm_date}</i>&nbsp;
+                <#if (record.ope_flag)??&&(record.ope_flag)=='0'>
+                <i class="layui-icon layui-icon-rate" style="color: #f10e3b;"></i>&nbsp;
+                <#elseif (record.ope_flag)??&&(record.ope_flag)=='1'>
+                <i class="layui-icon layui-icon-rate-half" style="color: #f3dc0a;"></i>
+                </#if>
+                ${record.ope_content}<br>
+                &nbsp;<i class="layui-icon layui-icon-username" style="font-size: 12px;color: #635f5f;">${record.ope_staff_name}&nbsp;
+                 执行于&nbsp;${record.ope_confirm_date}</i>&nbsp;
                 <i class="layui-icon layui-icon-up" style="font-size: 12px;color: #635f5f;"></i>
-                <a class="deal-affairs layui-icon layui-icon-service" style="font-size: 12px;color: #1a81e8;">
-                    <input type="hidden" name="reg_id" value="${record.registration_id}">受理情况</a>
+                <#if (record.ope_statement)??&&(record.ope_statement)=='1'>
+                <a class="deal-affairs layui-icon layui-icon-survey" style="font-size: 12px;color: #8d8b88;">
+                    <input type="hidden" name="reg_id" value="${record.ope_statement}">调查陈述</a>
+                <#elseif (record.ope_statement)??&&(record.ope_statement)=='2'>
+                <a class="deal-affairs layui-icon layui-icon-tips" style="font-size: 12px;color: #e56018;">
+                   <input type="hidden" name="reg_id" value="${record.ope_statement}">处理建议</a>
+                <#elseif (record.ope_statement)??&&(record.ope_statement)=='3'>
+                <a class="deal-affairs layui-icon layui-icon-list" style="font-size: 12px;color: #388d23;">
+                   <input type="hidden" name="reg_id" value="${record.ope_statement}">处理流程</a>
+                <#elseif (record.ope_statement)??&&(record.ope_statement)=='4'>
+                <a class="deal-affairs layui-icon layui-icon-reply-fill" style="font-size: 12px;color: #ef0606;">
+                   <input type="hidden" name="reg_id" value="${record.ope_statement}">处理反馈</a>
+                </#if>
                 <br>
             <div style="height: 5px"></div>
         </#list>

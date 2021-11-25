@@ -71,34 +71,7 @@ public class RegUserController extends BaseController {
         return result;
     }
 
-    @ResponseBody
-    @RequestMapping("/addRegUser")
-    public Map<String, Boolean> addRegUser(RegUser user) {
-        Map<String, Boolean> result = new HashMap<>();
-        String createDate = DateUtil.getFullTime();
-        String id = UUIdUtil.getUUID();
-        try {
-            user.setId(id);
-            user.setPassword("123");
-            user.setCreateDate(createDate);
-            user.setCreateUserId(id);
-            user.setUpdateDate(createDate);
-            user.setUpdateUserId(id);
-            user.setDeleteFlag("0");
 
-            boolean Result = rebUserService.addRegUser(user);
-            if (!(Result)) {
-                result.put("error", false);
-            } else {
-                result.put("success", true);
-            }
-        } catch (Exception e) {
-            result.put("error", false);
-            log.info(e);
-        }
-        return result;
-        //return "system/index";
-    }
 
     @ResponseBody
     @RequestMapping("/getRegUser")
