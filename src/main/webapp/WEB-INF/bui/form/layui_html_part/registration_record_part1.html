@@ -10,7 +10,12 @@
                 <#assign item = recordMap[recordDate]>
                 <#list item as record>
             <p style="WORD-BREAK: break-all; WORD-WRAP: break-word" >
-                <i class="layui-icon layui-icon-reduce-circle" style="color: #f10e3b;"></i>&nbsp;${record.reg_record_content}<br>
+                <#if (record.execute_record_status)??&&(record.execute_record_status)=='0'>
+                   <i class="layui-icon layui-icon-reduce-circle" style="color: #f10e3b;"></i>
+                <#elseif (record.execute_record_status)??&&(record.execute_record_status)=='1'>
+                   <i class="layui-icon layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop" style="color: #0E2DF1FF;"></i>
+                </#if>
+                &nbsp;${record.reg_record_content}<br>
                 &nbsp;<i class="layui-icon layui-icon-username" style="font-size: 12px;color: #635f5f;">&nbsp;受理于${record.reg_record_date}</i>&nbsp;
                 <i class="layui-icon layui-icon-up" style="font-size: 12px;color: #635f5f;"></i>
                 <a class="exe-affairs layui-icon layui-icon-service" style="font-size: 12px;color: #1a81e8;">

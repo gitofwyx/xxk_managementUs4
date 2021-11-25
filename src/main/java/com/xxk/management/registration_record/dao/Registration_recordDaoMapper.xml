@@ -6,7 +6,7 @@
           reg_record_content,reg_record_describe,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <sql id="columnsMap">id,reg_class_id,registration_id,examine_id,reg_record_py,reg_record_status,reg_record_date,
-          reg_record_content</sql>
+          execute_record_status,reg_record_content</sql>
 
     <resultMap id="reg_recordMap" type="java.util.HashMap">
         <id column="id" property="id" jdbcType="VARCHAR"/>
