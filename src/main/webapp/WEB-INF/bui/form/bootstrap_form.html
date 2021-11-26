@@ -517,12 +517,12 @@
                         listRecord = data.listReg_record[0];
                         $("#ope_record_part").load("/test/operation_record_part?TD=logout&registration_id="+rec_id);
                         exe_layer=layer.open({
-                            title: '添加处理流程',
+                            title: '处理流程查看',
                             type: 1,
                             skin: 'layui-layer-rim',
                             area: 'auto',
                             content: $('#ope_record_div'),
-                            btn: ['提交', '关闭'],
+                            btn: ['确认', '关闭'],
                             btnAlign: 'c',
                             btn_margin:'20px',
                             maxmin: true,
@@ -539,30 +539,30 @@
                                 layer.full(index);
                             },
                             yes: function (index, layero) {
-                                $('#exe_record_submit').trigger("click");
-                                //var data1 = form.val("operation_form");
-                                //form.on('submit(exeForm)');
-                            }
-                        });
-                        if (listRecord.reg_record_status === "0"||listRecord.reg_record_status === "1") {
-                            layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
-                                "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
-                                , function (i, l) {
-                                    layer_alert("是否确定该申请已受理？确定后无法撤销！"
-                                        , ['确定', '不确定'], 7, function (i, l) {
-                                            CD_ajaxAllParam("/acceptanceRegistration_record",
-                                                {
-                                                    registration_id: listRecord.registration_id,
-                                                    reg_record_id: listRecord.id,
-                                                    registration_py: listRecord.reg_record_py,
-                                                },
-                                                true, function (v) {
-                                                    if (result_handle(v)) layer.msg('已提交');
-                                                    else layer.msg(v.error);
+                                if (listRecord.reg_record_status === "0"||listRecord.reg_record_status === "1") {
+                                    layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
+                                        "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
+                                        , function (i, l) {
+                                            layer_alert("是否确定该申请已受理？确定后无法撤销！"
+                                                , ['确定', '不确定'], 7, function (i, l) {
+                                                    layer.close(index);
+                                                    CD_ajaxAllParam("/acceptanceRegistration_record",
+                                                        {
+                                                            registration_id: listRecord.registration_id,
+                                                            reg_record_id: listRecord.id,
+                                                            registration_py: listRecord.reg_record_py,
+                                                            TD:'logout'
+                                                        },
+                                                        true, function (v) {
+                                                            if (result_handle(v)) layer.msg('已提交');
+                                                            else layer.msg(v.error);
+                                                        });
                                                 });
                                         });
-                                });
-                        }
+                                }
+                            }
+                        });
+
                     } else {
                         layer_alert(data.error, ['确定', '关闭'], '', function () {
                             location.reload();
