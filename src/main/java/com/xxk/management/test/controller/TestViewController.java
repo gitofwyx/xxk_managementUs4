@@ -59,12 +59,13 @@ public class TestViewController extends BaseController {
         return new ModelAndView("/form/bootstrap_form", "result", result);
     }
 
-    @RequestMapping(value="/registration_record_part",method = RequestMethod.GET)
-    public ModelAndView  registration_record_part(@RequestParam(value = "office_id") String office_id) {
+    @RequestMapping(value="/registration_record_part",method = RequestMethod.POST)
+    public ModelAndView  registration_record_part(@RequestParam(value = "office_id",required = false) String office_id,
+                                                  @RequestParam(value = "status[]") String[] status) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
-            String[] status={"0","1"};
+            //String[] status={"0","1"};
             //String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             listRecord = registration_recordService.getRegistration_recordMakeDate(office_id, status);
@@ -84,15 +85,15 @@ public class TestViewController extends BaseController {
         return new ModelAndView("/form/layui_html_part/registration_record_part", "result", result);
     }
 
-    @RequestMapping(value="/registration_record_part1",method = RequestMethod.GET)
-    public ModelAndView  registration_record_part1(@RequestParam(value = "office_id",required = false) String office_id) {
+    @RequestMapping(value="/registration_record_part1",method = RequestMethod.POST)
+    public ModelAndView  registration_record_part1(@RequestParam(value = "office_id",required = false) String office_id,
+                                                   @RequestParam(value = "status[]") String[] status) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
-            String[] status={"1","0"};
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = registrationMService.listRegistrationMapAccordingDate("","","", status);
+            listRecord = registrationMService.listRegistrationMapAccordingDate(office_id,"","", status);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {
