@@ -3,7 +3,7 @@
     <#list result.RecordMap as recordMap>
     <#list recordMap?keys as recordDate>
     <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
+        <i class="layui-icon layui-timeline-axis"></i>
         <div class="layui-timeline-content layui-text">
             <h3 class="layui-timeline-title">${recordDate}</h3>
 
@@ -23,10 +23,10 @@
                 <a class="exe-affairs layui-icon layui-icon-service" style="font-size: 12px;color: #1a81e8;">
                     <input type="hidden" name="reg_id" value="${record.reg_record_id}">执行情况</a>
                 <br>
-            </p>
+
             <div style="height: 5px"></div>
         </#list>
-
+          </p>
         </div>
     </li>
 </#list>

@@ -14,8 +14,6 @@
                 ${result.regRecord.reg_record_describe}
                 <#else> 无
                 </#if>
-
-
             </p>
         </div>
     </li>
@@ -29,7 +27,7 @@
     <#list result.RecordMap as recordMap>
     <#list recordMap?keys as recordDate>
     <li class="layui-timeline-item">
-        <i class="layui-icon layui-timeline-axis"></i>
+        <i class="layui-icon layui-timeline-axis"></i>
         <div class="layui-timeline-content layui-text">
             <h3 class="layui-timeline-title">${recordDate}</h3>
             <p>
