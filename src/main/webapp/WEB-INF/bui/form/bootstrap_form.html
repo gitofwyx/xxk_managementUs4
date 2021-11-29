@@ -116,7 +116,7 @@
                     <div class="col-sm-11 col-xs-12 col-lg-11" style="margin-bottom:5px; padding-right:0px ">
 
                         <input type="text" id="reg_record_content" class="form-control" name="reg_record_content"
-                               style="width: 97% " lay-verify="required"
+                               style="width: 97% " lay-verify="lengthCtrl|required"
                                placeholder="请选择录入">
 
                     </div>
@@ -349,6 +349,13 @@
                     if (result == null) return '时间格式不对！';
                 }
             }
+            ,lengthCtrl:function (value) {
+                if(value.length > 50){
+                    return '容不下！';
+                }else if(value.length < 25) {
+                    return '也太短了吧！';
+                }
+            }
             , pass: [/(.+){6,12}$/, '密码必须6到12位']
             , money: [
                 /^\d+\.\b\d{2}\b$/
@@ -537,7 +544,8 @@
                 }, true, function (data) {
                     if (result_handle(data)) {
                         listRecord = data.listReg_record[0];
-                        $("#ope_record_part").load("/test/operation_record_part?TD=logout&registration_id="+rec_id);
+                        listRecord.TD="logout";
+                        $("#ope_record_part").load("/test/operation_record_part",listRecord);
                         exe_layer=layer.open({
                             title: '处理流程查看',
                             type: 1,

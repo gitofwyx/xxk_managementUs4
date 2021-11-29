@@ -110,18 +110,19 @@ public class TestViewController extends BaseController {
         return new ModelAndView("form/layui_html_part/registration_record_part1", "result", result);
     }
 
-    @RequestMapping(value="/operation_record_part",method = RequestMethod.GET)
-    public ModelAndView  operation_form_part(@RequestParam(value = "registration_id") String registration_id) {
+    @RequestMapping(value="/operation_record_part",method = RequestMethod.POST)
+    public ModelAndView  operation_form_part(@RequestParam Map<String, Object> mapParam) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
             String[] status={"0","1"};
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = operationService.listOperationAccordingDate(registration_id, status);
+            listRecord = operationService.listOperationAccordingDate((String) mapParam.get("id"), status);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {
+                result.put("regRecord", mapParam);
                 result.put("RecordMap", listRecord);
                 //result.put("userName",userName);
             }
