@@ -10,6 +10,7 @@ public class Operation extends BaseInfoEntity {
     private String id;
     private String ope_ident;              //运维编号
     private String ope_registration_id;  //登记ID
+    private String ope_class_id;            //运维分类ID
     private String ope_staff_id;          //运维人员ID
     private String ope_office_id;         //运维科室ID
     private String ope_device_id;         //运维设备ID
@@ -19,6 +20,7 @@ public class Operation extends BaseInfoEntity {
     private String ope_type;                //运维类型
     private String ope_confirm_date;      //运维确认时间
     private String ope_content;            //运维内容
+    private String ope_record_describe;            //运维详细
     private String ope_flag;               //运维状态
     private String ope_result;             //运维结果
     private String ope_suggest;             //运维建议
@@ -49,6 +51,14 @@ public class Operation extends BaseInfoEntity {
 
     public void setOpe_registration_id(String ope_registration_id) {
         this.ope_registration_id = ope_registration_id;
+    }
+
+    public String getOpe_class_id() {
+        return ope_class_id;
+    }
+
+    public void setOpe_class_id(String ope_class_id) {
+        this.ope_class_id = ope_class_id;
     }
 
     public String getOpe_staff_id() {
@@ -121,6 +131,14 @@ public class Operation extends BaseInfoEntity {
 
     public void setOpe_content(String ope_content) {
         this.ope_content = ope_content;
+    }
+
+    public String getOpe_record_describe() {
+        return ope_record_describe;
+    }
+
+    public void setOpe_record_describe(String ope_record_describe) {
+        this.ope_record_describe = ope_record_describe;
     }
 
     public String getOpe_flag() {

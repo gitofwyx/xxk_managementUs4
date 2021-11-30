@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.operation.dao.OperationDao">
-    <sql id="columns">id,ope_ident,ope_registration_id,ope_staff_id,ope_office_id,ope_device_id,ope_auditing_id,ope_source,ope_statement,ope_type,
-          ope_confirm_date,ope_content,ope_flag,ope_result,ope_suggest,remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,ope_ident,ope_registration_id,ope_class_id,ope_staff_id,ope_office_id,ope_device_id,ope_auditing_id,ope_source,ope_statement,ope_type,
+          ope_confirm_date,ope_content,ope_record_describe,ope_flag,ope_result,ope_suggest,remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <sql id="opeRecordColumns">xo.id as operationId,
                       xo.ope_registration_id as registration_id,
@@ -62,9 +62,9 @@
     <!--添加信息 -->
     <insert id="addOperation" parameterType="com.xxk.management.operation.entity.Operation">
         insert into xxk_operation(<include refid="columns"></include>) values(
-        #{id},#{ope_ident},#{ope_registration_id},#{ope_staff_id},#{ope_office_id},#{ope_device_id},#{ope_auditing_id},
-        #{ope_source},#{ope_statement},#{ope_type},#{ope_confirm_date},#{ope_content},#{ope_flag},#{ope_result},#{ope_suggest},
-        #{remark},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{id},#{ope_ident},#{ope_registration_id},#{ope_class_id},#{ope_staff_id},#{ope_office_id},#{ope_device_id},#{ope_auditing_id},
+        #{ope_source},#{ope_statement},#{ope_type},#{ope_confirm_date},#{ope_content},#{ope_record_describe},#{ope_flag},
+        #{ope_result},#{ope_suggest},#{remark},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--修改信息 -->
