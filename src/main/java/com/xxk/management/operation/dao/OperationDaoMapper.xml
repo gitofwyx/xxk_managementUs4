@@ -14,6 +14,7 @@
                       xo.ope_type as ope_type,
                       xo.ope_confirm_date as ope_confirm_date,
                       xo.ope_content as ope_content,
+                      xo.ope_record_describe as ope_record_describe,
                       xo.ope_flag as ope_flag,
                       xo.ope_result as ope_result,
                       xo.ope_suggest as ope_suggest
@@ -30,6 +31,7 @@
         <result column="ope_type" property="ope_type" jdbcType="VARCHAR"/>
         <result column="ope_confirm_date" property="ope_confirm_date" jdbcType="VARCHAR"/>
         <result column="ope_content" property="ope_content" jdbcType="VARCHAR"/>
+        <result column="ope_record_describe" property="ope_describe" jdbcType="VARCHAR"/>
         <result column="ope_flag" property="ope_flag" jdbcType="VARCHAR"/>
         <result column="ope_result" property="ope_result" jdbcType="VARCHAR"/>
         <result column="ope_suggest" property="ope_suggest" jdbcType="VARCHAR"/>

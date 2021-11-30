@@ -39,6 +39,10 @@
                 <i class="layui-icon layui-icon-rate-half" style="color: #f3dc0a;"></i>
                 </#if>
                 ${record.ope_content}<br>
+                <#if (record.ope_describe)?default("无")?trim?length gt 1>
+                <i style="color: #0022ff">详细&nbsp;</i>
+                ${record.ope_describe}<br>
+                </#if>
                 &nbsp;<i class="layui-icon layui-icon-username" style="font-size: 12px;color: #635f5f;">${record.ope_staff_name}&nbsp;
                  执行于&nbsp;${record.ope_confirm_date}</i>&nbsp;
                 <i class="layui-icon layui-icon-up" style="font-size: 12px;color: #635f5f;"></i>
