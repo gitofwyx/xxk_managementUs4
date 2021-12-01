@@ -482,6 +482,11 @@
                 if (data.hasError === true) {
                     return false;
                 }
+                if(typeof data=='string'){
+                    if(data.indexOf("hasError")>=0){
+                        return false;
+                    }
+                }
             } else {
                 return false;
             }
@@ -532,113 +537,126 @@
             });
         }
 
-        function deal_affairs_func() {
-            $('.deal-affairs').on('click', function (ev) {
+        function deal_affairs_func(v) {
+            if (result_handle(v)){
+                $('.deal-affairs').on('click', function (ev) {
 
-                //alert($(this).children('input').val());
-                rec_id = $(this).children('input').val();
-                var listRecord = {};
-                CD_ajaxAllParam("/getRegistration_recordById", {
-                    record_id: rec_id,
-                    "TD": "logout"
-                }, true, function (data) {
-                    if (result_handle(data)) {
-                        listRecord = data.listReg_record[0];
-                        listRecord.TD="logout";
-                        $("#ope_record_part").load("/test/operation_record_part",listRecord);
-                        exe_layer=layer.open({
-                            title: '处理流程查看',
-                            type: 1,
-                            skin: 'layui-layer-rim',
-                            area: 'auto',
-                            content: $('#ope_record_div'),
-                            btn: ['确认', '关闭'],
-                            btnAlign: 'c',
-                            btn_margin:'20px',
-                            maxmin: true,
-                            minStack: false, //最小化不堆叠在左下角
-                            id: 'operation_form_layer', //定义 ID，防止重复弹出
-                            min: function (layero, index) {
+                    //alert($(this).children('input').val());
+                    rec_id = $(this).children('input').val();
+                    var listRecord = {};
+                    CD_ajaxAllParam("/getRegistration_recordById", {
+                        record_id: rec_id,
+                        "TD": "logout"
+                    }, true, function (data) {
+                        if (result_handle(data)) {
+                            listRecord = data.listReg_record[0];
+                            listRecord.TD="logout";
+                            $("#ope_record_part").load("/test/operation_record_part",listRecord);
+                            exe_layer=layer.open({
+                                title: '处理流程查看',
+                                type: 1,
+                                skin: 'layui-layer-rim',
+                                area: 'auto',
+                                content: $('#ope_record_div'),
+                                btn: ['确认', '关闭'],
+                                btnAlign: 'c',
+                                btn_margin:'20px',
+                                maxmin: true,
+                                minStack: false, //最小化不堆叠在左下角
+                                id: 'operation_form_layer', //定义 ID，防止重复弹出
+                                min: function (layero, index) {
 
-                                layer.msg('阻止了默认的最小化');
-                                layer.style(index, {top: 'auto', bottom: 0});
+                                    layer.msg('阻止了默认的最小化');
+                                    layer.style(index, {top: 'auto', bottom: 0});
 
-                                return false;
-                            },
-                            success: function (layero, index) {
-                                layer.full(index);
-                            },
-                            yes: function (index, layero) {
-                                if (listRecord.reg_record_status === "0"||listRecord.reg_record_status === "1") {
-                                    layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
-                                        "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
-                                        , function (i, l) {
-                                            layer_alert("是否确定该申请已受理？确定后无法撤销！"
-                                                , ['确定', '不确定'], 7, function (i, l) {
-                                                    layer.close(index);
-                                                    CD_ajaxAllParam("/acceptanceRegistration_record",
-                                                        {
-                                                            registration_id: listRecord.registration_id,
-                                                            reg_record_id: listRecord.id,
-                                                            registration_py: listRecord.reg_record_py,
-                                                            TD:'logout'
-                                                        },
-                                                        true, function (v) {
-                                                            if (result_handle(v)) layer.msg('已提交');
-                                                            else layer.msg(v.error);
-                                                        });
-                                                });
-                                        });
-                                }else layer.close(index);
-                            }
-                        });
+                                    return false;
+                                },
+                                success: function (layero, index) {
+                                    layer.full(index);
+                                },
+                                yes: function (index, layero) {
+                                    if (listRecord.reg_record_status === "0"||listRecord.reg_record_status === "1") {
+                                        layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
+                                            "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
+                                            , function (i, l) {
+                                                layer_alert("是否确定该申请已受理？确定后无法撤销！"
+                                                    , ['确定', '不确定'], 7, function (i, l) {
+                                                        layer.close(index);
+                                                        CD_ajaxAllParam("/acceptanceRegistration_record",
+                                                            {
+                                                                registration_id: listRecord.registration_id,
+                                                                reg_record_id: listRecord.id,
+                                                                registration_py: listRecord.reg_record_py,
+                                                                TD:'logout'
+                                                            },
+                                                            true, function (v) {
+                                                                if (result_handle(v)) layer.msg('已提交');
+                                                                else layer.msg(v.error);
+                                                            });
+                                                    });
+                                            });
+                                    }else layer.close(index);
+                                }
+                            });
 
-                    } else {
-                        layer_alert(data.error, ['确定', '关闭'], '', function () {
-                            location.reload();
-                        });
-                    }
+                        } else {
+                            layer_alert(data.error, ['确定', '关闭'], '', function () {
+                                location.reload();
+                            });
+                        }
+                    });
+
+
                 });
+            }else {
+                layer_alert($.parseJSON(v).error, ['确定', '关闭'], '', function () {
+                    location.reload();
+                });
+            }
 
-
-            });
         }
 
-        function exe_affairs_func() {
+        function exe_affairs_func(v) {
             //$("#operation_form_div").load("/test/operation_form_part");
-            $('.exe-affairs').on('click', function (ev) {
-                var rec_id = $(this).children('input').val();
-                $('#registration_id').val(rec_id);
-                exe_layer=layer.open({
-                    title: '添加处理流程',
-                    type: 1,
-                    skin: 'layui-layer-rim',
-                    area: 'auto',
-                    content: $('#operation_form_div'),
-                    btn: ['提交', '关闭'],
-                    btnAlign: 'c',
-                    btn_margin:'20px',
-                    maxmin: true,
-                    minStack: false, //最小化不堆叠在左下角
-                    id: 'operation_form_layer', //定义 ID，防止重复弹出
-                    min: function (layero, index) {
+            if (result_handle(v)){
+                $('.exe-affairs').on('click', function (ev) {
+                    var rec_id = $(this).children('input').val();
+                    $('#registration_id').val(rec_id);
+                    exe_layer=layer.open({
+                        title: '添加处理流程',
+                        type: 1,
+                        skin: 'layui-layer-rim',
+                        area: 'auto',
+                        content: $('#operation_form_div'),
+                        btn: ['提交', '关闭'],
+                        btnAlign: 'c',
+                        btn_margin:'20px',
+                        maxmin: true,
+                        minStack: false, //最小化不堆叠在左下角
+                        id: 'operation_form_layer', //定义 ID，防止重复弹出
+                        min: function (layero, index) {
 
-                        layer.msg('阻止了默认的最小化');
-                        layer.style(index, {top: 'auto', bottom: 0});
+                            layer.msg('阻止了默认的最小化');
+                            layer.style(index, {top: 'auto', bottom: 0});
 
-                        return false;
-                    },
-                    success: function (layero, index) {
-                        layer.full(index);
-                    },
-                    yes: function (index, layero) {
-                        $('#exe_record_submit').trigger("click");
-                        //var data1 = form.val("operation_form");
-                        //form.on('submit(exeForm)');
-                    }
+                            return false;
+                        },
+                        success: function (layero, index) {
+                            layer.full(index);
+                        },
+                        yes: function (index, layero) {
+                            $('#exe_record_submit').trigger("click");
+                            //var data1 = form.val("operation_form");
+                            //form.on('submit(exeForm)');
+                        }
+                    });
+
                 });
-
-            });
+            }else {
+                layer_alert($.parseJSON(v).error, ['确定', '关闭'], '', function () {
+                    location.reload();
+                });
+            }
         }
 
         function ope_submit(data) {
@@ -688,9 +706,16 @@
         });
 
         form.on('submit(regForm)', function (data) {
-
+            data.field.TD="logout";
             CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
-                    $("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
+                if (result_handle(v)){
+                    $("#registration_record_part").load("/test/registration_record_part",
+                        {
+                            TD:"logout",
+                            office_id: data.field.reg_office_id,
+                            status:['0','1'],
+                        },
+                        deal_affairs_func);
                     layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
                         time: 8 * 1000
                         , success: function (layero, index) {
@@ -705,8 +730,12 @@
                             clearInterval(this.timer);
                         }
                     });
+                }else {
+                    layer_alert(v.error, ['确定', '关闭'], '', function () {
+                        location.reload();
+                    });
                 }
-            );
+            });
         });
 
         form.on('submit(exeForm)', function (data) {
