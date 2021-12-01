@@ -49,12 +49,17 @@ function CheckIsNullOrEmpty(value) {
     return (value != null && value != undefined && !reg.test(value))
 }
 
-function resultStatus_handle(data) {
+function result_handle(data) {
     if (CheckIsNullOrEmpty(data)) {
-        if(data.hasError===true){
+        if (data.hasError === true) {
             return false;
         }
-    }else {
+        if(typeof data=='string'){
+            if(data.indexOf("hasError")>=0){
+                return false;
+            }
+        }
+    } else {
         return false;
     }
     return true;
