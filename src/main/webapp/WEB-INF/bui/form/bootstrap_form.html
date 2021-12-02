@@ -57,13 +57,14 @@
             <div id="reg_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
                 <!--偏移列 .col-*-offset-* -->
                 <form class="form-horizontal layui-form" autocomplete="off" id="reg_area_form">
-                    <h3 class="form-signin-heading" style="margin-top:20px;margin-bottom:5px; ">登记</h3>
+                    <h3 class="form-signin-heading" style="margin-top:20px;margin-bottom:5px; ">
+                        <i class="layui-icon layui-icon-list" style="font-size: 26px;">登记</i></h3>
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">登记科室</label>
                         <div class="">
-                            <input type="text" id="reg_office_ident" class="form-control" name="reg_office_ident"
+                            <input type="text" id="reg_office_ident" class="form-control NO_Reset" name="reg_office_ident"
                                    placeholder="请选择">
-                            <input type="hidden" name="reg_office_id" id="reg_office_id" lay-verify="required"
+                            <input type="hidden" name="reg_office_id" id="reg_office_id" lay-verify="required" class="NO_Reset"
                                    lay-verType="alert"
                                    lay-reqText="登记科室不能为空">
                             <ul class="dropdown-menu " role="menu">
@@ -74,9 +75,9 @@
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">执行科室</label>
                         <div class="">
-                            <input type="text" id="exe_office_ident" class="form-control" name="exe_office_ident"
+                            <input type="text" id="exe_office_ident" class="form-control NO_Reset" name="exe_office_ident"
                                    placeholder="请选择">
-                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required"
+                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required" class="NO_Reset"
                                    lay-verType="alert"
                                    lay-reqText="执行科室不能为空">
                             <ul class="dropdown-menu " role="menu">
@@ -352,7 +353,7 @@
             ,lengthCtrl:function (value) {
                 if(value.length > 50){
                     return '容不下！';
-                }else if(value.length < 25) {
+                }else if(value.length < 20) {
                     return '也太短了吧！';
                 }
             }
@@ -736,11 +737,29 @@
                     });
                 }
             });
+            $("#reg_area_form input").each(function () {
+                if(!$(this).hasClass("NO_Reset"))
+                $(this).val('');
+            });
+            $("#reg_area_form textarea").each(function () {
+                if(!$(this).hasClass("NO_Reset"))
+                    $(this).val('');
+            });
+            return false;
         });
 
         form.on('submit(exeForm)', function (data) {
 
             ope_submit(data);
+            $("#exe_area_form input").each(function () {
+                if(!$(this).hasClass("NO_Reset"))
+                    $(this).val('');
+            });
+            $("#exe_area_form textarea").each(function () {
+                if(!$(this).hasClass("NO_Reset"))
+                    $(this).val('');
+            });
+            return false;
         });
 
     });

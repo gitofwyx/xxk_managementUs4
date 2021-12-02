@@ -1,5 +1,5 @@
 *{margin:0px; padding:0px;}
-body{font-size:12px; font-family:"宋体"; color:#555555;  }
+body{font-size:12px; font-family:"宋体"; color: #0e0d0d;  }
 ul,ol,li{list-style-type:none;}
 a{text-decoration:none;}
 img{border:none;}
@@ -27,21 +27,21 @@ body{
 }
 
 .login-content{
-	width:400px;
+	width:325px;
 	background:#fff;
 	margin-top:-52px;
 	margin-left:auto;
 	margin-right:auto;
 	border:2px solid #425f8c;
 }
-h2{
+h3{
 	text-align:center;
-	height:50px; 
-	line-height:50px;
+	height:50px;
+	line-height: 2.1;
 	background:#eee;
 }
 .login-info{
-	width:320px; 
+	width:300px;
 	height:40px;
 	margin-left:auto;
 	margin-right:auto; 
@@ -67,18 +67,19 @@ h2{
 	border-right:1px solid #a9a9a9
 }
 .login-input{
-	width:257px; 
+	width:258px;
 	line-height: 40px;
-	height:40px;
+	height:37px;
 	background:#ffffff;
 	border:none;
 	margin:0;
 	padding:0;
 	padding-left:20px;
+	font-size:17px;
 
 }
 .login-oper{
-	width:325px; 
+	width:270px;
 	height:40px;
 	margin-left:auto;
 	margin-right:auto; 
