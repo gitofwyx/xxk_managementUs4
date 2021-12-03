@@ -22,12 +22,12 @@ body{
 	margin-left:auto;
 	margin-right:auto;
 	background:url(/index/img/bg4.gif);
-	position:absolute; top:20%;
+
 	border:1px solid #ddd;
 }
 
 .login-content{
-	width:325px;
+	width:300px;
 	background:#fff;
 	margin-top:-52px;
 	margin-left:auto;
@@ -41,7 +41,7 @@ h3{
 	background:#eee;
 }
 .login-info{
-	width:300px;
+	width:275px;
 	height:40px;
 	margin-left:auto;
 	margin-right:auto; 
@@ -67,7 +67,7 @@ h3{
 	border-right:1px solid #a9a9a9
 }
 .login-input{
-	width:258px;
+	width:233px;
 	line-height: 40px;
 	height:37px;
 	background:#ffffff;
