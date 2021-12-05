@@ -80,6 +80,10 @@
                 <entry key="authc">
                     <bean class="com.xxk.core.shiro.CustomFormAuthenticationFilter"/>
                 </entry>
+                <entry key="roles">
+                    <bean
+                            class="com.xxk.core.shiro.CustomRolesAuthorizationFilter" />
+                </entry>
 
                 <entry key="logout" value-ref="logoutFilter" />
 
@@ -97,6 +101,7 @@
                 /index/**=anon  <!--登录页面的js和css不拦截-->
                 /report/**=anon
 
+                /menu/**=roles[admin]
                 /**=authc  <!--要放最后不然后面的不生效-->
             </value>
         </property>

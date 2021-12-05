@@ -57,17 +57,13 @@ public class CustomRolesAuthorizationFilter extends RolesAuthorizationFilter {
 		log.warn("授权未通过>>>");
 		Subject subject = getSubject(request, response);
 		if (subject.getPrincipal() == null) {// 表示没有登录，重定向到登录页面
-			String loginUrl = getLoginUrl();
+		/*	String loginUrl = getLoginUrl();
 			log.warn(">>>用户未登录");
 			saveRequest(request);
-			WebUtils.issueRedirect(request, response, loginUrl);
+			WebUtils.issueRedirect(request, response, loginUrl);*/
+			saveRequestAndRedirectToLogin(request, response);
 		} else {
-			String unauthorizedUrl = getUnauthorizedUrl();
-			if (StringUtils.hasText(unauthorizedUrl)) {// 如果有未授权页面跳转过去
-				WebUtils.issueRedirect(request, response, unauthorizedUrl);
-			} else {// 否则返回401未授权状态码
-				WebUtils.toHttp(response).sendError(HttpServletResponse.SC_UNAUTHORIZED);
-			}
+			WebUtils.issueRedirect(request, response, "/unAuthorized");
 		}
 		return false;
 	}

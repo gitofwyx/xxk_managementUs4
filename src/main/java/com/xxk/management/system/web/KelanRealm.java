@@ -60,10 +60,14 @@ public class KelanRealm extends AuthorizingRealm {
 		// 获取当前的登陆用的信息.
 		String account = (String) principals.getPrimaryPrincipal();
 		String role = userService.getRoleByAccount(account);
+		if("".equals(role)||role==null){
+			return null;
+		}
 		info.addRole(role);
 		log.info("授权完成...");
 		return info;
 	}
+
 	protected AuthorizationInfo getAuthorizationInfo(PrincipalCollection principals){
 		log.info("授权...");
 		return super.getAuthorizationInfo(principals);

@@ -81,4 +81,14 @@ public class AuthController extends BaseController {
         }
         return new ModelAndView("/index", "result", result);
     }
+
+    @ResponseBody
+    @RequestMapping("/unAuthorized")
+    public Map<String, Object> unAuthorized() {
+        Map<String, Object> result = new HashMap<>();
+        log.warn("没有权限！");
+        result.put("hasError", true);
+        result.put("error", "没有权限！");
+        return result;
+    }
 }
