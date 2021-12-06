@@ -43,7 +43,7 @@ public class Registration_recordViewController extends BaseController {
         return new ModelAndView("/index", "result", result);
     }*/
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public ModelAndView  application_workstation() {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
