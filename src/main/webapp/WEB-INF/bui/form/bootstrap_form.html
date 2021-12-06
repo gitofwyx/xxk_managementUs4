@@ -448,7 +448,7 @@
                 });
                 if (obj.id == 110) {
                     var office_id = $("#reg_office_id").val();
-                    $("#registration_record_part").load("/test/registration_record_part",
+                    $("#registration_record_part").load("/reg/registration_record_part",
                         {
                             TD:"logout",
                             office_id: office_id,
@@ -458,7 +458,7 @@
                 }
                 if (obj.id == 111) {
                     var office_id = '';
-                    $("#registration_record_part").load("/test/registration_record_part1",
+                    $("#registration_record_part").load("/reg/registration_record_part1",
                         {
                             TD:"logout",
                             office_id: office_id,
@@ -552,7 +552,7 @@
                         if (result_handle(data)) {
                             listRecord = data.listReg_record[0];
                             listRecord.TD="logout";
-                            $("#ope_record_part").load("/test/operation_record_part",listRecord);
+                            $("#ope_record_part").load("/ope/operation_record_part",listRecord);
                             exe_layer=layer.open({
                                 title: '处理流程查看',
                                 type: 1,
@@ -679,7 +679,7 @@
                 rmV_1 = rmV_1 + 1;
             }
             if ($("#record_select_id").val() == 110) {
-                $("#registration_record_part").load("/test/registration_record_part",
+                $("#registration_record_part").load("/reg/registration_record_part",
                     {
                         TD:"logout",
                         office_id: data.value,
@@ -688,7 +688,7 @@
                     deal_affairs_func);
             }
             if ($("#record_select_id").val() == 111) {
-                $("#registration_record_part").load("/test/registration_record_part1",
+                $("#registration_record_part").load("/reg/registration_record_part1",
                     {
                         TD:"logout",
                         office_id: data.value,
@@ -710,7 +710,7 @@
             data.field.TD="logout";
             CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
                 if (result_handle(v)){
-                    $("#registration_record_part").load("/test/registration_record_part",
+                    $("#registration_record_part").load("/reg/registration_record_part",
                         {
                             TD:"logout",
                             office_id: data.field.reg_office_id,
