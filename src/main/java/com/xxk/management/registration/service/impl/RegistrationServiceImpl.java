@@ -30,7 +30,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public List<Map<String, Object>> listRegistrationMap(int pageStart, int pageSize) {
-        String[] status={"0","1"};
+        String[] status={"0","1","2"};
         return dao.listRegistrationUnionMap(null,null,null,status,(pageStart-1)*pageSize, pageSize);
     }
 
