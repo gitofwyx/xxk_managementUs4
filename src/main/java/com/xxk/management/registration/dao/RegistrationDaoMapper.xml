@@ -10,7 +10,7 @@
                       rr.examine_id as examine_id,
                       rr.reg_class_id as reg_class_id,
                       xr.reg_office_id as reg_office_id,
-                      xf.office_name as ope_office,
+                      xf.office_name as reg_office,
                       rr.reg_record_py as reg_record_py,
                       xu.name as reg_record_name,
                       rr.reg_receiver_id as reg_receiver_id,
