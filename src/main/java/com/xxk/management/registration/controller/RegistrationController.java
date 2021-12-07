@@ -51,7 +51,7 @@ public class RegistrationController extends BaseController {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
-            List<Registration> listRegistration = registrationService.listRegistration(pageNumber, pageSize);
+            List<Map<String, Object>> listRegistration = registrationService.listRegistrationMap(pageNumber, pageSize);
             if (listRegistration == null) {
                 log.error("获取分页出错");
                 result.put("hasError", true);

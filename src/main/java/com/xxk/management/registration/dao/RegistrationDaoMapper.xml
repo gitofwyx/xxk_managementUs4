@@ -77,7 +77,10 @@
                  open="(" close=")" separator=",">
             #{status}
         </foreach>
-        ORDER BY rr.reg_record_date desc;
+        ORDER BY rr.reg_record_date desc
+        <if test="pageStart lte 0 and pageSize!=0">
+            limit #{pageStart},#{pageSize}
+        </if>;
     </select>
 
     <select id="getRegistrationForRegStatus"  resultType="com.xxk.management.registration.entity.Registration">

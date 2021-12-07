@@ -18,7 +18,9 @@ public interface RegistrationDao {
     public List<Map<String, Object>> listRegistrationUnionMap(@Param("office_id")String office_id,
                                                               @Param("reg_record_py")String reg_record_py,
                                                               @Param("reg_receiver_id")String reg_receiver_id,
-                                                              @Param("statusList")String[] listStr);
+                                                              @Param("statusList")String[] listStr,
+                                                              @Param("pageStart")int pageStart,
+                                                              @Param("pageSize")int pageSize);
 
     public Registration getRegistrationForRegStatus(String registrationId,String Status);
 

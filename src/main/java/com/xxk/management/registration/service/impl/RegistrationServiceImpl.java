@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -25,6 +26,12 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public List<Registration> listRegistration(int pageStart, int pageSize) {
         return dao.listRegistration((pageStart-1)*pageSize, pageSize);
+    }
+
+    @Override
+    public List<Map<String, Object>> listRegistrationMap(int pageStart, int pageSize) {
+        String[] status={"0","1"};
+        return dao.listRegistrationUnionMap(null,null,null,status,(pageStart-1)*pageSize, pageSize);
     }
 
     @Override

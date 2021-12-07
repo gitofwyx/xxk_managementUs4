@@ -104,30 +104,4 @@ public class Registration_recordViewController extends BaseController {
         return new ModelAndView("form/layui_html_part/registration_record_part1", "result", result);
     }
 
-    @RequestMapping(value="/operation_record_part",method = RequestMethod.POST)
-    public ModelAndView  operation_form_part(@RequestParam Map<String, Object> mapParam) {
-        Map<String, Object> result = new HashMap<>();
-        List<Map<String, Object>> listRecord=new ArrayList<>();
-        try {
-            String[] status={"0","1"};
-            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = operationService.listOperationAccordingDate((String) mapParam.get("id"), status);
-            if (listRecord == null) {
-                log.error("获取分页出错");
-            } else {
-                result.put("regRecord", mapParam);
-                result.put("RecordMap", listRecord);
-                //result.put("userName",userName);
-            }
-        } catch (Exception e) {
-            log.error(e);
-            result.put("hasError", true);
-            result.put("error", "获取数据出错");
-        }
-        List<String> list=new ArrayList<>();
-        list.add("123");
-        return new ModelAndView("form/layui_html_part/operation_record_part", "result", result);
-    }
-
 }

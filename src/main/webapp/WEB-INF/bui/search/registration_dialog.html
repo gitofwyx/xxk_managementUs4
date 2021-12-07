@@ -242,24 +242,18 @@
                 items: items
             }).render(),
             columns = [
-                {title: '&nbsp登记编号', dataIndex: 'reg_ident', elCls: 'center', width: 110},
+                {title: '&nbsp登记编号', dataIndex: 'reg_record_ident', elCls: 'center', width: 110},
                 {
                     title: '&nbsp登记科室',
-                    dataIndex: 'reg_office_id',
+                    dataIndex: 'reg_office',
                     elCls: 'center',
                     width: 110,
                     renderer: BUI.Grid.Format.enumRenderer(officesEnum)
                 },
-                {
-                    title: '&nbsp执行科室',
-                    dataIndex: 'exe_office_id',
-                    elCls: 'center',
-                    width: 110,
-                    renderer: BUI.Grid.Format.enumRenderer(officesEnum)
-                },
-                {title: '&nbsp登记时间', dataIndex: 'reg_date', elCls: 'center', width: 150},
+
+                {title: '&nbsp登记时间', dataIndex: 'reg_record_date', elCls: 'center', width: 150},
                 {title: '&nbsp登记类型', dataIndex: 'reg_type', elCls: 'center', width: 110},
-                {title: '&nbsp登记内容', dataIndex: 'reg_content', elCls: 'center', sortable: false, width: 250},
+                {title: '&nbsp登记内容', dataIndex: 'reg_record_content', elCls: 'center', sortable: false, width: 250},
                 {
                     title: '操作', dataIndex: '', sortable: false, width: 100, renderer: function (value, obj) {
 
