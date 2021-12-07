@@ -77,7 +77,7 @@ public class AuthController extends BaseController {
             }
         } else {
             result.put("warnings", ",重新登录请先注销");
-            return new ModelAndView("/reg", "result", result);
+            return new ModelAndView("/form/bootstrap_form", "result", result);
         }
         return new ModelAndView("/index", "result", result);
     }
