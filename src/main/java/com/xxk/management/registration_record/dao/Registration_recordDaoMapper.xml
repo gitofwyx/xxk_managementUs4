@@ -5,8 +5,20 @@
           reg_record_status,reg_record_date,reg_receiver_date,reg_record_type,execute_record_status,examine_record_status,
           reg_record_content,reg_record_describe,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
-    <sql id="columnsMap">id,reg_class_id,registration_id,examine_id,reg_record_py,reg_record_status,reg_record_date,
-          execute_record_status,reg_record_content,reg_record_describe</sql>
+    <sql id="columnsMap">rr.id as id,
+                         rr.reg_class_id as reg_class_id,
+                         rr.registration_id as registration_id,
+                         rr.examine_id as examine_id,
+                         rr.reg_record_py as reg_record_py,
+                         xu.name as reg_record_name,
+                         rr.reg_receiver_id as reg_receiver_id,
+                         xe.name as reg_receiver_name,
+                         rr.reg_record_status as reg_record_status,
+                         rr.reg_record_date as reg_record_date,
+                         rr.execute_record_status as execute_record_status,
+                         rr.reg_record_content as reg_record_content,
+                         rr.reg_record_describe as reg_record_describe
+                         </sql>
 
     <resultMap id="reg_recordMap" type="java.util.HashMap">
         <id column="id" property="id" jdbcType="VARCHAR"/>
@@ -14,6 +26,9 @@
         <result column="registration_id" property="registration_id" jdbcType="VARCHAR"/>
         <result column="examine_id" property="examine_id" jdbcType="VARCHAR"/>
         <result column="reg_record_py" property="reg_record_py" jdbcType="VARCHAR"/>
+        <result column="reg_record_name" property="reg_record_name" jdbcType="VARCHAR"/>
+        <result column="reg_receiver_id" property="reg_receiver_id" jdbcType="VARCHAR"/>
+        <result column="reg_receiver_name" property="reg_receiver_name" jdbcType="VARCHAR"/>
         <result column="reg_record_status" property="reg_record_status" jdbcType="VARCHAR"/>
         <result column="reg_record_date" property="reg_record_date" jdbcType="VARCHAR"/>
         <result column="execute_record_status" property="execute_record_status" jdbcType="VARCHAR"/>
@@ -93,9 +108,11 @@
     <select id="getRegistration_recordById" resultMap="reg_recordMap">
         select
         <include refid="columnsMap"></include>
-        from xxk_registration_record
-        where id=#{0}
-          and deleteFlag='0';
+        from xxk_registration_record rr
+        LEFT JOIN xxk_reg_user xu ON rr.reg_record_py=xu.id
+        LEFT JOIN xxk_reg_user xe ON rr.reg_receiver_id=xe.id
+        where rr.id=#{0}
+          and rr.deleteFlag='0';
     </select>
 
     <insert id="addRegistration_record" parameterType="com.xxk.management.registration_record.entity.Registration_record">

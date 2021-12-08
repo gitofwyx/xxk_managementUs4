@@ -8,12 +8,20 @@
         <div class="layui-timeline-content layui-text">
             <h3 class="layui-timeline-title">8月18日</h3>
             <p>
+                <#if (result.regRecord.reg_record_status)??&&(result.regRecord.reg_record_status)=='0'>
+                <i class="layui-icon layui-icon-tips" style="color: #f10e3b;"></i>
+                <#elseif (result.regRecord.reg_record_status)??&&(result.regRecord.reg_record_status)=='1'>
+                <i class="layui-icon layui-icon-service" style="color: #0E2DF1FF;"></i>
+                </#if>
                 ${result.regRecord.reg_record_content}<br>
                 <i style="color: #0022ff">详细&nbsp;</i>
                 <#if (result.regRecord.reg_record_describe)?default("无")?trim?length gt 1>
                 ${result.regRecord.reg_record_describe}
                 <#else> 无
                 </#if>
+                <br>
+                <i class="layui-icon layui-icon-username" style="font-size: 12px;color: #635f5f;">&nbsp;${result.regRecord.reg_record_name}
+                登记于&nbsp;${result.regRecord.reg_record_date}</i>&nbsp;
             </p>
         </div>
     </li>
