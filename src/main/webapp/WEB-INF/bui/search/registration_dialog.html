@@ -24,6 +24,12 @@
         <form id="searchForm" class="form-horizontal span32">
             <div class="row">
                 <div class="control-group span7">
+                    <label class="control-label">登记编号：</label>
+                    <div class="controls">
+                        <input id="reg_record_ident" name="reg_record_ident" type="text" >
+                    </div>
+                </div>
+                <div class="control-group span7">
                     <label class="control-label">登记科室：</label>
                     <div class="controls">
                         <input type="text" class="control-text" name="account">
@@ -54,9 +60,6 @@
                 </div>
             </div>
         </form>
-        <div id="s1">
-            <input type="hidden" id="hide" value="选项二" name="hide">
-        </div>
     </div>
     <div class="search-grid-container">
         <div id="grid"></div>
@@ -145,14 +148,14 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>受理时间：</label>
                 <div class="controls">
-                    <input name="ope_confirm_date" type="text" data-rules="{required:true}"
+                    <input name="ope_confirm_date" type="text"
                            class="calendar calendar-time">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>执行状态：</label>
-                <div class="controls">
-                    <input name="ope_flag" type="number" id="used_no" value="1" data-rules="{required:true}">
+                <label class="control-label"><s>*</s>登记类型：</label>
+                <div class="controls" id="exe_type_select">
+                    <input name="execute_record_status" id="execute_record_status" type="hidden" data-rules="{required:true}">
                 </div>
             </div>
         </div>
@@ -186,11 +189,17 @@
 
         var offices_select = localstorageIO("offices_select", "/getOfficeSelect"),
             officesEnum = getOfficesEnum(offices_select),
-            enumObj = {"0": "未出库", "1": "已出库"},
+            enumObj = {"0": "未处理", "1": "处理中","2":"处理完"},
             select_type = [],
             reg_type_items = [
                 {text: '耗材申请', value: 'a'},
                 {text: '维护申请', value: 'b'},
+
+            ],
+            exe_type_items = [
+                {text: '未处理', value: '0'},
+                {text: '处理中', value: '1'},
+                {text: '处理完', value: '2'},
 
             ],
             Editing_R = new BUI.Grid.Plugins.DialogEditing({
@@ -201,48 +210,20 @@
                 contentId: 'Content_O', //设置隐藏的Dialog内容
                 autoSave: true, //添加数据或者修改数据时，自动保存
             }),
-            /*reg_office_tree = new Tree.TreeList({
-                nodes: [],
-                //store: store,
-                //dirSelectable : false,//阻止树节点选中
-                showLine: true //显示连接线
-            }),
-            exe_office_tree = new Tree.TreeList({
-                nodes: [],
-                //store: store,
-                //dirSelectable : false,//阻止树节点选中
-                showLine: true //显示连接线
-            }),*/
-            /*belong_to_picker = new TreePicker({
-                trigger: '#reg_office_ident',
-                //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
-                width: 150,  //指定宽度
-                children: [reg_office_tree] //配置picker内的列表
-            }).render(),
-            belong_to_picker = new TreePicker({
-                trigger: '#exe_office_ident',
-                //valueField: '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
-                width: 150,  //指定宽度
-                children: [exe_office_tree] //配置picker内的列表
-            }).render(),*/
             reg_type_select = new Select.Select({
                 render: '#reg_type_select',
                 valueField: '#reg_type',
                 multipleSelect: false,
                 items: reg_type_items,
             }).render(),
-          items = [
-            '选项一','选项二','选项三','选项四'
-        ],
-            select = new Select.Combox({
-                render: '#s1',
-                showTag: true,
-                width: 500,
-                valueField: '#hide',//显示tag的Combox必须存在valueField
-                items: items
+            exe_type_select = new Select.Select({
+                render: '#exe_type_select',
+                valueField: '#execute_record_status',
+                multipleSelect: false,
+                items: exe_type_items,
             }).render(),
             columns = [
-                {title: '&nbsp登记编号', dataIndex: 'reg_record_ident', elCls: 'center', width: 110},
+                {title: '&nbsp登记编号', dataIndex: 'reg_record_ident', elCls: 'center', width: 90},
                 {
                     title: '&nbsp登记科室',
                     dataIndex: 'reg_office',
@@ -251,8 +232,8 @@
                 },
 
                 {title: '&nbsp登记时间', dataIndex: 'reg_record_date', elCls: 'center', width: 150},
-                {title: '&nbsp登记类型', dataIndex: 'reg_type', elCls: 'center', width: 110},
-                {title: '&nbsp登记内容', dataIndex: 'reg_record_content', elCls: 'center', sortable: false, width: 250},
+                {title: '&nbsp处理状态', dataIndex: 'execute_record_status', elCls: 'center', width: 50,renderer:BUI.Grid.Format.enumRenderer(enumObj)},
+                {title: '&nbsp登记内容', dataIndex: 'reg_record_content', elCls: 'center', sortable: false, width: 300},
                 {
                     title: '操作', dataIndex: '', sortable: false, width: 100, renderer: function (value, obj) {
 
@@ -388,7 +369,7 @@
         function opeFunction() {
             var selections = grid.getSelection(),
                 save = {
-                    addUrl: '/addOperation',
+                    updateUrl: '/updateExecute_record_status',
                 };
             if (selections.length == 0) {
                 BUI.Message.Show({
@@ -406,10 +387,10 @@
                 store.get('proxy').set('save', save);
                 var eData = selections[0];
                 var newData = {
-                    ope_registration_id: eData.id,
-                    ope_office_id: eData.reg_office_id,
+                    reg_record_id: eData.reg_record_id,
+
                 };
-                Editing_O.add(newData);
+                Editing_O.edit(newData);
             }
         }
 

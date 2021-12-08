@@ -6,6 +6,7 @@
           createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <sql id="regRecordColumns">rr.id as reg_record_id,
+                      rr.reg_record_ident as reg_record_ident,
                       rr.registration_id as registration_id,
                       rr.examine_id as examine_id,
                       rr.reg_class_id as reg_class_id,
@@ -27,6 +28,7 @@
 
     <resultMap id="registrationMakeRecordMap" type="java.util.HashMap">
         <id column="reg_record_id" property="reg_record_id" jdbcType="VARCHAR"/>
+        <result column="reg_record_ident" property="reg_record_ident" jdbcType="VARCHAR"/>
         <result column="registration_id" property="registration_id" jdbcType="VARCHAR"/>
         <result column="examine_id" property="examine_id" jdbcType="VARCHAR"/>
         <result column="reg_class_id" property="reg_class_id" jdbcType="VARCHAR"/>
@@ -63,6 +65,9 @@
         LEFT JOIN xxk_offices xf ON xr.reg_office_id=xf.id
         where
         rr.deleteFlag='0'
+        <if test="reg_record_ident!=null and ''!= reg_record_ident">
+            and rr.reg_record_ident=#{reg_record_ident}
+        </if>
         <if test="reg_record_py!=null and ''!= reg_record_py">
             and rr.reg_record_py=#{reg_record_py}
         </if>

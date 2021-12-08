@@ -49,7 +49,7 @@ public class RegistrationMServiceImpl implements RegistrationMService {
         List<Map<String, Object>> resultList = new ArrayList<>();
         List<String> dateList = new ArrayList<>();
         try {
-            List<Map<String, Object>> listReg = dao.listRegistrationUnionMap(office_id,reg_record_py,reg_receiver_id, status,0,0);
+            List<Map<String, Object>> listReg = dao.listRegistrationUnionMap(null,office_id,reg_record_py,reg_receiver_id, status,0,0);
             for (Map<String, Object> reg : listReg) {
                 if (reg.get("reg_record_date") == null) {
                     continue;

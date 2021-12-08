@@ -1,6 +1,7 @@
 package com.xxk.management.registration_record.controller;
 
 import com.xxk.core.file.BaseController;
+import com.xxk.core.util.DateUtil;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationService;
 import com.xxk.management.registration_record.entity.Registration_record;
@@ -64,5 +65,38 @@ public class Registration_recordController extends BaseController {
             result.put("error", "获取数据出错");
         }
         return result;
+    }
+
+    //处理状态
+    @ResponseBody
+    @RequestMapping(value = "/updateExecute_record_status", method = RequestMethod.POST)
+    public Map<String, Object> acceptanceRegistration_record(@RequestParam(value = "reg_record_id") String reg_record_id,
+                                                             @RequestParam(value = "execute_record_status") String execute_record_status) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            String Date = DateUtil.getFullTime();
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            if (reg_record_id != null && !"".equals(reg_record_id)) {
+
+                boolean Result=registration_recordService.updateRegistration_recordExeStatus(reg_record_id,"2",CurrentUserId,Date);
+                if (!(Result)) {
+                    result.put("hasError", true);
+                    result.put("error", "更新出错");
+                } else {
+                    result.put("hasError", false);
+
+                }
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error",e.getLocalizedMessage());
+            /*Optional.ofNullable(e).ifPresent(e1 -> {
+                result.put("error",e1.getLocalizedMessage());
+            });*/
+        }
+        return result;
+        //return "system/index";
     }
 }

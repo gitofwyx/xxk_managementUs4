@@ -12,7 +12,12 @@ public interface RegistrationService {
 
     public List<Registration> listRegistration(int pageStart, int pageSize);
 
-    public List<Map<String, Object>> listRegistrationMap(int pageStart, int pageSize);
+    public List<Map<String, Object>> listRegistrationMap(String reg_record_ident,
+                                                         String reg_office_id,
+                                                         String reg_record_status,
+                                                         String execute_record_status,
+                                                         int pageStart,
+                                                         int pageSize);
 
     public Registration getRegistrationByRecordId(String recordId);
 

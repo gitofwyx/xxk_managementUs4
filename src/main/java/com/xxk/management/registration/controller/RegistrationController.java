@@ -42,8 +42,10 @@ public class RegistrationController extends BaseController {
     @RequestMapping("/listRegistration")
     public Map<String, Object> listRegistration(@RequestParam(value = "pageIndex") String pageIndex,
                                                 @RequestParam(value = "limit") String limit,
-                                                @RequestParam(value = "account") String office_name,
-                                                @RequestParam(value = "name") String office_ident,
+                                                @RequestParam(value = "reg_record_ident") String reg_record_ident,
+                                                @RequestParam(value = "reg_office_id",required = false) String reg_office_id,
+                                                @RequestParam(value = "reg_record_status",required = false) String reg_record_status,
+                                                @RequestParam(value = "execute_record_status",required = false) String execute_record_status,
                                                 @RequestParam(value = "startDate") String startDate,
                                                 @RequestParam(value = "endDate") String endDate) {
         Map<String, Object> result = new HashMap<>();
@@ -51,7 +53,13 @@ public class RegistrationController extends BaseController {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
-            List<Map<String, Object>> listRegistration = registrationService.listRegistrationMap(pageNumber, pageSize);
+            List<Map<String, Object>> listRegistration = registrationService.listRegistrationMap(
+                    reg_record_ident,
+                    reg_office_id,
+                    reg_record_status,
+                    execute_record_status,
+                    pageNumber,
+                    pageSize);
             if (listRegistration == null) {
                 log.error("获取分页出错");
                 result.put("hasError", true);
