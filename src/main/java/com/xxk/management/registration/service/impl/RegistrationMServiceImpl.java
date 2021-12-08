@@ -111,7 +111,6 @@ public class RegistrationMServiceImpl implements RegistrationMService {
             throw new Exception("addRegistration:dao.addRegistration出错！");
         } else {
             record.setId(recId);
-            record.setReg_record_ident("NO");
             record.setRegistration_id(registration.getId());
             record.setReg_record_py(registration.getRegistration_py());
             record.setReg_record_status("0");

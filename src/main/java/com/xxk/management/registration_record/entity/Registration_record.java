@@ -13,7 +13,7 @@ public class Registration_record extends BaseInfoEntity {
     private String examine_id;      //审核ID
     private String reg_record_py;      //登记记录人
     private String  reg_receiver_id;      //受理人
-    private String reg_record_ident;      //登记记录编号
+    private int reg_record_ident;      //登记记录编号
     private String reg_record_status;      //登记状态
     private String reg_record_date;      //登记时间
     private String reg_receiver_date;      //受理时间
@@ -73,11 +73,11 @@ public class Registration_record extends BaseInfoEntity {
         this.reg_receiver_id = reg_receiver_id;
     }
 
-    public String getReg_record_ident() {
+    public int getReg_record_ident() {
         return reg_record_ident;
     }
 
-    public void setReg_record_ident(String reg_record_ident) {
+    public void setReg_record_ident(int reg_record_ident) {
         this.reg_record_ident = reg_record_ident;
     }
 
