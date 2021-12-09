@@ -16,7 +16,8 @@ public interface RegistrationMService {
     List<Map<String, Object>> listRegistrationMapAccordingDate(String office_id,
                                                                String reg_record_py,
                                                                String reg_receiver_id,
-                                                               String[] status);
+                                                               String[] status,
+                                                               String[] e_status);
 
     public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException;
 

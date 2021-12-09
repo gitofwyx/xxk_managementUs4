@@ -82,6 +82,11 @@
                  open="(" close=")" separator=",">
             #{status}
         </foreach>
+        and rr.examine_record_status in
+        <foreach collection="e_statusList" item="status" index="index"
+                 open="(" close=")" separator=",">
+            #{status}
+        </foreach>
         ORDER BY rr.reg_record_date desc
         <if test="pageStart lte 0 and pageSize!=0">
             limit #{pageStart},#{pageSize}

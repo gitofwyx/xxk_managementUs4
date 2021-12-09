@@ -36,7 +36,14 @@ public class RegistrationServiceImpl implements RegistrationService {
                                                          int pageStart,
                                                          int pageSize) {
         String[] status={"0","1","2"};
-        return dao.listRegistrationUnionMap(reg_record_ident,reg_office_id,null,null,status,(pageStart-1)*pageSize, pageSize);
+        String[] e_status={"0","1","2"};
+        return dao.listRegistrationUnionMap(reg_record_ident,
+                reg_office_id,
+                null,
+                null,
+                status,e_status,
+                (pageStart-1)*pageSize,
+                pageSize);
     }
 
     @Override

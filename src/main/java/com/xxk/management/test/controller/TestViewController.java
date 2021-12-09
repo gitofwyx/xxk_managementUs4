@@ -87,13 +87,14 @@ public class TestViewController extends BaseController {
 
     @RequestMapping(value="/registration_record_part1",method = RequestMethod.POST)
     public ModelAndView  registration_record_part1(@RequestParam(value = "office_id",required = false) String office_id,
-                                                   @RequestParam(value = "status[]") String[] status) {
+                                                   @RequestParam(value = "status[]") String[] status,
+                                                   @RequestParam(value = "e_status[]") String[] e_status) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = registrationMService.listRegistrationMapAccordingDate(office_id,"","", status);
+            listRecord = registrationMService.listRegistrationMapAccordingDate(office_id,"","", status,e_status);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {

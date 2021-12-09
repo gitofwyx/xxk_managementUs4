@@ -20,6 +20,7 @@ public interface RegistrationDao {
                                                               @Param("reg_record_py")String reg_record_py,
                                                               @Param("reg_receiver_id")String reg_receiver_id,
                                                               @Param("statusList")String[] listStr,
+                                                              @Param("e_statusList")String[] listStr2,
                                                               @Param("pageStart")int pageStart,
                                                               @Param("pageSize")int pageSize);
 
