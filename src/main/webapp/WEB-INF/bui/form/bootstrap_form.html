@@ -452,7 +452,7 @@
                         {
                             TD:"logout",
                             office_id: office_id,
-                            status:['0','1'],
+                            status:['0','1','2'],
                         },
                         deal_affairs_func);
                 }
@@ -462,7 +462,8 @@
                         {
                             TD:"logout",
                             office_id: office_id,
-                            status:['0','1'],
+                            status:['0','1','2'],
+                            e_status:['0','1','2'],
                         },
                         exe_affairs_func);
                 }
@@ -683,7 +684,7 @@
                     {
                         TD:"logout",
                         office_id: data.value,
-                        status:['0','1'],
+                        status:['0','1','2'],
                     },
                     deal_affairs_func);
             }
@@ -692,7 +693,8 @@
                     {
                         TD:"logout",
                         office_id: data.value,
-                        status:['0','1'],
+                        status:['0','1','2'],
+                        e_status:['0','1','2'],
                     },
                     exe_affairs_func);
             }
@@ -714,7 +716,7 @@
                         {
                             TD:"logout",
                             office_id: data.field.reg_office_id,
-                            status:['0','1'],
+                            status:['0','1','2'],
                         },
                         deal_affairs_func);
                     layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
