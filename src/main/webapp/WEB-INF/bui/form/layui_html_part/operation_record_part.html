@@ -6,7 +6,7 @@
     <li class="layui-timeline-item">
         <i class="layui-icon layui-timeline-axis"></i>
         <div class="layui-timeline-content layui-text">
-            <h3 class="layui-timeline-title">8月18日</h3>
+            <h3 class="layui-timeline-title">${result.regRecord.reg_record_date?substring(0,10)}</h3>
             <p>
                 <#if (result.regRecord.reg_record_status)??&&(result.regRecord.reg_record_status)=='0'>
                 <i class="layui-icon layui-icon-tips" style="color: #f10e3b;"></i>
