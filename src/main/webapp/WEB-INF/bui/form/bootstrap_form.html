@@ -62,9 +62,11 @@
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">登记科室</label>
                         <div class="">
-                            <input type="text" id="reg_office_ident" class="form-control NO_Reset" name="reg_office_ident"
+                            <input type="text" id="reg_office_ident" class="form-control NO_Reset"
+                                   name="reg_office_ident"
                                    placeholder="请选择">
-                            <input type="hidden" name="reg_office_id" id="reg_office_id" lay-verify="required" class="NO_Reset"
+                            <input type="hidden" name="reg_office_id" id="reg_office_id" lay-verify="required"
+                                   class="NO_Reset"
                                    lay-verType="alert"
                                    lay-reqText="登记科室不能为空">
                             <ul class="dropdown-menu " role="menu">
@@ -75,9 +77,11 @@
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">执行科室</label>
                         <div class="">
-                            <input type="text" id="exe_office_ident" class="form-control NO_Reset" name="exe_office_ident"
+                            <input type="text" id="exe_office_ident" class="form-control NO_Reset"
+                                   name="exe_office_ident"
                                    placeholder="请选择">
-                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required" class="NO_Reset"
+                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required"
+                                   class="NO_Reset"
                                    lay-verType="alert"
                                    lay-reqText="执行科室不能为空">
                             <ul class="dropdown-menu " role="menu">
@@ -187,7 +191,8 @@
                     </ul>-->
                 </div>
             </div>
-            <div id="ope_record_div" class="col-xs-11 col-sm-11 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3" style="display: none; padding: 10px;">
+            <div id="ope_record_div" class="col-xs-11 col-sm-11 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3"
+                 style="display: none; padding: 10px;">
                 <input type="hidden" id="" name="record_select_id" value=112>
                 <div id="ope_record_part">
                     <!--<ul class="layui-timeline">
@@ -216,44 +221,60 @@
                     </ul>-->
                 </div>
             </div>
-            <div id="operation_form_div" class="col-sm-12 col-xs-12 col-lg-12" style="display: none; padding: 10px;">
-                <form class="form-horizontal layui-form" lay-filter="operation_form" autocomplete="off" id="exe_area_form">
-                    <input type="hidden" name="registration_id" id="registration_id">
-                    <div class="col-sm-1 col-xs-4 col-lg-1 col-md-offset-11 col-lg-offset-11 col-xs-offset-9" >
+            <div id="ope_area_div" class="col-sm-12 col-xs-12 col-lg-12" style="display: none; padding: 1px;">
+
+                <form class="form-horizontal layui-form" lay-filter="operation_form" autocomplete="off"
+                      id="exe_area_form" style="padding-top: 8px">
+                    <div class="col-sm-1 col-xs-4 col-lg-1 col-md-offset-10 col-lg-offset-10 col-xs-offset-8">
                         <div>
-                            <button type="button" class="btn btn-primary btn-block" id="exe_record_submit" lay-submit
+                            <button type="button" class="btn btn-primary btn-block" id="exe_record_submit"
+                                    lay-submit
                                     lay-filter="exeForm">提交
                             </button>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xs-12 col-lg-6 col-md-offset-3 col-lg-offset-3">
-                        <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
-                            <label class="control-label" style="margin-bottom:5px; ">处理声明选择</label>
-                            <div class="">
-                                <input type="radio" name="ope_statement" value="1" class="NO_Reset" title="调查陈述" checked>
-                                <input type="radio" name="ope_statement" value="2" class="NO_Reset" title="处理建议">
-                                <div class="visible-xs" style="margin-bottom:10px; "></div>
-                                <input type="radio" name="ope_statement" value="3" class="NO_Reset" title="处理流程">
-                                <input type="radio" name="ope_statement" value="4" class="NO_Reset" title="处理反馈">
+                    <div id="operation_form_div"
+                         class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="padding-right: 1px;padding-left: 1px">
+                        <input type="hidden" name="registration_id" id="registration_id">
+
+                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-4 col-lg-offset-4" style="padding-right: 1px;padding-left: 1px">
+                            <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
+                                <label class="control-label" style="margin-bottom:5px; ">处理声明选择</label>
+                                <div class="">
+                                    <input type="radio" name="ope_statement" value="1" class="NO_Reset" title="调查陈述"
+                                           checked>
+                                    <input type="radio" name="ope_statement" value="2" class="NO_Reset" title="处理建议">
+                                    <div class="visible-xs" style="margin-bottom:10px; "></div>
+                                    <input type="radio" name="ope_statement" value="3" class="NO_Reset" title="处理流程">
+                                    <input type="radio" name="ope_statement" value="4" class="NO_Reset" title="处理反馈">
+                                </div>
                             </div>
-                        </div>
 
-                        <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">声明情况录入</label>
-                        <div class="col-sm-11 col-xs-12 col-lg-12">
+                            <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">声明情况录入</label>
+                            <div class="col-sm-11 col-xs-12 col-lg-12">
 
-                            <input type="text" id="ope_content" class="form-control" name="ope_content" lay-verify="required"
-                                   placeholder="请选择录入">
+                                <input type="text" id="ope_content" class="form-control" name="ope_content"
+                                       lay-verify="required"
+                                       placeholder="请选择录入">
 
-                        </div>
-
-                        <div id="exe_describe_area" class="col-sm-12 col-xs-12 col-lg-12"
-                             style="margin-bottom:10px; ">
-                            <label class="control-label" style="margin-bottom:5px; ">详细描述</label>
-                            <div class="">
-                                <textarea class="form-control" name="ope_record_describe" rows="7"></textarea>
                             </div>
-                        </div>
 
+                            <div id="exe_describe_area" class="col-sm-12 col-xs-12 col-lg-12"
+                                 style="margin-bottom:10px; ">
+                                <label class="control-label" style="margin-bottom:5px; ">详细描述</label>
+                                <div class="">
+                                    <textarea class="form-control" name="ope_record_describe" rows="7"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="ope_form_record_div" class="col-xs-12 col-sm-12 col-md-3 col-lg-3"
+                         style=" padding: 10px;">
+
+                        <div id="ope_form_record_part">
+
+                        </div>
                     </div>
                 </form>
             </div>
@@ -338,7 +359,7 @@
             , layer = layui.layer
             , layedit = layui.layedit
             , laydate = layui.laydate
-            ,exe_layer=null;
+            , exe_layer = null;
 
         //自定义验证规则
         form.verify({
@@ -350,10 +371,10 @@
                     if (result == null) return '时间格式不对！';
                 }
             }
-            ,lengthCtrl:function (value) {
-                if(value.length > 50){
+            , lengthCtrl: function (value) {
+                if (value.length > 50) {
                     return '容不下！';
-                }else if(value.length < 10) {
+                } else if (value.length < 10) {
                     return '也太短了吧！';
                 }
             }
@@ -369,7 +390,7 @@
                 , id: 100
                 , icon: 'layui-icon layui-icon-triangle-d'
                 , style: 'color: 020202FF;'
-            },{
+            }, {
                 title: '未受理'
                 , id: 101
                 , icon: 'layui-icon layui-icon-tips'
@@ -385,7 +406,7 @@
                 , id: 105
                 , icon: 'layui-icon layui-icon-triangle-d'
                 , style: 'color: 020202FF;'
-            },{
+            }, {
                 title: '未处理'
                 , id: 106
                 , icon: 'layui-icon layui-icon-reduce-circle'
@@ -450,9 +471,9 @@
                     var office_id = $("#reg_office_id").val();
                     $("#registration_record_part").load("/reg/registration_record_part",
                         {
-                            TD:"logout",
+                            TD: "logout",
                             office_id: office_id,
-                            status:['0','1','2'],
+                            status: ['0', '1', '2'],
                         },
                         deal_affairs_func);
                 }
@@ -460,10 +481,10 @@
                     var office_id = '';
                     $("#registration_record_part").load("/reg/registration_record_part1",
                         {
-                            TD:"logout",
+                            TD: "logout",
                             office_id: office_id,
-                            status:['0','1','2'],
-                            e_status:['0','1','2'],
+                            status: ['0', '1', '2'],
+                            e_status: ['0', '1', '2'],
                         },
                         exe_affairs_func);
                 }
@@ -484,8 +505,8 @@
                 if (data.hasError === true) {
                     return false;
                 }
-                if(typeof data=='string'){
-                    if(data.indexOf("hasError")>=0){
+                if (typeof data == 'string') {
+                    if (data.indexOf("hasError") >= 0) {
                         return false;
                     }
                 }
@@ -540,7 +561,7 @@
         }
 
         function deal_affairs_func(v) {
-            if (result_handle(v)){
+            if (result_handle(v)) {
                 $('.deal-affairs').on('click', function (ev) {
 
                     //alert($(this).children('input').val());
@@ -552,9 +573,9 @@
                     }, true, function (data) {
                         if (result_handle(data)) {
                             listRecord = data.listReg_record[0];
-                            listRecord.TD="logout";
-                            $("#ope_record_part").load("/ope/operation_record_part",listRecord);
-                            exe_layer=layer.open({
+                            listRecord.TD = "logout";
+                            $("#ope_record_part").load("/ope/operation_record_part", listRecord);
+                            exe_layer = layer.open({
                                 title: '处理流程查看',
                                 type: 1,
                                 skin: 'layui-layer-rim',
@@ -562,7 +583,7 @@
                                 content: $('#ope_record_div'),
                                 btn: ['确认', '关闭'],
                                 btnAlign: 'c',
-                                btn_margin:'20px',
+                                btn_margin: '20px',
                                 maxmin: true,
                                 minStack: false, //最小化不堆叠在左下角
                                 id: 'operation_form_layer', //定义 ID，防止重复弹出
@@ -577,7 +598,7 @@
                                     layer.full(index);
                                 },
                                 yes: function (index, layero) {
-                                    if (listRecord.reg_record_status === "0"||listRecord.reg_record_status === "1") {
+                                    if (listRecord.reg_record_status === "0" || listRecord.reg_record_status === "1") {
                                         layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
                                             "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
                                             , function (i, l) {
@@ -589,7 +610,7 @@
                                                                 registration_id: listRecord.registration_id,
                                                                 reg_record_id: listRecord.id,
                                                                 registration_py: listRecord.reg_record_py,
-                                                                TD:'logout'
+                                                                TD: 'logout'
                                                             },
                                                             true, function (v) {
                                                                 if (result_handle(v)) layer.msg('已提交');
@@ -597,7 +618,7 @@
                                                             });
                                                     });
                                             });
-                                    }else layer.close(index);
+                                    } else layer.close(index);
                                 }
                             });
 
@@ -610,7 +631,7 @@
 
 
                 });
-            }else {
+            } else {
                 layer_alert($.parseJSON(v).error, ['确定', '关闭'], '', function () {
                     location.reload();
                 });
@@ -620,19 +641,19 @@
 
         function exe_affairs_func(v) {
             //$("#operation_form_div").load("/test/operation_form_part");
-            if (result_handle(v)){
+            if (result_handle(v)) {
                 $('.exe-affairs').on('click', function (ev) {
                     var rec_id = $(this).children('input').val();
                     $('#registration_id').val(rec_id);
-                    exe_layer=layer.open({
+                    exe_layer = layer.open({
                         title: '添加处理流程',
                         type: 1,
                         skin: 'layui-layer-rim',
                         area: 'auto',
-                        content: $('#operation_form_div'),
+                        content: $('#ope_area_div'),
                         btn: ['提交', '关闭'],
                         btnAlign: 'c',
-                        btn_margin:'20px',
+                        btn_margin: '20px',
                         maxmin: true,
                         minStack: false, //最小化不堆叠在左下角
                         id: 'operation_form_layer', //定义 ID，防止重复弹出
@@ -645,6 +666,16 @@
                         },
                         success: function (layero, index) {
                             layer.full(index);
+                            CD_ajaxAllParam("/getRegistration_recordById", {
+                                record_id: rec_id,
+                                "TD": "logout"
+                            }, true, function (data) {
+                                if (result_handle(data)) {
+                                    listRecord = data.listReg_record[0];
+                                    listRecord.TD = "logout";
+                                    $("#ope_form_record_part").load("/ope/operation_record_part", listRecord);
+                                }
+                            });
                         },
                         yes: function (index, layero) {
                             $('#exe_record_submit').trigger("click");
@@ -654,7 +685,7 @@
                     });
 
                 });
-            }else {
+            } else {
                 layer_alert($.parseJSON(v).error, ['确定', '关闭'], '', function () {
                     location.reload();
                 });
@@ -664,7 +695,7 @@
         function ope_submit(data) {
 
             CD_ajaxAllParam("/addMobileOperation", data.field, true, function (v) {
-                if(v.hasError==true) layer_alert(v.error, ['确定'],2) ;else layer_alert("提交完成", ['确定'],2)
+                    if (v.hasError == true) layer_alert(v.error, ['确定'], 2); else layer_alert("提交完成", ['确定'], 2)
                     //$("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
                     layer.close(exe_layer);
                 }
@@ -682,19 +713,19 @@
             if ($("#record_select_id").val() == 110) {
                 $("#registration_record_part").load("/reg/registration_record_part",
                     {
-                        TD:"logout",
+                        TD: "logout",
                         office_id: data.value,
-                        status:['0','1','2'],
+                        status: ['0', '1', '2'],
                     },
                     deal_affairs_func);
             }
             if ($("#record_select_id").val() == 111) {
                 $("#registration_record_part").load("/reg/registration_record_part1",
                     {
-                        TD:"logout",
+                        TD: "logout",
                         office_id: data.value,
-                        status:['0','1','2'],
-                        e_status:['0','1','2'],
+                        status: ['0', '1', '2'],
+                        e_status: ['0', '1', '2'],
                     },
                     exe_affairs_func);
             }
@@ -709,14 +740,14 @@
         });
 
         form.on('submit(regForm)', function (data) {
-            data.field.TD="logout";
+            data.field.TD = "logout";
             CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
-                if (result_handle(v)){
+                if (result_handle(v)) {
                     $("#registration_record_part").load("/reg/registration_record_part",
                         {
-                            TD:"logout",
+                            TD: "logout",
                             office_id: data.field.reg_office_id,
-                            status:['0','1','2'],
+                            status: ['0', '1', '2'],
                         },
                         deal_affairs_func);
                     layer.alert('登记成功。<br>请登记后再次电话联系执行科室，<br>避免执行人员遗漏该登记信息。', {
@@ -733,18 +764,18 @@
                             clearInterval(this.timer);
                         }
                     });
-                }else {
+                } else {
                     layer_alert(v.error, ['确定', '关闭'], '', function () {
                         location.reload();
                     });
                 }
             });
             $("#reg_area_form input").each(function () {
-                if(!$(this).hasClass("NO_Reset"))
-                $(this).val('');
+                if (!$(this).hasClass("NO_Reset"))
+                    $(this).val('');
             });
             $("#reg_area_form textarea").each(function () {
-                if(!$(this).hasClass("NO_Reset"))
+                if (!$(this).hasClass("NO_Reset"))
                     $(this).val('');
             });
             return false;
@@ -754,11 +785,11 @@
 
             ope_submit(data);
             $("#exe_area_form input").each(function () {
-                if(!$(this).hasClass("NO_Reset"))
+                if (!$(this).hasClass("NO_Reset"))
                     $(this).val('');
             });
             $("#exe_area_form textarea").each(function () {
-                if(!$(this).hasClass("NO_Reset"))
+                if (!$(this).hasClass("NO_Reset"))
                     $(this).val('');
             });
             return false;
