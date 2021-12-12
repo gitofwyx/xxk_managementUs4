@@ -72,11 +72,18 @@
         select
         <include refid="columns"></include>
         from xxk_registration_record
-        where  registration_id in (
-        select id
-        from xxk_registration
-        where reg_office_id=#{office_id}
-        ) and reg_record_status in
+        where
+        <if test="reg_record_py!=null and ''!= reg_record_py">
+            reg_record_py=#{reg_record_py} and
+        </if>
+        <if test="office_id!=null and ''!= office_id">
+            registration_id in (
+            select id
+            from xxk_registration
+            where reg_office_id=#{office_id}
+            ) and
+        </if>
+        reg_record_status in
         <foreach collection="statusList" item="status" index="index"
                  open="(" close=")" separator=",">
             #{status}

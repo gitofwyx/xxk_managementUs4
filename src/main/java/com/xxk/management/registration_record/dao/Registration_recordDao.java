@@ -20,7 +20,8 @@ public interface Registration_recordDao {
 
     public List<Registration_record> getRecordByRegistrationId(String registrationId,String Status);
 
-    public List<Registration_record> getRegistration_recordByOffice(@Param("office_id")String office_id,
+    public List<Registration_record> getRegistration_recordByOffice(@Param("reg_record_py")String reg_record_py,
+                                                                    @Param("office_id")String office_id,
                                                                     @Param("statusList")String[] listStr);
 
     public List<Registration_record> getRegistration_recordByReceiver(@Param("office_id")String office_id,

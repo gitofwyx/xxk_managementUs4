@@ -639,6 +639,28 @@
 
         }
 
+        function refurbish_record_list(oId)  {
+            if ($("#record_select_id").val() == 110) {
+                $("#registration_record_part").load("/reg/registration_record_part",
+                    {
+                        TD: "logout",
+                        office_id: oId,
+                        status: ['0', '1', '2'],
+                    },
+                    deal_affairs_func);
+            }
+            if ($("#record_select_id").val() == 111) {
+                $("#registration_record_part").load("/reg/registration_record_part1",
+                    {
+                        TD: "logout",
+                        office_id: oId,
+                        status: ['0', '1', '2'],
+                        e_status: ['0', '1', '2'],
+                    },
+                    exe_affairs_func);
+            }
+        }
+
         function exe_affairs_func(v) {
             //$("#operation_form_div").load("/test/operation_form_part");
             if (result_handle(v)) {
@@ -710,25 +732,7 @@
                 $("#occupy_area").removeClass("hidden");
                 rmV_1 = rmV_1 + 1;
             }
-            if ($("#record_select_id").val() == 110) {
-                $("#registration_record_part").load("/reg/registration_record_part",
-                    {
-                        TD: "logout",
-                        office_id: data.value,
-                        status: ['0', '1', '2'],
-                    },
-                    deal_affairs_func);
-            }
-            if ($("#record_select_id").val() == 111) {
-                $("#registration_record_part").load("/reg/registration_record_part1",
-                    {
-                        TD: "logout",
-                        office_id: data.value,
-                        status: ['0', '1', '2'],
-                        e_status: ['0', '1', '2'],
-                    },
-                    exe_affairs_func);
-            }
+            refurbish_record_list(data.value);
 
         }, function () {
             $("#reg_office_id").val("");
@@ -781,6 +785,27 @@
             return false;
         });
 
+        $('#reg_form_title').on('click', function () {
+            rmV_1 = 1;
+            $(".media-icon-lead").trigger("click");
+            refurbish_record_list('');
+
+        });
+
+        $('.media-icon-lead').on('click', function () {
+            if (rmV_1 === 1) {
+                $("#reg_area").addClass("hidden");
+                $("#reg_record").attr("class", "col-xs-12 col-sm-12 col-md-10 col-lg-10");
+                rmV_1 = rmV_1 + 1;
+            } else if (rmV_1 === 2) {
+                $("#reg_area").removeClass("hidden");
+                $("#occupy_area").removeClass("hidden");
+                $("#reg_area").removeClass("col-md-offset-2 col-lg-offset-2");
+                $("#reg_record").attr("class", "col-xs-12 col-sm-12 col-md-4 col-lg-4");
+                rmV_1 = rmV_1 - 1;
+            }
+        });
+
         form.on('submit(exeForm)', function (data) {
 
             ope_submit(data);
@@ -797,25 +822,9 @@
 
     });
 
-    $('#reg_form_title').on('click', function () {
-        rmV_1 = 1;
-        $(".media-icon-lead").trigger("click");
 
-    });
 
-    $('.media-icon-lead').on('click', function () {
-        if (rmV_1 === 1) {
-            $("#reg_area").addClass("hidden");
-            $("#reg_record").attr("class", "col-xs-12 col-sm-12 col-md-10 col-lg-10");
-            rmV_1 = rmV_1 + 1;
-        } else if (rmV_1 === 2) {
-            $("#reg_area").removeClass("hidden");
-            $("#occupy_area").removeClass("hidden");
-            $("#reg_area").removeClass("col-md-offset-2 col-lg-offset-2");
-            $("#reg_record").attr("class", "col-xs-12 col-sm-12 col-md-4 col-lg-4");
-            rmV_1 = rmV_1 - 1;
-        }
-    });
+
 
     $('#reg_describe_btn').on('click', function () {
 

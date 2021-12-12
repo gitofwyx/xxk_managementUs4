@@ -66,9 +66,9 @@ public class TestViewController extends BaseController {
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
             //String[] status={"0","1"};
-            //String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = registration_recordService.getRegistration_recordMakeDate(office_id, status);
+            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,office_id, status);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {
