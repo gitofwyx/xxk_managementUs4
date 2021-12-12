@@ -10,7 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年11月5日 06:33:58 处理业务">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_11_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_15_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_11_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_15_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_11_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_15_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_web_2_11_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_web_2_15_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xxk_managementUs4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_managementUs4.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1041,7 +1049,7 @@
     <property name="project.structure.last.edited" value="工件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3472637" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1059,9 +1067,9 @@
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\layui" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.registration_record.controller" />
       <recent name="com.xxk.management.operation.controller" />
       <recent name="com.xxk.management.registration_class.entity" />
-      <recent name="com.xxk.management.registration_record.controller" />
       <recent name="com.xxk.management.registration_record.entity" />
       <recent name="com.xxk.management.registration.service" />
     </key>
@@ -2529,161 +2537,64 @@
       <workItem from="1638506809665" duration="1735000" />
       <workItem from="1638510229458" duration="826000" />
       <workItem from="1638511070562" duration="310000" />
-      <workItem from="1638511397078" duration="696000" />
-    </task>
-    <task id="LOCAL-00252" summary="2021年10月25日 13:33:24 登记class">
-      <created>1635529024298</created>
-      <option name="number" value="00252" />
-      <option name="presentableId" value="LOCAL-00252" />
-      <option name="project" value="LOCAL" />
-      <updated>1635529024298</updated>
-    </task>
-    <task id="LOCAL-00253" summary="2021年10月25日 13:33:24 登记class">
-      <created>1635529567325</created>
-      <option name="number" value="00253" />
-      <option name="presentableId" value="LOCAL-00253" />
-      <option name="project" value="LOCAL" />
-      <updated>1635529567325</updated>
-    </task>
-    <task id="LOCAL-00254" summary="2021年10月25日 13:33:24 登记class">
-      <created>1635529598524</created>
-      <option name="number" value="00254" />
-      <option name="presentableId" value="LOCAL-00254" />
-      <option name="project" value="LOCAL" />
-      <updated>1635529598524</updated>
-    </task>
-    <task id="LOCAL-00255" summary="2021年10月25日 13:33:24 登记class">
-      <created>1635529705804</created>
-      <option name="number" value="00255" />
-      <option name="presentableId" value="LOCAL-00255" />
-      <option name="project" value="LOCAL" />
-      <updated>1635529705805</updated>
-    </task>
-    <task id="LOCAL-00256" summary="2021年10月25日 13:33:24 登记class">
-      <created>1635581970147</created>
-      <option name="number" value="00256" />
-      <option name="presentableId" value="LOCAL-00256" />
-      <option name="project" value="LOCAL" />
-      <updated>1635581970148</updated>
-    </task>
-    <task id="LOCAL-00257" summary="2021年10月25日 13:33:24 登记class">
-      <created>1635610200501</created>
-      <option name="number" value="00257" />
-      <option name="presentableId" value="LOCAL-00257" />
-      <option name="project" value="LOCAL" />
-      <updated>1635610200501</updated>
-    </task>
-    <task id="LOCAL-00258" summary="2021年10月25日 13:33:24 登记class">
-      <created>1635700119932</created>
-      <option name="number" value="00258" />
-      <option name="presentableId" value="LOCAL-00258" />
-      <option name="project" value="LOCAL" />
-      <updated>1635700119932</updated>
-    </task>
-    <task id="LOCAL-00259" summary="2021年11月4日 02:13:56 登记图标调整">
-      <created>1635963264655</created>
-      <option name="number" value="00259" />
-      <option name="presentableId" value="LOCAL-00259" />
-      <option name="project" value="LOCAL" />
-      <updated>1635963264656</updated>
-    </task>
-    <task id="LOCAL-00260" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636065258971</created>
-      <option name="number" value="00260" />
-      <option name="presentableId" value="LOCAL-00260" />
-      <option name="project" value="LOCAL" />
-      <updated>1636065258972</updated>
-    </task>
-    <task id="LOCAL-00261" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636067348457</created>
-      <option name="number" value="00261" />
-      <option name="presentableId" value="LOCAL-00261" />
-      <option name="project" value="LOCAL" />
-      <updated>1636067348457</updated>
-    </task>
-    <task id="LOCAL-00262" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636192721348</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
-      <option name="project" value="LOCAL" />
-      <updated>1636192721349</updated>
-    </task>
-    <task id="LOCAL-00263" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636305996860</created>
-      <option name="number" value="00263" />
-      <option name="presentableId" value="LOCAL-00263" />
-      <option name="project" value="LOCAL" />
-      <updated>1636305996860</updated>
-    </task>
-    <task id="LOCAL-00264" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636307088538</created>
-      <option name="number" value="00264" />
-      <option name="presentableId" value="LOCAL-00264" />
-      <option name="project" value="LOCAL" />
-      <updated>1636307088538</updated>
-    </task>
-    <task id="LOCAL-00265" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636347741059</created>
-      <option name="number" value="00265" />
-      <option name="presentableId" value="LOCAL-00265" />
-      <option name="project" value="LOCAL" />
-      <updated>1636347741059</updated>
-    </task>
-    <task id="LOCAL-00266" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636348266671</created>
-      <option name="number" value="00266" />
-      <option name="presentableId" value="LOCAL-00266" />
-      <option name="project" value="LOCAL" />
-      <updated>1636348266671</updated>
-    </task>
-    <task id="LOCAL-00267" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636432279457</created>
-      <option name="number" value="00267" />
-      <option name="presentableId" value="LOCAL-00267" />
-      <option name="project" value="LOCAL" />
-      <updated>1636432279457</updated>
-    </task>
-    <task id="LOCAL-00268" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636438262355</created>
-      <option name="number" value="00268" />
-      <option name="presentableId" value="LOCAL-00268" />
-      <option name="project" value="LOCAL" />
-      <updated>1636438262355</updated>
-    </task>
-    <task id="LOCAL-00269" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636475258541</created>
-      <option name="number" value="00269" />
-      <option name="presentableId" value="LOCAL-00269" />
-      <option name="project" value="LOCAL" />
-      <updated>1636475258542</updated>
-    </task>
-    <task id="LOCAL-00270" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636907564164</created>
-      <option name="number" value="00270" />
-      <option name="presentableId" value="LOCAL-00270" />
-      <option name="project" value="LOCAL" />
-      <updated>1636907564164</updated>
-    </task>
-    <task id="LOCAL-00271" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1636995483225</created>
-      <option name="number" value="00271" />
-      <option name="presentableId" value="LOCAL-00271" />
-      <option name="project" value="LOCAL" />
-      <updated>1636995483225</updated>
-    </task>
-    <task id="LOCAL-00272" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637038140969</created>
-      <option name="number" value="00272" />
-      <option name="presentableId" value="LOCAL-00272" />
-      <option name="project" value="LOCAL" />
-      <updated>1637038140969</updated>
-    </task>
-    <task id="LOCAL-00273" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637078196278</created>
-      <option name="number" value="00273" />
-      <option name="presentableId" value="LOCAL-00273" />
-      <option name="project" value="LOCAL" />
-      <updated>1637078196278</updated>
+      <workItem from="1638511397078" duration="12889000" />
+      <workItem from="1638708256442" duration="2300000" />
+      <workItem from="1638710692632" duration="1729000" />
+      <workItem from="1638766694894" duration="758000" />
+      <workItem from="1638811698321" duration="793000" />
+      <workItem from="1638812504892" duration="468000" />
+      <workItem from="1638812988058" duration="394000" />
+      <workItem from="1638813396197" duration="382000" />
+      <workItem from="1638851963858" duration="790000" />
+      <workItem from="1638852900568" duration="866000" />
+      <workItem from="1638854070575" duration="707000" />
+      <workItem from="1638854797147" duration="2119000" />
+      <workItem from="1638881076551" duration="6029000" />
+      <workItem from="1638888394075" duration="1174000" />
+      <workItem from="1638889657364" duration="1321000" />
+      <workItem from="1638890997400" duration="114000" />
+      <workItem from="1638891125703" duration="581000" />
+      <workItem from="1638891720253" duration="2983000" />
+      <workItem from="1638894719933" duration="2242000" />
+      <workItem from="1638896978870" duration="166000" />
+      <workItem from="1638897174870" duration="628000" />
+      <workItem from="1638897817772" duration="457000" />
+      <workItem from="1638922347903" duration="3304000" />
+      <workItem from="1638970588593" duration="1903000" />
+      <workItem from="1638972507464" duration="1732000" />
+      <workItem from="1638975390652" duration="93000" />
+      <workItem from="1638975589500" duration="3265000" />
+      <workItem from="1638978875861" duration="446000" />
+      <workItem from="1638979336446" duration="2040000" />
+      <workItem from="1638981392331" duration="244000" />
+      <workItem from="1638981650486" duration="193000" />
+      <workItem from="1638981856046" duration="891000" />
+      <workItem from="1638982761571" duration="301000" />
+      <workItem from="1638983087074" duration="551000" />
+      <workItem from="1638983654526" duration="1803000" />
+      <workItem from="1638985474535" duration="424000" />
+      <workItem from="1638985910967" duration="851000" />
+      <workItem from="1638986775914" duration="237000" />
+      <workItem from="1638987025044" duration="128000" />
+      <workItem from="1638987166524" duration="743000" />
+      <workItem from="1639024868891" duration="2987000" />
+      <workItem from="1639033946174" duration="1455000" />
+      <workItem from="1639035417801" duration="1122000" />
+      <workItem from="1639036561213" duration="763000" />
+      <workItem from="1639037339543" duration="137000" />
+      <workItem from="1639037499611" duration="1530000" />
+      <workItem from="1639065618010" duration="77000" />
+      <workItem from="1639065770177" duration="11000" />
+      <workItem from="1639065841526" duration="4016000" />
+      <workItem from="1639116682370" duration="173000" />
+      <workItem from="1639132072140" duration="10729000" />
+      <workItem from="1639154913259" duration="18000" />
+      <workItem from="1639154943733" duration="86000" />
+      <workItem from="1639155045606" duration="400000" />
+      <workItem from="1639155460550" duration="339000" />
+      <workItem from="1639155813988" duration="746000" />
+      <workItem from="1639200930323" duration="3318000" />
+      <workItem from="1639205204427" duration="7592000" />
     </task>
     <task id="LOCAL-00274" summary="2021年11月5日 06:33:58 处理业务">
       <created>1637124182569</created>
@@ -2874,7 +2785,161 @@
       <option name="project" value="LOCAL" />
       <updated>1638511361496</updated>
     </task>
-    <option name="localTasksCounter" value="301" />
+    <task id="LOCAL-00301" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638512671118</created>
+      <option name="number" value="00301" />
+      <option name="presentableId" value="LOCAL-00301" />
+      <option name="project" value="LOCAL" />
+      <updated>1638512671118</updated>
+    </task>
+    <task id="LOCAL-00302" summary="2021年12月5日 23:34:23 配置角色授权">
+      <created>1638718483689</created>
+      <option name="number" value="00302" />
+      <option name="presentableId" value="LOCAL-00302" />
+      <option name="project" value="LOCAL" />
+      <updated>1638718483689</updated>
+    </task>
+    <task id="LOCAL-00303" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638812542315</created>
+      <option name="number" value="00303" />
+      <option name="presentableId" value="LOCAL-00303" />
+      <option name="project" value="LOCAL" />
+      <updated>1638812542316</updated>
+    </task>
+    <task id="LOCAL-00304" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638812803720</created>
+      <option name="number" value="00304" />
+      <option name="presentableId" value="LOCAL-00304" />
+      <option name="project" value="LOCAL" />
+      <updated>1638812803720</updated>
+    </task>
+    <task id="LOCAL-00305" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638812957110</created>
+      <option name="number" value="00305" />
+      <option name="presentableId" value="LOCAL-00305" />
+      <option name="project" value="LOCAL" />
+      <updated>1638812957110</updated>
+    </task>
+    <task id="LOCAL-00306" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638813416781</created>
+      <option name="number" value="00306" />
+      <option name="presentableId" value="LOCAL-00306" />
+      <option name="project" value="LOCAL" />
+      <updated>1638813416781</updated>
+    </task>
+    <task id="LOCAL-00307" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638852977392</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
+      <option name="project" value="LOCAL" />
+      <updated>1638852977393</updated>
+    </task>
+    <task id="LOCAL-00308" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638854029679</created>
+      <option name="number" value="00308" />
+      <option name="presentableId" value="LOCAL-00308" />
+      <option name="project" value="LOCAL" />
+      <updated>1638854029679</updated>
+    </task>
+    <task id="LOCAL-00309" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638854672717</created>
+      <option name="number" value="00309" />
+      <option name="presentableId" value="LOCAL-00309" />
+      <option name="project" value="LOCAL" />
+      <updated>1638854672718</updated>
+    </task>
+    <task id="LOCAL-00310" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638881131375</created>
+      <option name="number" value="00310" />
+      <option name="presentableId" value="LOCAL-00310" />
+      <option name="project" value="LOCAL" />
+      <updated>1638881131375</updated>
+    </task>
+    <task id="LOCAL-00311" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638897076712</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
+      <option name="project" value="LOCAL" />
+      <updated>1638897076712</updated>
+    </task>
+    <task id="LOCAL-00312" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638897122102</created>
+      <option name="number" value="00312" />
+      <option name="presentableId" value="LOCAL-00312" />
+      <option name="project" value="LOCAL" />
+      <updated>1638897122102</updated>
+    </task>
+    <task id="LOCAL-00313" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638897866980</created>
+      <option name="number" value="00313" />
+      <option name="presentableId" value="LOCAL-00313" />
+      <option name="project" value="LOCAL" />
+      <updated>1638897866981</updated>
+    </task>
+    <task id="LOCAL-00314" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638898267835</created>
+      <option name="number" value="00314" />
+      <option name="presentableId" value="LOCAL-00314" />
+      <option name="project" value="LOCAL" />
+      <updated>1638898267835</updated>
+    </task>
+    <task id="LOCAL-00315" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638970867972</created>
+      <option name="number" value="00315" />
+      <option name="presentableId" value="LOCAL-00315" />
+      <option name="project" value="LOCAL" />
+      <updated>1638970867973</updated>
+    </task>
+    <task id="LOCAL-00316" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638983560304</created>
+      <option name="number" value="00316" />
+      <option name="presentableId" value="LOCAL-00316" />
+      <option name="project" value="LOCAL" />
+      <updated>1638983560304</updated>
+    </task>
+    <task id="LOCAL-00317" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1638986952261</created>
+      <option name="number" value="00317" />
+      <option name="presentableId" value="LOCAL-00317" />
+      <option name="project" value="LOCAL" />
+      <updated>1638986952262</updated>
+    </task>
+    <task id="LOCAL-00318" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1639034183812</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
+      <option name="project" value="LOCAL" />
+      <updated>1639034183813</updated>
+    </task>
+    <task id="LOCAL-00319" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1639037112697</created>
+      <option name="number" value="00319" />
+      <option name="presentableId" value="LOCAL-00319" />
+      <option name="project" value="LOCAL" />
+      <updated>1639037112697</updated>
+    </task>
+    <task id="LOCAL-00320" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1639037465379</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
+      <option name="project" value="LOCAL" />
+      <updated>1639037465379</updated>
+    </task>
+    <task id="LOCAL-00321" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1639116700855</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
+      <option name="project" value="LOCAL" />
+      <updated>1639116700855</updated>
+    </task>
+    <task id="LOCAL-00322" summary="2021年11月5日 06:33:58 处理业务">
+      <created>1639200870208</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
+      <option name="project" value="LOCAL" />
+      <updated>1639200870209</updated>
+    </task>
+    <option name="localTasksCounter" value="323" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -2986,7 +3051,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年9月24日 12:59:36 bui1.1.21" />
     <MESSAGE value="2021年9月26日 23:17:25 favicon.ico圖標路徑修復" />
     <MESSAGE value="2021年9月27日 00:40:25 登记记录表" />
     <MESSAGE value="2021年9月29日 03:11:54 layUI接入整合" />
@@ -3010,6 +3074,7 @@
     <MESSAGE value="2021年12月1日 03:46:49 处理表增加字段" />
     <MESSAGE value="2021年12月1日 04:25:56 处理列表" />
     <MESSAGE value="2021年12月3日 01:36:09 页面调整！" />
+    <MESSAGE value="2021年12月5日 23:34:23 配置角色授权" />
     <MESSAGE value="2021年11月5日 06:33:58 处理业务" />
     <option name="LAST_COMMIT_MESSAGE" value="2021年11月5日 06:33:58 处理业务" />
   </component>
@@ -3090,11 +3155,6 @@
           <line>235</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/registration_record/service/impl/Registration_recordServiceImpl.java</url>
-          <line>143</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -3105,6 +3165,8 @@
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="httpServletRequest.getParameterMap()" language="JAVA" />
+        <watch expression="status" />
+        <watch expression="(pageStart-1)*pageSize" />
       </configuration>
     </watches-manager>
   </component>
