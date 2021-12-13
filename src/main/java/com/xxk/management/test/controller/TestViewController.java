@@ -149,4 +149,10 @@ public class TestViewController extends BaseController {
         return new ModelAndView("/layui/form", "result", result);
     }
 
+    @RequestMapping("/testUploadFiles")
+    public ModelAndView  testUploadFiles() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/TEST/testfiles", "result", result);
+    }
+
 }
