@@ -48,6 +48,9 @@ public class TestController extends BaseController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private RebUserService rebUserService;
+
     private Supplier<RegUser> regUserSupplier = RegUser::new;
 
 
@@ -200,14 +203,14 @@ public class TestController extends BaseController {
                     }
                     /*批量插入数据*/
                     if(!CollectionUtils.isEmpty(list)){
-                        //batchInsertData(list);
+                        rebUserService.addListRegUser(list);
                     }
 
                 }
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
             result.put("hasError", true);
             result.put("error", "文件解析失败，请确认表中的必填项不为空！导入已中断。");
             return result;
@@ -252,11 +255,14 @@ public class TestController extends BaseController {
                     continue;
                 }
                 errorMsg += "第" + (rowNum + 1) + "行（数据）导入开始 ";
+                regUser.setId(UUIdUtil.getUUID());
                 regUser.setAccount(hssfRow.getCell(0).getStringCellValue());
                 regUser.setRealName(hssfRow.getCell(1).getStringCellValue());
+                regUser.setPassword("123");
                 regUser.setName(PrivacyUtil.replaceNameS(regUser.getRealName()));
                 regUser.setCreateUserId("auto");
                 regUser.setCreateDate(updateDate);
+                regUser.setDeleteFlag("0");
                 list.add(regUser);
                 okNum += 1;
             }

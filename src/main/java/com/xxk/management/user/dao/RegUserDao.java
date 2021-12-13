@@ -18,6 +18,8 @@ public interface RegUserDao {
 
     public int addRegUser(RegUser user);
 
+    public int addListRegUser(List<RegUser> listRegUser);
+
     public RegUser getRegUser(String id);
 
     public RegUser getUserByAccount(String account);

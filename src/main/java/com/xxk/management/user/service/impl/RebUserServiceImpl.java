@@ -42,6 +42,10 @@ public class RebUserServiceImpl implements RebUserService {
         return dao.addRegUser(user)==1?true:false;
     }
 
+    public boolean addListRegUser(List<RegUser> listRegUser){
+        return dao.addListRegUser(listRegUser)>=1?true:false;
+    }
+
     @Override
     public RegUser getRegUser(String id) {
         return  dao.getRegUser(id);

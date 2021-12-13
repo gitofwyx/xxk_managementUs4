@@ -18,6 +18,8 @@ public interface RebUserService {
 
     public boolean addRegUser(RegUser user);
 
+    public boolean addListRegUser(List<RegUser> listRegUser);
+
     public RegUser getRegUser(String id);
 
     public RegUser getUserByAccount(String account);

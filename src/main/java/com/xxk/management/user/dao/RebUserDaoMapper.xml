@@ -61,6 +61,19 @@
         #{QCellCore},#{address},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
+    <insert id="addListRegUser" parameterType="java.util.List" >
+        insert into xxk_reg_user (<include refid="columns"></include>)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id},#{item.roleId},#{item.account},#{item.password},#{item.name},#{item.realName},#{item.birth},
+             #{item.sex},#{item.phone},#{item.education},#{item.marriage},#{item.createUnit},
+            #{item.QCellCore},#{item.address},#{item.keyWord},#{item.createUserId},#{item.createDate},
+             #{item.updateUserId},#{item.updateDate},#{item.deleteFlag}
+            )
+        </foreach>
+    </insert>
+
     <!--根据id获取信息 -->
     <select id="getRegUser" parameterType="string" resultType="com.xxk.management.user.entity.RegUser">
         select
