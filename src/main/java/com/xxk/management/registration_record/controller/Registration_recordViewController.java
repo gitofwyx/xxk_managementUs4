@@ -60,10 +60,10 @@ public class Registration_recordViewController extends BaseController {
         List<Map<String, Object>> listRecord=new ArrayList<>();
         try {
             //String[] status={"0","1"};
-            String CurrentUserId ="";
+            String CurrentUserId ="";//前端业务需求：科室不为空时申请人要为空
             if("".equals(office_id)||office_id==null){
                 CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            }
+            }//前端业务需求：科室为空时申请人为当前登录
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,office_id, status);
             if (listRecord == null) {
