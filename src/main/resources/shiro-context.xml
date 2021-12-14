@@ -101,6 +101,7 @@
                 /index/**=anon  <!--登录页面的js和css不拦截-->
                 /report/**=anon
 
+                /sys/**=roles[admin]
                 /menu/**=roles[manage]
                 /**=authc  <!--要放最后不然后面的不生效-->
             </value>
