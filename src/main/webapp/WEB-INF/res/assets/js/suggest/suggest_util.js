@@ -1,11 +1,11 @@
 //下拉提示框bsSuggest
-function buildBsSuggest(cla, v, search, effective, onSet_ck,onUnset_ck) {
+function buildBsSuggest(cla, v,effective, search, Alias, onSet_ck,onUnset_ck) {
     var options = {
         /*url: "/getMaterialName?tab=" + v,*/
         data: v,
-        effectiveFields: search,
+        effectiveFields: effective,
         searchFields: search,
-        effectiveFieldsAlias: effective,
+        effectiveFieldsAlias: Alias,
         listAlign: 'auto',
         showBtn: false,
         autoMinWidth: true,
