@@ -203,7 +203,16 @@ public class TestController extends BaseController {
                     }
                     /*批量插入数据*/
                     if(!CollectionUtils.isEmpty(list)){
-                        rebUserService.addListRegUser(list);
+                        boolean ar=rebUserService.addListRegUser(list);
+                        if (!ar) {
+                            result.put("hasError", true);
+                            result.put("error", "导入为空，检查导入格式。");
+                            return result;
+                        }
+                    }else {
+                        result.put("hasError", true);
+                        result.put("error", "获取到的列表为空，取消导入。");
+                        return result;
                     }
 
                 }
@@ -237,7 +246,7 @@ public class TestController extends BaseController {
         int errorNum = 0;
         int okNum = 0;
         String errorMsg = "";
-        HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
+        HSSFSheet hssfSheet = hssfWorkbook.getSheet("记录1");
         for (int rowNum = 0; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
             HSSFRow hssfRow = hssfSheet.getRow(rowNum);
             if (hssfRow != null) {
