@@ -197,18 +197,18 @@ public class TestController extends BaseController {
                     List<RegUser> list = null;
                     /*根据文件格式解析文件*/
                     if (originalFilename.endsWith(".xls")) {
-                        list = readXLS(myfile);
+                        //list = readXLS(myfile);
                     } else if (originalFilename.endsWith(".xlsx")) {
                         //list = readXLSX(myfile);
                     }
                     /*批量插入数据*/
                     if(!CollectionUtils.isEmpty(list)){
-                        boolean ar=rebUserService.addListRegUser(list);
+                      /*  boolean ar=rebUserService.addListRegUser(list);
                         if (!ar) {
                             result.put("hasError", true);
                             result.put("error", "导入为空，检查导入格式。");
                             return result;
-                        }
+                        }*/
                     }else {
                         result.put("hasError", true);
                         result.put("error", "获取到的列表为空，取消导入。");
