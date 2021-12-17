@@ -1,5 +1,6 @@
 package com.xxk.management.office.offices.service.impl;
 
+import com.xxk.core.util.DateUtil;
 import com.xxk.management.office.offices.dao.OfficesDao;
 import com.xxk.management.office.offices.entity.Offices;
 import com.xxk.management.office.offices.service.OfficesService;
@@ -31,7 +32,17 @@ public class OfficesServiceImpl implements OfficesService {
 
     @Override
     public boolean addOffices(Offices office) {
-        return dao.addOffices(office)==1?true:false;
+
+        Boolean result=dao.addOffices(office)==1?true:false;
+        if(result){
+            dao.updateOfficesUDstatus("1","admin", DateUtil.getFullTime());
+        }
+
+        return result;
+    }
+
+    public boolean updateOfficesUDstatus(String office_ident,String userId,String date){
+        return dao.updateOfficesUDstatus("1","admin", DateUtil.getFullTime())==1?true:false;
     }
 
     @Override
@@ -47,5 +58,9 @@ public class OfficesServiceImpl implements OfficesService {
     @Override
     public int geRootCount(String belong_to_id) {
         return dao.geRootCount(belong_to_id);
+    }
+
+    public String getOfficeUpDate(String office_ident){
+        return dao.getOfficeUpDate(office_ident);
     }
 }

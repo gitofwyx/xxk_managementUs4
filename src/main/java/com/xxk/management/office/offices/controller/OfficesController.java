@@ -124,6 +124,26 @@ public class OfficesController extends BaseController {
     }
 
     @ResponseBody
+    @RequestMapping("/getOfficesUDstatus")
+    public Map<String, Object> getOfficesUDstatus() {
+        int id = 0;
+        Map<String, Object> result = new HashMap<>();
+        try {
+            String date = officesService.getOfficeUpDate("1");
+            if (date == null) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("result", date);
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+    }
+
+    @ResponseBody
     @RequestMapping("/getOfficeMakeGrid")
     public Map<Object, Object> getOfficeMakeGrid() {
         Map<Object, Object> result = new HashMap<>();

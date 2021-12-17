@@ -9,14 +9,21 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年11月5日 06:33:58 处理业务">
+    <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_belerweb_pinyin4j_2_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_SparseBitSet_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_4_1_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_11_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_15_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_11_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_15_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_11_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_15_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_web_2_11_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_web_2_15_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/OfficesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/OfficesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/impl/OfficesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/impl/OfficesServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xxk_managementUs4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_managementUs4.iml" afterDir="false" />
     </list>
@@ -34,9 +41,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="spring-beans.schema" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -1039,25 +1047,26 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="所有位置" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/res/index/css" />
-    <property name="project.structure.last.edited" value="工件" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/xxk/management/system/service" />
+    <property name="project.structure.last.edited" value="库" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3472637" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\index\css" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\java\com\xxk\management\system\service" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\java\com\xxk\core\util" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\js" />
+      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\index\css" />
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\java\com\xxk\management\user\entity" />
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\form\layui_html_part" />
-      <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\java\com\xxk\management\registration_class" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\res\assets\css" />
@@ -1067,11 +1076,11 @@
       <recent name="G:\XXK\WYX\xxk_managementUs4\src\main\webapp\WEB-INF\bui\layui" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xxk.management.system.controller" />
+      <recent name="com.xxk.management.system.service" />
       <recent name="com.xxk.management.registration_record.controller" />
       <recent name="com.xxk.management.operation.controller" />
       <recent name="com.xxk.management.registration_class.entity" />
-      <recent name="com.xxk.management.registration_record.entity" />
-      <recent name="com.xxk.management.registration.service" />
     </key>
   </component>
   <component name="RunManager">
@@ -2595,76 +2604,30 @@
       <workItem from="1639155813988" duration="746000" />
       <workItem from="1639200930323" duration="3318000" />
       <workItem from="1639205204427" duration="7592000" />
-    </task>
-    <task id="LOCAL-00274" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637124182569</created>
-      <option name="number" value="00274" />
-      <option name="presentableId" value="LOCAL-00274" />
-      <option name="project" value="LOCAL" />
-      <updated>1637124182569</updated>
-    </task>
-    <task id="LOCAL-00275" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637169709287</created>
-      <option name="number" value="00275" />
-      <option name="presentableId" value="LOCAL-00275" />
-      <option name="project" value="LOCAL" />
-      <updated>1637169709288</updated>
-    </task>
-    <task id="LOCAL-00276" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637257367416</created>
-      <option name="number" value="00276" />
-      <option name="presentableId" value="LOCAL-00276" />
-      <option name="project" value="LOCAL" />
-      <updated>1637257367416</updated>
-    </task>
-    <task id="LOCAL-00277" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637398884620</created>
-      <option name="number" value="00277" />
-      <option name="presentableId" value="LOCAL-00277" />
-      <option name="project" value="LOCAL" />
-      <updated>1637398884621</updated>
-    </task>
-    <task id="LOCAL-00278" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637400821246</created>
-      <option name="number" value="00278" />
-      <option name="presentableId" value="LOCAL-00278" />
-      <option name="project" value="LOCAL" />
-      <updated>1637400821247</updated>
-    </task>
-    <task id="LOCAL-00279" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637483731559</created>
-      <option name="number" value="00279" />
-      <option name="presentableId" value="LOCAL-00279" />
-      <option name="project" value="LOCAL" />
-      <updated>1637483731559</updated>
-    </task>
-    <task id="LOCAL-00280" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637488009687</created>
-      <option name="number" value="00280" />
-      <option name="presentableId" value="LOCAL-00280" />
-      <option name="project" value="LOCAL" />
-      <updated>1637488009687</updated>
-    </task>
-    <task id="LOCAL-00281" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637514090481</created>
-      <option name="number" value="00281" />
-      <option name="presentableId" value="LOCAL-00281" />
-      <option name="project" value="LOCAL" />
-      <updated>1637514090481</updated>
-    </task>
-    <task id="LOCAL-00282" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637601542739</created>
-      <option name="number" value="00282" />
-      <option name="presentableId" value="LOCAL-00282" />
-      <option name="project" value="LOCAL" />
-      <updated>1637601542739</updated>
-    </task>
-    <task id="LOCAL-00283" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637642082589</created>
-      <option name="number" value="00283" />
-      <option name="presentableId" value="LOCAL-00283" />
-      <option name="project" value="LOCAL" />
-      <updated>1637642082589</updated>
+      <workItem from="1639327633847" duration="3809000" />
+      <workItem from="1639331462398" duration="786000" />
+      <workItem from="1639332263902" duration="307000" />
+      <workItem from="1639332603507" duration="1308000" />
+      <workItem from="1639355011739" duration="13834000" />
+      <workItem from="1639411056824" duration="3276000" />
+      <workItem from="1639414352872" duration="37000" />
+      <workItem from="1639414402917" duration="1815000" />
+      <workItem from="1639441661038" duration="337000" />
+      <workItem from="1639442014458" duration="711000" />
+      <workItem from="1639442755730" duration="771000" />
+      <workItem from="1639443543535" duration="169000" />
+      <workItem from="1639443738416" duration="141000" />
+      <workItem from="1639443895058" duration="79000" />
+      <workItem from="1639443988157" duration="5626000" />
+      <workItem from="1639490995160" duration="2851000" />
+      <workItem from="1639493864837" duration="1455000" />
+      <workItem from="1639495359489" duration="196000" />
+      <workItem from="1639495575997" duration="248000" />
+      <workItem from="1639495839655" duration="74000" />
+      <workItem from="1639496071018" duration="3262000" />
+      <workItem from="1639499351009" duration="1591000" />
+      <workItem from="1639588641518" duration="750000" />
+      <workItem from="1639742163133" duration="7285000" />
     </task>
     <task id="LOCAL-00284" summary="2021年11月5日 06:33:58 处理业务">
       <created>1637681856983</created>
@@ -2939,7 +2902,77 @@
       <option name="project" value="LOCAL" />
       <updated>1639200870209</updated>
     </task>
-    <option name="localTasksCounter" value="323" />
+    <task id="LOCAL-00323" summary="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <created>1639327724727</created>
+      <option name="number" value="00323" />
+      <option name="presentableId" value="LOCAL-00323" />
+      <option name="project" value="LOCAL" />
+      <updated>1639327724728</updated>
+    </task>
+    <task id="LOCAL-00324" summary="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <created>1639332414307</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
+      <option name="project" value="LOCAL" />
+      <updated>1639332414308</updated>
+    </task>
+    <task id="LOCAL-00325" summary="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <created>1639354687116</created>
+      <option name="number" value="00325" />
+      <option name="presentableId" value="LOCAL-00325" />
+      <option name="project" value="LOCAL" />
+      <updated>1639354687116</updated>
+    </task>
+    <task id="LOCAL-00326" summary="2021年12月13日 23:59:22 表格导入">
+      <created>1639411174659</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
+      <option name="project" value="LOCAL" />
+      <updated>1639411174660</updated>
+    </task>
+    <task id="LOCAL-00327" summary="2021年12月14日 00:53:36 用户批量上传">
+      <created>1639414452441</created>
+      <option name="number" value="00327" />
+      <option name="presentableId" value="LOCAL-00327" />
+      <option name="project" value="LOCAL" />
+      <updated>1639414452442</updated>
+    </task>
+    <task id="LOCAL-00328" summary="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <created>1639442225244</created>
+      <option name="number" value="00328" />
+      <option name="presentableId" value="LOCAL-00328" />
+      <option name="project" value="LOCAL" />
+      <updated>1639442225244</updated>
+    </task>
+    <task id="LOCAL-00329" summary="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <created>1639443760747</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
+      <option name="project" value="LOCAL" />
+      <updated>1639443760747</updated>
+    </task>
+    <task id="LOCAL-00330" summary="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <created>1639443951977</created>
+      <option name="number" value="00330" />
+      <option name="presentableId" value="LOCAL-00330" />
+      <option name="project" value="LOCAL" />
+      <updated>1639443951978</updated>
+    </task>
+    <task id="LOCAL-00331" summary="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <created>1639496104465</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
+      <option name="project" value="LOCAL" />
+      <updated>1639496104465</updated>
+    </task>
+    <task id="LOCAL-00332" summary="2021年12月13日 00:48:11 log4j升级2.15.0">
+      <created>1639499281846</created>
+      <option name="number" value="00332" />
+      <option name="presentableId" value="LOCAL-00332" />
+      <option name="project" value="LOCAL" />
+      <updated>1639499281846</updated>
+    </task>
+    <option name="localTasksCounter" value="333" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -3051,9 +3084,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年9月26日 23:17:25 favicon.ico圖標路徑修復" />
-    <MESSAGE value="2021年9月27日 00:40:25 登记记录表" />
-    <MESSAGE value="2021年9月29日 03:11:54 layUI接入整合" />
     <MESSAGE value="2021年10月1日 03:30:18 Bootstrap响应式布局" />
     <MESSAGE value="2021年10月4日 00:19:50 日期默认值" />
     <MESSAGE value="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页" />
@@ -3076,7 +3106,10 @@
     <MESSAGE value="2021年12月3日 01:36:09 页面调整！" />
     <MESSAGE value="2021年12月5日 23:34:23 配置角色授权" />
     <MESSAGE value="2021年11月5日 06:33:58 处理业务" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年11月5日 06:33:58 处理业务" />
+    <MESSAGE value="2021年12月13日 23:59:22 表格导入" />
+    <MESSAGE value="2021年12月14日 00:53:36 用户批量上传" />
+    <MESSAGE value="2021年12月13日 00:48:11 log4j升级2.15.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年12月13日 00:48:11 log4j升级2.15.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3096,11 +3129,6 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java</url>
           <line>54</line>
           <option name="timeStamp" value="26" />
@@ -3116,19 +3144,9 @@
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java</url>
-          <line>100</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/service/impl/TestServiceImpl.java</url>
           <line>51</line>
           <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/test/controller/TestController.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xxk/management/office/devices/controller/DevicesController.java</url>
@@ -3167,6 +3185,7 @@
         <watch expression="httpServletRequest.getParameterMap()" language="JAVA" />
         <watch expression="status" />
         <watch expression="(pageStart-1)*pageSize" />
+        <watch expression="excelFile.length" />
       </configuration>
     </watches-manager>
   </component>

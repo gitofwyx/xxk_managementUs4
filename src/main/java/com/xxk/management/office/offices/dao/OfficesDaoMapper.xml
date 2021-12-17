@@ -39,6 +39,11 @@
         from xxk_offices where belong_to_id='root' and deleteFlag='0';
     </select>
 
+    <select id="getOfficeUpDate" parameterType="string" resultType="string">
+        select updateDate
+        from xxk_offices where where office_ident=#{0} and deleteFlag='0';
+    </select>
+
     <!--添加信息 -->
     <insert id="addOffices" parameterType="com.xxk.management.office.offices.entity.Offices">
         insert into xxk_offices(<include refid="columns"></include>) values(
@@ -51,6 +56,11 @@
     <update id="updateOffices" parameterType="com.xxk.management.office.offices.entity.Offices">
         update xxk_offices set office_name=#{office_name},leading_official=#{leading_official},keyWord=#{keyWord},
         updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
+    </update>
+
+    <!--修改信息 -->
+    <update id="updateOfficesUDstatus" parameterType="string">
+        update xxk_offices set updateUserId=#{1},updateDate=#{2} where office_ident=#{0} and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->

@@ -21,7 +21,7 @@
     <asm.version>3.3.1</asm.version>
     <junit.version>4.11</junit.version>
     <slf4j.version>1.7.5</slf4j.version>
-    <log4j.version>2.15.0</log4j.version>
+    <log4j.version>2.16.0</log4j.version>
     <aopalliance.version>1.0</aopalliance.version>
     <commons-beanutis.version>1.8.3</commons-beanutis.version>
     <commons-codec.version>1.8</commons-codec.version>
@@ -374,6 +374,12 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>${fastjson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.belerweb</groupId>
+      <artifactId>pinyin4j</artifactId>
+      <version>2.5.1</version>
     </dependency>
 
     <!--aapache的导入导出文件工具类-->
