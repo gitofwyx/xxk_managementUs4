@@ -10,22 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96781760-f708-4b19-b4f7-7da62f6fd708" name="Default" comment="2021年12月13日 00:48:11 log4j升级2.15.0">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_belerweb_pinyin4j_2_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_SparseBitSet_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_4_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/xxk_managementUs4_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_15_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_16_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_15_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_16_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_15_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_16_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_web_2_15_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_web_2_16_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/controller/OfficesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/dao/OfficesDaoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/OfficesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/OfficesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/impl/OfficesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxk/management/office/offices/service/impl/OfficesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/bui/form/bootstrap_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xxk_managementUs4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xxk_managementUs4.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2628,13 +2622,8 @@
       <workItem from="1639499351009" duration="1591000" />
       <workItem from="1639588641518" duration="750000" />
       <workItem from="1639742163133" duration="7285000" />
-    </task>
-    <task id="LOCAL-00284" summary="2021年11月5日 06:33:58 处理业务">
-      <created>1637681856983</created>
-      <option name="number" value="00284" />
-      <option name="presentableId" value="LOCAL-00284" />
-      <option name="project" value="LOCAL" />
-      <updated>1637681856983</updated>
+      <workItem from="1639762221506" duration="162000" />
+      <workItem from="1639762398885" duration="395000" />
     </task>
     <task id="LOCAL-00285" summary="2021年11月5日 06:33:58 处理业务">
       <created>1637684590903</created>
@@ -2972,7 +2961,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639499281846</updated>
     </task>
-    <option name="localTasksCounter" value="333" />
+    <task id="LOCAL-00333" summary="2021年12月13日 00:48:11 log4j升级2.16.0">
+      <created>1639762373247</created>
+      <option name="number" value="00333" />
+      <option name="presentableId" value="LOCAL-00333" />
+      <option name="project" value="LOCAL" />
+      <updated>1639762373247</updated>
+    </task>
+    <option name="localTasksCounter" value="334" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -3084,7 +3080,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="2021年10月1日 03:30:18 Bootstrap响应式布局" />
     <MESSAGE value="2021年10月4日 00:19:50 日期默认值" />
     <MESSAGE value="2021年10月4日 01:43:40 user-scalable控制用户是否可以进行触屏扩大或缩小网页" />
     <MESSAGE value="2021年10月8日 00:04:19 移动登记" />
@@ -3109,7 +3104,8 @@
     <MESSAGE value="2021年12月13日 23:59:22 表格导入" />
     <MESSAGE value="2021年12月14日 00:53:36 用户批量上传" />
     <MESSAGE value="2021年12月13日 00:48:11 log4j升级2.15.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="2021年12月13日 00:48:11 log4j升级2.15.0" />
+    <MESSAGE value="2021年12月13日 00:48:11 log4j升级2.16.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="2021年12月13日 00:48:11 log4j升级2.16.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

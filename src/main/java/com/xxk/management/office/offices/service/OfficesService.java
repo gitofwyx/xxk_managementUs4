@@ -23,6 +23,6 @@ public interface OfficesService {
 
     public int geRootCount(String belong_to_id);
 
-    public String getOfficeUpDate(String office_ident);
+    public String getOfficeUpdateDate(String office_ident);
 
 }

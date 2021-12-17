@@ -39,7 +39,7 @@
         from xxk_offices where belong_to_id='root' and deleteFlag='0';
     </select>
 
-    <select id="getOfficeUpDate" parameterType="string" resultType="string">
+    <select id="getOfficeUpdateDate" parameterType="string" resultType="string">
         select updateDate
         from xxk_offices where where office_ident=#{0} and deleteFlag='0';
     </select>

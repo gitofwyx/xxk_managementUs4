@@ -60,7 +60,7 @@ public class OfficesServiceImpl implements OfficesService {
         return dao.geRootCount(belong_to_id);
     }
 
-    public String getOfficeUpDate(String office_ident){
-        return dao.getOfficeUpDate(office_ident);
+    public String getOfficeUpdateDate(String office_ident){
+        return dao.getOfficeUpdateDate(office_ident);
     }
 }

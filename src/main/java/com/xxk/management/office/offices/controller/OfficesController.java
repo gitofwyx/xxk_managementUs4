@@ -104,7 +104,7 @@ public class OfficesController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/getOfficeSelect")
-    public Map<String, Object> getOfficeSelect() {
+    public Map<String, Object> getOfficeSelect(@RequestParam(value = "pageIndex") String pageIndex) {
         int id = 0;
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listOffice = new ArrayList<>();
@@ -129,7 +129,7 @@ public class OfficesController extends BaseController {
         int id = 0;
         Map<String, Object> result = new HashMap<>();
         try {
-            String date = officesService.getOfficeUpDate("1");
+            String date = officesService.getOfficeUpdateDate("1");
             if (date == null) {
                 log.error("获取出错");
                 return null;
