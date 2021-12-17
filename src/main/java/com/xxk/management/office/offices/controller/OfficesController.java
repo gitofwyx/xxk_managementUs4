@@ -104,17 +104,24 @@ public class OfficesController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/getOfficeSelect")
-    public Map<String, Object> getOfficeSelect(@RequestParam(value = "pageIndex") String pageIndex) {
+    public Map<String, Object> getOfficeSelect(@RequestParam(value = "updateDate") String updateDate) {
         int id = 0;
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> listOffice = new ArrayList<>();
         try {
+            String date = officesService.getOfficeUpdateDate("1");
+            if (date == null||date.equals(updateDate)) {
+                result.put("hasError", true);
+                result.put("error", "updateDate不变，科室更新取消");
+                return result;
+            }
             listOffice = officesService.getOfficeSelect();
             if (listOffice == null) {
                 log.error("获取出错");
                 return null;
             }
             result.put("result", listOffice);
+            result.put("updateDate",date);
             /*result.put("dev_count", dev_count);*/
         } catch (Exception e) {
             log.error(e);
