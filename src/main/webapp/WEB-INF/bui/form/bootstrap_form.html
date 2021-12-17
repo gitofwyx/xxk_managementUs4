@@ -305,6 +305,7 @@
             alert("浏览器不支持localstorage！");
             $.ajax({
                 url: '/getOfficeSelect',
+                data: {"updateDate":"NO"},
                 type: 'POST', //GET
                 async: true,    //或false,是否异步
                 /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
