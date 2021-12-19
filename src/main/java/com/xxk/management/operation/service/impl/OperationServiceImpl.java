@@ -96,8 +96,8 @@ public class OperationServiceImpl implements OperationService {
         List<Map<String, Object>> reg_records=registration_recordService.getRegistration_recordById(operation.getOpe_registration_id());
         if(reg_records!=null && reg_records.size()>0 && reg_records.get(0)!=null){
             if("2".equals(reg_records.get(0).get("execute_record_status"))){
-                log.error("addRegistration:registration_recordService.当前记录已处理完！");
-                throw new Exception("addRegistration:registration_recordService.当前记录已处理完！");
+                log.error("addRegistration:当前记录已处理完！");
+                throw new Exception("addRegistration:当前记录已处理完！");
             }
             if("3".equals(operation.getOpe_statement())&&"0".equals(reg_records.get(0).get("execute_record_status"))){
                 registration_recordService.updateRegistration_recordExeStatus(operation.getOpe_registration_id(),"1",operation.getCreateUserId(),Date);

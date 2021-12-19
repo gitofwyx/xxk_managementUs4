@@ -13,6 +13,7 @@
                          xu.name as reg_record_name,
                          rr.reg_receiver_id as reg_receiver_id,
                          xe.name as reg_receiver_name,
+                         rr.reg_record_ident as reg_record_ident,
                          rr.reg_record_status as reg_record_status,
                          rr.reg_record_date as reg_record_date,
                          rr.execute_record_status as execute_record_status,
@@ -29,6 +30,7 @@
         <result column="reg_record_name" property="reg_record_name" jdbcType="VARCHAR"/>
         <result column="reg_receiver_id" property="reg_receiver_id" jdbcType="VARCHAR"/>
         <result column="reg_receiver_name" property="reg_receiver_name" jdbcType="VARCHAR"/>
+        <result column="reg_record_ident" property="reg_record_ident" jdbcType="VARCHAR"/>
         <result column="reg_record_status" property="reg_record_status" jdbcType="VARCHAR"/>
         <result column="reg_record_date" property="reg_record_date" jdbcType="VARCHAR"/>
         <result column="execute_record_status" property="execute_record_status" jdbcType="VARCHAR"/>
