@@ -31,7 +31,9 @@ function localstorageIO(ioKey, url, isReset, ioValue) {
                 }
             })
         }
-        return JSON.parse(stroage.getItem(ioKey));
+        if (!$.isEmptyObject(stroage.getItem(ioKey)) && stroage.getItem(ioKey) != null) {
+            return JSON.parse(stroage.getItem(ioKey));
+        }
 
     }
     return null;
