@@ -227,7 +227,7 @@ public class DeliveryController extends BaseController {
         } catch (Exception e) {
             log.error(e);
             result.put("hasError", true);
-            result.put("error", "更新出错");
+            result.put("error", e.getLocalizedMessage());
         }
         return result;
         //return "system/index";

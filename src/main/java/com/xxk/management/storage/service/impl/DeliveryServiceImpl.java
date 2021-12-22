@@ -167,7 +167,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         boolean Result = dao.updateDeliveryStatus(delivery.getId(), "5") == 1 ? true : false;
         if (!Result) {
             log.error("backwardDelivery:dao.updateDeliveryStatus出错！");
-            throw new Exception("backwardDelivery:dao.updateDeliveryStatus出错！");
+            throw new Exception("出错！查看是否已经入科！");
         }
         //更新库存记录
         result = stockService.updateStockForBackward(storage, delivery, stock_no);
