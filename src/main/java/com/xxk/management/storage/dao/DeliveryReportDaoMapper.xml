@@ -14,7 +14,7 @@ out_confirmed_remark,entity_entry_status,keyWord,createUserId,createDate,updateU
       xd.out_confirmed_ident AS out_confirmed_ident,
       xd.out_confirmed_type AS out_confirmed_type,
       xd.out_confirmed_by AS out_confirmed_by,
-      xu.name AS out_confirmed_name,
+      xu.realName AS out_confirmed_name,
       xd.out_confirmed_officeId AS out_confirmed_officeId,
       xd.out_confirmed_date AS out_confirmed_date,
       xo.office_name AS office_name,
