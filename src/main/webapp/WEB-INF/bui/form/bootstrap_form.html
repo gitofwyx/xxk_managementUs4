@@ -235,9 +235,10 @@
                     </div>
                     <div id="operation_form_div"
                          class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="padding-right: 1px;padding-left: 1px">
-                        <input type="hidden" name="registration_id" id="registration_id">
+                        <input type="hidden" name="registration_id" id="registration_id" class="NO_Reset">
 
-                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-4 col-lg-offset-4" style="padding-right: 1px;padding-left: 1px">
+                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-4 col-lg-offset-4"
+                             style="padding-right: 1px;padding-left: 1px">
                             <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
                                 <label class="control-label" style="margin-bottom:5px; ">处理声明选择</label>
                                 <div class="">
@@ -305,7 +306,7 @@
             alert("浏览器不支持localstorage！");
             $.ajax({
                 url: '/getOfficeSelect',
-                data: {"updateDate":"NO"},
+                data: {"updateDate": "NO"},
                 type: 'POST', //GET
                 async: false,    //或false,是否异步
                 /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
@@ -338,8 +339,8 @@
                         return office;
                     })
                 },
-                effectiveFields: ["text",""],
-                searchFields: ["text", "id","pinYin_code","pinYinS_code"],
+                effectiveFields: ["text", ""],
+                searchFields: ["text", "id", "pinYin_code", "pinYinS_code"],
                 effectiveFieldsAlias: {"text": "科室名称",},
                 listAlign: 'auto',
                 showBtn: false,
@@ -523,7 +524,7 @@
                 time = 5;
             }
             //eg2
-            layer.open({
+            id = layer.open({
                 content: msg
                 , btn: btn
                 , time: time * 1000
@@ -559,6 +560,7 @@
                     //return false 开启该代码可禁止点击该按钮关闭
                 }
             });
+            return id;
         }
 
         function deal_affairs_func(v) {
@@ -640,7 +642,7 @@
 
         }
 
-        function refurbish_record_list(oId)  {
+        function refurbish_record_list(oId) {
             if ($("#record_select_id").val() == 110) {
                 $("#registration_record_part").load("/reg/registration_record_part",
                     {
@@ -718,9 +720,26 @@
         function ope_submit(data) {
 
             CD_ajaxAllParam("/addMobileOperation", data.field, true, function (v) {
-                    if (v.hasError == true) layer_alert(v.error, ['确定'], 2); else layer_alert("提交完成", ['确定'], 2)
+                    if (v.hasError == true) layer_alert(v.error, ['确定'], 2);
+                    else {
+                        CD_ajaxAllParam("/getRegistration_recordById", {
+                            record_id: data.field.registration_id,
+                            "TD": "logout"
+                        }, true, function (data) {
+                            if (result_handle(data)) {
+                                listRecord = data.listReg_record[0];
+                                listRecord.TD = "logout";
+                                $("#ope_form_record_part").load("/ope/operation_record_part", listRecord);
+                            }
+                        });
+                        pId = layer_alert("提交完成，继续停留当前窗口？", ['继续', '关闭'], 7, function () {
+                            layer.close(pId);
+                        }, function () {
+                            layer.close(exe_layer);
+                            return true;
+                        });
+                    }
                     //$("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
-                    layer.close(exe_layer);
                 }
             );
         }
@@ -822,9 +841,6 @@
         });
 
     });
-
-
-
 
 
     $('#reg_describe_btn').on('click', function () {

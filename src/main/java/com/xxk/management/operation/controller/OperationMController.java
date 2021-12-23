@@ -75,6 +75,7 @@ public class OperationMController extends BaseController {
             if("".equals(registration_id)||registration_id==null){
                 result.put("hasError", true);
                 result.put("error", "添加出错,登记Id为空！");
+                return result;
             }
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             operation.setOpe_registration_id(registration_id);
