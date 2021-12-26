@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 
-  <input type="file" name="excelFile" id="excelFile">
-  <a class="layui-btn layui-btn-mini" id="btn_uploadimg">上传图片</a>
+    <input type="file" name="excelFile" id="excelFile">
+    <a class="layui-btn layui-btn-mini" id="btn_uploadimg">上传图片</a>
+
+    <a class="layui-btn layui-btn-mini" id="sendMessage">发送</a>
 
 
 </head>
@@ -13,42 +15,82 @@
 <script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
 <script>
 
-  $(function () {
-    $("#btn_uploadimg").click(function () {
-      var fileObj = $("#excelFile")[0].files[0]; // js 获取文件对象
-      if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
-        alert("请选择图片");
-        return;
-      }
-      var formFile = new FormData();
-      formFile.append("action", "UploadVMKImagePath");
-      formFile.append("excelFile", fileObj); //加入文件对象
+    $(function () {
+        if (!!window.WebSocket && window.WebSocket.prototype.send) {
+            console.log("您的浏览器支持Websocket通信协议")
+        } else {
+            alert("您的浏览器不支持Websocket通信协议，请使用Chrome或者Firefox浏览器！");
+            return;
+        }
 
-      //第一种  XMLHttpRequest 对象
-      //var xhr = new XMLHttpRequest();
-      //xhr.open("post", "/Admin/Ajax/VMKHandler.ashx", true);
-      //xhr.onload = function () {
-      //    alert("上传完成!");
-      //};
-      //xhr.send(formFile);
+        //创建WebSocket对象
+        var webSocket = new WebSocket("ws://192.168.3.12:8080/websocket");
 
-      //第二种 ajax 提交
+//连接成功调用方法
+        webSocket.onopen = function (e) {
+            console.log("onopen");
+            //显示聊天室
+            $("#chatroomBox").css("display", "block");
+            //断开连接按钮可用
+            $("#disconnectBtn").attr("disabled", false);
+        };
 
-      var data = formFile;
-      $.ajax({
-        url: "/saveExcel",
-        data: data,
-        type: "Post",
-        dataType: "json",
-        cache: false,//上传文件无需缓存
-        processData: false,//用于对data参数进行序列化处理 这里必须false
-        contentType: false, //必须
-        success: function (result) {
-          alert("上传完成!");
-        },
-      })
+//浏览器收到服务器消息调用方法
+        webSocket.onmessage = function (e) {
+            console.log("onmessage");
+            alert(e.data);
+
+        };
+
+//出现错误调用方法
+        webSocket.onerror = function (e) {
+            alert(e.type);
+        };
+
+//连接关闭调用方法
+        webSocket.onclose = function (e) {
+            alert(e.type);
+        };
+
+        $("#sendMessage").click(function () {
+            webSocket.send("发送！！！！！！");
+        });
+
+        $("#btn_uploadimg").click(function () {
+            var fileObj = $("#excelFile")[0].files[0]; // js 获取文件对象
+            if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+                alert("请选择图片");
+                return;
+            }
+            var formFile = new FormData();
+            formFile.append("action", "UploadVMKImagePath");
+            formFile.append("excelFile", fileObj); //加入文件对象
+
+            //第一种  XMLHttpRequest 对象
+            //var xhr = new XMLHttpRequest();
+            //xhr.open("post", "/Admin/Ajax/VMKHandler.ashx", true);
+            //xhr.onload = function () {
+            //    alert("上传完成!");
+            //};
+            //xhr.send(formFile);
+
+            //第二种 ajax 提交
+
+            var data = formFile;
+            $.ajax({
+                url: "/saveExcel",
+                data: data,
+                type: "Post",
+                dataType: "json",
+                cache: false,//上传文件无需缓存
+                processData: false,//用于对data参数进行序列化处理 这里必须false
+                contentType: false, //必须
+                success: function (result) {
+                    alert("上传完成!");
+                },
+            })
+        })
     })
-  })
 
 
 </script>

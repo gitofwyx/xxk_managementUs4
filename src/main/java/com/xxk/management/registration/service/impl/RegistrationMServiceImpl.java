@@ -87,9 +87,8 @@ public class RegistrationMServiceImpl implements RegistrationMService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException {
-        Map<String, Object> result = new HashMap<>();
-        Boolean resultReg = false;
+    public boolean addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException {
+        boolean resultReg = false;
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
@@ -136,7 +135,7 @@ public class RegistrationMServiceImpl implements RegistrationMService {
                 throw new Exception("addRegistration:registration_recordService.addRegistration_record出错！");
             }
         }
-        return result;
+        return resultReg;
         //return "system/index";
     }
 

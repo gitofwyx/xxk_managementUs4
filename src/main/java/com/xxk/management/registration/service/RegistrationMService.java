@@ -19,7 +19,7 @@ public interface RegistrationMService {
                                                                String[] status,
                                                                String[] e_status);
 
-    public Map<String, Object> addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException;
+    public boolean addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException;
 
     public boolean acceptanceRegistration(String id,String receiver_id) throws Exception, RuntimeException;
 

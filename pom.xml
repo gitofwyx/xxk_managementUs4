@@ -143,6 +143,13 @@
       <scope>compile</scope>
     </dependency>
 
+    <!-- Spring WebSocket -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-websocket</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
     <!-- shiro -->
     <dependency>
       <groupId>org.apache.shiro</groupId>
