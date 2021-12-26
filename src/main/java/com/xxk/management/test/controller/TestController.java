@@ -12,6 +12,13 @@ import com.xxk.management.user.entity.RegUser;
 import com.xxk.management.user.service.RebUserService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -72,7 +79,7 @@ public class TestController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "/t2", method = RequestMethod.GET)
-    public Object t2( @RequestParam(value = "sleep") String sleep) {
+    public Object t2(@RequestParam(value = "sleep") String sleep) {
         Map<String, Object> result = new HashMap<>();
         try {
             if (sleep.equals("on")) {
@@ -87,7 +94,7 @@ public class TestController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/addRegUserTest",method = RequestMethod.POST)
+    @RequestMapping(value = "/addRegUserTest", method = RequestMethod.POST)
     public Map<String, Object> addRegUserTest(RegUser user) {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
@@ -163,16 +170,17 @@ public class TestController extends BaseController {
 
     /**
      * 上传excel文件
+     *
      * @param excelFile
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "/saveExcel", produces = { "application/json;charset=UTF-8" }, method = {
-            RequestMethod.POST, RequestMethod.GET })
+    @RequestMapping(value = "/saveExcel", produces = {"application/json;charset=UTF-8"}, method = {
+            RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Map<String, Object> readXls(@RequestParam MultipartFile[] excelFile) throws IOException {
         Map<String, Object> result = new HashMap<>();
-        long startTime=System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         String originalFilename;
         int r = 0;
         if (excelFile == null || excelFile.length == 0) {
@@ -202,14 +210,14 @@ public class TestController extends BaseController {
                         //list = readXLSX(myfile);
                     }
                     /*批量插入数据*/
-                    if(!CollectionUtils.isEmpty(list)){
+                    if (!CollectionUtils.isEmpty(list)) {
                       /*  boolean ar=rebUserService.addListRegUser(list);
                         if (!ar) {
                             result.put("hasError", true);
                             result.put("error", "导入为空，检查导入格式。");
                             return result;
                         }*/
-                    }else {
+                    } else {
                         result.put("hasError", true);
                         result.put("error", "获取到的列表为空，取消导入。");
                         return result;
@@ -224,14 +232,15 @@ public class TestController extends BaseController {
             result.put("error", "文件解析失败，请确认表中的必填项不为空！导入已中断。");
             return result;
         }
-        long hs=System.currentTimeMillis()-startTime;
+        long hs = System.currentTimeMillis() - startTime;
         result.put("hasError", true);
-        result.put("error", "导入数据总耗时："+hs+"毫秒");
+        result.put("error", "导入数据总耗时：" + hs + "毫秒");
         return result;
     }
 
     /**
      * 解析.xls格式的excel文件
+     *
      * @param file
      * @return
      * @throws IOException
@@ -250,7 +259,7 @@ public class TestController extends BaseController {
         for (int rowNum = 0; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
             HSSFRow hssfRow = hssfSheet.getRow(rowNum);
             if (hssfRow != null) {
-                RegUser regUser=regUserSupplier.get();
+                RegUser regUser = regUserSupplier.get();
                 HSSFCell txt = hssfRow.getCell(0);
                 if (txt == null) {
                     errorNum += 1;
@@ -258,7 +267,7 @@ public class TestController extends BaseController {
                     continue;
                 }
                 txt.setCellType(CellType.STRING);
-                if("工号".equals(txt.getStringCellValue())||StringUtils.isBlank(txt.getStringCellValue())){
+                if ("工号".equals(txt.getStringCellValue()) || StringUtils.isBlank(txt.getStringCellValue())) {
                     errorNum += 1;
                     errorMsg += "第" + (rowNum + 1) + "行（数据）不是设定的导入字符(工号)";
                     continue;
@@ -280,10 +289,33 @@ public class TestController extends BaseController {
         String message = "导入结果:&成功导入" + okNum + "条数据 失败" + errorNum + "条&错误记录:&"
                 + errorMsg;
 
-        if(is!=null){
+        if (is != null) {
             is.close();
         }
         return list;
+    }
+
+    @ResponseBody
+    @RequestMapping("/chatBotSend")
+    public String chatBotSend() {
+        String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=48ff7828-9fe4-4115-86a8-a2db2d9bc91a";
+        try {
+            HttpClient httpclient = HttpClients.createDefault();
+            HttpPost httppost = new HttpPost(WEBHOOK_TOKEN);
+            httppost.addHeader("Content-Type", "application/json; charset=utf-8");
+            //构建一个json格式字符串textMsg，其内容是接收方需要的参数和消息内容
+            String textMsg = "{\"msgtype\":\"text\",\"text\":{\"content\":\"你好，我是你贤哥啊\"},\"at\":{\"atMobiles\":[\"xxx\"],\"isAtAll\":false}}";
+            StringEntity se = new StringEntity(textMsg, "utf-8");
+            httppost.setEntity(se);
+            HttpResponse response = httpclient.execute(httppost);
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                String result = EntityUtils.toString(response.getEntity(), "utf-8");
+                System.out.println(result);
+            }
+        } catch (Exception e) {
+            return "false";
+        }
+        return "我是你贤哥啊";
     }
 
 
