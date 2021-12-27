@@ -299,13 +299,24 @@ public class TestController extends BaseController {
     @RequestMapping("/chatBotSend")
     public String chatBotSend() {
         String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=48ff7828-9fe4-4115-86a8-a2db2d9bc91a";
+        Map<String, Object> msgMap = new HashMap<>();
+        Map<String, Object> textMap = new HashMap<>();
+        List<String> mentioned_mobile_list=new ArrayList<String>();
+
         try {
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost(WEBHOOK_TOKEN);
             httppost.addHeader("Content-Type", "application/json; charset=utf-8");
             //构建一个json格式字符串textMsg，其内容是接收方需要的参数和消息内容
-            String textMsg = "{\"msgtype\":\"text\",\"text\":{\"content\":\"你好，我是你贤哥啊\"},\"at\":{\"atMobiles\":[\"xxx\"],\"isAtAll\":false}}";
-            StringEntity se = new StringEntity(textMsg, "utf-8");
+            textMap.put("content","你好，我是你贤哥啊");
+            textMap.put("mentioned_mobile_list",mentioned_mobile_list);
+            mentioned_mobile_list.add("@all");
+            msgMap.put("msgtype","text");
+            msgMap.put("text",textMap);
+
+            JSONObject msgJson = new JSONObject(msgMap);
+            //String textMsg = "{\"msgtype\":\"text\",\"text\":{\"content\":\"你好，我是你贤哥啊\"},\"at\":{\"atMobiles\":[\"xxx\"],\"isAtAll\":false}}";
+            StringEntity se = new StringEntity(msgJson.toJSONString(), "utf-8");
             httppost.setEntity(se);
             HttpResponse response = httpclient.execute(httppost);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
