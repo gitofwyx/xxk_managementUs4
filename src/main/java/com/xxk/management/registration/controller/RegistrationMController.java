@@ -3,6 +3,7 @@ package com.xxk.management.registration.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
+import com.xxk.management.WeChatRobot.service.WeChatRobotService;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration.service.RegistrationService;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.socket.TextMessage;
 
@@ -37,11 +39,15 @@ public class RegistrationMController extends BaseController {
     private RegistrationMService registrationMService;
 
     @Autowired
+    private WeChatRobotService weChatRobotService;
+
+    @Autowired
     private ComWebSocketHandler comWebSocketHandler;
 
     @ResponseBody
     @RequestMapping("/addMobileRegistration")
-    public Map<String, Object> addRegistration(Registration registration, Registration_record record) {
+    public Map<String, Object> addRegistration(Registration registration, Registration_record record,
+                                               @RequestParam(value = "reg_office_ident") String reg_office_ident) {
         Map<String, Object> result = new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
@@ -53,7 +59,10 @@ public class RegistrationMController extends BaseController {
             registration.setRegistration_py(CurrentUserId);
             boolean resultReg=registrationMService.addRegistrationAccordingRegStatus(registration,record);
             if(resultReg){
-                comWebSocketHandler.sendMessageToUsers(new TextMessage("有新的申请单已提交，提交人："+CurrentUser));
+                comWebSocketHandler.sendMessageToUsers(new TextMessage("有新的申请单已提交，提交人："+CurrentUser+"提交科室："+reg_office_ident));
+                Map<String, Object> textMap = new HashMap<>();
+                textMap.put("content",CurrentUser+":"+reg_office_ident+record.getReg_record_content());
+                boolean weRobotResult=weChatRobotService.chatBotSendByText(textMap);
             }
 
         } catch (DuplicateKeyException e) {
