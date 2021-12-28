@@ -62,7 +62,7 @@ public class RegistrationMController extends BaseController {
                 comWebSocketHandler.sendMessageToUsers(new TextMessage("有新的申请单已提交，提交人："+CurrentUser+"提交科室："+reg_office_ident));
                 Map<String, Object> textMap = new HashMap<>();
                 textMap.put("content",CurrentUser+":"+reg_office_ident+record.getReg_record_content());
-                boolean weRobotResult=weChatRobotService.chatBotSendByText(textMap);
+                weChatRobotService.chatBotSendByText(textMap);
             }
 
         } catch (DuplicateKeyException e) {

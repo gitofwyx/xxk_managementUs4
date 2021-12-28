@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public interface WeChatRobotService {
 
-    public boolean chatBotSendByText(Map<String, Object> textMap);
+    public void chatBotSendByText(Map<String, Object> textMap);
 
 
 }

@@ -24,6 +24,7 @@ import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,12 +41,17 @@ public class WeChatRobotServiceImpl implements WeChatRobotService {
 
     private static Logger log = LogManager.getLogger();
 
-    public boolean chatBotSendByText(Map<String, Object> textMap) {
+    @Async
+    public void chatBotSendByText(Map<String, Object> textMap) {
         String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=48ff7828-9fe4-4115-86a8-a2db2d9bc91a";
         Map<String, Object> msgMap = new HashMap<>();
         List<String> mentioned_mobile_list=new ArrayList<String>();
 
         try {
+            Thread.sleep(1 *   // minutes to sleep
+                    60 *   // seconds to a minute
+                    1000);
+            log.info("定时1min");
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost(WEBHOOK_TOKEN);
             httppost.addHeader("Content-Type", "application/json; charset=utf-8");
@@ -61,11 +67,11 @@ public class WeChatRobotServiceImpl implements WeChatRobotService {
             HttpResponse response = httpclient.execute(httppost);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String result = EntityUtils.toString(response.getEntity(), "utf-8");
-                return true;
+                log.info(result);
             }
         } catch (Exception e) {
-            return false;
+            log.error(e.getMessage());
         }
-        return false;
+
     }
 }
