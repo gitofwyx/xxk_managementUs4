@@ -48,10 +48,10 @@ public class WeChatRobotServiceImpl implements WeChatRobotService {
         List<String> mentioned_mobile_list=new ArrayList<String>();
 
         try {
-            Thread.sleep(1 *   // minutes to sleep
+            /*Thread.sleep(1 *   // minutes to sleep
                     60 *   // seconds to a minute
                     1000);
-            log.info("定时1min");
+            log.info("定时1min");*/
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost(WEBHOOK_TOKEN);
             httppost.addHeader("Content-Type", "application/json; charset=utf-8");
