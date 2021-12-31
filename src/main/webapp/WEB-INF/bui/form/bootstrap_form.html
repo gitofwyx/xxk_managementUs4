@@ -567,6 +567,10 @@
             if (result_handle(v)) {
                 $('.deal-affairs').on('click', function (ev) {
 
+                    var onLoadT=layer.open({
+                        type: 3,
+                        content: '加载中' //这里content是一个普通的String
+                    });
                     //alert($(this).children('input').val());
                     rec_id = $(this).children('input').val();
                     var listRecord = {};
@@ -577,7 +581,7 @@
                         if (result_handle(data)) {
                             listRecord = data.listReg_record[0];
                             listRecord.TD = "logout";
-                            $("#ope_record_part").load("/ope/operation_record_part", listRecord);
+
                             exe_layer = layer.open({
                                 title: '处理流程查看',
                                 type: 1,
@@ -598,7 +602,14 @@
                                     return false;
                                 },
                                 success: function (layero, index) {
+                                    layer.close(onLoadT);
                                     layer.full(index);
+                                    var exe_msg=layer.msg('加载中', {
+                                        time: 0, //20s后自动关闭
+                                    });
+                                    $("#ope_record_part").load("/ope/operation_record_part", listRecord,function () {
+                                        layer.close(exe_msg);
+                                    });
                                 },
                                 yes: function (index, layero) {
                                     if (listRecord.reg_record_status === "0" || listRecord.reg_record_status === "1") {
@@ -765,7 +776,12 @@
 
         form.on('submit(regForm)', function (data) {
             data.field.TD = "logout";
+            var onLoadT=layer.open({
+                type: 3,
+                content: '提交中' //这里content是一个普通的String
+            });
             CD_ajaxAllParam("/addMobileRegistration", data.field, true, function (v) {
+                layer.close(onLoadT);
                 if (result_handle(v)) {
                     $("#registration_record_part").load("/reg/registration_record_part",
                         {
