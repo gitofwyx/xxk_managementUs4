@@ -17,7 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="xxk_management" options="-endorseddirs G:\XXK\WYX\xxk_managementUs4\target/endorsed" />
-      <module name="xxk_managementUs4" options="-endorseddirs G:\XXK\WYX\xxk_managementUs4\target/endorsed" />
+      <module name="xxk_managementUs4" options="-endorseddirs E:\XXK\WYX\xxk_managementUs4\target/endorsed" />
     </option>
   </component>
 </project>
