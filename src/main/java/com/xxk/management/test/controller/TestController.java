@@ -346,7 +346,7 @@ public class TestController extends BaseController {
             // 音量 0-100
             ax.setProperty("Volume", new Variant(100));
             // 语音朗读速度 -10 到 +10
-            ax.setProperty("Rate", new Variant(-2));
+            ax.setProperty("Rate", new Variant(-4));
             // 执行朗读
             Dispatch.call(spVoice, "Speak", new Variant(sKr));
 
