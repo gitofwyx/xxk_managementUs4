@@ -15,5 +15,6 @@ public interface WeChatRobotService {
 
     public void chatBotSendByText(Map<String, Object> textMap);
 
+    public void chatBotSendByMarkdown(Map<String, Object> markdownMap);
 
 }

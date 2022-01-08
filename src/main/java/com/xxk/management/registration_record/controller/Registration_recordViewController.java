@@ -44,9 +44,9 @@ public class Registration_recordViewController extends BaseController {
     }*/
 
     @RequestMapping("")
-    public ModelAndView  application_workstation() {
+    public ModelAndView  application_workstation(@RequestParam(value = "reg_id",required = false) String reg_id) {
         Map<String, Object> result = new HashMap<>();
-        List<Map<String, Object>> listRecord=new ArrayList<>();
+        result.put("reg_id",reg_id);
 
         String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
 

@@ -3,6 +3,7 @@ package com.xxk.management.operation.service.impl;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
+import com.xxk.management.WeChatRobot.service.WeChatRobotService;
 import com.xxk.management.operation.dao.OperationDao;
 import com.xxk.management.operation.entity.Operation;
 import com.xxk.management.operation.service.OperationService;
@@ -37,6 +38,9 @@ public class OperationServiceImpl implements OperationService {
 
     @Autowired
     private RegistrationService registrationService;
+
+    @Autowired
+    private WeChatRobotService weChatRobotService;
 
     @Override
     public List<Operation> listOperation(int pageStart, int pageSize) {
@@ -79,14 +83,17 @@ public class OperationServiceImpl implements OperationService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public boolean addOperation(Operation operation) throws Exception, RuntimeException {
+    public boolean addOperation(Operation operation,String currentUser) throws Exception, RuntimeException {
 
         Map<String, Object> result = new HashMap<>();
+        Map<String, Object> markdownMap=new HashMap<>();
         Boolean resultReg = false;
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
         List<Registration_record> listRecord = new ArrayList();
+        String bootUrl="http://192.168.3.40:8080/";
+        String markDownUrl="("+bootUrl+"/reg?reg_id="+operation.getOpe_registration_id()+")";
         int reg_count = 0;
         Registration reg =registrationService.getRegistrationByRecordId(operation.getOpe_registration_id());
         operation.setOpe_office_id("NO");
@@ -102,6 +109,8 @@ public class OperationServiceImpl implements OperationService {
             if("3".equals(operation.getOpe_statement())&&"0".equals(reg_records.get(0).get("execute_record_status"))){
                 registration_recordService.updateRegistration_recordExeStatus(operation.getOpe_registration_id(),"1",operation.getCreateUserId(),Date);
                 operation.setOpe_flag("1");
+                markdownMap.put("content","["+currentUser+"提交了新的处理流程,点击登录后可查看和处理。]("+bootUrl+"/reg?reg_id="+operation.getOpe_registration_id()+")");
+
             }else if("1".equals(reg_records.get(0).get("execute_record_status"))){
                 operation.setOpe_flag("1");
             }
@@ -126,6 +135,18 @@ public class OperationServiceImpl implements OperationService {
             log.error("addRegistration:registration_recordService.addRegistration_record出错！");
             throw new Exception("addRegistration:registration_recordService.addRegistration_record出错！");
         }
+
+        if("1".equals(operation.getOpe_statement())){
+            markdownMap.put("content","["+currentUser+"提交了新的处理调查,点击登录后可查看和处理。]"+markDownUrl);
+        }
+        else if("2".equals(operation.getOpe_statement())){
+            markdownMap.put("content","["+currentUser+"提交了新的处理建议,点击登录后可查看和处理。]"+markDownUrl);
+        }
+        else if("4".equals(operation.getOpe_statement())){
+            markdownMap.put("content","["+currentUser+"提交了新的处理反馈,点击登录后可查看和处理。]"+markDownUrl);
+        }
+
+        weChatRobotService.chatBotSendByMarkdown(markdownMap);
 
         return resultReg;
     }

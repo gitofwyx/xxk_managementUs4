@@ -78,9 +78,10 @@ public class OperationMController extends BaseController {
                 return result;
             }
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            String CurrentUser = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             operation.setOpe_registration_id(registration_id);
             operation.setCreateUserId(CurrentUserId);
-            Boolean resultOpe = operationService.addOperation(operation);
+            Boolean resultOpe = operationService.addOperation(operation,CurrentUser);
             if (!(resultOpe)) {
                 result.put("hasError", true);
                 result.put("error", "添加出错");

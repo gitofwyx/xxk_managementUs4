@@ -52,6 +52,9 @@ public class WeChatRobotServiceImpl implements WeChatRobotService {
                     60 *   // seconds to a minute
                     1000);
             log.info("定时1min");*/
+            if ("".equals(textMap.get("content"))||textMap.get("content")==null){
+                return;
+            }
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost(WEBHOOK_TOKEN);
             httppost.addHeader("Content-Type", "application/json; charset=utf-8");
@@ -60,6 +63,40 @@ public class WeChatRobotServiceImpl implements WeChatRobotService {
             mentioned_mobile_list.add("@all");
             msgMap.put("msgtype","text");
             msgMap.put("text",textMap);
+
+            JSONObject msgJson = new JSONObject(msgMap);
+            StringEntity se = new StringEntity(msgJson.toJSONString(), "utf-8");
+            httppost.setEntity(se);
+            HttpResponse response = httpclient.execute(httppost);
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                String result = EntityUtils.toString(response.getEntity(), "utf-8");
+                log.info(result);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+
+    }
+
+    @Async
+    public void chatBotSendByMarkdown(Map<String, Object> markdownMap) {
+        String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=de038aad-b19f-4912-81e5-af107608757d";
+        Map<String, Object> msgMap = new HashMap<>();
+
+        try {
+            /*Thread.sleep(1 *   // minutes to sleep
+                    60 *   // seconds to a minute
+                    1000);
+            log.info("定时1min");*/
+            if ("".equals(markdownMap.get("content"))||markdownMap.get("content")==null){
+                return;
+            }
+            HttpClient httpclient = HttpClients.createDefault();
+            HttpPost httppost = new HttpPost(WEBHOOK_TOKEN);
+            httppost.addHeader("Content-Type", "application/json; charset=utf-8");
+            //构建一个json格式字符串textMsg，其内容是接收方需要的参数和消息内容
+            msgMap.put("msgtype","markdown");
+            msgMap.put("markdown",markdownMap);
 
             JSONObject msgJson = new JSONObject(msgMap);
             StringEntity se = new StringEntity(msgJson.toJSONString(), "utf-8");

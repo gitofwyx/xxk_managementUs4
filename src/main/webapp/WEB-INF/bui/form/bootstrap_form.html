@@ -236,6 +236,9 @@
                     <div id="operation_form_div"
                          class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="padding-right: 1px;padding-left: 1px">
                         <input type="hidden" name="registration_id" id="registration_id" class="NO_Reset">
+                        <#if (result.reg_id)??>
+                        <input type="hidden" name="reg_record_id" id="reg_record_id" value=${result.reg_id}>
+                        </#if>
 
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-4 col-lg-offset-4"
                              style="padding-right: 1px;padding-left: 1px">
@@ -675,51 +678,61 @@
             }
         }
 
+        function exe_layer_func(v){
+            {
+                if(CheckIsNullOrEmpty(v.reg_id)) var rec_id =v.reg_id;
+                else {
+                    layer.msg('无法获取登记ID');
+                    return;
+                }
+                $('#registration_id').val(rec_id);
+                exe_layer = layer.open({
+                    title: '添加处理流程',
+                    type: 1,
+                    skin: 'layui-layer-rim',
+                    area: 'auto',
+                    content: $('#ope_area_div'),
+                    btn: ['提交', '关闭'],
+                    btnAlign: 'c',
+                    btn_margin: '20px',
+                    maxmin: true,
+                    minStack: false, //最小化不堆叠在左下角
+                    id: 'operation_form_layer', //定义 ID，防止重复弹出
+                    min: function (layero, index) {
+
+                        layer.msg('阻止了默认的最小化');
+                        layer.style(index, {top: 'auto', bottom: 0});
+
+                        return false;
+                    },
+                    success: function (layero, index) {
+                        layer.full(index);
+                        CD_ajaxAllParam("/getRegistration_recordById", {
+                            record_id: rec_id,
+                            "TD": "logout"
+                        }, true, function (data) {
+                            if (result_handle(data)) {
+                                listRecord = data.listReg_record[0];
+                                listRecord.TD = "logout";
+                                $("#ope_form_record_part").load("/ope/operation_record_part", listRecord);
+                            }
+                        });
+                    },
+                    yes: function (index, layero) {
+                        $('#exe_record_submit').trigger("click");
+                        //var data1 = form.val("operation_form");
+                        //form.on('submit(exeForm)');
+                    }
+                });
+
+            }
+        }
+
         function exe_affairs_func(v) {
             //$("#operation_form_div").load("/test/operation_form_part");
             if (result_handle(v)) {
                 $('.exe-affairs').on('click', function (ev) {
-                    var rec_id = $(this).children('input').val();
-                    $('#registration_id').val(rec_id);
-                    exe_layer = layer.open({
-                        title: '添加处理流程',
-                        type: 1,
-                        skin: 'layui-layer-rim',
-                        area: 'auto',
-                        content: $('#ope_area_div'),
-                        btn: ['提交', '关闭'],
-                        btnAlign: 'c',
-                        btn_margin: '20px',
-                        maxmin: true,
-                        minStack: false, //最小化不堆叠在左下角
-                        id: 'operation_form_layer', //定义 ID，防止重复弹出
-                        min: function (layero, index) {
-
-                            layer.msg('阻止了默认的最小化');
-                            layer.style(index, {top: 'auto', bottom: 0});
-
-                            return false;
-                        },
-                        success: function (layero, index) {
-                            layer.full(index);
-                            CD_ajaxAllParam("/getRegistration_recordById", {
-                                record_id: rec_id,
-                                "TD": "logout"
-                            }, true, function (data) {
-                                if (result_handle(data)) {
-                                    listRecord = data.listReg_record[0];
-                                    listRecord.TD = "logout";
-                                    $("#ope_form_record_part").load("/ope/operation_record_part", listRecord);
-                                }
-                            });
-                        },
-                        yes: function (index, layero) {
-                            $('#exe_record_submit').trigger("click");
-                            //var data1 = form.val("operation_form");
-                            //form.on('submit(exeForm)');
-                        }
-                    });
-
+                    exe_layer_func({"reg_id":$(this).children('input').val()});
                 });
             } else {
                 layer_alert($.parseJSON(v).error, ['确定', '关闭'], '', function () {
@@ -854,6 +867,12 @@
                     $(this).val('');
             });
             return false;
+        });
+
+        $(document).ready(function(){
+            if(CheckIsNullOrEmpty($('#reg_record_id').val())){
+                exe_layer_func({"reg_id":$('#reg_record_id').val()});
+            }
         });
 
     });

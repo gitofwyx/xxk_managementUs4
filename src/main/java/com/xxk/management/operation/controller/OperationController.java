@@ -85,6 +85,7 @@ public class OperationController extends BaseController {
         String recId = UUIdUtil.getUUID();
         try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            String CurrentUser = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             operation.setId(id);
             operation.setOpe_staff_id(CurrentUserId);
             operation.setCreateUserId(CurrentUserId);
@@ -92,7 +93,7 @@ public class OperationController extends BaseController {
             operation.setUpdateUserId(CurrentUserId);
             operation.setUpdateDate(Date);
             operation.setDeleteFlag("0");
-            Boolean resultOpe = operationService.addOperation(operation);
+            Boolean resultOpe = operationService.addOperation(operation,CurrentUser);
             if (!(resultOpe)) {
                 result.put("hasError", true);
                 result.put("error", "添加出错");

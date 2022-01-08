@@ -14,7 +14,7 @@ public interface OperationService {
 
     public List<Map<String, Object>> listOperationAccordingDate(String registration_id, String[] status);
 
-    public boolean addOperation(Operation operation)throws Exception, RuntimeException;
+    public boolean addOperation(Operation operation,String currentUser)throws Exception, RuntimeException;
 
     public List<Map<String, Object>> getOfficeSelect();
 

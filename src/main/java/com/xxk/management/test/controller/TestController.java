@@ -314,7 +314,7 @@ public class TestController extends BaseController {
             textMap.put("content","你好，我是你贤哥啊");
             textMap.put("mentioned_mobile_list",mentioned_mobile_list);
             mentioned_mobile_list.add("@all");
-            msgMap.put("msgtype","text");
+            msgMap.put("msgtype","markdown");
             msgMap.put("text",textMap);
 
             JSONObject msgJson = new JSONObject(msgMap);
