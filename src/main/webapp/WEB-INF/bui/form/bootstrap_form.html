@@ -236,6 +236,10 @@
                     <div id="operation_form_div"
                          class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="padding-right: 1px;padding-left: 1px">
                         <input type="hidden" name="registration_id" id="registration_id" class="NO_Reset">
+                        <input type="hidden" name="reg_record_ident" id="reg_record_ident" class="NO_Reset">
+                        <input type="hidden" name="reg_record_name" id="reg_record_name" class="NO_Reset">
+                        <input type="hidden" name="reg_record_date" id="reg_rec_date" class="NO_Reset">
+                        <input type="hidden" name="reg_record_content" id="reg_rec_content" class="NO_Reset">
                         <#if (result.reg_id)??>
                         <input type="hidden" name="reg_record_id" id="reg_record_id" value=${result.reg_id}>
                         </#if>
@@ -714,6 +718,10 @@
                             if (result_handle(data)) {
                                 listRecord = data.listReg_record[0];
                                 listRecord.TD = "logout";
+                                $('#reg_record_ident').val(listRecord.reg_record_ident);
+                                $('#reg_record_name').val(listRecord.reg_record_name);
+                                $('#reg_rec_date').val(listRecord.reg_record_date);
+                                $('#reg_rec_content').val(listRecord.reg_record_content);
                                 $("#ope_form_record_part").load("/ope/operation_record_part", listRecord);
                             }
                         });

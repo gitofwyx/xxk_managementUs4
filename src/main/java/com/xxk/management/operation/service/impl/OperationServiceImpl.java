@@ -83,7 +83,7 @@ public class OperationServiceImpl implements OperationService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public boolean addOperation(Operation operation,String currentUser) throws Exception, RuntimeException {
+    public boolean addOperation(Operation operation,Map<String, Object> reg_recordMap) throws Exception, RuntimeException {
 
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> markdownMap=new HashMap<>();
@@ -92,8 +92,10 @@ public class OperationServiceImpl implements OperationService {
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
         List<Registration_record> listRecord = new ArrayList();
-        String bootUrl="http://192.168.3.40:8080/";
+        String bootUrl="http://xxk-manage.nat300.top/";
         String markDownUrl="("+bootUrl+"/reg?reg_id="+operation.getOpe_registration_id()+")";
+        String contentText1="";
+        String contentText2="";
         int reg_count = 0;
         Registration reg =registrationService.getRegistrationByRecordId(operation.getOpe_registration_id());
         operation.setOpe_office_id("NO");
@@ -106,10 +108,15 @@ public class OperationServiceImpl implements OperationService {
                 log.error("addRegistration:当前记录已处理完！");
                 throw new Exception("addRegistration:当前记录已处理完！");
             }
+            contentText1="由"+" <font color=\"warning\">"+reg_recordMap.get("reg_record_name")+ "</font> 提交于\n<font color=\"warning\">"+
+                    reg_recordMap.get("reg_record_date")+"</font>"+"\n(NO.<font color=\"warning\">"+ reg_recordMap.get("reg_record_ident")+
+                    "</font>)的申请单：\n<font color=\"info\">"+ reg_recordMap.get("reg_record_content")+"</font>\n";
+            contentText2="<font color=\"info\">"+operation.getOpe_content()+"</font>\n由<font color=\"warning\">"+reg_recordMap.get("CurrentUser")+
+                    "</font>提交于<font color=\"warning\">"+Date+"</font>\n[点击登录后可查看详细和处理。]"+markDownUrl;
             if("3".equals(operation.getOpe_statement())&&"0".equals(reg_records.get(0).get("execute_record_status"))){
                 registration_recordService.updateRegistration_recordExeStatus(operation.getOpe_registration_id(),"1",operation.getCreateUserId(),Date);
                 operation.setOpe_flag("1");
-                markdownMap.put("content","["+currentUser+"提交了新的处理流程,点击登录后可查看和处理。]("+bootUrl+"/reg?reg_id="+operation.getOpe_registration_id()+")");
+                markdownMap.put("content",contentText1+"已提交新的处理流程:\n"+contentText2);
 
             }else if("1".equals(reg_records.get(0).get("execute_record_status"))){
                 operation.setOpe_flag("1");
@@ -137,13 +144,13 @@ public class OperationServiceImpl implements OperationService {
         }
 
         if("1".equals(operation.getOpe_statement())){
-            markdownMap.put("content","["+currentUser+"提交了新的处理调查,点击登录后可查看和处理。]"+markDownUrl);
+            markdownMap.put("content",contentText1+"已提交新的处理调查:\n"+contentText2);
         }
         else if("2".equals(operation.getOpe_statement())){
-            markdownMap.put("content","["+currentUser+"提交了新的处理建议,点击登录后可查看和处理。]"+markDownUrl);
+            markdownMap.put("content",contentText1+"已提交新的处理建议:\n"+contentText2);
         }
         else if("4".equals(operation.getOpe_statement())){
-            markdownMap.put("content","["+currentUser+"提交了新的处理反馈,点击登录后可查看和处理。]"+markDownUrl);
+            markdownMap.put("content",contentText1+"已提交新的处理反馈:\n"+contentText2);
         }
 
         weChatRobotService.chatBotSendByMarkdown(markdownMap);

@@ -66,8 +66,13 @@ public class OperationMController extends BaseController {
     @ResponseBody
     @RequestMapping("/addMobileOperation")
     public Map<String, Object> addMobileOperation(Operation operation,
-                                                  @RequestParam(value = "registration_id") String registration_id) {
+                                                  @RequestParam(value = "registration_id") String registration_id,
+                                                  @RequestParam(value = "reg_record_ident") String reg_record_ident,
+                                                  @RequestParam(value = "reg_record_name") String reg_record_name,
+                                                  @RequestParam(value = "reg_record_date") String reg_record_date,
+                                                  @RequestParam(value = "reg_record_content") String reg_record_content) {
         Map<String, Object> result = new HashMap<>();
+        Map<String, Object> reg_recordMap=new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
@@ -81,7 +86,12 @@ public class OperationMController extends BaseController {
             String CurrentUser = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             operation.setOpe_registration_id(registration_id);
             operation.setCreateUserId(CurrentUserId);
-            Boolean resultOpe = operationService.addOperation(operation,CurrentUser);
+            reg_recordMap.put("reg_record_ident",reg_record_ident);
+            reg_recordMap.put("reg_record_name",reg_record_name);
+            reg_recordMap.put("reg_record_date",reg_record_date);
+            reg_recordMap.put("reg_record_content",reg_record_content);
+            reg_recordMap.put("CurrentUser",CurrentUser);
+            Boolean resultOpe = operationService.addOperation(operation,reg_recordMap);
             if (!(resultOpe)) {
                 result.put("hasError", true);
                 result.put("error", "添加出错");

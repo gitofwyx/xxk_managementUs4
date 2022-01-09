@@ -80,6 +80,7 @@ public class OperationController extends BaseController {
     @RequestMapping("/addOperation")
     public Map<String, Object> addOperation(Operation operation,Record record) {
         Map<String, Object> result = new HashMap<>();
+        Map<String, Object> reg_recordMap=new HashMap<>();
         String Date = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         String recId = UUIdUtil.getUUID();
@@ -93,7 +94,9 @@ public class OperationController extends BaseController {
             operation.setUpdateUserId(CurrentUserId);
             operation.setUpdateDate(Date);
             operation.setDeleteFlag("0");
-            Boolean resultOpe = operationService.addOperation(operation,CurrentUser);
+
+            reg_recordMap.put("",CurrentUser);
+            Boolean resultOpe = operationService.addOperation(operation,reg_recordMap);
             if (!(resultOpe)) {
                 result.put("hasError", true);
                 result.put("error", "添加出错");
