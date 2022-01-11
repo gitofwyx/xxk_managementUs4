@@ -49,19 +49,22 @@ public class RegistrationMController extends BaseController {
     public Map<String, Object> addRegistration(Registration registration, Registration_record record,
                                                @RequestParam(value = "reg_office_ident") String reg_office_ident) {
         Map<String, Object> result = new HashMap<>();
-        String Date = DateUtil.getFullTime();
-        String id = UUIdUtil.getUUID();
+
         String recId = UUIdUtil.getUUID();
         int reg_count = 0;
         try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             String CurrentUser = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
             registration.setRegistration_py(CurrentUserId);
+            record.setId(recId);
             boolean resultReg=registrationMService.addRegistrationAccordingRegStatus(registration,record);
             if(resultReg){
                 comWebSocketHandler.sendMessageToUsers(new TextMessage("有新的申请单已提交，提交人："+CurrentUser+"提交科室："+reg_office_ident));
                 Map<String, Object> textMap = new HashMap<>();
-                textMap.put("content",CurrentUser+":"+reg_office_ident+record.getReg_record_content());
+                //String bootUrl="http://192.168.3.40:8080/";
+                String bootUrl="http://xxk-manage.nat300.top/";
+                String textUrl=bootUrl+"reg?reg_id="+recId;
+                textMap.put("content",CurrentUser+":"+reg_office_ident+record.getReg_record_content()+"\n"+textUrl);
                 weChatRobotService.chatBotSendByText(textMap);
             }
 

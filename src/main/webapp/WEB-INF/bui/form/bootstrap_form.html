@@ -723,6 +723,10 @@
                                 $('#reg_rec_date').val(listRecord.reg_record_date);
                                 $('#reg_rec_content').val(listRecord.reg_record_content);
                                 $("#ope_form_record_part").load("/ope/operation_record_part", listRecord);
+                            } else {
+                                layer_alert(data.error, ['确定', '关闭'], '', function () {
+                                    location.reload();
+                                });
                             }
                         });
                     },
