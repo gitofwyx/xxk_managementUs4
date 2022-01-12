@@ -82,7 +82,7 @@
                  open="(" close=")" separator=",">
             #{status}
         </foreach>
-        and rr.examine_record_status in
+        and rr.execute_record_status in
         <foreach collection="e_statusList" item="status" index="index"
                  open="(" close=")" separator=",">
             #{status}

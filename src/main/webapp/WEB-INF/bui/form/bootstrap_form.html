@@ -368,7 +368,8 @@
             , layer = layui.layer
             , layedit = layui.layedit
             , laydate = layui.laydate
-            , exe_layer = null;
+            , exe_layer = null
+            , load_layer = null;
 
         //自定义验证规则
         form.verify({
@@ -465,6 +466,12 @@
                 , record_func: exe_record_function
             },]
             , click: function (obj) {
+
+                load_layer=layer.open({
+                    type: 3,
+                    content: '加载中' //这里content是一个普通的String
+                });
+
                 $("#record_select").text(obj.title);
 
                 $("#record_status").text(obj.record_data[0].title);
@@ -493,7 +500,7 @@
                             TD: "logout",
                             office_id: office_id,
                             status: ['0', '1', '2'],
-                            e_status: ['0', '1', '2'],
+                            e_status: ['0', '1'],
                         },
                         exe_affairs_func);
                 }
@@ -571,6 +578,7 @@
         }
 
         function deal_affairs_func(v) {
+            layer.close(load_layer);
             if (result_handle(v)) {
                 $('.deal-affairs').on('click', function (ev) {
 
@@ -676,7 +684,7 @@
                         TD: "logout",
                         office_id: oId,
                         status: ['0', '1', '2'],
-                        e_status: ['0', '1', '2'],
+                        e_status: ['0', '1'],
                     },
                     exe_affairs_func);
             }
@@ -689,6 +697,7 @@
                     layer.msg('无法获取登记ID');
                     return;
                 }
+                layer.close(load_layer);
                 $('#registration_id').val(rec_id);
                 exe_layer = layer.open({
                     title: '添加处理流程',
@@ -711,6 +720,9 @@
                     },
                     success: function (layero, index) {
                         layer.full(index);
+                        var exe_msg=layer.msg('加载中', {
+                            time: 0, //20s后自动关闭
+                        });
                         CD_ajaxAllParam("/getRegistration_recordById", {
                             record_id: rec_id,
                             "TD": "logout"
@@ -722,7 +734,9 @@
                                 $('#reg_record_name').val(listRecord.reg_record_name);
                                 $('#reg_rec_date').val(listRecord.reg_record_date);
                                 $('#reg_rec_content').val(listRecord.reg_record_content);
-                                $("#ope_form_record_part").load("/ope/operation_record_part", listRecord);
+                                $("#ope_form_record_part").load("/ope/operation_record_part", listRecord,function () {
+                                    layer.close(exe_msg);
+                                });
                             } else {
                                 layer_alert(data.error, ['确定', '关闭'], '', function () {
                                     location.reload();
@@ -741,6 +755,7 @@
         }
 
         function exe_affairs_func(v) {
+            layer.close(load_layer);
             //$("#operation_form_div").load("/test/operation_form_part");
             if (result_handle(v)) {
                 $('.exe-affairs').on('click', function (ev) {
@@ -755,9 +770,11 @@
 
         function ope_submit(data) {
 
+            data.field.TD="logout";
             CD_ajaxAllParam("/addMobileOperation", data.field, true, function (v) {
-                    if (v.hasError == true) layer_alert(v.error, ['确定'], 2);
-                    else {
+                layer.close(load_layer);
+                if (result_handle(v)){
+
                         CD_ajaxAllParam("/getRegistration_recordById", {
                             record_id: data.field.registration_id,
                             "TD": "logout"
@@ -773,6 +790,10 @@
                         }, function () {
                             layer.close(exe_layer);
                             return true;
+                        });
+                    }else {
+                        layer_alert(v.error, ['确定', '关闭'], '', function () {
+                           location.reload();
                         });
                     }
                     //$("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
@@ -869,6 +890,10 @@
 
         form.on('submit(exeForm)', function (data) {
 
+            load_layer=layer.open({
+                type: 3,
+                content: '加载中' //这里content是一个普通的String
+            });
             ope_submit(data);
             $("#exe_area_form input").each(function () {
                 if (!$(this).hasClass("NO_Reset"))
@@ -882,7 +907,12 @@
         });
 
         $(document).ready(function(){
+
             if(CheckIsNullOrEmpty($('#reg_record_id').val())){
+                load_layer=layer.open({
+                    type: 3,
+                    content: '加载中' //这里content是一个普通的String
+                });
                 exe_layer_func({"reg_id":$('#reg_record_id').val()});
             }
         });
