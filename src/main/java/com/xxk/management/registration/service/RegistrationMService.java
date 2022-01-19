@@ -13,6 +13,14 @@ public interface RegistrationMService {
 
     public List<Registration> listRegistration(int pageStart, int pageSize);
 
+    public List<Map<String, Object>> listRegistrationUnionMap(String office_id,
+                                                              String reg_record_py,
+                                                              String reg_receiver_id,
+                                                              String[] status,
+                                                              String[] e_status,
+                                                              int pageStart,
+                                                              int pageSize);
+
     List<Map<String, Object>> listRegistrationMapAccordingDate(String office_id,
                                                                String reg_record_py,
                                                                String reg_receiver_id,

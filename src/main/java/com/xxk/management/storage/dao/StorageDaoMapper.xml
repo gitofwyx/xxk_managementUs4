@@ -49,7 +49,7 @@
     <insert id="addStorageForOfficesStorage" parameterType="com.xxk.management.office.storage.entity.OfficesStorage">
         insert into xxk_in_storage(<include refid="columns"></include>) values(
         #{id},#{class_id},#{entity_id},#{stock_or_depository_id},#{offices_entity_id},#{offices_storage_ident},#{offices_storage_type},#{offices_storage_by},
-        #{original_storage_officeId},#{offices_storage_officeId},#{offices_storage_date},#{offices_storage_no},#{offices_storage_total},1,
+        #{original_storage_officeId},#{offices_storage_officeId},#{offices_storage_date},#{offices_storage_no},#{offices_storage_total},1,0,
         #{entity_entry_status},#{keyWord}, #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 

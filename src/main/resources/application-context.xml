@@ -84,4 +84,5 @@
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
 	<import resource="shiro-context.xml" />
+	<import resource="spring-schedule.xml" />
 </beans>

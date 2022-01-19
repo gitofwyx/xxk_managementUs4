@@ -11,7 +11,6 @@ import com.xxk.management.registration_record.service.Registration_recordService
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +37,17 @@ public class RegistrationMServiceImpl implements RegistrationMService {
     @Override
     public List<Registration> listRegistration(int pageStart, int pageSize) {
         return dao.listRegistration((pageStart - 1) * pageSize, pageSize);
+    }
+
+    @Override
+    public List<Map<String, Object>> listRegistrationUnionMap(String office_id,
+                                                              String reg_record_py,
+                                                              String reg_receiver_id,
+                                                              String[] status,
+                                                              String[] e_status,
+                                                              int pageStart,
+                                                              int pageSize) {
+        return dao.listRegistrationUnionMap(null, office_id, reg_record_py, reg_receiver_id, status, e_status, (pageStart - 1) * pageSize, pageSize);
     }
 
     @Override
