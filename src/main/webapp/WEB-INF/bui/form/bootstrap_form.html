@@ -193,7 +193,6 @@
             </div>
             <div id="ope_record_div" class="col-xs-11 col-sm-11 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3"
                  style="display: none; padding: 10px;">
-                <input type="hidden" id="" name="record_select_id" value=112>
                 <div id="ope_record_part">
                     <!--<ul class="layui-timeline">
                         <#if (result.RecordMap)??>
@@ -369,7 +368,9 @@
             , layedit = layui.layedit
             , laydate = layui.laydate
             , exe_layer = null
-            , load_layer = null;
+            , load_layer = null
+            ,status= []
+            ,e_status= [];
 
         //自定义验证规则
         form.verify({
@@ -428,16 +429,64 @@
                 , style: 'color: #0E2DF1FF;'
             },],
             reg_record_function = function (obj) {
+                load_layer=layer.open({
+                    type: 3,
+                    content: '加载中' //这里content是一个普通的String
+                });
                 $("#record_status").text(obj.title);
                 $("#record_status_icon").attr("class", obj.icon);
                 $("#record_status_icon").attr("style", obj.style);
                 layer.tips('选择了：' + obj.title, this.elem, {tips: [1, '#5FB878']});
+                if(obj.id==100){
+                    status= ['0', '1', '2'];
+                }
+                else if(obj.id==101){
+                    status= ['0'];
+                }
+                else if(obj.id==102){
+                    status= ['1'];
+
+                }
+                var office_id = $("#reg_office_id").val();
+                $("#registration_record_part").load("/reg/registration_record_part",
+                    {
+                        TD: "logout",
+                        office_id: office_id,
+                        status: status,
+                    },
+                    deal_affairs_func);
             },
             exe_record_function = function (obj) {
+                load_layer=layer.open({
+                    type: 3,
+                    content: '加载中' //这里content是一个普通的String
+                });
                 $("#record_status").text(obj.title);
                 $("#record_status_icon").attr("class", obj.icon);
                 $("#record_status_icon").attr("style", obj.style);
                 layer.tips('选择了：' + obj.title, this.elem, {tips: [1, '#5FB878']});
+                if(obj.id==105){
+                    status= ['0', '1', '2'];
+                    e_status= ['0','1'];
+                }
+                else if(obj.id==106){
+                    status= ['0', '1', '2'];
+                    e_status= ['0'];
+                }
+                else if(obj.id==107){
+                    status= ['0', '1', '2'];
+                    e_status= ['1'];
+
+                }
+                var office_id = $("#reg_office_id").val();
+                $("#registration_record_part").load("/reg/registration_record_part1",
+                    {
+                        TD: "logout",
+                        office_id: office_id,
+                        status: status,
+                        e_status: e_status,
+                    },
+                    exe_affairs_func);
             };
 
         dropdown.render({
@@ -669,12 +718,15 @@
         }
 
         function refurbish_record_list(oId) {
+            if(!CheckIsNullOrEmpty(status)){
+                status= ['0', '1', '2'];
+            }
             if ($("#record_select_id").val() == 110) {
                 $("#registration_record_part").load("/reg/registration_record_part",
                     {
                         TD: "logout",
                         office_id: oId,
-                        status: ['0', '1', '2'],
+                        status: status,
                     },
                     deal_affairs_func);
             }
@@ -683,8 +735,8 @@
                     {
                         TD: "logout",
                         office_id: oId,
-                        status: ['0', '1', '2'],
-                        e_status: ['0', '1'],
+                        status: status,
+                        e_status: e_status,
                     },
                     exe_affairs_func);
             }

@@ -55,13 +55,12 @@ public class Registration_recordServiceTask {
             );
             Map<String, Object> textMap = new HashMap<>();
             String text="最近十条未处理申请：\n";
-            List<String> strReg=listReg.stream().map(reg-> reg.get("reg_office") .toString()+ reg.get("reg_record_content").toString()).collect(Collectors.toList());
-            int i=0;
-            String textReg="";
-            for (String reg:strReg) {
-                i=i+1;
-                textReg=textReg+i+"、"+reg+"\n";
+            List<String> strReg=listReg.stream().map(reg-> reg.get("reg_office") .toString()+"、"+reg.get("reg_office") .toString()+ reg.get("reg_record_content").toString()).collect(Collectors.toList());
+            if(strReg==null||strReg.isEmpty()){
+                return;
             }
+
+            String textReg=String.join("\n",strReg);
             textMap.put("content",text+textReg);
             weChatRobotService.chatBotSendByText(textMap);
 
