@@ -55,7 +55,7 @@ public class Registration_recordServiceTask {
             );
             Map<String, Object> textMap = new HashMap<>();
             String text="最近十条未处理申请：\n";
-            List<String> strReg=listReg.stream().map(reg-> reg.get("reg_office") .toString()+"、"+reg.get("reg_office") .toString()+ reg.get("reg_record_content").toString()).collect(Collectors.toList());
+            List<String> strReg=listReg.stream().map(reg-> reg.get("reg_record_date") .toString()+"："+reg.get("reg_office") .toString()+ reg.get("reg_record_content").toString()).collect(Collectors.toList());
             if(strReg==null||strReg.isEmpty()){
                 return;
             }
