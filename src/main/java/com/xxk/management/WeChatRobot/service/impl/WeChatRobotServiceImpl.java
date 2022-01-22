@@ -43,8 +43,8 @@ public class WeChatRobotServiceImpl implements WeChatRobotService {
 
     @Async
     public void chatBotSendByText(Map<String, Object> textMap) {
-        String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=48ff7828-9fe4-4115-86a8-a2db2d9bc91a";
-        //String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=de038aad-b19f-4912-81e5-af107608757d";
+        //String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=48ff7828-9fe4-4115-86a8-a2db2d9bc91a";
+        String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=de038aad-b19f-4912-81e5-af107608757d";
         Map<String, Object> msgMap = new HashMap<>();
         List<String> mentioned_mobile_list=new ArrayList<String>();
 
@@ -81,8 +81,8 @@ public class WeChatRobotServiceImpl implements WeChatRobotService {
 
     @Async
     public void chatBotSendByMarkdown(Map<String, Object> markdownMap) {
-        String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=48ff7828-9fe4-4115-86a8-a2db2d9bc91a";
-        //String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=de038aad-b19f-4912-81e5-af107608757d";
+        //String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=48ff7828-9fe4-4115-86a8-a2db2d9bc91a";
+        String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=de038aad-b19f-4912-81e5-af107608757d";
         Map<String, Object> msgMap = new HashMap<>();
 
         try {
