@@ -1,11 +1,7 @@
 package com.xxk.management.registration_record.task;
 
-import com.xxk.core.util.DateUtil;
-import com.xxk.management.WeChatRobot.service.WeChatRobotService;
+import com.xxk.management.WeChat.WeChatRobot.service.WeChatRobotService;
 import com.xxk.management.registration.service.RegistrationMService;
-import com.xxk.management.registration_record.dao.Registration_recordDao;
-import com.xxk.management.registration_record.entity.Registration_record;
-import com.xxk.management.registration_record.service.Registration_recordService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,7 +48,7 @@ public class Registration_recordServiceTask {
                     1,10
             );
             Map<String, Object> textMap = new HashMap<>();
-            String text="最近十条未处理申请：\n";
+            String text="最近十条未处理申请↓\n";
             List<String> strReg=listReg.stream().map(reg-> reg.get("reg_record_date") .toString()+"："+reg.get("reg_office") .toString()+ reg.get("reg_record_content").toString()).collect(Collectors.toList());
             if(strReg==null||strReg.isEmpty()){
                 return;

@@ -2,8 +2,7 @@ package com.xxk.management.operation.service.impl;
 
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
-import com.xxk.core.util.build_ident.IdentUtil;
-import com.xxk.management.WeChatRobot.service.WeChatRobotService;
+import com.xxk.management.WeChat.WeChatRobot.service.WeChatRobotService;
 import com.xxk.management.operation.dao.OperationDao;
 import com.xxk.management.operation.entity.Operation;
 import com.xxk.management.operation.service.OperationService;

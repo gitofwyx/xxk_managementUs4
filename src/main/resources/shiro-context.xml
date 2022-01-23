@@ -95,8 +95,11 @@
             <value>
 
                 /logout = logout
-
+                <!--图标-->
                 /favicon.ico=anon
+                <!--微信jsapi-->
+                /MP_verify_AhIUpEnj04Oz00iD.txt=anon
+
                 <!--/test/**=anon-->
                 /index/**=anon  <!--登录页面的js和css不拦截-->
                 /report/**=anon

@@ -75,7 +75,10 @@
 	<mvc:resources mapping="/index/img/**" location="/WEB-INF/res/index/img/" cache-period="31556926"/>
 	<!--<mvc:resources mapping="assets/tools/**" location="/WEB-INF/res/assets/tools/" cache-period="31556926"/>-->
 
+	<!--系统图标-->
 	<mvc:resources mapping="/favicon.ico" location="/WEB-INF/res/favicon/" cache-period="31556926"/>
+	<!--微信jssdk-->
+	<mvc:resources mapping="/MP_verify_AhIUpEnj04Oz00iD.txt" location="/WEB-INF/jssdk/" cache-period="31556926"/>
 
 	<mvc:view-controller path="/" view-name="index" />
 

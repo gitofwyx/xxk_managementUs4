@@ -1,9 +1,8 @@
 package com.xxk.management.registration.controller;
 
 import com.xxk.core.file.BaseController;
-import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
-import com.xxk.management.WeChatRobot.service.WeChatRobotService;
+import com.xxk.management.WeChat.WeChatRobot.service.WeChatRobotService;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration.service.RegistrationService;
