@@ -1,0 +1,12 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+MP_verify_AhIUpEnj04Oz00iD.txt
+
+java/com/xxk/management/WeChat/access_token/constants/
