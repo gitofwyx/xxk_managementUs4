@@ -2,7 +2,6 @@ package com.xxk.management.WeChat.jsapi_ticket.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xxk.core.util.DateUtil;
-import com.xxk.management.WeChat.access_token.constants.Access_tokenConstants;
 import com.xxk.management.WeChat.access_token.entity.AccessToken;
 import com.xxk.management.WeChat.access_token.service.Access_tokenService;
 import com.xxk.management.WeChat.jsapi_ticket.entity.Jsapi_ticket;

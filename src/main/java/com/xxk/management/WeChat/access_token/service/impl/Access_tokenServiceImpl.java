@@ -2,7 +2,6 @@ package com.xxk.management.WeChat.access_token.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xxk.core.util.DateUtil;
-import com.xxk.management.WeChat.WeChatRobot.service.WeChatRobotService;
 import com.xxk.management.WeChat.access_token.constants.Access_tokenConstants;
 import com.xxk.management.WeChat.access_token.entity.AccessToken;
 import com.xxk.management.WeChat.access_token.service.Access_tokenService;
@@ -10,21 +9,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/15.

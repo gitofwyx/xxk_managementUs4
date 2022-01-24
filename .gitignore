@@ -9,4 +9,6 @@ gen
 
 MP_verify_AhIUpEnj04Oz00iD.txt
 
-java/com/xxk/management/WeChat/access_token/constants/
+Access_tokenConstants.java
+
+workspace.xml
