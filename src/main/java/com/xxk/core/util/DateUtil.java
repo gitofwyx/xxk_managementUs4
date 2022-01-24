@@ -692,4 +692,19 @@ public class DateUtil {
         simpleDateFormat.format(date);
         return date;
     }
+
+    /**
+     * 计算两个日期相差的秒数
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    public static long calLastedTime(Date startDate, Date endDate) {
+        long a = endDate.getTime();
+        long b = startDate.getTime();
+        long c = ((a - b) / 1000);
+        return c;
+    }
+
 }

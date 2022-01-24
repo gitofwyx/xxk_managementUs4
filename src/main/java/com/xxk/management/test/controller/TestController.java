@@ -8,6 +8,10 @@ import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.PrivacyUtil;
 import com.xxk.core.util.UUIdUtil;
+import com.xxk.management.WeChat.access_token.entity.AccessToken;
+import com.xxk.management.WeChat.access_token.service.Access_tokenService;
+import com.xxk.management.WeChat.jsapi_ticket.entity.Jsapi_ticket;
+import com.xxk.management.WeChat.jsapi_ticket.service.Jsapi_ticketService;
 import com.xxk.management.roles.entity.Roles;
 import com.xxk.management.roles.service.RolesService;
 import com.xxk.management.test.service.TestService;
@@ -60,6 +64,12 @@ public class TestController extends BaseController {
 
     @Autowired
     private RebUserService rebUserService;
+
+    @Autowired
+    private Access_tokenService access_tokenService;
+
+    @Autowired
+    private Jsapi_ticketService jsapi_ticketService;
 
     private Supplier<RegUser> regUserSupplier = RegUser::new;
 
@@ -385,6 +395,20 @@ public class TestController extends BaseController {
         } catch (Exception e) { e.printStackTrace();
         }
         return null;
+    }
+
+    @ResponseBody
+    @RequestMapping("/testWeChatToKen")
+    public Jsapi_ticket testWeChatToKen() {
+
+        Jsapi_ticket jsapi_ticket=null;
+        try {
+
+             jsapi_ticket=jsapi_ticketService.makeJsapi_ticket();
+        } catch (Exception e) {
+            return null;
+        }
+        return jsapi_ticket;
     }
 
 

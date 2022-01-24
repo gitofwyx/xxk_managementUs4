@@ -155,4 +155,10 @@ public class TestViewController extends BaseController {
         return new ModelAndView("/TEST/testfiles", "result", result);
     }
 
+    @RequestMapping("/testWX")
+    public ModelAndView  testWX() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/TEST/testWX", "result", result);
+    }
+
 }

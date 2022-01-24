@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <h3 id="menu-scan">微信扫一扫</h3>
+    <span class="desc">调起微信扫一扫接口</span>
+    <button class="btn btn_primary" id="scanQRCode0">scanQRCode(微信处理结果)</button>
+    <button class="btn btn_primary" id="scanQRCode1">scanQRCode(直接返回结果)</button>
+
+
+</head>
+<body>
+<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/js/callback_ajax.js"></script>
+
+<script type="text/javascript" src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<script>
+
+    $(function () {
+
+        CD_ajaxAllParam("/makeSDKSignature", {
+            url: "http://wyx-test.nat300.top/test/testWX",
+            "TD": "logout"
+        }, true, function (data) {
+            wx.config({
+                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.appId, // 必填，公众号的唯一标识
+                timestamp:data.timestamp , // 必填，生成签名的时间戳
+                nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                signature: data.signature,// 必填，签名
+                jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表
+            });
+            wx.ready(function(){
+                alert("ok");
+                // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，
+                // config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，
+                // 则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，
+                // 则可以直接调用，不需要放在ready函数中。
+            });
+            wx.error(function(res){
+                alert("error_WX"+res);
+                // config信息验证失败会执行error函数，如签名过期导致验证失败，
+                // 具体错误信息可以打开config的debug模式查看，
+                // 也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+            });
+        });
+
+        // 9 微信原生接口
+        // 9.1.1 扫描二维码并返回结果
+        document.querySelector('#scanQRCode0').onclick = function () {
+            wx.scanQRCode();
+        };
+        // 9.1.2 扫描二维码并返回结果
+        document.querySelector('#scanQRCode1').onclick = function () {
+            wx.scanQRCode({
+                needResult: 1,
+                scanType: ["qrCode","barCode"],
+                success: function (res) {
+                    alert(res.resultStr);
+                }
+            });
+        };
+
+    })
+
+
+</script>
+</body>
+</html>
