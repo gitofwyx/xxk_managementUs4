@@ -645,6 +645,12 @@
                         if (result_handle(data)) {
                             listRecord = data.listReg_record[0];
                             listRecord.TD = "logout";
+                            listRecord.office_name=offices_select.filter(function (office, index) {
+                                if (CheckIsNullOrEmpty(office.value)) {
+                                    return office.value == listRecord.reg_office_id;
+                                }
+                                return office;
+                            })[0].text;
 
                             exe_layer = layer.open({
                                 title: '处理流程查看',
@@ -668,12 +674,10 @@
                                 success: function (layero, index) {
                                     layer.close(onLoadT);
                                     layer.full(index);
-                                    var exe_msg=layer.msg('加载中', {
+                                    load_layer=layer.msg('加载中', {
                                         time: 0, //20s后自动关闭
                                     });
-                                    $("#ope_record_part").load("/ope/operation_record_part", listRecord,function () {
-                                        layer.close(exe_msg);
-                                    });
+                                    $("#ope_record_part").load("/ope/operation_record_part", listRecord,ope_record_func);
                                 },
                                 yes: function (index, layero) {
                                     if (listRecord.reg_record_status === "0" || listRecord.reg_record_status === "1") {
@@ -772,7 +776,7 @@
                     },
                     success: function (layero, index) {
                         layer.full(index);
-                        var exe_msg=layer.msg('加载中', {
+                        load_layer=layer.msg('加载中', {
                             time: 0, //20s后自动关闭
                         });
                         CD_ajaxAllParam("/getRegistration_recordById", {
@@ -782,13 +786,17 @@
                             if (result_handle(data)) {
                                 listRecord = data.listReg_record[0];
                                 listRecord.TD = "logout";
+                                listRecord.office_name=offices_select.filter(function (office, index) {
+                                    if (CheckIsNullOrEmpty(office.value)) {
+                                        return office.value == listRecord.reg_office_id;
+                                    }
+                                    return office;
+                                })[0].text;
                                 $('#reg_record_ident').val(listRecord.reg_record_ident);
                                 $('#reg_record_name').val(listRecord.reg_record_name);
                                 $('#reg_rec_date').val(listRecord.reg_record_date);
                                 $('#reg_rec_content').val(listRecord.reg_record_content);
-                                $("#ope_form_record_part").load("/ope/operation_record_part", listRecord,function () {
-                                    layer.close(exe_msg);
-                                });
+                                $("#ope_form_record_part").load("/ope/operation_record_part", listRecord,ope_record_func);
                             } else {
                                 layer_alert(data.error, ['确定', '关闭'], '', function () {
                                     location.reload();
@@ -834,7 +842,13 @@
                             if (result_handle(data)) {
                                 listRecord = data.listReg_record[0];
                                 listRecord.TD = "logout";
-                                $("#ope_form_record_part").load("/ope/operation_record_part", listRecord);
+                                listRecord.office_name=offices_select.filter(function (office, index) {
+                                    if (CheckIsNullOrEmpty(office.value)) {
+                                        return office.value == listRecord.reg_office_id;
+                                    }
+                                    return office;
+                                })[0].text;
+                                $("#ope_form_record_part").load("/ope/operation_record_part", listRecord,ope_record_func);
                             }
                         });
                         pId = layer_alert("提交完成，继续停留当前窗口？", ['继续', '关闭'], 7, function () {
@@ -851,6 +865,17 @@
                     //$("#registration_record_part").load("/test/registration_record_part?TD=logout&office_id=" + data.field.reg_office_id, "", deal_affairs_func);
                 }
             );
+        }
+
+        function ope_record_func() {
+            layer.close(load_layer);
+            /*var o_name=offices_select.filter(function (office, index) {
+                if (CheckIsNullOrEmpty(office.value)) {
+                    return office.value == o_id;
+                }
+                return office;
+            })[0].text;
+            $("#remark_part_text").text(o_name);*/
         }
 
         useBsSuggest("reg_office_ident", function (K, data) {
