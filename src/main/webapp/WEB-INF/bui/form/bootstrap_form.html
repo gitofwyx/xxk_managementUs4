@@ -516,6 +516,9 @@
             },]
             , click: function (obj) {
 
+                status= ['0', '1', '2'];
+                e_status= ['0', '1'];
+
                 load_layer=layer.open({
                     type: 3,
                     content: '加载中' //这里content是一个普通的String
@@ -538,18 +541,19 @@
                         {
                             TD: "logout",
                             office_id: office_id,
-                            status: ['0', '1', '2'],
+                            status: status,
                         },
                         deal_affairs_func);
                 }
                 if (obj.id == 111) {
+
                     var office_id = '';
                     $("#registration_record_part").load("/reg/registration_record_part1",
                         {
                             TD: "logout",
                             office_id: office_id,
-                            status: ['0', '1', '2'],
-                            e_status: ['0', '1'],
+                            status: status,
+                            e_status:e_status,
                         },
                         exe_affairs_func);
                 }
@@ -722,8 +726,12 @@
         }
 
         function refurbish_record_list(oId) {
-            if(!CheckIsNullOrEmpty(status)){
+            load_layer=layer.msg('加载中', {
+                time: 0, //20s后自动关闭
+            });
+            if(!CheckIsNullOrEmpty(status)||!CheckIsNullOrEmpty(e_status)){
                 status= ['0', '1', '2'];
+                e_status= ['0', '1'];
             }
             if ($("#record_select_id").val() == 110) {
                 $("#registration_record_part").load("/reg/registration_record_part",
@@ -878,6 +886,7 @@
             $("#remark_part_text").text(o_name);*/
         }
 
+        //科室下拉框点击事件1
         useBsSuggest("reg_office_ident", function (K, data) {
             $("#reg_office_id").val(data.value);
             if (rmV_1 === 0) {
@@ -891,6 +900,7 @@
         }, function () {
             $("#reg_office_id").val("");
         });
+        //科室下拉框点击事件2
         useBsSuggest("exe_office_ident", function (K, data) {
             $("#exe_office_id").val(data.value);
         }, function () {
