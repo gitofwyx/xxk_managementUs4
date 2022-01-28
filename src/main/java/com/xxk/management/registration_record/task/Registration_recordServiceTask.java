@@ -38,7 +38,7 @@ public class Registration_recordServiceTask {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
         try {
-            String[] status={"0"};
+            String[] status={"0","1"};
             String[] e_status={"0"};
             List<Map<String, Object>> listReg = registrationMService.listRegistrationUnionMap(null,
                     null,

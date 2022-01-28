@@ -54,9 +54,9 @@ public class Jsapi_ticketServiceImpl implements Jsapi_ticketService {
             if(accessToken==null){
                 return null;
             }
-            JSAPI_TICKET_URL=JSAPI_TICKET_URL.replace("ACCESS_TOKEN",accessToken.getAccess_token());
+            String jsApi_url=JSAPI_TICKET_URL.replace("ACCESS_TOKEN",accessToken.getAccess_token());
             HttpClient httpclient = HttpClients.createDefault();
-            HttpGet httpget = new HttpGet(JSAPI_TICKET_URL);
+            HttpGet httpget = new HttpGet(jsApi_url);
             httpget.addHeader("Content-Type", "application/json; charset=utf-8");
             HttpResponse response = null;
             response = httpclient.execute(httpget);
