@@ -984,6 +984,7 @@
                 offices_select = ev.item;
             });
 
+            //转科或回收科室选中
             transfer_office_tree.on('itemclick', function (ev) {
                 $("#present_stock_id").val("");
                 $("#stock_unit").val("");
@@ -992,13 +993,14 @@
 
             });
 
+            //回收库存下拉框
             rec_device_grid.on('selectedchange', function (ev) {
                 input_console(true);
                 $("#offices_storage_officeId2").val(ev.item.stock_office_id);
                 $("#stock_unit").val(ev.item.stock_unit);
                 $("#unit_num_1").val(1);
                 $("#stock_proportion").val(ev.item.stock_proportion);
-                $("#stock_no").val(makeInNum(parseInt(ev.stock_total) + 1, ev.stock_proportion));
+                $("#stock_no").val(makeInNum(parseInt(ev.item.stock_total) + 1, ev.item.stock_proportion));
             });
 
             $("#recovery_button").click(function () {
@@ -1040,7 +1042,6 @@
                             alert("请选择库存记录!No.4");
                             return;
                         }
-                        $("#stock_no").val(makeInNum(1, $("#stock_proportion").val()));
                        /* console.log(tmpDic);
                         console.log(postData);*/
                         getDepositoryById({

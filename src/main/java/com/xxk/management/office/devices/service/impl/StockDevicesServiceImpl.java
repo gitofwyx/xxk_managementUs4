@@ -122,7 +122,6 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         } else {
             delivery.setOut_confirmed_ident("NO");
             delivery.setOut_confirmed_type("1");
-            delivery.setOut_confirmed_date(createDate);
             delivery.setOut_confirmed_total(1);
             delivery.setOut_confirmed_by(devices.getUpdateUserId());
             delivery.setCreateUserId(devices.getUpdateUserId());
