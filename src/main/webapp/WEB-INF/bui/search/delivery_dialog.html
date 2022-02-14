@@ -231,7 +231,19 @@
                         title: '&nbsp出库确认人',
                         dataIndex: 'out_confirmed_by',
                         elCls: 'center',
+                        width: 130,
+                    },
+                    {
+                        title: '&nbsp出库类别',
+                        dataIndex: 'entity_name',
+                        elCls: 'center',
                         width: 150,
+                    },
+                    {
+                        title: '&nbsp出库名称',
+                        dataIndex: 'entity_type',
+                        elCls: 'center',
+                        width: 200,
                     },
                     {title: '&nbsp出库时间', dataIndex: 'out_confirmed_date', elCls: 'center', width: 170},
                     {
@@ -254,6 +266,25 @@
                         elCls: 'center',
                         width: 100,
                         editor: {xtype: 'number', rules: {required: true}}
+                    },
+                    {
+                        title: '&nbsp出库状态',
+                        dataIndex: 'entity_entry_status',
+                        elCls: 'center',
+                        width: 100,
+                        renderer: function (value, obj) {
+                            var Str;
+                            if (parseInt(obj.entity_entry_status) ==5) {
+                                Str = '<span style="color: firebrick;">已作废</span>';
+                            }
+                            if (parseInt(obj.entity_entry_status) ==3) {
+                                Str = '<span style="color: #0af13c;">已入科</span>';
+                            }
+                            if (parseInt(obj.entity_entry_status) <3) {
+                                Str = '<span style="color: #0c0c0c;">已出库</span>';
+                            }
+                            return Str;
+                        }
                     },
                     {
                         title: '备注',
