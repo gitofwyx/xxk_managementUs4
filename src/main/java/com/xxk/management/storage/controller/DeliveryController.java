@@ -3,6 +3,8 @@ package com.xxk.management.storage.controller;
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.JsonUtils;
+import com.xxk.management.device.service.DeviceService;
+import com.xxk.management.material.service.MaterialService;
 import com.xxk.management.stock.service.StockService;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
@@ -20,10 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -39,6 +39,12 @@ public class DeliveryController extends BaseController {
 
     @Autowired
     private RebUserService rebUserService;
+
+    @Autowired
+    private DeviceService deviceService;
+
+    @Autowired
+    private MaterialService materialService;
 
 
     @ResponseBody
@@ -105,6 +111,17 @@ public class DeliveryController extends BaseController {
                     userMapList = rebUserService.listRegUserByIds(userIdList);
                 }
             }
+           /* List<Map<String, Object>> entityList = new ArrayList<>();
+            List<String> listEntId=resultList.stream().filter(m-> !"1".equals(m.get("out_confirmed_type"))).map(M->M.get("entity_id").toString()).collect(Collectors.toList());
+            entityList = materialService.getStoreMaterialById(listEntId);
+            listEntId=resultList.stream().filter(M-> "1".equals(M.get("out_confirmed_type"))).map(m->m.get("entity_id").toString()).collect(Collectors.toList());
+            entityList.addAll(deviceService.getStoreDeviceById(listEntId));
+            List<Map<String, Object>> finalEntityList = entityList;
+            List<Map<String, Object>> dealList=resultList.stream().map(m->{
+                finalEntityList.stream().filter(e-> Objects.equals(m.get("entity_id"),e.get("id"))).forEach(e->{
+                    m.put("ent_name",e.get("entity_name"));
+                    m.put("ent_type",e.get("entity_type"));
+                });return m;}).collect(Collectors.toList());*/
             result.put("rows", resultList);
             result.put("results", deliveryService.countDelivery());
             result.put("userMapList", userMapList);
