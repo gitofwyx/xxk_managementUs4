@@ -38,6 +38,11 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         return dao.listRegistration_record((pageStart - 1) * pageSize, pageSize);
     }
 
+    @Override
+    public int countRegistration_record() {
+        return dao.countRegistration_record();
+    }
+
     public List<Registration_record> getRecordAccordRegistration(String registrationId, String officeId, String status) {
         return dao.getRecordAccordRegistration(registrationId, officeId, status);
     }

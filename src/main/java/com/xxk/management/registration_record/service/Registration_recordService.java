@@ -12,7 +12,9 @@ public interface Registration_recordService {
 
     public List<Registration_record> listRegistration_record(int pageStart, int pageSize);
 
-    public List<Registration_record> getRecordAccordRegistration(String registrationId,String officeId,String status);
+    int countRegistration_record();
+
+    public List<Registration_record> getRecordAccordRegistration(String registrationId, String officeId, String status);
 
     public List<Map<String, Object>> getRegistration_recordMakeDate(String reg_record_py,String office_id, String[] status);
 

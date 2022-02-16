@@ -16,6 +16,8 @@ public interface Registration_recordDao {
 
     public List<Registration_record> listRegistration_record(int pageStart, int pageSize);
 
+    public int countRegistration_record();
+
     public List<Registration_record> getRecordAccordRegistration(String registrationId,String officeId,String Status);
 
     public List<Registration_record> getRecordByRegistrationId(String registrationId,String Status);

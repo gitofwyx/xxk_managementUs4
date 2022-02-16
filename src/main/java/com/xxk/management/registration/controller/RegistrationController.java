@@ -8,6 +8,7 @@ import com.xxk.management.office.offices.record.entity.Record;
 import com.xxk.management.office.offices.record.service.RecordService;
 import com.xxk.management.registration.entity.Registration;
 import com.xxk.management.registration.service.RegistrationService;
+import com.xxk.management.registration_record.service.Registration_recordService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class RegistrationController extends BaseController {
     @Autowired
     private RecordService recordService;
 
+    @Autowired
+    private Registration_recordService registration_recordService;
 
     @ResponseBody
     @RequestMapping("/listRegistration")
@@ -67,7 +70,7 @@ public class RegistrationController extends BaseController {
                 return result;
             } else {
                 result.put("rows", listRegistration);
-                result.put("results", 7);
+                result.put("results", registration_recordService.countRegistration_record());
             }
         } catch (Exception e) {
             log.error(e);

@@ -57,7 +57,7 @@ public class Registration_recordController extends BaseController {
                 return result;
             } else {
                 result.put("rows", listRegistration);
-                result.put("results", 7);
+                result.put("results", registration_recordService.countRegistration_record());
             }
         } catch (Exception e) {
             log.error(e);
