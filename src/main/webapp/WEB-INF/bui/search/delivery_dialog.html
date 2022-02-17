@@ -229,9 +229,9 @@
                     {title: '&nbsp出库编号', dataIndex: 'out_confirmed_ident', elCls: 'center', width: 150},
                     {
                         title: '&nbsp出库确认人',
-                        dataIndex: 'out_confirmed_by',
+                        dataIndex: 'out_confirmed_name',
                         elCls: 'center',
-                        width: 130,
+                        width: 110,
                     },
                     {
                         title: '&nbsp出库类别',
@@ -245,7 +245,7 @@
                         elCls: 'center',
                         width: 200,
                     },
-                    {title: '&nbsp出库时间', dataIndex: 'out_confirmed_date', elCls: 'center', width: 170},
+                    {title: '&nbsp出库时间', dataIndex: 'out_confirmed_date', elCls: 'center', width: 140},
                     {
                         title: '&nbsp出库科室',
                         dataIndex: 'out_confirmed_officeId',
@@ -254,17 +254,17 @@
                         renderer: BUI.Grid.Format.enumRenderer(enumOffices),
                     },
                     {
-                        title: '&nbsp出库数量',
+                        title: '出库数量',
                         dataIndex: 'out_confirmed_no',
                         elCls: 'center',
-                        width: 100,
+                        width: 60,
                         editor: {xtype: 'number', rules: {required: true}}
                     },
                     {
-                        title: '&nbsp出库总量',
+                        title: '出库总量',
                         dataIndex: 'out_confirmed_total',
                         elCls: 'center',
-                        width: 100,
+                        width: 60,
                         editor: {xtype: 'number', rules: {required: true}}
                     },
                     {
@@ -501,7 +501,7 @@
             for (var i in items) {
                 for (var j = 0; j < enumUsers.length; j++) {
                     if (enumUsers[j].id == items[i].out_confirmed_by) {
-                        items[i].out_confirmed_by = enumUsers[j].name;
+                        items[i].out_confirmed_name = enumUsers[j].name;
                         break;
                     }
                 }

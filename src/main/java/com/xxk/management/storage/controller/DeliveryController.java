@@ -232,6 +232,12 @@ public class DeliveryController extends BaseController {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             delivery.setUpdateUserId(CurrentUserId);
+            if ( CurrentUserId != null&&!CurrentUserId.equals(delivery.getOut_confirmed_by()) ) {
+                result.put("hasError", true);
+                result.put("error", "不是出库记录人");
+                return result;
+
+            }
             if ( !"".equals(delivery_id)&&delivery_id != null ) {
                 delivery.setId(delivery_id);
                 result = deliveryService.backwardDelivery( storage,delivery,stock_no,out_total);
