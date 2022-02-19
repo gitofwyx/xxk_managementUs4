@@ -186,8 +186,13 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>出库科室：</label>
                 <div class="controls">
-                    <input name="out_confirmed_offices" id="out_confirmed_offices" type="text"
-                           data-rules="{required:true}">
+                    <div class="input-group" id="out_offices_div">
+                        <input type="text" id="out_confirmed_offices"
+                               name="out_confirmed_offices">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
             <div class="control-group span8">
@@ -278,6 +283,7 @@
 <script type="text/javascript" src="/js/tree/tree_build.js"></script>
 <script type="text/javascript" src="/js/localstorageIO.js"></script>
 <script type="text/javascript" src="/js/tools/data_handling.js"></script>
+<script type="text/javascript" src="/js/suggest/suggest_util.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 </script>
@@ -386,11 +392,11 @@
                     //dirSelectable : false,//阻止树节点选中
                     showLine: true //显示连接线
                 }),
-                dev_office_picker = new TreePicker({
+                /*dev_office_picker = new TreePicker({
                     trigger: '#out_confirmed_offices',
                     width: 150,  //指定宽度
                     children: [dev_office_tree] //配置picker内的列表
-                }).render(),
+                }).render(),*/
 
                 columns = [
                     {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
@@ -518,9 +524,9 @@
                     return;
                 } else {
                     var eData = selections[0];
-                    handle_office(function () {
+                    handle_office(/*function () {
                         dev_office_tree.set('nodes', office_tree);
-                    });
+                    }*/);
                     editing_O.edit({isNew: false});
                     O_Form.getField('present_stock_id').set('value', eData.present_stock_id);
                     O_Form.getField('class_id').set('value', eData.class_id);
@@ -531,6 +537,27 @@
                     O_Form.getField('dev_type').set('value', eData.entity_type + "/" + eData.entity_name);
                     O_Form.getField('office_unique_name').set('value', eData.office_unique_name);
                     O_Form.getField('device_location').set('value', eData.device_location);
+
+                    buildBsSuggest("out_confirmed_offices",
+                        {
+                            value: offices_data.filter(function (office, index) {
+                                if (CheckIsNullOrEmpty(office.office_property)) {
+                                    return office.office_property!=0;
+                                }
+                                return office;
+                            })
+                        },
+                        ["text", , ""],
+                        ["text", "id", "pinYin_code", "pinYinS_code"],
+                        {"text": "科室名称",},
+                        function (K, data) {
+                            O_Form.getField('out_confirmed_officeId').set('value', data.value);
+                        },
+                        function () {
+                            O_Form.getField('out_confirmed_officeId').set('value', '');
+                        },
+                    );
+
                     if (select_devices_id !== eData.id||!CheckIsNullOrEmpty(O_Form.getField('stock_no').get('value'))) {
                         getStockByStockId(eData.present_stock_id, function (v) {
                             var no = parseInt(v.stock_total) - 1;
@@ -821,9 +848,9 @@
             });
 
             //出库科室选择
-            dev_office_tree.on('itemclick', function (ev) {
+            /*dev_office_tree.on('itemclick', function (ev) {
                 O_Form.getField('out_confirmed_officeId').set('value', ev.item.value);
-            });
+            });*/
 
         });
 </script>
