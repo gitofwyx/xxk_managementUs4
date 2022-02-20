@@ -459,6 +459,7 @@
                 columns = [
                     {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
                     {title: '&nbsp设备名称', dataIndex: 'entity_name', elCls: 'center', width: 150},
+                    {title: '&nbsp设备型号', dataIndex: 'entity_type', elCls: 'center', width: 150},
                     {
                         title: '&nbsp所在科室',
                         dataIndex: 'location_office_id',
@@ -625,7 +626,7 @@
                         depository_id: eData.present_stock_id
                     }, function (v) {
                         $("#offices_storage_no").val(makeInNum(parseInt(v.depository_total) - 1, v.depository_proportion));
-                        $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_idle_total) - 1, v.depository_proportion));
+                        $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_used_total) - 1, v.depository_proportion));
                         $("#offices_storage_unit").val(v.depository_unit);
                         $("#offices_storage_proportion").val(v.depository_proportion);
                     });
