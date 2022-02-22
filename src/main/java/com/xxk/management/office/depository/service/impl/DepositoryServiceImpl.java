@@ -93,8 +93,11 @@ public class DepositoryServiceImpl implements DepositoryService {
             }*/
         boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3");
         if (!Result) {
-            log.error("addDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
-            throw new Exception("addDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+            Result = storageService.updateOfficesStorageStatus(depository.getDelivery_id(), "5");
+            if(!Result){
+                log.error("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+                throw new Exception("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+            }
         }
         if ("0".equals(storage.getEntity_entry_status())) {
             boolean devicesResult = devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
@@ -151,8 +154,11 @@ public class DepositoryServiceImpl implements DepositoryService {
             //不是原科登记更新出库记录的状态
             boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3");
             if (!Result) {
-                log.error("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
-                throw new Exception("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+                Result = storageService.updateOfficesStorageStatus(depository.getDelivery_id(), "5");
+                if(!Result){
+                    log.error("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+                    throw new Exception("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+                }
             }
         }
         if ("0".equals(storage.getEntity_entry_status())) {

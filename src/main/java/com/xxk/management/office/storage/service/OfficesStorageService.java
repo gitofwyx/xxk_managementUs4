@@ -24,6 +24,8 @@ public interface OfficesStorageService {
 
     public Map<String, Object> addOfficesStorage(Devices devices, OfficesStorage officesStorage) throws Exception;
 
+    boolean updateOfficesStorageStatus(String id, String status);
+
     public boolean deleteListRegUser(List<String> listStr);
 
 }

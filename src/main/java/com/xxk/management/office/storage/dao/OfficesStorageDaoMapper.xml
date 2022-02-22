@@ -65,14 +65,12 @@ offices_storage_officeId,offices_storage_date,offices_storage_no,offices_storage
         #{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
-    <!--根据id获取信息 -->
-    <select id="getRegUser" parameterType="string" resultType="com.xxk.management.user.entity.RegUser">
-        select
-        <include refid="columns"></include>
-        from xxk_reg_user
-        where id=#{id}
-        and deleteFlag='0';
-    </select>
+    <update id="updateOfficesStorageStatus"  parameterType="string">
+        update xxk_offices_storage set entity_entry_status=#{1}
+        where id=#{0}
+          and entity_entry_status not in ('3','4','5')
+          and deleteFlag='0';
+    </update>
 
     <!--修改信息 -->
     <update id="updateRegUser" parameterType="com.xxk.management.user.entity.RegUser">

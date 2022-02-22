@@ -521,8 +521,6 @@
                 }).render(),
                 columns = [
                     {title: '&nbsp库存编号', dataIndex: 'depository_ident', elCls: 'center', width: 150},
-                    {title: '&nbsp库存名称', dataIndex: 'entity_name', elCls: 'center', width: 150},
-                    {title: '&nbsp库存型号', dataIndex: 'entity_type', elCls: 'center', width: 180},
                     {
                         title: '&nbsp库存科室',
                         dataIndex: 'depository_officeId',
@@ -530,6 +528,8 @@
                         width: 150,
                         renderer: BUI.Grid.Format.enumRenderer(getOfficeMakeGrid(offices_select, {})),
                     },
+                    {title: '&nbsp库存名称', dataIndex: 'entity_name', elCls: 'center', width: 150},
+                    {title: '&nbsp库存型号', dataIndex: 'entity_type', elCls: 'center', width: 180},
                     {title: '&nbsp库存单位', dataIndex: 'depository_unit', elCls: 'center', width: 100},
                     {title: '&nbsp库存总量', dataIndex: 'depository_total', elCls: 'center', width: 90},
                     {title: '&nbsp剩余总量', dataIndex: 'depository_idle_total', elCls: 'center', width: 90},

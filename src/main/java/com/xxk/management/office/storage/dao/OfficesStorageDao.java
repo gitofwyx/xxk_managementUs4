@@ -20,7 +20,7 @@ public interface OfficesStorageDao {
 
     public int addOfficesStorage(OfficesStorage officesStorage);
 
-    public int deleteListRegUser(List<String> listStr);
+    public int updateOfficesStorageStatus(String id,String status);
 
 
 }

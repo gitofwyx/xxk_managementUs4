@@ -171,6 +171,7 @@ public class DevicesServiceImpl implements DevicesService {
         devices.setId(officesStorage.getOffices_entity_id());
         devices.setDevice_id(officesStorage.getEntity_id());
         devices.setLocation_office_id(officesStorage.getOffices_storage_officeId());
+        devices.setDevice_deployment_date(officesStorage.getOffices_storage_date());
         devices.setDevice_deployment_status("1");
         devices.setUpdateDate(createDate);
         devices.setDeleteFlag("0");
@@ -182,10 +183,10 @@ public class DevicesServiceImpl implements DevicesService {
             officesStorage.setOffices_storage_ident("NO");
             officesStorage.setOffices_storage_type("1");//设备\耗材类别（1.设备2.配件3.耗材）
             officesStorage.setOffices_storage_genre("4");//流动类别（0：配置1.入科2.部署3.回收4.调用5.借用）
-            officesStorage.setOffices_storage_date(createDate);
             officesStorage.setOffices_storage_total(1);
+            officesStorage.setOffices_storage_total_unit(officesStorage.getOffices_storage_unit());//设备调用的数量单位理论等于总量单位
             officesStorage.setOffices_storage_by(devices.getUpdateUserId());
-            officesStorage.setEntity_entry_status("1");//入科状态（0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科）
+            officesStorage.setEntity_entry_status("0");//入科状态（0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科）
             result = depositoryService.transferDepositoryForDelivery(devices, officesStorage);
             if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
                 log.error("transferDevices:depositoryService.transferDepositoryForDelivery出错！");

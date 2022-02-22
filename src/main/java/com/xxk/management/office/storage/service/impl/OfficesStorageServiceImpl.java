@@ -135,6 +135,11 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
         return result;
     }
 
+    @Override
+    public boolean updateOfficesStorageStatus(String id, String status) {
+        return dao.updateOfficesStorageStatus(id, status) == 1 ? true : false;
+    }
+
 
     @Override
     public boolean deleteListRegUser(List<String> listStr) {
