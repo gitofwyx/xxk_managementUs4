@@ -9,7 +9,7 @@
     <select id="listStockDevices" resultType="com.xxk.management.office.devices.entity.Devices">
         select
         <include refid="columns"></include>
-        from xxk_offices_devices where  deleteFlag='0' and device_deployment_status='0'
+        from xxk_offices_devices where  deleteFlag='0' and device_deployment_status in ('0','8')
         <if test="class_id!=null and ''!= class_id">
             and class_id = #{class_id}
         </if>
@@ -53,6 +53,12 @@
         set device_deployment_status=#{device_deployment_status},office_unique_name=#{office_unique_name}, office_unique_name=#{office_unique_name},
             delivery_id=#{delivery_id},device_location=#{device_location},updateUserId=#{updateUserId},updateDate=#{updateDate}
         where id=#{id} and deleteFlag='0';
+    </update>
+
+    <update id="updateDevicesStatus">
+        update xxk_offices_devices
+        set inventory_office_id=#{1},location_office_id=#{1},present_stock_id=#{2},device_deployment_status=#{3},updateUserId=#{4},updateDate=#{5}
+        where id=#{0} and deleteFlag='0';
     </update>
 
     <update id="updateDevicesSetStatus">

@@ -26,6 +26,8 @@ public interface StockDevicesDao {
 
     public int updateDeviceStatus(Devices device);   //更新设备数量 （减少）
 
+    public int updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
+
     public int updateDevicesSetStatus(String devicesId, String status, String userId, String Date);
 
 }

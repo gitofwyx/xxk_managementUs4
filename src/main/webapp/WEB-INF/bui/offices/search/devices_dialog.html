@@ -175,6 +175,10 @@
                     <input id="offices_storage_officeId" name="offices_storage_officeId" type="hidden"
                            data-rules="{required:true}">
                 </div>
+                <div class="control-group span2.5">
+                    <input id="device_deployment_status" name="device_deployment_status" type="hidden"
+                           data-rules="{required:true}">
+                </div>
             </div>
         </div>
 
@@ -941,6 +945,7 @@
                 $("#devices_id").val("");
                 $("#office_unique_name").val("");
                 $("#device_location").val("");
+                $("#device_deployment_status").val("");
                 initDepBsSuggest(0, "deployment_devices_ident");
                 $('#devices_ident_div').replaceWith('<div class="input-group" id="devices_ident_div"> ' +
                     '<input type="text" id="deployment_devices_ident" name="deployment_devices_ident"> ' +
@@ -951,10 +956,12 @@
                         $("#devices_id").val(data.value);
                         $("#office_unique_name").val(data.office_unique_name);
                         $("#device_location").val(data.device_location);
+                        $("#device_deployment_status").val(data.device_deployment_status);
                     },function () {
                         $("#devices_id").val("");
                         $("#office_unique_name").val("");
                         $("#device_location").val("");
+                        $("#device_deployment_status").val("");
                     });
                 }
             };
