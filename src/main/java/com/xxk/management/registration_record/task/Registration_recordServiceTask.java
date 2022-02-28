@@ -38,6 +38,8 @@ public class Registration_recordServiceTask {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
         try {
+            String bootUrl="http://xxk-manage.nat300.top/";
+            String markDownUrl=bootUrl+"reg?reg_id=";
             String[] status={"0","1"};
             String[] e_status={"0"};
             List<Map<String, Object>> listReg = registrationMService.listRegistrationUnionMap(null,
@@ -48,15 +50,22 @@ public class Registration_recordServiceTask {
                     1,10
             );
             Map<String, Object> textMap = new HashMap<>();
-            String text="最近十条未处理申请↓\n";
-            List<String> strReg=listReg.stream().map(reg-> reg.get("reg_record_date") .toString()+"："+reg.get("reg_office") .toString()+ reg.get("reg_record_content").toString()).collect(Collectors.toList());
+            String text="最近十条未处理的申请单↓\n";
+            List<String> strReg=listReg.stream().map(reg->
+                    "<font color=\"info\">"+reg.get("reg_office") .toString()+"</font>:"
+                            + reg.get("reg_record_content").toString()+"\n"
+                            +"<font color=\"warning\">"+"登记于"+"</font>"
+                            +reg.get("reg_record_date") .toString()
+                            +"["+"\n"+"点击登录查看详情和处理↑"+"]"
+                            +"("+bootUrl+markDownUrl+reg.get("registration_id")+")")
+                    .collect(Collectors.toList());
             if(strReg==null||strReg.isEmpty()){
                 return;
             }
 
             String textReg=String.join("\n",strReg);
             textMap.put("content",text+textReg);
-            weChatRobotService.chatBotSendByText(textMap);
+            weChatRobotService.chatBotSendByMarkdown(textMap);
 
 
         } catch (Exception e) {
