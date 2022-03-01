@@ -54,10 +54,9 @@ public class Registration_recordServiceTask {
             List<String> strReg=listReg.stream().map(reg->
                     "<font color=\"info\">"+reg.get("reg_office") .toString()+"</font>:"
                             + reg.get("reg_record_content").toString()+"\n"
-                            +"<font color=\"warning\">"+"登记于"+"</font>"
-                            +reg.get("reg_record_date") .toString()
-                            +"["+"\n"+"点击查看详情和处理↑"+"]"
-                            +"("+markDownUrl+reg.get("registration_id")+")")
+                            +"<font color=\"warning\">"+reg.get("reg_record_date") .toString()+"</font>"
+                            +"\n"+"["+"点击查看详情和处理↑"+"]"
+                            +"("+markDownUrl+reg.get("reg_record_id")+")")
                     .collect(Collectors.toList());
             if(strReg==null||strReg.isEmpty()){
                 return;
