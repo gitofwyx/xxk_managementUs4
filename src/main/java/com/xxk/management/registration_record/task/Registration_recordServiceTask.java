@@ -50,14 +50,14 @@ public class Registration_recordServiceTask {
                     1,10
             );
             Map<String, Object> textMap = new HashMap<>();
-            String text="最近十条未处理的申请单↓\n";
+            String text="最近十条未处理申请↓\n";
             List<String> strReg=listReg.stream().map(reg->
                     "<font color=\"info\">"+reg.get("reg_office") .toString()+"</font>:"
                             + reg.get("reg_record_content").toString()+"\n"
                             +"<font color=\"warning\">"+"登记于"+"</font>"
                             +reg.get("reg_record_date") .toString()
-                            +"["+"\n"+"点击登录查看详情和处理↑"+"]"
-                            +"("+bootUrl+markDownUrl+reg.get("registration_id")+")")
+                            +"["+"\n"+"点击查看详情和处理↑"+"]"
+                            +"("+markDownUrl+reg.get("registration_id")+")")
                     .collect(Collectors.toList());
             if(strReg==null||strReg.isEmpty()){
                 return;
