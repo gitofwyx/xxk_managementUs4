@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("office_view")
-public class officeViewController extends BaseController {
+public class OfficeViewController extends BaseController {
 
     private static Logger log = LogManager.getLogger();
 

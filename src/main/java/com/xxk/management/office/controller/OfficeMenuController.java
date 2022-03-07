@@ -17,7 +17,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/office_menu")
-public class officeMenuController extends BaseController {
+public class OfficeMenuController extends BaseController {
 
     private static Logger log = LogManager.getLogger();
 
