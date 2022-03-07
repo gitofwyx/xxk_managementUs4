@@ -1,4 +1,4 @@
-package com.xxk.management.office.station.controller;
+package com.xxk.management.station.controller;
 
 import com.xxk.core.file.BaseController;
 import com.xxk.core.util.DateUtil;

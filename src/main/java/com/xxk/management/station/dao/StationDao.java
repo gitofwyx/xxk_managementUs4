@@ -1,4 +1,4 @@
-package com.xxk.management.office.station.dao;
+package com.xxk.management.station.dao;
 
 import com.xxk.management.office.offices.entity.Offices;
 import org.springframework.stereotype.Repository;

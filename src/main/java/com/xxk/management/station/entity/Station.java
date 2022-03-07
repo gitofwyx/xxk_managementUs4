@@ -1,4 +1,4 @@
-package com.xxk.management.office.station.entity;
+package com.xxk.management.station.entity;
 
 import com.xxk.core.entity.BaseInfoEntity;
 

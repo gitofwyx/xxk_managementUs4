@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xxk.management.office.station.dao.StationDao">
+<mapper namespace="com.xxk.management.station.dao.StationDao">
     <sql id="columns">id,workstation_ident,workstation_name,workstation_state,location_office_id,mediaOfLANId,workstation_deployment_status,
       workstation_deployment_date,related_flag,workstation_location,workstation_flag,workstation_auditing_mark,reject_date,remark,keyWord,createUserId,
       createDate,updateUserId,updateDate,deleteFlag</sql>
