@@ -53,10 +53,15 @@
             id: 'menu',
             homePage: 'user-menu',
             menu: [{
-                text: '人员科室管理',
+                text: '人员管理',
                 items: [
                     {id: 'user-menu', text: '人员信息', href: '/user_view/user_details', closeable: false},
+                ]
+            },{
+                text: '科室工作站管理',
+                items: [
                     {id: 'offices-menu', text: '科室信息', href: '/menu/offices_tab'},
+                    {id: 'offices-menu', text: '工作站登记', href: '/menu/station_tab'},
                 ]
             }, {
                 text: '设备耗材管理',
@@ -68,7 +73,7 @@
                 text: '库存管理',
                 items: [
                     {id: 'stock-menu', text: '总库存信息管理', href: '/menu/stock_tab'},
-                    {id: 'stock-devices-menu', text: '设备库存信息', href: '/menu/stock_devices_tab'},
+                    {id: 'stock-devices-menu', text: '设备库存管理', href: '/menu/stock_devices_tab'},
                     {id: 'stock-material-menu', text: '耗材/配件库存', href: '/menu/material_tab'},
                 ]
             }, {
@@ -105,22 +110,14 @@
                 ]
             }]
         }, {
-            id: 'search',
+            id: 'station',
             menu: [{
-                text: '搜索页面',
+                text: '工作站管理',
                 items: [
-                    {id: 'code', text: '搜索页面代码', href: 'search/code.html'},
-                    {id: 'example', text: '搜索页面示例', href: 'search/example.html'},
-                    {id: 'example-dialog', text: '搜索页面编辑示例', href: 'search/example-dialog.html'},
-                    {id: 'introduce', text: '搜索页面简介', href: 'search/introduce.html'},
-                    {id: 'config', text: '搜索配置', href: 'search/config.html'}
+                    {id: 'station_tab', text: '工作站信息', href: 'station_menu/station_tab'},
+
                 ]
-            }, {
-                text: '更多示例',
-                items: [
-                    {id: 'tab', text: '使用tab过滤', href: 'search/tab.html'}
-                ]
-            }]
+            }, ]
         }, {
             id: 'bar_code',
             homePage: 'storage_scan_code',

@@ -1,0 +1,484 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> 设备表单</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/suggest-style.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <style type="text/css">
+        code {
+            padding: 0px 4px;
+            color: #d14;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <form id="searchForm" class="form-horizontal span32">
+            <input type="hidden">
+            <div class="row" id="E_Input_console">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>工作站名称：</label>
+                    <input type="hidden" name="search_class_id" id="search_class_id">
+                    <div class="controls">
+                        <div class="input-group" id="devices_class_div">
+                            <input type="text" id="search_devices_class"
+                                   name="search_devices_class">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                            <!-- /btn-group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>工作站位置：</label>
+                    <input type="hidden" name="search_entity_id" id="search_entity_id">
+                    <div class="controls">
+                        <div class="input-group" id="devices_entity_div">
+                            <input type="text" id="search_devices_entity"
+                                   name="search_devices_entity">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                            <!-- /btn-group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>归属科室：</label>
+                    <input type="hidden" name="location_office_id" id="location_office_id">
+                    <div class="controls">
+                        <input name="search_office_ident" id="search_office_ident" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span9">
+                    <label class="control-label">登记时间：</label>
+                    <div class="controls">
+                        <input type="text" class=" calendar" name="startDate"><span> - </span>
+                        <input name="endDate" type="text" class=" calendar">
+                    </div>
+                </div>
+                <div class="span3 offset2">
+                    <button type="button" id="btnSearch" class="button button-primary">搜索</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="search-grid-container">
+        <div id="grid"></div>
+    </div>
+</div>
+
+<!--部署设备-->
+<div id="content" class="hide">
+    <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>科室选择：</label>
+                <div class="controls">
+                    <div class="input-group" id="location_office_div">
+                        <input type="text" id="location_office_select"
+                               name="location_office_select">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>部署设备：</label>
+                <div class="controls">
+                    <input name="dev_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备型号：</label>
+                <div class="controls">
+                    <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>&nbsp;当前科室库存:（入科未使用）</label>
+                <div class="controls" id="ori_device_select">
+                    <input id="depository_id" name="depository_id" type="hidden">
+                </div>
+                &nbsp;
+                <input type="button" id="I_Reset" name="I_Reset" class=" icon-repeat"
+                       style="width:15px;height:18px;background-color:#ffffff;">
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备编号：</label>
+                <input type="hidden" name="devices_id" id="devices_id" data-rules="{required:true}">
+                <div class="controls">
+                    <div class="input-group" id="devices_ident_div">
+                        <input type="text" id="deployment_devices_ident"
+                               name="deployment_devices_ident">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>科室设备名称：</label>
+                <div class="controls">
+                    <input id="office_unique_name" name="office_unique_name" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>现部署科室：</label>
+                <div class="controls">
+                    <input name="location_office" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备具体位置：</label>
+                <div class="controls">
+                    <input id="device_location" name="device_location" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>部署时间：</label>
+                <div class="controls">
+                    <input name="device_deployment_date" type="text" data-rules="{required:true}"
+                           class="calendar calendar-time">
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span2.5">
+                    <input id="class_id" name="class_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="offices_storage_officeId" name="offices_storage_officeId" type="hidden"
+                           data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
+                    <input id="device_deployment_status" name="device_deployment_status" type="hidden"
+                           data-rules="{required:true}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">备注：</label>
+                <div class="controls control-row4">
+                    <textarea name="remark" class="input-large" type="text"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--转移与回收设备-->
+<div id="content_T" class="hide">
+    <form id="T_Form" class="form-horizontal" action="" autocomplete="off">
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>科室选择：</label>
+                <div class="controls">
+                    <input id="storage_office_ident" name="storage_office_ident" type="text"
+                           class="input-normal control-text">
+                    <input type="hidden" name="offices_storage_officeId"  data-rules="{required:true}"
+                           id="offices_storage_officeId2">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>变更时间：</label>
+                <div class="controls">
+                    <input name="offices_storage_date" type="text" data-rules="{required:true}"
+                           class="calendar calendar-time">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备名称：</label>
+                <div class="controls">
+                    <input name="dev_name" type="text" class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备型号：</label>
+                <div class="controls">
+                    <input name="dev_type" type="text" class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>科室设备名称：</label>
+                <div class="controls">
+                    <input name="office_unique_name" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>设备具体位置：</label>
+                <div class="controls">
+                    <input name="device_location" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span16">
+                <label class="control-label">&nbsp;<s>*</s>回收库存选择：(只供回收操作选择)</label>
+                <div class="controls" id="rec_device_select">
+                    <input id="present_stock_id" name="present_stock_id" type="hidden">
+                </div>
+                &nbsp;
+                <button type="button" class="button button-danger" id="recovery_button"
+                        style="width:60px;height:25px;padding: 3px;"><span class="icon-shopping-cart"></span>回收
+                </button>
+            </div>
+
+        </div>
+        <div id="R_Input_console">
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存单位：</label>
+                    <div class="controls">
+                        <input id="stock_unit" name="stock_unit" type="text" class="input-normal control-text">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>库存比例：</label>
+                    <div class="controls">
+                        <input id="unit_num_1" name="unit_num" type="number" class="span1 control-text"> ：
+                        <input id="stock_proportion" name="stock_proportion" type="number" min="1"
+                               max="999" data-tip="{text:'数字有效'}" class="span2 control-text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input name="class_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input name="offices_entity_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="stock_or_depository_id" name="stock_or_depository_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input name="entity_name" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input name="entity_type" type="hidden" data-rules="{required:true}">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="offices_storage_no" name="offices_storage_no" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="offices_storage_no_2" name="offices_storage_no_2" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="offices_storage_unit" name="offices_storage_unit" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="offices_storage_proportion" name="offices_storage_proportion" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <!--回收用-->
+            <div class="control-group span2.5">
+                <input id="stock_no" name="stock_no" type="hidden">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">备注：</label>
+                <div class="controls control-row4">
+                    <textarea name="remark" class="input-large" type="text"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/js/bui-min.js"></script>
+<script type="text/javascript" src="/js/callback_ajax.js"></script>
+<script type="text/javascript" src="/js/config-min.js"></script>
+<script type="text/javascript" src="/js/suggest/bootstrap-suggest.js"></script>
+<script type="text/javascript" src="/js/suggest/dropdown.js"></script>
+<script type="text/javascript" src="/js/tree/tree_build.js"></script>
+<script type="text/javascript" src="/js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tools/data_handling.js"></script>
+<script type="text/javascript" src="/js/suggest/suggest_util.js"></script>
+<script type="text/javascript">
+    BUI.use('common/page');
+</script>
+<script type="text/javascript">
+    BUI.use(['common/search', 'bui/form', 'bui/grid', 'bui/extensions/treepicker', 'bui/select', 'bui/picker', 'bui/tree'],
+        function (Search, Form, Grid, TreePicker, Select, Picker, Tree) {
+
+            var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
+                offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
+
+
+                editing = new BUI.Grid.Plugins.DialogEditing({
+                    contentId: 'content', //设置隐藏的Dialog内容
+                    autoSave: true, //添加数据或者修改数据时，自动保存
+                    triggerCls: 'btn-edit',
+                }),
+
+
+                columns = [
+                    {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
+                    {title: '&nbsp设备名称', dataIndex: 'entity_name', elCls: 'center', width: 150},
+                    {title: '&nbsp设备型号', dataIndex: 'entity_type', elCls: 'center', width: 150},
+                    {
+                        title: '&nbsp所在科室',
+                        dataIndex: 'location_office_id',
+                        elCls: 'center',
+                        width: 100,
+                        renderer: BUI.Grid.Format.enumRenderer(enumOffices),
+                    },
+                    {title: '&nbsp科室识别名称', dataIndex: 'office_unique_name', elCls: 'center', width: 150},
+
+                    {title: '&nbsp部署时间', dataIndex: 'device_deployment_date', elCls: 'center', width: 130},
+                    {title: '&nbsp具体位置', dataIndex: 'device_location', elCls: 'center', width: 130},
+                    {title: '备注', dataIndex: 'remark', elCls: 'center', width: 150},
+                    {
+                        title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
+
+                            var editStr1 = '<span class="grid-command btn-edit" title="编辑设备信息">编辑</span>',
+                                delStr = '<span class="grid-command btn-del" title="删除设备信息">删除</span>';//页面操作不需要使用Search.createLink
+                            return editStr1 + delStr;
+                        }
+                    }
+                ],
+                store = Search.createStore('/listDevices', {
+                    proxy: {
+                        save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
+                            addUrl: '/addDevices',
+                            updateUrl: '/transferDevices',
+                            removeUrl: '/recoveryDevices'
+                        },
+                        method: 'POST'
+                    },
+                    pageSize: 12,
+                    autoSync: true //保存数据后，自动更新
+                }),
+                gridCfg = Search.createGridCfg(columns, {
+                    tbar: {
+                        items: [
+                            {
+                                text: '<i class=" icon-map-marker"></i>登记',
+                                btnCls: 'button button-small',
+                                handler: deploymentFunction
+                            },
+
+                        ]
+                    },
+                    emptyDataTpl : '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
+                    plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                });
+
+            var search = new Search({
+                    store: store,
+                    gridCfg: gridCfg
+                }),
+                grid = search.get('grid'),
+                J_Form = editing.get('form');
+
+            //部署操作
+            function deploymentFunction() {
+                var newData = {isNew: true}; //标志是新增加的记录
+                /*enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新*/
+                editing.add(newData); //添加记录后，直接编辑
+                J_Form.getField('depository_id').set('value', '');
+
+                buildBsSuggest("location_office_select",
+                    {
+                        value: offices_data.filter(function (office, index) {
+                            if (CheckIsNullOrEmpty(office.office_property)) {
+                                return office.office_property!=0;
+                            }
+                            return office;
+                        })
+                    },
+                    ["text", , ""],
+                    ["text", "id", "pinYin_code", "pinYinS_code"],
+                    {"text": "科室名称",},
+                    function (K, data) {
+
+                    },
+                    function () {
+
+                    },
+                );
+            }
+
+            //删除操作
+            function delFunction() {
+                var selections = grid.getSelection();
+                items(selections);
+            }
+
+            function items(items) {
+                var ids = [];
+                BUI.each(items, function (item) {
+                    ids.push(item.id);
+                });
+
+                if (ids.length) {
+                    BUI.Message.Confirm('确认要删除选中的记录么？', function () {
+                        store.save('remove', {ids: ids});
+                    }, 'question');
+                }
+            }
+
+            //监听事件，删除一条记录
+            grid.on('cellclick', function (ev) {
+                var sender = $(ev.domTarget); //点击的Dom
+                if (sender.hasClass('btn-del')) {
+                    var record = ev.record;
+                    items([record]);
+                }
+            });
+
+            editing.on('accept', function (ev) {
+                dev_name_data = [];
+            })
+
+        });
+</script>
+
+</body>
+</html>

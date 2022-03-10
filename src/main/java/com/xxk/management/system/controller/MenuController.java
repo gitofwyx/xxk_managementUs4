@@ -39,6 +39,12 @@ public class MenuController extends BaseController {
         return new ModelAndView("/search/offices_dialog", "result", result);
     }
 
+    @RequestMapping("/station_tab")
+    public ModelAndView  station_tab() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/station/sysadmin/station_admin", "result", result);
+    }
+
     @RequestMapping("/storage_tab/{stock_id}")
     public ModelAndView  storage_tab(@PathVariable("stock_id") String stock_id) {
         Map<String, Object> result = new HashMap<>();
