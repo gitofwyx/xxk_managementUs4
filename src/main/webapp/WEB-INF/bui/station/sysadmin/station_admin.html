@@ -349,7 +349,7 @@
 
             var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
                 offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
-
+                enumOffices = {},
 
                 editing = new BUI.Grid.Plugins.DialogEditing({
                     contentId: 'content', //设置隐藏的Dialog内容
@@ -383,7 +383,7 @@
                         }
                     }
                 ],
-                store = Search.createStore('/listDevices', {
+                store = Search.createStore('/station/listStation', {
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                             addUrl: '/addDevices',

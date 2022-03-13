@@ -1,6 +1,6 @@
 package com.xxk.management.station.dao;
 
-import com.xxk.management.office.offices.entity.Offices;
+import com.xxk.management.station.entity.Station;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,18 +12,9 @@ import java.util.Map;
 @Repository
 public interface StationDao {
 
-    public List<Offices> listOffices(int pageStart, int pageSize);
+    public List<Station> listWorkstation(int pageStart, int pageSize);
 
-    public int addOffices(Offices office);
+    public int addStation(Station station);
 
-    public int updateOfficesUDstatus(String office_ident,String userId,String date);
-
-    public List<Map<String, Object>> getOfficeSelect();
-
-    public int getUnderlingCount(String belong_to_id);
-
-    public int geRootCount(String belong_to_id);
-
-    public String getOfficeUpdateDate(String office_ident);
 
 }
