@@ -21,7 +21,7 @@
 
 <div class="container">
     <div class="row">
-        <form id="searchForm" class="form-horizontal span32">
+        <form id="searchForm" class="form-horizontal span32" autocomplete="off">
             <input type="hidden">
             <div class="row" id="E_Input_console">
                 <div class="control-group span8">
@@ -97,87 +97,15 @@
         </div>
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>部署设备：</label>
+                <label class="control-label"><s>*</s>工作站名称：</label>
                 <div class="controls">
-                    <input name="dev_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    <input name="workstation_name" type="text" data-rules="{required:true}" class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
+                <label class="control-label"><s>*</s>创建时间：</label>
                 <div class="controls">
-                    <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>&nbsp;当前科室库存:（入科未使用）</label>
-                <div class="controls" id="ori_device_select">
-                    <input id="depository_id" name="depository_id" type="hidden">
-                </div>
-                &nbsp;
-                <input type="button" id="I_Reset" name="I_Reset" class=" icon-repeat"
-                       style="width:15px;height:18px;background-color:#ffffff;">
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备编号：</label>
-                <input type="hidden" name="devices_id" id="devices_id" data-rules="{required:true}">
-                <div class="controls">
-                    <div class="input-group" id="devices_ident_div">
-                        <input type="text" id="deployment_devices_ident"
-                               name="deployment_devices_ident">
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        </ul>
-                        <!-- /btn-group -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>科室设备名称：</label>
-                <div class="controls">
-                    <input id="office_unique_name" name="office_unique_name" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
-                </div>
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>现部署科室：</label>
-                <div class="controls">
-                    <input name="location_office" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备具体位置：</label>
-                <div class="controls">
-                    <input id="device_location" name="device_location" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
-                </div>
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>部署时间：</label>
-                <div class="controls">
-                    <input name="device_deployment_date" type="text" data-rules="{required:true}"
-                           class="calendar calendar-time">
-                </div>
-            </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="class_id" name="class_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="offices_storage_officeId" name="offices_storage_officeId" type="hidden"
-                           data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="device_deployment_status" name="device_deployment_status" type="hidden"
-                           data-rules="{required:true}">
+                    <input name="workstation_deployment_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
                 </div>
             </div>
         </div>
@@ -188,6 +116,11 @@
                 <div class="controls control-row4">
                     <textarea name="remark" class="input-large" type="text"></textarea>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="location_office_id2" name="location_office_id" type="hidden" data-rules="{required:true}">
             </div>
         </div>
     </form>
@@ -422,7 +355,7 @@
                 var newData = {isNew: true}; //标志是新增加的记录
                 /*enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新*/
                 editing.add(newData); //添加记录后，直接编辑
-                J_Form.getField('depository_id').set('value', '');
+                //J_Form.getField('depository_id').set('value', '');
 
                 buildBsSuggest("location_office_select",
                     {
@@ -437,10 +370,10 @@
                     ["text", "id", "pinYin_code", "pinYinS_code"],
                     {"text": "科室名称",},
                     function (K, data) {
-
+                        J_Form.getField('location_office_id').set('value', data.value);
                     },
                     function () {
-
+                        J_Form.getField('location_office_id').set('value', '');
                     },
                 );
             }

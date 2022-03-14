@@ -63,28 +63,15 @@ public class StationController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/addDevices")
-    public Map<String, Object> addDevices(Devices devices, OfficesStorage officesStorage,
-                                          @RequestParam(value = "depository_id") String depository_id,
-                                          @RequestParam(value = "devices_id") String devices_id) {
+    public Map<String, Object> addDevices(Station station) {
         Map<String, Object> result = new HashMap<>();
-        String Date = DateUtil.getFullTime();
         boolean Result=false;
         try {
-            if ("".equals(depository_id) || depository_id == null) {
-                result.put("hasError", true);
-                result.put("error", "设备更新出错！");
-                return result;
-            }
+
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            devices.setCreateUserId(CurrentUserId);
-            officesStorage.setStock_or_depository_id(depository_id);
-            officesStorage.setOffices_storage_type("1");
-            if(!"".equals(devices_id) || devices_id != null){
-                devices.setId(devices_id);
-                Result = devicesService.updateDevicesForDeployment(devices, officesStorage);
-            }/*else {
-                Result = devicesService.addDevices(devices, officesStorage);
-            }*/
+
+            Result = stationService.addWorkstation(station);
+
             if (!(Result)) {
                 result.put("success", false);
             } else {

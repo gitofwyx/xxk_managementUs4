@@ -1,5 +1,7 @@
 package com.xxk.management.station.service.impl;
 
+import com.xxk.core.util.DateUtil;
+import com.xxk.core.util.UUIdUtil;
 import com.xxk.management.roles.entity.Roles;
 import com.xxk.management.station.dao.StationDao;
 import com.xxk.management.station.entity.Station;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StationServiceImpl implements StationService {
@@ -19,6 +22,16 @@ public class StationServiceImpl implements StationService {
 
         return dao.listWorkstation((pageStart-1)*pageSize,pageSize);
 
+    }
+
+    @Override
+    public boolean addWorkstation(Station station) throws Exception {
+
+        String createDate = DateUtil.getFullTime();
+        String id = UUIdUtil.getUUID();
+        station.setId(id);
+
+        return dao.addStation(station) == 1 ? true : false;
     }
 
 }
