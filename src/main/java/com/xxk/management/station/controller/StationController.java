@@ -62,14 +62,14 @@ public class StationController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/addDevices")
-    public Map<String, Object> addDevices(Station station) {
+    @RequestMapping("/addWorkstation")
+    public Map<String, Object> addWorkstation(Station station) {
         Map<String, Object> result = new HashMap<>();
         boolean Result=false;
         try {
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-
+            station.setCreateUserId(CurrentUserId);
             Result = stationService.addWorkstation(station);
 
             if (!(Result)) {

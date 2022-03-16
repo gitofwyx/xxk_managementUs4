@@ -14,7 +14,7 @@ public interface StationDao {
 
     public List<Station> listWorkstation(int pageStart, int pageSize);
 
-    public int addStation(Station station);
+    public int addWorkstation(Station station);
 
 
 }

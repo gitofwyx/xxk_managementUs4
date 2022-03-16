@@ -146,50 +146,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备名称：</label>
-                <div class="controls">
-                    <input name="dev_name" type="text" class="input-normal control-text">
-                </div>
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
-                <div class="controls">
-                    <input name="dev_type" type="text" class="input-normal control-text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>科室设备名称：</label>
-                <div class="controls">
-                    <input name="office_unique_name" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
-                </div>
-            </div>
-            <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备具体位置：</label>
-                <div class="controls">
-                    <input name="device_location" type="text" data-rules="{required:true}"
-                           class="input-normal control-text">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="control-group span16">
-                <label class="control-label">&nbsp;<s>*</s>回收库存选择：(只供回收操作选择)</label>
-                <div class="controls" id="rec_device_select">
-                    <input id="present_stock_id" name="present_stock_id" type="hidden">
-                </div>
-                &nbsp;
-                <button type="button" class="button button-danger" id="recovery_button"
-                        style="width:60px;height:25px;padding: 3px;"><span class="icon-shopping-cart"></span>回收
-                </button>
-            </div>
-
-        </div>
         <div id="R_Input_console">
             <div class="row">
                 <div class="control-group span8">
@@ -211,44 +167,6 @@
         <div class="row">
             <div class="control-group span2.5">
                 <input name="class_id" type="hidden" data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input id="entity_id2" name="entity_id" type="hidden" data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input name="offices_entity_id" type="hidden" data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input id="stock_or_depository_id" name="stock_or_depository_id" type="hidden" data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input name="entity_name" type="hidden" data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input name="entity_type" type="hidden" data-rules="{required:true}">
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="control-group span2.5">
-                <input id="offices_storage_no" name="offices_storage_no" type="hidden"
-                       data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input id="offices_storage_no_2" name="offices_storage_no_2" type="hidden"
-                       data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input id="offices_storage_unit" name="offices_storage_unit" type="hidden"
-                       data-rules="{required:true}">
-            </div>
-            <div class="control-group span2.5">
-                <input id="offices_storage_proportion" name="offices_storage_proportion" type="hidden"
-                       data-rules="{required:true}">
-            </div>
-            <!--回收用-->
-            <div class="control-group span2.5">
-                <input id="stock_no" name="stock_no" type="hidden">
             </div>
 
         </div>
@@ -319,9 +237,9 @@
                 store = Search.createStore('/station/listStation', {
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
-                            addUrl: '/addDevices',
-                            updateUrl: '/transferDevices',
-                            removeUrl: '/recoveryDevices'
+                            addUrl: '/station/addWorkstation',
+                            updateUrl: '',
+                            removeUrl: ''
                         },
                         method: 'POST'
                     },
@@ -334,7 +252,7 @@
                             {
                                 text: '<i class=" icon-map-marker"></i>登记',
                                 btnCls: 'button button-small',
-                                handler: deploymentFunction
+                                handler: regFunction
                             },
 
                         ]
@@ -351,7 +269,7 @@
                 J_Form = editing.get('form');
 
             //部署操作
-            function deploymentFunction() {
+            function regFunction() {
                 var newData = {isNew: true}; //标志是新增加的记录
                 /*enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新*/
                 editing.add(newData); //添加记录后，直接编辑

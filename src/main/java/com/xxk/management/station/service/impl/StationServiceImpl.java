@@ -30,8 +30,14 @@ public class StationServiceImpl implements StationService {
         String createDate = DateUtil.getFullTime();
         String id = UUIdUtil.getUUID();
         station.setId(id);
+        station.setWorkstation_state("1");
+        station.setRelated_flag("0");
+        station.setWorkstation_auditing_mark("0");
+        station.setCreateDate(createDate);
+        station.setUpdateUserId(station.getCreateUserId());
+        station.setUpdateDate(createDate);
 
-        return dao.addStation(station) == 1 ? true : false;
+        return dao.addWorkstation(station) == 1 ? true : false;
     }
 
 }

@@ -35,7 +35,7 @@
     </select>
 
     <!--添加信息 -->
-    <insert id="addWorkstation" parameterType="com.xxk.management.office.offices.entity.Offices">
+    <insert id="addWorkstation" parameterType="com.xxk.management.station.entity.Station">
         insert into xxk_offices_workstation(<include refid="columns"></include>) values(
         #{id},#{workstation_ident},#{workstation_name},#{workstation_state},#{location_office_id},#{mediaOfLANId},#{workstation_deployment_status},
         #{workstation_deployment_date},#{related_flag},#{workstation_location},#{workstation_flag},#{workstation_auditing_mark},#{reject_date},#{remark},#{keyWord},
