@@ -36,6 +36,7 @@ public class StationServiceImpl implements StationService {
         station.setCreateDate(createDate);
         station.setUpdateUserId(station.getCreateUserId());
         station.setUpdateDate(createDate);
+        station.setDeleteFlag("0");
 
         return dao.addWorkstation(station) == 1 ? true : false;
     }

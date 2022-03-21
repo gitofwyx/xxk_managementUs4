@@ -16,6 +16,7 @@ public class Devices extends BaseInfoEntity {
     private String  device_state;            //设备状态
     private String inventory_office_id;                   //原始出库科室id
     private String location_office_id;                   //现在科室id
+    private String station_id;                   //现在科室id
     private String  mediaOfLANId;              //通信介质id
     private String  device_origin;             //设备来源（1入科2原科）
     private String  present_stock_id;             //设备来源（1入科2原科）
@@ -97,6 +98,14 @@ public class Devices extends BaseInfoEntity {
 
     public void setLocation_office_id(String location_office_id) {
         this.location_office_id = location_office_id;
+    }
+
+    public String getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(String station_id) {
+        this.station_id = station_id;
     }
 
     public String getMediaOfLANId() {

@@ -77,12 +77,12 @@
     </div>
 </div>
 
-<!--部署设备-->
+<!--登记-->
 <div id="content" class="hide">
     <form id="J_Form" class="form-horizontal" action="" autocomplete="off">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>科室选择：</label>
+                <label class="control-label"><s>*</s>归属科室：</label>
                 <div class="controls">
                     <div class="input-group" id="location_office_div">
                         <input type="text" id="location_office_select"
@@ -93,19 +93,25 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>工作站名称：</label>
                 <div class="controls">
                     <input name="workstation_name" type="text" data-rules="{required:true}" class="input-normal control-text">
                 </div>
             </div>
+
+        </div>
+        <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>创建时间：</label>
                 <div class="controls">
                     <input name="workstation_deployment_date" type="text" data-rules="{required:true}" class="calendar calendar-time">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>工作站位置：</label>
+                <div class="controls">
+                    <input name="workstation_location" type="text" data-rules="{required:true}" class="input-normal control-text">
                 </div>
             </div>
         </div>
@@ -130,7 +136,7 @@
     <form id="T_Form" class="form-horizontal" action="" autocomplete="off">
         <div class="row">
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>科室选择：</label>
+                <label class="control-label"><s>*</s>归属科室：</label>
                 <div class="controls">
                     <input id="storage_office_ident" name="storage_office_ident" type="text"
                            class="input-normal control-text">
@@ -210,20 +216,20 @@
 
 
                 columns = [
-                    {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
-                    {title: '&nbsp设备名称', dataIndex: 'entity_name', elCls: 'center', width: 150},
-                    {title: '&nbsp设备型号', dataIndex: 'entity_type', elCls: 'center', width: 150},
+                    {title: '&nbsp工作站编号', dataIndex: 'workstation_ident', elCls: 'center', width: 150},
+                    {title: '&nbsp工作站名称', dataIndex: 'workstation_name', elCls: 'center', width: 150},
+                    {title: '&nbsp工作站状态', dataIndex: 'workstation_state', elCls: 'center', width: 150},
                     {
-                        title: '&nbsp所在科室',
+                        title: '&nbsp归属科室',
                         dataIndex: 'location_office_id',
                         elCls: 'center',
                         width: 100,
                         renderer: BUI.Grid.Format.enumRenderer(enumOffices),
                     },
-                    {title: '&nbsp科室识别名称', dataIndex: 'office_unique_name', elCls: 'center', width: 150},
+                    {title: '&nbsp部署状态', dataIndex: 'workstation_deployment_status', elCls: 'center', width: 150},
 
-                    {title: '&nbsp部署时间', dataIndex: 'device_deployment_date', elCls: 'center', width: 130},
-                    {title: '&nbsp具体位置', dataIndex: 'device_location', elCls: 'center', width: 130},
+                    {title: '&nbsp部署时间', dataIndex: 'workstation_deployment_date', elCls: 'center', width: 130},
+                    {title: '&nbsp具体位置', dataIndex: 'workstation_location', elCls: 'center', width: 130},
                     {title: '备注', dataIndex: 'remark', elCls: 'center', width: 150},
                     {
                         title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
@@ -260,6 +266,10 @@
                     emptyDataTpl : '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
                     plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
+            //遍历生产科室键值对
+            offices_data.forEach((value, index) => {
+                enumOffices[value.value]=value.text;
+            });
 
             var search = new Search({
                     store: store,
