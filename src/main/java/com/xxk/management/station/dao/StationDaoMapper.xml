@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.station.dao.StationDao">
     <sql id="columns">id,workstation_ident,workstation_name,workstation_state,location_office_id,mediaOfLANId,workstation_deployment_status,
-      workstation_deployment_date,related_flag,workstation_location,workstation_flag,workstation_auditing_mark,reject_date,remark,keyWord,createUserId,
-      createDate,updateUserId,updateDate,deleteFlag</sql>
+      workstation_deployment_date,related_flag,workstation_related_id,workstation_location,workstation_flag,workstation_auditing_mark,reject_date,
+      remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <resultMap id="office_nameMap" type="java.util.HashMap">
         <id column="id" property="value" jdbcType="VARCHAR"/>
@@ -38,8 +38,8 @@
     <insert id="addWorkstation" parameterType="com.xxk.management.station.entity.Station">
         insert into xxk_offices_workstation(<include refid="columns"></include>) values(
         #{id},#{workstation_ident},#{workstation_name},#{workstation_state},#{location_office_id},#{mediaOfLANId},#{workstation_deployment_status},
-        #{workstation_deployment_date},#{related_flag},#{workstation_location},#{workstation_flag},#{workstation_auditing_mark},#{reject_date},#{remark},#{keyWord},
-        #{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        #{workstation_deployment_date},#{related_flag},#{workstation_related_id},#{workstation_location},#{workstation_flag},#{workstation_auditing_mark},
+        #{reject_date},#{remark},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--修改信息 -->

@@ -16,6 +16,7 @@ public class Station extends BaseInfoEntity {
     private String workstation_deployment_status;      //部署状态
     private String workstation_deployment_date;      //部署时间
     private String related_flag;                      //关联状态
+    private String workstation_related_id;                      //关联状态
     private String workstation_location;              //工作站具体位置
     private String workstation_flag;                  //工作站标识
     private String workstation_auditing_mark;         //工作站审核标志
@@ -95,6 +96,14 @@ public class Station extends BaseInfoEntity {
 
     public void setRelated_flag(String related_flag) {
         this.related_flag = related_flag;
+    }
+
+    public String getWorkstation_related_id() {
+        return workstation_related_id;
+    }
+
+    public void setWorkstation_related_id(String workstation_related_id) {
+        this.workstation_related_id = workstation_related_id;
     }
 
     public String getWorkstation_location() {
