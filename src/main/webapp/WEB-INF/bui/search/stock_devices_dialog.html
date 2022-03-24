@@ -659,14 +659,13 @@
                 }
             }
 
-            //下拉提示框bsSuggest
-            function initBsSuggest(t, cla, v, callback) {
+            function initBsSuggest(t, cla, v, callback,onUnset_ck) {
                 var options = {
                     /*url: "/getMaterialName?tab=" + v,*/
                     data: v,
-                    effectiveFields: ["text", ""],
-                    searchFields: ["text", "id"],
-                    effectiveFieldsAlias: {"text": "设备名称"},
+                    effectiveFields: ["text", "class_ident"],
+                    searchFields: ["text", "class_ident"],
+                    effectiveFieldsAlias: {class_ident: "编号", text: "名称"},
                     listAlign: 'auto',
                     showBtn: false,
                     autoMinWidth: true,
@@ -687,7 +686,10 @@
                         }
 
                     }).on('onUnsetSelectValue', function () {
-                        console.log('onUnsetSelectValue');
+                        if (typeof onUnset_ck === "function") {
+                            //调用它，既然我们已经确定了它是可调用的
+                            onUnset_ck();
+                        }
                     });
                 } else if (t == 0) {
                     $("#" + cla).bsSuggest('destroy');
@@ -707,10 +709,14 @@
                         if (!$.isEmptyObject(data)) {
                             changeEntClass(K, data.value);
                             initBsSuggest(1, "search_devices_entity", {value: entity_data}, function (K, data) {
-                                $("#search_entity_id").val(data.value);
+                                $("#search_entity_id").val('');
                                 device_select = data;
+                            },function (){
+                                $("#search_entity_id").val('');
                             });
                         }
+                    },function (){
+                        $("#search_class_id").val('');
                     });
                 }
             };

@@ -890,7 +890,7 @@
                         if (!$.isEmptyObject(data)) {
                             changeEntClass(K, data.value);
                             initBsSuggest(1, "search_devices_entity", {value: entity_data}, function (K, data) {
-                                $("#search_entity_id").val(data.value);
+                                $("#search_entity_id").val('');
                                 device_select = data;
                             },function (){
                                 $("#search_entity_id").val('');
