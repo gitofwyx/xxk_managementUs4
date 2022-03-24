@@ -883,6 +883,7 @@
                 if (!$.isEmptyObject(device_data)) {
                     initBsSuggest(1, "search_devices_class", {value: device_data.Class_data}, function (K, data) {
                         $("#search_class_id").val(data.value);
+                        $("#search_entity_id").val('');
                         initBsSuggest(0, "search_devices_entity");
                         $('#devices_entity_div').replaceWith('<div class="input-group" id="devices_entity_div"> ' +
                             '<input type="text" id="search_devices_entity" name="search_devices_entity"> ' +
@@ -890,7 +891,7 @@
                         if (!$.isEmptyObject(data)) {
                             changeEntClass(K, data.value);
                             initBsSuggest(1, "search_devices_entity", {value: entity_data}, function (K, data) {
-                                $("#search_entity_id").val('');
+                                $("#search_entity_id").val(data.value);
                                 device_select = data;
                             },function (){
                                 $("#search_entity_id").val('');
