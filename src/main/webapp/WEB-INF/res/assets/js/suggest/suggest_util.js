@@ -56,3 +56,9 @@ function buildBsSuggestIO(cla,options, onSet_ck,onUnset_ck) {
 
 
 };
+
+function initBsSuggest(cla) {
+
+    $("#" + cla).bsSuggest('destroy');
+
+}
