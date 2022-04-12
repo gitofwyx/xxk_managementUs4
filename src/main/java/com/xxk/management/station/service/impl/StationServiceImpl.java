@@ -41,4 +41,9 @@ public class StationServiceImpl implements StationService {
         return dao.addWorkstation(station) == 1 ? true : false;
     }
 
+    @Override
+    public  List<Map<String, Object>> getStationSelectByOfficeId(String office_id) {
+        return dao.getStationSelectByOfficeId(office_id);
+    }
+
 }

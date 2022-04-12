@@ -93,6 +93,18 @@
                     </div>
                 </div>
             </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>工作站选择：</label>
+                <div class="controls">
+                    <div class="input-group" id="office_tation_div">
+                        <input type="text" id="office_tation_select"
+                               name="office_tation_select">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
+                </div>
+            </div>
 
         </div>
         <div class="row">
@@ -164,23 +176,34 @@
                            class="calendar calendar-time">
                 </div>
             </div>
-            <div class="row">
-                <div class="control-group span2.5">
-                    <input id="class_id" name="class_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="offices_storage_officeId" name="offices_storage_officeId" type="hidden"
-                           data-rules="{required:true}">
-                </div>
-                <div class="control-group span2.5">
-                    <input id="device_deployment_status" name="device_deployment_status" type="hidden"
-                           data-rules="{required:true}">
+            <div class="control-group">
+                <label class="control-label">&nbsp;&nbsp;设备位置设定:</label>
+                <div class="controls" style="padding-top: 3px;">
+                    <label class="radio"><input id="auto_location" type="radio" name="locationSet" value="">基于工作站位置</label>
+                    &nbsp;<label class="radio"><input id="DIY_location" type="radio" name="locationSet" value="">自定义</label>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="control-group span2.5">
+                <input id="class_id" name="class_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="station_id" name="station_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="offices_storage_officeId" name="offices_storage_officeId" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="device_deployment_status" name="device_deployment_status" type="hidden"
+                       data-rules="{required:true}">
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="control-group span15">
@@ -218,7 +241,7 @@
             });
             var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
                 enumObj_device_origin = {"1": "入科设备", "2": "原科设备"},
-                enumObj_deployment_status = {"1": "已完成", "2": "未部署","3": "已部署"},
+                enumObj_deployment_status = {"1": "已完成", "2": "未部署", "3": "已部署"},
                 offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
                 device_data = {},//全部dev初始化
                 entity_data = [],//型号初始化
@@ -331,7 +354,7 @@
                                 text: '<i class=" icon-map-marker"></i>部署',
                                 btnCls: 'button button-small',
                                 handler: deploymentFunction
-                            },{
+                            }, {
                                 text: '<i class=" icon-map-marker"></i>撤出',
                                 btnCls: 'button button-small',
                                 handler: deploymentFunction
@@ -339,8 +362,8 @@
 
                         ]
                     },
-                    emptyDataTpl : '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
-                    plugins: [editing,BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
+                    emptyDataTpl: '<div class="centered"><img alt="Crying" src="/img/no_data-2.jpg"></div>',
+                    plugins: [editing, BUI.Grid.Plugins.CheckSelection, BUI.Grid.Plugins.AutoFit] // 插件形式引入多选表格
                 });
 
             var search = new Search({
@@ -367,11 +390,15 @@
                     J_Form.getField('dev_type').set('value', device_select.text);
                 }
 
+                initBsSuggest("dispose_office_select");
+                $('#out_offices_div').replaceWith('<div class="input-group" id="out_offices_div"> ' +
+                    '<input type="text" id="dispose_office_select" name="dispose_office_select">' +
+                    '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul></div>');
                 buildBsSuggest("dispose_office_select",
                     {
                         value: offices_data.filter(function (office, index) {
                             if (CheckIsNullOrEmpty(office.office_property)) {
-                                return office.office_property!=0;
+                                return office.office_property != 0;
                             }
                             return office;
                         })
@@ -384,10 +411,12 @@
                         originalDeploymentDev();
                         J_Form.getField('offices_storage_officeId').set('value', data.value);
                         J_Form.getField('location_office').set('value', data.text);
+                        initWorkstationDev();
                         selectDepositoryForOfficeEntitys({
                             entity_id: device_select.value,
                             depository_officeId: data.value,
                         }, function (v) {
+                            initWorkstationDev({"office_id": data.value});
                             ori_device_grid.setItems(v);
                         });
                     },
@@ -553,42 +582,75 @@
             //初始化BsSuggest
             function originalSeaEntity(v) {
                 if (!$.isEmptyObject(device_data)) {
-                    buildBsSuggest( "search_devices_class",
+                    buildBsSuggest("search_devices_class",
                         {value: device_data.Class_data},
                         ["text", "class_ident"],
                         ["text", "class_ident"],
                         {class_ident: "编号", text: "名称"},
                         function (K, data) {
-                        $("#search_class_id").val(data.value);
-                        $("#search_entity_id").val('');
-                        initBsSuggest( "search_devices_entity");
-                        $('#devices_entity_div').replaceWith('<div class="input-group" id="devices_entity_div"> ' +
-                            '<input type="text" id="search_devices_entity" name="search_devices_entity"> ' +
-                            '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
-                        if (!$.isEmptyObject(data)) {
-                            changeEntClass(K, data.value);
-                            buildBsSuggest( "search_devices_entity",
-                                {value: entity_data},
-                                ["text", "class_ident"],
-                                ["text", "class_ident"],
-                                {class_ident: "编号", text: "名称"},
-                                function (K, data) {
-                                $("#search_entity_id").val(data.value);
-                                device_select = data;
-                            },function (){
-                                $("#search_entity_id").val('');
-                            });
-                        }
-                    },function (){
-                        $("#search_class_id").val('');
-                    });
+                            $("#search_class_id").val(data.value);
+                            $("#search_entity_id").val('');
+                            initBsSuggest("search_devices_entity");
+                            $('#devices_entity_div').replaceWith('<div class="input-group" id="devices_entity_div"> ' +
+                                '<input type="text" id="search_devices_entity" name="search_devices_entity"> ' +
+                                '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
+                            if (!$.isEmptyObject(data)) {
+                                changeEntClass(K, data.value);
+                                buildBsSuggest("search_devices_entity",
+                                    {value: entity_data},
+                                    ["text", "class_ident"],
+                                    ["text", "class_ident"],
+                                    {class_ident: "编号", text: "名称"},
+                                    function (K, data) {
+                                        $("#search_entity_id").val(data.value);
+                                        device_select = data;
+                                    }, function () {
+                                        $("#search_entity_id").val('');
+                                    });
+                            }
+                        }, function () {
+                            $("#search_class_id").val('');
+                        });
                 }
+            };
+
+            function initWorkstationDev(v) {
+
+                $('input[type=radio][id=auto_location]').val("");
+                $("#device_location").val("");
+                $("#station_id").val("");
+                initBsSuggest("office_tation_select");
+                $('#office_tation_div').replaceWith('<div class="input-group" id="office_tation_div"> ' +
+                    '<input type="text" id="office_tation_select" name="office_tation_select">' +
+                    '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul></div>');
+                if (!CheckIsNullOrEmpty(v)) return;
+                CD_ajaxAllParam("/station/getStationSelectByOfficeId", v, true, function (v) {
+
+                    if (!$.isEmptyObject(v)) {
+
+                        buildBsSuggest("office_tation_select",
+                            {value: v.station_data},
+                            ["workstation_ident", "text"],
+                            ["workstation_ident", "text"],
+                            {workstation_ident: "编号", text: "名称",},
+                            function (K, data) {
+                                $("#device_location").val(data.workstation_location);
+                                $('input[type=radio][id=auto_location]').val(data.workstation_location);
+                                $("#station_id").val(data.value);
+                            }, function () {
+                                $("#station_id").val("");
+                                $("#device_location").val("");
+                                $('input[type=radio][id=auto_location]').val("");
+                            });
+                    }
+                });
+
             };
 
             function originalDeploymentDev(v) {
                 $("#devices_id").val("");
                 $("#office_unique_name").val("");
-                $("#device_location").val("");
+                $('input[type=radio][id=DIY_location]').val("");
                 $("#device_deployment_status").val("");
                 initBsSuggest("deployment_devices_ident");
                 $('#devices_ident_div').replaceWith('<div class="input-group" id="devices_ident_div"> ' +
@@ -596,22 +658,22 @@
                     '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
                 if (!$.isEmptyObject(v)) {
 
-                    buildBsSuggest( "deployment_devices_ident",
+                    buildBsSuggest("deployment_devices_ident",
+                        {value: v},
                         ["text", "office_unique_name"],
                         ["text", "class_ident"],
                         {text: "编号", office_unique_name: "科室别称",},
-                        {value: v},
                         function (K, data) {
-                        $("#devices_id").val(data.value);
-                        $("#office_unique_name").val(data.office_unique_name);
-                        $("#device_location").val(data.device_location);
-                        $("#device_deployment_status").val(data.device_deployment_status);
-                    },function () {
-                        $("#devices_id").val("");
-                        $("#office_unique_name").val("");
-                        $("#device_location").val("");
-                        $("#device_deployment_status").val("");
-                    });
+                            $("#devices_id").val(data.value);
+                            $("#office_unique_name").val(data.office_unique_name);
+                            $('input[type=radio][id=DIY_location]').val(data.device_location);
+                            $("#device_deployment_status").val(data.device_deployment_status);
+                        }, function () {
+                            $("#devices_id").val("");
+                            $('input[type=radio][id=DIY_location]').val("");
+                            $("#device_location").val("");
+                            $("#device_deployment_status").val("");
+                        });
                 }
             };
 
@@ -625,7 +687,7 @@
             });
 
             loc_office_tree.on('selectedchange', function (ev) {
-                if(!CheckIsNullOrEmpty(ev.item)){
+                if (!CheckIsNullOrEmpty(ev.item)) {
                     $("#location_office_id").val('');
                     return;
                 }
@@ -636,6 +698,10 @@
 
             editing.on('accept', function (ev) {
                 dev_name_data = [];
+            });
+
+            $('input[type=radio][name=locationSet]').change(function(){
+                $("#device_location").val($(this).val());
             });
 
         });

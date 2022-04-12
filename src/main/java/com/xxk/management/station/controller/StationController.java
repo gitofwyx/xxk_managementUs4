@@ -15,6 +15,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -83,6 +84,27 @@ public class StationController extends BaseController {
         }
         return result;
         //return "system/index";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getStationSelectByOfficeId",method = RequestMethod.POST)
+    public Map<String, Object> getStationSelectByOfficeId(@RequestParam(value = "office_id") String office_id) {
+        int id = 0;
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> listStation = new ArrayList<>();
+        try {
+            listStation = stationService.getStationSelectByOfficeId(office_id);
+            if ( listStation == null) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("station_data", listStation);
+
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
     }
 
 

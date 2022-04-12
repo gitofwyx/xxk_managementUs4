@@ -15,4 +15,6 @@ public interface StationService {
 
     public boolean addWorkstation(Station station) throws Exception;
 
+    public  List<Map<String, Object>> getStationSelectByOfficeId(String office_id);
+
 }

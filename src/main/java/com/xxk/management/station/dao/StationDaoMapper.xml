@@ -5,16 +5,18 @@
       workstation_deployment_date,related_flag,workstation_related_id,workstation_location,workstation_flag,workstation_auditing_mark,reject_date,
       remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
-    <resultMap id="office_nameMap" type="java.util.HashMap">
+    <resultMap id="stationSelectMap" type="java.util.HashMap">
         <id column="id" property="value" jdbcType="VARCHAR"/>
-        <result column="belong_to_id" property="belong_to_id" jdbcType="VARCHAR"/>
-        <result column="office_property" property="office_property" jdbcType="VARCHAR"/>
-        <result column="office_function" property="office_function" jdbcType="VARCHAR"/>
-        <result column="office_name" property="text" jdbcType="VARCHAR"/>
-        <result column="office_ident" property="id" jdbcType="VARCHAR"/>
-        <result column="pinYin_code" property="pinYin_code" jdbcType="VARCHAR"/>
-        <result column="pinYinS_code" property="pinYinS_code" jdbcType="VARCHAR"/>
-        <result column="wuBiS_code" property="wuBiS_code" jdbcType="VARCHAR"/>
+        <result column="workstation_ident" property="workstation_ident" jdbcType="VARCHAR"/>
+        <result column="workstation_name" property="text" jdbcType="VARCHAR"/>
+        <result column="workstation_state" property="workstation_state" jdbcType="VARCHAR"/>
+        <result column="location_office_id" property="location_office_id" jdbcType="VARCHAR"/>
+        <result column="workstation_deployment_status" property="workstation_deployment_status" jdbcType="VARCHAR"/>
+        <result column="workstation_deployment_date" property="workstation_deployment_date" jdbcType="VARCHAR"/>
+        <result column="related_flag" property="related_flag" jdbcType="VARCHAR"/>
+        <result column="workstation_related_id" property="workstation_related_id" jdbcType="VARCHAR"/>
+        <result column="workstation_location" property="workstation_location" jdbcType="VARCHAR"/>
+        <result column="workstation_flag" property="workstation_flag" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--获取分页 -->
@@ -24,9 +26,16 @@
         from xxk_offices_workstation where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
     </select>
 
-    <select id="getOfficeSelect" resultMap="office_nameMap">
-        select id,belong_to_id,office_property,office_function,office_name,office_ident,pinYin_code,pinYinS_code,wuBiS_code
-        from xxk_offices where deleteFlag='0';
+    <select id="getStationSelectByOfficeId" resultMap="stationSelectMap">
+        select id,workstation_ident,workstation_name,workstation_state,location_office_id,workstation_deployment_status,workstation_deployment_date,related_flag,
+               workstation_related_id,workstation_location,workstation_flag
+        from xxk_offices_workstation
+        where
+        <if test="office_id!=null and ''!= office_id">
+           location_office_id = #{office_id}
+        </if>
+        and
+        deleteFlag='0';
     </select>
 
     <select id="getWorkstationCount" parameterType="string" resultType="int">

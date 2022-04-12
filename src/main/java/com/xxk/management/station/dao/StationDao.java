@@ -1,6 +1,7 @@
 package com.xxk.management.station.dao;
 
 import com.xxk.management.station.entity.Station;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public interface StationDao {
     public List<Station> listWorkstation(int pageStart, int pageSize);
 
     public int addWorkstation(Station station);
+
+    public List<Map<String, Object>> getStationSelectByOfficeId(@Param("office_id")String office_id);
 
 
 }
