@@ -25,6 +25,16 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
+    public  List<Map<String, Object>> listWorkstationWithDevices(int pageStart,int pageSize,String class_id,String device_id,String office_id) {
+        return dao.listWorkstationWithDevices((pageStart - 1) * pageSize, pageSize,class_id,device_id,office_id);
+    }
+
+    @Override
+    public  List<Map<String, Object>> getStationSelectByOfficeId(String office_id) {
+        return dao.getStationSelectByOfficeId(office_id);
+    }
+
+    @Override
     public boolean addWorkstation(Station station) throws Exception {
 
         String createDate = DateUtil.getFullTime();
@@ -41,9 +51,5 @@ public class StationServiceImpl implements StationService {
         return dao.addWorkstation(station) == 1 ? true : false;
     }
 
-    @Override
-    public  List<Map<String, Object>> getStationSelectByOfficeId(String office_id) {
-        return dao.getStationSelectByOfficeId(office_id);
-    }
 
 }

@@ -5,6 +5,49 @@
       workstation_deployment_date,related_flag,workstation_related_id,workstation_location,workstation_flag,workstation_auditing_mark,reject_date,
       remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
+    <sql id="columnsMap">od.id as id,
+                         ow.id as workstation_id,
+                         ow.workstation_ident as workstation_ident,
+                         ow.workstation_name as workstation_name,
+                         xf.id as location_office_id,
+                         xf.office_name as location_office_name,
+                         ow.workstation_location as workstation_location,
+                         xc.ent_class as ent_class_name,
+                         xd.id as device_id,
+                         xd.dev_name as device_name,
+                         od.office_unique_name as office_unique_name,
+                         od.device_state as device_state,
+                         od.present_stock_id as present_stock_id,
+                         od.device_entry_date as device_entry_date,
+                         od.device_deployment_status as device_deployment_status,
+                         od.device_deployment_date as device_deployment_date,
+                         od.related_id as related_id,
+                         od.device_location as device_location,
+                         od.device_flag as device_flag
+    </sql>
+
+    <resultMap id="stationMap" type="java.util.HashMap">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="workstation_id" property="workstation_id" jdbcType="VARCHAR"/>
+        <result column="workstation_ident" property="workstation_ident" jdbcType="VARCHAR"/>
+        <result column="workstation_name" property="workstation_name" jdbcType="VARCHAR"/>
+        <result column="location_office_id" property="location_office_id" jdbcType="VARCHAR"/>
+        <result column="location_office_name" property="location_office_name" jdbcType="VARCHAR"/>
+        <result column="workstation_location" property="workstation_location" jdbcType="VARCHAR"/>
+        <result column="ent_class_name" property="ent_class_name" jdbcType="VARCHAR"/>
+        <result column="device_id" property="device_id" jdbcType="VARCHAR"/>
+        <result column="device_name" property="device_name" jdbcType="VARCHAR"/>
+        <result column="office_unique_name" property="office_unique_name" jdbcType="VARCHAR"/>
+        <result column="device_state" property="device_state" jdbcType="VARCHAR"/>
+        <result column="present_stock_id" property="present_stock_id" jdbcType="VARCHAR"/>
+        <result column="device_entry_date" property="device_entry_date" jdbcType="VARCHAR"/>
+        <result column="device_deployment_status" property="device_deployment_status" jdbcType="VARCHAR"/>
+        <result column="device_deployment_date" property="device_deployment_date" jdbcType="VARCHAR"/>
+        <result column="related_id" property="related_id" jdbcType="VARCHAR"/>
+        <result column="device_location" property="device_location" jdbcType="VARCHAR"/>
+        <result column="device_flag" property="device_flag" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <resultMap id="stationSelectMap" type="java.util.HashMap">
         <id column="id" property="value" jdbcType="VARCHAR"/>
         <result column="workstation_ident" property="workstation_ident" jdbcType="VARCHAR"/>
@@ -24,6 +67,27 @@
         select
         <include refid="columns"></include>
         from xxk_offices_workstation where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
+    </select>
+
+    <select id="listWorkstationWithDevices" resultMap="stationMap">
+        select
+        <include refid="columnsMap"></include>
+        from xxk_offices_devices od
+        LEFT JOIN xxk_device xd ON od.device_id=xd.id
+        LEFT JOIN xxk_dev_class xc ON od.class_id=xc.id
+        LEFT JOIN xxk_offices xf ON od.location_office_id=xf.id
+        LEFT JOIN xxk_offices_workstation ow ON od.station_id=ow.id
+        where od.deleteFlag='0' and od.device_deployment_status in ('2','3')
+        <if test="class_id!=null and ''!= class_id">
+            and od.class_id = #{class_id}
+        </if>
+        <if test="device_id!=null and ''!= device_id">
+            and od.device_id = #{device_id}
+        </if>
+        <if test="location_office_id!=null and ''!= location_office_id and 'a5c7b9f5-1f3c-4308-86e9-148b21416b37'!=location_office_id">
+            and od.location_office_id = #{location_office_id}
+        </if>
+        ORDER BY od.createDate desc limit #{pageStart},#{pageSize};
     </select>
 
     <select id="getStationSelectByOfficeId" resultMap="stationSelectMap">

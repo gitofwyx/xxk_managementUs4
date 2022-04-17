@@ -298,17 +298,19 @@
                 }).render(),
 
                 columns = [
-                    {title: '&nbsp设备编号', dataIndex: 'devices_ident', elCls: 'center', width: 150},
-                    {title: '&nbsp设备名称', dataIndex: 'entity_name', elCls: 'center', width: 150},
-                    {title: '&nbsp设备型号', dataIndex: 'entity_type', elCls: 'center', width: 150},
+                    {title: '&nbsp工作站编号', dataIndex: 'workstation_ident', elCls: 'center', width: 100},
+                    {title: '&nbsp工作站名称', dataIndex: 'workstation_name', elCls: 'center', width: 150},
                     {
                         title: '&nbsp所在科室',
                         dataIndex: 'location_office_id',
                         elCls: 'center',
-                        width: 100,
+                        width: 150,
                         renderer: BUI.Grid.Format.enumRenderer(enumOffices),
                     },
-                    {title: '&nbsp科室识别名称', dataIndex: 'office_unique_name', elCls: 'center', width: 150},
+                    {title: '&nbsp工作站位置', dataIndex: 'workstation_location', elCls: 'center', width: 150},
+                    {title: '&nbsp绑定设备', dataIndex: 'entity_name', elCls: 'center', width: 150},
+                    {title: '&nbsp设备别称', dataIndex: 'office_unique_name', elCls: 'center', width: 150},
+                    {title: '设备位置(自定义)', dataIndex: 'devices_ident', elCls: 'center', width: 150},
                     {
                         title: '&nbsp设备来源',
                         dataIndex: 'device_origin',
@@ -335,7 +337,7 @@
                         }
                     }
                 ],
-                store = Search.createStore('/listDevices', {
+                store = Search.createStore('/listStation', {
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
                             addUrl: '/addDevices',

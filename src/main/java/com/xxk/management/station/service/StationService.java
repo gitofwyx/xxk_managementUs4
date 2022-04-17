@@ -13,8 +13,10 @@ public interface StationService {
 
     public List<Station> listWorkstation(int pageStart, int pageSize);
 
-    public boolean addWorkstation(Station station) throws Exception;
+    public  List<Map<String, Object>> listWorkstationWithDevices(int pageStart,int pageSize,String class_id,String device_id,String office_id);
 
     public  List<Map<String, Object>> getStationSelectByOfficeId(String office_id);
+
+    public boolean addWorkstation(Station station) throws Exception;
 
 }

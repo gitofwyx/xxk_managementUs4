@@ -15,9 +15,13 @@ public interface StationDao {
 
     public List<Station> listWorkstation(int pageStart, int pageSize);
 
-    public int addWorkstation(Station station);
+    public List<Map<String, Object>> listWorkstationWithDevices(@Param("pageStart") int pageStart,
+                                                                @Param("pageSize") int pageSize,
+                                                                @Param("class_id") String class_id,
+                                                                @Param("device_id") String device_id,
+                                                                @Param("location_office_id") String location_office_id);
 
     public List<Map<String, Object>> getStationSelectByOfficeId(@Param("office_id")String office_id);
 
-
+    public int addWorkstation(Station station);
 }
