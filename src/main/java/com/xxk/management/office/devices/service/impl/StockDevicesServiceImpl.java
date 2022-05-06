@@ -109,7 +109,6 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         boolean devicesResult = false;
 
         devices.setId(delivery.getStock_entity_id());
-        devices.setDevice_origin("1");
         devices.setDevice_deployment_status("1");
         devices.setRelated_flag("0");
         devices.setUpdateDate(createDate);

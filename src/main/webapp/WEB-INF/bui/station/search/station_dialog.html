@@ -240,8 +240,9 @@
                 }
             });
             var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
-                enumObj_device_origin = {"1": "入科设备", "2": "原科设备"},
-                enumObj_deployment_status = {"1": "已完成", "2": "未部署", "3": "已部署"},
+                enumObj_device_flag = {"0":"不明","1":"借用","2":"调用","3":"固定",},
+                enumObj_device_status = {"1": "已入库", "2": "未部署", "3": "已部署"},
+                enumObj_device_state = {"0":"报废","1":"故障","2":"异常","3":"正常"},
                 offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
                 device_data = {},//全部dev初始化
                 entity_data = [],//型号初始化
@@ -308,25 +309,33 @@
                         renderer: BUI.Grid.Format.enumRenderer(enumOffices),
                     },
                     {title: '&nbsp工作站位置', dataIndex: 'workstation_location', elCls: 'center', width: 150},
-                    {title: '&nbsp绑定设备', dataIndex: 'entity_name', elCls: 'center', width: 150},
+                    {title: '&nbsp绑定设备', dataIndex: '', elCls: 'center', width: 150,renderer: function (value, obj) {
+                            return obj.ent_class_name+"/" + obj.device_name;
+                        }},
                     {title: '&nbsp设备别称', dataIndex: 'office_unique_name', elCls: 'center', width: 150},
-                    {title: '设备位置(自定义)', dataIndex: 'devices_ident', elCls: 'center', width: 150},
+                    {title: '设备位置(自定义)', dataIndex: 'device_location', elCls: 'center', width: 150},
                     {
-                        title: '&nbsp设备来源',
-                        dataIndex: 'device_origin',
+                        title: '&nbsp设备性质',
+                        dataIndex: 'device_flag',
                         elCls: 'center',
                         width: 100,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj_device_origin)
+                        renderer: BUI.Grid.Format.enumRenderer(enumObj_device_flag)
                     },
                     {
                         title: '部署状态',
                         dataIndex: 'device_deployment_status',
                         elCls: 'center',
                         width: 65,
-                        renderer: BUI.Grid.Format.enumRenderer(enumObj_deployment_status)
+                        renderer: BUI.Grid.Format.enumRenderer(enumObj_device_status)
+                    },
+                    {
+                        title: '设备状态',
+                        dataIndex: 'device_state',
+                        elCls: 'center',
+                        width: 65,
+                        renderer: BUI.Grid.Format.enumRenderer(enumObj_device_state)
                     },
                     {title: '&nbsp部署时间', dataIndex: 'device_deployment_date', elCls: 'center', width: 130},
-                    {title: '&nbsp具体位置', dataIndex: 'device_location', elCls: 'center', width: 130},
                     {title: '备注', dataIndex: 'remark', elCls: 'center', width: 150},
                     {
                         title: '操作', dataIndex: '', width: 100, renderer: function (value, obj) {
