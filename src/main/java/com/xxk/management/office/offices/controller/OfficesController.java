@@ -131,6 +131,28 @@ public class OfficesController extends BaseController {
     }
 
     @ResponseBody
+    @RequestMapping("/verifyIsBelong_toOffices")
+    public Map<String, Object> verifyIsBelong_toOffices(@RequestParam(value = "BId") String BId) {
+        int id = 0;
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> listOffice = new ArrayList<>();
+        try {
+
+            listOffice = officesService.verifyIsBelong_toOffices(BId);
+            if (listOffice == null) {
+                log.error("获取出错");
+                return null;
+            }
+
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+    }
+
+    @ResponseBody
     @RequestMapping("/getOfficesUDstatus")
     public Map<String, Object> getOfficesUDstatus() {
         int id = 0;

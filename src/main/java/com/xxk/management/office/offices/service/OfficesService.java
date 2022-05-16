@@ -19,6 +19,8 @@ public interface OfficesService {
 
     public List<Map<String, Object>> getOfficeSelect();
 
+    public List<Map<String, Object>> verifyIsBelong_toOffices(String BId);
+
     public int getUnderlingCount(String belong_to_id);
 
     public int geRootCount(String belong_to_id);

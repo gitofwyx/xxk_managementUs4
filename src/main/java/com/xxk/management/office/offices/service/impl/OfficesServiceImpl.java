@@ -1,6 +1,7 @@
 package com.xxk.management.office.offices.service.impl;
 
 import com.xxk.core.util.DateUtil;
+import com.xxk.core.util.tree.StreamTreeUtil;
 import com.xxk.management.office.offices.dao.OfficesDao;
 import com.xxk.management.office.offices.entity.Offices;
 import com.xxk.management.office.offices.service.OfficesService;
@@ -10,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -47,6 +51,22 @@ public class OfficesServiceImpl implements OfficesService {
 
     @Override
     public List<Map<String, Object>> getOfficeSelect() {
+        return dao.getOfficeSelect();
+    }
+
+    @Override
+    public List<Map<String, Object>> verifyIsBelong_toOffices(String BId) {
+
+        try {
+            Map<String, Object> result = new HashMap<>();
+            List<Map<String, Object>> offices=dao.getOfficeSelect();
+            List<Map<String, Object>> familyOffices= StreamTreeUtil.getChildrenData(BId,offices);
+            return familyOffices;
+
+        }catch (Exception e){
+            log.error(e);
+        }
+
         return dao.getOfficeSelect();
     }
 

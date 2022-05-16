@@ -104,9 +104,9 @@
                 </div>
             </div>
             <div class="control-group span8">
-                <label class="control-label"><s>*</s>设备型号：</label>
-                <div class="controls">
-                    <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                <label class="control-label"><s>*</s>设备标识：</label>
+                <div class="controls" id="device_flag_select">
+                    <input name="device_flag" id="device_flag" type="hidden">
                 </div>
             </div>
         </div>
@@ -328,6 +328,19 @@
                     multipleSelect: false,
                     items: []
                 }).render(),
+                //设备标识框
+                device_flag_select = new Select.Select({
+                    render: '#device_flag_select',
+                    valueField: '#device_flag',
+                    multipleSelect: false,
+                    items: [
+                        /*{text:'不明',value:'0'},*/
+                        {text:'备用',value:'1'},
+                        {text:'固定',value:'2'},
+                        /*{text:'调用',value:'3'},*/
+                        {text:'借用',value:'4'},
+                    ]
+                }).render(),
                 //出库配置库存选择框
                 Sto_rec_grid = new Grid.Grid({
                     idField: 'id',//选项的默认id字段
@@ -355,36 +368,6 @@
                     width: 300,
                     items: []
                 }).render(),
-                //部署科室库存选择框
-                ori_device_grid = new Grid.Grid({
-                    idField: 'id',//选项的默认id字段
-                    columns: [
-                        {
-                            title: '库存科室', dataIndex: 'depository_officeId', elCls: 'center', width: '40%',
-                            renderer: BUI.Grid.Format.enumRenderer(enumObj_office)
-                        },
-                        {title: '科室总量', dataIndex: 'depository_idle_total', elCls: 'center', width: '30%'},
-                        {title: '剩余总量', dataIndex: 'depository_total', elCls: 'center', width: '30%'},
-                        {title: '单位', dataIndex: 'depository_total_unit', elCls: 'center', width: '25%'},
-                    ],
-                    textGetter: function (item) { //返回选中的文本
-                        return item.depository_ident;
-                    },
-                    items: [],
-                }),
-                ori_device_picker = new Picker.ListPicker({
-                    width: 250,  //指定宽度
-                    children: [ori_device_grid] //配置picker内的列表
-                }),
-                ori_device_select = new Select.Select({
-                    picker: ori_device_picker,
-                    render: '#ori_device_select',
-                    valueField: '#depository_id',
-                    forceFit: false,
-                    multipleSelect: false,
-                    width: 150,
-                    items: []
-                }),
                 //出库科室选择
                 dev_office_tree = new Tree.TreeList({
                     nodes: [],
@@ -487,14 +470,13 @@
                 $("#present_stock_id").val("");
                 $("#stock_version").val("");
                 enumObj_office[offices_select.value] = offices_select.text;
-                ori_device_select.render();
+
                 if (device_select != {} && !$.isEmptyObject(device_select)) {
                     D_Form.getField('class_id').set('value', device_select.dev_class_id);
                     D_Form.getField('entity_id').set('value', device_select.value);
                     D_Form.getField('entity_name').set('value', device_select.dev_name);
                     D_Form.getField('entity_type').set('value', device_select.text);
-                    D_Form.getField('dev_name').set('value', device_select.dev_name);
-                    D_Form.getField('dev_type').set('value', device_select.text);
+                    D_Form.getField('dev_name').set('value', device_select.dev_name+"/"+device_select.text);
                     D_Form.getField('office_unique_name').set('value', '');
                     D_Form.getField('device_location').set('value', '');
                 }
@@ -512,6 +494,8 @@
 
                 var eData = selections[0];
                 editing_D.add({isNew: false});
+                device_flag_select.setSelectedValue('1');
+                D_Form.getField('device_flag').set('value', '1');
 
             }
 
