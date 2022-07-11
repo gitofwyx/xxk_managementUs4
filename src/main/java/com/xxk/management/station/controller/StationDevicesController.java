@@ -27,7 +27,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/15.
  */
 @Controller
-@RequestMapping("")
+@RequestMapping("/stations")
 public class StationDevicesController extends BaseController {
 
     private static Logger log = LogManager.getLogger();
@@ -39,7 +39,7 @@ public class StationDevicesController extends BaseController {
     private DevicesService devicesService;
 
     @ResponseBody
-    @RequestMapping("/listStation")
+    @RequestMapping("/listStationDevices")
     public Map<String, Object> listDevices(@RequestParam(value = "pageIndex") String pageIndex,
                                            @RequestParam(value = "limit") String limit,
                                            @RequestParam(value = "search_class_id") String class_id,//型号id

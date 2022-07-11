@@ -35,6 +35,8 @@ public interface DepositoryService {
 
     public boolean deploymentDeviceWithSingle(String depository_id,String updateUserId,String updateDate);
 
+    public boolean withdrawDeviceWithSingle(String depository_id, String updateUserId, String updateDate);
+
     public List<String> getDepositoryIdByIdent(String ident);
 
     public Depository getDepositoryById(String id);

@@ -126,6 +126,16 @@
         and deleteFlag='0';
     </update>
 
+    <!--单个设备撤出未用加一，已用减一 （部署操作）-->
+    <update id="withdrawDeviceWithSingle">
+        update xxk_depository set depository_idle_no=depository_idle_no+1,
+                                  depository_idle_total=depository_idle_total+1,
+                                  depository_used_total=depository_used_total-1,
+                                  depository_version=depository_version+1,updateUserId=#{updateUserId},updateDate=#{updateDate}
+        where id=#{depository_id}
+          and deleteFlag='0';
+    </update>
+
     <!--批量修改（批量逻辑删除） -->
     <!--以下的批量方法只能删除数据表的一样数据-->
     <update id="deleteListRegUser" parameterType="java.util.List">

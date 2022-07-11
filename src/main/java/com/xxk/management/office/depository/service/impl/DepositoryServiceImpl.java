@@ -279,6 +279,12 @@ public class DepositoryServiceImpl implements DepositoryService {
         return dao.deploymentDeviceWithSingle(depository_id, updateUserId, updateDate) == 1 ? true : false;
     }
 
+    //撤出操作（库存加一）；标注时间：2021年6月17日 23:53:48
+    @Override
+    public boolean withdrawDeviceWithSingle(String depository_id, String updateUserId, String updateDate) {
+        return dao.withdrawDeviceWithSingle(depository_id, updateUserId, updateDate) == 1 ? true : false;
+    }
+
 
     @Override
     public List<String> getDepositoryIdByIdent(String ident) {

@@ -43,4 +43,8 @@ public interface DepositoryDao {
                                           @Param("updateUserId") String updateUserId,
                                           @Param("updateDate") String updateDate);
 
+    public int withdrawDeviceWithSingle(@Param("depository_id") String depository_id,
+                                          @Param("updateUserId") String updateUserId,
+                                          @Param("updateDate") String updateDate);
+
 }
