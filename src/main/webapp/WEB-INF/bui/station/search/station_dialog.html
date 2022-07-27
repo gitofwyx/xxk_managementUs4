@@ -192,7 +192,19 @@
                 <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
+                <input id="bf_class_id" name="bf_class_id" type="hidden">
+            </div>
+            <div class="control-group span2.5">
+                <input id="bf_entity_id" name="bf_entity_id" type="hidden">
+            </div>
+            <div class="control-group span2.5">
                 <input id="station_id" name="station_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="bf_depository_id" name="depository_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="bf_devices_id" name="bf_devices_id" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input id="offices_storage_officeId" name="offices_storage_officeId" type="hidden"
@@ -366,6 +378,10 @@
                                 btnCls: 'button button-small',
                                 handler: deploymentFunction
                             }, {
+                                text: '<i class=" icon-map-marker"></i>换出',
+                                btnCls: 'button button-small',
+                                handler: exchangeFunction
+                            }, {
                                 text: '<i class=" icon-map-marker"></i>撤出',
                                 btnCls: 'button button-small',
                                 handler: deploymentFunction
@@ -387,19 +403,7 @@
             //科室选择框数据生成
             loc_office_tree.set('nodes', GetMenus('root', offices_data));
 
-            //部署操作
-            function deploymentFunction() {
-                var newData = {isNew: true}; //标志是新增加的记录
-                /*enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新*/
-                editing.add(newData); //添加记录后，直接编辑
-                ori_device_grid.clearItems();
-                J_Form.getField('depository_id').set('value', '');
-                if (device_select != {} && !$.isEmptyObject(device_select)) {
-                    J_Form.getField('class_id').set('value', device_select.dev_class_id);
-                    J_Form.getField('entity_id').set('value', device_select.value);
-                    J_Form.getField('dev_name').set('value', device_select.dev_name);
-                    J_Form.getField('dev_type').set('value', device_select.text);
-                }
+            function equipFunction() {
 
                 initBsSuggest("dispose_office_select");
                 $('#out_offices_div').replaceWith('<div class="input-group" id="out_offices_div"> ' +
@@ -438,6 +442,68 @@
                         J_Form.getField('location_office').set('value', '');
                     },
                 );
+            }
+
+            function initDeviceSelection() {
+                ori_device_grid.clearItems();
+                J_Form.getField('depository_id').set('value', '');
+                if (device_select != {} && !$.isEmptyObject(device_select)) {
+                    J_Form.getField('class_id').set('value', device_select.dev_class_id);
+                    J_Form.getField('entity_id').set('value', device_select.value);
+                    J_Form.getField('dev_name').set('value', device_select.dev_name);
+                    J_Form.getField('dev_type').set('value', device_select.text);
+                }
+            }
+
+            //部署操作
+            function deploymentFunction() {
+                var newData = {isNew: true}; //标志是新增加的记录
+                /*enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新*/
+                editing.add(newData); //添加记录后，直接编辑
+                $("#bf_devices_id").val("NO");
+                $("#bf_depository_id").val("NO");
+                initDeviceSelection();
+                equipFunction();
+
+            }
+
+            //换出操作
+            function exchangeFunction() {
+                var newData = {isNew: true}; //标志是新增加的记录
+                /*enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新*/
+                var selections = grid.getSelection();
+                if (selections.length == 0) {
+                    return;
+                } else if (selections.length != 1) {
+                    BUI.Message.Alert('一次只能换出一件！！');
+                    return;
+                } else {
+
+                    var eData = selections[0];
+                    editing.edit({
+                        bf_dev_name:eData.ent_class_name,
+                        bf_dev_type:eData.device_name,
+                    });
+                    J_Form.getField('offices_storage_officeId').set('value', eData.location_office_id);
+                    J_Form.getField('location_office').set('value', eData.location_office_name);
+                    $('input[type=radio][id=auto_location]').val(eData.workstation_location);
+                    $("#device_location").val(eData.workstation_location);
+                    $("#station_id").val(eData.workstation_id);
+                    $("#bf_class_id").val(eData.class_id);
+                    $("#bf_entity_id").val(eData.device_id);
+                    $("#bf_depository_id").val(eData.present_stock_id);
+                    $("#bf_devices_id").val(eData.id);
+                    initBsSuggest("dispose_office_select");
+                    initBsSuggest("office_tation_select");
+                    initDeviceSelection();
+                    selectDepositoryForOfficeEntitys({
+                        entity_id: device_select.value,
+                        depository_officeId: eData.location_office_id,
+                    }, function (v) {
+                        ori_device_grid.setItems(v);
+                    });
+                }
+
             }
 
             //型号生成

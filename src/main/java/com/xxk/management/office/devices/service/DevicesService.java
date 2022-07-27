@@ -21,6 +21,8 @@ public interface DevicesService {
 
     public boolean updateDevicesForDeployment(Devices devices, OfficesStorage storage) throws Exception;
 
+    public boolean updateDevicesForWithdraw(Devices devices, OfficesStorage storage) throws Exception;
+
     public boolean updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
 
     public boolean transferDevices(Devices devices, OfficesStorage officesStorage) throws Exception;

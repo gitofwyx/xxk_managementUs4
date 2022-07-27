@@ -7,6 +7,7 @@ import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.office.devices.entity.Devices;
 import com.xxk.management.office.devices.service.DevicesService;
 import com.xxk.management.office.storage.entity.OfficesStorage;
+import com.xxk.management.station.service.StationDevicesService;
 import com.xxk.management.station.service.StationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +35,9 @@ public class StationDevicesController extends BaseController {
 
     @Autowired
     private StationService stationService;
+
+    @Autowired
+    private StationDevicesService stationDevicesService;
 
     @Autowired
     private DevicesService devicesService;
@@ -65,6 +69,47 @@ public class StationDevicesController extends BaseController {
             result.put("success", false);
         }
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/exchangeStationDevices")
+    public Map<String, Object> exchangeStationDevices(Devices devices, OfficesStorage officesStorage,
+                                                      @RequestParam(value = "bf_class_id") String bf_class_id,
+                                                      @RequestParam(value = "bf_entity_id") String bf_entity_id,
+                                                      @RequestParam(value = "depository_id") String depository_id,
+                                                      @RequestParam(value = "bf_depository_id") String bf_depository_id,
+                                                      @RequestParam(value = "devices_id") String devices_id,
+                                                      @RequestParam(value = "bf_devices_id") String bf_devices_id) {
+        Map<String, Object> result = new HashMap<>();
+        String Date = DateUtil.getFullTime();
+        boolean Result=false;
+        try {
+            if ("".equals(depository_id) || depository_id == null) {
+                result.put("hasError", true);
+                result.put("error", "设备更新出错！");
+                return result;
+            }
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            devices.setCreateUserId(CurrentUserId);
+            officesStorage.setStock_or_depository_id(depository_id);
+            officesStorage.setOffices_storage_type("1");
+            if(!"".equals(devices_id) || devices_id != null){
+                devices.setId(devices_id);
+                Result = stationDevicesService.updateStationDevicesForExchange(devices, officesStorage);
+            }/*else {
+                Result = devicesService.addDevices(devices, officesStorage);
+            }*/
+            if (!(Result)) {
+                result.put("success", false);
+            } else {
+                result.put("success", true);
+            }
+        } catch (Exception e) {
+            result.put("success", false);
+            log.error(e);
+        }
+        return result;
+        //return "system/index";
     }
 
 }

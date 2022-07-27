@@ -112,9 +112,7 @@ public class DevicesServiceImpl implements DevicesService {
 
         devices.setClass_id(storage.getClass_id());
         devices.setDevice_id(storage.getEntity_id());
-        devices.setDevices_ident("NO");
         devices.setDevice_deployment_status("3");
-        devices.setRelated_flag("0");
         devices.setUpdateUserId(devices.getCreateUserId());
         devices.setUpdateDate(createDate);
 
@@ -128,13 +126,50 @@ public class DevicesServiceImpl implements DevicesService {
             storage.setOffices_entity_id(devices.getId());
             storage.setOriginal_storage_officeId(devices.getInventory_office_id());
             storage.setOffices_storage_genre("2");
-            storage.setEntity_entry_status("2");
+            storage.setEntity_entry_status("3");
             result = storageService.addOfficesStorage(devices, storage);
             if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
                 log.error("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
                 throw new Exception("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
             }
             devicesResult = depositoryService.deploymentDeviceWithSingle(storage.getStock_or_depository_id(), storage.getUpdateUserId(), createDate);
+        }
+
+        return devicesResult;
+    }
+
+    //撤出操作；标注时间：2021年6月17日 23:53:48
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public boolean updateDevicesForWithdraw(Devices devices, OfficesStorage storage) throws Exception, RuntimeException {
+
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        boolean devicesResult = false;
+
+        devices.setClass_id(storage.getClass_id());
+        devices.setDevice_id(storage.getEntity_id());
+        devices.setDevice_deployment_status("2");
+        devices.setUpdateUserId(devices.getCreateUserId());
+        devices.setUpdateDate(createDate);
+
+        devices.setDeleteFlag("0");
+        devicesResult = dao.updateDevicesForDeployment(devices) == 1 ? true : false;
+        if (!(devicesResult)) {
+            log.error("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
+            throw new Exception("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
+        } else {
+            storage.setEntity_id(devices.getDevice_id());
+            storage.setOffices_entity_id(devices.getId());
+            storage.setOriginal_storage_officeId(devices.getInventory_office_id());
+            storage.setOffices_storage_genre("3");
+            storage.setEntity_entry_status("3");
+            result = storageService.addOfficesStorage(devices, storage);
+            if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
+                log.error("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
+                throw new Exception("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
+            }
+            devicesResult = depositoryService.withdrawDeviceWithSingle(storage.getStock_or_depository_id(), storage.getUpdateUserId(), createDate);
         }
 
         return devicesResult;
@@ -182,7 +217,7 @@ public class DevicesServiceImpl implements DevicesService {
         } else {
             officesStorage.setOffices_storage_ident("NO");
             officesStorage.setOffices_storage_type("1");//设备\耗材类别（1.设备2.配件3.耗材）
-            officesStorage.setOffices_storage_genre("4");//流动类别（0：配置1.入科2.部署3.回收4.调用5.借用）
+            officesStorage.setOffices_storage_genre("5");//流动类别（0：配置1.入科2.部署3.撤出4.回收5.调用6.借用）
             officesStorage.setOffices_storage_total(1);
             officesStorage.setOffices_storage_total_unit(officesStorage.getOffices_storage_unit());//设备调用的数量单位理论等于总量单位
             officesStorage.setOffices_storage_by(devices.getUpdateUserId());
@@ -216,7 +251,7 @@ public class DevicesServiceImpl implements DevicesService {
         } else {
             officesStorage.setOffices_storage_ident("NO");
             officesStorage.setOffices_storage_type("1");//设备\耗材类别（1.设备2.配件3.耗材）
-            officesStorage.setOffices_storage_genre("3");//流动类别（0：配置1.入科2.部署3.回收4.调用5.借用）
+            officesStorage.setOffices_storage_genre("4");//流动类别（0：配置1.入科2.部署3.撤出4.回收5.调用6.借用）
             officesStorage.setOffices_storage_date(createDate);
             officesStorage.setOffices_storage_total(1);
             officesStorage.setOffices_storage_by(devices.getUpdateUserId());

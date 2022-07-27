@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xxk.management.station.dao.StationDao">
+<mapper namespace="com.xxk.management.station.dao.StationDevicesDao">
     <sql id="columns">id,workstation_ident,workstation_name,workstation_state,location_office_id,mediaOfLANId,workstation_deployment_status,
       workstation_deployment_date,related_flag,workstation_related_id,workstation_location,workstation_flag,workstation_auditing_mark,reject_date,
       remark,keyWord,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
@@ -12,7 +12,6 @@
                          xf.id as location_office_id,
                          xf.office_name as location_office_name,
                          ow.workstation_location as workstation_location,
-                         xc.id as class_id,
                          xc.ent_class as ent_class_name,
                          xd.id as device_id,
                          xd.dev_name as device_name,
@@ -63,64 +62,7 @@
         <result column="workstation_flag" property="workstation_flag" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <!--获取分页 -->
-    <select id="listWorkstation" resultType="com.xxk.management.station.entity.Station">
-        select
-        <include refid="columns"></include>
-        from xxk_offices_workstation where deleteFlag='0' ORDER BY createDate desc limit #{0},#{1};
-    </select>
 
-    <select id="listWorkstationWithDevices" resultMap="stationMap">
-        select
-        <include refid="columnsMap"></include>
-        from xxk_offices_devices od
-        LEFT JOIN xxk_device xd ON od.device_id=xd.id
-        LEFT JOIN xxk_dev_class xc ON od.class_id=xc.id
-        LEFT JOIN xxk_offices xf ON od.location_office_id=xf.id
-        LEFT JOIN xxk_offices_workstation ow ON od.station_id=ow.id
-        where od.deleteFlag='0' and od.device_deployment_status in ('2','3')
-        <if test="class_id!=null and ''!= class_id">
-            and od.class_id = #{class_id}
-        </if>
-        <if test="device_id!=null and ''!= device_id">
-            and od.device_id = #{device_id}
-        </if>
-        <if test="location_office_id!=null and ''!= location_office_id and 'a5c7b9f5-1f3c-4308-86e9-148b21416b37'!=location_office_id">
-            and od.location_office_id = #{location_office_id}
-        </if>
-        ORDER BY od.createDate desc limit #{pageStart},#{pageSize};
-    </select>
-
-    <select id="getStationSelectByOfficeId" resultMap="stationSelectMap">
-        select id,workstation_ident,workstation_name,workstation_state,location_office_id,workstation_deployment_status,workstation_deployment_date,related_flag,
-               workstation_related_id,workstation_location,workstation_flag
-        from xxk_offices_workstation
-        where
-        <if test="office_id!=null and ''!= office_id">
-           location_office_id = #{office_id}
-        </if>
-        and
-        deleteFlag='0';
-    </select>
-
-    <select id="getWorkstationCount" parameterType="string" resultType="int">
-        select count(belong_to_id)
-        from xxk_offices_workstation where belong_to_id=#{0} and deleteFlag='0';
-    </select>
-
-    <!--添加信息 -->
-    <insert id="addWorkstation" parameterType="com.xxk.management.station.entity.Station">
-        insert into xxk_offices_workstation(<include refid="columns"></include>) values(
-        #{id},#{workstation_ident},#{workstation_name},#{workstation_state},#{location_office_id},#{mediaOfLANId},#{workstation_deployment_status},
-        #{workstation_deployment_date},#{related_flag},#{workstation_related_id},#{workstation_location},#{workstation_flag},#{workstation_auditing_mark},
-        #{reject_date},#{remark},#{keyWord},#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
-    </insert>
-
-    <!--修改信息 -->
-    <update id="updateOffices" parameterType="com.xxk.management.office.offices.entity.Offices">
-        update xxk_offices set office_name=#{office_name},leading_official=#{leading_official},keyWord=#{keyWord},
-        updateUserId=#{updateUserId},updateDate=#{updateDate} where id=#{id} and deleteFlag='0';
-    </update>
 
 
 </mapper>

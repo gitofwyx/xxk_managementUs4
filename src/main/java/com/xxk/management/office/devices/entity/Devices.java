@@ -16,7 +16,7 @@ public class Devices extends BaseInfoEntity {
     private String  device_state;            //设备状态
     private String inventory_office_id;                   //原始出库科室id
     private String location_office_id;                   //现在科室id
-    private String station_id;                   //现在科室id
+    private String station_id;                   //工作站id
     private String  mediaOfLANId;              //通信介质id
     private String  device_origin;             //设备来源（1入科2原科）
     private String  present_stock_id;             //设备来源（1入科2原科）

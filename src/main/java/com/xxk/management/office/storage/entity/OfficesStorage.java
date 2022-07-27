@@ -16,7 +16,7 @@ public class OfficesStorage extends BaseInfoEntity {
     private String stock_or_depository_id;         //科室库存id
     private String offices_storage_ident; //科室设备\耗材流动编号
     private String offices_storage_type; //设备\耗材类别（1.设备2.配件3.耗材）
-    private String offices_storage_genre; //流动类别（1.入科2.部署3.回收4.调用5.借用）
+    private String offices_storage_genre; //流动类别（0：配置1.入科2.部署3.撤出4.回收5.调用6.借用）
     private String offices_storage_by;//科室设备\耗材流动确认人
     private String original_storage_officeId;//原科室id
     private String offices_storage_officeId;//设备\耗材流动科室
