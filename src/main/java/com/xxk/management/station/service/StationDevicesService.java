@@ -10,6 +10,6 @@ import java.util.Map;
 
 public interface StationDevicesService {
 
-    public boolean updateStationDevicesForExchange(Devices devices, OfficesStorage storage) throws Exception;
+    public boolean updateStationDevicesForExchange(Devices devices, OfficesStorage storage,OfficesStorage bf_storage) throws Exception;
 
 }

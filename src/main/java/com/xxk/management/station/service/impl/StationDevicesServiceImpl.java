@@ -33,7 +33,7 @@ public class StationDevicesServiceImpl implements StationDevicesService {
     //换出操作；标注时间：2021年6月17日 23:53:48
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-    public boolean updateStationDevicesForExchange(Devices devices, OfficesStorage storage) throws Exception, RuntimeException {
+    public boolean updateStationDevicesForExchange(Devices devices, OfficesStorage storage,OfficesStorage bf_storage) throws Exception, RuntimeException {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
@@ -45,7 +45,9 @@ public class StationDevicesServiceImpl implements StationDevicesService {
             log.error("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
             throw new Exception("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
         } else {
-
+            devices.setClass_id(bf_storage.getClass_id());
+            devices.setDevice_id(bf_storage.getEntity_id());
+            devicesResult = devicesService.updateDevicesForDeployment(devices,bf_storage) ;
 
         }
 

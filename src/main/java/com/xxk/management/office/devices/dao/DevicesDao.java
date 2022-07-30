@@ -37,6 +37,8 @@ public interface DevicesDao {
 
     public int updateDevicesForDeployment(Devices device);
 
+    public int updateDevicesForWithdraw(Devices device);
+
     public int updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
 
     public int transferDevices(Devices devices);
