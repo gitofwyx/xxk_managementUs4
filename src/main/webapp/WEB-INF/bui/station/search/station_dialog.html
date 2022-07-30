@@ -111,13 +111,15 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>部署设备：</label>
                 <div class="controls">
-                    <input name="dev_name" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    <input name="entity_name" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备型号：</label>
                 <div class="controls">
-                    <input name="dev_type" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    <input name="entity_type" type="text" data-rules="{required:true}"
+                           class="input-normal control-text">
                 </div>
             </div>
         </div>
@@ -179,8 +181,10 @@
             <div class="control-group">
                 <label class="control-label">&nbsp;&nbsp;设备位置设定:</label>
                 <div class="controls" style="padding-top: 3px;">
-                    <label class="radio"><input id="auto_location" type="radio" name="locationSet" value="">基于工作站位置</label>
-                    &nbsp;<label class="radio"><input id="DIY_location" type="radio" name="locationSet" value="">自定义</label>
+                    <label class="radio"><input id="auto_location" type="radio" name="locationSet"
+                                                value="">基于工作站位置</label>
+                    &nbsp;<label class="radio"><input id="DIY_location" type="radio" name="locationSet"
+                                                      value="">自定义</label>
                 </div>
             </div>
         </div>
@@ -252,9 +256,9 @@
                 }
             });
             var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
-                enumObj_device_flag = {"0":"不明","1":"借用","2":"调用","3":"固定",},
+                enumObj_device_flag = {"0": "不明", "1": "借用", "2": "调用", "3": "固定",},
                 enumObj_device_status = {"1": "已入科", "2": "未部署", "3": "已部署"},
-                enumObj_device_state = {"0":"报废","1":"故障","2":"异常","3":"正常"},
+                enumObj_device_state = {"0": "报废", "1": "故障", "2": "异常", "3": "正常"},
                 offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
                 device_data = {},//全部dev初始化
                 entity_data = [],//型号初始化
@@ -311,8 +315,17 @@
                 }).render(),
 
                 columns = [
-                    {title: '&nbsp工作站编号', dataIndex: 'workstation_ident', elCls: 'center', width: 100},
-                    {title: '&nbsp工作站名称', dataIndex: 'workstation_name', elCls: 'center', width: 150},
+                    {
+                        title: '工作站编号',
+                        dataIndex: 'workstation_ident',
+                        elCls: 'center',
+                        width: 80,
+                        renderer: function (value, obj) {
+                            if(!CheckIsNullOrEmpty(obj.workstation_ident))
+                            return "[未绑定]";
+                            return obj.workstation_ident;
+                        }
+                    },
                     {
                         title: '&nbsp所在科室',
                         dataIndex: 'location_office_id',
@@ -320,11 +333,18 @@
                         width: 150,
                         renderer: BUI.Grid.Format.enumRenderer(enumOffices),
                     },
-                    {title: '&nbsp工作站位置', dataIndex: 'workstation_location', elCls: 'center', width: 150},
-                    {title: '&nbsp绑定设备', dataIndex: '', elCls: 'center', width: 150,renderer: function (value, obj) {
-                            return obj.ent_class_name+"/" + obj.device_name;
-                        }},
+                    {
+                        title: '&nbsp设备名称',
+                        dataIndex: '',
+                        elCls: 'center',
+                        width: 150,
+                        renderer: function (value, obj) {
+                            return obj.ent_class_name + "/" + obj.ent_name;
+                        }
+                    },
                     {title: '&nbsp设备别称', dataIndex: 'office_unique_name', elCls: 'center', width: 150},
+                    {title: '&nbsp工作站名称', dataIndex: 'workstation_name', elCls: 'center', width: 150},
+                    {title: '&nbsp工作站位置', dataIndex: 'workstation_location', elCls: 'center', width: 150},
                     {title: '设备位置(自定义)', dataIndex: 'device_location', elCls: 'center', width: 150},
                     {
                         title: '&nbsp设备性质',
@@ -450,14 +470,17 @@
                 if (device_select != {} && !$.isEmptyObject(device_select)) {
                     J_Form.getField('class_id').set('value', device_select.dev_class_id);
                     J_Form.getField('entity_id').set('value', device_select.value);
-                    J_Form.getField('dev_name').set('value', device_select.dev_name);
-                    J_Form.getField('dev_type').set('value', device_select.text);
+                    J_Form.getField('entity_name').set('value', device_select.dev_name);
+                    J_Form.getField('entity_type').set('value', device_select.text);
                 }
             }
 
             //部署操作
             function deploymentFunction() {
-                var newData = {isNew: true}; //标志是新增加的记录
+                var newData = {
+                    bf_dev_name: '',
+                    bf_dev_type: '',
+                }; //标志是新增加的记录
                 /*enumObj_office[offices_select.value] = offices_select.text;//grid科室动态刷新*/
                 editing.add(newData); //添加记录后，直接编辑
                 $("#bf_devices_id").val("NO");
@@ -478,12 +501,12 @@
                     BUI.Message.Alert('一次只能换出一件！！');
                     return;
                 } else {
-
                     var eData = selections[0];
-                    editing.edit({
-                        bf_dev_name:eData.ent_class_name,
-                        bf_dev_type:eData.device_name,
-                    });
+                    var newData = {
+                        bf_dev_name: eData.ent_class_name,
+                        bf_dev_type: eData.ent_name,
+                    }
+                    editing.add(newData);
                     J_Form.getField('offices_storage_officeId').set('value', eData.location_office_id);
                     J_Form.getField('location_office').set('value', eData.location_office_name);
                     $('input[type=radio][id=auto_location]').val(eData.workstation_location);
@@ -777,7 +800,7 @@
                 dev_name_data = [];
             });
 
-            $('input[type=radio][name=locationSet]').change(function(){
+            $('input[type=radio][name=locationSet]').change(function () {
                 $("#device_location").val($(this).val());
             });
 

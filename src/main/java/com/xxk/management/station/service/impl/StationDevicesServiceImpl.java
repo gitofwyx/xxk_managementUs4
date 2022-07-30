@@ -47,8 +47,11 @@ public class StationDevicesServiceImpl implements StationDevicesService {
         } else {
             devices.setClass_id(bf_storage.getClass_id());
             devices.setDevice_id(bf_storage.getEntity_id());
-            devicesResult = devicesService.updateDevicesForDeployment(devices,bf_storage) ;
-
+            devicesResult = devicesService.updateDevicesForWithdraw(devices,bf_storage) ;
+            if (!(devicesResult)) {
+                log.error("updateStationDevicesForExchange: devicesService.updateDevicesForWithdraw！");
+                throw new Exception("updateStationDevicesForExchange: devicesService.updateDevicesForWithdraw出错！");
+            }
         }
 
         return devicesResult;

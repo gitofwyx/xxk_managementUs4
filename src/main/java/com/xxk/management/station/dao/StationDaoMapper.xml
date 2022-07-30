@@ -15,7 +15,7 @@
                          xc.id as class_id,
                          xc.ent_class as ent_class_name,
                          xd.id as device_id,
-                         xd.dev_name as device_name,
+                         xd.dev_type as ent_name,
                          od.office_unique_name as office_unique_name,
                          od.device_state as device_state,
                          od.present_stock_id as present_stock_id,
@@ -37,7 +37,7 @@
         <result column="workstation_location" property="workstation_location" jdbcType="VARCHAR"/>
         <result column="ent_class_name" property="ent_class_name" jdbcType="VARCHAR"/>
         <result column="device_id" property="device_id" jdbcType="VARCHAR"/>
-        <result column="device_name" property="device_name" jdbcType="VARCHAR"/>
+        <result column="ent_name" property="ent_name" jdbcType="VARCHAR"/>
         <result column="office_unique_name" property="office_unique_name" jdbcType="VARCHAR"/>
         <result column="device_state" property="device_state" jdbcType="VARCHAR"/>
         <result column="present_stock_id" property="present_stock_id" jdbcType="VARCHAR"/>

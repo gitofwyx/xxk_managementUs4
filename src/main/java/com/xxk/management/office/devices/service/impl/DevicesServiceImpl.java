@@ -144,6 +144,7 @@ public class DevicesServiceImpl implements DevicesService {
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
 
+        devices.setId(storage.getOffices_entity_id());
         devices.setDevice_deployment_status("2");
         devices.setStation_id("");
         devices.setDevice_location("");

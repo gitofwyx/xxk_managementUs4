@@ -90,7 +90,7 @@ public class StationDevicesController extends BaseController {
         String Date = DateUtil.getFullTime();
         boolean Result = false;
         try {
-            if ("".equals(depository_id) || depository_id == null || !"".equals(devices_id) || devices_id != null) {
+            if ("".equals(depository_id) || depository_id == null || "".equals(devices_id) || devices_id == null) {
                 result.put("hasError", true);
                 result.put("error", "设备更新出错！");
                 return result;
