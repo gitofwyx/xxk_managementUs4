@@ -77,15 +77,15 @@
     <!--撤出操作 -->
     <update id="updateDevicesForWithdraw" parameterType="com.xxk.management.office.devices.entity.Devices">
         update xxk_offices_devices
-        set device_deployment_status=#{device_deployment_status},station_id=#{station_id},device_location=#{device_location},updateUserId=#{updateUserId},
-            updateDate=#{updateDate}
+        set device_deployment_status=#{device_deployment_status},device_deployment_date='',station_id=#{station_id},device_location=#{device_location},
+            updateUserId=#{updateUserId},updateDate=#{updateDate}
         where id=#{id} and deleteFlag='0';
     </update>
 
     <!--更新操作 -->
     <update id="updateDevicesStatus">
         update xxk_offices_devices
-        set location_office_id=#{1},present_stock_id=#{2},device_deployment_status=#{3},updateUserId=#{4},updateDate=#{5}
+        set location_office_id=#{1},present_stock_id=#{2},device_deployment_status=#{3},device_deployment_date='',updateUserId=#{4},updateDate=#{5}
         where id=#{0} and deleteFlag='0';
     </update>
 
@@ -94,7 +94,7 @@
         update xxk_offices_devices
         set device_deployment_status=#{device_deployment_status},office_unique_name=#{office_unique_name}, location_office_id=#{location_office_id},
             present_stock_id=#{present_stock_id},device_location=#{device_location},updateUserId=#{updateUserId},updateDate=#{updateDate}
-        where id=#{id} and deleteFlag='0';
+        where id=#{id} and device_deployment_status='2' and deleteFlag='0';
     </update>
 
     <!--批量修改（批量逻辑删除） -->

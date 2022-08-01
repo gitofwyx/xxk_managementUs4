@@ -88,7 +88,7 @@
         <if test="location_office_id!=null and ''!= location_office_id and 'a5c7b9f5-1f3c-4308-86e9-148b21416b37'!=location_office_id">
             and od.location_office_id = #{location_office_id}
         </if>
-        ORDER BY od.createDate desc limit #{pageStart},#{pageSize};
+        ORDER BY od.updateDate desc limit #{pageStart},#{pageSize};
     </select>
 
     <select id="getStationSelectByOfficeId" resultMap="stationSelectMap">
