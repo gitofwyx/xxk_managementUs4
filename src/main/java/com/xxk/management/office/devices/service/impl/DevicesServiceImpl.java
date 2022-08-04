@@ -249,7 +249,7 @@ public class DevicesServiceImpl implements DevicesService {
             officesStorage.setOffices_storage_ident("NO");
             officesStorage.setOffices_storage_type("1");//设备\耗材类别（1.设备2.配件3.耗材）
             officesStorage.setOffices_storage_genre("4");//流动类别（0：配置1.入科2.部署3.撤出4.回收5.调用6.借用）
-            officesStorage.setOffices_storage_date(createDate);
+
             officesStorage.setOffices_storage_total(1);
             officesStorage.setOffices_storage_by(devices.getUpdateUserId());
             officesStorage.setEntity_entry_status("0");//入科状态（0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科）
