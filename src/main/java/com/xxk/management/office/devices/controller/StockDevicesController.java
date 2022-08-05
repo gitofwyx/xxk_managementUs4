@@ -85,6 +85,7 @@ public class StockDevicesController extends BaseController {
                             }
                         }
                         resultMap.putAll(JsonUtils.toMap(device));
+                        resultMap.put("updateDate",device.getUpdateDate());
                         resultList.add(resultMap);
                     }
                 }

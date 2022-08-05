@@ -246,6 +246,8 @@ public class DevicesServiceImpl implements DevicesService {
             log.error("recoveryDevices:dao.transferDevices出错！");
             throw new Exception("recoveryDevices:dao.transferDevices出错！");
         } else {
+            devices.setDevice_deployment_date(officesStorage.getOffices_storage_date());
+
             officesStorage.setOffices_storage_ident("NO");
             officesStorage.setOffices_storage_type("1");//设备\耗材类别（1.设备2.配件3.耗材）
             officesStorage.setOffices_storage_genre("4");//流动类别（0：配置1.入科2.部署3.撤出4.回收5.调用6.借用）

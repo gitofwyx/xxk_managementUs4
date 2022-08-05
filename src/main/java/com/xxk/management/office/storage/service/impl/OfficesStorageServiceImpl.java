@@ -114,6 +114,7 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
         officesStorage.setOffices_storage_ident(out_confirmed_ident);
         officesStorage.setOffices_storage_by(devices.getUpdateUserId());
         officesStorage.setOffices_storage_officeId(devices.getLocation_office_id());
+        officesStorage.setOffices_storage_date(devices.getDevice_deployment_date());
         officesStorage.setOffices_storage_total(1.0);
         officesStorage.setCreateDate(createDate);
         officesStorage.setCreateUserId(devices.getUpdateUserId());
