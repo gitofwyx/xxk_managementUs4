@@ -65,7 +65,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             log.error("addStockDevices:stockService.plusStockConfiguredTotal出错！");
             throw new Exception("addStockDevices:stockService.plusStockConfiguredTotal出错！");
         }
-        if("".equals(devices.getInventory_office_id())&&devices.getInventory_office_id()==null){
+        if("".equals(devices.getInventory_office_id())||devices.getInventory_office_id()==null){
             devices.setInventory_office_id(storage.getOffices_storage_officeId());
         }
 
