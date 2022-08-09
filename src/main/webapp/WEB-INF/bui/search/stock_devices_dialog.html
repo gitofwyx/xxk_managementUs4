@@ -103,10 +103,24 @@
                     <input name="dev_name" type="text" data-rules="{required:true}" class="input-normal control-text">
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备标识：</label>
                 <div class="controls" id="device_flag_select">
                     <input name="device_flag" id="device_flag" type="hidden">
+                </div>
+            </div>
+            <div class="control-group span8">
+                <label class="control-label"><s>*</s>固定科室：</label>
+                <div class="controls">
+                    <div class="input-group" id="inventory_office_div">
+                        <input type="text" id="inventory_office_select"
+                               name="inventory_office_select">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        </ul>
+                        <!-- /btn-group -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -153,6 +167,9 @@
             </div>
             <div class="control-group span2.5">
                 <input id="entity_type" name="entity_type" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="inventory_office_id" name="inventory_office_id" type="hidden">
             </div>
             <div class="control-group span2.5">
                 <input id="offices_storage_officeId2" name="offices_storage_officeId" type="hidden"
@@ -386,10 +403,17 @@
                     {title: '&nbsp设备名称', dataIndex: 'entity_name', elCls: 'center', width: 150},
                     {title: '&nbsp设备型号', dataIndex: 'entity_type', elCls: 'center', width: 150},
                     {
+                        title: '&nbsp归属科室',
+                        dataIndex: 'inventory_office_id',
+                        elCls: 'center',
+                        width: 150,
+                        renderer: BUI.Grid.Format.enumRenderer(enumOffices),
+                    },
+                    {
                         title: '&nbsp当前科室',
                         dataIndex: 'location_office_id',
                         elCls: 'center',
-                        width: 100,
+                        width: 150,
                         renderer: BUI.Grid.Format.enumRenderer(enumOffices),
                     },
                     {
@@ -496,7 +520,6 @@
                 editing_D.add({isNew: false});
                 device_flag_select.setSelectedValue('1');
                 D_Form.getField('device_flag').set('value', '1');
-
             }
 
             //出库操作
@@ -706,6 +729,31 @@
                 }
             };
 
+            function fixed_officeFunction() {
+                $('#inventory_office_div').replaceWith('<div class="input-group" id="inventory_office_div"> ' +
+                    '<input type="text" id="inventory_office_select" name="inventory_office_select"> ' +
+                    '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div>');
+                buildBsSuggest("inventory_office_select",
+                    {
+                        value: offices_data.filter(function (office, index) {
+                            if (CheckIsNullOrEmpty(office.office_property)) {
+                                return office.office_property!=0;
+                            }
+                            return office;
+                        })
+                    },
+                    ["text", , ""],
+                    ["text", "id", "pinYin_code", "pinYinS_code"],
+                    {"text": "科室名称",},
+                    function (K, data) {
+                        D_Form.getField('inventory_office_id').set('value', data.value);
+                    },
+                    function () {
+                        D_Form.getField('inventory_office_id').set('value', '');
+                    },
+                );
+            }
+
             function getStockByEntity(v, callback) {
                 $.ajax({
                     url: '/listStockByEntityId',
@@ -837,6 +885,14 @@
                         stock_office_id: offices_select.value,
                     });
                 }
+            });
+
+            device_flag_select.on('change', function (ev) {
+                if(ev.item.value==='2')
+                fixed_officeFunction();
+                else initBsSuggest(0, "inventory_office_select");
+                D_Form.getField('inventory_office_id').set('value', '');
+                D_Form.getField('inventory_office_select').set('value', '');
             });
 
             //出库科室选择
