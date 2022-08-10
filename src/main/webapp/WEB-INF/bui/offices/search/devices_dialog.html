@@ -625,7 +625,7 @@
                         depository_id: eData.present_stock_id
                     }, function (v) {
                         $("#offices_storage_no").val(makeInNum(parseInt(v.depository_total) - 1, v.depository_proportion));
-                        $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_used_total) - 1, v.depository_proportion));
+                        $("#offices_storage_no_2").val(makeInNum(parseInt(v.depository_idle_total) - 1, v.depository_proportion));
                         $("#offices_storage_unit").val(v.depository_unit);
                         $("#offices_storage_proportion").val(v.depository_proportion);
                     });
