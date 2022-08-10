@@ -63,7 +63,7 @@ public class AuthController extends BaseController {
                     }else {
                         return "/main";
                     }*/
-                    return new ModelAndView("/main", "result", result);
+                    return new ModelAndView("/reg", "result", result);
                 } catch (UnknownAccountException uae) {
                     result.put("error", "帐号未注册");
                 } catch (IncorrectCredentialsException ice) {

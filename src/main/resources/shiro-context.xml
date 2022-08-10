@@ -105,6 +105,8 @@
                 /report/**=anon
 
                 /sys/**=roles[admin]
+                /sys_device/**=roles[admin]
+
                 /menu/**=roles[manage]
                 /**=authc  <!--要放最后不然后面的不生效-->
             </value>
