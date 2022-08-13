@@ -263,6 +263,9 @@
                     <input id="present_stock_id2" name="present_stock_id" type="hidden" data-rules="{required:true}">
                 </div>
                 <div class="control-group span2.5">
+                    <input id="inventory_office_id2" name="inventory_office_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
                     <input id="out_confirmed_officeId" name="out_confirmed_officeId" type="hidden"
                            data-rules="{required:true}">
                 </div>
@@ -544,6 +547,7 @@
                     O_Form.getField('stock_entity_id').set('value', eData.id);
                     O_Form.getField('dev_type').set('value', eData.entity_type + "/" + eData.entity_name);
                     O_Form.getField('office_unique_name').set('value', eData.office_unique_name);
+                    O_Form.getField('inventory_office_id').set('value', eData.inventory_office_id);
                     O_Form.getField('device_location').set('value', eData.device_location);
 
                     buildBsSuggest("out_confirmed_offices",

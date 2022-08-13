@@ -106,6 +106,10 @@ public class StockDevicesController extends BaseController {
                                                     @RequestParam(value = "stock_no") String stock_no) {
         Map<String, Object> result = new HashMap<>();
         try {
+            if("".equals(delivery.getOut_confirmed_officeId())||delivery.getOut_confirmed_officeId()==null){
+                result.put("hasError", true);
+                result.put("error", "更新出错");
+            }
 
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             devices.setUpdateUserId(CurrentUserId);

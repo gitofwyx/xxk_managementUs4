@@ -19,6 +19,8 @@ public interface StationDao {
                                                                 @Param("pageSize") int pageSize,
                                                                 @Param("class_id") String class_id,
                                                                 @Param("device_id") String device_id,
+                                                                @Param("device_flag") String device_flag,
+                                                                @Param("device_deployment_status") String device_deployment_status,
                                                                 @Param("location_office_id") String location_office_id);
 
     public List<Map<String, Object>> getStationSelectByOfficeId(@Param("office_id")String office_id);

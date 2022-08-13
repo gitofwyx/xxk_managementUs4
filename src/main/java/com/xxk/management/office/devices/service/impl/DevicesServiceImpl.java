@@ -205,6 +205,7 @@ public class DevicesServiceImpl implements DevicesService {
         devices.setLocation_office_id(officesStorage.getOffices_storage_officeId());
         devices.setDevice_deployment_date(officesStorage.getOffices_storage_date());
         devices.setDevice_deployment_status("1");
+        devices.setDevice_flag("3");
         devices.setUpdateDate(createDate);
         devices.setDeleteFlag("0");
         devicesResult = dao.transferDevices(devices) == 1 ? true : false;
@@ -240,6 +241,7 @@ public class DevicesServiceImpl implements DevicesService {
         devices.setDevice_id(officesStorage.getEntity_id());
         devices.setLocation_office_id(officesStorage.getOffices_storage_officeId());
         devices.setDevice_deployment_status("0");
+        devices.setDevice_flag("");
         devices.setUpdateDate(createDate);
         devicesResult = dao.transferDevices(devices) == 1 ? true : false;
         if (!(devicesResult)) {

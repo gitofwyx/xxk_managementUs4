@@ -28,6 +28,6 @@ public interface StockDevicesDao {
 
     public int updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
 
-    public int updateDevicesSetStatus(String devicesId, String status, String userId, String Date);
+    public int updateDevicesSetStatus(String devicesId, String status,String flag, String userId, String Date);
 
 }

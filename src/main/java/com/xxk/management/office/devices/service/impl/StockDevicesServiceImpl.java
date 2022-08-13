@@ -111,6 +111,14 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
 
+        if("".equals(devices.getDevice_flag())||devices.getDevice_flag()==null){
+            if(delivery.getOut_confirmed_officeId().equals(devices.getInventory_office_id())){
+                devices.setDevice_flag("2");
+            }else {
+                devices.setDevice_flag("4");
+            }
+        }
+
         devices.setId(delivery.getStock_entity_id());
         devices.setDevice_deployment_status("1");
         devices.setRelated_flag("0");
@@ -166,11 +174,11 @@ public class StockDevicesServiceImpl implements StockDevicesService {
     }
 
     @Override
-    public boolean updateDevicesSetStatus(String devicesId, String status, String userId, String Date) {
+    public boolean updateDevicesSetStatus(String devicesId, String status,String flag, String userId, String Date) {
 
         boolean devicesResult = false;
         try {
-            devicesResult = dao.updateDevicesSetStatus(devicesId, status, userId, Date) == 1 ? true : false;
+            devicesResult = dao.updateDevicesSetStatus(devicesId, status,flag, userId, Date) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
             }

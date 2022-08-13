@@ -192,7 +192,7 @@ public class DeliveryServiceImpl implements DeliveryService {
             }
         }
         if (!"".equals(delivery.getStock_entity_id()) && delivery.getStock_entity_id() != null) {
-            Result = stockDevicesService.updateDevicesSetStatus(delivery.getStock_entity_id(), "0", delivery.getUpdateUserId(), delivery.getUpdateDate());
+            Result = stockDevicesService.updateDevicesSetStatus(delivery.getStock_entity_id(), "0","", delivery.getUpdateUserId(), delivery.getUpdateDate());
             if (!Result) {
                 log.error("backwardDelivery:stockDevicesService.updateDevicesSetStatus出错！");
                 throw new Exception("backwardDelivery:stockDevicesService.updateDevicesSetStatus出错！");

@@ -25,7 +25,7 @@
             <input type="hidden">
             <div class="row" id="E_Input_console">
                 <div class="control-group span8">
-                    <label class="control-label"><s>*</s>设备/耗材名称：</label>
+                    <label class="control-label">设备/耗材名称：</label>
                     <input type="hidden" name="search_class_id" id="search_class_id">
                     <div class="controls">
                         <div class="input-group" id="devices_class_div">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="control-group span8">
-                    <label class="control-label"><s>*</s>设备/耗材型号：</label>
+                    <label class="control-label">设备/耗材型号：</label>
                     <input type="hidden" name="search_entity_id" id="search_entity_id">
                     <div class="controls">
                         <div class="input-group" id="devices_entity_div">
@@ -51,14 +51,36 @@
                     </div>
                 </div>
                 <div class="control-group span8">
-                    <label class="control-label"><s>*</s>部署科室：</label>
+                    <label class="control-label">设备性质：</label>
+                    <div class="controls"  id="device_flag_select">
+                        <input name="device_flag" id="device_flag" type="hidden">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">部署状态：</label>
+                    <div class="controls" id="deployment_status_select">
+                        <input name="device_deployment_status" id="deployment_status" type="hidden">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label">部署科室：</label>
                     <input type="hidden" name="location_office_id" id="location_office_id">
                     <div class="controls">
                         <input name="search_office_ident" id="search_office_ident" type="text">
                     </div>
                 </div>
+                <div class="control-group span8">
+                    <label class="control-label">工作站：</label>
+                    <input type="hidden" name="2" id="2">
+                    <div class="controls">
+                        <input name="search_office_ident" id="1" type="text">
+                    </div>
+                </div>
             </div>
             <div class="row">
+
                 <div class="control-group span9">
                     <label class="control-label">登记时间：</label>
                     <div class="controls">
@@ -256,7 +278,7 @@
                 }
             });
             var enumObj_dev_flag = {"1": "启用", "0": "禁用"},
-                enumObj_device_flag = {"0": "不明", "1": "借用", "2": "调用", "3": "固定",},
+                enumObj_device_flag = {"0": "不明", "1": "备用", "2": "固定", "3": "调用",4:"借用"},
                 enumObj_device_status = {"1": "已入科", "2": "未部署", "3": "已部署"},
                 enumObj_device_state = {"0": "报废", "1": "故障", "2": "异常", "3": "正常"},
                 offices_data = localstorageIO("offices_select", "/getOfficeSelect"),
@@ -274,6 +296,30 @@
                     autoSave: true, //添加数据或者修改数据时，自动保存
                     triggerCls: 'btn-edit',
                 }),
+                //设备标识框
+                device_flag_select = new Select.Select({
+                    render: '#device_flag_select',
+                    valueField: '#device_flag',
+                    multipleSelect: false,
+                    items: [
+                        /*{text:'不明',value:'0'},*/
+                        {text:'备用',value:'1'},
+                        {text:'固定',value:'2'},
+                        {text:'调用',value:'3'},
+                        {text:'借用',value:'4'},
+                    ]
+                }).render(),
+                //部署状态框
+                deployment_status_select = new Select.Select({
+                    render: '#deployment_status_select',
+                    valueField: '#deployment_status',
+                    multipleSelect: false,
+                    items: [
+                        /*{text:'不明',value:'0'},*/
+                        {text:'未部署',value:'2'},
+                        {text:'已部署',value:'3'},
+                    ]
+                }).render(),
                 //科室选择数框
                 loc_office_tree = new Tree.TreeList({
                     nodes: [],

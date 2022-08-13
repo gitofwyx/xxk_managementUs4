@@ -25,8 +25,22 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public  List<Map<String, Object>> listWorkstationWithDevices(int pageStart,int pageSize,String class_id,String device_id,String office_id) {
-        return dao.listWorkstationWithDevices((pageStart - 1) * pageSize, pageSize,class_id,device_id,office_id);
+    public  List<Map<String, Object>> listWorkstationWithDevices(int pageStart,
+                                                                 int pageSize,
+                                                                 String class_id,
+                                                                 String device_id,
+                                                                 String device_flag,
+                                                                 String device_deployment_status,
+                                                                 String office_id) {
+        return dao.listWorkstationWithDevices(
+                (pageStart - 1) * pageSize,
+                pageSize,
+                class_id,
+                device_id,
+                device_flag,
+                device_deployment_status,
+                office_id
+        );
     }
 
     @Override

@@ -52,6 +52,8 @@ public class StationDevicesController extends BaseController {
                                            @RequestParam(value = "limit") String limit,
                                            @RequestParam(value = "search_class_id") String class_id,//型号id
                                            @RequestParam(value = "search_entity_id") String entity_id,//设备、耗材id
+                                           @RequestParam(value = "device_flag") String device_flag,
+                                           @RequestParam(value = "device_deployment_status") String device_deployment_status,
                                            @RequestParam(value = "location_office_id") String location_office_id) {//科室id
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -59,7 +61,15 @@ public class StationDevicesController extends BaseController {
             int pageNumber = Integer.parseInt(pageIndex) + 1;//因为pageindex 从0开始
             int pageSize = Integer.parseInt(limit);
 
-            List<Map<String, Object>> listStation = stationService.listWorkstationWithDevices(pageNumber, pageSize, class_id, entity_id, location_office_id);
+            List<Map<String, Object>> listStation = stationService.listWorkstationWithDevices(
+                    pageNumber,
+                    pageSize,
+                    class_id,
+                    entity_id,
+                    device_flag,
+                    device_deployment_status,
+                    location_office_id
+            );
             if (listStation == null) {
                 log.error("获取分页出错");
                 result.put("success", false);

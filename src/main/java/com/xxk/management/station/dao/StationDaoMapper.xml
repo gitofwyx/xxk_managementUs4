@@ -85,6 +85,12 @@
         <if test="device_id!=null and ''!= device_id">
             and od.device_id = #{device_id}
         </if>
+        <if test="device_flag!=null and ''!= device_flag">
+            and od.device_flag = #{device_flag}
+        </if>
+        <if test="device_deployment_status!=null and ''!= device_deployment_status">
+            and od.device_deployment_status = #{device_deployment_status}
+        </if>
         <if test="location_office_id!=null and ''!= location_office_id and 'a5c7b9f5-1f3c-4308-86e9-148b21416b37'!=location_office_id">
             and od.location_office_id = #{location_office_id}
         </if>
