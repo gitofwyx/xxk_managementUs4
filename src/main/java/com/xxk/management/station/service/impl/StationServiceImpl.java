@@ -31,7 +31,8 @@ public class StationServiceImpl implements StationService {
                                                                  String device_id,
                                                                  String device_flag,
                                                                  String device_deployment_status,
-                                                                 String office_id) {
+                                                                 String office_id,
+                                                                 String station_id) {
         return dao.listWorkstationWithDevices(
                 (pageStart - 1) * pageSize,
                 pageSize,
@@ -39,7 +40,8 @@ public class StationServiceImpl implements StationService {
                 device_id,
                 device_flag,
                 device_deployment_status,
-                office_id
+                office_id,
+                station_id
         );
     }
 

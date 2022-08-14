@@ -19,7 +19,8 @@ public interface StationService {
                                                                  String device_id,
                                                                  String device_flag,
                                                                  String device_deployment_status,
-                                                                 String office_id);
+                                                                 String office_id,
+                                                                 String station_id);
 
     public  List<Map<String, Object>> getStationSelectByOfficeId(String office_id);
 

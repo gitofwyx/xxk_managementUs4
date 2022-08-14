@@ -54,7 +54,8 @@ public class StationDevicesController extends BaseController {
                                            @RequestParam(value = "search_entity_id") String entity_id,//设备、耗材id
                                            @RequestParam(value = "device_flag") String device_flag,
                                            @RequestParam(value = "device_deployment_status") String device_deployment_status,
-                                           @RequestParam(value = "location_office_id") String location_office_id) {//科室id
+                                           @RequestParam(value = "location_office_id") String location_office_id,
+                                           @RequestParam(value = "station_id") String station_id) {//工作站id
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> resultList = new ArrayList<>();
         try {
@@ -68,7 +69,8 @@ public class StationDevicesController extends BaseController {
                     entity_id,
                     device_flag,
                     device_deployment_status,
-                    location_office_id
+                    location_office_id,
+                    station_id
             );
             if (listStation == null) {
                 log.error("获取分页出错");

@@ -73,9 +73,15 @@
                 </div>
                 <div class="control-group span8">
                     <label class="control-label">工作站：</label>
-                    <input type="hidden" name="2" id="2">
+                    <input type="hidden" name="station_id" id="station_id2">
                     <div class="controls">
-                        <input name="search_office_ident" id="1" type="text">
+                        <div class="input-group" id="devices_station_div">
+                            <input type="text" id="search_devices_station"
+                                   name="search_devices_station">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                            <!-- /btn-group -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -760,6 +766,31 @@
                 }
             };
 
+            function searchWorkstation(v) {
+                initBsSuggest("search_devices_station");
+                $('#devices_station_div').replaceWith('<div class="input-group" id="devices_station_div"> ' +
+                    '<input type="text" id="search_devices_station" name="search_devices_station">' +
+                    '<ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul></div>');
+                if (!CheckIsNullOrEmpty(v)) return;
+                CD_ajaxAllParam("/station/getStationSelectByOfficeId", v, true, function (v) {
+
+                    if (!$.isEmptyObject(v)) {
+
+                        buildBsSuggest("search_devices_station",
+                            {value: v.station_data},
+                            ["workstation_ident", "text"],
+                            ["workstation_ident", "text"],
+                            {workstation_ident: "编号", text: "名称",},
+                            function (K, data) {
+                                $("#station_id2").val(data.value);
+                            }, function () {
+                                $("#station_id2").val("");
+                            });
+                    }
+                });
+
+            };
+
             function initWorkstationDev(v) {
 
                 $('input[type=radio][id=auto_location]').val("");
@@ -839,6 +870,7 @@
                 }
                 $("#location_office_id").val(ev.item.value);
                 offices_select = ev.item;
+                searchWorkstation({"office_id":ev.item.value});
             });
 
 
