@@ -77,6 +77,10 @@
         <if test="office_id!=null and ''!= office_id">
             and xr.reg_office_id=#{office_id}
         </if>
+        <if test="startDate!=null and ''!= startDate">
+            and str_to_date(rr.createDate,'%Y-%m-%d %H:%i:%s') BETWEEN
+            str_to_date(#{startDate},'%Y-%m-%d %H:%i:%s') and str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+        </if>
         and rr.reg_record_status in
         <foreach collection="statusList" item="status" index="index"
                  open="(" close=")" separator=",">

@@ -47,12 +47,12 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         return dao.getRecordAccordRegistration(registrationId, officeId, status);
     }
 
-    public List<Map<String, Object>> getRegistration_recordMakeDate(String reg_record_py,String office_id, String[] status) {
+    public List<Map<String, Object>> getRegistration_recordMakeDate(String reg_record_py,String office_id, String[] status,String startDate, String endDate) {
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         List<String> dateList = new ArrayList<>();
         try {
-            List<Registration_record> listRegistration_record = dao.getRegistration_recordByOffice(reg_record_py,office_id, status);
+            List<Registration_record> listRegistration_record = dao.getRegistration_recordByOffice(reg_record_py,office_id, status,startDate,endDate);
             for (Registration_record record : listRegistration_record) {
                 if (record.getReg_record_date() == null) {
                     continue;

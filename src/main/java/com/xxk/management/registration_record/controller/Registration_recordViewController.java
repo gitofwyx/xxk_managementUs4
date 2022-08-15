@@ -1,6 +1,7 @@
 package com.xxk.management.registration_record.controller;
 
 import com.xxk.core.file.BaseController;
+import com.xxk.core.util.DateUtil;
 import com.xxk.management.operation.service.OperationService;
 import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration_record.service.Registration_recordService;
@@ -65,7 +66,10 @@ public class Registration_recordViewController extends BaseController {
                 CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             }//前端业务需求：科室为空时申请人为当前登录
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,office_id, status);
+            String Day= DateUtil.getFullDay();
+            String startDate=DateUtil.getManyMonthsAgoStartDate(Day,-12)+" 00:00:00";
+            String endDate= DateUtil.getFullTime();
+            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,office_id, status,startDate,endDate);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {
@@ -91,7 +95,10 @@ public class Registration_recordViewController extends BaseController {
         try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = registrationMService.listRegistrationMapAccordingDate(office_id,"","", status,e_status);
+            String Day= DateUtil.getFullDay();
+            String startDate=DateUtil.getManyMonthsAgoStartDate(Day,-2)+" 00:00:00";
+            String endDate= DateUtil.getFullTime();
+            listRecord = registrationMService.listRegistrationMapAccordingDate(office_id,"","", status,e_status,startDate,endDate);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {

@@ -24,7 +24,9 @@ public interface Registration_recordDao {
 
     public List<Registration_record> getRegistration_recordByOffice(@Param("reg_record_py")String reg_record_py,
                                                                     @Param("office_id")String office_id,
-                                                                    @Param("statusList")String[] listStr);
+                                                                    @Param("statusList")String[] listStr,
+                                                                    @Param("startDate")String startDate,
+                                                                    @Param("endDate")String endDate);
 
     public List<Registration_record> getRegistration_recordByReceiver(@Param("office_id")String office_id,
                                                                       @Param("statusList")String[] listStr,

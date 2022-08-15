@@ -25,7 +25,9 @@ public interface RegistrationMService {
                                                                String reg_record_py,
                                                                String reg_receiver_id,
                                                                String[] status,
-                                                               String[] e_status);
+                                                               String[] e_status,
+                                                               String startDate,
+                                                               String endDate);
 
     public boolean addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException;
 

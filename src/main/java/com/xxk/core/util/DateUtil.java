@@ -313,6 +313,34 @@ public class DateUtil {
     }
 
     /**
+     * 从当前时间"yyyy-MM-dd"格式获取n个月前的时间
+     */
+    public static  Calendar getManyMonthsAgo(String startDate,int n) throws Exception{
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        Date date = format.parse(startDate);
+        c.setTime(date);
+        c.add(Calendar.MONTH, n);
+        return c;
+    }
+
+    /**
+     * 从当前时间获取n个月前的第一天
+     */
+    public static String getManyMonthsAgoStartDate(String startDate,int n) throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = getManyMonthsAgo(startDate,n);
+
+        //获取某月最小天数
+        int firstDay = c.getActualMinimum(Calendar.DAY_OF_MONTH);
+        //设置日历中月份的最小天数
+        c.set(Calendar.DAY_OF_MONTH, firstDay);
+        // 上个月第一天
+        String startTime = format.format(c.getTime());
+        return startTime;
+    }
+
+    /**
      * 从当前时间获取上个月的第一天
      */
     public static String getPreMonthStartDate(String startDate) throws Exception {

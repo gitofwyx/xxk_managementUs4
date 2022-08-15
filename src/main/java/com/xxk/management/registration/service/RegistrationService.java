@@ -17,7 +17,9 @@ public interface RegistrationService {
                                                          String reg_record_status,
                                                          String execute_record_status,
                                                          int pageStart,
-                                                         int pageSize);
+                                                         int pageSize,
+                                                         String startDate,
+                                                         String endDate);
 
     public Registration getRegistrationByRecordId(String recordId);
 

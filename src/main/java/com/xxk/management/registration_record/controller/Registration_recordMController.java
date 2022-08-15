@@ -47,7 +47,10 @@ public class Registration_recordMController extends BaseController {
         try {
             String[] status={"0"};
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,CurrentUserId, status);
+            String Day= DateUtil.getFullDay();
+            String startDate= DateUtil.getManyMonthsAgoStartDate(Day,-12)+" 00:00:00";
+            String endDate= DateUtil.getFullTime();
+            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,CurrentUserId, status,startDate,endDate);
             if (listRecord == null) {
                 log.error("获取分页出错");
                 result.put("hasError", true);

@@ -34,7 +34,9 @@ public class RegistrationServiceImpl implements RegistrationService {
                                                          String reg_record_status,
                                                          String execute_record_status,
                                                          int pageStart,
-                                                         int pageSize) {
+                                                         int pageSize,
+                                                         String startDate,
+                                                         String endDate) {
         String[] status={"0","1","2"};
         String[] e_status={"0","1","2"};
         return dao.listRegistrationUnionMap(reg_record_ident,
@@ -43,7 +45,9 @@ public class RegistrationServiceImpl implements RegistrationService {
                 null,
                 status,e_status,
                 (pageStart-1)*pageSize,
-                pageSize);
+                pageSize,
+                startDate,
+                endDate);
     }
 
     @Override

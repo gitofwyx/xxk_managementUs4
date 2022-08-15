@@ -92,7 +92,11 @@
             where reg_office_id=#{office_id}
             ) and
         </if>
-        reg_record_status in
+        <if test="startDate!=null and ''!= startDate">
+            str_to_date(createDate,'%Y-%m-%d %H:%i:%s') BETWEEN
+            str_to_date(#{startDate},'%Y-%m-%d %H:%i:%s') and str_to_date(#{endDate},'%Y-%m-%d %H:%i:%s')
+        </if>
+        and reg_record_status in
         <foreach collection="statusList" item="status" index="index"
                  open="(" close=")" separator=",">
             #{status}

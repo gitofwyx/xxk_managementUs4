@@ -1,6 +1,7 @@
 package com.xxk.management.test.controller;
 
 import com.xxk.core.file.BaseController;
+import com.xxk.core.util.DateUtil;
 import com.xxk.management.operation.service.OperationService;
 import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration_record.service.Registration_recordService;
@@ -68,7 +69,10 @@ public class TestViewController extends BaseController {
             //String[] status={"0","1"};
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,office_id, status);
+            String Day= DateUtil.getFullDay();
+            String startDate= DateUtil.getManyMonthsAgoStartDate(Day,-12)+" 00:00:00";
+            String endDate= DateUtil.getFullTime();
+            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,office_id, status,startDate,endDate);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {
@@ -94,7 +98,10 @@ public class TestViewController extends BaseController {
         try {
             String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
             //String userName = (String) SecurityUtils.getSubject().getSession().getAttribute("userName");
-            listRecord = registrationMService.listRegistrationMapAccordingDate(office_id,"","", status,e_status);
+            String Day= DateUtil.getFullDay();
+            String startDate= DateUtil.getManyMonthsAgoStartDate(Day,-12)+" 00:00:00";
+            String endDate= DateUtil.getFullTime();
+            listRecord = registration_recordService.getRegistration_recordMakeDate(CurrentUserId,office_id, status,startDate,endDate);
             if (listRecord == null) {
                 log.error("获取分页出错");
             } else {

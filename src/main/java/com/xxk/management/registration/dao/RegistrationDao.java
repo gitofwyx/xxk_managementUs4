@@ -22,7 +22,9 @@ public interface RegistrationDao {
                                                               @Param("statusList")String[] listStr,
                                                               @Param("e_statusList")String[] listStr2,
                                                               @Param("pageStart")int pageStart,
-                                                              @Param("pageSize")int pageSize);
+                                                              @Param("pageSize")int pageSize,
+                                                              @Param("startDate")String startDate,
+                                                              @Param("endDate")String endDate);
 
     public Registration getRegistrationForRegStatus(String registrationId,String Status);
 

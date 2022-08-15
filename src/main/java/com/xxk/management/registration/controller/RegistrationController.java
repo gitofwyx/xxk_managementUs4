@@ -62,7 +62,7 @@ public class RegistrationController extends BaseController {
                     reg_record_status,
                     execute_record_status,
                     pageNumber,
-                    pageSize);
+                    pageSize,"","");
             if (listRegistration == null) {
                 log.error("获取分页出错");
                 result.put("hasError", true);

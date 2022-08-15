@@ -47,7 +47,7 @@ public class RegistrationMServiceImpl implements RegistrationMService {
                                                               String[] e_status,
                                                               int pageStart,
                                                               int pageSize) {
-        return dao.listRegistrationUnionMap(null, office_id, reg_record_py, reg_receiver_id, status, e_status, (pageStart - 1) * pageSize, pageSize);
+        return dao.listRegistrationUnionMap(null, office_id, reg_record_py, reg_receiver_id, status, e_status, (pageStart - 1) * pageSize, pageSize,"","");
     }
 
     @Override
@@ -55,7 +55,9 @@ public class RegistrationMServiceImpl implements RegistrationMService {
                                                                       String reg_record_py,
                                                                       String reg_receiver_id,
                                                                       String[] status,
-                                                                      String[] e_status) {
+                                                                      String[] e_status,
+                                                                      String startDate,
+                                                                      String endDate) {
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         List<String> dateList = new ArrayList<>();
@@ -67,7 +69,9 @@ public class RegistrationMServiceImpl implements RegistrationMService {
                     status,
                     e_status,
                     0,
-                    0);
+                    0,
+                    startDate,
+                    endDate);
             for (Map<String, Object> reg : listReg) {
                 if (reg.get("reg_record_date") == null) {
                     continue;
