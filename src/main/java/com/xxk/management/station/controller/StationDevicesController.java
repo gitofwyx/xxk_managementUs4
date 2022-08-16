@@ -116,6 +116,11 @@ public class StationDevicesController extends BaseController {
                 Result = devicesService.updateDevicesForDeployment(devices, officesStorage);
 
             }else {
+                if("".equals(devices.getStation_id())||devices.getStation_id()==null){
+                    result.put("hasError", true);
+                    result.put("error", "设备未部署！");
+                    return result;
+                }
                 OfficesStorage bf_storage = storageSupplier.get();
                 bf_storage.setClass_id(bf_class_id);
                 bf_storage.setEntity_id(bf_entity_id);
@@ -130,12 +135,14 @@ public class StationDevicesController extends BaseController {
             }
 
             if (!(Result)) {
-                result.put("success", false);
+                result.put("hasError", true);
+                result.put("error", "设备更新出错！");
             } else {
                 result.put("success", true);
             }
         } catch (Exception e) {
-            result.put("success", false);
+            result.put("hasError", true);
+            result.put("error", "设备更新出错！");
             log.error(e);
         }
         return result;
