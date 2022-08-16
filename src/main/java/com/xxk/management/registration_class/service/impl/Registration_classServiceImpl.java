@@ -34,12 +34,12 @@ public class Registration_classServiceImpl implements Registration_classService 
         return dao.getRecordAccordRegistration(registrationId,officeId,status);
     }
 
-    public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId,String[] status){
+    public List<Map<String, Object>> getRegistration_recordMakeDate(String registrationId,String[] status,String startDate, String endDate){
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         List<String> dateList = new ArrayList<>();
         try {
-            List<Registration_record> listRegistration_record=dao.getRegistration_recordByOffice("",registrationId,status);
+            List<Registration_record> listRegistration_record=dao.getRegistration_recordByOffice("",registrationId,status,startDate,endDate);
             for (Registration_record record : listRegistration_record) {
                 if(record.getReg_record_date()==null){
                     continue;
