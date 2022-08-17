@@ -39,6 +39,7 @@ public class CustomRolesAuthorizationFilter extends RolesAuthorizationFilter {
 						continue;
 					}
 					hasAllRoles = subject.hasRole((String) role);
+					if(hasAllRoles) break;
 				}
 				if (hasAllRoles == false) {
 					httprequest.setAttribute("msg", "没有下限");

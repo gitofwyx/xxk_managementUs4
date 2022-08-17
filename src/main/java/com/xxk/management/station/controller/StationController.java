@@ -63,30 +63,6 @@ public class StationController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/addWorkstation")
-    public Map<String, Object> addWorkstation(Station station) {
-        Map<String, Object> result = new HashMap<>();
-        boolean Result=false;
-        try {
-
-            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            station.setCreateUserId(CurrentUserId);
-            Result = stationService.addWorkstation(station);
-
-            if (!(Result)) {
-                result.put("success", false);
-            } else {
-                result.put("success", true);
-            }
-        } catch (Exception e) {
-            result.put("success", false);
-            log.error(e);
-        }
-        return result;
-        //return "system/index";
-    }
-
-    @ResponseBody
     @RequestMapping(value = "/getStationSelectByOfficeId",method = RequestMethod.POST)
     public Map<String, Object> getStationSelectByOfficeId(@RequestParam(value = "office_id") String office_id) {
         int id = 0;
