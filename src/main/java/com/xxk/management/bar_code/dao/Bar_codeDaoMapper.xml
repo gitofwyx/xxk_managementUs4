@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.bar_code.dao.Bar_codeDao">
-    <sql id="columns">id,stock_id,entity_id,stock_entity_id,offices_entity_id,bar_code_ident,bar_code_type,bar_code_genre,
+    <sql id="columns">id,entity_id,entities_id,offices_id,station_id,bar_code,bar_code_ident,bar_code_type,bar_code_genre,
           bar_code_by,bar_code_officeId,bar_code_date,bar_code_status,keyWord,createUserId,createDate,updateUserId,
           updateDate,deleteFlag</sql>
 
@@ -26,7 +26,7 @@
     <!--添加用户信息 -->
     <insert id="addBar_code" parameterType="com.xxk.management.bar_code.entity.Bar_code">
         insert into xxk_bar_code(<include refid="columns"></include>) values(
-        #{id},#{stock_id},#{entity_id},#{stock_entity_id},#{offices_entity_id},#{bar_code_ident},#{bar_code_type},#{bar_code_genre},
+        #{id},#{entity_id},#{entities_id},#{offices_id},#{station_id},#{bar_code},#{bar_code_ident},#{bar_code_type},#{bar_code_genre},
         #{bar_code_by},#{bar_code_officeId},#{bar_code_date},#{bar_code_status},#{keyWord},#{createUserId},#{createDate},
         #{updateUserId},#{updateDate},#{deleteFlag});
     </insert>

@@ -47,7 +47,7 @@ public class Bar_codeServiceImpl implements Bar_codeService {
         String bar_codeId = UUIdUtil.getUUID();
         String createDate = DateUtil.getFullTime();
         try {
-            Device device = deviceService.getDeviceById(bar_code.getStock_entity_id());
+            Device device = deviceService.getDeviceById(bar_code.getEntity_id());
             if ("".equals(device.getId())) {
                 log.error("updateBar_codeForDevice:deviceService");
                 result.put("hasError", true);

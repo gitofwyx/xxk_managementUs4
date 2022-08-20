@@ -84,7 +84,7 @@ public class Bar_codeController extends BaseController {
             if (entity_id != null && !"".equals(entity_id)) {
                 Bar_code bar_code = bar_codeStorySupplier.get();
                 bar_code.setBar_code_ident(bar_code_ident);
-                bar_code.setStock_entity_id(bar_code_ident);
+                bar_code.setEntity_id(entity_id);
                 result = bar_codeService.updateBar_codeForDevice(bar_code);
             } else {
                 result.put("hasError", true);

@@ -4,9 +4,11 @@ import com.xxk.core.entity.BaseInfoEntity;
 
 public class Bar_code extends BaseInfoEntity {
     private String id;
-    private String stock_id;     //库存ID
-    private String stock_entity_id;      //库存设备ID
-    private String offices_entity_id;      //库存设备ID
+    private String entity_id;     //设备ID
+    private String entities_id;      //设备ID
+    private String offices_id;      //科室ID
+    private String station_id;      //工作站ID
+    private String bar_code;      //bar_code
     private String bar_code_ident;      //条形码编号
     private String bar_code_type;    //条形码种类
     private int bar_code_genre;    //条形码类别
@@ -26,28 +28,44 @@ public class Bar_code extends BaseInfoEntity {
         this.id = id;
     }
 
-    public String getStock_id() {
-        return stock_id;
+    public String getEntity_id() {
+        return entity_id;
     }
 
-    public void setStock_id(String stock_id) {
-        this.stock_id = stock_id;
+    public void setEntity_id(String entity_id) {
+        this.entity_id = entity_id;
     }
 
-    public String getStock_entity_id() {
-        return stock_entity_id;
+    public String getEntities_id() {
+        return entities_id;
     }
 
-    public void setStock_entity_id(String stock_entity_id) {
-        this.stock_entity_id = stock_entity_id;
+    public void setEntities_id(String entities_id) {
+        this.entities_id = entities_id;
     }
 
-    public String getOffices_entity_id() {
-        return offices_entity_id;
+    public String getOffices_id() {
+        return offices_id;
     }
 
-    public void setOffices_entity_id(String offices_entity_id) {
-        this.offices_entity_id = offices_entity_id;
+    public void setOffices_id(String offices_id) {
+        this.offices_id = offices_id;
+    }
+
+    public String getStation_id() {
+        return station_id;
+    }
+
+    public void setStation_id(String station_id) {
+        this.station_id = station_id;
+    }
+
+    public String getBar_code() {
+        return bar_code;
+    }
+
+    public void setBar_code(String bar_code) {
+        this.bar_code = bar_code;
     }
 
     public String getBar_code_ident() {

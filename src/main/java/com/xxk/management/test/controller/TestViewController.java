@@ -168,4 +168,10 @@ public class TestViewController extends BaseController {
         return new ModelAndView("/TEST/testWX", "result", result);
     }
 
+    @RequestMapping("/testBar_code_reg")
+    public ModelAndView  testBar_code_reg() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/form/bar_code/bar_code_register", "result", result);
+    }
+
 }

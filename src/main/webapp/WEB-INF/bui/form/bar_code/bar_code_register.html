@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> 申请登记</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--user-scalable控制用户是否可以进行触屏扩大或缩小网页-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/layui/layui.css">
+    <link href="/css/suggest-style.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        code {
+            padding: 0px 4px;
+            color: #d14;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+        }
+
+        @media only screen and (max-width: 991px) {
+            /*.media-icon-lead:before{content:"\e619"}*/
+            .media-icon-lead {
+                width: 100%;
+                height: 30px;
+                background-image: url("/img/top_lead.svg");
+                background-repeat: no-repeat;
+                padding-bottom: 4px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            /*.media-icon-lead:before{content:"\e603"}*/
+            .media-icon-lead {
+                width: 100%;
+                height: 30px;
+                background-image: url("/img/left_lead.svg");
+                background-repeat: no-repeat;
+                padding-bottom: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div>
+        <div class="row">
+            <div id="occupy_area" class="hidden col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+            <div id="reg_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
+                <!--偏移列 .col-*-offset-* -->
+                <form class="form-horizontal layui-form" autocomplete="off" id="reg_area_form">
+                    <h3 class="form-signin-heading" style="margin-top:20px;margin-bottom:5px; ">
+                        <i id="reg_form_title" class="layui-icon layui-icon-list" style="font-size: 26px;">登记条码</i></h3>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px;padding-left:0px; ">
+                        <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">条码号</label>
+                        <div class="col-sm-1 col-xs-10 col-lg-1" style="padding-right:2px; width: 80%">
+                            <input type="text" id="bar_code_ident" class="form-control" name="bar_code_ident"
+                                   placeholder="请输入或扫码">
+                        </div>
+                        <div class="col-sm-1 col-xs-2 col-lg-1" style="margin-bottom:5px;padding-left:0px ">
+                            <button type="button" id="reg_btn" class="btn btn-default ">扫码</button>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">登记科室</label>
+                        <div class="">
+                            <input type="text" id="reg_office_ident" class="form-control NO_Reset"
+                                   name="reg_office_ident"
+                                   placeholder="请选择">
+                            <input type="hidden" name="reg_office_id" id="reg_office_id" lay-verify="required"
+                                   class="NO_Reset"
+                                   lay-verType="alert"
+                                   lay-reqText="登记科室不能为空">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">执行科室</label>
+                        <div class="">
+                            <input type="text" id="exe_office_ident" class="form-control NO_Reset"
+                                   name="exe_office_ident"
+                                   placeholder="请选择">
+                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required"
+                                   class="NO_Reset"
+                                   lay-verType="alert"
+                                   lay-reqText="执行科室不能为空">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">登记时间</label>
+                        <div class="">
+                            <!--<input type="date" id="32423" class="form-control" name="email"
+                                   placeholder="请输入">-->
+                            <input type="text" name="reg_date" id="reg_date" lay-verify="required|datetime"
+                                   placeholder="yyyy-MM-dd HH:mm:ss"
+                                   autocomplete="off" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">登记人</label>
+                        <div class="">
+                            <input type="text" id="32423" class="form-control" name=""
+                                   placeholder="请输入">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">登记类型</label>
+                        <div class="">
+                            <input type="checkbox" name="like[write]" title="维护申请">
+                            <input type="checkbox" name="like[read]" title="耗材申请">
+                            <div class="visible-xs" style="margin-bottom:10px; "></div>
+                            <input type="checkbox" name="like[game]" title="设备申请" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-top: 10px">
+                        <div>
+                            <button type="button" class="btn btn-primary btn-block" id="reg_record_submit" lay-submit
+                                    lay-filter="regForm">新增
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+
+<script src="/js/layui/layui.js"></script>
+
+<script type="text/javascript" src="/js/tree/tree_build.js"></script>
+<script type="text/javascript" src="/js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tools/data_handling.js"></script>
+<script type="text/javascript" src="/js/suggest/bootstrap-suggest.js"></script>
+
+<script type="text/javascript" src="/js/suggest/suggest_util.js"></script>
+<script type="text/javascript" src="/js/callback_ajax.js"></script>
+
+<script type="text/javascript" src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        CD_ajaxAllParam("/makeSDKSignature", {
+            url: "http://wyx-test.nat300.top/test/testBar_code_reg",
+            "TD": "logout"
+        }, true, function (data) {
+            wx.config({
+                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.appId, // 必填，公众号的唯一标识
+                timestamp:data.timestamp , // 必填，生成签名的时间戳
+                nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                signature: data.signature,// 必填，签名
+                jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表
+            });
+            wx.ready(function(){
+                console.log('wx_ready');
+            });
+            wx.error(function(res){
+                console.log("error_WX"+res);
+                // config信息验证失败会执行error函数，如签名过期导致验证失败，
+                // 具体错误信息可以打开config的debug模式查看，
+                // 也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+            });
+        });
+
+        // 9 微信原生接口
+        // 9.1.1 扫描二维码并返回结果
+       /* document.querySelector('#scanQRCode0').onclick = function () {
+            wx.scanQRCode();
+        };*/
+        // 9.1.2 扫描二维码并返回结果
+        $("#reg_btn").click(function () {
+            wx.scanQRCode({
+                needResult: 1,
+                scanType: ["qrCode","barCode"],
+                success: function (res) {
+                    $('#bar_code_ident').val(res.resultStr);
+                }
+            });
+        });
+    })
+
+</script>
+
+</body>
+</html> 
