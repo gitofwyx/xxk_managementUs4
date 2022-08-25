@@ -1,5 +1,4 @@
-﻿
-/*!
+﻿/**
  * layer - 通用 Web 弹出层组件
  * MIT Licensed 
  */
@@ -41,21 +40,21 @@ var isLayui = window.layui && layui.define, $, win, ready = {
   link: function(href, fn, cssname){
     //未设置路径，则不主动加载css
     if(!layer.path) return;
-
+    
     var head = document.getElementsByTagName("head")[0]
     ,link = document.createElement('link');
-
+    
     if(typeof fn === 'string') cssname = fn;
-
+    
     var app = (cssname || href).replace(/\.|\//g, '');
     var id = 'layuicss-'+ app
     ,STAUTS_NAME = 'creating'
     ,timeout = 0;
-
+    
     link.rel = 'stylesheet';
     link.href = layer.path + href;
     link.id = id;
-
+    
     if(!document.getElementById(id)){
       head.appendChild(link);
     }
@@ -66,12 +65,12 @@ var isLayui = window.layui && layui.define, $, win, ready = {
     (function poll(status) {
       var delay = 100
       ,getLinkElem = document.getElementById(id); //获取动态插入的 link 元素
-
+      
       //如果轮询超过指定秒数，则视为请求文件失败或 css 文件不符合规范
       if(++timeout > 10 * 1000 / delay){
         return window.console && console.error(app +'.css: Invalid');
       };
-
+      
       //css 加载就绪
       if(parseInt(ready.getStyle(getLinkElem, 'width')) === 1989){
         //如果参数来自于初始轮询（即未加载就绪时的），则移除 link 标签状态
@@ -278,7 +277,7 @@ Class.pt.vessel = function(conType, callback){
         for(var i = 0, len = config.btn.length; i < len; i++){
           button += '<a class="'+ doms[6] +''+ i +'">'+ config.btn[i] +'</a>'
         }
-        return '<div class="'+ doms[6] +' layui-layer-btn-'+ (config.btnAlign||'') +'">'+ button +'<br><div style="width: auto;height: '+ (config.btn_margin||'0px')+';"></div></div>'
+        return '<div class="'+ doms[6] +' layui-layer-btn-'+ (config.btnAlign||'') +'">'+ button +'</div>'
       }() : '')
       + (config.resize ? '<span class="layui-layer-resize"></span>' : '')
     + '</div>'
@@ -851,7 +850,7 @@ layer.style = function(index, options, limit){
   }
   
   layero.css(options);
-  btnHeight = layero.find('.'+doms[6]).outerHeight();
+  btnHeight = layero.find('.'+doms[6]).outerHeight() || 0;
   
   if(type === ready.type[2]){
     layero.find('iframe').css({
@@ -1375,7 +1374,7 @@ window.layui && layui.define ? (
     exports('layer', layer);
   })
 ) : (
-  (typeof define === 'function' && define.amd) ? define(['src/main/webapp/WEB-INF/res/assets/js/layui/modules/jquery'], function(){ //requirejs 加载
+  (typeof define === 'function' && define.amd) ? define(['jquery'], function(){ //requirejs 加载
     ready.run(window.jQuery);
     return layer;
   }) : function(){ //普通 script 标签加载

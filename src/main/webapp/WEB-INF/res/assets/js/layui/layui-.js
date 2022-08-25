@@ -1,6 +1,7 @@
-/**
+
+/*!
  * Layui
- * Classic modular front-end UI library
+ * Classic modular Front-End UI library
  * MIT Licensed
  */
  
@@ -8,14 +9,14 @@
   "use strict";
 
   var doc = win.document, config = {
-    modules: {} // 模块物理路径
-    ,status: {} // 模块加载状态
-    ,timeout: 10 // 符合规范的模块请求最长等待秒数
-    ,event: {} // 模块自定义事件
+    modules: {} //记录模块物理路径
+    ,status: {} //记录模块加载状态
+    ,timeout: 10 //符合规范的模块请求最长等待秒数
+    ,event: {} //记录模块自定义事件
   }
 
   ,Layui = function(){
-    this.v = '2.7.6'; // layui 版本号
+    this.v = '2.6.8'; // layui 版本号
   }
   
   //识别预先可能定义的指定全局对象
@@ -232,23 +233,6 @@
     return that;
   };
 
-  // 弃用原有的指定模块，以便重新扩展新的同名模块
-  Layui.prototype.disuse = function(apps){
-    var that = this;
-    apps = that.isArray(apps) ? apps : [apps];
-    that.each(apps, function (index, item) {
-      if (!config.status[item]) {
-        //return error('module ' + item + ' is not exist');
-      }
-      delete that[item];
-      delete modules[item];
-      delete that.modules[item];
-      delete config.status[item];
-      delete config.modules[item];
-    });
-    return that;
-  };
-
   //获取节点的 style 属性值
   Layui.prototype.getStyle = function(node, name){
     var style = node.currentStyle ? node.currentStyle : win.getComputedStyle(node, null);
@@ -319,7 +303,7 @@
   
   //css 内部加载器
   Layui.prototype.addcss = function(firename, fn, cssname){
-    return layui.link(config.host + 'css/' +'layui/'  + firename, fn, cssname);
+    return layui.link(config.host + 'css/' +'layui/' + firename, fn, cssname);
   };
   
   //存储模块的回调
@@ -387,7 +371,7 @@
   };
 
   // location.hash 路由解析
-  Layui.prototype.router = Layui.prototype.hash = function(hash){
+  Layui.prototype.router = function(hash){
     var that = this
     ,hash = hash || location.hash
     ,data = {
@@ -470,14 +454,14 @@
     return data;
   };
 
-  // 本地持久存储
+  //本地持久性存储
   Layui.prototype.data = function(table, settings, storage){
     table = table || 'layui';
     storage = storage || localStorage;
     
     if(!win.JSON || !win.JSON.parse) return;
     
-    // 如果 settings 为 null，则删除表
+    //如果settings为null，则删除表
     if(settings === null){
       return delete storage[table];
     }
@@ -499,7 +483,7 @@
     return settings.key ? data[settings.key] : data;
   };
   
-  // 本地临时存储
+  //本地会话性存储
   Layui.prototype.sessionData = function(table, settings){
     return this.data(table, settings, sessionStorage);
   }
@@ -557,7 +541,7 @@
   };
   
   //typeof 类型细分 -> string/number/boolean/undefined/null、object/array/function/…
-  Layui.prototype._typeof = Layui.prototype.type = function(operand){
+  Layui.prototype._typeof = function(operand){
     if(operand === null) return String(operand);
     
     //细分引用类型
@@ -575,10 +559,10 @@
   };
   
   //对象是否具备数组结构（此处为兼容 jQuery 对象）
-  Layui.prototype._isArray = Layui.prototype.isArray = function(obj){
+  Layui.prototype._isArray = function(obj){
     var that = this
     ,len
-    ,type = that.type(obj);
+    ,type = that._typeof(obj);
     
     if(!obj || (typeof obj !== 'object') || obj === win) return false;
     
@@ -600,7 +584,7 @@
     obj = obj || [];
     
     //优先处理数组结构
-    if(that.isArray(obj)){
+    if(that._isArray(obj)){
       for(key = 0; key < obj.length; key++){
         if(callFn(key, obj)) break;
       }
@@ -613,57 +597,25 @@
     return that;
   };
 
-  // 将数组中的成员对象按照某个 key 的 value 值进行排序
-  Layui.prototype.sort = function(arr, key, desc){
-    var that = this
-    ,clone = JSON.parse(
-      JSON.stringify(arr || [])
+  //将数组中的对象按其某个成员排序
+  Layui.prototype.sort = function(obj, key, desc){
+    var clone = JSON.parse(
+      JSON.stringify(obj || [])
     );
     
-    // 若未传入 key，则直接返回原对象
-    if(that.type(arr) === 'object' && !key){
-      return clone;
-    } else if(typeof arr !== 'object'){ //若 arr 非对象
-      return [clone];
-    }
+    if(!key) return clone;
     
-    // 开始排序
+    //如果是数字，按大小排序；如果是非数字，则按字典序排序
     clone.sort(function(o1, o2){
       var v1 = o1[key]
-      ,v2 = o2[key];
+      ,v2 = o2[key]
+      ,isNum = [
+        !isNaN(v1)
+        ,!isNaN(v2)
+      ];
+
       
-      /*
-       * 特殊数据
-       * 若比较的成员均非对象
-       */
-
-      // 若比较的成员均为数字
-      if(!isNaN(o1) && !isNaN(o2)) return o1 - o2;
-      // 若比较的成员只存在某一个非对象
-      if(!isNaN(o1) && isNaN(o2)){
-        if(key && typeof o2 === 'object'){
-          v1 = o1;
-        } else {
-          return -1;
-        }
-      } else if (isNaN(o1) && !isNaN(o2)){
-        if(key && typeof o1 === 'object'){
-          v2 = o2;
-        } else {
-          return 1;
-        }
-      }
-
-      /*
-       * 正常数据
-       * 即成员均为对象，也传入了对比依据： key
-       * 若 value 为数字，按「大小」排序；若 value 非数字，则按「字典序」排序
-       */
-
-      // value 是否为数字
-      var isNum = [!isNaN(v1), !isNaN(v2)];
-
-      // 若为数字比较
+      //若为数字比较
       if(isNum[0] && isNum[1]){
         if(v1 && (!v2 && v2 !== 0)){ //数字 vs 空
           return 1;
@@ -678,9 +630,9 @@
        * 字典序排序
        */
        
-      // 若为非数字比较
+      //若为非数字比较
       if(!isNum[0] && !isNum[1]){
-        // 字典序比较
+        //字典序比较
         if(v1 > v2){
           return 1;
         } else if (v1 < v2) {
@@ -690,16 +642,33 @@
         }
       }
       
-      // 若为混合比较
+      //若为混合比较
       if(isNum[0] || !isNum[1]){ //数字 vs 非数字
         return -1;
       } else if(!isNum[0] || isNum[1]) { //非数字 vs 数字
         return 1;
       }
-
+      
+      /*
+      //老版本
+      if(v1 && !v2){
+        return 1;
+      } else if(!v1 && v2){
+        return -1;
+      }
+        
+      if(v1 > v2){
+        return 1;
+      } else if (v1 < v2) {
+        return -1;
+      } else {
+        return 0;
+      }
+      */
+      
     });
 
-    desc && clone.reverse(); // 倒序
+    desc && clone.reverse(); //倒序
     return clone;
   };
 

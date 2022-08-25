@@ -11,7 +11,7 @@ public class Bar_code extends BaseInfoEntity {
     private String bar_code;      //bar_code
     private String bar_code_ident;      //条形码编号
     private String bar_code_type;    //条形码种类
-    private int bar_code_genre;    //条形码类别
+    private String bar_code_genre;    //条形码类别
     private String bar_code_by;      //确认人
     private String bar_code_officeId;     //条形码科室ID
     private String bar_code_date;         //添加时间
@@ -84,11 +84,11 @@ public class Bar_code extends BaseInfoEntity {
         this.bar_code_type = bar_code_type;
     }
 
-    public int getBar_code_genre() {
+    public String getBar_code_genre() {
         return bar_code_genre;
     }
 
-    public void setBar_code_genre(int bar_code_genre) {
+    public void setBar_code_genre(String bar_code_genre) {
         this.bar_code_genre = bar_code_genre;
     }
 

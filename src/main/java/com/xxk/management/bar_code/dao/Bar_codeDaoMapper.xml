@@ -23,6 +23,12 @@
         select count(id) from xxk_bar_code;
     </select>
 
+    <select id="getBar_codeByBar_code_ident"  resultType="com.xxk.management.bar_code.entity.Bar_code">
+        select
+        <include refid="columns"></include>
+        from xxk_bar_code where bar_code_ident=#{0} and deleteFlag='0';
+    </select>
+
     <!--添加用户信息 -->
     <insert id="addBar_code" parameterType="com.xxk.management.bar_code.entity.Bar_code">
         insert into xxk_bar_code(<include refid="columns"></include>) values(

@@ -7,6 +7,7 @@ import com.xxk.management.bar_code.entity.Bar_code;
 import com.xxk.management.bar_code.service.Bar_codeService;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
+import com.xxk.management.registration.entity.Registration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,32 +43,27 @@ public class Bar_codeServiceImpl implements Bar_codeService {
     //入库操作
     // 2019年8月19日 13:44:05更新
     @Override
-    public Map<String, Object> updateBar_codeForDevice(Bar_code bar_code) {
+    public Map<String, Object> addBar_code(Bar_code bar_code) {
         Map<String, Object> result = new HashMap<>();
         String bar_codeId = UUIdUtil.getUUID();
         String createDate = DateUtil.getFullTime();
         try {
-            Device device = deviceService.getDeviceById(bar_code.getEntity_id());
-            if ("".equals(device.getId())) {
-                log.error("updateBar_codeForDevice:deviceService");
+            //
+            bar_code.setBar_code_ident(bar_code.getBar_code()+bar_code.getBar_code_type()+bar_code.getBar_code_genre());
+
+            bar_code.setId(bar_codeId);
+            bar_code.setBar_code_date(createDate);
+            bar_code.setCreateUserId(bar_code.getBar_code_by());
+            bar_code.setCreateDate(createDate);
+            bar_code.setUpdateUserId(bar_code.getBar_code_by());
+            bar_code.setUpdateDate(createDate);
+            Boolean bar_codeResult = dao.addBar_code(bar_code) == 1 ? true : false;
+            if (!(bar_codeResult)) {
+                log.error("stockResult:" + bar_codeResult);
                 result.put("hasError", true);
                 result.put("error", "添加出错");
                 return result;
-            } else {
-                //入库记录
-                bar_code.setId(bar_codeId);
-                bar_code.setBar_code_date(createDate);
-                bar_code.setCreateUserId("NO");
-                bar_code.setCreateDate(createDate);
-                bar_code.setUpdateUserId("NO");
-                bar_code.setUpdateDate(createDate);
-                Boolean bar_codeResult = dao.addBar_code(bar_code) == 1 ? true : false;
-                if (!(bar_codeResult)) {
-                    log.error("stockResult:" + bar_codeResult);
-                    result.put("hasError", true);
-                    result.put("error", "添加出错");
-                    return result;
-                }
+
             }
         } catch (DuplicateKeyException e) {
             result.put("hasError", true);
@@ -81,6 +77,10 @@ public class Bar_codeServiceImpl implements Bar_codeService {
         return result;
     }
 
+    @Override
+    public Bar_code getBar_codeByBar_code_ident(String bar_code_ident) throws Exception {
+        return dao.getBar_codeByBar_code_ident(bar_code_ident);
+    }
 
 
 }

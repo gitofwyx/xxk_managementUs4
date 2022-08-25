@@ -11,6 +11,8 @@ public interface Bar_codeService {
 
     public int countDevice();
 
-    public Map<String, Object> updateBar_codeForDevice(Bar_code bar_code) ;
+    public Bar_code getBar_codeByBar_code_ident(String bar_code_ident) throws Exception;
+
+    public Map<String, Object> addBar_code(Bar_code bar_code) ;
 
 }
