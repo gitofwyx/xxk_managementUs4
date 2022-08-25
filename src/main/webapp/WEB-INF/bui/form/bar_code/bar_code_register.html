@@ -43,7 +43,7 @@
                         <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">条码号</label>
                         <div class="col-sm-1 col-xs-10 col-lg-1" style="padding-right:2px; width: 80%">
                             <input type="text" id="bar_code" class="form-control" name="bar_code"
-                                   placeholder="请输入或扫码">
+                                   placeholder="请输入或扫码" lay-verify="required">
                         </div>
                         <div class="col-sm-1 col-xs-2 col-lg-1" style="margin-bottom:5px;padding-left:0px ">
                             <button type="button" id="reg_btn" class="btn btn-default " lay-on="get_bar_code">识码</button>
@@ -155,6 +155,21 @@
                 originalSeaEntity();
                 return;
             }
+            initEntityBsSuggest(0, "devices_class");
+            initEntityBsSuggest(0, "devices_entity");
+            var text=device_data.Entity_data.filter(function (entity, index) {
+                if (data.bar_code.entity_id === entity.value) {
+                    $('#devices_entity').val(entity.text);
+                    $('#devices_entity').attr('readonly', true);
+                    device_data.Class_data.filter(function (cla, index){
+                        if (entity.dev_class_id === cla.value) {
+                            $('#devices_class').val(cla.text);
+                            $('#devices_class').attr('readonly', true);
+                        }
+                    })
+                }
+            });
+
         });
     }
 
@@ -268,7 +283,7 @@
     function BC_submit(data) {
 
         data.field.TD="logout";
-        CD_ajaxAllParam("/addMobileOperation", data.field, true, function (v) {
+        CD_ajaxAllParam("/sys_bar_code/addBar_code", data.field, true, function (v) {
 
             }
         );
@@ -348,7 +363,7 @@
         });
 
         form.on('select(BC_type)', function (data) {
-            verify_bar_code(form.val('bar_code_register').bar_code+form.val('bar_code_register').bar_code_genre+form.val('bar_code_register').bar_code_type);
+            verify_bar_code(form.val('bar_code_register').bar_code+form.val('bar_code_register').bar_code_type+form.val('bar_code_register').bar_code_genre);
 
         });
 

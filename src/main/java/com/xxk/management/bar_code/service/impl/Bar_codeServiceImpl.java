@@ -57,6 +57,7 @@ public class Bar_codeServiceImpl implements Bar_codeService {
             bar_code.setCreateDate(createDate);
             bar_code.setUpdateUserId(bar_code.getBar_code_by());
             bar_code.setUpdateDate(createDate);
+            bar_code.setDeleteFlag("0");
             Boolean bar_codeResult = dao.addBar_code(bar_code) == 1 ? true : false;
             if (!(bar_codeResult)) {
                 log.error("stockResult:" + bar_codeResult);

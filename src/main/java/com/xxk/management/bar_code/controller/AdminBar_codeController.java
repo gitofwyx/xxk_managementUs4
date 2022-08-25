@@ -42,7 +42,7 @@ public class AdminBar_codeController extends BaseController {
         String recId = UUIdUtil.getUUID();
         int reg_count = 0;
         try {
-            if("".equals(entity_id)||entity_id==null){
+            if("".equals(entity_id)||entity_id==null||"".equals(code)||code==null){
                 result.put("hasError", true);
                 result.put("error", "更新数据出错");
                 return result;
