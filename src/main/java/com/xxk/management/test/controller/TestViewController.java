@@ -174,4 +174,10 @@ public class TestViewController extends BaseController {
         return new ModelAndView("/form/bar_code/bar_code_register", "result", result);
     }
 
+    @RequestMapping("/testBar_code_delivery")
+    public ModelAndView  testBar_code_delivery() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/form/bar_code/bar_code_delivery", "result", result);
+    }
+
 }
