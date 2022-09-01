@@ -35,18 +35,36 @@
             <div id="occupy_area" class="hidden col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
             <div id="reg_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
                 <!--偏移列 .col-*-offset-* -->
-                <form class="form-horizontal layui-form" autocomplete="off" id="reg_area_form" lay-filter="bar_code_register">
+                <form class="form-horizontal layui-form" autocomplete="off" id="reg_area_form"
+                      lay-filter="bar_code_register">
                     <h3 class="form-signin-heading" style="margin-top:20px;margin-bottom:5px; ">
                         <i id="reg_form_title" class="layui-icon layui-icon-list" style="font-size: 26px;">登记条码</i></h3>
 
-                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px;padding-left:0px; ">
+                    <div class="col-sm-6 col-xs-12 col-lg-6"
+                         style="margin-bottom:5px;margin-top:5px;padding-left:0px; ">
                         <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">条码号</label>
                         <div class="col-sm-1 col-xs-10 col-lg-1" style="padding-right:2px; width: 80%">
                             <input type="text" id="bar_code" class="form-control" name="bar_code"
                                    placeholder="请输入或扫码" lay-verify="required">
                         </div>
                         <div class="col-sm-1 col-xs-2 col-lg-1" style="margin-bottom:5px;padding-left:0px ">
-                            <button type="button" id="reg_btn" class="btn btn-default " lay-on="get_bar_code">识码</button>
+                            <button type="button" id="reg_btn" class="btn btn-default " lay-on="get_bar_code">识码
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">执行科室</label>
+                        <div class="">
+                            <input type="text" id="exe_office_ident" class="form-control NO_Reset"
+                                   name="exe_office_ident"
+                                   placeholder="请选择">
+                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required"
+                                   class="NO_Reset"
+                                   lay-verType="alert"
+                                   lay-reqText="执行科室不能为空">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
                         </div>
                     </div>
 
@@ -59,54 +77,55 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px;padding-left:0px; ">
-                        <label class="control-label" style="margin-bottom:5px;margin-left:15px; ">种类选择</label>
-                        <div class="layui-input-block" style="margin-left:15px; width: 95%">
-                            <select name="bar_code_type" lay-filter="BC_type" lay-verify="required">
-                                <option value=""></option>
-                                <option value="1">附带码</option>
-                                <option value="2">外包装码</option>
-                            </select>
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">登记时间</label>
+                        <div class="">
+                            <input type="text" name="bar_code_date" id="bar_code_date"
+                                   lay-verify="required|datetime"
+                                   placeholder="yyyy-MM-dd HH:mm:ss"
+                                   autocomplete="off" class="form-control">
                         </div>
                     </div>
 
-                    <div>
-                        <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                            <label class="control-label" style="margin-bottom:5px; ">设备选择</label>
-                            <div id="devices_class_div">
-                                <input type="text" id="devices_class" class="form-control"
-                                       name="devices_class"
-                                       placeholder="请选择"
-                                       lay-verType="alert"
-                                       lay-reqText="请选择设备"
-                                       lay-verify="required">
-                                <ul class="dropdown-menu " role="menu">
-                                </ul>
-                            </div>
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">设备选择</label>
+                        <div id="devices_class_div">
+                            <input type="text" id="devices_class" class="form-control"
+                                   name="devices_class"
+                                   placeholder="请选择"
+                                   lay-verType="alert"
+                                   lay-reqText="请选择设备"
+                                   lay-verify="required">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
                         </div>
+                    </div>
 
-                        <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                            <label class="control-label" style="margin-bottom:5px; ">型号选择</label>
-                            <div id="devices_entity_div">
-                                <input type="text" id="devices_entity" class="form-control NO_Reset"
-                                       name="devices_entity"
-                                       placeholder="请选择">
-                                <input type="hidden" name="entity_id" id="entity_id" lay-verify="required"
-                                       lay-verType="alert"
-                                       lay-reqText="请选择型号">
-                                <ul class="dropdown-menu " role="menu">
-                                </ul>
-                            </div>
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">型号选择</label>
+                        <div id="devices_entity_div">
+                            <input type="text" id="devices_entity" class="form-control NO_Reset"
+                                   name="devices_entity"
+                                   placeholder="请选择">
+                            <input type="hidden" name="entity_id" id="entity_id" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="请选择型号">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
                         </div>
+                    </div>
 
-                        <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                            <label class="control-label" style="margin-bottom:5px; ">登记时间</label>
-                            <div class="">
-                                <input type="text" name="bar_code_date" id="bar_code_date"
-                                       lay-verify="required|datetime"
-                                       placeholder="yyyy-MM-dd HH:mm:ss"
-                                       autocomplete="off" class="form-control">
-                            </div>
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">库存选择</label>
+                        <div id="stock_record_suggest">
+                            <input type="text" id="stock_ident" class="form-control NO_Reset"
+                                   name="devices_entity"
+                                   placeholder="请选择">
+                            <input type="hidden" name="stock_record_id" id="stock_record_id" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="请选择库存">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
                         </div>
                     </div>
 
@@ -118,6 +137,11 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div id="table_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
+
+                <table class="layui-hide" id="test" lay-filter="test"></table>
+
             </div>
 
         </div>
@@ -151,17 +175,17 @@
             bar_code_ident: ident,
             "TD": "logout"
         }, true, function (data) {
-            if(data==null){
+            if (data == null) {
                 originalSeaEntity();
                 return;
             }
             initEntityBsSuggest(0, "devices_class");
             initEntityBsSuggest(0, "devices_entity");
-            var text=device_data.Entity_data.filter(function (entity, index) {
+            var text = device_data.Entity_data.filter(function (entity, index) {
                 if (data.bar_code.entity_id === entity.value) {
                     $('#devices_entity').val(entity.text);
                     $('#devices_entity').attr('readonly', true);
-                    device_data.Class_data.filter(function (cla, index){
+                    device_data.Class_data.filter(function (cla, index) {
                         if (entity.dev_class_id === cla.value) {
                             $('#devices_class').val(cla.text);
                             $('#devices_class').attr('readonly', true);
@@ -269,6 +293,7 @@
                 if (!$.isEmptyObject(data)) {
                     changeEntClass(K, data.value);
                     initEntityBsSuggest(1, "devices_entity", {value: entity_data}, function (K, data) {
+                        stock_recordUpdate();
                         $("#entity_id").val(data.value);
                     }, function () {
                         $("#entity_id").val('');
@@ -280,9 +305,44 @@
         }
     };
 
+    function stock_recordUpdate(v) {
+        initEntityBsSuggest(0, "devices_class");
+        initEntityBsSuggest(0, "devices_entity");
+        $('#stock_record_suggest').replaceWith('<div id="stock_record_suggest"> <input type="text" id="stock_ident" class="form-control NO_Reset" ' +
+            'name="devices_entity" placeholder="请选择"> <input type="hidden" name="stock_record_id" id="stock_record_id" lay-verify="required" ' +
+            'lay-verType="alert" lay-reqText="请选择库存"> <ul class="dropdown-menu " role="menu"> </ul></div>');
+        CD_ajaxAllParam("/listStockByEntityId",
+             {
+                 entity_id:'',
+                 office_id: '',
+             },
+            true, function (v) {
+            buildBsSuggestIO( "stock_ident",
+                {
+                    data: v,
+                    effectiveFields: ["text", "class_ident"],
+                    searchFields: ["text", "class_ident"],
+                    effectiveFieldsAlias: {class_ident: "编号", text: "名称"},
+                    listAlign: 'auto',
+                    showBtn: false,
+                    autoMinWidth: true,
+                    getDataMethod: 'data',
+                    idField: "value",
+                    keyField: "text",
+                    clearable: true,
+                }, function (K, data) {
+                if (!$.isEmptyObject(data)) {
+
+                }
+            }, function () {
+                $("#entity_id").val('');
+            });
+        });
+    };
+
     function BC_submit(data) {
 
-        data.field.TD="logout";
+        data.field.TD = "logout";
         CD_ajaxAllParam("/sys_bar_code/addBar_code", data.field, true, function (v) {
 
             }
@@ -324,9 +384,10 @@
     })
 
 
-    layui.use(['form','util', 'dropdown', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'util', 'table','dropdown', 'layedit', 'laydate'], function () {
         var form = layui.form
-            ,util = layui.util
+            , util = layui.util
+            , table = layui.table
             , dropdown = layui.dropdown
             , layer = layui.layer
             , layedit = layui.layedit
@@ -355,6 +416,38 @@
             }
         });
 
+        table.render({
+            elem: '#test'
+            ,url:'/listStock' // 此处为静态模拟数据，实际使用时需换成真实接口
+            ,where: {
+                pageIndex: 'curr' //页码的参数名称，默认：page
+                ,limit: 'nums' //每页数据量的参数名，默认：limit
+                ,search_class_id:''
+                ,search_entity_id:''
+                ,search_office_id:''
+                ,search_type:''
+            }
+            ,height: '380' // 最大高度减去其他容器已占有的高度差
+            ,width: 'auto'
+            ,totalRow: true // 开启合计行
+            ,page: true
+            ,cols: [[
+                 {field:'id', fixed: 'left', width:'30%', title: '名称', sort: true, totalRowText: '合计：'}
+                ,{field:'id', fixed: 'left', width:'28%', title: '科室',  }
+                ,{field:'id', fixed: 'left', width:'22%', title: '总量', }
+                ,{field:'id',  width:'22%', title: '单位', }
+                ,{field:'id',  width:'10%', title: '数量', }
+            ]]
+            ,done: function(){
+                var id = this.id;
+
+
+            }
+            ,error: function(res, msg){
+                console.log(res, msg)
+            }
+        });
+
         //日期
         laydate.render({
             elem: '#bar_code_date',
@@ -363,7 +456,7 @@
         });
 
         form.on('select(BC_type)', function (data) {
-            verify_bar_code(form.val('bar_code_register').bar_code+form.val('bar_code_register').bar_code_type+form.val('bar_code_register').bar_code_genre);
+            verify_bar_code(form.val('bar_code_register').bar_code + form.val('bar_code_register').bar_code_type + form.val('bar_code_register').bar_code_genre);
 
         });
 
@@ -372,28 +465,29 @@
         });
 
         util.on('lay-on', {
-            "get_bar_code": function(othis){
+            "get_bar_code": function (othis) {
+                stock_recordUpdate();
                 $('#bar_code').attr('readonly', false);
                 form.val("bar_code_register", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
                     "entity_id": "" // "name": "value"
-                    ,"devices_class":""
-                    ,"devices_entity":""
-                    ,"bar_code_type": ""
-                    ,"bar_code": ""
+                    , "devices_class": ""
+                    , "devices_entity": ""
+                    , "bar_code_type": ""
+                    , "bar_code": ""
                 });
                 wx.scanQRCode({
                     needResult: 1,
                     scanType: ["qrCode", "barCode"],
                     success: function (res) {
-                        var resultStr=res.resultStr.split(',');
-                        var str=resultStr[0];
-                        if(CheckIsNullOrEmpty(resultStr[1])){
-                            str=resultStr[1];
+                        var resultStr = res.resultStr.split(',');
+                        var str = resultStr[0];
+                        if (CheckIsNullOrEmpty(resultStr[1])) {
+                            str = resultStr[1];
                         }
                         form.val("bar_code_register", {
                             "bar_code": str
                         });
-                        if(CheckIsNullOrEmpty(form.val('bar_code_register').bar_code)){
+                        if (CheckIsNullOrEmpty(form.val('bar_code_register').bar_code)) {
                             $('#bar_code').attr('readonly', true);
                         }
                     }
