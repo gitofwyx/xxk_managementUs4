@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -245,6 +242,29 @@ public class StockController extends BaseController {
                 return null;
             }
             result.put("entityData", listStock);
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/getStockSuggest")
+    public Map<String, Object> getStockSuggest(@RequestParam(value = "entity_id") String entity_id,
+                                               @RequestParam(value = "office_id") String office_id) {
+        int id = 0;
+        Map<String, Object> result = new HashMap<>();
+        List<LinkedHashMap<String, Object>> listStock = new ArrayList<>();
+        try {
+
+            listStock = stockService.getStockSuggest(entity_id,office_id);
+            if (listStock == null) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("value", listStock);
             /*result.put("dev_count", dev_count);*/
         } catch (Exception e) {
             log.error(e);

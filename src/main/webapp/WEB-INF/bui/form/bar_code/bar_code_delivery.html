@@ -53,37 +53,12 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">执行科室</label>
-                        <div class="">
-                            <input type="text" id="exe_office_ident" class="form-control NO_Reset"
-                                   name="exe_office_ident"
-                                   placeholder="请选择">
-                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required"
-                                   class="NO_Reset"
-                                   lay-verType="alert"
-                                   lay-reqText="执行科室不能为空">
-                            <ul class="dropdown-menu " role="menu">
-                            </ul>
-                        </div>
-                    </div>
-
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px;padding-left:0px; ">
                         <label class="control-label" style="margin-bottom:5px;margin-left:15px; ">条码类别</label>
                         <div class="layui-input-block" style="margin-left:15px; width: 95%">
                             <select name="bar_code_genre" lay-filter="BC_genre" lay-verify="required">
                                 <option value="1" selected="">设备码</option>
                             </select>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">登记时间</label>
-                        <div class="">
-                            <input type="text" name="bar_code_date" id="bar_code_date"
-                                   lay-verify="required|datetime"
-                                   placeholder="yyyy-MM-dd HH:mm:ss"
-                                   autocomplete="off" class="form-control">
                         </div>
                     </div>
 
@@ -110,6 +85,31 @@
                             <input type="hidden" name="entity_id" id="entity_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="请选择型号">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">登记时间</label>
+                        <div class="">
+                            <input type="text" name="bar_code_date" id="bar_code_date"
+                                   lay-verify="required|datetime"
+                                   placeholder="yyyy-MM-dd HH:mm:ss"
+                                   autocomplete="off" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">库存科室</label>
+                        <div class="">
+                            <input type="text" id="stock_office_ident" class="form-control NO_Reset"
+                                   name="stock_office_ident"
+                                   placeholder="请选择">
+                            <input type="hidden" name="stock_office_id" id="stock_office_id" lay-verify="required"
+                                   class="NO_Reset"
+                                   lay-verType="alert"
+                                   lay-reqText="执行科室不能为空">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
                         </div>
@@ -165,66 +165,45 @@
 
 <script type="text/javascript">
 
-    var device_data = {},//全部dev初始化
-        entity_data = [];//型号初始化
+    var device_data = [],//全部dev初始化
+        entity_data = [],//型号初始化
+        offices_select = localstorageIO("offices_select", "/getOfficeSelect");
 
     function verify_bar_code(ident) {
 
-
-        CD_ajaxAllParam("/getBar_codeByBar_code_ident", {
+        var BC_device = [],
+            BC_entity = [];
+        CD_ajaxAllParam("/lisBar_codeByINSTRBar_code_ident", {
             bar_code_ident: ident,
             "TD": "logout"
         }, true, function (data) {
             if (data == null) {
-                originalSeaEntity();
+                originalSeaEntity(device_data.Class_data);
                 return;
             }
             initEntityBsSuggest(0, "devices_class");
             initEntityBsSuggest(0, "devices_entity");
-            var text = device_data.Entity_data.filter(function (entity, index) {
-                if (data.bar_code.entity_id === entity.value) {
-                    $('#devices_entity').val(entity.text);
-                    $('#devices_entity').attr('readonly', true);
-                    device_data.Class_data.filter(function (cla, index) {
-                        if (entity.dev_class_id === cla.value) {
-                            $('#devices_class').val(cla.text);
-                            $('#devices_class').attr('readonly', true);
-                        }
-                    })
-                }
+            data.entityData.filter(function (BC_data,index) {
+                device_data.Entity_data.filter(function (entity, index) {
+                    if (BC_data.entity_id === entity.value) {
+                        BC_entity.push(entity);
+                        device_data.Class_data.filter(function (cla, index) {
+                            if (entity.dev_class_id === cla.value) {
+                                BC_device.push(cla);
+                            }
+                        })
+                    }
+                });
             });
-
+            if(BC_device.length==1&&BC_entity.length==1){
+                $('#devices_entity').val(entity.text);
+                $('#devices_class').val(cla.text);
+                $('#devices_entity').attr('readonly', true);
+                $('#devices_class').attr('readonly', true);
+                return;
+            }
+            originalSeaEntity(BC_device);
         });
-    }
-
-    //下拉框ajax请求entity_selectAjax
-    function entity_selectAjax(callback) {
-        var url = '/getDeviceSelect';
-        if ($.isEmptyObject(device_data)) {
-            $.ajax({
-                url: url,
-                data: {tab: 1},
-                type: 'POST', //GET
-                async: true,    //或false,是否异步
-                /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                success: function (data, textStatus, jqXHR) {
-                    if (data != null && data != undefined) {
-                        device_data = data;
-                    }
-                    //回调函数
-                    if (typeof callback === "function") {
-                        //调用它，既然我们已经确定了它是可调用的
-                        callback();
-                    }
-                },
-                error: function (xhr, textStatus) {
-                    console.log('错误')
-                    console.log(xhr)
-                    console.log(textStatus)
-                }
-            })
-        }
     }
 
     //型号生成
@@ -278,14 +257,14 @@
     };
 
     //初始化BsSuggest
-    function originalSeaEntity(v) {
+    function originalSeaEntity(e) {
         initEntityBsSuggest(0, "devices_class");
         initEntityBsSuggest(0, "devices_entity");
         $('#devices_class_div').replaceWith('<div id="devices_class_div"><input type="text" id="devices_class" class="form-control" ' +
             'name="devices_class" placeholder="请选择" lay-verType="alert" lay-reqText="请选择设备" lay-verify="required"> ' +
             '<ul class="dropdown-menu " role="menu"> </ul> </div>');
-        if (!$.isEmptyObject(device_data)) {
-            initEntityBsSuggest(1, "devices_class", {value: device_data.Class_data}, function (K, data) {
+        if (!$.isEmptyObject(e)) {
+            initEntityBsSuggest(1, "devices_class", {value: e}, function (K, data) {
                 initEntityBsSuggest(0, "devices_entity");
                 $('#devices_entity_div').replaceWith('<div id="devices_entity_div"> <input type="text" id="devices_entity" class="form-control NO_Reset" ' +
                     'name="devices_entity" placeholder="请选择"> <input type="hidden" name="entity_id" id="entity_id" lay-verify="required" lay-verType="alert" ' +
@@ -293,7 +272,6 @@
                 if (!$.isEmptyObject(data)) {
                     changeEntClass(K, data.value);
                     initEntityBsSuggest(1, "devices_entity", {value: entity_data}, function (K, data) {
-                        stock_recordUpdate();
                         $("#entity_id").val(data.value);
                     }, function () {
                         $("#entity_id").val('');
@@ -305,27 +283,91 @@
         }
     };
 
+    function stock_officeSuggest(i, onSet_ck, onUnset_ck) {
+
+        buildBsSuggestIO(i,
+            {
+                /*url: "/getMaterialName?tab=" + v,*/
+                data: {
+                    value: offices_select.filter(function (office, index) {
+                        if (CheckIsNullOrEmpty(office.office_function)) {
+                            return office.office_function == 1;
+                        }
+                    })
+                },
+                effectiveFields: ["text", ""],
+                searchFields: ["text", "id", "pinYin_code", "pinYinS_code"],
+                effectiveFieldsAlias: {"text": "科室名称",},
+                listAlign: 'auto',
+                showBtn: false,
+                autoMinWidth: false,
+                getDataMethod: 'data',
+                idField: "value",
+                keyField: "text",
+                clearable: true,
+            },
+            function (K, data) {
+                var sData={
+                    entity_id:$('#entity_id').val(),
+                    office_id:data.value,
+                };
+                stock_recordUpdate(sData);
+            }, onUnset_ck,
+        );
+    }
+
+    //下拉框ajax请求entity_selectAjax
+    function entity_selectAjax(callback) {
+        var url = '/getDeviceSelect';
+        if ($.isEmptyObject(device_data)) {
+            $.ajax({
+                url: url,
+                data: {tab: 1},
+                type: 'POST', //GET
+                async: true,    //或false,是否异步
+                /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
+                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success: function (data, textStatus, jqXHR) {
+                    if (data != null && data != undefined) {
+                        device_data = data;
+                        originalSeaEntity(device_data.Class_data);
+                    }
+                    //回调函数
+                    if (typeof callback === "function") {
+                        //调用它，既然我们已经确定了它是可调用的
+                        callback();
+                    }
+                },
+                error: function (xhr, textStatus) {
+                    console.log('错误')
+                    console.log(xhr)
+                    console.log(textStatus)
+                }
+            })
+        }
+    }
+
     function stock_recordUpdate(v) {
-        initEntityBsSuggest(0, "devices_class");
-        initEntityBsSuggest(0, "devices_entity");
+
+        initEntityBsSuggest(0, "stock_ident");
         $('#stock_record_suggest').replaceWith('<div id="stock_record_suggest"> <input type="text" id="stock_ident" class="form-control NO_Reset" ' +
             'name="devices_entity" placeholder="请选择"> <input type="hidden" name="stock_record_id" id="stock_record_id" lay-verify="required" ' +
             'lay-verType="alert" lay-reqText="请选择库存"> <ul class="dropdown-menu " role="menu"> </ul></div>');
-        CD_ajaxAllParam("/listStockByEntityId",
+        CD_ajaxAllParam("/getStockSuggest",
              {
-                 entity_id:'',
-                 office_id: '',
+                 entity_id:v.entity_id,
+                 office_id: v.office_id,
              },
-            true, function (v) {
+            true, function (data) {
             buildBsSuggestIO( "stock_ident",
                 {
-                    data: v,
-                    effectiveFields: ["text", "class_ident"],
-                    searchFields: ["text", "class_ident"],
-                    effectiveFieldsAlias: {class_ident: "编号", text: "名称"},
+                    data: data,
+                    effectiveFields: ["text", "stock_total_unit","stock_idle_total"],
+                    searchFields: ["text"],
+                    effectiveFieldsAlias: {text: "编号", stock_total_unit: "单位",stock_idle_total:"剩余总量"},
                     listAlign: 'auto',
                     showBtn: false,
-                    autoMinWidth: true,
+                    autoMinWidth: false,
                     getDataMethod: 'data',
                     idField: "value",
                     keyField: "text",
@@ -351,8 +393,22 @@
 
     $(function () {
 
+        if (offices_select == undefined || offices_select == null) {
+            CD_ajaxAllParam("/getOfficeSelect",
+                {"updateDate": "NO"},
+                true,
+                function (v) {
+                    if (v != null && v != undefined) {
+                        offices_select = v.result;
+                        stock_officeSuggest("stock_office_ident");
+                        alert("科室缓存中...");
+                    }
+                }
+            );
+        }else stock_officeSuggest("stock_office_ident");
+
         CD_ajaxAllParam("/makeSDKSignature", {
-            url: "http://wyx-test.nat300.top/test/testBar_code_reg",
+            url: "http://wyx-test.nat300.top/test/testBar_code_delivery",
             "TD": "logout"
         }, true, function (data) {
             wx.config({
@@ -466,7 +522,7 @@
 
         util.on('lay-on', {
             "get_bar_code": function (othis) {
-                stock_recordUpdate();
+
                 $('#bar_code').attr('readonly', false);
                 form.val("bar_code_register", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
                     "entity_id": "" // "name": "value"
@@ -475,6 +531,10 @@
                     , "bar_code_type": ""
                     , "bar_code": ""
                 });
+                if (CheckIsNullOrEmpty(form.val('bar_code_register').bar_code)) {
+                    verify_bar_code(form.val('bar_code_register').bar_code);
+                    return;
+                }
                 wx.scanQRCode({
                     needResult: 1,
                     scanType: ["qrCode", "barCode"],
@@ -490,6 +550,7 @@
                         if (CheckIsNullOrEmpty(form.val('bar_code_register').bar_code)) {
                             $('#bar_code').attr('readonly', true);
                         }
+                        verify_bar_code(form.val('bar_code_register').bar_code);
                     }
                 });
             }

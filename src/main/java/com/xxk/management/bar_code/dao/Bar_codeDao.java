@@ -21,6 +21,8 @@ public interface Bar_codeDao {
 
     public Bar_code getBar_codeByBar_code_ident(String bar_code_ident);
 
+    public List<Bar_code> lisBar_codeByINSTRBar_code_ident(String bar_code_ident);
+
     public int addBar_code(Bar_code bar_code);
 
 }

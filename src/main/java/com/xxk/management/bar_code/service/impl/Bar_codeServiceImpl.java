@@ -8,6 +8,7 @@ import com.xxk.management.bar_code.service.Bar_codeService;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.registration.entity.Registration;
+import com.xxk.management.stock.entity.Stock;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,16 @@ public class Bar_codeServiceImpl implements Bar_codeService {
     @Override
     public int countDevice() {
         return dao.countDevice();
+    }
+
+    @Override
+    public Bar_code getBar_codeByBar_code_ident(String bar_code_ident) throws Exception {
+        return dao.getBar_codeByBar_code_ident(bar_code_ident);
+    }
+
+    @Override
+    public List<Bar_code> lisBar_codeByINSTRBar_code_ident(String bar_code_ident) {
+        return dao.lisBar_codeByINSTRBar_code_ident(bar_code_ident);
     }
 
     //入库操作
@@ -77,11 +88,5 @@ public class Bar_codeServiceImpl implements Bar_codeService {
         }
         return result;
     }
-
-    @Override
-    public Bar_code getBar_codeByBar_code_ident(String bar_code_ident) throws Exception {
-        return dao.getBar_codeByBar_code_ident(bar_code_ident);
-    }
-
 
 }

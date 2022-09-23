@@ -6,7 +6,9 @@ import com.xxk.management.storage.entity.Delivery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -16,6 +18,8 @@ public interface StockDao {
 
     public List<Stock> listStock(@Param("pageStart")int pageStart, @Param("pageSize")int pageSize, @Param("class_id")String class_id,
                                  @Param("entity_id")String entity_id,@Param("stock_office_id") String stock_office_id, @Param("search_type")String search_type);
+
+    public List<LinkedHashMap<String, Object>> getStockSuggest(String entity_id, String office_id);
 
     public int countStock(String search_type);
 

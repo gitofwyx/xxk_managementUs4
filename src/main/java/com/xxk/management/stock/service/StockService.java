@@ -6,6 +6,7 @@ import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ import java.util.Map;
 public interface StockService {
 
     public List<Stock> listStock(int pageStart, int pageSize,String class_id,String entity_id,String stock_office_id,String search_type);
+
+    public List<LinkedHashMap<String, Object>> getStockSuggest(String entity_id, String office_id);
 
     public int countStock(String search_type);
 

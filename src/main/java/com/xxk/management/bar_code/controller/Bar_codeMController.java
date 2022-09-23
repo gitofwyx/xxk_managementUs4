@@ -6,6 +6,7 @@ import com.xxk.management.bar_code.entity.Bar_code;
 import com.xxk.management.bar_code.service.Bar_codeService;
 import com.xxk.management.device.entity.Device;
 import com.xxk.management.device.service.DeviceService;
+import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.storage.service.DeliveryReportService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,6 +51,25 @@ public class Bar_codeMController extends BaseController {
             log.error(e);
             result.put("hasError", true);
             result.put("error", "获取出错");
+        }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/lisBar_codeByINSTRBar_code_ident", method = RequestMethod.POST)
+    public Map<String, Object> lisBar_codeByINSTRBar_code_ident(@RequestParam(value = "bar_code_ident") String bar_code_ident) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            List<Bar_code> listBar_code = bar_codeService.lisBar_codeByINSTRBar_code_ident(bar_code_ident);
+            if (listBar_code == null||listBar_code.size()==0) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("entityData", listBar_code);
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
         }
         return result;
     }

@@ -13,6 +13,8 @@ public interface Bar_codeService {
 
     public Bar_code getBar_codeByBar_code_ident(String bar_code_ident) throws Exception;
 
+    public List<Bar_code> lisBar_codeByINSTRBar_code_ident(String bar_code_ident);
+
     public Map<String, Object> addBar_code(Bar_code bar_code) ;
 
 }

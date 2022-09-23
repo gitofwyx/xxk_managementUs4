@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,11 @@ public class StockServiceImpl implements StockService {
     @Override
     public List<Stock> listStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_office_id, String search_type) {
         return dao.listStock((pageStart - 1) * pageSize, pageSize, class_id, entity_id, stock_office_id, search_type);
+    }
+
+    @Override
+    public List<LinkedHashMap<String, Object>> getStockSuggest(String entity_id, String office_id) {
+        return dao.getStockSuggest(entity_id,office_id);
     }
 
     @Override
