@@ -53,15 +53,6 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px;padding-left:0px; ">
-                        <label class="control-label" style="margin-bottom:5px;margin-left:15px; ">条码类别</label>
-                        <div class="layui-input-block" style="margin-left:15px; width: 95%">
-                            <select name="bar_code_genre" lay-filter="BC_genre" lay-verify="required">
-                                <option value="1" selected="">设备码</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">设备选择</label>
                         <div id="devices_class_div">
@@ -91,9 +82,9 @@
                     </div>
 
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">登记时间</label>
+                        <label class="control-label" style="margin-bottom:5px; ">出库时间</label>
                         <div class="">
-                            <input type="text" name="bar_code_date" id="bar_code_date"
+                            <input type="text" name="out_confirmed_date" id="out_confirmed_date"
                                    lay-verify="required|datetime"
                                    placeholder="yyyy-MM-dd HH:mm:ss"
                                    autocomplete="off" class="form-control">
@@ -109,7 +100,7 @@
                             <input type="hidden" name="stock_office_id" id="stock_office_id" lay-verify="required"
                                    class="NO_Reset"
                                    lay-verType="alert"
-                                   lay-reqText="执行科室不能为空">
+                                   lay-reqText="库存科室不能为空">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
                         </div>
@@ -129,10 +120,59 @@
                         </div>
                     </div>
 
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">出库科室</label>
+                        <div class="">
+                            <input type="text" id="out_confirmed_ident" class="form-control NO_Reset"
+                                   name="out_confirmed_ident"
+                                   placeholder="请选择">
+                            <input type="hidden" name="out_confirmed_officeId" id="out_confirmed_officeId" lay-verify="required"
+                                   class="NO_Reset"
+                                   lay-verType="alert"
+                                   lay-reqText="出库科室不能为空">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
+                        </div>
+                    </div>
+
                     <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-top: 10px">
+                        <div id="">
+                            <input type="hidden" name="stock_type" id="stock_type" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="库存类别为空">
+                            <input type="hidden" name="stock_no" id="stock_no" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="库存数量为空">
+                            <input type="hidden" name="stock_unit" id="stock_unit" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="库存单位为空">
+                            <input type="hidden" name="stock_total_unit" id="stock_total_unit" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="总量单位为空">
+                            <input type="hidden" name="stock_proportion" id="stock_proportion" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="库存比列为空">
+                            <input type="hidden" name="stock_total" id="stock_total" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="库存总量为空">
+                            <input type="hidden" name="out_confirmed_no" id="out_confirmed_no" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="出库数量为空">
+                            <input type="hidden" name="out_confirmed_total" id="out_confirmed_total"
+                                   lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="出库总量为空">
+                            <input type="hidden" name="out_confirmed_total_unit" id="out_confirmed_total_unit"
+                                   lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="出库总量单位为空">
+
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
+                        </div>
                         <div>
                             <button type="button" class="btn btn-primary btn-block" id="bar_code_submit" lay-submit
-                                    lay-filter="BC_submit">新增
+                                    lay-filter="bar_code_submit">新增
                             </button>
                         </div>
                     </div>
@@ -183,7 +223,7 @@
             }
             initEntityBsSuggest(0, "devices_class");
             initEntityBsSuggest(0, "devices_entity");
-            data.entityData.filter(function (BC_data,index) {
+            data.entityData.filter(function (BC_data, index) {
                 device_data.Entity_data.filter(function (entity, index) {
                     if (BC_data.entity_id === entity.value) {
                         BC_entity.push(entity);
@@ -195,7 +235,7 @@
                     }
                 });
             });
-            if(BC_device.length==1&&BC_entity.length==1){
+            if (BC_device.length == 1 && BC_entity.length == 1) {
                 $('#devices_entity').val(entity.text);
                 $('#devices_class').val(cla.text);
                 $('#devices_entity').attr('readonly', true);
@@ -215,6 +255,15 @@
                 entity_data.push(Entity_data[j]);
             }
         }
+    }
+
+    function assemble_stock(v) {
+        $("#stock_record_id").val(v.value);
+        $("#stock_proportion").val(v.stock_proportion);
+        $("#stock_type").val(v.stock_type);
+        $("#stock_unit").val(v.stock_unit);
+        $("#stock_total").val(v.stock_total);
+        $("#stock_total_unit").val(v.stock_total_unit);
     }
 
     //下拉提示框bsSuggest
@@ -307,9 +356,10 @@
                 clearable: true,
             },
             function (K, data) {
-                var sData={
-                    entity_id:$('#entity_id').val(),
-                    office_id:data.value,
+                $("#stock_office_id").val(data.value);
+                var sData = {
+                    entity_id: $('#entity_id').val(),
+                    office_id: data.value,
                 };
                 stock_recordUpdate(sData);
             }, onUnset_ck,
@@ -347,6 +397,41 @@
         }
     }
 
+    //入库总量生成
+    function reckon_stock_total(num, stock_proportion) {  //（输入的库存数量 库存比例)
+        //I_Form.getField('in_confirmed_no').get('value');
+        num = "" + num;//防止输入数值造成replace函数报错；
+        var decimal = num.replace(/\d+\.(\d*)/, "$1");//获取小数部分
+        var unit = parseInt(num);//去除小数部分
+        stock_proportion = parseInt(stock_proportion);//防止比例数输入为小数
+        if (parseFloat(num) != unit) {
+            unit = unit * stock_proportion;
+            return unit + parseInt(decimal);
+        }
+        return unit * stock_proportion;
+    }
+
+    //根据库存总量生成库存数量
+    function makeInNum(total, stock_proportion) { //总量，比例数
+        var num = total % stock_proportion;
+        while (num >= 1) {
+            num = num / 10;
+        }
+        num = parseInt(total / stock_proportion) + num;
+        return num;
+    }
+
+    //出库数量输入框光标移出事件
+    function stock_delivers() {
+        var O_num = $("#out_confirmed_no2").val();//获取入库数量no
+        var proportion = $("#stock_proportion").val();
+        var out_stock_total = reckon_stock_total(O_num, proportion);
+        $("#out_confirmed_total2").val(out_stock_total);
+        O_num = $("#stock_total").val() - out_stock_total;
+        $("#stock_total").val(O_num);
+        $("#stock_no").val(makeInNum(O_num, proportion));
+    };
+
     function stock_recordUpdate(v) {
 
         initEntityBsSuggest(0, "stock_ident");
@@ -354,33 +439,92 @@
             'name="devices_entity" placeholder="请选择"> <input type="hidden" name="stock_record_id" id="stock_record_id" lay-verify="required" ' +
             'lay-verType="alert" lay-reqText="请选择库存"> <ul class="dropdown-menu " role="menu"> </ul></div>');
         CD_ajaxAllParam("/getStockSuggest",
-             {
-                 entity_id:v.entity_id,
-                 office_id: v.office_id,
-             },
+            {
+                entity_id: v.entity_id,
+                office_id: v.office_id,
+            },
             true, function (data) {
-            buildBsSuggestIO( "stock_ident",
-                {
-                    data: data,
-                    effectiveFields: ["text", "stock_total_unit","stock_idle_total"],
-                    searchFields: ["text"],
-                    effectiveFieldsAlias: {text: "编号", stock_total_unit: "单位",stock_idle_total:"剩余总量"},
-                    listAlign: 'auto',
-                    showBtn: false,
-                    autoMinWidth: false,
-                    getDataMethod: 'data',
-                    idField: "value",
-                    keyField: "text",
-                    clearable: true,
-                }, function (K, data) {
-                if (!$.isEmptyObject(data)) {
-
-                }
-            }, function () {
-                $("#entity_id").val('');
+                buildBsSuggestIO("stock_ident",
+                    {
+                        data: data,
+                        effectiveFields: ["text", "stock_total_unit", "stock_idle_total"],
+                        searchFields: ["text"],
+                        effectiveFieldsAlias: {text: "编号", stock_total_unit: "单位", stock_idle_total: "剩余总量"},
+                        listAlign: 'auto',
+                        showBtn: false,
+                        autoMinWidth: false,
+                        getDataMethod: 'data',
+                        idField: "value",
+                        keyField: "text",
+                        clearable: true,
+                    }, function (K, data) {
+                        if (!$.isEmptyObject(data)) {
+                            assemble_stock(data);
+                            layer.open({
+                                type: 1
+                                , resize: false
+                                , shadeClose: true
+                                , area: 'auto'
+                                , title: 'layer + form'
+                                , content: ['<ul class="layui-form layui-form-pane" style="margin: 15px;">'
+                                    , '<li class="layui-form-item">'
+                                    , '<label class="layui-form-label">数量</label>'
+                                    , '<div class="layui-input-block">'
+                                    , '<input class="layui-input" lay-verify="required" id="out_confirmed_no2" name="out_confirmed_no2">'
+                                    , '</div>'
+                                    , '</li>'
+                                    , '<li class="layui-form-item">'
+                                    , '<label class="layui-form-label">库存比例</label>'
+                                    , '<div class="layui-input-inline" style="width:100px;">'
+                                    , '<input class="layui-input" lay-verify="required" id="stock_proportion2" name="stock_proportion2">'
+                                    , '</div>'
+                                    , '</li>'
+                                    , '<li class="layui-form-item">'
+                                    , '<label class="layui-form-label">总量</label>'
+                                    , '<div class="layui-input-block">'
+                                    , '<input class="layui-input" lay-verify="required" id="out_confirmed_total2" name="out_confirmed_total2">'
+                                    , '</div>'
+                                    , '</li>'
+                                    , '<li class="layui-form-item" style="text-align:center;">'
+                                    , '<button type="submit" id="total_btn" class="layui-btn">提交</button>'
+                                    , '</li>'
+                                    , '</ul>'].join('')
+                                , success: function (layero, index) {
+                                    $('#total_btn').click(function () {
+                                        stock_delivers();
+                                        layer.close(index);
+                                    })
+                                }
+                            });
+                        }
+                    }, function () {
+                        $("#entity_id").val('');
+                    });
             });
-        });
     };
+
+    function out_officeSuggest(i, onSet_ck, onUnset_ck) {
+
+        buildBsSuggestIO(i,
+            {
+                /*url: "/getMaterialName?tab=" + v,*/
+                data: { value: offices_select},
+                effectiveFields: ["text", ""],
+                searchFields: ["text", "id", "pinYin_code", "pinYinS_code"],
+                effectiveFieldsAlias: {"text": "科室名称",},
+                listAlign: 'auto',
+                showBtn: false,
+                autoMinWidth: false,
+                getDataMethod: 'data',
+                idField: "value",
+                keyField: "text",
+                clearable: true,
+            },
+            function (K, data) {
+                $("#out_confirmed_officeId").val(data.value);
+            }, onUnset_ck,
+        );
+    }
 
     function BC_submit(data) {
 
@@ -401,11 +545,14 @@
                     if (v != null && v != undefined) {
                         offices_select = v.result;
                         stock_officeSuggest("stock_office_ident");
-                        alert("科室缓存中...");
+                        out_officeSuggest("out_confirmed_ident");
                     }
                 }
             );
-        }else stock_officeSuggest("stock_office_ident");
+        } else {
+            stock_officeSuggest("stock_office_ident");
+            out_officeSuggest("out_confirmed_ident");
+        };
 
         CD_ajaxAllParam("/makeSDKSignature", {
             url: "http://wyx-test.nat300.top/test/testBar_code_delivery",
@@ -440,7 +587,7 @@
     })
 
 
-    layui.use(['form', 'util', 'table','dropdown', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'util', 'table', 'dropdown', 'layedit', 'laydate'], function () {
         var form = layui.form
             , util = layui.util
             , table = layui.table
@@ -474,49 +621,44 @@
 
         table.render({
             elem: '#test'
-            ,url:'/listStock' // 此处为静态模拟数据，实际使用时需换成真实接口
-            ,where: {
+            , url: '/listStock' // 此处为静态模拟数据，实际使用时需换成真实接口
+            , where: {
                 pageIndex: 'curr' //页码的参数名称，默认：page
-                ,limit: 'nums' //每页数据量的参数名，默认：limit
-                ,search_class_id:''
-                ,search_entity_id:''
-                ,search_office_id:''
-                ,search_type:''
+                , limit: 'nums' //每页数据量的参数名，默认：limit
+                , search_class_id: ''
+                , search_entity_id: ''
+                , search_office_id: ''
+                , search_type: ''
             }
-            ,height: '380' // 最大高度减去其他容器已占有的高度差
-            ,width: 'auto'
-            ,totalRow: true // 开启合计行
-            ,page: true
-            ,cols: [[
-                 {field:'id', fixed: 'left', width:'30%', title: '名称', sort: true, totalRowText: '合计：'}
-                ,{field:'id', fixed: 'left', width:'28%', title: '科室',  }
-                ,{field:'id', fixed: 'left', width:'22%', title: '总量', }
-                ,{field:'id',  width:'22%', title: '单位', }
-                ,{field:'id',  width:'10%', title: '数量', }
+            , height: '380' // 最大高度减去其他容器已占有的高度差
+            , width: 'auto'
+            , totalRow: true // 开启合计行
+            , page: true
+            , cols: [[
+                {field: 'id', fixed: 'left', width: '30%', title: '名称', sort: true, totalRowText: '合计：'}
+                , {field: 'id', fixed: 'left', width: '28%', title: '科室',}
+                , {field: 'id', fixed: 'left', width: '22%', title: '总量',}
+                , {field: 'id', width: '22%', title: '单位',}
+                , {field: 'id', width: '10%', title: '数量',}
             ]]
-            ,done: function(){
+            , done: function () {
                 var id = this.id;
 
 
             }
-            ,error: function(res, msg){
+            , error: function (res, msg) {
                 console.log(res, msg)
             }
         });
 
         //日期
         laydate.render({
-            elem: '#bar_code_date',
+            elem: '#out_confirmed_date',
             type: 'datetime',
             value: new Date(),
         });
 
-        form.on('select(BC_type)', function (data) {
-            verify_bar_code(form.val('bar_code_register').bar_code + form.val('bar_code_register').bar_code_type + form.val('bar_code_register').bar_code_genre);
-
-        });
-
-        form.on('submit(BC_submit)', function (data) {
+        form.on('submit(bar_code_submit)', function (data) {
             BC_submit(data);
         });
 

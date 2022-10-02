@@ -8,10 +8,14 @@
         <id column="id" property="value" jdbcType="VARCHAR"/>
         <result column="stock_ident" property="text" jdbcType="VARCHAR"/>
         <result column="entity_id" property="entity_id" jdbcType="VARCHAR"/>
+        <result column="stock_type" property="stock_type" jdbcType="VARCHAR"/>
         <result column="stock_office_id" property="stock_office_id" jdbcType="VARCHAR"/>
+        <result column="stock_unit" property="stock_unit" jdbcType="VARCHAR"/>
         <result column="stock_proportion" property="stock_proportion" jdbcType="VARCHAR"/>
+        <result column="stock_total" property="stock_total" jdbcType="VARCHAR"/>
         <result column="stock_idle_total" property="stock_idle_total" jdbcType="VARCHAR"/>
         <result column="stock_total_unit" property="stock_total_unit" jdbcType="VARCHAR"/>
+        <result column="stock_version" property="stock_version" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--获取分页 -->
@@ -32,7 +36,7 @@
     </select>
 
     <select id="getStockSuggest" resultMap="stock_suggestMap">
-        select id,stock_ident,entity_id,stock_office_id,stock_proportion,stock_idle_total,stock_total_unit
+        select id,stock_ident,entity_id,stock_type,stock_office_id,stock_unit,stock_proportion,stock_total,stock_idle_total,stock_total_unit,stock_version
         from xxk_stock
         where entity_id=#{0}
           and stock_office_id=#{1}
