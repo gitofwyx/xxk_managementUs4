@@ -45,7 +45,7 @@
                         <label class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:5px; ">条码号</label>
                         <div class="col-sm-1 col-xs-10 col-lg-1" style="padding-right:2px; width: 80%">
                             <input type="text" id="bar_code" class="form-control" name="bar_code"
-                                   placeholder="请输入或扫码" lay-verify="required">
+                                   placeholder="请输入或扫码">
                         </div>
                         <div class="col-sm-1 col-xs-2 col-lg-1" style="margin-bottom:5px;padding-left:0px ">
                             <button type="button" id="reg_btn" class="btn btn-default " lay-on="get_bar_code">识码
@@ -58,10 +58,10 @@
                         <div id="devices_class_div">
                             <input type="text" id="devices_class" class="form-control"
                                    name="entity_name"
-                                   placeholder="请选择"
+                                   placeholder="请选择">
+                            <input type="hidden" name="class_id" id="class_id" lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="请选择设备"
-                                   lay-verify="required">
+                                   lay-reqText="请选择设备">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
                         </div>
@@ -173,6 +173,10 @@
                                    lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="出库总量单位为空">
+                            <input type="hidden" name="stock_version" id="stock_version"
+                                   lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="出库总量单位为空">
 
                             <ul class="dropdown-menu " role="menu">
                             </ul>
@@ -274,6 +278,7 @@
         $("#stock_total_unit").val(v.stock_total_unit);
         $("#out_confirmed_unit").val(v.stock_total_unit);
         $("#out_confirmed_total_unit").val(v.stock_total_unit);
+        $("#stock_version").val(v.stock_version);
     }
 
     //下拉提示框bsSuggest
@@ -319,11 +324,12 @@
     function originalSeaEntity(e) {
         initEntityBsSuggest(0, "devices_class");
         initEntityBsSuggest(0, "devices_entity");
-        $('#devices_class_div').replaceWith('<div id="devices_class_div"><input type="text" id="devices_class" class="form-control" ' +
-            'name="devices_class" placeholder="请选择" lay-verType="alert" lay-reqText="请选择设备" lay-verify="required"> ' +
-            '<ul class="dropdown-menu " role="menu"> </ul> </div>');
+        $('#devices_class_div').replaceWith('<div id="devices_class_div"> <input type="text" id="devices_class" class="form-control" name="entity_name" ' +
+            'placeholder="请选择"> <input type="hidden" name="class_id" id="class_id" lay-verify="required" lay-verType="alert" lay-reqText="请选择设备"> ' +
+            '<ul class="dropdown-menu " role="menu"> </ul></div>');
         if (!$.isEmptyObject(e)) {
             initEntityBsSuggest(1, "devices_class", {value: e}, function (K, data) {
+                $("#class_id").val(data.value);
                 initEntityBsSuggest(0, "devices_entity");
                 $('#devices_entity_div').replaceWith('<div id="devices_entity_div"> <input type="text" id="devices_entity" class="form-control NO_Reset" ' +
                     'name="entity_type" placeholder="请选择"> <input type="hidden" name="entity_id" id="entity_id" lay-verify="required" lay-verType="alert" ' +
@@ -337,6 +343,7 @@
                     });
                 }
             }, function () {
+                $("#class_id").val('');
                 $("#entity_id").val('');
             });
         }
@@ -440,7 +447,7 @@
         $("#out_confirmed_total").val(out_stock_total);
         $("#out_confirmed_total2").val(out_stock_total);
         O_num = $("#stock_idle_total").val() - out_stock_total;
-        $("#stock_total").val(O_num);
+        $("#stock_idle_total").val(O_num);
         $("#stock_no").val(makeInNum(O_num, proportion));
     };
 
@@ -488,13 +495,13 @@
                                     , '<li class="layui-form-item">'
                                     , '<label class="layui-form-label">库存比例</label>'
                                     , '<div class="layui-input-inline" style="width:100px;">'
-                                    , '<input class="layui-input" lay-verify="required" id="stock_proportion2" name="stock_proportion2">'
+                                    , '<input class="layui-input" lay-verify="required" id="stock_proportion2" name="stock_proportion2" readonly="readonly">'
                                     , '</div>'
                                     , '</li>'
                                     , '<li class="layui-form-item">'
                                     , '<label class="layui-form-label">总量</label>'
                                     , '<div class="layui-input-block">'
-                                    , '<input class="layui-input" lay-verify="required" id="out_confirmed_total2" name="out_confirmed_total2">'
+                                    , '<input class="layui-input" lay-verify="required" id="out_confirmed_total2" name="out_confirmed_total2" readonly="readonly">'
                                     , '</div>'
                                     , '</li>'
                                     , '<li class="layui-form-item" style="text-align:center;">'
@@ -503,9 +510,18 @@
                                     , '</ul>'].join('')
                                 , success: function (layero, index) {
                                     $("#stock_proportion2").val(data.stock_proportion+' ：1');
+                                    if(CheckIsNullOrEmpty($("#out_confirmed_no").val())&&CheckIsNullOrEmpty($("#out_confirmed_total").val())){
+                                        $("#out_confirmed_no2").val($("#out_confirmed_no").val());
+                                        $("#out_confirmed_total2").val($("#out_confirmed_total").val());
+                                        $("#stock_idle_total").val($("#stock_idle_total").val()-$("#out_confirmed_total").val());
+                                    }
                                     $('#out_confirmed_no2').blur(function () {
+                                        $("#stock_idle_total").val(data.stock_idle_total);
+                                        if(!CheckIsNullOrEmpty($("#out_confirmed_no2").val())){
+                                            return;
+                                        }
                                         var out_stock_total = reckon_stock_total($("#out_confirmed_no2").val(), $("#stock_proportion").val()),
-                                        O_num = $("#stock_idle_total").val() - out_stock_total;
+                                        O_num = data.stock_idle_total - out_stock_total;
                                         if(O_num<0){
                                             layer.msg('出库总量：'+out_stock_total+',不能大于剩余总量：'+data.stock_idle_total,
                                                 function(index){
