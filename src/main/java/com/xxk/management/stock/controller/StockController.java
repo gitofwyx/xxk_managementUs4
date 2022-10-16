@@ -223,7 +223,8 @@ public class StockController extends BaseController {
             }
         } catch (Exception e) {
             result.put("hasError", true);
-            result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
+            if(e.getCause()!=null) result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
+            else  result.put("error", "设备更新出错！" + e.getMessage());
             log.error(e);
         }
 

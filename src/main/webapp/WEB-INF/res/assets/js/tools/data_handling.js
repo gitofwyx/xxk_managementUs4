@@ -89,3 +89,20 @@ function CheckIsNullOrEmpty(value) {
     //返回值为true表示不是空字符串
     return (value != null && value != undefined && !reg.test(value))
 }
+
+function result_handle(data) {
+    if (CheckIsNullOrEmpty(data)) {
+        if (data.hasError === true) {
+            return false;
+        }
+        if (typeof data == 'string') {
+            if (data.indexOf("hasError") >= 0) {
+                return false;
+            }
+        }
+    } else {
+        return false;
+    }
+    return true;
+
+}

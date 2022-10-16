@@ -173,4 +173,33 @@ public class MaterialController extends BaseController {
         }
         return result;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/getAllMaterialSelect")
+    public Map<String, Object> getAllMaterialSelect() {
+        int id = 0;
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> listClass = new ArrayList<>();
+        List<Map<String, Object>> listMaterial = new ArrayList<>();
+        try {
+            for (String tab: new String[]{"2", "3"}) {
+                listClass.addAll(deviceClassService.listDeviceOfTab(tab));
+            }
+            listMaterial = materialService.getAllMaterialSelect();
+            if (listClass == null || listMaterial == null) {
+                log.error("获取出错");
+                return null;
+            }
+            result.put("Class_data", listClass);
+            result.put("Entity_data", listMaterial);
+            /*result.put("dev_count", dev_count);*/
+        } catch (Exception e) {
+            log.error(e);
+            return null;
+        }
+        return result;
+    }
+
 }
+
+

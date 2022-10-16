@@ -25,6 +25,8 @@ public interface MaterialService {
 
     public List<Map<String, Object>> getMaterialSelect(String tab);
 
+    public List<Map<String, Object>> getAllMaterialSelect();
+
     public List<Map<String, Object>> getStoreMaterialById(List<String> listMatId);
 
     public List<Map<String, Object>> getMaterialByIdent(List<String> listMatId);

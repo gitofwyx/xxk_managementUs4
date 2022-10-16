@@ -66,6 +66,11 @@
         from xxk_material where genre_tags=#{0} and deleteFlag='0';
     </select>
 
+    <select id="getAllMaterialSelect" resultMap="materialSelectMap">
+        select dev_class_id,id,mat_type,single_unit
+        from xxk_material where deleteFlag='0';
+    </select>
+
     <select id="getMaterialById" parameterType="string" resultType="com.xxk.management.material.entity.Material">
         select
         <include refid="columns"></include>

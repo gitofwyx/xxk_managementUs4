@@ -24,6 +24,8 @@ public interface MaterialDao {
 
     public List<Map<String, Object>> getMaterialSelect(String tab);
 
+    public List<Map<String, Object>> getAllMaterialSelect();
+
     public List<Map<String, Object>> getStoreMaterialById(List<String> listMatId);
 
     public int plusMaterialNumber(int dev_no, String deviceId);   //更新设备数量 （增加）
