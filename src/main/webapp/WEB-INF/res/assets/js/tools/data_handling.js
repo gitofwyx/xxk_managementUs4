@@ -95,8 +95,8 @@ function result_handle(data) {
         if (data.hasError === true) {
             return false;
         }
-        if (typeof data == 'string') {
-            if (data.indexOf("hasError") >= 0) {
+        if(typeof data=='string'){
+            if(data.indexOf("hasError")>=0){
                 return false;
             }
         }

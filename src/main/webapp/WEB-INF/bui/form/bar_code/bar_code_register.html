@@ -286,7 +286,17 @@
 
         data.field.TD = "logout";
         CD_ajaxAllParam("/sys_bar_code/addBar_code", data.field, true, function (v) {
-
+                if (result_handle(v)) {
+                    layer.msg('出库记录完成', {icon: 1, time: 1000,},
+                        function (index) {
+                            layer.close(index);
+                        });
+                } else {
+                    layer.msg(v.error, {icon: 2, time: 5000,},
+                        function (index) {
+                            layer.close(index);
+                        });
+                }
             }
         );
     }

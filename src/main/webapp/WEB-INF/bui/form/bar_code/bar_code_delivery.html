@@ -36,7 +36,7 @@
             <div id="reg_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
                 <!--偏移列 .col-*-offset-* -->
                 <form class="form-horizontal layui-form" autocomplete="off" id="reg_area_form"
-                      lay-filter="bar_code_register">
+                      lay-filter="bar_code_delivery">
 
                     <div class="col-sm-6 col-xs-12 col-lg-6"
                          style="margin-bottom:5px;margin-top:5px;padding-left:0px; ">
@@ -230,6 +230,18 @@
         }, true, function (data) {
             if (data == null) {
                 originalSeaEntity(device_data.Class_data);
+                layer.msg('该条码没有绑定任何信息,请手动选择_',
+                    {icon: 5, time: 3000,},
+                    function (index) {
+                        layer.close(index);
+                    });
+                return;
+            }
+            if (!result_handle(data)) {
+                layer.msg(data.error, {icon: 2, time: 5000,},
+                    function (index) {
+                        layer.close(index);
+                    });
                 return;
             }
             initEntityBsSuggest(0, "devices_class");
@@ -247,8 +259,10 @@
                 });
             });
             if (BC_device.length == 1 && BC_entity.length == 1) {
-                $('#devices_entity').val(entity.text);
-                $('#devices_class').val(cla.text);
+                $("#class_id").val(BC_device[0].value);
+                $("#entity_id").val(BC_entity[0].value);
+                $('#devices_entity').val(BC_device[0].text);
+                $('#devices_class').val(BC_entity[0].text);
                 $('#devices_entity').attr('readonly', true);
                 $('#devices_class').attr('readonly', true);
                 return;
@@ -575,24 +589,17 @@
         data.field.TD = "logout";
         CD_ajaxAllParam("/updateStockForMaterial", data.field, true, function (v) {
                 $("#stock_ident").val('');
+                $("#bar_code").val('');
                 if (result_handle(v)) {
                     $("#stock_data_input input").each(function () {
                         $(this).val('');
                     });
-                    layer.msg('出库记录完成',
-                        {
-                            icon: 1,
-                            time: 1000,
-                        },
+                    layer.msg('出库记录完成', {icon: 1, time: 1000,},
                         function (index) {
                             layer.close(index);
                         });
                 } else {
-                    layer.msg(v.error,
-                        {
-                            icon: 2,
-                            time: 5000,
-                        },
+                    layer.msg(v.error, {icon: 2, time: 5000,},
                         function (index) {
                             layer.close(index);
                         });
@@ -622,7 +629,7 @@
         ;
 
         CD_ajaxAllParam("/makeSDKSignature", {
-            url: "http://zu7q6x.natappfree.cc/test/testBar_code_delivery",
+            url: "http://ng4crp.natappfree.cc/test/testBar_code_delivery",
             "TD": "logout"
         }, true, function (data) {
             wx.config({
@@ -738,15 +745,11 @@
             "get_bar_code": function (othis) {
 
                 $('#bar_code').attr('readonly', false);
-                form.val("bar_code_register", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
-                    "entity_id": "" // "name": "value"
-                    , "devices_class": ""
-                    , "devices_entity": ""
-                    , "bar_code_type": ""
-                    , "bar_code": ""
-                });
-                if (CheckIsNullOrEmpty(form.val('bar_code_register').bar_code)) {
-                    verify_bar_code(form.val('bar_code_register').bar_code);
+                if (CheckIsNullOrEmpty(form.val('bar_code_delivery').bar_code)) {
+                    verify_bar_code(form.val('bar_code_delivery').bar_code);
+                    form.val("bar_code_delivery", {
+                        "bar_code": ""
+                    });
                     return;
                 }
                 wx.scanQRCode({
@@ -758,13 +761,10 @@
                         if (CheckIsNullOrEmpty(resultStr[1])) {
                             str = resultStr[1];
                         }
-                        form.val("bar_code_register", {
+                        form.val("bar_code_delivery", {
                             "bar_code": str
                         });
-                        if (CheckIsNullOrEmpty(form.val('bar_code_register').bar_code)) {
-                            $('#bar_code').attr('readonly', true);
-                        }
-                        verify_bar_code(form.val('bar_code_register').bar_code);
+                        verify_bar_code(form.val('bar_code_delivery').bar_code);
                     }
                 });
             }
