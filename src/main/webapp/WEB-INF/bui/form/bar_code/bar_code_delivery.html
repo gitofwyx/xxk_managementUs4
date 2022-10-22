@@ -82,7 +82,7 @@
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">出库时间</label>
                         <div class="">
-                            <input type="text" name="out_confirmed_date" id="out_confirmed_date"
+                            <input type="text" name="out_confirmed_date" id="out_confirmed_date" readonly="readonly"
                                    lay-verify="required|datetime"
                                    placeholder="yyyy-MM-dd HH:mm:ss"
                                    autocomplete="off" class="form-control">
@@ -92,7 +92,7 @@
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">库存科室</label>
                         <div class="">
-                            <input type="text" id="stock_office_ident" class="form-control NO_Reset"
+                            <input type="text" id="stock_office_ident" class="form-control NO_Reset" readonly="readonly"
                                    name="stock_office_ident"
                                    placeholder="请选择">
                             <input type="hidden" name="stock_office_id" id="stock_office_id" lay-verify="required"
@@ -107,7 +107,7 @@
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">库存选择</label>
                         <div id="stock_record_suggest">
-                            <input type="text" id="stock_ident" class="form-control NO_Reset"
+                            <input type="text" id="stock_ident" class="form-control NO_Reset" readonly="readonly"
                                    name="stock_ident"
                                    placeholder="请选择">
                             <input type="hidden" name="stock_record_id" id="stock_record_id" lay-verify="required"
@@ -162,7 +162,7 @@
                                    lay-verType="alert"
                                    lay-reqText="出库数量为空">
                             <input type="hidden" name="out_confirmed_total" id="out_confirmed_total"
-                                   lay-verify="required"
+                                   lay-verify="required|bad_stock"
                                    lay-verType="alert"
                                    lay-reqText="出库总量为空">
                             <input type="hidden" name="out_confirmed_unit" id="out_confirmed_unit"
@@ -267,7 +267,9 @@
                 $('#devices_class').attr('readonly', true);
                 return;
             }
-            originalSeaEntity(BC_device);
+            $('#devices_class').val('');
+            $('#devices_class').attr('readonly', true);
+            finishedSeaEntity(BC_entity);
         });
     }
 
@@ -335,27 +337,34 @@
     };
 
     //初始化BsSuggest
-    function originalSeaEntity(e) {
+    function originalSeaEntity(BC_dev,BC_ent) {
         initEntityBsSuggest(0, "devices_class");
         initEntityBsSuggest(0, "devices_entity");
         $('#devices_class_div').replaceWith('<div id="devices_class_div"> <input type="text" id="devices_class" class="form-control" name="entity_name" ' +
             'placeholder="请选择"> <input type="hidden" name="class_id" id="class_id" lay-verify="required" lay-verType="alert" lay-reqText="请选择设备"> ' +
             '<ul class="dropdown-menu " role="menu"> </ul></div>');
-        if (!$.isEmptyObject(e)) {
-            initEntityBsSuggest(1, "devices_class", {value: e}, function (K, data) {
-                $("#class_id").val(data.value);
-                initEntityBsSuggest(0, "devices_entity");
-                $('#devices_entity_div').replaceWith('<div id="devices_entity_div"> <input type="text" id="devices_entity" class="form-control NO_Reset" ' +
-                    'name="entity_type" placeholder="请选择"> <input type="hidden" name="entity_id" id="entity_id" lay-verify="required" lay-verType="alert" ' +
-                    'lay-reqText="请选择型号"> <ul class="dropdown-menu " role="menu"> </ul> </div>');
+        if (!$.isEmptyObject(BC_dev)) {
+            initEntityBsSuggest(1, "devices_class", {value: BC_dev}, function (K, data) {
                 if (!$.isEmptyObject(data)) {
                     changeEntClass(K, data.value);
-                    initEntityBsSuggest(1, "devices_entity", {value: entity_data}, function (K, data) {
-                        $("#entity_id").val(data.value);
-                    }, function () {
-                        $("#entity_id").val('');
-                    });
+                    finishedSeaEntity(entity_data);
                 }
+            }, function () {
+                $("#class_id").val('');
+                $("#entity_id").val('');
+            });
+        }
+    };
+
+    function finishedSeaEntity(BC_ent) {
+        initEntityBsSuggest(0, "devices_entity");
+        $('#devices_entity_div').replaceWith('<div id="devices_entity_div"> <input type="text" id="devices_entity" class="form-control NO_Reset" ' +
+            'name="entity_type" placeholder="请选择"> <input type="hidden" name="entity_id" id="entity_id" lay-verify="required" lay-verType="alert" ' +
+            'lay-reqText="请选择型号"> <ul class="dropdown-menu " role="menu"> </ul> </div>');
+        if (!$.isEmptyObject(BC_ent)) {
+            initEntityBsSuggest(1, "devices_entity", {value: BC_ent}, function (K, data) {
+                $("#class_id").val(data.dev_class_id);
+                $("#entity_id").val(data.value);
             }, function () {
                 $("#class_id").val('');
                 $("#entity_id").val('');
@@ -393,7 +402,11 @@
                     office_id: data.value,
                 };
                 stock_recordUpdate(sData);
-            }, onUnset_ck,
+            }, function (K, data) {
+                $("#stock_office_id").val("");
+                initEntityBsSuggest(0, "stock_ident");
+                $("#stock_office_ident").attr('readonly', false);
+            }
         );
     }
 
@@ -469,10 +482,10 @@
 
         initEntityBsSuggest(0, "stock_ident");
         $('#stock_record_suggest').replaceWith('<div id="stock_record_suggest"> <input type="text" id="stock_ident" class="form-control NO_Reset" ' +
-            'name="stock_ident" placeholder="请选择"> <input type="hidden" name="stock_record_id" id="stock_record_id" lay-verify="required" ' +
-            'lay-verType="alert" lay-reqText="请选择库存"> <ul class="dropdown-menu " role="menu"> </ul></div>');
+            'readonly="readonly" name="stock_ident" placeholder="请选择"> <input type="hidden" name="stock_record_id" id="stock_record_id" ' +
+            'lay-verify="required" lay-verType="alert" lay-reqText="请选择库存"> <ul class="dropdown-menu " role="menu"> </ul></div>');
 
-        buildBsSuggestIO("stock_ident",
+        buildBsSuggestOnRequest("stock_ident",
             {
                 url: '/getStockSuggest?entity_id=' + v.entity_id + '&office_id=' + v.office_id,
                 /*data: data,*/
@@ -486,6 +499,10 @@
                 idField: "value",
                 keyField: "text",
                 clearable: true,
+            },function (e,result) {
+                if(result.value.length<=1&&$('#stock_ident').attr('readonly')!='readonly')
+                    $('#stock_ident').attr('readonly', 'readonly');
+                if(result.value.length>1) $('#stock_ident').attr('readonly', false);
             }, function (K, data) {
                 if (!$.isEmptyObject(data)) {
                     assemble_stock(data);
@@ -554,6 +571,7 @@
                     });
                 }
             }, function () {
+                $('#stock_ident').attr('readonly', false);
                 $("#stock_data_input input").each(function () {
                     $(this).val('');
                 });
@@ -580,7 +598,9 @@
             },
             function (K, data) {
                 $("#out_confirmed_officeId").val(data.value);
-            }, onUnset_ck,
+            }, function () {
+                $("#out_confirmed_officeId").val("");
+            }
         );
     }
 
@@ -629,11 +649,11 @@
         ;
 
         CD_ajaxAllParam("/makeSDKSignature", {
-            url: "http://ng4crp.natappfree.cc/test/testBar_code_delivery",
+            url: "http://xxk-manage.nat300.top/test/testBar_code_delivery",
             "TD": "logout"
         }, true, function (data) {
             wx.config({
-                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: data.appId, // 必填，公众号的唯一标识
                 timestamp: data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: data.nonceStr, // 必填，生成签名的随机串
@@ -694,6 +714,11 @@
             , checkTotal: function (value) {
                 if (value.length < 0) {
                     return '不能小于0！';
+                }
+            }
+            , bad_stock: function (value) {
+                if (value <= 0) {
+                    return '出库不小于0！';
                 }
             }
         });
