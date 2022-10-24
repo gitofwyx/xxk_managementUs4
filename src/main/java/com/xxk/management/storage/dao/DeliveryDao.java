@@ -23,6 +23,8 @@ public interface DeliveryDao {
                                               @Param("stock_id") String stock_id,
                                               @Param("officeId") String officeId);
 
+    public List<Delivery> listDeliveryByHandler(String user_id);
+
     public List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String office_id);
 
     public List<Delivery> listDeliveryForTransfer(int pageStart, int pageSize,String office_id);

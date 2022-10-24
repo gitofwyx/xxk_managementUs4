@@ -191,7 +191,7 @@
             </div>
             <div id="table_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
 
-                <table class="layui-hide" id="test" lay-filter="test"></table>
+                <table class="layui-hide" id="delivery_table" lay-filter="delivery_table"></table>
 
             </div>
 
@@ -340,6 +340,7 @@
     function originalSeaEntity(BC_dev,BC_ent) {
         initEntityBsSuggest(0, "devices_class");
         initEntityBsSuggest(0, "devices_entity");
+        initEntityBsSuggest(0, "stock_ident");
         $('#devices_class_div').replaceWith('<div id="devices_class_div"> <input type="text" id="devices_class" class="form-control" name="entity_name" ' +
             'placeholder="请选择"> <input type="hidden" name="class_id" id="class_id" lay-verify="required" lay-verType="alert" lay-reqText="请选择设备"> ' +
             '<ul class="dropdown-menu " role="menu"> </ul></div>');
@@ -358,6 +359,10 @@
 
     function finishedSeaEntity(BC_ent) {
         initEntityBsSuggest(0, "devices_entity");
+        initEntityBsSuggest(0, "stock_ident");
+        $("#stock_data_input input").each(function () {
+            $(this).val('');
+        });
         $('#devices_entity_div').replaceWith('<div id="devices_entity_div"> <input type="text" id="devices_entity" class="form-control NO_Reset" ' +
             'name="entity_type" placeholder="请选择"> <input type="hidden" name="entity_id" id="entity_id" lay-verify="required" lay-verType="alert" ' +
             'lay-reqText="请选择型号"> <ul class="dropdown-menu " role="menu"> </ul> </div>');
@@ -365,6 +370,11 @@
             initEntityBsSuggest(1, "devices_entity", {value: BC_ent}, function (K, data) {
                 $("#class_id").val(data.dev_class_id);
                 $("#entity_id").val(data.value);
+                $('#devices_class').val(data.dev_name);
+                initEntityBsSuggest(0, "stock_ident");
+                $("#stock_data_input input").each(function () {
+                    $(this).val('');
+                });
             }, function () {
                 $("#class_id").val('');
                 $("#entity_id").val('');
@@ -604,30 +614,6 @@
         );
     }
 
-    function BC_submit(data) {
-
-        data.field.TD = "logout";
-        CD_ajaxAllParam("/updateStockForMaterial", data.field, true, function (v) {
-                $("#stock_ident").val('');
-                $("#bar_code").val('');
-                if (result_handle(v)) {
-                    $("#stock_data_input input").each(function () {
-                        $(this).val('');
-                    });
-                    layer.msg('出库记录完成', {icon: 1, time: 1000,},
-                        function (index) {
-                            layer.close(index);
-                        });
-                } else {
-                    layer.msg(v.error, {icon: 2, time: 5000,},
-                        function (index) {
-                            layer.close(index);
-                        });
-                }
-            }
-        );
-    }
-
     $(function () {
 
         if (offices_select == undefined || offices_select == null) {
@@ -724,26 +710,31 @@
         });
 
         table.render({
-            elem: '#test'
-            , url: '/listStock' // 此处为静态模拟数据，实际使用时需换成真实接口
-            , where: {
-                pageIndex: 'curr' //页码的参数名称，默认：page
-                , limit: 'nums' //每页数据量的参数名，默认：limit
-                , search_class_id: ''
-                , search_entity_id: ''
-                , search_office_id: ''
-                , search_type: ''
-            }
-            , height: '380' // 最大高度减去其他容器已占有的高度差
+            id:'Delivery_table'
+            ,elem: '#delivery_table'
+            , url: '/mobile/listDeliveryByHandler' // 此处为静态模拟数据，实际使用时需换成真实接口
+            ,toolbar: '#delivery_table'
+            ,defaultToolbar: [ {
+                title: '回退' //标题
+                ,layEvent: 'backwardDelivery' //事件名，用于 toolbar 事件中使用
+                ,icon: 'layui-icon-return' //图标类名
+            }]
+            , height: '360' // 最大高度减去其他容器已占有的高度差
             , width: 'auto'
-            , totalRow: true // 开启合计行
-            , page: true
             , cols: [[
-                {field: 'id', fixed: 'left', width: '30%', title: '名称', sort: true, totalRowText: '合计：'}
-                , {field: 'id', fixed: 'left', width: '28%', title: '科室',}
-                , {field: 'id', fixed: 'left', width: '22%', title: '总量',}
-                , {field: 'id', width: '22%', title: '单位',}
-                , {field: 'id', width: '10%', title: '数量',}
+                {field: 'entity_type', width: '100', title: '名称', sort: true, totalRowText: '合计：'}
+                , {field: 'out_confirmed_officeId', width: '80', title: '科室',templet:
+                        function(d){
+                            console.log(d); // 得到当前行数据
+                            return offices_select.filter(function (office, index) {
+                                return office.value===d.out_confirmed_officeId;
+                            })[0].text
+                        }
+                    }
+                , {field: 'out_confirmed_total',  title: '总量',}
+                , {field: 'out_confirmed_total_unit',  title: '单位',}
+                , {field: 'out_confirmed_no',  title: '数量',}
+                ,{type: 'radio', fixed: 'right'}
             ]]
             , done: function () {
                 var id = this.id;
@@ -763,7 +754,27 @@
         });
 
         form.on('submit(bar_code_submit)', function (data) {
-            BC_submit(data);
+            data.field.TD = "logout";
+            CD_ajaxAllParam("/updateStockForMaterial", data.field, true, function (v) {
+                    $("#stock_ident").val('');
+                    $("#bar_code").val('');
+                    if (result_handle(v)) {
+                        table.reloadData('Delivery_table');
+                        $("#stock_data_input input").each(function () {
+                            $(this).val('');
+                        });
+                        layer.msg('出库记录完成', {icon: 1, time: 1000,},
+                            function (index) {
+                                layer.close(index);
+                            });
+                    } else {
+                        layer.msg(v.error, {icon: 2, time: 5000,},
+                            function (index) {
+                                layer.close(index);
+                            });
+                    }
+                }
+            );
         });
 
         util.on('lay-on', {
@@ -793,6 +804,15 @@
                     }
                 });
             }
+        });
+
+        table.on('toolbar(delivery_table)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'backwardDelivery':
+                    layer.msg('回退');
+                    break;
+            };
         });
 
     });

@@ -7,6 +7,7 @@
     <resultMap id="materialSelectMap" type="java.util.HashMap">
         <id column="dev_class_id" property="dev_class_id" jdbcType="VARCHAR"/>
         <result column="id" property="value" jdbcType="VARCHAR"/>
+        <result column="mat_name" property="dev_name" jdbcType="VARCHAR"/>
         <result column="mat_type" property="text" jdbcType="VARCHAR"/>
         <result column="single_unit" property="single_unit" jdbcType="VARCHAR"/>
 
@@ -62,12 +63,12 @@
     </insert>
 
     <select id="getMaterialSelect" resultMap="materialSelectMap">
-        select dev_class_id,id,mat_type,single_unit
+        select dev_class_id,id,mat_name,mat_type,single_unit
         from xxk_material where genre_tags=#{0} and deleteFlag='0';
     </select>
 
     <select id="getAllMaterialSelect" resultMap="materialSelectMap">
-        select dev_class_id,id,mat_type,single_unit
+        select dev_class_id,id,mat_name,mat_type,single_unit
         from xxk_material where deleteFlag='0';
     </select>
 

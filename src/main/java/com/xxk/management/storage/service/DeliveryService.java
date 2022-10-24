@@ -18,6 +18,8 @@ public interface DeliveryService {
 
     public  List<Delivery> listDeliveryByStock(int pageStart, int pageSize, String class_id, String entity_id, String stock_id, String officeId);
 
+    public List<Delivery> listDeliveryByHandler(String user_id);
+
     public  List<Delivery> listDeliveryByOffice(int pageStart, int pageSize,String stock_id);
 
     public  List<Delivery> listDeliveryForTransfer(int pageStart, int pageSize,String stock_id);

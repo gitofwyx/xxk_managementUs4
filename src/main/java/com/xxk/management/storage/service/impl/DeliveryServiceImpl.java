@@ -60,6 +60,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
+    public List<Delivery> listDeliveryByHandler(String user_id) {
+        return dao.listDeliveryByHandler(user_id);
+    }
+
+    @Override
     public List<Delivery> listDeliveryByOffice(int pageStart, int pageSize, String stock_id) {
         return dao.listDeliveryByOffice((pageStart - 1) * pageSize, pageSize, stock_id);
     }

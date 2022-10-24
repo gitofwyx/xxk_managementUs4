@@ -195,6 +195,12 @@ public class StockController extends BaseController {
                                                       @RequestParam(value = "stock_record_id") String stock_record_id) {
         Map<String, Object> result = new HashMap<>();
         try {
+            Stock rStock=stockService.getStockById(stock_record_id);
+            if (!rStock.getEntity_id().equals(delivery.getEntity_id()) || !rStock.getClass_id().equals(delivery.getClass_id())) {
+                result.put("hasError", true);
+                result.put("error", "出错！设备和库存不对应!");
+                return result;
+            }
             if ("1".equals(stock.getStock_type()) || "".equals(stock.getStock_type())) {
                 result.put("hasError", true);
                 result.put("error", "出错！设备类型获取不能为" + stock.getStock_type());
