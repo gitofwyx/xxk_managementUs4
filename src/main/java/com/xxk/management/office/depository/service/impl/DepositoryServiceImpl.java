@@ -91,7 +91,7 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错");
                 return result;
             }*/
-        boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3");
+        boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3",depository.getUpdateUserId(),createDate);
         if (!Result) {
             Result = storageService.updateOfficesStorageStatus(depository.getDelivery_id(), "5");
             if(!Result){
@@ -152,7 +152,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             }*/
         if (!"".equals(depository.getDelivery_id()) && depository.getDelivery_id() != null) {
             //不是原科登记更新出库记录的状态
-            boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3");
+            boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3",depository.getUpdateUserId(),createDate);
             if (!Result) {
                 Result = storageService.updateOfficesStorageStatus(depository.getDelivery_id(), "5");
                 if(!Result){

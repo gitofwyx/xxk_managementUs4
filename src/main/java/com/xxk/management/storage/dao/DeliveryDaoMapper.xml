@@ -64,7 +64,7 @@ updateDate</sql>
         select
         <include refid="columns"></include>
         from xxk_delivery
-        where deleteFlag='0' and out_confirmed_by=#{0} and entity_entry_status in ('0','1','2')
+        where deleteFlag='0' and out_confirmed_by=#{0} and entity_entry_status in ('0','1','2','5')
         ORDER BY createDate desc limit 8;
     </select>
 
@@ -111,9 +111,9 @@ updateDate</sql>
 
     <!--修改信息 -->
     <update id="updateDeliveryStatus"  parameterType="string">
-        update xxk_delivery set entity_entry_status=#{1}
+        update xxk_delivery set entity_entry_status=#{1},updateUserId=#{2},updateDate=#{3}
          where id=#{0}
-         and entity_entry_status not in ('3','4')
+         and entity_entry_status not in ('3','4','5')
          and deleteFlag='0';
     </update>
 

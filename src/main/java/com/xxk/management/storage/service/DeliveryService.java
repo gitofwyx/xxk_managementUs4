@@ -32,7 +32,7 @@ public interface DeliveryService {
 
     public Map<String, Object> backwardDelivery(Storage storage, Delivery delivery, String stock_no,String out_total) throws Exception;
 
-    public boolean updateDeliveryStatus(String id,String status);
+    public boolean updateDeliveryStatus(String id,String status,String user_id,String updateDate);
 
     public Map<String, Object> deliveryReport(String startDate,String endDate);
 

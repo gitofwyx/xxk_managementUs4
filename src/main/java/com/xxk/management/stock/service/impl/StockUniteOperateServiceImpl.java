@@ -48,7 +48,7 @@ public class StockUniteOperateServiceImpl implements StockUniteOperateService {
             log.error("transferStockOfUpdateStock:stockService.updateStockWithStorage出错！");
             throw new Exception("transferStockOfUpdateStock:stockService.updateStockWithStorage出错！");
         }
-        boolean Result = deliveryService.updateDeliveryStatus(delivery_id, "3");
+        boolean Result = deliveryService.updateDeliveryStatus(delivery_id, "3",storage.getCreateUserId(),storage.getCreateDate());
         if (!Result) {
             log.error("transferStockOfUpdateStock:deliveryService.updateDeliveryStatus出错！");
             throw new Exception("transferStockOfUpdateStock:deliveryService.updateDeliveryStatus出错！");
@@ -69,7 +69,7 @@ public class StockUniteOperateServiceImpl implements StockUniteOperateService {
             log.error("transferStockOfAddStock:stockService.addStockWithStorage出错！");
             throw new Exception("transferStockOfAddStock:stockService.addStockWithStorage出错！");
         }
-        boolean Result = deliveryService.updateDeliveryStatus(delivery_id, "3");
+        boolean Result = deliveryService.updateDeliveryStatus(delivery_id, "3",storage.getCreateUserId(),storage.getCreateDate());
         if (!Result) {
             log.error("transferStockOfAddStock:deliveryService.updateDeliveryStatus出错！");
             throw new Exception("transferStockOfAddStock:deliveryService.updateDeliveryStatus出错！");

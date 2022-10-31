@@ -169,7 +169,7 @@ public class DeliveryServiceImpl implements DeliveryService {
             throw new Exception("backwardDelivery:delivery.getEntity_id为空！");
         }
         //原纪录作废
-        boolean Result = dao.updateDeliveryStatus(delivery.getId(), "5") == 1 ? true : false;
+        boolean Result = dao.updateDeliveryStatus(delivery.getId(), "5",delivery.getUpdateUserId(),createDate) == 1 ? true : false;
         if (!Result) {
             log.error("backwardDelivery:dao.updateDeliveryStatus出错！");
             throw new Exception("出错！查看是否已经入科！");
@@ -211,8 +211,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 
     @Override
-    public boolean updateDeliveryStatus(String id, String status) {
-        return dao.updateDeliveryStatus(id, status) == 1 ? true : false;
+    public boolean updateDeliveryStatus(String id, String status,String user_id,String updateDate) {
+        return dao.updateDeliveryStatus(id, status,user_id,updateDate) == 1 ? true : false;
     }
 
     @Override

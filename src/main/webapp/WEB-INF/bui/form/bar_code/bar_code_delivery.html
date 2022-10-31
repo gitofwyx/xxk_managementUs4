@@ -261,8 +261,8 @@
             if (BC_device.length == 1 && BC_entity.length == 1) {
                 $("#class_id").val(BC_device[0].value);
                 $("#entity_id").val(BC_entity[0].value);
-                $('#devices_entity').val(BC_device[0].text);
-                $('#devices_class').val(BC_entity[0].text);
+                $('#devices_entity').val(BC_entity[0].text);
+                $('#devices_class').val(BC_device[0].text);
                 $('#devices_entity').attr('readonly', true);
                 $('#devices_class').attr('readonly', true);
                 return;
@@ -345,12 +345,14 @@
             'placeholder="请选择"> <input type="hidden" name="class_id" id="class_id" lay-verify="required" lay-verType="alert" lay-reqText="请选择设备"> ' +
             '<ul class="dropdown-menu " role="menu"> </ul></div>');
         if (!$.isEmptyObject(BC_dev)) {
+            initEntityBsSuggest(0, "stock_ident");
             initEntityBsSuggest(1, "devices_class", {value: BC_dev}, function (K, data) {
                 if (!$.isEmptyObject(data)) {
                     changeEntClass(K, data.value);
                     finishedSeaEntity(entity_data);
                 }
             }, function () {
+                initEntityBsSuggest(0, "stock_ident");
                 $("#class_id").val('');
                 $("#entity_id").val('');
             });
@@ -371,11 +373,16 @@
                 $("#class_id").val(data.dev_class_id);
                 $("#entity_id").val(data.value);
                 $('#devices_class').val(data.dev_name);
-                initEntityBsSuggest(0, "stock_ident");
                 $("#stock_data_input input").each(function () {
                     $(this).val('');
                 });
+                var sData = {
+                    entity_id:data.value ,
+                    office_id: $('#stock_office_id').val(),
+                };
+                stock_recordUpdate(sData);
             }, function () {
+                initEntityBsSuggest(0, "stock_ident");
                 $("#class_id").val('');
                 $("#entity_id").val('');
             });
@@ -698,12 +705,12 @@
                 }
             }
             , checkTotal: function (value) {
-                if (value.length < 0) {
+                if (value < 0||isNaN(value)) {
                     return '不能小于0！';
                 }
             }
             , bad_stock: function (value) {
-                if (value <= 0) {
+                if (value <= 0||isNaN(value)) {
                     return '出库不小于0！';
                 }
             }
@@ -731,6 +738,21 @@
                             })[0].text
                         }
                     }
+                , {field: 'entity_entry_status', width: '80', title: '科室',templet:
+                        function(d){
+                            var Str;
+                            if (parseInt(d.entity_entry_status) ==5) {
+                                Str = '<span style="color: firebrick;">已作废</span>';
+                            }
+                            if (parseInt(d.entity_entry_status) ==3) {
+                                Str = '<span style="color: #0af13c;">已入科</span>';
+                            }
+                            if (parseInt(d.entity_entry_status) <3) {
+                                Str = '<span style="color: #0c0c0c;">已出库</span>';
+                            }
+                            return Str;
+                        }
+                }
                 , {field: 'out_confirmed_total',  title: '总量',}
                 , {field: 'out_confirmed_total_unit',  title: '单位',}
                 , {field: 'out_confirmed_no',  title: '数量',}
@@ -807,10 +829,122 @@
         });
 
         table.on('toolbar(delivery_table)', function(obj){
-            var checkStatus = table.checkStatus(obj.config.id);
+            var checkRow = table.checkStatus(obj.config.id);
+            if (checkRow.data.length == 0) return;
             switch(obj.event){
                 case 'backwardDelivery':
-                    layer.msg('回退');
+                    var backward_layer = layer.open({
+                        type: 1
+                        , resize: false
+                        , shadeClose: true
+                        , area: 'auto'
+                        , title: '反出库'
+                        , content: ['<ul class="layui-form layui-form-pane" style="margin: 15px;">'
+                            , '<li class="layui-form-item">'
+                            , '<div class="layui-input-inline" style="width:100px;">'
+                            , '<input class="layui-input" lay-verify="required" id="delivery_id" name="delivery_id" type="hidden">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item">'
+                            , '<label class="layui-form-label">反出库时间</label>'
+                            , '<div class="layui-input-block">'
+                            , '<input class="layui-input" id="in_confirmed_date" name="in_confirmed_date" readonly="readonly" ' +
+                              'lay-verify="required|datetime" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="form-control">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item">'
+                            , '<label class="layui-form-label">反出库数量</label>'
+                            , '<div class="layui-input-block">'
+                            , '<input class="layui-input" lay-verify="required|bad_stock" id="in_confirmed_no" name="in_confirmed_no">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item">'
+                            , '<label class="layui-form-label">出库数量</label>'
+                            , '<div class="layui-input-block">'
+                            , '<input class="layui-input" lay-verify="required|checkTotal" id="out_no" name="out_no" readonly="readonly">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item">'
+                            , '<div class="layui-input-inline" style="width:100px;">'
+                            , '<input class="layui-input" lay-verify="required" id="in_confirmed_total" name="in_confirmed_total" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_no" name="out_confirmed_no" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_unit" name="out_confirmed_unit" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="out_confirmed_proportion" name="out_confirmed_proportion" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required|checkTotal" id="backward_out_confirmed_total" name="out_confirmed_total" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required|checkTotal" id="out_former_total" name="out_former_total" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="backward_stock_no" name="stock_no" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required|checkTotal" id="backward_stock_total" name="stock_total" type="hidden">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item" style="text-align:center;">'
+                            , '<button type="submit" id="backward_btn" lay-submit lay-filter="backward_btn" class="layui-btn">提交</button>'
+                            , '</li>'
+                            , '</ul>'].join('')
+                        , success: function (layero, index) {
+                            laydate.render({
+                                elem: '#in_confirmed_date',
+                                type: 'datetime',
+                                value: new Date(),
+                            });
+                            $("#backward_stock_total").val('');
+                            $("#delivery_id").val(checkRow.data[0].id);
+                            $("#out_confirmed_name").val(checkRow.data.entity_name+"/"+checkRow.data[0].entity_type);
+                            $("#out_no").val(checkRow.data[0].out_confirmed_no);
+                            $("#out_former_total").val(checkRow.data[0].out_confirmed_total);
+                            $("#backward_out_confirmed_total").val(checkRow.data[0].out_confirmed_total);
+                            CD_ajaxAllParam('/getStockByStockId',{stockId: checkRow.data[0].stock_id},true,function (data){
+                                if (null!=data.Object&&!$.isEmptyObject(data.Object)) {
+                                    var sucData=data.Object;
+                                    $("#backward_out_confirmed_unit").val(sucData.stock_unit);
+                                    $("#out_confirmed_proportion").val(sucData.stock_proportion);
+                                    $("#backward_stock_total").val(sucData.stock_total);
+                                    $("#backward_out_confirmed_total_unit").val(sucData.stock_total_unit);
+                                }
+                            });
+                            $('#in_confirmed_no').blur(function () {
+                                if(CheckIsNullOrEmpty($("#backward_stock_total").val())&&CheckIsNullOrEmpty($("#out_former_total").val())){
+                                    $("#in_confirmed_no").val(calculate_amount($("#in_confirmed_no").val(),$("#out_confirmed_proportion").val()));
+                                    $("#in_confirmed_total").val(reckon_stock_total($("#in_confirmed_no").val(),$("#out_confirmed_proportion").val()));
+                                    $("#backward_out_confirmed_total").val(parseInt($("#out_former_total").val())-parseInt($("#in_confirmed_total").val()));
+                                    $("#backward_stock_no").val(makeInNum(parseInt($("#in_confirmed_total").val())+parseInt($("#backward_stock_total").val()),$("#out_confirmed_proportion").val()));
+                                    $("#backward_out_confirmed_no").val(makeInNum($("#backward_out_confirmed_total").val(),$("#out_confirmed_proportion").val()));
+                                    $("#out_no").val($("#backward_out_confirmed_no").val());
+                                }
+                            })
+                            form.render().on('submit(backward_btn)', function(data){
+                                var backwardData=checkRow.data[0];
+                                backwardData.out_confirmed_date=data.field.in_confirmed_date;
+                                backwardData.out_confirmed_no=data.field.out_confirmed_no;
+                                backwardData.out_confirmed_total=data.field.out_confirmed_total;
+                                backwardData.out_former_total=data.field.out_former_total;
+                                backwardData.out_confirmed_unit=data.field.out_confirmed_unit;
+                                backwardData.out_confirmed_total_unit=data.field.out_confirmed_total_unit;
+                                backwardData.delivery_id=data.field.delivery_id;
+                                backwardData.in_confirmed_date=data.field.in_confirmed_date;
+                                backwardData.in_confirmed_no=data.field.in_confirmed_no;
+                                backwardData.in_confirmed_total=data.field.in_confirmed_total;
+                                backwardData.out_no=data.field.out_no;
+                                backwardData.stock_no=data.field.stock_no;
+                                backwardData.stock_total=data.field.stock_total;
+                                CD_ajaxAllParam('/mobile/backwardDelivery',backwardData,true,function (data){
+                                    if (result_handle(data)) {
+                                        table.reloadData('Delivery_table');
+                                        layer.msg('反出库完成', {icon: 1, time: 1000,},
+                                            function (index) {
+                                                layer.close(index);
+                                            });
+                                    } else {
+                                        layer.msg(data.error, {icon: 2, time: 5000,},
+                                            function (index) {
+                                                layer.close(index);
+                                            });
+                                    }
+                                    layer.close(backward_layer);
+                                });
+                            });
+                        }
+                    });
                     break;
             };
         });

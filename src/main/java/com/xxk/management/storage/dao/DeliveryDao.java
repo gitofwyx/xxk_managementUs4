@@ -33,7 +33,7 @@ public interface DeliveryDao {
 
     public int addDelivery(Delivery delivery);
 
-    public int updateDeliveryStatus(String id,String status);
+    public int updateDeliveryStatus(String id,String status,String user_id,String date);
 
 
 }
