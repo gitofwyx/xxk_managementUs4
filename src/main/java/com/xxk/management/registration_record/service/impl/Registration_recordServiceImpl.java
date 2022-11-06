@@ -170,5 +170,36 @@ public class Registration_recordServiceImpl implements Registration_recordServic
         return result;
     }
 
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public boolean repealRegistration_record(String registration_id, String reg_record_id, String updateUserId, String registration_py) throws Exception, RuntimeException {
+        String createDate = DateUtil.getFullTime();
+        boolean result = false;
+        List<Registration_record> listRecord = new ArrayList();
+
+        List<Map<String, Object>> reg_records = dao.getRegistration_recordById(reg_record_id);
+        if (reg_records != null && reg_records.size() > 0 && reg_records.get(0) != null) {
+            if (!"0".equals(reg_records.get(0).get("execute_record_status"))||"-".equals(reg_records.get(0).get("reg_record_status"))) {
+                throw new Exception("无法确认的操作！请先确认登记状态！！");
+            } else {
+                result = dao.updateOnlyRegistration_recordStatus(reg_record_id, "-", updateUserId, createDate) == 1 ? true : false;
+                if (!(result)) {
+                    log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
+                    throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
+                }
+
+                listRecord = dao.getRecordByRegistrationId(registration_id, "0");
+                if (listRecord.size() == 1) {
+                    result = registrationMService.updateRegistrationRegStatus(registration_id, updateUserId,"-");
+                    if (!(result)) {
+                        log.error("acceptanceRegistration_record:registrationMService.acceptanceRegistration:" + result);
+                        throw new Exception("acceptanceRegistration_record:registrationMService.acceptanceRegistration出错！");
+                    }
+
+                }
+            }
+        }
+        return result;
+    }
 
 }

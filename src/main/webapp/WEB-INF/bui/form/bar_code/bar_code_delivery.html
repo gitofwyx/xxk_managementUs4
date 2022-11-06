@@ -553,6 +553,7 @@
                             , '</li>'
                             , '</ul>'].join('')
                         , success: function (layero, index) {
+                            $("#out_confirmed_no2").val(1);
                             $("#stock_proportion2").val(data.stock_proportion + ' ：1');
                             if (CheckIsNullOrEmpty($("#out_confirmed_no").val()) && CheckIsNullOrEmpty($("#out_confirmed_total").val())) {
                                 $("#out_confirmed_no2").val($("#out_confirmed_no").val());
@@ -574,6 +575,10 @@
                                 } else stock_delivers();
                             })
                             $('#total_btn').click(function () {
+                                if (CheckIsNullOrEmpty($("#out_confirmed_no2").val()) && !CheckIsNullOrEmpty($("#out_confirmed_total").val())) {
+                                    $("#stock_idle_total").val(data.stock_idle_total);
+                                    stock_delivers();
+                                }
                                 layer.msg('出库总量：' + $("#out_confirmed_total2").val() + ';剩余总量：' + $("#stock_idle_total").val() + ';',
                                     {
                                         icon: 1,
@@ -831,6 +836,10 @@
         table.on('toolbar(delivery_table)', function(obj){
             var checkRow = table.checkStatus(obj.config.id);
             if (checkRow.data.length == 0) return;
+            if (checkRow.data[0].entity_entry_status > 2) {
+                layer.msg('无法回退');
+                return;
+            }
             switch(obj.event){
                 case 'backwardDelivery':
                     var backward_layer = layer.open({

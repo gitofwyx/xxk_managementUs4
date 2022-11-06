@@ -662,7 +662,7 @@
                                 skin: 'layui-layer-rim',
                                 area: 'auto',
                                 content: $('#ope_record_div'),
-                                btn: ['确认', '关闭'],
+                                btn: ['撤销','受理确认', '关闭'],
                                 btnAlign: 'c',
                                 btn_margin: '20px',
                                 maxmin: true,
@@ -684,8 +684,31 @@
                                     $("#ope_record_part").load("/ope/operation_record_part", listRecord,ope_record_func);
                                 },
                                 yes: function (index, layero) {
+                                    if(listRecord.reg_record_status==="-")return;
+                                    if (listRecord.execute_record_status === "0" ) {
+                                        layer_alert("撤销该申请？撤销后无法恢复！", ['确定', '取消'], 12
+                                            , function (i, l) {
+                                                CD_ajaxAllParam("/repealRegistration_record",
+                                                    {
+                                                        registration_id: listRecord.registration_id,
+                                                        reg_record_id: listRecord.id,
+                                                        exe_status: listRecord.execute_record_status,
+                                                        registration_py: listRecord.reg_record_py,
+                                                        TD: 'logout'
+                                                    },
+                                                    true, function (v) {
+                                                        if (result_handle(v)) layer.msg('已撤销');
+                                                        else layer.msg(v.error);
+                                                        layer.close(index);
+                                                    });
+                                            });
+                                    } else{
+                                        layer.msg('无法撤销');
+                                    };
+                                },
+                                btn2: function(index, layero){
                                     if (listRecord.reg_record_status === "0" || listRecord.reg_record_status === "1") {
-                                        layer_alert("所选申请未受理，如果当前登录用户是<br>该登记申请人，" +
+                                        layer_alert("所选申请未确认受理，如果当前登录用户是<br>该登记申请人，" +
                                             "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
                                             , function (i, l) {
                                                 layer_alert("是否确定该申请已受理？确定后无法撤销！"

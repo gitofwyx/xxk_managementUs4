@@ -157,6 +157,23 @@ public class RegistrationMServiceImpl implements RegistrationMService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public boolean updateRegistrationRegStatus(String id, String receiver_id,String reg_status) throws Exception, RuntimeException {
+        String createDate = DateUtil.getFullTime();
+        boolean devicesResult = false;
+        List<Registration_record> listRecord = new ArrayList();
+
+
+        devicesResult = dao.updateRegistrationStatus(id, receiver_id, createDate, reg_status) == 1 ? true : false;
+        if (!(devicesResult)) {
+            log.error("acceptanceRegistration->updateRegistration_recordStatus:" + devicesResult);
+            throw new Exception("acceptanceRegistration:dao.updateRegistrationStatus出错！");
+        }
+
+        return devicesResult;
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public boolean acceptanceRegistration(String id, String receiver_id) throws Exception, RuntimeException {
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;

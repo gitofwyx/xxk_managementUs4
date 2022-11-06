@@ -125,4 +125,49 @@ public class Registration_recordMController extends BaseController {
         return result;
         //return "system/index";
     }
+
+    //撤销
+    @ResponseBody
+    @RequestMapping(value = "/repealRegistration_record", method = RequestMethod.POST)
+    public Map<String, Object> repealRegistration_record(@RequestParam(value = "registration_id") String registration_id,
+                                                             @RequestParam(value = "reg_record_id") String reg_record_id,
+                                                             @RequestParam(value = "exe_status") String exe_status,
+                                                             @RequestParam(value = "registration_py") String registration_py) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            if(!registration_py.equals(CurrentUserId)){
+                result.put("hasError", true);
+                result.put("error", "不是登记者");
+                return result;
+            }
+            if(!"0".equals(exe_status)){
+                result.put("hasError", true);
+                result.put("error", "该登记已受理");
+                return result;
+            }
+            if (reg_record_id != null && !"".equals(reg_record_id)) {
+
+                boolean Result = registration_recordService.repealRegistration_record(registration_id,reg_record_id,CurrentUserId,registration_py);
+                if (!(Result)) {
+                    result.put("hasError", true);
+                    result.put("error", "更新出错");
+                } else {
+                    result.put("hasError", false);
+
+                }
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error",e.getLocalizedMessage());
+            /*Optional.ofNullable(e).ifPresent(e1 -> {
+                result.put("error",e1.getLocalizedMessage());
+            });*/
+        }
+        return result;
+        //return "system/index";
+    }
 }

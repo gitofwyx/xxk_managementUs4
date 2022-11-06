@@ -32,7 +32,7 @@ public class Registration_recordServiceTask {
     @Autowired
     private RegistrationMService registrationMService;
 
-    @Scheduled(cron = "${schedule.task.test}")
+    @Scheduled(cron = "${schedule.task.getRegNotFinished}")
     public void getRegistration_recordMakeDate() {
 
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -50,13 +50,12 @@ public class Registration_recordServiceTask {
                     1,10
             );
             Map<String, Object> textMap = new HashMap<>();
-            String text="最近十条未处理申请↓\n";
+            String text="↓最近十条未处理申请↓\n";
             List<String> strReg=listReg.stream().map(reg->
                     "<font color=\"info\">"+reg.get("reg_office") .toString()+"</font>:"
-                            + reg.get("reg_record_content").toString()+"\n"
-                            +"<font color=\"warning\">"+reg.get("reg_record_date") .toString()+"</font>"
-                            +"\n"+"["+"点击查看详情和处理↑"+"]"
-                            +"("+markDownUrl+reg.get("reg_record_id")+")")
+                            +"["+ reg.get("reg_record_content").toString()+"]"
+                            +"("+markDownUrl+reg.get("reg_record_id")+")"+"\n"
+                            +"<font color=\"warning\">↑"+reg.get("reg_record_date") .toString()+"↑</font>")
                     .collect(Collectors.toList());
             if(strReg==null||strReg.isEmpty()){
                 return;

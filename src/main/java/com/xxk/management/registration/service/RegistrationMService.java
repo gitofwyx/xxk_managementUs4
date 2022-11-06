@@ -31,6 +31,8 @@ public interface RegistrationMService {
 
     public boolean addRegistrationAccordingRegStatus(Registration registration, Registration_record record) throws Exception, RuntimeException;
 
+    public boolean updateRegistrationRegStatus(String id, String receiver_id,String reg_status) throws Exception, RuntimeException;
+
     public boolean acceptanceRegistration(String id,String receiver_id) throws Exception, RuntimeException;
 
 }
