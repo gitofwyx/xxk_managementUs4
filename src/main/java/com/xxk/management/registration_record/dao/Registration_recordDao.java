@@ -22,6 +22,9 @@ public interface Registration_recordDao {
 
     public List<Registration_record> getRecordByRegistrationId(String registrationId,String Status);
 
+    public List<Registration_record> getRecordByRegistrationIdInStatus(@Param("registration_id")String registration_id,
+                                                                       @Param("statusList")String[] listStr);
+
     public List<Registration_record> getRegistration_recordByOffice(@Param("reg_record_py")String reg_record_py,
                                                                     @Param("office_id")String office_id,
                                                                     @Param("statusList")String[] listStr,

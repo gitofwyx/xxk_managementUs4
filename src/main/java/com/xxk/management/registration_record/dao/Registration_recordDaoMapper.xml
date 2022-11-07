@@ -77,6 +77,20 @@
         ORDER BY reg_record_date desc;
     </select>
 
+    <select id="getRecordByRegistrationIdInStatus"  resultType="com.xxk.management.registration_record.entity.Registration_record">
+        select
+        <include refid="columns"></include>
+        from xxk_registration_record
+        where registration_id=#{registration_id}
+        and reg_record_status in
+        <foreach collection="statusList" item="status" index="index"
+                 open="(" close=")" separator=",">
+            #{status}
+        </foreach>
+        and deleteFlag='0'
+        ORDER BY reg_record_date desc;
+    </select>
+
     <select id="getRegistration_recordByOffice"  resultType="com.xxk.management.registration_record.entity.Registration_record">
         select
         <include refid="columns"></include>
@@ -89,7 +103,7 @@
             registration_id in (
             select id
             from xxk_registration
-            where reg_office_id=#{office_id}
+            where reg_office_id=#{office_id} and deleteFlag='0'
             ) and
         </if>
         <if test="startDate!=null and ''!= startDate">
@@ -101,6 +115,7 @@
                  open="(" close=")" separator=",">
             #{status}
         </foreach>
+        and deleteFlag='0'
         ORDER BY reg_record_date desc;
     </select>
 
@@ -114,7 +129,7 @@
             and registration_id in (
             select id
             from xxk_registration
-            where exe_office_id=#{office_id}
+            where exe_office_id=#{office_id} and deleteFlag='0'
             )
         </if>
         and reg_record_status in
@@ -122,6 +137,7 @@
                  open="(" close=")" separator=",">
             #{status}
         </foreach>
+        and deleteFlag='0'
         ORDER BY reg_record_date desc;
     </select>
 

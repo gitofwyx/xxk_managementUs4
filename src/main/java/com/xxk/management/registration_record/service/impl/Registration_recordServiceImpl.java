@@ -187,8 +187,8 @@ public class Registration_recordServiceImpl implements Registration_recordServic
                     log.error("acceptanceRegistration_record:dao.updateRegistration_recordStatus:" + result);
                     throw new Exception("acceptanceRegistration_record:dao.updateRegistration_recordStatus出错！");
                 }
-
-                listRecord = dao.getRecordByRegistrationId(registration_id, "0");
+                String[] status={"0","1"};
+                listRecord = dao.getRecordByRegistrationIdInStatus(registration_id, status);
                 if (listRecord.size() == 1) {
                     result = registrationMService.updateRegistrationRegStatus(registration_id, updateUserId,"-");
                     if (!(result)) {
