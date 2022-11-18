@@ -79,8 +79,8 @@ public class Registration_recordServiceTask {
         }
     }
 
-    @Scheduled(cron = "${schedule.task.getRegNotFinished}")
-    public void acceptanceRegistration_record() {
+    @Scheduled(cron = "${schedule.task.periodicUpdateExeStatus}")
+    public void periodicUpdateRegistration_recordExeStatus() {
         try {
             String Date = DateUtil.getFullTime();
             String[] status = {"0", "1"};
