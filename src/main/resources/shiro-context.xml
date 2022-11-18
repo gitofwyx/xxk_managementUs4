@@ -109,6 +109,7 @@
                 /sys_station/**=roles[admin]
 
                 /menu/**=roles[admin,manage]
+                /stockm/**=roles[admin,manage]
                 /**=authc  <!--要放最后不然后面的不生效-->
             </value>
         </property>

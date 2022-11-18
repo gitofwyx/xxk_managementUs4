@@ -47,4 +47,12 @@ public interface Registration_recordDao {
 
     public int updateRegistration_recordExeStatus(String id,String status, String updateUserId,String date);
 
+    public int periodicUpdateRegistration_recordExeStatus(@Param("e_status")String e_status,
+                                                          @Param("userId")String userId,
+                                                          @Param("updateDate")String updateDate,
+                                                          @Param("statusList")String[] listStr,
+                                                          @Param("e_statusList")String[] e_listStr,
+                                                          @Param("startDate")String startDate,
+                                                          @Param("endDate")String endDate);
+
 }

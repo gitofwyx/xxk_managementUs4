@@ -5,11 +5,9 @@ import com.xxk.management.registration.service.RegistrationMService;
 import com.xxk.management.registration_record.dao.Registration_recordDao;
 import com.xxk.management.registration_record.entity.Registration_record;
 import com.xxk.management.registration_record.service.Registration_recordService;
-import com.xxk.management.stock.entity.Stock;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -136,6 +134,11 @@ public class Registration_recordServiceImpl implements Registration_recordServic
     @Override
     public boolean updateRegistration_recordExeStatus(String id, String status, String updateUserId, String date) {
         return dao.updateRegistration_recordExeStatus(id, status, updateUserId, date) == 1 ? true : false;
+    }
+
+    @Override
+    public int periodicUpdateRegistration_recordExeStatus(String e_status, String userId, String updateDate, String[] status, String[] e_listStr, String startDate, String endDate) {
+        return dao.periodicUpdateRegistration_recordExeStatus(e_status,userId,updateDate, status, e_listStr,startDate, endDate);
     }
 
     @Override

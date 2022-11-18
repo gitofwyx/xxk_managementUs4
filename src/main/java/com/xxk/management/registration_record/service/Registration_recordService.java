@@ -30,6 +30,8 @@ public interface Registration_recordService {
 
     public boolean updateRegistration_recordExeStatus(String id,String status, String updateUserId,String date);
 
+    public int periodicUpdateRegistration_recordExeStatus(String e_status, String userId, String updateDate, String[] status, String[] e_listStr, String startDate, String endDate);
+
     public boolean acceptanceRegistration_record(String id,String receiver_id,String updateUserId, String registration_py) throws Exception, RuntimeException;
 
     public boolean repealRegistration_record(String registration_id, String reg_record_id, String updateUserId, String registration_py) throws Exception, RuntimeException;
