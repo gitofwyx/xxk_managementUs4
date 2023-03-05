@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxk.management.stock.dao.StockDao">
-    <sql id="columns">id,stock_ident,class_id,entity_id,stock_type,stock_office_id,stock_no,stock_unit,stock_proportion,stock_total,stock_idle_total,
-        stock_configured_total,stock_total_unit,stock_flag,remark,keyWord,stock_version,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
+    <sql id="columns">id,stock_ident,class_id,entity_id,stock_type,stock_office_id,stock_no,stock_unit,stock_proportion,stock_total,stock_idle_total,stock_configured_total,
+                      stock_total_unit,stock_configured_count,stock_flag,remark,keyWord,stock_version,createUserId,createDate,updateUserId,updateDate,deleteFlag</sql>
 
     <resultMap id="stock_suggestMap" type="java.util.LinkedHashMap">
         <id column="id" property="value" jdbcType="VARCHAR"/>
@@ -71,7 +71,7 @@
     <insert id="addStock" parameterType="com.xxk.management.stock.entity.Stock">
         insert into xxk_stock(<include refid="columns"></include>) values(
         #{id},#{stock_ident},#{class_id},#{entity_id},#{stock_type},#{stock_office_id},#{stock_no},#{stock_unit},#{stock_proportion},#{stock_total},#{stock_total},
-        0,#{stock_total_unit},#{stock_flag},#{remark},#{keyWord},1,#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
+        0,#{stock_total_unit},#{stock_configured_count},#{stock_flag},#{remark},#{keyWord},1,#{createUserId},#{createDate},#{updateUserId},#{updateDate},#{deleteFlag});
     </insert>
 
     <!--根据OfficesStorage添加信息 --><!--设置版本号为1-->
@@ -147,8 +147,9 @@
 
     <!--出库更新（单个设备、耗材） -->
     <update id="reduceSingleStockNo">
-        update xxk_stock set stock_no=#{1},stock_total=stock_total-1,stock_configured_total=stock_configured_total-1,stock_version=stock_version+1,
-        updateUserId=#{2},updateDate=#{3}
+        update xxk_stock set stock_no=#{1},stock_total=stock_total-1,stock_configured_total=stock_configured_total-1,
+                             stock_configured_count=stock_configured_count+1,stock_version=stock_version+1,
+                             updateUserId=#{2},updateDate=#{3}
         where id=#{0} and stock_total&gt;0 and stock_total>stock_idle_total and deleteFlag='0';
     </update>
 

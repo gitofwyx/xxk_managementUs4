@@ -511,7 +511,7 @@
                 store = Search.createStore('/listStock', {
                     proxy: {
                         save: { //也可以是一个字符串，那么增删改，都会往那么路径提交数据，同时附加参数saveType
-                            addUrl: '/addStock',
+                            addUrl: '/sys_stock/addStock',
                             updateUrl: '/updateStockForMaterial',
                             removeUrl: '../data/del.php'
                         },

@@ -112,31 +112,6 @@ public class StockController extends BaseController {
         return result;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/addStock", method = RequestMethod.POST)
-    public Map<String, Object> addStock(Stock stock, Storage storage,
-                                        @RequestParam(value = "stock_record_id") String stock_record_id) {
-        Map<String, Object> result = new HashMap<>();
-        try {
-
-            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
-            stock.setUpdateUserId(CurrentUserId);
-            if (stock_record_id != null && !"".equals(stock_record_id)) {
-                stock.setId(stock_record_id);//获取库存的id值
-                result = stockService.updateStockWithStorage(stock, storage);
-            } else {
-                result = stockService.addStockWithStorage(stock, storage);
-            }
-
-        } catch (Exception e) {
-            log.error(e);
-            result.put("hasError", true);
-            result.put("error", "更新出错");
-        }
-        return result;
-        //return "system/index";
-    }
-
     //转库操作
     @ResponseBody
     @RequestMapping(value = "/addStockForTransferStock", method = RequestMethod.POST)

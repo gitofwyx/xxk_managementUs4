@@ -107,6 +107,7 @@
                 /sys/**=roles[admin]
                 /sys_device/**=roles[admin]
                 /sys_station/**=roles[admin]
+                /sys_stock/**=roles[admin]
 
                 /menu/**=roles[admin,manage]
                 /stockm/**=roles[admin,manage]
