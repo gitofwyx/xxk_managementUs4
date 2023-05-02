@@ -38,6 +38,15 @@
         and deleteFlag='0';
     </select>
 
+    <!--根据部署状态获取设备-->
+    <select id="getDevicesByIdent" resultType="com.xxk.management.office.devices.entity.Devices">
+        select
+        <include refid="columns"></include>
+        from xxk_offices_devices
+        where devices_ident=#{0}
+        and deleteFlag='0';
+    </select>
+
     <!--添加信息 -->
     <insert id="addStockDevices" parameterType="com.xxk.management.office.devices.entity.Devices">
         insert into xxk_offices_devices(<include refid="columns"></include>) values(

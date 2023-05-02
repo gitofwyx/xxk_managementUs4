@@ -99,6 +99,27 @@ public class StockDevicesController extends BaseController {
         return result;
     }
 
+    //获取未部署的设备
+    @ResponseBody
+    @RequestMapping("/getDevicesByIdent")
+    public Map<String, Object> getDevicesByIdent(@RequestParam(value = "ident") String ident) {
+        Map<String, Object> result = new HashMap<>();
+        //List<Map<String, Object>> dev_count = new ArrayList<>();
+        try {
+            List<Devices> devices=stockDevicesService.getDevicesByIdent(ident);
+            if (devices.size() == 0) {
+                return null;
+            }
+            result.put("devices", devices.get(0));
+            result.put("device", deviceService.getDeviceById(devices.get(0).getDevice_id()));
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "获取出错");
+        }
+        return result;
+    }
+
     //出库
     @ResponseBody
     @RequestMapping(value = "/deliveryStockDevices", method = RequestMethod.POST)

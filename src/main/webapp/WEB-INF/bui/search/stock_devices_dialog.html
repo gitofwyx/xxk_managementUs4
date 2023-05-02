@@ -128,7 +128,7 @@
             <div class="control-group span8">
                 <label class="control-label"><s>*</s>设备编号：</label>
                 <div class="controls">
-                    <input name="devices_ident" type="text" class="input-normal control-text">
+                    <input id="ident" name="ident" type="text" class="input-normal control-text">
                 </div>
             </div>
             <div class="control-group span8">
@@ -158,6 +158,9 @@
         <div class="row">
             <div class="control-group span2.5">
                 <input id="class_id" name="class_id" type="hidden" data-rules="{required:true}">
+            </div>
+            <div class="control-group span2.5">
+                <input id="devices_ident" name="devices_ident" type="hidden" data-rules="{required:true}">
             </div>
             <div class="control-group span2.5">
                 <input id="entity_id" name="entity_id" type="hidden" data-rules="{required:true}">
@@ -499,7 +502,7 @@
                 $("#present_stock_id").val("");
                 $("#stock_version").val("");
                 enumObj_office[offices_select.value] = offices_select.text;
-
+                $("#devices_ident").val("");
                 if (device_select != {} && !$.isEmptyObject(device_select)) {
                     D_Form.getField('class_id').set('value', device_select.dev_class_id);
                     D_Form.getField('entity_id').set('value', device_select.value);
@@ -876,6 +879,14 @@
                     $("#stock_version").val("");
                     return;
                 }
+                /*var of=offices_data.filter(function (office, index) {
+                    return offices_select.value==office.value;
+                })*/
+                if(!CheckIsNullOrEmpty(Sto_rec_grid)&&Sto_rec_grid.get('items').length<1)return;
+                var count=parseInt(ev.item.stock_configured_count)+1;
+                var devices_ident=device_select.dev_ident+Sto_rec_grid.get('items').length+count;
+                $("#devices_ident").val(devices_ident);
+                $("#ident").val($("#devices_ident").val());
                 $("#offices_storage_unit").val(ev.item.stock_unit);
                 $("#offices_storage_no").val(makeInNum(1, ev.item.stock_proportion));
                 $("#offices_storage_total_unit").val(ev.item.stock_total_unit);

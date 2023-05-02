@@ -52,6 +52,11 @@ public class StockDevicesServiceImpl implements StockDevicesService {
     }
 
     @Override
+    public List<Devices> getDevicesByIdent(String ident) {
+        return dao.getDevicesByIdent(ident);
+    }
+
+    @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public boolean addStockDevices(Devices devices, OfficesStorage storage, String stock_version) throws Exception, RuntimeException {
 
@@ -72,7 +77,6 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         devices.setId(devicesId);
         devices.setClass_id(storage.getClass_id());
         devices.setDevice_id(storage.getEntity_id());
-        devices.setDevices_ident("NO");
         devices.setDevice_state("3");
         devices.setLocation_office_id(storage.getOffices_storage_officeId());
         devices.setDevice_origin("1");
