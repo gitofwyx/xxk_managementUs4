@@ -148,6 +148,13 @@
                         </div>
                     </div>
                 </form>
+                <div id="reg_table_div" class="hidden-xs hidden-sm col-md-12 col-lg-12"
+                     style=" padding: 10px;">
+                    <table class="layui-hide" id="reg_table" lay-filter="reg_table"></table>
+                    <div >
+
+                    </div>
+                </div>
             </div>
 
             <!--登记记录栏-->
@@ -361,8 +368,9 @@
     }
 
 
-    layui.use(['form', 'dropdown', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'dropdown', 'layedit', 'laydate','table'], function () {
         var form = layui.form
+            , table = layui.table
             , dropdown = layui.dropdown
             , layer = layui.layer
             , layedit = layui.layedit
@@ -394,6 +402,45 @@
                 /^\d+\.\b\d{2}\b$/
                 , '金额必须为小数保留两位'
             ]
+        });
+
+        table.render({
+            id:'reg_table1'
+            ,elem: '#reg_table'
+            , url: '/mobile/listDeliveryByHandler' // 此处为静态模拟数据，实际使用时需换成真实接口
+            ,toolbar: '#delivery_table'
+            ,defaultToolbar: [ {
+                title: '回退' //标题
+                ,layEvent: 'backwardDelivery' //事件名，用于 toolbar 事件中使用
+                ,icon: 'layui-icon-return' //图标类名
+            }]
+            , height: '360' // 最大高度减去其他容器已占有的高度差
+            , width: 'auto'
+            , cols: [[
+                {field: 'entity_type', width: '100', title: '工作日期', sort: true,}
+                , {field: 'out_confirmed_officeId', width: '80', title: '保修科室',templet:
+                        function(d){
+                            console.log(d); // 得到当前行数据
+                            return offices_select.filter(function (office, index) {
+                                return office.value===d.out_confirmed_officeId;
+                            })[0].text
+                        }
+                }
+                , {field: 'entity_entry_status', width: '80', title: '报修科室',}
+                , {field: 'out_confirmed_total',  title: '报修时间',}
+                , {field: 'out_confirmed_total_unit',  title: '服务(问题)描述',}
+                , {field: 'out_confirmed_no',  title: '处理情况描述',}
+                , {field: 'out_confirmed_no',  title: '解决时间',}
+                , {field: 'out_confirmed_no',  title: '报修科室签字确认',}
+            ]]
+            , done: function () {
+                var id = this.id;
+
+
+            }
+            , error: function (res, msg) {
+                console.log(res, msg)
+            }
         });
 
         var reg_record_data = [{

@@ -26,4 +26,10 @@ public class StockViewController extends BaseController {
         return new ModelAndView("/form/bar_code/bar_code_delivery", "result", result);
     }
 
+    @RequestMapping("/manage_delivery")
+    public ModelAndView manage_delivery() {
+        Map<String, Object> result = new HashMap<>();
+        return new ModelAndView("/form/bar_code/manage_delivery", "result", result);
+    }
+
 }

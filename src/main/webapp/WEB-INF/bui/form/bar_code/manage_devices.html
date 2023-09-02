@@ -34,15 +34,9 @@
         <div class="row">
             <div id="occupy_area" class="hidden col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
             <div id="reg_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
-                <div style="margin-top: 15px;margin-bottom: 10px;margin-left: 15px">
-                    <span class="layui-breadcrumb" lay-separator="|">
-                        <a><cite>耗材\配件出库</cite></a>
-                        <a href="/devicesm/BC_devices">设备出库</a>
-                    </span>
-                </div>
                 <!--偏移列 .col-*-offset-* -->
                 <form class="form-horizontal layui-form" autocomplete="off" id="reg_area_form"
-                      lay-filter="bar_code_delivery">
+                      lay-filter="bar_code_devices">
 
                     <div class="col-sm-6 col-xs-12 col-lg-6"
                          style="margin-bottom:5px;margin-top:5px;padding-left:0px; ">
@@ -58,30 +52,18 @@
                     </div>
 
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">设备选择</label>
-                        <div id="devices_class_div">
-                            <input type="text" id="devices_class" class="form-control"
-                                   name="entity_name"
-                                   placeholder="请选择">
-                            <input type="hidden" name="class_id" id="class_id" lay-verify="required"
-                                   lay-verType="alert"
-                                   lay-reqText="请选择设备">
-                            <ul class="dropdown-menu " role="menu">
-                            </ul>
+                        <label class="control-label" style="margin-bottom:5px; ">设备型号信息</label>
+                        <div id="devices_type_div">
+                            <input type="text" id="dev_type" class="form-control" readonly="readonly"
+                                   name="dev_type">
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">型号选择</label>
-                        <div id="devices_entity_div">
-                            <input type="text" id="devices_entity" class="form-control NO_Reset"
-                                   name="entity_type"
-                                   placeholder="请选择">
-                            <input type="hidden" name="entity_id" id="entity_id" lay-verify="required"
-                                   lay-verType="alert"
-                                   lay-reqText="请选择型号">
-                            <ul class="dropdown-menu " role="menu">
-                            </ul>
+                        <label class="control-label" style="margin-bottom:5px; ">设备品牌信息</label>
+                        <div id="devices_brand_div">
+                            <input type="text" id="dev_brand" class="form-control" readonly="readonly"
+                                   name="dev_brand">
                         </div>
                     </div>
 
@@ -96,38 +78,9 @@
                     </div>
 
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">库存科室</label>
-                        <div class="">
-                            <input type="text" id="stock_office_ident" class="form-control NO_Reset" readonly="readonly"
-                                   name="stock_office_ident"
-                                   placeholder="请选择">
-                            <input type="hidden" name="stock_office_id" id="stock_office_id" lay-verify="required"
-                                   class="NO_Reset"
-                                   lay-verType="alert"
-                                   lay-reqText="库存科室不能为空">
-                            <ul class="dropdown-menu " role="menu">
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">库存选择</label>
-                        <div id="stock_record_suggest">
-                            <input type="text" id="stock_ident" class="form-control NO_Reset" readonly="readonly"
-                                   name="stock_ident"
-                                   placeholder="请选择">
-                            <input type="hidden" name="stock_record_id" id="stock_record_id" lay-verify="required"
-                                   lay-verType="alert"
-                                   lay-reqText="请选择库存">
-                            <ul class="dropdown-menu " role="menu">
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">出库科室</label>
                         <div class="">
-                            <input type="text" id="out_confirmed_ident" class="form-control NO_Reset"
+                            <input type="text" id="out_confirmed_ident" class="form-control NO_Reset hide_keyboard"
                                    name="out_confirmed_ident"
                                    placeholder="请选择">
                             <input type="hidden" name="out_confirmed_officeId" id="out_confirmed_officeId"
@@ -140,34 +93,50 @@
                         </div>
                     </div>
 
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">科室设备名称</label>
+                        <div id="office_unique_div">
+                            <input type="text" id="office_unique_name" class="form-control"
+                                   name="office_unique_name">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">设备具体位置</label>
+                        <div id="device_location_div">
+                            <input type="text" id="device_location" class="form-control"
+                                   name="device_location">
+                        </div>
+                    </div>
+
                     <div id="stock_data_input" class="col-sm-12 col-xs-12 col-lg-12" style="margin-top: 10px">
                         <div id="">
-                            <input type="hidden" name="stock_type" id="stock_type" lay-verify="required"
+                            <input type="hidden" name="class_id" id="class_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存类别为空">
-                            <input type="hidden" name="stock_no" id="stock_no" lay-verify="required"
+                            <input type="hidden" name="entity_id" id="entity_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存数量为空">
-                            <input type="hidden" name="stock_unit" id="stock_unit" lay-verify="required"
+                            <input type="hidden" name="stock_entity_id" id="stock_entity_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存单位为空">
-                            <input type="hidden" name="stock_total_unit" id="stock_total_unit" lay-verify="required"
+                            <input type="hidden" name="present_stock_id" id="present_stock_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="总量单位为空">
-                            <input type="hidden" name="stock_proportion" id="stock_proportion" lay-verify="required"
+                            <input type="hidden" name="inventory_office_id" id="inventory_office_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存比列为空">
-                            <input type="hidden" name="stock_total" id="stock_total" lay-verify="required|checkTotal"
+                            <input type="hidden" name="entity_name" id="entity_name" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存总量为空">
-                            <input type="hidden" name="stock_idle_total" id="stock_idle_total"
-                                   lay-verify="required|checkTotal"
+                            <input type="hidden" name="entity_type" id="entity_type"
+                                   lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="可用库存为空">
-                            <input type="hidden" name="out_confirmed_no" id="out_confirmed_no" lay-verify="required"
+                            <input type="hidden" name="stock_no" id="stock_no" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="出库数量为空">
-                            <input type="hidden" name="out_confirmed_total" id="out_confirmed_total"
+                            <input type="hidden" name="out_confirmed_no" id="out_confirmed_no"
                                    lay-verify="required|bad_stock"
                                    lay-verType="alert"
                                    lay-reqText="出库总量为空">
@@ -175,11 +144,11 @@
                                    lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="出库单位为空">
-                            <input type="hidden" name="out_confirmed_total_unit" id="out_confirmed_total_unit"
+                            <input type="hidden" name="out_confirmed_proportion" id="out_confirmed_proportion"
                                    lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="出库总量单位为空">
-                            <input type="hidden" name="stock_version" id="stock_version"
+                            <input type="hidden" name="out_confirmed_total_unit" id="out_confirmed_total_unit"
                                    lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="版本号为空">
@@ -187,11 +156,27 @@
                             <ul class="dropdown-menu " role="menu">
                             </ul>
                         </div>
-                        <div>
+                        <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-left:0px;padding-right:5px ">
                             <button type="button" class="btn btn-primary btn-block" id="bar_code_submit" lay-submit
-                                    lay-filter="bar_code_submit">新增
+                                    lay-filter="bar_code_submit">入科
                             </button>
                         </div>
+                        <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-left:10px;padding-right:0px ">
+                            <button type="button" class="btn btn-primary btn-block layui-btn-normal" id="1" lay-submit
+                                    lay-filter="bar_code_submit">部署
+                            </button>
+                        </div>
+                        <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-right:0px;padding-left:15px; ">
+                            <button type="button" class="btn btn-primary btn-block layui-btn-primary" id="2" lay-submit
+                                    lay-filter="bar_code_submit">撤出
+                            </button>
+                        </div>
+                        <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-right:0px;padding-left:15px; ">
+                            <button type="button" class="btn btn-primary btn-block layui-btn-disabled" id="4" lay-submit
+                                    lay-filter="bar_code_submit">撤出
+                            </button>
+                        </div>
+
                     </div>
                 </form>
             </div>
@@ -230,13 +215,12 @@
 
         var BC_device = [],
             BC_entity = [];
-        CD_ajaxAllParam("/lisBar_codeByINSTRBar_code_ident", {
-            bar_code_ident: ident,
+        CD_ajaxAllParam("/getDevicesByIdent", {
+            ident: ident,
             "TD": "logout"
         }, true, function (data) {
             if (data == null) {
-                originalSeaEntity(device_data.Class_data);
-                layer.msg('该条码没有绑定任何信息,请手动选择_',
+                layer.msg('该条码没有绑定任何信息_',
                     {icon: 5, time: 3000,},
                     function (index) {
                         layer.close(index);
@@ -250,32 +234,34 @@
                     });
                 return;
             }
-            initEntityBsSuggest(0, "devices_class");
-            initEntityBsSuggest(0, "devices_entity");
-            data.entityData.filter(function (BC_data, index) {
-                device_data.Entity_data.filter(function (entity, index) {
-                    if (BC_data.entity_id === entity.value) {
-                        BC_entity.push(entity);
-                        device_data.Class_data.filter(function (cla, index) {
-                            if (entity.dev_class_id === cla.value) {
-                                BC_device.push(cla);
-                            }
-                        })
+
+            $("#present_stock_id").val( data.devices.present_stock_id);
+            $("#class_id").val(data.devices.class_id);
+            $("#entity_id").val( data.devices.device_id);
+            $("#entity_name").val(data.device.dev_name);
+            $("#entity_type").val( data.device.dev_type);
+            $("#stock_entity_id").val( data.devices.id);
+            $("#dev_type").val( data.device.dev_name + "/" + data.device.dev_type);
+            $("#dev_brand").val( data.device.dev_brand );
+            $("#office_unique_name").val( data.devices.office_unique_name);
+            $("#inventory_office_id").val(data.devices.inventory_office_id);
+            $("#device_location").val( data.devices.device_location);
+            if (!CheckIsNullOrEmpty($("#stock_no").val())) {
+                CD_ajaxAllParam("/getStockByStockId",
+                    {"stockId": data.devices.present_stock_id},
+                    true,
+                    function (v) {
+                        if (v != null && v != undefined) {
+                            var no = parseInt(v.Object.stock_total) - 1;
+                            $("#stock_no").val(makeInNum(no, v.Object.stock_proportion));
+                            $("#out_confirmed_no").val(makeInNum(1, v.Object.stock_proportion));
+                            $("#out_confirmed_unit").val( v.Object.stock_unit);
+                            $("#out_confirmed_proportion").val( v.Object.stock_proportion);
+                            $("#out_confirmed_total_unit").val( v.Object.stock_total_unit);
+                        }
                     }
-                });
-            });
-            if (BC_device.length == 1 && BC_entity.length == 1) {
-                $("#class_id").val(BC_device[0].value);
-                $("#entity_id").val(BC_entity[0].value);
-                $('#devices_entity').val(BC_entity[0].text);
-                $('#devices_class').val(BC_device[0].text);
-                $('#devices_entity').attr('readonly', true);
-                $('#devices_class').attr('readonly', true);
-                return;
+                );
             }
-            $('#devices_class').val('');
-            $('#devices_class').attr('readonly', true);
-            finishedSeaEntity(BC_entity);
         });
     }
 
@@ -301,167 +287,6 @@
         $("#out_confirmed_unit").val(v.stock_total_unit);
         $("#out_confirmed_total_unit").val(v.stock_total_unit);
         $("#stock_version").val(v.stock_version);
-    }
-
-    //下拉提示框bsSuggest
-    function initEntityBsSuggest(t, cla, v, callback, onUnset_ck) {
-        var options = {
-            /*url: "/getMaterialName?tab=" + v,*/
-            data: v,
-            effectiveFields: ["text", "class_ident"],
-            searchFields: ["text", "class_ident"],
-            effectiveFieldsAlias: {class_ident: "编号", text: "名称"},
-            listAlign: 'auto',
-            showBtn: false,
-            autoMinWidth: false,
-            getDataMethod: 'data',
-            idField: "value",
-            keyField: "text",
-            clearable: true,
-        };
-        if (t == 1) {
-            $("#" + cla).bsSuggest('init', options).on('onDataRequestSuccess', function (e, result) {
-                console.log('onDataRequestSuccess: ', result);
-            }).on('onSetSelectValue', function (e, keyword, data) {
-                console.log('onSetSelectValue: ', keyword, data);
-                //回调函数
-                if (typeof callback === "function") {
-                    //调用它，既然我们已经确定了它是可调用的
-                    callback(keyword, data);
-                }
-
-            }).on('onUnsetSelectValue', function () {
-                if (typeof onUnset_ck === "function") {
-                    //调用它，既然我们已经确定了它是可调用的
-                    onUnset_ck();
-                }
-            });
-        } else if (t == 0) {
-            $("#" + cla).bsSuggest('destroy');
-        }
-
-    };
-
-    //初始化BsSuggest
-    function originalSeaEntity(BC_dev,BC_ent) {
-        initEntityBsSuggest(0, "devices_class");
-        initEntityBsSuggest(0, "devices_entity");
-        initEntityBsSuggest(0, "stock_ident");
-        $('#devices_class_div').replaceWith('<div id="devices_class_div"> <input type="text" id="devices_class" class="form-control" name="entity_name" ' +
-            'placeholder="请选择"> <input type="hidden" name="class_id" id="class_id" lay-verify="required" lay-verType="alert" lay-reqText="请选择设备"> ' +
-            '<ul class="dropdown-menu " role="menu"> </ul></div>');
-        if (!$.isEmptyObject(BC_dev)) {
-            initEntityBsSuggest(0, "stock_ident");
-            initEntityBsSuggest(1, "devices_class", {value: BC_dev}, function (K, data) {
-                if (!$.isEmptyObject(data)) {
-                    changeEntClass(K, data.value);
-                    finishedSeaEntity(entity_data);
-                }
-            }, function () {
-                initEntityBsSuggest(0, "stock_ident");
-                $("#class_id").val('');
-                $("#entity_id").val('');
-            });
-        }
-    };
-
-    function finishedSeaEntity(BC_ent) {
-        initEntityBsSuggest(0, "devices_entity");
-        initEntityBsSuggest(0, "stock_ident");
-        $("#stock_data_input input").each(function () {
-            $(this).val('');
-        });
-        $('#devices_entity_div').replaceWith('<div id="devices_entity_div"> <input type="text" id="devices_entity" class="form-control NO_Reset" ' +
-            'name="entity_type" placeholder="请选择"> <input type="hidden" name="entity_id" id="entity_id" lay-verify="required" lay-verType="alert" ' +
-            'lay-reqText="请选择型号"> <ul class="dropdown-menu " role="menu"> </ul> </div>');
-        if (!$.isEmptyObject(BC_ent)) {
-            initEntityBsSuggest(1, "devices_entity", {value: BC_ent}, function (K, data) {
-                $("#class_id").val(data.dev_class_id);
-                $("#entity_id").val(data.value);
-                $('#devices_class').val(data.dev_name);
-                $("#stock_data_input input").each(function () {
-                    $(this).val('');
-                });
-                var sData = {
-                    entity_id:data.value ,
-                    office_id: $('#stock_office_id').val(),
-                };
-                stock_recordUpdate(sData);
-            }, function () {
-                initEntityBsSuggest(0, "stock_ident");
-                $("#class_id").val('');
-                $("#entity_id").val('');
-            });
-        }
-    };
-
-    function stock_officeSuggest(i, onSet_ck, onUnset_ck) {
-
-        buildBsSuggestIO(i,
-            {
-                /*url: "/getMaterialName?tab=" + v,*/
-                data: {
-                    value: offices_select.filter(function (office, index) {
-                        if (CheckIsNullOrEmpty(office.office_function)) {
-                            return office.office_function == 1;
-                        }
-                    })
-                },
-                effectiveFields: ["text", ""],
-                searchFields: ["text", "id", "pinYin_code", "pinYinS_code"],
-                effectiveFieldsAlias: {"text": "科室名称",},
-                listAlign: 'auto',
-                showBtn: false,
-                autoMinWidth: false,
-                getDataMethod: 'data',
-                idField: "value",
-                keyField: "text",
-                clearable: true,
-            },
-            function (K, data) {
-                $("#stock_office_id").val(data.value);
-                var sData = {
-                    entity_id: $('#entity_id').val(),
-                    office_id: data.value,
-                };
-                stock_recordUpdate(sData);
-            }, function (K, data) {
-                $("#stock_office_id").val("");
-                initEntityBsSuggest(0, "stock_ident");
-                $("#stock_office_ident").attr('readonly', false);
-            }
-        );
-    }
-
-    //下拉框ajax请求entity_selectAjax
-    function entity_selectAjax(callback) {
-        var url = '/getAllMaterialSelect';
-        if ($.isEmptyObject(device_data)) {
-            $.ajax({
-                url: url,
-                data: {tab: 1},
-                type: 'POST', //GET
-                async: true,    //或false,是否异步
-                /*timeout: 5000,*/    //超时时间(如果后台数据加载缓慢，设置超时时间会导致在时间超时后自动执行success函数而后台还没有返回data数据)
-                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                success: function (data, textStatus, jqXHR) {
-                    if (data != null && data != undefined) {
-                        device_data = data;
-                        originalSeaEntity(device_data.Class_data);
-                    }
-                    //回调函数
-                    if (typeof callback === "function") {
-                        //调用它，既然我们已经确定了它是可调用的
-                        callback();
-                    }
-                },
-                error: function (xhr, textStatus) {
-                    console.log('错误')
-                    console.log(xhr)
-                    console.log(textStatus)
-                }
-            })
-        }
     }
 
     //入库总量生成
@@ -501,112 +326,6 @@
         $("#stock_no").val(makeInNum(O_num, proportion));
     };
 
-    function stock_recordUpdate(v) {
-
-        initEntityBsSuggest(0, "stock_ident");
-        $('#stock_record_suggest').replaceWith('<div id="stock_record_suggest"> <input type="text" id="stock_ident" class="form-control NO_Reset" ' +
-            'readonly="readonly" name="stock_ident" placeholder="请选择"> <input type="hidden" name="stock_record_id" id="stock_record_id" ' +
-            'lay-verify="required" lay-verType="alert" lay-reqText="请选择库存"> <ul class="dropdown-menu " role="menu"> </ul></div>');
-
-        buildBsSuggestOnRequest("stock_ident",
-            {
-                url: '/getStockSuggest?entity_id=' + v.entity_id + '&office_id=' + v.office_id,
-                /*data: data,*/
-                effectiveFields: ["text", "stock_total_unit", "stock_idle_total"],
-                searchFields: ["text"],
-                effectiveFieldsAlias: {text: "编号", stock_total_unit: "单位", stock_idle_total: "剩余总量"},
-                listAlign: 'auto',
-                showBtn: false,
-                autoMinWidth: false,
-                getDataMethod: 'url',
-                idField: "value",
-                keyField: "text",
-                clearable: true,
-            },function (e,result) {
-                if(result.value.length<=1&&$('#stock_ident').attr('readonly')!='readonly')
-                    $('#stock_ident').attr('readonly', 'readonly');
-                if(result.value.length>1) $('#stock_ident').attr('readonly', false);
-            }, function (K, data) {
-                if (!$.isEmptyObject(data)) {
-                    assemble_stock(data);
-                    var delivers_in = layer.open({
-                        type: 1
-                        , resize: false
-                        , shadeClose: true
-                        , area: 'auto'
-                        , title: 'layer + form'
-                        , content: ['<ul class="layui-form layui-form-pane" style="margin: 15px;">'
-                            , '<li class="layui-form-item">'
-                            , '<label class="layui-form-label">数量</label>'
-                            , '<div class="layui-input-block">'
-                            , '<input class="layui-input" lay-verify="required" id="out_confirmed_no2" name="out_confirmed_no2">'
-                            , '</div>'
-                            , '</li>'
-                            , '<li class="layui-form-item">'
-                            , '<label class="layui-form-label">库存比例</label>'
-                            , '<div class="layui-input-inline" style="width:100px;">'
-                            , '<input class="layui-input" lay-verify="required" id="stock_proportion2" name="stock_proportion2" readonly="readonly">'
-                            , '</div>'
-                            , '</li>'
-                            , '<li class="layui-form-item">'
-                            , '<label class="layui-form-label">总量</label>'
-                            , '<div class="layui-input-block">'
-                            , '<input class="layui-input" lay-verify="required" id="out_confirmed_total2" name="out_confirmed_total2" readonly="readonly">'
-                            , '</div>'
-                            , '</li>'
-                            , '<li class="layui-form-item" style="text-align:center;">'
-                            , '<button type="submit" id="total_btn" class="layui-btn">提交</button>'
-                            , '</li>'
-                            , '</ul>'].join('')
-                        , success: function (layero, index) {
-                            $("#out_confirmed_no2").val(1);
-                            $("#stock_proportion2").val(data.stock_proportion + ' ：1');
-                            if (CheckIsNullOrEmpty($("#out_confirmed_no").val()) && CheckIsNullOrEmpty($("#out_confirmed_total").val())) {
-                                $("#out_confirmed_no2").val($("#out_confirmed_no").val());
-                                $("#out_confirmed_total2").val($("#out_confirmed_total").val());
-                                $("#stock_idle_total").val($("#stock_idle_total").val() - $("#out_confirmed_total").val());
-                            }
-                            $('#out_confirmed_no2').blur(function () {
-                                $("#stock_idle_total").val(data.stock_idle_total);
-                                if (!CheckIsNullOrEmpty($("#out_confirmed_no2").val())) {
-                                    return;
-                                }
-                                var out_stock_total = reckon_stock_total($("#out_confirmed_no2").val(), $("#stock_proportion").val()),
-                                    O_num = data.stock_idle_total - out_stock_total;
-                                if (O_num < 0) {
-                                    layer.msg('出库总量：' + out_stock_total + ',不能大于剩余总量：' + data.stock_idle_total,
-                                        function (index) {
-                                            layer.close(index);
-                                        });
-                                } else stock_delivers();
-                            })
-                            $('#total_btn').click(function () {
-                                if (CheckIsNullOrEmpty($("#out_confirmed_no2").val()) && !CheckIsNullOrEmpty($("#out_confirmed_total").val())) {
-                                    $("#stock_idle_total").val(data.stock_idle_total);
-                                    stock_delivers();
-                                }
-                                layer.msg('出库总量：' + $("#out_confirmed_total2").val() + ';剩余总量：' + $("#stock_idle_total").val() + ';',
-                                    {
-                                        icon: 1,
-                                        time: 1000,
-                                    },
-                                    function (index) {
-                                        layer.close(index);
-                                        layer.close(delivers_in);
-                                    });
-                            })
-                        }
-                    });
-                }
-            }, function () {
-                $('#stock_ident').attr('readonly', false);
-                $("#stock_data_input input").each(function () {
-                    $(this).val('');
-                });
-            });
-
-    };
-
     function out_officeSuggest(i, onSet_ck, onUnset_ck) {
 
         buildBsSuggestIO(i,
@@ -641,13 +360,11 @@
                 function (v) {
                     if (v != null && v != undefined) {
                         offices_select = v.result;
-                        stock_officeSuggest("stock_office_ident");
                         out_officeSuggest("out_confirmed_ident");
                     }
                 }
             );
         } else {
-            stock_officeSuggest("stock_office_ident");
             out_officeSuggest("out_confirmed_ident");
         }
         ;
@@ -674,20 +391,11 @@
                 // 也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
             });
         });
-
-        entity_selectAjax();
-        // 9 微信原生接口
-        // 9.1.1 扫描二维码并返回结果
-        /* document.querySelector('#scanQRCode0').onclick = function () {
-             wx.scanQRCode();
-         };*/
-        // 9.1.2 扫描二维码并返回结果
     })
 
 
-    layui.use(['element','form', 'util', 'table', 'dropdown', 'layedit', 'laydate'], function () {
-        var element = layui.element
-            ,form = layui.form
+    layui.use(['form', 'util', 'table', 'dropdown', 'layedit', 'laydate'], function () {
+        var form = layui.form
             , util = layui.util
             , table = layui.table
             , dropdown = layui.dropdown
@@ -787,11 +495,23 @@
             value: new Date(),
         });
 
+        $('.hide_keyboard').focus(function(){
+            document.activeElement.blur();//屏蔽默认键盘弹出；
+        });
+
+        $('.hide_keyboard').click(function(){
+            if(!$('.hide_keyboard').is(":focus")){
+                layer.msg('双击唤出键盘查找',{offset: 'b'});
+            }
+        });
+
+        $('.hide_keyboard').dblclick(function(){
+            $('.hide_keyboard').focus();//屏蔽默认键盘弹出；
+        });
+
         form.on('submit(bar_code_submit)', function (data) {
             data.field.TD = "logout";
-            CD_ajaxAllParam("/updateStockForMaterial", data.field, true, function (v) {
-                    $("#stock_ident").val('');
-                    $("#bar_code").val('');
+            CD_ajaxAllParam("/deliveryStockDevices", data.field, true, function (v) {
                     if (result_handle(v)) {
                         table.reloadData('Delivery_table');
                         $("#stock_data_input input").each(function () {
@@ -815,9 +535,9 @@
             "get_bar_code": function (othis) {
 
                 $('#bar_code').attr('readonly', false);
-                if (CheckIsNullOrEmpty(form.val('bar_code_delivery').bar_code)) {
-                    verify_bar_code(form.val('bar_code_delivery').bar_code);
-                    form.val("bar_code_delivery", {
+                if (CheckIsNullOrEmpty(form.val('bar_code_devices').bar_code)) {
+                    verify_bar_code(form.val('bar_code_devices').bar_code);
+                    form.val("bar_code_devices", {
                         "bar_code": ""
                     });
                     return;
@@ -831,10 +551,10 @@
                         if (CheckIsNullOrEmpty(resultStr[1])) {
                             str = resultStr[1];
                         }
-                        form.val("bar_code_delivery", {
+                        form.val("bar_code_devices", {
                             "bar_code": str
                         });
-                        verify_bar_code(form.val('bar_code_delivery').bar_code);
+                        verify_bar_code(form.val('bar_code_devices').bar_code);
                     }
                 });
             }

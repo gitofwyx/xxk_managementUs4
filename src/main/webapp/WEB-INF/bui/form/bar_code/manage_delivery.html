@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> 出库登记</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--user-scalable控制用户是否可以进行触屏扩大或缩小网页-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/layui/layui.css">
+    <link href="/css/suggest-style.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        code {
+            padding: 0px 4px;
+            color: #d14;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div>
+        <div class="row">
+            <div id="occupy_area" class="hidden col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+            <div id="reg_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
+                <!--偏移列 .col-*-offset-* -->
+                <div class="layui-tab" lay-filter="tabDemo" >
+                    <ul class="layui-tab-title">
+                        <li class="layui-this" lay-id="1">标题1</li>
+                        <li lay-id="2">标题2</li>
+
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">1</div>
+                        <div class="layui-tab-item">2</div>
+                        <div class="layui-tab-item">3</div>
+                        <div class="layui-tab-item">4</div>
+                        <div class="layui-tab-item">5</div>
+                    </div>
+                </div>
+            </div>
+            <div id="table_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
+
+                <table class="layui-hide" id="delivery_table" lay-filter="delivery_table"></table>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript" src="/js/jquery-1.8.1.min.js"></script>
+
+<script src="/js/layui/layui.js"></script>
+
+<script type="text/javascript" src="/js/tree/tree_build.js"></script>
+<script type="text/javascript" src="/js/localstorageIO.js"></script>
+<script type="text/javascript" src="/js/tools/data_handling.js"></script>
+<script type="text/javascript" src="/js/suggest/bootstrap-suggest.js"></script>
+
+<script type="text/javascript" src="/js/suggest/suggest_util.js"></script>
+<script type="text/javascript" src="/js/callback_ajax.js"></script>
+
+<script type="text/javascript" src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+<script type="text/javascript">
+
+    var device_data = [],//全部dev初始化
+        entity_data = [],//型号初始化
+        offices_select = localstorageIO("offices_select", "/getOfficeSelect");
+
+    function verify_bar_code(ident) {
+
+        var BC_device = [],
+            BC_entity = [];
+        CD_ajaxAllParam("/getDevicesByIdent", {
+            ident: ident,
+            "TD": "logout"
+        }, true, function (data) {
+            if (data == null) {
+                layer.msg('该条码没有绑定任何信息_',
+                    {icon: 5, time: 3000,},
+                    function (index) {
+                        layer.close(index);
+                    });
+                return;
+            }
+            if (!result_handle(data)) {
+                layer.msg(data.error, {icon: 2, time: 5000,},
+                    function (index) {
+                        layer.close(index);
+                    });
+                return;
+            }
+
+            $("#present_stock_id").val( data.devices.present_stock_id);
+            $("#class_id").val(data.devices.class_id);
+            $("#entity_id").val( data.devices.device_id);
+            $("#entity_name").val(data.device.dev_name);
+            $("#entity_type").val( data.device.dev_type);
+            $("#stock_entity_id").val( data.devices.id);
+            $("#dev_type").val( data.device.dev_name + "/" + data.device.dev_type);
+            $("#dev_brand").val( data.device.dev_brand );
+            $("#office_unique_name").val( data.devices.office_unique_name);
+            $("#inventory_office_id").val(data.devices.inventory_office_id);
+            $("#device_location").val( data.devices.device_location);
+            if (!CheckIsNullOrEmpty($("#stock_no").val())) {
+                CD_ajaxAllParam("/getStockByStockId",
+                    {"stockId": data.devices.present_stock_id},
+                    true,
+                    function (v) {
+                        if (v != null && v != undefined) {
+                            var no = parseInt(v.Object.stock_total) - 1;
+                            $("#stock_no").val(makeInNum(no, v.Object.stock_proportion));
+                            $("#out_confirmed_no").val(makeInNum(1, v.Object.stock_proportion));
+                            $("#out_confirmed_unit").val( v.Object.stock_unit);
+                            $("#out_confirmed_proportion").val( v.Object.stock_proportion);
+                            $("#out_confirmed_total_unit").val( v.Object.stock_total_unit);
+                        }
+                    }
+                );
+            }
+        });
+    }
+
+    //型号生成
+    function changeEntClass(ev, i) {
+        entity_data = [];
+        var Entity_data = device_data.Entity_data;
+        for (var j = 0, len = Entity_data.length; j < len; j++) {
+            if (Entity_data[j].dev_class_id == i) {
+                entity_data.push(Entity_data[j]);
+            }
+        }
+    }
+
+    function assemble_stock(v) {
+        $("#stock_record_id").val(v.value);
+        $("#stock_proportion").val(v.stock_proportion);
+        $("#stock_type").val(v.stock_type);
+        $("#stock_unit").val(v.stock_unit);
+        $("#stock_total").val(v.stock_total);
+        $("#stock_idle_total").val(v.stock_idle_total);
+        $("#stock_total_unit").val(v.stock_total_unit);
+        $("#out_confirmed_unit").val(v.stock_total_unit);
+        $("#out_confirmed_total_unit").val(v.stock_total_unit);
+        $("#stock_version").val(v.stock_version);
+    }
+
+    //入库总量生成
+    function reckon_stock_total(num, stock_proportion) {  //（输入的库存数量 库存比例)
+        //I_Form.getField('in_confirmed_no').get('value');
+        num = "" + num;//防止输入数值造成replace函数报错；
+        var decimal = num.replace(/\d+\.(\d*)/, "$1");//获取小数部分
+        var unit = parseInt(num);//去除小数部分
+        stock_proportion = parseInt(stock_proportion);//防止比例数输入为小数
+        if (parseFloat(num) != unit) {
+            unit = unit * stock_proportion;
+            return unit + parseInt(decimal);
+        }
+        return unit * stock_proportion;
+    }
+
+    //根据库存总量生成库存数量
+    function makeInNum(total, stock_proportion) { //总量，比例数
+        var num = total % stock_proportion;
+        while (num >= 1) {
+            num = num / 10;
+        }
+        num = parseInt(total / stock_proportion) + num;
+        return num;
+    }
+
+    //出库数量输入框光标移出事件
+    function stock_delivers() {
+        $("#out_confirmed_no").val($("#out_confirmed_no2").val());
+        var O_num = $("#out_confirmed_no2").val();//获取入库数量no
+        var proportion = $("#stock_proportion").val();
+        var out_stock_total = reckon_stock_total(O_num, proportion);
+        $("#out_confirmed_total").val(out_stock_total);
+        $("#out_confirmed_total2").val(out_stock_total);
+        O_num = $("#stock_idle_total").val() - out_stock_total;
+        $("#stock_idle_total").val(O_num);
+        $("#stock_no").val(makeInNum(O_num, proportion));
+    };
+
+    function out_officeSuggest(i, onSet_ck, onUnset_ck) {
+
+        buildBsSuggestIO(i,
+            {
+                /*url: "/getMaterialName?tab=" + v,*/
+                data: {value: offices_select},
+                effectiveFields: ["text", ""],
+                searchFields: ["text", "id", "pinYin_code", "pinYinS_code"],
+                effectiveFieldsAlias: {"text": "科室名称",},
+                listAlign: 'auto',
+                showBtn: false,
+                autoMinWidth: false,
+                getDataMethod: 'data',
+                idField: "value",
+                keyField: "text",
+                clearable: true,
+            },
+            function (K, data) {
+                $("#out_confirmed_officeId").val(data.value);
+            }, function () {
+                $("#out_confirmed_officeId").val("");
+            }
+        );
+    }
+
+    $(function () {
+
+        if (offices_select == undefined || offices_select == null) {
+            CD_ajaxAllParam("/getOfficeSelect",
+                {"updateDate": "NO"},
+                true,
+                function (v) {
+                    if (v != null && v != undefined) {
+                        offices_select = v.result;
+                        out_officeSuggest("out_confirmed_ident");
+                    }
+                }
+            );
+        } else {
+            out_officeSuggest("out_confirmed_ident");
+        }
+        ;
+
+        CD_ajaxAllParam("/makeSDKSignature", {
+            url: "http://xxk-manage.nat300.top/stockm/BC_delivery",
+            "TD": "logout"
+        }, true, function (data) {
+            wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: data.appId, // 必填，公众号的唯一标识
+                timestamp: data.timestamp, // 必填，生成签名的时间戳
+                nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                signature: data.signature,// 必填，签名
+                jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表
+            });
+            wx.ready(function () {
+                console.log('wx_ready');
+            });
+            wx.error(function (res) {
+                console.log("error_WX" + res);
+                // config信息验证失败会执行error函数，如签名过期导致验证失败，
+                // 具体错误信息可以打开config的debug模式查看，
+                // 也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+            });
+        });
+    })
+
+
+    layui.use(['form', 'util', 'table', 'dropdown', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , util = layui.util
+            , table = layui.table
+            , dropdown = layui.dropdown
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate
+            , exe_layer = null
+            , load_layer = null
+            , status = []
+            , e_status = [];
+
+        //自定义验证规则
+        form.verify({
+            datetime: function (value) {
+                if (value.length < 19) {
+                    return '也太短了吧！';
+                } else {
+                    var result = value.match(/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/);
+                    if (result == null) return '时间格式不对！';
+                }
+            }
+            , lengthCtrl: function (value) {
+                if (value.length > 50) {
+                    return '容不下！';
+                } else if (value.length < 5) {
+                    return '也太短了吧！';
+                }
+            }
+            , checkTotal: function (value) {
+                if (value < 0||isNaN(value)) {
+                    return '不能小于0！';
+                }
+            }
+            , bad_stock: function (value) {
+                if (value <= 0||isNaN(value)) {
+                    return '出库不小于0！';
+                }
+            }
+        });
+
+        table.render({
+            id:'Delivery_table'
+            ,elem: '#delivery_table'
+            , url: '/mobile/listDeliveryByHandler' // 此处为静态模拟数据，实际使用时需换成真实接口
+            ,toolbar: '#delivery_table'
+            ,defaultToolbar: [ {
+                title: '回退' //标题
+                ,layEvent: 'backwardDelivery' //事件名，用于 toolbar 事件中使用
+                ,icon: 'layui-icon-return' //图标类名
+            }]
+            , height: '360' // 最大高度减去其他容器已占有的高度差
+            , width: 'auto'
+            , cols: [[
+                {field: 'entity_type', width: '100', title: '名称', sort: true, totalRowText: '合计：'}
+                , {field: 'out_confirmed_officeId', width: '80', title: '科室',templet:
+                        function(d){
+                            console.log(d); // 得到当前行数据
+                            return offices_select.filter(function (office, index) {
+                                return office.value===d.out_confirmed_officeId;
+                            })[0].text
+                        }
+                    }
+                , {field: 'entity_entry_status', width: '80', title: '科室',templet:
+                        function(d){
+                            var Str;
+                            if (parseInt(d.entity_entry_status) ==5) {
+                                Str = '<span style="color: firebrick;">已作废</span>';
+                            }
+                            if (parseInt(d.entity_entry_status) ==3) {
+                                Str = '<span style="color: #0af13c;">已入科</span>';
+                            }
+                            if (parseInt(d.entity_entry_status) <3) {
+                                Str = '<span style="color: #0c0c0c;">已出库</span>';
+                            }
+                            return Str;
+                        }
+                }
+                , {field: 'out_confirmed_total',  title: '总量',}
+                , {field: 'out_confirmed_total_unit',  title: '单位',}
+                , {field: 'out_confirmed_no',  title: '数量',}
+                ,{type: 'radio', fixed: 'right'}
+            ]]
+            , done: function () {
+                var id = this.id;
+
+
+            }
+            , error: function (res, msg) {
+                console.log(res, msg)
+            }
+        });
+
+        //日期
+        laydate.render({
+            elem: '#out_confirmed_date',
+            type: 'datetime',
+            value: new Date(),
+        });
+
+        $('.hide_keyboard').focus(function(){
+            document.activeElement.blur();//屏蔽默认键盘弹出；
+        });
+
+        $('.hide_keyboard').click(function(){
+            if(!$('.hide_keyboard').is(":focus")){
+                layer.msg('双击唤出键盘查找',{offset: 'b'});
+            }
+        });
+
+        $('.hide_keyboard').dblclick(function(){
+            $('.hide_keyboard').focus();//屏蔽默认键盘弹出；
+        });
+
+        form.on('submit(bar_code_submit)', function (data) {
+            data.field.TD = "logout";
+            CD_ajaxAllParam("/deliveryStockDevices", data.field, true, function (v) {
+                    if (result_handle(v)) {
+                        table.reloadData('Delivery_table');
+                        $("#stock_data_input input").each(function () {
+                            $(this).val('');
+                        });
+                        layer.msg('出库记录完成', {icon: 1, time: 1000,},
+                            function (index) {
+                                layer.close(index);
+                            });
+                    } else {
+                        layer.msg(v.error, {icon: 2, time: 5000,},
+                            function (index) {
+                                layer.close(index);
+                            });
+                    }
+                }
+            );
+        });
+
+        util.on('lay-on', {
+            "get_bar_code": function (othis) {
+
+                $('#bar_code').attr('readonly', false);
+                if (CheckIsNullOrEmpty(form.val('bar_code_devices').bar_code)) {
+                    verify_bar_code(form.val('bar_code_devices').bar_code);
+                    form.val("bar_code_devices", {
+                        "bar_code": ""
+                    });
+                    return;
+                }
+                wx.scanQRCode({
+                    needResult: 1,
+                    scanType: ["qrCode", "barCode"],
+                    success: function (res) {
+                        var resultStr = res.resultStr.split(',');
+                        var str = resultStr[0];
+                        if (CheckIsNullOrEmpty(resultStr[1])) {
+                            str = resultStr[1];
+                        }
+                        form.val("bar_code_devices", {
+                            "bar_code": str
+                        });
+                        verify_bar_code(form.val('bar_code_devices').bar_code);
+                    }
+                });
+            }
+        });
+
+        table.on('toolbar(delivery_table)', function(obj){
+            var checkRow = table.checkStatus(obj.config.id);
+            if (checkRow.data.length == 0) return;
+            if (checkRow.data[0].entity_entry_status > 2) {
+                layer.msg('无法回退');
+                return;
+            }
+            switch(obj.event){
+                case 'backwardDelivery':
+                    var backward_layer = layer.open({
+                        type: 1
+                        , resize: false
+                        , shadeClose: true
+                        , area: 'auto'
+                        , title: '反出库'
+                        , content: ['<ul class="layui-form layui-form-pane" style="margin: 15px;">'
+                            , '<li class="layui-form-item">'
+                            , '<div class="layui-input-inline" style="width:100px;">'
+                            , '<input class="layui-input" lay-verify="required" id="delivery_id" name="delivery_id" type="hidden">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item">'
+                            , '<label class="layui-form-label">反出库时间</label>'
+                            , '<div class="layui-input-block">'
+                            , '<input class="layui-input" id="in_confirmed_date" name="in_confirmed_date" readonly="readonly" ' +
+                              'lay-verify="required|datetime" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="form-control">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item">'
+                            , '<label class="layui-form-label">反出库数量</label>'
+                            , '<div class="layui-input-block">'
+                            , '<input class="layui-input" lay-verify="required|bad_stock" id="in_confirmed_no" name="in_confirmed_no">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item">'
+                            , '<label class="layui-form-label">出库数量</label>'
+                            , '<div class="layui-input-block">'
+                            , '<input class="layui-input" lay-verify="required|checkTotal" id="out_no" name="out_no" readonly="readonly">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item">'
+                            , '<div class="layui-input-inline" style="width:100px;">'
+                            , '<input class="layui-input" lay-verify="required" id="in_confirmed_total" name="in_confirmed_total" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_no" name="out_confirmed_no" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_unit" name="out_confirmed_unit" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="out_confirmed_proportion" name="out_confirmed_proportion" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required|checkTotal" id="backward_out_confirmed_total" name="out_confirmed_total" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required|checkTotal" id="out_former_total" name="out_former_total" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required" id="backward_stock_no" name="stock_no" type="hidden">'
+                            , '<input class="layui-input" lay-verify="required|checkTotal" id="backward_stock_total" name="stock_total" type="hidden">'
+                            , '</div>'
+                            , '</li>'
+                            , '<li class="layui-form-item" style="text-align:center;">'
+                            , '<button type="submit" id="backward_btn" lay-submit lay-filter="backward_btn" class="layui-btn">提交</button>'
+                            , '</li>'
+                            , '</ul>'].join('')
+                        , success: function (layero, index) {
+                            laydate.render({
+                                elem: '#in_confirmed_date',
+                                type: 'datetime',
+                                value: new Date(),
+                            });
+                            $("#backward_stock_total").val('');
+                            $("#delivery_id").val(checkRow.data[0].id);
+                            $("#out_confirmed_name").val(checkRow.data.entity_name+"/"+checkRow.data[0].entity_type);
+                            $("#out_no").val(checkRow.data[0].out_confirmed_no);
+                            $("#out_former_total").val(checkRow.data[0].out_confirmed_total);
+                            $("#backward_out_confirmed_total").val(checkRow.data[0].out_confirmed_total);
+                            CD_ajaxAllParam('/getStockByStockId',{stockId: checkRow.data[0].stock_id},true,function (data){
+                                if (null!=data.Object&&!$.isEmptyObject(data.Object)) {
+                                    var sucData=data.Object;
+                                    $("#backward_out_confirmed_unit").val(sucData.stock_unit);
+                                    $("#out_confirmed_proportion").val(sucData.stock_proportion);
+                                    $("#backward_stock_total").val(sucData.stock_total);
+                                    $("#backward_out_confirmed_total_unit").val(sucData.stock_total_unit);
+                                }
+                            });
+                            $('#in_confirmed_no').blur(function () {
+                                if(CheckIsNullOrEmpty($("#backward_stock_total").val())&&CheckIsNullOrEmpty($("#out_former_total").val())){
+                                    $("#in_confirmed_no").val(calculate_amount($("#in_confirmed_no").val(),$("#out_confirmed_proportion").val()));
+                                    $("#in_confirmed_total").val(reckon_stock_total($("#in_confirmed_no").val(),$("#out_confirmed_proportion").val()));
+                                    $("#backward_out_confirmed_total").val(parseInt($("#out_former_total").val())-parseInt($("#in_confirmed_total").val()));
+                                    $("#backward_stock_no").val(makeInNum(parseInt($("#in_confirmed_total").val())+parseInt($("#backward_stock_total").val()),$("#out_confirmed_proportion").val()));
+                                    $("#backward_out_confirmed_no").val(makeInNum($("#backward_out_confirmed_total").val(),$("#out_confirmed_proportion").val()));
+                                    $("#out_no").val($("#backward_out_confirmed_no").val());
+                                }
+                            })
+                            form.render().on('submit(backward_btn)', function(data){
+                                var backwardData=checkRow.data[0];
+                                backwardData.out_confirmed_date=data.field.in_confirmed_date;
+                                backwardData.out_confirmed_no=data.field.out_confirmed_no;
+                                backwardData.out_confirmed_total=data.field.out_confirmed_total;
+                                backwardData.out_former_total=data.field.out_former_total;
+                                backwardData.out_confirmed_unit=data.field.out_confirmed_unit;
+                                backwardData.out_confirmed_total_unit=data.field.out_confirmed_total_unit;
+                                backwardData.delivery_id=data.field.delivery_id;
+                                backwardData.in_confirmed_date=data.field.in_confirmed_date;
+                                backwardData.in_confirmed_no=data.field.in_confirmed_no;
+                                backwardData.in_confirmed_total=data.field.in_confirmed_total;
+                                backwardData.out_no=data.field.out_no;
+                                backwardData.stock_no=data.field.stock_no;
+                                backwardData.stock_total=data.field.stock_total;
+                                CD_ajaxAllParam('/mobile/backwardDelivery',backwardData,true,function (data){
+                                    if (result_handle(data)) {
+                                        table.reloadData('Delivery_table');
+                                        layer.msg('反出库完成', {icon: 1, time: 1000,},
+                                            function (index) {
+                                                layer.close(index);
+                                            });
+                                    } else {
+                                        layer.msg(data.error, {icon: 2, time: 5000,},
+                                            function (index) {
+                                                layer.close(index);
+                                            });
+                                    }
+                                    layer.close(backward_layer);
+                                });
+                            });
+                        }
+                    });
+                    break;
+            };
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
