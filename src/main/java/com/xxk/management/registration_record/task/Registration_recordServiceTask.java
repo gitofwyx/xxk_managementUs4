@@ -45,7 +45,7 @@ public class Registration_recordServiceTask {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
         try {
-            String bootUrl = "http://xxk-manage.nat300.top/";
+            String bootUrl = "https://xxk-manage.mynatapp.cc/";
             String markDownUrl = bootUrl + "reg?reg_id=";
             String[] status = {"0", "1"};
             String[] e_status = {"0"};

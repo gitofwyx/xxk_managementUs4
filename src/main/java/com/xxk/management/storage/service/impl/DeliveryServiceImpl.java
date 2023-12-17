@@ -79,6 +79,10 @@ public class DeliveryServiceImpl implements DeliveryService {
         return dao.listDeliveryUNIONStorageByOffice((pageStart - 1) * pageSize, pageSize, stock_id);
     }
 
+    public List<Delivery> getDeliveryUNIONStorageByEntityId(String entity_id){
+        return dao.getDeliveryUNIONStorageByEntityId(entity_id);
+    }
+
     @Override
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public Map<String, Object> addDelivery(Stock stock, Delivery delivery, String genre, String status) throws Exception, RuntimeException {

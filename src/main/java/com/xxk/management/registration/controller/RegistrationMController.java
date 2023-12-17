@@ -61,7 +61,7 @@ public class RegistrationMController extends BaseController {
                 comWebSocketHandler.sendMessageToUsers(new TextMessage("有新的申请单已提交，提交人："+CurrentUser+"提交科室："+reg_office_ident));
                 Map<String, Object> textMap = new HashMap<>();
                 //String bootUrl="http://192.168.3.40:8080/";
-                String bootUrl="http://xxk-manage.nat300.top/";
+                String bootUrl="https://xxk-manage.mynatapp.cc/";
                 String textUrl=bootUrl+"reg?reg_id="+recId;
                 textMap.put("content",CurrentUser+":"+reg_office_ident+record.getReg_record_content()+"\n"+textUrl);
                 weChatRobotService.chatBotSendByText(textMap);

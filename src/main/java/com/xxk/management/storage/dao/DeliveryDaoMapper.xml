@@ -101,6 +101,21 @@ updateDate</sql>
         ) AS Storage_UNION ORDER BY Storage_UNION.updateDate desc limit #{0},#{1};
     </select>
 
+    <select id="getDeliveryUNIONStorageByEntityId" resultType="com.xxk.management.storage.entity.Delivery">
+        SELECT Storage_UNION.*
+        FROM (
+        select
+        <include refid="deliveryForEntry"></include>
+        from xxk_delivery
+        where deleteFlag='0' and out_confirmed_genre!='6' and stock_entity_id=#{0} and entity_entry_status in ('0','1','2')
+        UNION ALL
+        select
+        <include refid="storageForEntry"></include>
+        from xxk_offices_storage
+        where deleteFlag='0' and offices_entity_id=#{0} and entity_entry_status in ('0','1','2')
+        ) AS Storage_UNION;
+    </select>
+
     <!--添加信息 -->
     <insert id="addDelivery" parameterType="com.xxk.management.storage.entity.Delivery">
         insert into xxk_delivery(<include refid="columns"></include>) values(

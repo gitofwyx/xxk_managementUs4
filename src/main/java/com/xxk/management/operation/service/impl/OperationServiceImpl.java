@@ -92,7 +92,7 @@ public class OperationServiceImpl implements OperationService {
         String recId = UUIdUtil.getUUID();
         List<Registration_record> listRecord = new ArrayList();
         //String bootUrl="http://192.168.3.40:8080/";
-        String bootUrl="http://xxk-manage.nat300.top/";
+        String bootUrl="https://xxk-manage.mynatapp.cc/";
         String markDownUrl="("+bootUrl+"reg?reg_id="+operation.getOpe_registration_id()+")";
         String contentText1="";
         String contentText2="";
