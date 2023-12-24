@@ -148,13 +148,13 @@
                         </div>
                     </div>
                 </form>
-                <div id="reg_table_div" class="hidden-xs hidden-sm col-md-12 col-lg-12"
+                <!--<div id="reg_table_div" class="hidden-xs hidden-sm col-md-12 col-lg-12"
                      style=" padding: 10px;">
                     <table class="layui-hide" id="reg_table" lay-filter="reg_table"></table>
                     <div >
 
                     </div>
-                </div>
+                </div>-->
             </div>
 
             <!--登记记录栏-->
@@ -754,27 +754,30 @@
                                     };
                                 },
                                 btn2: function(index, layero){
-                                    if (listRecord.reg_record_status === "0" || listRecord.reg_record_status === "1") {
-                                        layer_alert("所选申请未确认受理，如果当前登录用户是<br>该登记申请人，" +
-                                            "请在确认该申请已顺利<br>受理后点击已受理，谢谢合作！", ['已受理', '关闭'], 12
+
+                                        layer_alert("请申请登记人根据情况填写处理流程登记和确认受理情况，" +
+                                            "确认当前登记信息被有效受理后请点击已受理，" +
+                                            "长时间未受理或处理情况未达预期可填写建议和反馈流程，谢谢合作！", ['流程登记', '确认'], 30
                                             , function (i, l) {
-                                                layer_alert("是否确定该申请已受理？确定后无法撤销！"
-                                                    , ['确定', '不确定'], 7, function (i, l) {
-                                                        layer.close(index);
-                                                        CD_ajaxAllParam("/acceptanceRegistration_record",
-                                                            {
-                                                                registration_id: listRecord.registration_id,
-                                                                reg_record_id: listRecord.id,
-                                                                registration_py: listRecord.reg_record_py,
-                                                                TD: 'logout'
-                                                            },
-                                                            true, function (v) {
-                                                                if (result_handle(v)) layer.msg('已提交');
-                                                                else layer.msg(v.error);
-                                                            });
-                                                    });
+                                            exe_layer_func({"reg_id":listRecord.id});
+                                            },function (i, l){
+                                                if (listRecord.reg_record_status === "0" || listRecord.reg_record_status === "1") {
+                                                    layer_alert("是否确定该申请已受理？确定后无法撤销！"
+                                                        , ['已受理', '不确定'], 7, function (i, l) {
+                                                            layer.close(index);
+                                                            CD_ajaxAllParam("/acceptanceRegistration_record",
+                                                                {
+                                                                    registration_id: listRecord.registration_id,
+                                                                    reg_record_id: listRecord.id,
+                                                                    registration_py: listRecord.reg_record_py,
+                                                                    TD: 'logout'
+                                                                },
+                                                                true, function (v) {
+                                                                    if (result_handle(v)) layer.msg('已提交');
+                                                                    else layer.msg(v.error);
+                                                                });
+                                                        }); } else layer.close(index);
                                             });
-                                    } else layer.close(index);
                                 }
                             });
 
