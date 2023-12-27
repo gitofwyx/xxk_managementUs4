@@ -19,7 +19,7 @@ function CD_ajaxNoParam(url,async,callback){
     })
 }
 
-function CD_ajaxAllParam(url,v,async,callback){
+function CD_ajaxAllParam(url,v,async,callback,e_callback){
     $.ajax({
         url:url,
         data: v,
@@ -37,6 +37,7 @@ function CD_ajaxAllParam(url,v,async,callback){
             console.log('错误')
             console.log(xhr)
             console.log(textStatus)
+            e_callback(xhr);
         }
     })
 }

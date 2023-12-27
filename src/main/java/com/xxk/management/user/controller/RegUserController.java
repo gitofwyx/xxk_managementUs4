@@ -101,27 +101,30 @@ public class RegUserController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/updateRegUser")
-    public Map<String, Boolean> updateRegUser(RegUser user) {
-        Map<String, Boolean> result = new HashMap<>();
+    public Map<String, Object> updateRegUser(RegUser user) {
+        Map<String, Object> result = new HashMap<>();
         //String phone=(String)request.getAttribute("phone");
         //String phone = request.getParameter("phone");
         String updateDate = DateUtil.getFullTime();
         String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
         try {
+            user.setId(CurrentUserId);
             user.setUpdateUserId(CurrentUserId);
             user.setUpdateDate(updateDate);
             if (rebUserService.updateRegUser(user) == false) {
                 log.error("更新出错");
-                result.put("success", true);
+                result.put("hasError", true);
+                result.put("error", "更新出错");
                 return result;
             }
             result.put("success", true);
         } catch (Exception e) {
             log.error(e);
-            result.put("error", false);
-        } finally {
+            result.put("hasError", true);
+            result.put("error", "更新出错");
             return result;
         }
+        return result;
     }
 
     @ResponseBody

@@ -57,8 +57,12 @@
             <div id="reg_area" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-2 col-lg-offset-2">
                 <!--偏移列 .col-*-offset-* -->
                 <form class="form-horizontal layui-form" autocomplete="off" id="reg_area_form">
-                    <h3 class="form-signin-heading" style="margin-top:20px;margin-bottom:5px; ">
+                    <div class="col-sm-12 col-xs-12 col-lg-12" style="margin-bottom:10px;padding-left: 0px; ">
+                    <h3 class="form-signin-heading col-xs-6 col-sm-6 col-md-6 col-lg-6" style="margin-top:20px;margin-bottom:5px;padding-left: 0px ">
                         <i id="reg_form_title" class="layui-icon layui-icon-list" style="font-size: 26px;">登记</i></h3>
+                    <h3 class="form-signin-heading col-xs-6 col-sm-6 col-md-6 col-lg-6" style="margin-top:26px;margin-bottom:5px; ">
+                        <i id="personal_settings" class="layui-icon layui-icon-user" style="font-size: 20px;float: right" lay-on="personal_settings"></i></h3>
+                    </div>
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">登记科室</label>
                         <div class="">
@@ -80,7 +84,7 @@
                             <input type="text" id="exe_office_ident" class="form-control NO_Reset"
                                    name="exe_office_ident"
                                    placeholder="请选择">
-                            <input type="hidden" name="exe_office_id" id="exe_office_id" lay-verify="required"
+                            <input type="hidden" name="exe_office_id" id="exe_office_id"
                                    class="NO_Reset"
                                    lay-verType="alert"
                                    lay-reqText="执行科室不能为空">
@@ -368,8 +372,9 @@
     }
 
 
-    layui.use(['form', 'dropdown', 'layedit', 'laydate','table'], function () {
+    layui.use(['form','util', 'dropdown', 'layedit', 'laydate','table'], function () {
         var form = layui.form
+            , util = layui.util
             , table = layui.table
             , dropdown = layui.dropdown
             , layer = layui.layer
@@ -1025,6 +1030,26 @@
                     $(this).val('');
             });
             return false;
+        });
+
+        util.on('lay-on', {
+            "personal_settings": function (othis) {
+                layer.prompt({title: '修改密码', formType: 1}, function(pass1, index){
+                    layer.close(index);
+                    layer.prompt({title: '再次输入', formType: 1}, function(pass2, index){
+                        layer.close(index);
+                        if(pass1===pass2){
+                            CD_ajaxAllParam("/updateRegUser", {password:pass2, TD: "logout",}, true,function (v) {
+                                if (result_handle(v)) {
+                                    layer.msg('更改完成')
+                                }else layer.alert('更改失败,系统错误，联系管理员');
+                            },function () {
+                                layer.alert('更改失败,系统错误，联系管理员');
+                            })
+                        }else layer.msg('两次输入不一致！');
+                    });
+                });
+            }
         });
 
         $('#reg_form_title').on('click', function () {
