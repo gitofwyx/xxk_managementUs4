@@ -4,6 +4,8 @@ import com.xxk.core.file.BaseController;
 import com.xxk.core.util.JsonUtils;
 import com.xxk.management.device.service.DeviceService;
 import com.xxk.management.material.service.MaterialService;
+import com.xxk.management.office.devices.entity.Devices;
+import com.xxk.management.office.devices.service.StockDevicesService;
 import com.xxk.management.storage.entity.Delivery;
 import com.xxk.management.storage.entity.Storage;
 import com.xxk.management.storage.service.DeliveryService;
@@ -36,7 +38,7 @@ public class DeliveryMController extends BaseController {
     private DeliveryService deliveryService;
 
     @Autowired
-    private RebUserService rebUserService;
+    private StockDevicesService stockDevicesService;
 
     @Autowired
     private DeviceService deviceService;
@@ -134,6 +136,34 @@ public class DeliveryMController extends BaseController {
             result.put("entityData", resultList);
             result.put("results", 9);
 
+        } catch (Exception e) {
+            log.error(e);
+            result.put("hasError", true);
+            result.put("error", "查询出错");
+        }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping("/getDeliveryWithDevicesByIdent")
+    public Map<String, Object> getDeliveryWithDevicesByIdent(@RequestParam(value = "ident") String ident) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            List<Devices> list_dev=stockDevicesService.getDevicesByIdent(ident);
+            if(list_dev.size()==0){
+                result.put("hasError", true);
+                result.put("error", "未查询到条码对应的设备信息");
+                return result;
+            }
+            Devices devices=list_dev.get(0);
+            List<Delivery> list_del=deliveryService.getDeliveryUNIONStorageByEntityId(devices.getId());
+            if(list_del.size()==0){
+                result.put("hasError", true);
+                result.put("error", "未查询到该设备的出库记录");
+                return result;
+            }
+            result.put("devices",devices);
+            result.put("delivery",list_del.get(0));
         } catch (Exception e) {
             log.error(e);
             result.put("hasError", true);

@@ -37,7 +37,10 @@ function CD_ajaxAllParam(url,v,async,callback,e_callback){
             console.log('错误')
             console.log(xhr)
             console.log(textStatus)
-            e_callback(xhr);
+            if (typeof e_callback === "function") {
+                //调用它，既然我们已经确定了它是可调用的
+                e_callback(xhr);
+            }
         }
     })
 }

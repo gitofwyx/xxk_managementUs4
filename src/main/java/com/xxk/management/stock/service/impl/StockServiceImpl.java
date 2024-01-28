@@ -99,6 +99,7 @@ public class StockServiceImpl implements StockService {
             stock.setId(stockId);
             stock.setStock_no(storage.getIn_confirmed_no());
             stock.setStock_total(storage.getIn_confirmed_total());
+            stock.setStock_configured_count(0);
             stock.setStock_flag("1");
             stock.setCreateDate(createDate);
             stock.setCreateUserId(stock.getUpdateUserId());

@@ -111,44 +111,40 @@
 
                     <div id="stock_data_input" class="col-sm-12 col-xs-12 col-lg-12" style="margin-top: 10px">
                         <div id="">
-                            <input type="hidden" name="class_id" id="class_id" lay-verify="required"
+                            <input type="hidden" name="depository_id" id="depository_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存类别为空">
-                            <input type="hidden" name="entity_id" id="entity_id" lay-verify="required"
+                            <input type="hidden" name="entity_record_id" id="entity_record_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存数量为空">
-                            <input type="hidden" name="stock_entity_id" id="stock_entity_id" lay-verify="required"
+                            <input type="hidden" name="offices_entity_id" id="offices_entity_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存单位为空">
-                            <input type="hidden" name="present_stock_id" id="present_stock_id" lay-verify="required"
+                            <input type="hidden" name="stock_or_depository_id" id="stock_or_depository_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="总量单位为空">
-                            <input type="hidden" name="inventory_office_id" id="inventory_office_id" lay-verify="required"
+                            <input type="hidden" name="offices_storage_genre" id="offices_storage_genre" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存比列为空">
-                            <input type="hidden" name="entity_name" id="entity_name" lay-verify="required"
+                            <input type="hidden" name="depository_type" id="depository_type" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="库存总量为空">
-                            <input type="hidden" name="entity_type" id="entity_type"
+                            <input type="hidden" name="depository_officeId" id="depository_officeId"
                                    lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="可用库存为空">
-                            <input type="hidden" name="stock_no" id="stock_no" lay-verify="required"
+                            <input type="hidden" name="depository_no" id="depository_no" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="出库数量为空">
-                            <input type="hidden" name="out_confirmed_no" id="out_confirmed_no"
+                            <input type="hidden" name="depository_idle_no" id="depository_idle_no"
                                    lay-verify="required|bad_stock"
                                    lay-verType="alert"
                                    lay-reqText="出库总量为空">
-                            <input type="hidden" name="out_confirmed_unit" id="out_confirmed_unit"
+                            <input type="hidden" name="entity_entry_status" id="entity_entry_status"
                                    lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="出库单位为空">
-                            <input type="hidden" name="out_confirmed_proportion" id="out_confirmed_proportion"
-                                   lay-verify="required"
-                                   lay-verType="alert"
-                                   lay-reqText="出库总量单位为空">
-                            <input type="hidden" name="out_confirmed_total_unit" id="out_confirmed_total_unit"
+                            <input type="hidden" name="depository_version" id="depository_version"
                                    lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="版本号为空">
@@ -215,53 +211,50 @@
 
         var BC_device = [],
             BC_entity = [];
-        CD_ajaxAllParam("/getDevicesByIdent", {
+        CD_ajaxAllParam("/mobile/getDeliveryWithDevicesByIdent", {
             ident: ident,
             "TD": "logout"
-        }, true, function (data) {
-            if (data == null) {
-                layer.msg('该条码没有绑定任何信息_',
-                    {icon: 5, time: 3000,},
-                    function (index) {
-                        layer.close(index);
-                    });
-                return;
-            }
-            if (!result_handle(data)) {
-                layer.msg(data.error, {icon: 2, time: 5000,},
+        }, true, function (v) {
+            if (!result_handle(v)) {
+                layer.msg(v.error, {icon: 2, time: 5000,},
                     function (index) {
                         layer.close(index);
                     });
                 return;
             }
 
-            $("#present_stock_id").val( data.devices.present_stock_id);
-            $("#class_id").val(data.devices.class_id);
-            $("#entity_id").val( data.devices.device_id);
-            $("#entity_name").val(data.device.dev_name);
-            $("#entity_type").val( data.device.dev_type);
-            $("#stock_entity_id").val( data.devices.id);
-            $("#dev_type").val( data.device.dev_name + "/" + data.device.dev_type);
-            $("#dev_brand").val( data.device.dev_brand );
-            $("#office_unique_name").val( data.devices.office_unique_name);
-            $("#inventory_office_id").val(data.devices.inventory_office_id);
-            $("#device_location").val( data.devices.device_location);
-            if (!CheckIsNullOrEmpty($("#stock_no").val())) {
-                CD_ajaxAllParam("/getStockByStockId",
-                    {"stockId": data.devices.present_stock_id},
-                    true,
-                    function (v) {
-                        if (v != null && v != undefined) {
-                            var no = parseInt(v.Object.stock_total) - 1;
-                            $("#stock_no").val(makeInNum(no, v.Object.stock_proportion));
-                            $("#out_confirmed_no").val(makeInNum(1, v.Object.stock_proportion));
-                            $("#out_confirmed_unit").val( v.Object.stock_unit);
-                            $("#out_confirmed_proportion").val( v.Object.stock_proportion);
-                            $("#out_confirmed_total_unit").val( v.Object.stock_total_unit);
-                        }
-                    }
-                );
-            }
+            CD_ajaxAllParam("/selectDepositoryForOfficeEntitys",{
+                entity_id: v.delivery.entity_id,
+                depository_officeId: v.delivery.out_confirmed_officeId,
+            },true,function (data) {
+                var depository_no = 0;
+                var depository_idle_no = 0;
+                if (data != null && !$.isEmptyObject(data)) {
+                    depository_no = parseInt(data.listDepository[0].depository_total);
+                    depository_idle_no = parseInt(data.listDepository[0].depository_idle_total);
+                }
+                depository_no = depository_no + parseInt(v.delivery.out_confirmed_total);
+                depository_idle_no = depository_idle_no + parseInt(v.delivery.out_confirmed_total);
+                $("#depository_no").val(makeInNum(depository_no, 1));
+                $("#depository_idle_no").val(makeInNum(depository_idle_no, 1));
+            })
+            $("#depository_no").val(makeInNum(depository_no, 1));
+            $("#depository_idle_no").val(makeInNum(depository_idle_no, 1));
+            $("#class_record_id").val(v.delivery.class_id);
+            $("#offices_entity_id").val(v.delivery.stock_entity_id);
+            $("#delivery_entity_name").val(v.delivery.entity_name);
+            $("#delivery_entity_type").val(v.delivery.entity_type);
+            $("#stock_or_depository_id").val(v.delivery.stock_id);
+            $("#depository_type").val(v.delivery.out_confirmed_type);
+            $("#out_confirmed_total").val(v.delivery.out_confirmed_total);
+            $("#offices_storage_unit").val(v.delivery.out_confirmed_total_unit);
+            $("#offices_storage_no").val(conversion_Num(v.delivery.out_confirmed_no, v.delivery.out_confirmed_proportion, 1));
+            $("#offices_storage_proportion").val(1);
+            $("#offices_storage_total").val(v.delivery.out_confirmed_total);
+            $("#entity_entry_status").val(v.delivery.entity_entry_status);
+            $("#unit_num_1").val(1);
+
+
         });
     }
 
@@ -312,19 +305,6 @@
         num = parseInt(total / stock_proportion) + num;
         return num;
     }
-
-    //出库数量输入框光标移出事件
-    function stock_delivers() {
-        $("#out_confirmed_no").val($("#out_confirmed_no2").val());
-        var O_num = $("#out_confirmed_no2").val();//获取入库数量no
-        var proportion = $("#stock_proportion").val();
-        var out_stock_total = reckon_stock_total(O_num, proportion);
-        $("#out_confirmed_total").val(out_stock_total);
-        $("#out_confirmed_total2").val(out_stock_total);
-        O_num = $("#stock_idle_total").val() - out_stock_total;
-        $("#stock_idle_total").val(O_num);
-        $("#stock_no").val(makeInNum(O_num, proportion));
-    };
 
     function out_officeSuggest(i, onSet_ck, onUnset_ck) {
 
@@ -534,7 +514,9 @@
         util.on('lay-on', {
             "get_bar_code": function (othis) {
 
-                $('#bar_code').attr('readonly', false);
+
+                verify_bar_code(form.val('bar_code_devices').bar_code);
+                /*$('#bar_code').attr('readonly', false);
                 if (CheckIsNullOrEmpty(form.val('bar_code_devices').bar_code)) {
                     verify_bar_code(form.val('bar_code_devices').bar_code);
                     form.val("bar_code_devices", {
@@ -556,7 +538,7 @@
                         });
                         verify_bar_code(form.val('bar_code_devices').bar_code);
                     }
-                });
+                });*/
             }
         });
 

@@ -152,9 +152,9 @@ public class OperationServiceImpl implements OperationService {
         else if("4".equals(operation.getOpe_statement())){
             markdownMap.put("content",contentText1+"已提交新的处理反馈:\n"+contentText2);
         }
-
-        weChatRobotService.chatBotSendByMarkdown(markdownMap);
-
+        if(reg_recordMap.get("WXRobot")!=null){
+            weChatRobotService.chatBotSendByMarkdown(markdownMap);
+        }
         return resultReg;
     }
 

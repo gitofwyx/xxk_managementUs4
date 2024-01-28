@@ -284,6 +284,16 @@
                                     <textarea class="form-control" name="ope_record_describe" rows="7"></textarea>
                                 </div>
                             </div>
+                            <div id="" class="col-sm-12 col-xs-12 col-lg-12"
+                                 style="margin-bottom:10px; ">
+                                <div style="float: left">
+                                    <div style="height: 10px;" class="visible-xs"></div>
+                                    <label class="control-label" style="float:top;">发送企业微信通知&nbsp;&nbsp;</label>
+                                </div>
+                                <div style="float: left">
+                                    <input type="checkbox" name="WXRobot" lay-skin="switch" lay-filter="WX_switch" checked>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -638,7 +648,7 @@
 
         }
 
-        function layer_alert(msg, btn, time, btn1_ck, btn2_ck) {
+        function layer_alert(msg, btn, time, btn1_ck, btn2_ck,loc ) {
             if (isNaN(time) || !CheckIsNullOrEmpty(time)) {
                 time = 5;
             }
@@ -646,6 +656,7 @@
             id = layer.open({
                 content: msg
                 , btn: btn
+                ,btnAlign: loc
                 , time: time * 1000
                 , success: function (layero, index) {
                     var timeNum = this.time / 1000, setText = function (start) {
@@ -782,7 +793,7 @@
                                                                     else layer.msg(v.error);
                                                                 });
                                                         }); } else layer.close(index);
-                                            });
+                                            },'c');
                                 }
                             });
 

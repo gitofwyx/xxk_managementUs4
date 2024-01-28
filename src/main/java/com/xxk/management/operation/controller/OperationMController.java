@@ -15,6 +15,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -64,13 +65,14 @@ public class OperationMController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/addMobileOperation")
+    @RequestMapping(value = "/addMobileOperation",method = RequestMethod.POST)
     public Map<String, Object> addMobileOperation(Operation operation,
                                                   @RequestParam(value = "registration_id") String registration_id,
                                                   @RequestParam(value = "reg_record_ident") String reg_record_ident,
                                                   @RequestParam(value = "reg_record_name") String reg_record_name,
                                                   @RequestParam(value = "reg_record_date") String reg_record_date,
-                                                  @RequestParam(value = "reg_record_content") String reg_record_content) {
+                                                  @RequestParam(value = "reg_record_content") String reg_record_content,
+                                                  @RequestParam(value = "WXRobot",required = false) String WXRobot) {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> reg_recordMap=new HashMap<>();
         String Date = DateUtil.getFullTime();
@@ -91,6 +93,7 @@ public class OperationMController extends BaseController {
             reg_recordMap.put("reg_record_date",reg_record_date);
             reg_recordMap.put("reg_record_content",reg_record_content);
             reg_recordMap.put("CurrentUser",CurrentUser);
+            reg_recordMap.put("WXRobot",WXRobot);
             Boolean resultOpe = operationService.addOperation(operation,reg_recordMap);
             if (!(resultOpe)) {
                 result.put("hasError", true);

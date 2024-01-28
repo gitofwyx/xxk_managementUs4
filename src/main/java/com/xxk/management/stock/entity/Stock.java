@@ -20,7 +20,7 @@ public class Stock extends BaseInfoEntity {
     private double stock_idle_total;       //闲置库存总量（以设备总量单位计）
     private double stock_configured_total;       //已配置置库存总量（已设备总量单位计）
     private String stock_total_unit;  //总量单位
-    private String stock_configured_count;
+    private int stock_configured_count;
     private String stock_flag;          //库存状态
     private String remark;          //备注
     private String keyWord;           //关键字
@@ -133,11 +133,11 @@ public class Stock extends BaseInfoEntity {
         this.stock_total_unit = stock_total_unit;
     }
 
-    public String getStock_configured_count() {
+    public int getStock_configured_count() {
         return stock_configured_count;
     }
 
-    public void setStock_configured_count(String stock_configured_count) {
+    public void setStock_configured_count(int stock_configured_count) {
         this.stock_configured_count = stock_configured_count;
     }
 
