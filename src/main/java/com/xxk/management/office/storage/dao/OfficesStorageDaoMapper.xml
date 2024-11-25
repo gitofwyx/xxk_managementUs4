@@ -72,6 +72,12 @@ offices_storage_officeId,offices_storage_date,offices_storage_no,offices_storage
           and deleteFlag='0';
     </update>
 
+    <update id="updateOfficesStorageGenre_and_Status"  parameterType="string">
+        update xxk_offices_storage set offices_storage_genre=#{1},entity_entry_status=#{2},updateUserId=#{3},updateDate=#{4}
+        where id=#{0}
+          and deleteFlag='0';
+    </update>
+
     <!--修改信息 -->
     <update id="updateRegUser" parameterType="com.xxk.management.user.entity.RegUser">
         update xxk_reg_user set account=#{account},birth=#{birth},sex=#{sex},phone=#{phone},createUnit=#{createUnit},

@@ -22,5 +22,7 @@ public interface OfficesStorageDao {
 
     public int updateOfficesStorageStatus(String id,String status);
 
+    public int updateOfficesStorageGenre_and_Status(String id,String genre,String status,String userId,String Date);
+
 
 }

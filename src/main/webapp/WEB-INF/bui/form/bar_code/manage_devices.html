@@ -54,16 +54,16 @@
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">设备型号信息</label>
                         <div id="devices_type_div">
-                            <input type="text" id="dev_type" class="form-control" readonly="readonly"
-                                   name="dev_type">
+                            <input type="text" id="delivery_entity_name" class="form-control" readonly="readonly"
+                                   name="delivery_entity_name">
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
                         <label class="control-label" style="margin-bottom:5px; ">设备品牌信息</label>
                         <div id="devices_brand_div">
-                            <input type="text" id="dev_brand" class="form-control" readonly="readonly"
-                                   name="dev_brand">
+                            <input type="text" id="delivery_entity_type" class="form-control" readonly="readonly"
+                                   name="delivery_entity_type">
                         </div>
                     </div>
 
@@ -78,18 +78,26 @@
                     </div>
 
                     <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
-                        <label class="control-label" style="margin-bottom:5px; ">出库科室</label>
+                        <label class="control-label" style="margin-bottom:5px; ">入科科室</label>
                         <div class="">
-                            <input type="text" id="out_confirmed_ident" class="form-control NO_Reset hide_keyboard"
-                                   name="out_confirmed_ident"
+                            <input type="text" id="out_confirmed_offName" class="form-control NO_Reset hide_keyboard"
+                                   name="out_confirmed_offName" readonly="readonly"
                                    placeholder="请选择">
                             <input type="hidden" name="out_confirmed_officeId" id="out_confirmed_officeId"
                                    lay-verify="required"
                                    class="NO_Reset"
                                    lay-verType="alert"
-                                   lay-reqText="出库科室不能为空">
+                                   lay-reqText="科室不能为空">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">当前设备状态</label>
+                        <div id="deployment_status_div">
+                            <input type="text" id="deployment_status" class="form-control"
+                                   name="deployment_status" readonly="readonly">
                         </div>
                     </div>
 
@@ -109,52 +117,104 @@
                         </div>
                     </div>
 
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">选择部署的工作站</label>
+                        <div class="devices_station_div" id="devices_station_div">
+                            <input type="text" id="devices_station" class="form-control NO_Reset hide_keyboard"
+                                   name="devices_station"
+                                   placeholder="请选择">
+                            <input type="hidden" name="station_id" id="station_id"
+                                   lay-verify="required"
+                                   class="NO_Reset"
+                                   lay-verType="alert"
+                                   lay-reqText="科室不能为空">
+                            <ul class="dropdown-menu " role="menu">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12 col-lg-6" style="margin-bottom:10px; ">
+                        <label class="control-label" style="margin-bottom:5px; ">工作站位置</label>
+                        <div id="station_location_div">
+                            <input type="text" id="workstation_location" class="form-control"
+                                   name="workstation_location">
+                        </div>
+                    </div>
+
                     <div id="stock_data_input" class="col-sm-12 col-xs-12 col-lg-12" style="margin-top: 10px">
                         <div id="">
-                            <input type="hidden" name="depository_id" id="depository_id" lay-verify="required"
+                            <input type="hidden" name="delivery_id" id="delivery_id" lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="库存类别为空">
+                                   lay-reqText="出库记录ID为空">
+                            <input type="hidden" name="out_confirmed_no" id="out_confirmed_no" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="出库记录数量为空">
+                            <input type="hidden" name="depository_id" id="depository_id" lay-verType="alert">
+                            <input type="hidden" name="class_record_id" id="class_record_id" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="设备种类ID为空">
                             <input type="hidden" name="entity_record_id" id="entity_record_id" lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="库存数量为空">
+                                   lay-reqText="设备型号ID为空">
                             <input type="hidden" name="offices_entity_id" id="offices_entity_id" lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="库存单位为空">
+                                   lay-reqText="设备科室为空">
                             <input type="hidden" name="stock_or_depository_id" id="stock_or_depository_id" lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="总量单位为空">
+                                   lay-reqText="科室库存ID为空">
+                            <input type="hidden" name="entity_name" id="entity_name" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="设备名称为空">
+                            <input type="hidden" name="entity_type" id="entity_type" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="设备型号为空">
                             <input type="hidden" name="offices_storage_genre" id="offices_storage_genre" lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="库存比列为空">
+                                   lay-reqText="流动类别为空">
+                            <input type="hidden" name="offices_storage_unit" id="offices_storage_unit" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="流动单位为空">
+                            <input type="hidden" name="offices_storage_no" id="offices_storage_no" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="流动数量为空">
+                            <input type="hidden" name="offices_storage_proportion" id="offices_storage_proportion" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="流动单位比例为空">
+                            <input type="hidden" name="offices_storage_total" id="offices_storage_total" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="流动总量为空">
                             <input type="hidden" name="depository_type" id="depository_type" lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="库存总量为空">
+                                   lay-reqText="科室库存设备种类为空">
                             <input type="hidden" name="depository_officeId" id="depository_officeId"
                                    lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="可用库存为空">
+                                   lay-reqText="科室库存科室ID为空">
                             <input type="hidden" name="depository_no" id="depository_no" lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="出库数量为空">
+                                   lay-reqText="科室库存数量为空">
                             <input type="hidden" name="depository_idle_no" id="depository_idle_no"
                                    lay-verify="required|bad_stock"
                                    lay-verType="alert"
-                                   lay-reqText="出库总量为空">
+                                   lay-reqText="科室库存剩余数量为空">
+                            <input type="hidden" name="depository_proportion" id="depository_proportion" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="科室库存单位比例为空">
                             <input type="hidden" name="entity_entry_status" id="entity_entry_status"
                                    lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="出库单位为空">
+                                   lay-reqText="入科状态为空">
                             <input type="hidden" name="depository_version" id="depository_version"
                                    lay-verify="required"
                                    lay-verType="alert"
-                                   lay-reqText="版本号为空">
+                                   lay-reqText="科室库存版本号为空">
 
                             <ul class="dropdown-menu " role="menu">
                             </ul>
                         </div>
                         <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-left:0px;padding-right:5px ">
-                            <button type="button" class="btn btn-primary btn-block" id="bar_code_submit" lay-submit
-                                    lay-filter="bar_code_submit">入科
+                            <button type="button" class="btn btn-primary btn-block" id="device entry_submit" lay-submit
+                                    lay-filter="device entry_submit">入科
                             </button>
                         </div>
                         <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-left:10px;padding-right:0px ">
@@ -205,6 +265,7 @@
 
     var device_data = [],//全部dev初始化
         entity_data = [],//型号初始化
+        devices_stationDiv,
         offices_select = localstorageIO("offices_select", "/getOfficeSelect");
 
     function verify_bar_code(ident) {
@@ -230,28 +291,52 @@
                 var depository_no = 0;
                 var depository_idle_no = 0;
                 if (data != null && !$.isEmptyObject(data)) {
+                    $("#depository_version").val(data.listDepository[0].depository_version);
+                    $("#depository_id").val(data.listDepository[0].id);
                     depository_no = parseInt(data.listDepository[0].depository_total);
                     depository_idle_no = parseInt(data.listDepository[0].depository_idle_total);
+                }
+                else {
+                    $("#depository_version").val(0);
                 }
                 depository_no = depository_no + parseInt(v.delivery.out_confirmed_total);
                 depository_idle_no = depository_idle_no + parseInt(v.delivery.out_confirmed_total);
                 $("#depository_no").val(makeInNum(depository_no, 1));
                 $("#depository_idle_no").val(makeInNum(depository_idle_no, 1));
             })
+            CD_ajaxAllParam("/station/getStationSelectByOfficeId", {"office_id":v.delivery.out_confirmed_officeId}, true, function (s) {
+
+                initBsSuggest('devices_station');
+                $('#devices_station_div').html(devices_stationDiv);
+                in_stationSuggest("devices_station",s.station_data);
+            });
+            $("#delivery_id").val(v.delivery.id);
+            $("#out_confirmed_offName").val(getOfficeMakeGrid(offices_select,{})[v.delivery.out_confirmed_officeId]);
+            $("#office_unique_name").val(v.devices.office_unique_name);
+            $("#device_location").val(v.devices.device_location);
+            $("#out_confirmed_officeId").val(v.delivery.out_confirmed_officeId);
+            $("#out_confirmed_no").val(1);
+            $("#depository_officeId").val(v.delivery.out_confirmed_officeId);
             $("#depository_no").val(makeInNum(depository_no, 1));
             $("#depository_idle_no").val(makeInNum(depository_idle_no, 1));
+            $("#depository_proportion").val(1);
             $("#class_record_id").val(v.delivery.class_id);
+            $("#entity_record_id").val(v.delivery.entity_id);
             $("#offices_entity_id").val(v.delivery.stock_entity_id);
             $("#delivery_entity_name").val(v.delivery.entity_name);
             $("#delivery_entity_type").val(v.delivery.entity_type);
+            $("#entity_name").val(v.delivery.entity_name);
+            $("#entity_type").val(v.delivery.entity_type);
             $("#stock_or_depository_id").val(v.delivery.stock_id);
             $("#depository_type").val(v.delivery.out_confirmed_type);
             $("#out_confirmed_total").val(v.delivery.out_confirmed_total);
+            $("#offices_storage_genre").val('1');
             $("#offices_storage_unit").val(v.delivery.out_confirmed_total_unit);
             $("#offices_storage_no").val(conversion_Num(v.delivery.out_confirmed_no, v.delivery.out_confirmed_proportion, 1));
             $("#offices_storage_proportion").val(1);
             $("#offices_storage_total").val(v.delivery.out_confirmed_total);
             $("#entity_entry_status").val(v.delivery.entity_entry_status);
+            if($("#entity_entry_status").val()=='0')$("#deployment_status").val("未入科");
             $("#unit_num_1").val(1);
 
 
@@ -267,19 +352,6 @@
                 entity_data.push(Entity_data[j]);
             }
         }
-    }
-
-    function assemble_stock(v) {
-        $("#stock_record_id").val(v.value);
-        $("#stock_proportion").val(v.stock_proportion);
-        $("#stock_type").val(v.stock_type);
-        $("#stock_unit").val(v.stock_unit);
-        $("#stock_total").val(v.stock_total);
-        $("#stock_idle_total").val(v.stock_idle_total);
-        $("#stock_total_unit").val(v.stock_total_unit);
-        $("#out_confirmed_unit").val(v.stock_total_unit);
-        $("#out_confirmed_total_unit").val(v.stock_total_unit);
-        $("#stock_version").val(v.stock_version);
     }
 
     //入库总量生成
@@ -331,23 +403,35 @@
         );
     }
 
+    function in_stationSuggest(i,station_select, onSet_ck, onUnset_ck) {
+
+        buildBsSuggestIO(i,
+            {
+                /*url: "/getMaterialName?tab=" + v,*/
+                data: {value: station_select},
+                effectiveFields: ["workstation_ident", "text"],
+                searchFields: ["workstation_ident", "text"],
+                effectiveFieldsAlias: {workstation_ident: "编号", text: "名称",},
+                listAlign: 'auto',
+                showBtn: false,
+                autoMinWidth: false,
+                getDataMethod: 'data',
+                idField: "value",
+                keyField: "text",
+                clearable: true,
+            },
+            function (K, data) {
+                $("#station_id").val(data.value);
+                $("#workstation_location").val(data.workstation_location);
+            }, function () {
+                $("#station_id").val("");
+            }
+        );
+    }
+
     $(function () {
 
-        if (offices_select == undefined || offices_select == null) {
-            CD_ajaxAllParam("/getOfficeSelect",
-                {"updateDate": "NO"},
-                true,
-                function (v) {
-                    if (v != null && v != undefined) {
-                        offices_select = v.result;
-                        out_officeSuggest("out_confirmed_ident");
-                    }
-                }
-            );
-        } else {
-            out_officeSuggest("out_confirmed_ident");
-        }
-        ;
+        devices_stationDiv=$("#devices_station_div").html();
 
         CD_ajaxAllParam("/makeSDKSignature", {
             url: "http://xxk-manage.nat300.top/stockm/BC_delivery",
@@ -489,11 +573,11 @@
             $('.hide_keyboard').focus();//屏蔽默认键盘弹出；
         });
 
-        form.on('submit(bar_code_submit)', function (data) {
+        form.on('submit(device entry_submit)', function (data) {
             data.field.TD = "logout";
-            CD_ajaxAllParam("/deliveryStockDevices", data.field, true, function (v) {
+            CD_ajaxAllParam("/addDepository", data.field, true, function (v) {
                     if (result_handle(v)) {
-                        table.reloadData('Delivery_table');
+                        //table.reloadData('Delivery_table');
                         $("#stock_data_input input").each(function () {
                             $(this).val('');
                         });
@@ -540,131 +624,6 @@
                     }
                 });*/
             }
-        });
-
-        table.on('toolbar(delivery_table)', function(obj){
-            var checkRow = table.checkStatus(obj.config.id);
-            if (checkRow.data.length == 0) return;
-            if (checkRow.data[0].entity_entry_status > 2) {
-                layer.msg('无法回退');
-                return;
-            }
-            switch(obj.event){
-                case 'backwardDelivery':
-                    var backward_layer = layer.open({
-                        type: 1
-                        , resize: false
-                        , shadeClose: true
-                        , area: 'auto'
-                        , title: '反出库'
-                        , content: ['<ul class="layui-form layui-form-pane" style="margin: 15px;">'
-                            , '<li class="layui-form-item">'
-                            , '<div class="layui-input-inline" style="width:100px;">'
-                            , '<input class="layui-input" lay-verify="required" id="delivery_id" name="delivery_id" type="hidden">'
-                            , '</div>'
-                            , '</li>'
-                            , '<li class="layui-form-item">'
-                            , '<label class="layui-form-label">反出库时间</label>'
-                            , '<div class="layui-input-block">'
-                            , '<input class="layui-input" id="in_confirmed_date" name="in_confirmed_date" readonly="readonly" ' +
-                              'lay-verify="required|datetime" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="form-control">'
-                            , '</div>'
-                            , '</li>'
-                            , '<li class="layui-form-item">'
-                            , '<label class="layui-form-label">反出库数量</label>'
-                            , '<div class="layui-input-block">'
-                            , '<input class="layui-input" lay-verify="required|bad_stock" id="in_confirmed_no" name="in_confirmed_no">'
-                            , '</div>'
-                            , '</li>'
-                            , '<li class="layui-form-item">'
-                            , '<label class="layui-form-label">出库数量</label>'
-                            , '<div class="layui-input-block">'
-                            , '<input class="layui-input" lay-verify="required|checkTotal" id="out_no" name="out_no" readonly="readonly">'
-                            , '</div>'
-                            , '</li>'
-                            , '<li class="layui-form-item">'
-                            , '<div class="layui-input-inline" style="width:100px;">'
-                            , '<input class="layui-input" lay-verify="required" id="in_confirmed_total" name="in_confirmed_total" type="hidden">'
-                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_no" name="out_confirmed_no" type="hidden">'
-                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_unit" name="out_confirmed_unit" type="hidden">'
-                            , '<input class="layui-input" lay-verify="required" id="out_confirmed_proportion" name="out_confirmed_proportion" type="hidden">'
-                            , '<input class="layui-input" lay-verify="required|checkTotal" id="backward_out_confirmed_total" name="out_confirmed_total" type="hidden">'
-                            , '<input class="layui-input" lay-verify="required" id="backward_out_confirmed_total_unit" name="out_confirmed_total_unit" type="hidden">'
-                            , '<input class="layui-input" lay-verify="required|checkTotal" id="out_former_total" name="out_former_total" type="hidden">'
-                            , '<input class="layui-input" lay-verify="required" id="backward_stock_no" name="stock_no" type="hidden">'
-                            , '<input class="layui-input" lay-verify="required|checkTotal" id="backward_stock_total" name="stock_total" type="hidden">'
-                            , '</div>'
-                            , '</li>'
-                            , '<li class="layui-form-item" style="text-align:center;">'
-                            , '<button type="submit" id="backward_btn" lay-submit lay-filter="backward_btn" class="layui-btn">提交</button>'
-                            , '</li>'
-                            , '</ul>'].join('')
-                        , success: function (layero, index) {
-                            laydate.render({
-                                elem: '#in_confirmed_date',
-                                type: 'datetime',
-                                value: new Date(),
-                            });
-                            $("#backward_stock_total").val('');
-                            $("#delivery_id").val(checkRow.data[0].id);
-                            $("#out_confirmed_name").val(checkRow.data.entity_name+"/"+checkRow.data[0].entity_type);
-                            $("#out_no").val(checkRow.data[0].out_confirmed_no);
-                            $("#out_former_total").val(checkRow.data[0].out_confirmed_total);
-                            $("#backward_out_confirmed_total").val(checkRow.data[0].out_confirmed_total);
-                            CD_ajaxAllParam('/getStockByStockId',{stockId: checkRow.data[0].stock_id},true,function (data){
-                                if (null!=data.Object&&!$.isEmptyObject(data.Object)) {
-                                    var sucData=data.Object;
-                                    $("#backward_out_confirmed_unit").val(sucData.stock_unit);
-                                    $("#out_confirmed_proportion").val(sucData.stock_proportion);
-                                    $("#backward_stock_total").val(sucData.stock_total);
-                                    $("#backward_out_confirmed_total_unit").val(sucData.stock_total_unit);
-                                }
-                            });
-                            $('#in_confirmed_no').blur(function () {
-                                if(CheckIsNullOrEmpty($("#backward_stock_total").val())&&CheckIsNullOrEmpty($("#out_former_total").val())){
-                                    $("#in_confirmed_no").val(calculate_amount($("#in_confirmed_no").val(),$("#out_confirmed_proportion").val()));
-                                    $("#in_confirmed_total").val(reckon_stock_total($("#in_confirmed_no").val(),$("#out_confirmed_proportion").val()));
-                                    $("#backward_out_confirmed_total").val(parseInt($("#out_former_total").val())-parseInt($("#in_confirmed_total").val()));
-                                    $("#backward_stock_no").val(makeInNum(parseInt($("#in_confirmed_total").val())+parseInt($("#backward_stock_total").val()),$("#out_confirmed_proportion").val()));
-                                    $("#backward_out_confirmed_no").val(makeInNum($("#backward_out_confirmed_total").val(),$("#out_confirmed_proportion").val()));
-                                    $("#out_no").val($("#backward_out_confirmed_no").val());
-                                }
-                            })
-                            form.render().on('submit(backward_btn)', function(data){
-                                var backwardData=checkRow.data[0];
-                                backwardData.out_confirmed_date=data.field.in_confirmed_date;
-                                backwardData.out_confirmed_no=data.field.out_confirmed_no;
-                                backwardData.out_confirmed_total=data.field.out_confirmed_total;
-                                backwardData.out_former_total=data.field.out_former_total;
-                                backwardData.out_confirmed_unit=data.field.out_confirmed_unit;
-                                backwardData.out_confirmed_total_unit=data.field.out_confirmed_total_unit;
-                                backwardData.delivery_id=data.field.delivery_id;
-                                backwardData.in_confirmed_date=data.field.in_confirmed_date;
-                                backwardData.in_confirmed_no=data.field.in_confirmed_no;
-                                backwardData.in_confirmed_total=data.field.in_confirmed_total;
-                                backwardData.out_no=data.field.out_no;
-                                backwardData.stock_no=data.field.stock_no;
-                                backwardData.stock_total=data.field.stock_total;
-                                CD_ajaxAllParam('/mobile/backwardDelivery',backwardData,true,function (data){
-                                    if (result_handle(data)) {
-                                        table.reloadData('Delivery_table');
-                                        layer.msg('反出库完成', {icon: 1, time: 1000,},
-                                            function (index) {
-                                                layer.close(index);
-                                            });
-                                    } else {
-                                        layer.msg(data.error, {icon: 2, time: 5000,},
-                                            function (index) {
-                                                layer.close(index);
-                                            });
-                                    }
-                                    layer.close(backward_layer);
-                                });
-                            });
-                        }
-                    });
-                    break;
-            };
         });
 
     });

@@ -85,7 +85,8 @@
     <!--更新操作 -->
     <update id="updateDevicesStatus">
         update xxk_offices_devices
-        set location_office_id=#{1},present_stock_id=#{2},device_deployment_status=#{3},device_deployment_date='',updateUserId=#{4},updateDate=#{5}
+        set location_office_id=#{1},present_stock_id=#{2},in_storage_id=#{3},in_storage_id=#{4},device_deployment_status=#{5},device_deployment_date='',
+            updateUserId=#{6},updateDate=#{7}
         where id=#{0} and deleteFlag='0';
     </update>
 

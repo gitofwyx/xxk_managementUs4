@@ -55,11 +55,14 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
     public Map<String, Object> addOfficesStorage(Depository depository, OfficesStorage officesStorage, String status) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
-        String officesStorageId = UUIdUtil.getUUID();
 
         if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
             log.error("addOfficesStorage:officesStorage.getEntity_id为空！");
             throw new Exception("addOfficesStorage:officesStorage.getEntity_id为空！");
+        }
+        if ("".equals(officesStorage.getId()) || officesStorage.getId() == null) {
+            log.error("addOfficesStorage:officesStorage.getId为空！");
+            throw new Exception("addOfficesStorage:officesStorage.getId为空！");
         }
         //库存编号生成
         String out_confirmed_ident = IdentUtil.getIdentNo((int) depository.getDepository_no(), createDate);
@@ -68,7 +71,6 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
             throw new Exception("addOfficesStorage:out_confirmed_ident为空！");
         }
         //入库
-        officesStorage.setId(officesStorageId);
         officesStorage.setOffices_storage_ident(out_confirmed_ident);
         officesStorage.setOffices_storage_by(depository.getUpdateUserId());
         officesStorage.setOffices_storage_officeId(depository.getDepository_officeId());
@@ -97,7 +99,6 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
     public Map<String, Object> addOfficesStorage(Devices devices, OfficesStorage officesStorage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
-        String officesStorageId = UUIdUtil.getUUID();
         
         if ("".equals(officesStorage.getEntity_id()) || officesStorage.getEntity_id() == null) {
             log.error("addOfficesStorage:officesStorage.getEntity_id为空！");
@@ -110,9 +111,9 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
             throw new Exception("addOfficesStorage:out_confirmed_ident为空！");
         }
         //
-        officesStorage.setId(officesStorageId);
         officesStorage.setOffices_storage_ident(out_confirmed_ident);
         officesStorage.setOffices_storage_by(devices.getUpdateUserId());
+        officesStorage.setOriginal_storage_officeId(devices.getInventory_office_id());
         officesStorage.setOffices_storage_officeId(devices.getLocation_office_id());
         officesStorage.setOffices_storage_date(devices.getDevice_deployment_date());
         officesStorage.setOffices_storage_total(1.0);
@@ -138,6 +139,11 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
     @Override
     public boolean updateOfficesStorageStatus(String id, String status) {
         return dao.updateOfficesStorageStatus(id, status) == 1 ? true : false;
+    }
+
+    @Override
+    public boolean updateOfficesStorageGenre_and_Status(String id,String genre,String status,String userId,String Date) {
+        return dao.updateOfficesStorageGenre_and_Status(id, genre,status,userId,Date) == 1 ? true : false;
     }
 
 

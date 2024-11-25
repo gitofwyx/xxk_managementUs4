@@ -39,7 +39,7 @@ public interface DevicesDao {
 
     public int updateDevicesForWithdraw(Devices device);
 
-    public int updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
+    public int updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String in_storage_id,String delivery_id,String status,String userId,String Date);
 
     public int transferDevices(Devices devices);
 

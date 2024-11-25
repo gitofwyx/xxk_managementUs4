@@ -1,3 +1,20 @@
+//判断数据是否为Null或者undefined或者为空字符串
+function CheckIsNullOrEmpty(value) {
+    //正则表达式用于判斷字符串是否全部由空格或换行符组成
+    var reg = /^\s*$/
+    //返回值为true表示不是空字符串
+    return (value != null && value != undefined && !reg.test(value))
+}
+
+//JavaScript判断对象是不是空对象 2024年3月26日 23:08:21
+function isObjNull() {
+    for (const key in obj) {
+        //能进入就不是空对象
+        return false;
+    }
+    return true;
+}
+
 //入库总量生成
 function reckon_stock_total(num, stock_proportion) {  //（输入的库存数量 库存比例)
     //I_Form.getField('in_confirmed_no').get('value');
@@ -70,26 +87,6 @@ function stock_officeSelect(offices_select, stock_office) {
     return stock_office;
 }
 
-//生成库存键值对用于GridForenumRenderer
-function getOfficeMakeGrid(offices_select, stock_office) {
-    if (stock_office == undefined || $.isEmptyObject(stock_office)) {
-        for (var i in offices_select) {
-
-            stock_office[offices_select[i].value] = offices_select[i].text;
-
-        }
-    }
-    return stock_office;
-}
-
-//判断数据是否为Null或者undefined或者为空字符串
-function CheckIsNullOrEmpty(value) {
-    //正则表达式用于判斷字符串是否全部由空格或换行符组成
-    var reg = /^\s*$/
-    //返回值为true表示不是空字符串
-    return (value != null && value != undefined && !reg.test(value))
-}
-
 function result_handle(data) {
     if (CheckIsNullOrEmpty(data)) {
         if (data.hasError === true) {
@@ -105,4 +102,16 @@ function result_handle(data) {
     }
     return true;
 
+}
+
+//生成库存键值对用于GridForenumRenderer
+function getOfficeMakeGrid(offices_select, stock_office) {
+    if (stock_office == undefined || Object.keys(stock_office).length === 0) {
+        for (var i in offices_select) {
+
+            stock_office[offices_select[i].value] = offices_select[i].text;
+
+        }
+    }
+    return stock_office;
 }

@@ -80,7 +80,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     public List<Delivery> getDeliveryUNIONStorageByEntityId(String entity_id){
-        return dao.getDeliveryUNIONStorageByEntityId(entity_id);
+        String[] deliveryStatus = {"0","1","2"};//入科状态(-:库间转移0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科；5：反出库)
+        String[] deliveryGenre = {"0"};//（0：配置1.入科2.部署3.撤出4.回收5.调用6.借用）
+        String[] offStorageStatus = {"0","1","2","3","4"};//入科状态（0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科；5：已出科）
+        String[] offStorageGenre = {"0","1","2","3","5","6"};//（0：配置1.入科2.部署3.撤出4.回收5.调用6.借用）
+        return dao.getDeliveryUNIONStorageByEntityId(entity_id,deliveryStatus,deliveryGenre,offStorageStatus,offStorageGenre);
     }
 
     @Override

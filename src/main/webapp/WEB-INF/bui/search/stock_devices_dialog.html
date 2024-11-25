@@ -266,6 +266,9 @@
                     <input id="present_stock_id2" name="present_stock_id" type="hidden" data-rules="{required:true}">
                 </div>
                 <div class="control-group span2.5">
+                    <input id="in_storage_id" name="in_storage_id" type="hidden" data-rules="{required:true}">
+                </div>
+                <div class="control-group span2.5">
                     <input id="inventory_office_id2" name="inventory_office_id" type="hidden" data-rules="{required:true}">
                 </div>
                 <div class="control-group span2.5">
@@ -545,6 +548,7 @@
                     }*/);
                     editing_O.edit({isNew: false});
                     O_Form.getField('present_stock_id').set('value', eData.present_stock_id);
+                    O_Form.getField('in_storage_id').set('value', eData.in_storage_id);
                     O_Form.getField('class_id').set('value', eData.class_id);
                     O_Form.getField('entity_id').set('value', eData.device_id);
                     O_Form.getField('entity_name').set('value', eData.entity_name);

@@ -84,6 +84,7 @@ public class DepositoryServiceImpl implements DepositoryService {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String depositoryId = UUIdUtil.getUUID();
+        String officesStorageId = UUIdUtil.getUUID();
 
             /*if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
                 log.info("出错！无法获取设备ID");
@@ -93,16 +94,16 @@ public class DepositoryServiceImpl implements DepositoryService {
             }*/
         boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3",depository.getUpdateUserId(),createDate);
         if (!Result) {
-            Result = storageService.updateOfficesStorageStatus(depository.getDelivery_id(), "5");
-            if(!Result){
-                log.error("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
-                throw new Exception("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
-            }
+
+            log.error("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+            throw new Exception("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
         }
         if ("0".equals(storage.getEntity_entry_status())) {
             boolean devicesResult = devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
                     depository.getDepository_officeId(),
                     depositoryId,
+                    officesStorageId,
+                    "",
                     "2",
                     depository.getUpdateUserId(), createDate);
             if (!(devicesResult)) {
@@ -127,6 +128,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             log.error("addDepositoryWithStorage:dao.addDepository出错！");
             throw new Exception("addDepositoryWithStorage:dao.addDepository出错！");
         } else {
+            storage.setId(officesStorageId);
             storage.setClass_id(depository.getClass_id());
             storage.setEntity_id(depository.getEntity_id());
             storage.setOffices_storage_total(depository.getDepository_total());
@@ -143,6 +145,7 @@ public class DepositoryServiceImpl implements DepositoryService {
     public Map<String, Object> updateDepositoryWithStorage(Depository depository, OfficesStorage storage) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
+        String officesStorageId = UUIdUtil.getUUID();
 
            /* if ("".equals(depository.getEntity_id()) || depository.getEntity_id() == null) {
                 log.info("出错！无法获取设备ID");
@@ -150,21 +153,23 @@ public class DepositoryServiceImpl implements DepositoryService {
                 result.put("error", "添加出错！无法获取设备ID");
                 return result;
             }*/
-        if (!"".equals(depository.getDelivery_id()) && depository.getDelivery_id() != null) {
+        boolean Result=false;
+        if ("1".equals(storage.getOffices_storage_genre())) {
             //不是原科登记更新出库记录的状态
-            boolean Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3",depository.getUpdateUserId(),createDate);
-            if (!Result) {
-                Result = storageService.updateOfficesStorageStatus(depository.getDelivery_id(), "5");
-                if(!Result){
-                    log.error("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
-                    throw new Exception("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
-                }
-            }
+             Result = deliveryService.updateDeliveryStatus(depository.getDelivery_id(), "3",depository.getUpdateUserId(),createDate);
+        }
+        else {Result = storageService.updateOfficesStorageStatus(depository.getDelivery_id(), "5");}
+
+        if(!Result){
+            log.error("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
+            throw new Exception("updateDepositoryWithStorage:deliveryService.updateDeliveryStatus出错！");
         }
         if ("0".equals(storage.getEntity_entry_status())) {
             boolean devicesResult = devicesService.updateDevicesStatus(storage.getOffices_entity_id(),
                     depository.getDepository_officeId(),
                     depository.getId(),
+                    officesStorageId,
+                    "",
                     "2",
                     depository.getUpdateUserId(), createDate);
             if (!(devicesResult)) {
@@ -182,6 +187,7 @@ public class DepositoryServiceImpl implements DepositoryService {
             throw new Exception("updateDepositoryWithStorage:dao.plusDepositoryNo出错！");
         } else {
             //入库记录
+            storage.setId(officesStorageId);
             storage.setClass_id(depository.getClass_id());
             storage.setEntity_id(depository.getEntity_id());
             result = storageService.addOfficesStorage(depository, storage, "3");//“3”代表入科标记

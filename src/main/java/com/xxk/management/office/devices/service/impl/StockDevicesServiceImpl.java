@@ -63,6 +63,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
         String devicesId = UUIdUtil.getUUID();
+        String officesStorageId = UUIdUtil.getUUID();
         boolean devicesResult = false;
 
         boolean Result = stockService.plusStockConfiguredTotal(devices.getPresent_stock_id(), devices.getCreateUserId(), createDate, stock_version);
@@ -80,6 +81,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         devices.setDevice_state("3");
         devices.setLocation_office_id(storage.getOffices_storage_officeId());
         devices.setDevice_origin("1");
+        devices.setIn_storage_id(officesStorageId);
         devices.setDevice_deployment_status("8");
         devices.setRelated_flag("0");
         devices.setCreateDate(createDate);
@@ -95,7 +97,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             storage.setEntity_id(devices.getDevice_id());
             storage.setOffices_entity_id(devicesId);
             storage.setOffices_storage_genre("0");
-            storage.setEntity_entry_status("0");
+            storage.setEntity_entry_status("8");
             result = storageService.addOfficesStorage(devices, storage);
             if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
                 log.error("addStockDevices:storageService.addOfficesStorage出错！");
@@ -148,7 +150,11 @@ public class StockDevicesServiceImpl implements StockDevicesService {
                 throw new Exception("deliveryStockDevices:stockService.updateSingleStockWithDelivery出错！");
             }
         }
-
+        devicesResult=storageService.updateOfficesStorageGenre_and_Status(devices.getIn_storage_id(),"1","0",devices.getUpdateUserId(),createDate);
+        if (!(devicesResult)) {
+            log.error("deliveryStockDevices:dao.updateDeviceStatus出错！");
+            throw new Exception("deliveryStockDevices:dao.updateDeviceStatus出错！");
+        }
         return devicesResult;
     }
 

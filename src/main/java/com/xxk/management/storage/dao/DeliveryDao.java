@@ -31,7 +31,11 @@ public interface DeliveryDao {
 
     public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize,String office_id);
 
-    public List<Delivery> getDeliveryUNIONStorageByEntityId(String entity_id);
+    public List<Delivery> getDeliveryUNIONStorageByEntityId(@Param("entity_id") String entity_id,
+                                                            @Param("deliveryStatus") String[] deliveryStatus,
+                                                            @Param("deliveryGenre") String[] deliveryGenre,
+                                                            @Param("offStorageStatus") String[] offStorageStatus,
+                                                            @Param("offStorageGenre") String[] offStorageGenre);
 
     public int addDelivery(Delivery delivery);
 

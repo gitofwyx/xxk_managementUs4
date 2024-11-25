@@ -26,6 +26,8 @@ public interface OfficesStorageService {
 
     boolean updateOfficesStorageStatus(String id, String status);
 
+    public boolean updateOfficesStorageGenre_and_Status(String id,String genre,String status,String userId,String Date);
+
     public boolean deleteListRegUser(List<String> listStr);
 
 }
