@@ -105,7 +105,7 @@ public class DepositoryServiceImpl implements DepositoryService {
                     officesStorageId,
                     "",
                     "2",
-                    depository.getUpdateUserId(), createDate);
+                    depository.getUpdateUserId(), createDate,"1");
             if (!(devicesResult)) {
                 log.error("addDepositoryWithStorage:devicesService.updateDevicesStatus出错！");
                 throw new Exception("addDepositoryWithStorage:devicesService.updateDevicesStatus出错！");
@@ -171,7 +171,7 @@ public class DepositoryServiceImpl implements DepositoryService {
                     officesStorageId,
                     "",
                     "2",
-                    depository.getUpdateUserId(), createDate);
+                    depository.getUpdateUserId(), createDate,"1");
             if (!(devicesResult)) {
                 log.error("updateDepositoryWithStorage:devicesService.updateDevicesStatus出错！");
                 throw new Exception("updateDepositoryWithStorage:devicesService.updateDevicesStatus出错！");

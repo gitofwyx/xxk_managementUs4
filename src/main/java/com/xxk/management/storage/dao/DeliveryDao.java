@@ -1,5 +1,6 @@
 package com.xxk.management.storage.dao;
 
+import com.xxk.management.office.depository.entity.Depository;
 import com.xxk.management.storage.entity.Delivery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,8 @@ public interface DeliveryDao {
     public List<Delivery> listDeliveryForTransfer(int pageStart, int pageSize,String office_id);
 
     public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize,String office_id);
+
+    public Delivery getDeliveryById(String id);
 
     public List<Delivery> getDeliveryUNIONStorageByEntityId(@Param("entity_id") String entity_id,
                                                             @Param("deliveryStatus") String[] deliveryStatus,

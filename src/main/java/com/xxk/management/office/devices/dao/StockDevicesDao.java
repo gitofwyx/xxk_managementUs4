@@ -26,7 +26,7 @@ public interface StockDevicesDao {
 
     public List<Devices> getDevicesWithStatus(String deviceId, String officeId, String status);
 
-    public int updateDeviceStatus(Devices device);   //更新设备数量 （减少）
+    public int updateDeviceStatus(@Param("devices")Devices devices,@Param("statusList")String[] conditions);   //更新设备数量 （减少）
 
     public int updateDevicesStatus(String devicesId,String location_office_id,String present_stock_id,String status,String userId,String Date);
 

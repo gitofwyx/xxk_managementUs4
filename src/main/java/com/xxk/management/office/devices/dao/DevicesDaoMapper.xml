@@ -71,7 +71,7 @@
         set device_deployment_status=#{device_deployment_status},device_deployment_date=#{device_deployment_date},
             office_unique_name=#{office_unique_name},station_id=#{station_id},device_location=#{device_location},updateUserId=#{updateUserId},
             updateDate=#{updateDate}
-        where id=#{id} and deleteFlag='0';
+        where id=#{id} and device_deployment_status='2' and deleteFlag='0';
     </update>
 
     <!--撤出操作 -->
@@ -79,15 +79,15 @@
         update xxk_offices_devices
         set device_deployment_status=#{device_deployment_status},device_deployment_date='',station_id=#{station_id},device_location=#{device_location},
             updateUserId=#{updateUserId},updateDate=#{updateDate}
-        where id=#{id} and deleteFlag='0';
+        where id=#{id} and device_deployment_status='3' and deleteFlag='0';
     </update>
 
     <!--更新操作 -->
     <update id="updateDevicesStatus">
         update xxk_offices_devices
-        set location_office_id=#{1},present_stock_id=#{2},in_storage_id=#{3},in_storage_id=#{4},device_deployment_status=#{5},device_deployment_date='',
+        set location_office_id=#{1},present_stock_id=#{2},in_storage_id=#{3},delivery_id=#{4},device_deployment_status=#{5},device_deployment_date='',
             updateUserId=#{6},updateDate=#{7}
-        where id=#{0} and deleteFlag='0';
+        where id=#{0} and device_deployment_status=#{8} and deleteFlag='0';
     </update>
 
     <!--转科操作 -->

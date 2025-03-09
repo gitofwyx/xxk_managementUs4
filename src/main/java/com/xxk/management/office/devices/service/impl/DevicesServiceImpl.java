@@ -154,8 +154,8 @@ public class DevicesServiceImpl implements DevicesService {
         devices.setDeleteFlag("0");
         devicesResult = dao.updateDevicesForWithdraw(devices) == 1 ? true : false;
         if (!(devicesResult)) {
-            log.error("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
-            throw new Exception("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
+            log.error("updateDevicesForWithdraw: dao.updateDevicesForWithdraw出错！");
+            throw new Exception("updateDevicesForWithdraw: dao.updateDevicesForWithdraw出错！");
         } else {
             
             storage.setOriginal_storage_officeId(devices.getInventory_office_id());
@@ -163,8 +163,8 @@ public class DevicesServiceImpl implements DevicesService {
             storage.setEntity_entry_status("3");
             result = storageService.addOfficesStorage(devices, storage);
             if (result.get("hasError") instanceof Boolean && (Boolean) result.get("hasError")) {
-                log.error("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
-                throw new Exception("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
+                log.error("updateDevicesForWithdraw: dao.updateDevicesForWithdraw出错！");
+                throw new Exception("updateDevicesForWithdraw: dao.updateDevicesForWithdraw出错！");
             }
             devicesResult = depositoryService.withdrawDeviceWithSingle(storage.getStock_or_depository_id(), storage.getUpdateUserId(), createDate);
         }
@@ -174,12 +174,12 @@ public class DevicesServiceImpl implements DevicesService {
 
     //
     @Override
-    public boolean updateDevicesStatus(String devicesId, String location_office_id, String present_stock_id,String in_storage_id,String delivery_id, String status, String userId, String Date) {
+    public boolean updateDevicesStatus(String devicesId, String location_office_id, String present_stock_id,String in_storage_id,String delivery_id, String status, String userId, String Date,String cond) {
 
         String createDate = DateUtil.getFullTime();
         boolean devicesResult = false;
         try {
-            devicesResult = dao.updateDevicesStatus(devicesId, location_office_id, present_stock_id,in_storage_id, delivery_id,status, userId, Date) == 1 ? true : false;
+            devicesResult = dao.updateDevicesStatus(devicesId, location_office_id, present_stock_id,in_storage_id, delivery_id,status, userId, Date,cond) == 1 ? true : false;
             if (!(devicesResult)) {
                 log.error("depositoryResult:" + devicesResult);
             }

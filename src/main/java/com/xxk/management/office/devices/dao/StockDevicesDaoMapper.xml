@@ -57,11 +57,17 @@
     </insert>
 
     <!--更新操作 -->
-    <update id="updateDeviceStatus" parameterType="com.xxk.management.office.devices.entity.Devices">
+    <update id="updateDeviceStatus">
         update xxk_offices_devices
-        set device_deployment_status=#{device_deployment_status},office_unique_name=#{office_unique_name}, device_location=#{device_location},
-            device_flag=#{device_flag},updateUserId=#{updateUserId},updateDate=#{updateDate}
-        where id=#{id} and deleteFlag='0';
+        set delivery_id=#{devices.delivery_id},device_deployment_status=#{devices.device_deployment_status},office_unique_name=#{devices.office_unique_name},
+            device_location=#{devices.device_location},device_flag=#{devices.device_flag},updateUserId=#{devices.updateUserId},updateDate=#{devices.updateDate}
+        where id=#{devices.id}
+        and device_deployment_status in
+        <foreach collection="statusList" item="status" index="index"
+                 open="(" close=")" separator=",">
+            #{status}
+        </foreach>
+          and deleteFlag='0';
     </update>
 
     <update id="updateDevicesStatus">

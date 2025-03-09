@@ -113,7 +113,7 @@ public class StationDevicesController extends BaseController {
             officesStorage.setOffices_storage_type("1");
             if ("NO".equals(bf_devices_id) || "".equals(bf_devices_id)|| bf_devices_id == null) {
                 devices.setId(devices_id);
-                Result = devicesService.updateDevicesForDeployment(devices, officesStorage);
+                Result = devicesService.updateDevicesForDeployment(devices, officesStorage);//部署操作
 
             }else {
                 if("".equals(devices.getStation_id())||devices.getStation_id()==null){

@@ -94,6 +94,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
             log.error("addStockDevices:dao.addStockDevices出错！");
             throw new Exception("addStockDevices:dao.addStockDevices出错！");
         } else {
+            storage.setId(officesStorageId);
             storage.setEntity_id(devices.getDevice_id());
             storage.setOffices_entity_id(devicesId);
             storage.setOffices_storage_genre("0");
@@ -115,6 +116,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
+        String deliveryId = UUIdUtil.getUUID();
         boolean devicesResult = false;
 
         if("".equals(devices.getDevice_flag())||devices.getDevice_flag()==null){
@@ -126,16 +128,19 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         }
 
         devices.setId(delivery.getStock_entity_id());
+        devices.setDelivery_id(deliveryId);
         devices.setDevice_deployment_status("1");
         devices.setRelated_flag("0");
         devices.setUpdateDate(createDate);
 
         devices.setDeleteFlag("0");
-        devicesResult = dao.updateDeviceStatus(devices) == 1 ? true : false;
+        String[] conditions = {"0","1","2"};
+        devicesResult = dao.updateDeviceStatus(devices,conditions) == 1 ? true : false;
         if (!(devicesResult)) {
             log.error("deliveryStockDevices:dao.updateDeviceStatus出错！");
             throw new Exception("deliveryStockDevices:dao.updateDeviceStatus出错！");
         } else {
+            delivery.setId(deliveryId);
             delivery.setOut_confirmed_ident("NO");
             delivery.setOut_confirmed_type("1");
             delivery.setOut_confirmed_total(1);

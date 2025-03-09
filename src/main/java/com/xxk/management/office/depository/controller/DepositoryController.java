@@ -162,7 +162,7 @@ public class DepositoryController extends BaseController {
 
         } catch (Exception e) {
             result.put("hasError", true);
-            result.put("error", "设备更新出错！" + e.getCause().getLocalizedMessage());
+            result.put("error", "设备更新出错！" + e.getLocalizedMessage());
             log.error(e);
         }
         return result;

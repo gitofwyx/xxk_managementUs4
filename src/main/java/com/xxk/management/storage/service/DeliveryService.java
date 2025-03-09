@@ -26,6 +26,8 @@ public interface DeliveryService {
 
     public List<Delivery> listDeliveryUNIONStorageByOffice(int pageStart, int pageSize, String stock_id);
 
+    public Delivery getDeliveryById(String id);
+
     public List<Delivery> getDeliveryUNIONStorageByEntityId(String entity_id);
 
     public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String genre,String status) throws Exception;

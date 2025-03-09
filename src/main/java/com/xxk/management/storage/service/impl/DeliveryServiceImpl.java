@@ -3,6 +3,7 @@ package com.xxk.management.storage.service.impl;
 import com.xxk.core.util.DateUtil;
 import com.xxk.core.util.UUIdUtil;
 import com.xxk.core.util.build_ident.IdentUtil;
+import com.xxk.management.office.depository.entity.Depository;
 import com.xxk.management.office.devices.service.StockDevicesService;
 import com.xxk.management.stock.entity.Stock;
 import com.xxk.management.stock.service.StockService;
@@ -79,6 +80,11 @@ public class DeliveryServiceImpl implements DeliveryService {
         return dao.listDeliveryUNIONStorageByOffice((pageStart - 1) * pageSize, pageSize, stock_id);
     }
 
+    @Override
+    public Delivery getDeliveryById(String id) {
+        return dao.getDeliveryById(id);
+    }
+
     public List<Delivery> getDeliveryUNIONStorageByEntityId(String entity_id){
         String[] deliveryStatus = {"0","1","2"};//入科状态(-:库间转移0：配置待入科1：待入科；2：部分待入科；3：已入科；4：部分已入科；5：反出库)
         String[] deliveryGenre = {"0"};//（0：配置1.入科2.部署3.撤出4.回收5.调用6.借用）
@@ -138,7 +144,6 @@ public class DeliveryServiceImpl implements DeliveryService {
     public Map<String, Object> addDelivery(Delivery delivery, String genre, String status) throws Exception, RuntimeException {
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
-        String deliveryId = UUIdUtil.getUUID();
 
         if ("".equals(delivery.getEntity_id()) || delivery.getEntity_id() == null) {
             log.error("addDelivery:delivery.getEntity_id为空！");
@@ -146,7 +151,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         }
 
         //c库
-        delivery.setId(deliveryId);
         delivery.setOut_confirmed_genre(genre);
         delivery.setEntity_entry_status(status);
         delivery.setDeleteFlag("0");

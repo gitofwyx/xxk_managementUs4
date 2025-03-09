@@ -101,6 +101,15 @@ updateDate</sql>
         ) AS Storage_UNION ORDER BY Storage_UNION.updateDate desc limit #{0},#{1};
     </select>
 
+    <!--根据id获取信息 -->
+    <select id="getDeliveryById" parameterType="string" resultType="com.xxk.management.storage.entity.Delivery">
+        select
+        <include refid="columns"></include>
+        from xxk_delivery
+        where id=#{0}
+        and deleteFlag='0';
+    </select>
+
     <select id="getDeliveryUNIONStorageByEntityId" resultType="com.xxk.management.storage.entity.Delivery">
         SELECT Storage_UNION.*
         FROM (

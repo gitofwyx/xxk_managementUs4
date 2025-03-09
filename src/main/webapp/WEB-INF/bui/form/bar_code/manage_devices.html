@@ -143,6 +143,19 @@
 
                     <div id="stock_data_input" class="col-sm-12 col-xs-12 col-lg-12" style="margin-top: 10px">
                         <div id="">
+
+                            <input type="hidden" name="class_id" id="class_id" lay-verType="alert">
+                            <input type="hidden" name="entity_id" id="entity_id" lay-verType="alert">
+                            <input type="hidden" name="bf_class_id" id="bf_class_id" lay-verType="alert">
+                            <input type="hidden" name="bf_entity_id" id="bf_entity_id" lay-verType="alert">
+                            <input type="hidden" name="bf_depository_id" id="bf_depository_id" lay-verType="alert">
+                            <input type="hidden" name="bf_devices_id" id="bf_devices_id" lay-verType="alert">
+                            <input type="hidden" name="bf_dev_name" id="bf_dev_name" lay-verType="alert">
+                            <input type="hidden" name="bf_dev_type" id="bf_dev_type" lay-verType="alert">
+
+                            <input type="hidden" name="devices_id" id="devices_id" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="科室设备ID为空">
                             <input type="hidden" name="delivery_id" id="delivery_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="出库记录ID为空">
@@ -168,6 +181,9 @@
                             <input type="hidden" name="entity_type" id="entity_type" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="设备型号为空">
+                            <input type="hidden" name="offices_storage_officeId" id="offices_storage_officeId" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="流动科室id为空">
                             <input type="hidden" name="offices_storage_genre" id="offices_storage_genre" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="流动类别为空">
@@ -213,13 +229,13 @@
                             </ul>
                         </div>
                         <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-left:0px;padding-right:5px ">
-                            <button type="button" class="btn btn-primary btn-block" id="device entry_submit" lay-submit
-                                    lay-filter="device entry_submit">入科
+                            <button type="button" class="btn btn-primary btn-block" id="device_entry_submit" lay-submit
+                                    lay-filter="device_entry_submit">入科
                             </button>
                         </div>
                         <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-left:10px;padding-right:0px ">
                             <button type="button" class="btn btn-primary btn-block layui-btn-normal" id="1" lay-submit
-                                    lay-filter="bar_code_submit">部署
+                                    lay-filter="device_deployment_submit">部署
                             </button>
                         </div>
                         <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-right:0px;padding-left:15px; ">
@@ -310,6 +326,7 @@
                 $('#devices_station_div').html(devices_stationDiv);
                 in_stationSuggest("devices_station",s.station_data);
             });
+            $("#devices_id").val(v.devices.id);
             $("#delivery_id").val(v.delivery.id);
             $("#out_confirmed_offName").val(getOfficeMakeGrid(offices_select,{})[v.delivery.out_confirmed_officeId]);
             $("#office_unique_name").val(v.devices.office_unique_name);
@@ -339,6 +356,12 @@
             if($("#entity_entry_status").val()=='0')$("#deployment_status").val("未入科");
             $("#unit_num_1").val(1);
 
+            $("#bf_class_id").val("");
+            $("#bf_entity_id").val("");
+            $("#bf_depository_id").val("NO");
+            $("#bf_devices_id").val("NO");
+            $("#bf_dev_name").val("");
+            $("#bf_dev_type").val("");
 
         });
     }
@@ -565,7 +588,7 @@
 
         $('.hide_keyboard').click(function(){
             if(!$('.hide_keyboard').is(":focus")){
-                layer.msg('双击唤出键盘查找',{offset: 'b'});
+                layer.msg('双击唤出键盘输入查找',{offset: 'b'});
             }
         });
 
@@ -573,7 +596,7 @@
             $('.hide_keyboard').focus();//屏蔽默认键盘弹出；
         });
 
-        form.on('submit(device entry_submit)', function (data) {
+        form.on('submit(device_entry_submit)', function (data) {
             data.field.TD = "logout";
             CD_ajaxAllParam("/addDepository", data.field, true, function (v) {
                     if (result_handle(v)) {
@@ -582,6 +605,28 @@
                             $(this).val('');
                         });
                         layer.msg('出库记录完成', {icon: 1, time: 1000,},
+                            function (index) {
+                                layer.close(index);
+                            });
+                    } else {
+                        layer.msg(v.error, {icon: 2, time: 5000,},
+                            function (index) {
+                                layer.close(index);
+                            });
+                    }
+                }
+            );
+        });
+
+        form.on('submit(device_deployment_submit)', function (data) {
+            data.field.TD = "logout";
+            CD_ajaxAllParam("/stations/exchangeStationDevices", data.field, true, function (v) {
+                    if (result_handle(v)) {
+                        //table.reloadData('Delivery_table');
+                        $("#stock_data_input input").each(function () {
+                            $(this).val('');
+                        });
+                        layer.msg('部署操作完成', {icon: 1, time: 1000,},
                             function (index) {
                                 layer.close(index);
                             });

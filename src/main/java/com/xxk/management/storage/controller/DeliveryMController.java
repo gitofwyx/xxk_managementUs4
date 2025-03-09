@@ -156,14 +156,14 @@ public class DeliveryMController extends BaseController {
                 return result;
             }
             Devices devices=list_dev.get(0);
-            List<Delivery> list_del=deliveryService.getDeliveryUNIONStorageByEntityId(devices.getId());
-            if(list_del.size()==0){
+            Delivery delivery=deliveryService.getDeliveryById(devices.getDelivery_id());
+            if(delivery==null){
                 result.put("hasError", true);
                 result.put("error", "未查询到该设备的出库记录");
                 return result;
             }
             result.put("devices",devices);
-            result.put("delivery",list_del.get(0));
+            result.put("delivery",delivery);
         } catch (Exception e) {
             log.error(e);
             result.put("hasError", true);
