@@ -57,5 +57,26 @@ public class StationDevicesServiceImpl implements StationDevicesService {
         return devicesResult;
     }
 
+    //换出操作；标注时间：2021年6月17日 23:53:48
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public boolean updateStationDevicesForWithdraw(Devices devices, OfficesStorage storage) throws Exception, RuntimeException {
+
+        Map<String, Object> result = new HashMap<>();
+        String createDate = DateUtil.getFullTime();
+        boolean devicesResult = false;
+
+        devices.setDeleteFlag("0");
+        devices.setClass_id(storage.getClass_id());
+        devices.setDevice_id(storage.getEntity_id());
+        devicesResult = devicesService.updateDevicesForWithdraw(devices,storage) ;
+        if (!(devicesResult)) {
+            log.error("updateStationDevicesForExchange: devicesService.updateDevicesForWithdraw！");
+            throw new Exception("updateStationDevicesForExchange: devicesService.updateDevicesForWithdraw出错！");
+        }
+
+        return devicesResult;
+    }
+
 
 }

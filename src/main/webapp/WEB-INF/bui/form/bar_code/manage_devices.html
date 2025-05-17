@@ -127,7 +127,7 @@
                                    lay-verify="required"
                                    class="NO_Reset"
                                    lay-verType="alert"
-                                   lay-reqText="科室不能为空">
+                                   lay-reqText="工作站不能为空">
                             <ul class="dropdown-menu " role="menu">
                             </ul>
                         </div>
@@ -152,6 +152,10 @@
                             <input type="hidden" name="bf_devices_id" id="bf_devices_id" lay-verType="alert">
                             <input type="hidden" name="bf_dev_name" id="bf_dev_name" lay-verType="alert">
                             <input type="hidden" name="bf_dev_type" id="bf_dev_type" lay-verType="alert">
+
+                            <input type="hidden" name="device_deployment_status" id="device_deployment_status" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="部署状态为空">
 
                             <input type="hidden" name="devices_id" id="devices_id" lay-verify="required"
                                    lay-verType="alert"
@@ -240,7 +244,7 @@
                         </div>
                         <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-right:0px;padding-left:15px; ">
                             <button type="button" class="btn btn-primary btn-block layui-btn-primary" id="2" lay-submit
-                                    lay-filter="bar_code_submit">撤出
+                                    lay-filter="device_withdraw_submit">撤出
                             </button>
                         </div>
                         <div class="col-sm-3 col-xs-3 col-lg-3" style="margin-bottom:5px;padding-right:0px;padding-left:15px; ">
@@ -320,13 +324,19 @@
                 $("#depository_no").val(makeInNum(depository_no, 1));
                 $("#depository_idle_no").val(makeInNum(depository_idle_no, 1));
             })
-            CD_ajaxAllParam("/station/getStationSelectByOfficeId", {"office_id":v.delivery.out_confirmed_officeId}, true, function (s) {
+            $("#station_id").val("NULL");
+            if(v.devices.device_deployment_status==="2"&&v.delivery.out_confirmed_genre==="1"&&v.delivery.entity_entry_status==="3"){
+                CD_ajaxAllParam("/station/getStationSelectByOfficeId", {"office_id":v.delivery.out_confirmed_officeId}, true, function (s) {
 
-                initBsSuggest('devices_station');
-                $('#devices_station_div').html(devices_stationDiv);
-                in_stationSuggest("devices_station",s.station_data);
-            });
+                    initBsSuggest('devices_station');
+                    $('#devices_station_div').html(devices_stationDiv);
+                    in_stationSuggest("devices_station",s.station_data);
+                });
+            }
             $("#devices_id").val(v.devices.id);
+            $("#class_id").val(v.devices.class_id);
+            $("#entity_id").val(v.devices.device_id);
+            $("#device_deployment_status").val(v.devices.device_deployment_status);
             $("#delivery_id").val(v.delivery.id);
             $("#out_confirmed_offName").val(getOfficeMakeGrid(offices_select,{})[v.delivery.out_confirmed_officeId]);
             $("#office_unique_name").val(v.devices.office_unique_name);
@@ -348,6 +358,7 @@
             $("#depository_type").val(v.delivery.out_confirmed_type);
             $("#out_confirmed_total").val(v.delivery.out_confirmed_total);
             $("#offices_storage_genre").val('1');
+            $("#offices_storage_officeId").val(v.delivery.out_confirmed_officeId);
             $("#offices_storage_unit").val(v.delivery.out_confirmed_total_unit);
             $("#offices_storage_no").val(conversion_Num(v.delivery.out_confirmed_no, v.delivery.out_confirmed_proportion, 1));
             $("#offices_storage_proportion").val(1);
@@ -598,13 +609,17 @@
 
         form.on('submit(device_entry_submit)', function (data) {
             data.field.TD = "logout";
+            if(data.field.entity_entry_status!='0'&&data.field.entity_entry_status!='5'){
+                layer.msg('当前设备无法入科操作', {icon: 2, time: 1000,});
+                return;
+            }
             CD_ajaxAllParam("/addDepository", data.field, true, function (v) {
                     if (result_handle(v)) {
                         //table.reloadData('Delivery_table');
                         $("#stock_data_input input").each(function () {
                             $(this).val('');
                         });
-                        layer.msg('出库记录完成', {icon: 1, time: 1000,},
+                        layer.msg('入科记录完成', {icon: 1, time: 1000,},
                             function (index) {
                                 layer.close(index);
                             });
@@ -620,7 +635,33 @@
 
         form.on('submit(device_deployment_submit)', function (data) {
             data.field.TD = "logout";
+            if(data.field.offices_storage_genre!='1'&&data.field.entity_entry_status!='3'){
+                layer.msg('当前设备无法部署操作', {icon: 2, time: 1000,});
+                return;
+            }
             CD_ajaxAllParam("/stations/exchangeStationDevices", data.field, true, function (v) {
+                    if (result_handle(v)) {
+                        //table.reloadData('Delivery_table');
+                        $("#stock_data_input input").each(function () {
+                            $(this).val('');
+                        });
+                        layer.msg('部署操作完成', {icon: 1, time: 1000,},
+                            function (index) {
+                                layer.close(index);
+                            });
+                    } else {
+                        layer.msg(v.error, {icon: 2, time: 5000,},
+                            function (index) {
+                                layer.close(index);
+                            });
+                    }
+                }
+            );
+        });
+
+        form.on('submit(device_withdraw_submit)', function (data) {
+            data.field.TD = "logout";
+            CD_ajaxAllParam("/stations/withdrawStationDevices", data.field, true, function (v) {
                     if (result_handle(v)) {
                         //table.reloadData('Delivery_table');
                         $("#stock_data_input input").each(function () {

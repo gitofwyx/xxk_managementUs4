@@ -108,9 +108,14 @@ public class DevicesServiceImpl implements DevicesService {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
+        String officesStorageId = UUIdUtil.getUUID();
         boolean devicesResult = false;
 
+        devices.setDelivery_id(officesStorageId);
         devices.setDevice_deployment_status("3");
+        if("".equals(devices.getDevice_deployment_date())||devices.getDevice_deployment_date()==null){
+            devices.setDevice_deployment_date(createDate);
+        }
         devices.setUpdateUserId(devices.getCreateUserId());
         devices.setUpdateDate(createDate);
 
@@ -120,7 +125,7 @@ public class DevicesServiceImpl implements DevicesService {
             log.error("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
             throw new Exception("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
         } else {
-
+            storage.setId(officesStorageId);
             storage.setOriginal_storage_officeId(devices.getInventory_office_id());
             storage.setOffices_storage_genre("2");
             storage.setEntity_entry_status("3");
@@ -142,9 +147,11 @@ public class DevicesServiceImpl implements DevicesService {
 
         Map<String, Object> result = new HashMap<>();
         String createDate = DateUtil.getFullTime();
+        String officesStorageId = UUIdUtil.getUUID();
         boolean devicesResult = false;
 
         devices.setId(storage.getOffices_entity_id());
+        devices.setDelivery_id(officesStorageId);
         devices.setDevice_deployment_status("2");
         devices.setStation_id("");
         devices.setDevice_location("");
@@ -157,7 +164,7 @@ public class DevicesServiceImpl implements DevicesService {
             log.error("updateDevicesForWithdraw: dao.updateDevicesForWithdraw出错！");
             throw new Exception("updateDevicesForWithdraw: dao.updateDevicesForWithdraw出错！");
         } else {
-            
+            storage.setId(officesStorageId);
             storage.setOriginal_storage_officeId(devices.getInventory_office_id());
             storage.setOffices_storage_genre("3");
             storage.setEntity_entry_status("3");

@@ -30,6 +30,8 @@ public interface DeliveryService {
 
     public List<Delivery> getDeliveryUNIONStorageByEntityId(String entity_id);
 
+    public List<Delivery> getDeliveryUNIONStorageById(String id);
+
     public Map<String, Object> addDelivery(Stock stock, Delivery delivery,String genre,String status) throws Exception;
 
     public Map<String, Object> addDelivery(Delivery delivery, String genre,String status) throws Exception;

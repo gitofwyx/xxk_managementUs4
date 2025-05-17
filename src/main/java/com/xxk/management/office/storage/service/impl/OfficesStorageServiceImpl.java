@@ -117,6 +117,7 @@ public class OfficesStorageServiceImpl implements OfficesStorageService {
         officesStorage.setOffices_storage_officeId(devices.getLocation_office_id());
         officesStorage.setOffices_storage_date(devices.getDevice_deployment_date());
         officesStorage.setOffices_storage_total(1.0);
+        officesStorage.setOffices_storage_total_unit(officesStorage.getOffices_storage_unit());//单出库或出库总量为1时为了简化开发流程用出库数量单位作为出库总量单位
         officesStorage.setCreateDate(createDate);
         officesStorage.setCreateUserId(devices.getUpdateUserId());
         officesStorage.setUpdateDate(createDate);

@@ -12,4 +12,6 @@ public interface StationDevicesService {
 
     public boolean updateStationDevicesForExchange(Devices devices, OfficesStorage storage,OfficesStorage bf_storage) throws Exception;
 
+    public boolean updateStationDevicesForWithdraw(Devices devices, OfficesStorage storage) throws Exception;
+
 }

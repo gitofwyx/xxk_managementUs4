@@ -40,6 +40,12 @@ public interface DeliveryDao {
                                                             @Param("offStorageStatus") String[] offStorageStatus,
                                                             @Param("offStorageGenre") String[] offStorageGenre);
 
+    public List<Delivery> getDeliveryUNIONStorageById(@Param("id") String id,
+                                                            @Param("deliveryStatus") String[] deliveryStatus,
+                                                            @Param("deliveryGenre") String[] deliveryGenre,
+                                                            @Param("offStorageStatus") String[] offStorageStatus,
+                                                            @Param("offStorageGenre") String[] offStorageGenre);
+
     public int addDelivery(Delivery delivery);
 
     public int updateDeliveryStatus(String id,String status,String user_id,String date);

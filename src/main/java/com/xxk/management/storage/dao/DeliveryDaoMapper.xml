@@ -143,6 +143,39 @@ updateDate</sql>
         ) AS Storage_UNION;
     </select>
 
+    <select id="getDeliveryUNIONStorageById" resultType="com.xxk.management.storage.entity.Delivery">
+        SELECT Storage_UNION.*
+        FROM (
+        select
+        <include refid="deliveryForEntry"></include>
+        from xxk_delivery
+        where deleteFlag='0' and id=#{id} and entity_entry_status in
+        <foreach collection="deliveryStatus" item="status1" index="index"
+                 open="(" close=")" separator=",">
+            #{status1}
+        </foreach>
+        and out_confirmed_genre in
+        <foreach collection="deliveryGenre" item="genre1" index="index"
+                 open="(" close=")" separator=",">
+            #{genre1}
+        </foreach>
+        UNION ALL
+        select
+        <include refid="storageForEntry"></include>
+        from xxk_offices_storage
+        where deleteFlag='0' and id=#{id} and entity_entry_status in
+        <foreach collection="offStorageStatus" item="status2" index="index"
+                 open="(" close=")" separator=",">
+            #{status2}
+        </foreach>
+        and offices_storage_genre in
+        <foreach collection="offStorageGenre" item="genre2" index="index"
+                 open="(" close=")" separator=",">
+            #{genre2}
+        </foreach>
+        ) AS Storage_UNION;
+    </select>
+
     <!--添加信息 -->
     <insert id="addDelivery" parameterType="com.xxk.management.storage.entity.Delivery">
         insert into xxk_delivery(<include refid="columns"></include>) values(

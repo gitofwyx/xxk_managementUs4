@@ -149,4 +149,56 @@ public class StationDevicesController extends BaseController {
         //return "system/index";
     }
 
+    @ResponseBody
+    @RequestMapping("/withdrawStationDevices")
+    public Map<String, Object> withdrawStationDevices(Devices devices, OfficesStorage officesStorage,
+                                                      @RequestParam(value = "depository_id") String depository_id,
+                                                      @RequestParam(value = "devices_id") String devices_id) {
+        Map<String, Object> result = new HashMap<>();
+        String Date = DateUtil.getFullTime();
+        boolean Result = false;
+        try {
+            if ("".equals(depository_id) || depository_id == null || "".equals(devices_id) || devices_id == null) {
+                result.put("hasError", true);
+                result.put("error", "设备更新出错！");
+                return result;
+            }
+            String CurrentUserId = (String) SecurityUtils.getSubject().getSession().getAttribute("userId");
+            devices.setCreateUserId(CurrentUserId);
+            officesStorage.setStock_or_depository_id(depository_id);
+            officesStorage.setOffices_storage_type("1");
+
+            if("".equals(devices.getStation_id())||devices.getStation_id()==null){
+                result.put("hasError", true);
+                result.put("error", "设备未部署！");
+                return result;
+            }
+            /*OfficesStorage bf_storage = storageSupplier.get();
+            bf_storage.setClass_id(bf_class_id);
+            bf_storage.setEntity_id(bf_entity_id);
+            bf_storage.setStock_or_depository_id(bf_depository_id);
+            bf_storage.setOffices_entity_id(bf_devices_id);
+            bf_storage.setEntity_name(bf_dev_name);
+            bf_storage.setEntity_type(bf_dev_type);
+            bf_storage.setOffices_storage_type("1");*/
+
+            devices.setId(devices_id);
+            Result = stationDevicesService.updateStationDevicesForWithdraw(devices, officesStorage);
+
+
+            if (!(Result)) {
+                result.put("hasError", true);
+                result.put("error", "设备更新出错！");
+            } else {
+                result.put("success", true);
+            }
+        } catch (Exception e) {
+            result.put("hasError", true);
+            result.put("error", "设备更新出错！");
+            log.error(e);
+        }
+        return result;
+        //return "system/index";
+    }
+
 }
