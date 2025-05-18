@@ -134,7 +134,7 @@ public class StockDevicesServiceImpl implements StockDevicesService {
         devices.setUpdateDate(createDate);
 
         devices.setDeleteFlag("0");
-        String[] conditions = {"0","1","2"};
+        String[] conditions = {"0","8"};
         devicesResult = dao.updateDeviceStatus(devices,conditions) == 1 ? true : false;
         if (!(devicesResult)) {
             log.error("deliveryStockDevices:dao.updateDeviceStatus出错！");

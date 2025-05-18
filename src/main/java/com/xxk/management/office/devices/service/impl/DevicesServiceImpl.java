@@ -126,7 +126,7 @@ public class DevicesServiceImpl implements DevicesService {
             throw new Exception("updateDevicesForDeployment: dao.updateDevicesForDeployment出错！");
         } else {
             storage.setId(officesStorageId);
-            storage.setOriginal_storage_officeId(devices.getInventory_office_id());
+            devices.setLocation_office_id(storage.getOffices_storage_officeId());
             storage.setOffices_storage_genre("2");
             storage.setEntity_entry_status("3");
             result = storageService.addOfficesStorage(devices, storage);

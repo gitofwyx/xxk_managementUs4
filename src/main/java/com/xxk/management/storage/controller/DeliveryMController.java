@@ -148,6 +148,7 @@ public class DeliveryMController extends BaseController {
     @RequestMapping("/getDeliveryWithDevicesByIdent")
     public Map<String, Object> getDeliveryWithDevicesByIdent(@RequestParam(value = "ident") String ident) {
         Map<String, Object> result = new HashMap<>();
+        String delivery_id="";
         try {
             List<Devices> list_dev=stockDevicesService.getDevicesByIdent(ident);
             if(list_dev.size()==0){
@@ -156,7 +157,11 @@ public class DeliveryMController extends BaseController {
                 return result;
             }
             Devices devices=list_dev.get(0);
-            List<Delivery> list_del=deliveryService.getDeliveryUNIONStorageById(devices.getDelivery_id());
+            delivery_id=devices.getDelivery_id();
+            if("2".equals(devices.getDevice_deployment_status())){
+                delivery_id=devices.getIn_storage_id();
+            }
+            List<Delivery> list_del=deliveryService.getDeliveryUNIONStorageById(delivery_id);
             if(list_del.size()==0){
                 result.put("hasError", true);
                 result.put("error", "未查询到该设备的出库记录");

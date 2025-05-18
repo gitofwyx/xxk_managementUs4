@@ -173,6 +173,9 @@
                             <input type="hidden" name="entity_record_id" id="entity_record_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="设备型号ID为空">
+                            <input type="hidden" name="inventory_office_id" id="inventory_office_id" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="原始科室ID为空">
                             <input type="hidden" name="offices_entity_id" id="offices_entity_id" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="设备科室为空">
@@ -201,6 +204,9 @@
                                    lay-verType="alert"
                                    lay-reqText="流动单位比例为空">
                             <input type="hidden" name="offices_storage_total" id="offices_storage_total" lay-verify="required"
+                                   lay-verType="alert"
+                                   lay-reqText="流动总量为空">
+                            <input type="hidden" name="offices_storage_total_unit" id="offices_storage_total_unit" lay-verify="required"
                                    lay-verType="alert"
                                    lay-reqText="流动总量为空">
                             <input type="hidden" name="depository_type" id="depository_type" lay-verify="required"
@@ -341,6 +347,7 @@
             $("#out_confirmed_offName").val(getOfficeMakeGrid(offices_select,{})[v.delivery.out_confirmed_officeId]);
             $("#office_unique_name").val(v.devices.office_unique_name);
             $("#device_location").val(v.devices.device_location);
+            $("#inventory_office_id").val(v.devices.inventory_office_id);
             $("#out_confirmed_officeId").val(v.delivery.out_confirmed_officeId);
             $("#out_confirmed_no").val(1);
             $("#depository_officeId").val(v.delivery.out_confirmed_officeId);
@@ -359,10 +366,11 @@
             $("#out_confirmed_total").val(v.delivery.out_confirmed_total);
             $("#offices_storage_genre").val('1');
             $("#offices_storage_officeId").val(v.delivery.out_confirmed_officeId);
-            $("#offices_storage_unit").val(v.delivery.out_confirmed_total_unit);
+            $("#offices_storage_unit").val(v.delivery.out_confirmed_unit);
             $("#offices_storage_no").val(conversion_Num(v.delivery.out_confirmed_no, v.delivery.out_confirmed_proportion, 1));
             $("#offices_storage_proportion").val(1);
             $("#offices_storage_total").val(v.delivery.out_confirmed_total);
+            $("#offices_storage_total_unit").val(v.delivery.out_confirmed_unit);
             $("#entity_entry_status").val(v.delivery.entity_entry_status);
             if($("#entity_entry_status").val()=='0')$("#deployment_status").val("未入科");
             $("#unit_num_1").val(1);
